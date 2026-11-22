@@ -15,7 +15,13 @@ import {
     $string,
     $unescaped,
 } from "@mainlanddev/hbx-bigcommerce";
-import {Counter} from "@/client/Counter.tsx";
+import {island} from "@mainlanddev/hbx-bigcommerce/islands";
+import {Counter as CounterImpl} from "@/client/Counter.tsx";
+import {CounterStatic as CounterStaticImpl} from "@/client/CounterStatic.tsx";
+
+// Types the client component for a template: props take real values or HBX values.
+const Counter = island(CounterImpl);
+const CounterStatic = island(CounterStaticImpl);
 
 const {setting} = $frontmatter;
 
@@ -37,6 +43,7 @@ type Home = PageContext<"home">;
 
 export default () => {
     const settings = $pointer<ThemeSettingsObject>("theme_settings");
+    const startCount = $pointer<number>("theme_settings.homepage_featured_products_column_count");
     // `shipping_messages` is retyped in src/hbx/context.overrides.d.ts: the generated type hides `message`.
     const carousel = $pointer<Home["carousel"]>("carousel");
     const products = $pointer<Home["products"]>("products");
@@ -46,7 +53,14 @@ export default () => {
             blocks={{
                 hero: () => (
                     <>
-                        <Counter/>
+                        <CounterStatic start={10}/>
+                        <Counter
+                            start={startCount}
+                            fallback={{
+                                placeholder: <button disabled>…</button>,
+                                noscript: <span>Enable JavaScript to use the counter.</span>,
+                            }}
+                        />
                         {region("home_below_menu")}
                         <$And
                             a={carousel}

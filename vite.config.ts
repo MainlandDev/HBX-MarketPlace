@@ -7,12 +7,17 @@ import {islands} from "@vitejs/plugin-islands";
 
 
 // Only "use client" modules matched here can hydrate.
-const islandsOptions = {include: ["src/client/**/*.{js,jsx,ts,tsx}"]};
+const islandsOptions = {
+    include: ["src/client/**/*.{js,jsx,ts,tsx}"],
+    // Lets a template pass HBX values (pointers, …) as island props.
+    tokenEncoder: "@mainlanddev/hbx-bigcommerce/islands",
+};
 
 export default defineConfig({
     plugins: [
-        // Fast Refresh needs a preamble Stencil's pages do not carry, and its self-import of `/src/...` is swallowed by Stencil's dev server.
-        react({exclude: [/[\\/]src[\\/]client[\\/]/]}),
+        // A custom `exclude` replaces the plugin's default (node_modules), so keep it or the pre-bundled deps get Fast Refresh code.
+        // Islands under src/client refresh in place: the islands client entry installs the preamble Stencil's pages do not carry.
+        react({exclude: [/[\\/]node_modules[\\/]/]}),
         BigcommerceStencil({
             paths: {
                 // assetsScss: "./temp_assets_external_test/scss",

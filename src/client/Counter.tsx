@@ -4,7 +4,7 @@
 
 import {useState} from "react";
 
-export const Counter = () => {
-    const [counter, setCounter] = useState<number>(0);
-    return <button onClick={() => setCounter(counter + 1)}>{counter}</button>;
+export const Counter = ({start = 0}: {start?: number}) => {
+    const [counter, setCounter] = useState<number>(start);
+    return <button onClick={() => setCounter((current) => current + 1)}>{counter}</button>;
 }
