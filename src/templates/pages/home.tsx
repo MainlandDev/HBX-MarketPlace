@@ -53,7 +53,7 @@ export default () => {
             blocks={{
                 hero: () => (
                     <>
-                        <CounterStatic start={10}/>
+                        <CounterStatic start={10} onIdle onVisible onAny/>
                         <Counter
                             start={startCount}
                             fallback={{
