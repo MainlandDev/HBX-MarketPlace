@@ -1,4 +1,6 @@
 import type {ThemeSettingsObject} from "@mainlanddev/hbx-bigcommerce";
+import {IslandsNoScriptStyle} from "@mainlanddev/hbx-bigcommerce/islands";
+import {NOSCRIPT_CSS} from "@vitejs/plugin-islands/runtime/server";
 import PolyfillScript from "../components/common/polyfill-script.tsx";
 import Header from "../components/common/header.tsx";
 import Body from "../components/common/body.tsx";
@@ -89,6 +91,8 @@ export default () => {
                     {$wrapper($inject($string("carouselActiveDotAriaLabel"), $lang($string("carousel.active_dot_aria_label"))), "{{~", "}}")}
                     {$wrapper($inject($string("carouselContentAnnounceMessage"), $lang($string("carousel.content_announce_message"))), "{{~", "}}")}
                     {$wrapper($inject($string("giftWrappingRemoveMessage"), $lang($string("cart.gift_wrapping.remove_confirm"))), "{{~", "}}")}
+                    {/* Scripts off: hide the placeholders of islands that have no-JS content. Last in the head, so it comes after the theme's own CSS. */}
+                    <IslandsNoScriptStyle css={NOSCRIPT_CSS} />
                 </head>
                 <body>
                     <svg data-src={$cdn($string("img/icon-sprite.svg"))} className="icons-svg-sprite"></svg>

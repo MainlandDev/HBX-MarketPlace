@@ -80,6 +80,7 @@
   "scripts": {
     "vite-dev": "vite",
     "vite-build": "tsc -b && vite build",
+    "check-islands": "node scripts/check-islands.mjs",
     "cloudflared-tunnel": "cloudflared tunnel --url http://localhost:5173",
     "prepare-sass-runtime": "npm explore @bigcommerce/node-sass -- npm run install",
     "hbx-hints": "hbx-bigcommerce generate",
