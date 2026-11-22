@@ -65,11 +65,11 @@ export default () => {
             window.lazySizesConfig.loadMode = 1;`,
                         }}
                     />
-                    <script nonce={$nonce()} async src={$cdn($string("assets/dist/theme-bundle.head_async.js"), {resourceHint: $string("preload"), as: $string("script")})} />
+                    <script type="module" nonce={$nonce()} async src={$cdn($string("assets/dist/theme-bundle.head_async.js"), {resourceHint: $string("preload"), as: $string("script")})} />
 
                     {$getFontsCollection({"font-display": $string("block")})}
 
-                    <script nonce={$nonce()} async src={$cdn($string("assets/dist/theme-bundle.font.js"), {resourceHint: $string("preload"), as: $string("script")})} />
+                    <script type="module" nonce={$nonce()} async src={$cdn($string("assets/dist/theme-bundle.font.js"), {resourceHint: $string("preload"), as: $string("script")})} />
 
                     {$unescaped($stylesheet($string("/assets/css/theme.css")))}
                     {" "}
@@ -132,11 +132,13 @@ export default () => {
                     />
                     <script
                         id="theme-bundle-main"
+                        type="module"
                         nonce={$nonce()}
                         async
                         defer
                         src={$cdn($string("assets/dist/theme-bundle.main.js"), {resourceHint: $string("preload"), as: $string("script")})}
                     />
+                    <script type="module" nonce={$nonce()} src={$cdn($string("assets/dist/theme-bundle.islands.js"))} />
                     <script
                         nonce={$nonce()}
                         dangerouslySetInnerHTML={{

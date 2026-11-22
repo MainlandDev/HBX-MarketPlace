@@ -15,6 +15,7 @@ import {
     $string,
     $unescaped,
 } from "@mainlanddev/hbx-bigcommerce";
+import {Counter} from "@/client/Counter.tsx";
 
 const {setting} = $frontmatter;
 
@@ -45,6 +46,7 @@ export default () => {
             blocks={{
                 hero: () => (
                     <>
+                        <Counter/>
                         {region("home_below_menu")}
                         <$And
                             a={carousel}
