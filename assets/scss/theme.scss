@@ -58,13 +58,13 @@
 // Components
 // -----------------------------------------------------------------------------
 //
-// 1. Import Citadel's normalize dependency.
+// 1. (removed) Citadel's normalize dependency: replaced by the Tailwind base layer.
 // 2. Import Citadel's components.
 // 2. Import Stencil's component additions and custom components.
 //
 // -----------------------------------------------------------------------------
 
-@import "../../node_modules/@bigcommerce/citadel/dist/vendor/normalize/normalize"; // 1
+// normalize.css now ships from tailwind/normalize.css as Tailwind's base layer (see _tailwind.scss)
 @import "../../node_modules/@bigcommerce/citadel/dist/components/components"; // 2
 @import "common/index"; // 3
 @import "components/components"; // 6

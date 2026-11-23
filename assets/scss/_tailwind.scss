@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+/*
+ * Normalisation on top of Preflight, in the base layer. Declared after the import, so on equal
+ * specificity these win over Preflight. Unlayered legacy CSS still beats the whole layer.
+ *
+ * 1. Remainder of Citadel's normalize.css v3.0.3 (MIT, github.com/necolas/normalize.css): only what
+ *    Preflight does not already set to the same value. Where both set a property to a DIFFERENT value
+ *    (h1, b/strong, figure, fieldset, monospace fonts, video/canvas/audio) the old value is kept.
+ * 2. Legacy compat: browser defaults Preflight removes that the legacy CSS relied on.
+ * Delete a rule once nothing depends on it.
+ */
+@layer base {
+    /* 1. normalize remainder */
+    html {
+        -ms-text-size-adjust: 100%;
+        font-family: sans-serif;
+    }
+
+    article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+        display: block;
+    }
+
+    audio, canvas, video {
+        display: inline-block;
+        vertical-align: baseline;
+    }
+
+    progress {
+        display: inline-block;
+    }
+
+    audio:not([controls]) {
+        display: none;
+        height: 0;
+    }
+
+    template {
+        display: none;
+    }
+
+    a {
+        background-color: transparent;
+    }
+
+    a:active, a:hover {
+        outline: 0;
+    }
+
+    abbr[title] {
+        border-bottom: 1px dotted;
+    }
+
+    b, strong {
+        font-weight: bold;
+    }
+
+    dfn {
+        font-style: italic;
+    }
+
+    h1 {
+        font-size: 2em;
+        margin: 0.67em 0;
+    }
+
+    mark {
+        background: #ff0;
+        color: #000;
+    }
+
+    svg:not(:root) {
+        overflow: hidden;
+    }
+
+    figure {
+        margin: 1em 40px;
+    }
+
+    hr {
+        box-sizing: content-box;
+    }
+
+    pre {
+        overflow: auto;
+    }
+
+    code, kbd, pre, samp {
+        font-family: monospace, monospace;
+    }
+
+    button {
+        overflow: visible;
+    }
+
+    button, select {
+        text-transform: none;
+    }
+
+    button, html input[type="button"], input[type="reset"], input[type="submit"] {
+        cursor: pointer;
+    }
+
+    button[disabled], html input[disabled] {
+        cursor: default;
+    }
+
+    button::-moz-focus-inner, input::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+    }
+
+    input {
+        line-height: normal;
+    }
+
+    input[type="checkbox"], input[type="radio"] {
+        box-sizing: border-box;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+        height: auto;
+    }
+
+    input[type="search"] {
+        -webkit-appearance: textfield;
+        box-sizing: content-box;
+    }
+
+    input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+        -webkit-appearance: none;
+    }
+
+    fieldset {
+        border: 1px solid #c0c0c0;
+        margin: 0 2px;
+        padding: 0.35em 0.625em 0.75em;
+    }
+
+    textarea {
+        overflow: auto;
+    }
+
+    optgroup {
+        font-weight: bold;
+    }
+
+    table {
+        border-spacing: 0;
+    }
+
+    /* 2. legacy compat */
+
+    /* Preflight: list-style none. Legacy lists are bulleted unless a rule says otherwise. */
+    ol, ul, menu {
+        list-style: revert;
+    }
+
+    /* Preflight: display block. Legacy svg/iframe/embed/object sit inline. */
+    svg, iframe, embed, object {
+        display: revert;
+        vertical-align: revert;
+    }
+
+    /* Preflight: transparent. Legacy never styled the field background, so it was the browser's. */
+    input, select, textarea {
+        background-color: revert;
+    }
+}
+
+@custom-variant dark (&:is(.dark *));
+/*
+ * no-js: → matches when <html> carries the `no-js` class.
+ *
+ * `&:where(...)` keeps the generated selector at zero extra specificity,
+ * so these variants don't unexpectedly beat other utilities.
+ * Listing `html.no-js` alongside `html.no-js *` also covers the case where
+ * the utility is placed on the <html> element itself.
+ */
+@custom-variant no-js (&:where(html.no-js, html.no-js *));
+
+/*
+ * js: → the inverse. Matches when <html> does NOT have `no-js`.
+ *
+ * Note this is "no-js class absent", not "JavaScript is verifiably running".
+ * It only works if a script removes the class (see the HTML below).
+ */
+@custom-variant js (&:where(html:not(.no-js), html:not(.no-js) *));
+
