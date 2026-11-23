@@ -8,7 +8,8 @@ const view = read("product-view.html");
 const selector = read("options/colour-size.html");
 
 // Detection pass: flags set while looping the options, branch on both, and both keys freed on both paths (50-key scratchpad cap).
-assert.match(view, /\{\{#each product\.options\}\}\{\{#if \(toLowerCase display_name\) "===" "colour"\}\}\{\{assignVar "hasColour" 1\}\}/);
+// Only a Colour option that is a swatch sets the flag; any other type leaves the plain option list.
+assert.ok(view.includes('{{#each product.options}}{{#if (toLowerCase display_name) "===" "colour"}}{{#if partial "===" "swatch"}}{{assignVar "hasColour" 1}}'), "the colour flag is set only for a swatch option");
 assert.match(view, /\{\{assignVar "hasSize" 1\}\}/);
 assert.match(view, /\{\{#all \(getVar "hasColour"\) \(getVar "hasSize"\)\}\}/);
 const frees = view.match(/\{\{assignVar "hasColour" null\}\}\{\{assignVar "hasSize" null\}\}/g) ?? [];
@@ -26,4 +27,9 @@ assert.doesNotMatch(selector, /<script/);
 assert.equal((selector.match(/dynamicComponent "components\/products\/options"/g) ?? []).length >= 3, true);
 assert.match(selector, /<vite-island [^>]*data-export="VariantEnhancer"[^>]*data-props="[^"]*{{json product.id}}[^"]*{{json settings.storefront_api.token}}/, "the enhancer island takes the product id and storefront token from Handlebars");
 assert.match(selector, /data-hydrate="client"/);
+// The swatch template carries the chosen-colour copy (CSS shows it) and the larger image for tiles.
+const swatch = read("options/swatch.html");
+assert.match(swatch, /class="form-option-active-copy" aria-hidden="true"/);
+assert.ok(swatch.includes(`--swatch-image-large: url('{{getImage image "gallery_size"}}')`));
+assert.equal((swatch.match(/form-option-variant--pattern/g) ?? []).length, 2, "the label and the copy each render the image swatch");
 console.log("variant selector checks passed");

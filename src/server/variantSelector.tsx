@@ -27,5 +27,12 @@ const is = (name: string) => ({test: lowerName(), operator: $string("==="), rval
 /** For the option in context: `$then` when it is named `Colour` or `Color` (any case), else `$else`. */
 export const WhenColour = ({$then, $else}: Gate): string => $If({...is("colour"), $then, $elseThen: [{...is("color"), $then: $then ?? (() => "")}], $else});
 
+/**
+ * Like `WhenColour`, and the option must also render as a swatch (its `partial` is "swatch"). A Colour option of any other type (dropdown,
+ * rectangles, radios) does not qualify, so the page keeps its plain option list.
+ */
+export const WhenColourSwatch = ({$then}: {readonly $then: Body}): string =>
+    WhenColour({$then: () => $If({test: $pointer<string>("partial"), operator: $string("==="), rvalue: $string("swatch"), $then})});
+
 /** For the option in context: `$then` when it is named `Size` (any case), else `$else`. */
 export const WhenSize = ({$then, $else}: Gate): string => $If({...is("size"), $then, $else});

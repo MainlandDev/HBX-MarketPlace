@@ -9,7 +9,7 @@ import ProductsBulkDiscountRates from "./bulk-discount-rates.tsx";
 import ProductsCustomFields from "./custom-fields.tsx";
 import ProductsAddToCart from "./add-to-cart.tsx";
 import ProductsOptionsColourSize from "./options/colour-size.tsx";
-import {clearFlags, setFlag, WhenColour, WhenSize} from "../../../server/variantSelector.tsx";
+import {clearFlags, setFlag, WhenColourSwatch, WhenSize} from "../../../server/variantSelector.tsx";
 import ProductsDescriptionTabs from "./description-tabs.tsx";
 import ProductsDescription from "./description.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
@@ -100,7 +100,7 @@ const hasSize = $$scratch<number>("hasSize").get();
 /** Body of the flag pass: sets a flag for a Colour or a Size option. */
 const markOptionFlags = () => (
     <>
-        {WhenColour({$then: () => setFlag("hasColour")})}
+        {WhenColourSwatch({$then: () => setFlag("hasColour")})}
         {WhenSize({$then: () => setFlag("hasSize")})}
     </>
 );

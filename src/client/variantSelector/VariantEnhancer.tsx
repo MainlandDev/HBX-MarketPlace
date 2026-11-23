@@ -34,23 +34,14 @@ const setShown = (choice: Choice, shown: boolean) => {
     choice.input.disabled = !shown;
 };
 
-/** The colour card's own controls: the search box and the chosen colour's swatch in the header. Needs no variant data. Returns a cleanup. */
+/** The colour card's search box. Needs no variant data. Returns a cleanup. */
 const wireColourUi = (root: Element): (() => void) => {
     const group = root.querySelector("[data-variant-colours]");
     if (!group) return () => {};
     const colours = choicesIn(group);
     const search = group.querySelector<HTMLElement>("[data-variant-search]");
     const field = search?.querySelector("input");
-    const active = group.querySelector<HTMLElement>("[data-variant-active]");
     const empty = group.querySelector<HTMLElement>("[data-variant-empty]");
-
-    const showActive = () => {
-        if (!active) return;
-        const picked = colours.find((choice) => choice.input.checked);
-        const label = picked?.input.id ? group.querySelector<HTMLElement>(`label[for="${CSS.escape(picked.input.id)}"]`) : null;
-        active.replaceChildren(...[...(label?.querySelectorAll(".form-option-variant") ?? [])].map((swatch) => swatch.cloneNode(true)));
-        active.title = picked?.label ?? "";
-    };
 
     const filter = () => {
         let matches = 0;
@@ -66,15 +57,11 @@ const wireColourUi = (root: Element): (() => void) => {
 
     if (search) search.hidden = false;
     field?.addEventListener("input", filter);
-    group.addEventListener("change", showActive);
-    showActive();
     return () => {
         if (search) search.hidden = true;
         field?.removeEventListener("input", filter);
-        group.removeEventListener("change", showActive);
         for (const colour of colours) colour.nodes[0].removeAttribute("data-filtered");
         if (empty) empty.hidden = true;
-        active?.replaceChildren();
     };
 };
 
@@ -114,8 +101,8 @@ const wireAvailability = (root: Element, matrix: Matrix): (() => void) => {
 
 /**
  * Progressive enhancement of the server-rendered colour + size selector. Renders nothing itself: the static markup is the whole UI.
- * It turns on the colour search and the chosen-colour swatch at once, then narrows the sizes per colour once the variants arrive. If the
- * request fails the selector keeps the search and the swatch, and every size stays available.
+ * It turns on the colour search at once, then narrows the sizes per colour once the variants arrive. If the request fails the selector keeps
+ * the search, and every size stays available.
  */
 export const VariantEnhancer = ({productId, token}: {productId: number; token: string}) => {
     useEffect(() => {

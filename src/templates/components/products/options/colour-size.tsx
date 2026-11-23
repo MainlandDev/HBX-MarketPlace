@@ -17,7 +17,7 @@ const option = () => $unescaped($dynamicComponent($string("components/products/o
  */
 const colourHeader = () => (
     <div className="variant-selector__header">
-        <span className="variant-selector__active" data-variant-active={""} aria-hidden="true" />
+        <span className="variant-selector__active" aria-hidden="true" />
         <h3 className="variant-selector__title">Choose Colour</h3>
         <span className="variant-selector__count">{$pointer("values.length")} Colours</span>
     </div>
@@ -25,7 +25,7 @@ const colourHeader = () => (
 
 /**
  * The colour + size selector. One pass over `product.options` per group so colour comes first, then size, then any other option.
- * Works without JS; `VariantEnhancer` adds the search box, the active-colour swatch and per-colour sizes.
+ * Works without JS; `VariantEnhancer` adds the search box and per-colour sizes. The chosen colour's swatch beside the title is CSS only (see swatch.tsx).
  */
 export default (_props: PartialProps) => {
     const options = $pointer<unknown[]>("product.options");

@@ -27,6 +27,8 @@ $variant-selector-visible-rows: 2;
     --vs-tile: calc((100cqw - #{$variant-selector-columns - 1} * var(--vs-gap) - 2 * var(--vs-pad)) / #{$variant-selector-columns});
 
     container-type: inline-size;
+    // The containing block of the chosen colour's copy (`.form-option-active-copy`), which sits over the header's swatch box.
+    position: relative;
 }
 
 .variant-selector__header {
@@ -36,7 +38,7 @@ $variant-selector-visible-rows: 2;
     margin-bottom: 0.75rem;
 }
 
-// The chosen colour, copied in by the enhancer. Empty (and white) until a colour is chosen, or without JS.
+// The box the chosen colour's copy (`.form-option-active-copy`) is laid over. White until a colour is chosen.
 .variant-selector__active {
     background-color: #fff;
     border-radius: $variant-selector-radius;
@@ -45,13 +47,6 @@ $variant-selector-visible-rows: 2;
     height: 3rem;
     overflow: hidden;
     width: 3rem;
-
-    .form-option-variant:not(#pseudoID) {
-        align-self: stretch;
-        flex: 1;
-        height: auto;
-        width: auto;
-    }
 }
 
 .variant-selector__title {
@@ -172,6 +167,41 @@ $variant-selector-visible-rows: 2;
     .form-option-expanded {
         display: none;
     }
+}
+
+// The chosen colour beside the title. Each swatch carries a hidden copy of itself; the checked one is shown over the header's box. The
+// wrapper is made static so the copy's containing block is the card, not the scroll area (which would clip it and scroll it away). CSS only,
+// so it works without JS.
+.form-option-active-copy {
+    display: none;
+}
+
+.variant-selector__colours {
+    [data-product-attribute] .form-option-wrapper {
+        position: static;
+    }
+
+    .form-radio:checked ~ .form-option-active-copy {
+        border-radius: $variant-selector-radius;
+        display: flex;
+        height: 3rem;
+        left: 1rem;
+        overflow: hidden;
+        pointer-events: none;
+        position: absolute;
+        top: 1rem;
+        width: 3rem;
+        z-index: 1;
+    }
+}
+
+// Image swatches: the tile shows the larger image (`--swatch-image-large`, set by the swatch template) filling the tile. The default is the
+// 22x22 swatch image at its natural size, which in a tile is a tiny blurred picture.
+.variant-selector__colours .form-option-variant--pattern:not(#pseudoID) {
+    // !important: the template sets the 22x22 image inline, which a stylesheet rule cannot otherwise beat.
+    background-image: var(--swatch-image-large) !important;
+    background-position: center;
+    background-size: cover;
 }
 
 // The halo of the chosen colour.
