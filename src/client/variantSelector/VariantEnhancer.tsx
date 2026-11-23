@@ -2,126 +2,79 @@
 // The theme compiles JSX against the HBX runtime; client code ships to the browser and must use plain React's.
 "use client"
 
-import {useEffect} from "react";
-import {disabledColours, planSizes} from "./availability.ts";
+import {useEffect, useRef} from "react";
+import {validateMatrix} from "./availability.ts";
+import {choicesIn, setLoading, wireAvailability, wireColourUi} from "./dom.ts";
 import {fetchVariants} from "./fetchVariants.ts";
-import {buildMatrix, type Matrix} from "./matrix.ts";
-import {matchesQuery} from "./search.ts";
+import {buildMatrix} from "./matrix.ts";
 
-interface Choice {
-    label: string;
-    input: HTMLInputElement;
-    /** What to hide: the option wrapper when there is one, else the input and its label. */
-    nodes: HTMLElement[];
-}
-
-const labelFor = (root: ParentNode, input: HTMLInputElement): string => {
-    const label = input.id ? root.querySelector<HTMLElement>(`label[for="${CSS.escape(input.id)}"]`) : null;
-    return (input.getAttribute("aria-label") ?? label?.querySelector<HTMLElement>(".form-option-variant")?.textContent ?? label?.textContent ?? "").trim();
-};
-
-const choicesIn = (group: Element): Choice[] =>
-    [...group.querySelectorAll<HTMLInputElement>('input[type="radio"]')]
-        .filter((input) => input.value !== "")
-        .map((input) => {
-            const label = input.id ? group.querySelector<HTMLElement>(`label[for="${CSS.escape(input.id)}"]`) : null;
-            const wrapper = input.closest<HTMLElement>(".form-option-wrapper");
-            return {label: labelFor(group, input), input, nodes: wrapper ? [wrapper] : [input, ...(label ? [label] : [])]};
-        });
-
-const setShown = (choice: Choice, shown: boolean) => {
-    for (const node of choice.nodes) node.hidden = !shown;
-    choice.input.disabled = !shown;
-};
-
-/** The colour card's search box. Needs no variant data. Returns a cleanup. */
-const wireColourUi = (root: Element): (() => void) => {
-    const group = root.querySelector("[data-variant-colours]");
-    if (!group) return () => {};
-    const colours = choicesIn(group);
-    const search = group.querySelector<HTMLElement>("[data-variant-search]");
-    const field = search?.querySelector("input");
-    const empty = group.querySelector<HTMLElement>("[data-variant-empty]");
-
-    const filter = () => {
-        let matches = 0;
-        for (const colour of colours) {
-            const wrapper = colour.nodes[0];
-            if (matchesQuery(colour.label, field?.value ?? "")) {
-                wrapper.removeAttribute("data-filtered");
-                matches++;
-            } else wrapper.setAttribute("data-filtered", "");
-        }
-        if (empty) empty.hidden = matches > 0;
-    };
-
-    if (search) search.hidden = false;
-    field?.addEventListener("input", filter);
-    return () => {
-        if (search) search.hidden = true;
-        field?.removeEventListener("input", filter);
-        for (const colour of colours) colour.nodes[0].removeAttribute("data-filtered");
-        if (empty) empty.hidden = true;
-    };
-};
-
-/** Hides sizes that do not exist for the picked colour and disables colours with no sizes. Returns a cleanup. */
-const wireAvailability = (root: Element, matrix: Matrix): (() => void) => {
-    const colourGroup = root.querySelector("[data-variant-colours]");
-    const sizeGroup = root.querySelector("[data-variant-sizes]");
-    if (!colourGroup || !sizeGroup) return () => {};
-    const colours = choicesIn(colourGroup);
-    const sizes = choicesIn(sizeGroup);
-
-    const apply = () => {
-        const picked = colours.find((choice) => choice.input.checked)?.label;
-        const selected = sizes.find((choice) => choice.input.checked)?.label;
-        const plan = planSizes(matrix, picked, sizes.map((s) => s.label), selected);
-        for (const size of sizes) setShown(size, plan.visible.includes(size.label));
-        if (plan.clearSize) {
-            const checked = sizes.find((choice) => choice.input.checked);
-            if (checked) {
-                checked.input.checked = false;
-                // product-details.js listens for change to refresh price and stock.
-                checked.input.dispatchEvent(new Event("change", {bubbles: true}));
-            }
-        }
-    };
-
-    const off = disabledColours(matrix, colours.map((c) => c.label));
-    for (const colour of colours) if (off.has(colour.label)) setShown(colour, false);
-
-    colourGroup.addEventListener("change", apply);
-    apply();
-    return () => {
-        colourGroup.removeEventListener("change", apply);
-        for (const choice of [...colours, ...sizes]) setShown(choice, true);
-    };
-};
+/** How long to wait for the variants before giving up and leaving the plain selector. */
+const FETCH_TIMEOUT_MS = 8000;
 
 /**
- * Progressive enhancement of the server-rendered colour + size selector. Renders nothing itself: the static markup is the whole UI.
- * It turns on the colour search at once, then narrows the sizes per colour once the variants arrive. If the request fails the selector keeps
- * the search, and every size stays available.
+ * Progressive enhancement of the server-rendered colour + size selector. The static markup is the whole UI and works without JS; this adds
+ * the colour search at once, then narrows the sizes per colour once the variants arrive.
+ *
+ * If anything fails (the request, a timeout, data that does not match the page, or an error while wiring) it logs the error to the console
+ * and undoes every change, leaving exactly the plain selector a visitor without JS gets.
  */
 export const VariantEnhancer = ({productId, token}: {productId: number; token: string}) => {
+    const marker = useRef<HTMLSpanElement>(null);
     useEffect(() => {
-        const root = document.querySelector("[data-variant-selector]");
+        // Its own selector: the one this island was rendered in, not the first on the page (a quick view can add a second).
+        const root = marker.current?.closest("[data-variant-selector]");
         if (!root) return;
+        const undo: Array<() => void> = [];
+        const undoAll = () => {
+            while (undo.length > 0) undo.pop()?.();
+        };
         const controller = new AbortController();
-        const cleanupUi = wireColourUi(root);
-        let cleanupAvailability = () => {};
-        fetchVariants({productId, token, signal: controller.signal})
-            // "colour" also matches "Color" (see matrix.ts).
-            .then((variants) => {
-                cleanupAvailability = wireAvailability(root, buildMatrix(variants, "colour", "size"));
-            })
-            .catch(() => {});
-        return () => {
+        let timedOut = false;
+        const timer = setTimeout(() => {
+            timedOut = true;
             controller.abort();
-            cleanupAvailability();
-            cleanupUi();
+        }, FETCH_TIMEOUT_MS);
+        let undoLoading = () => {};
+        const bail = (error: unknown) => {
+            undoLoading();
+            undoAll();
+            root.setAttribute("data-variant-enhancer", "failed");
+            console.error("[variant-selector] Could not enhance the colour and size selector; showing the plain selector instead.", error);
+        };
+
+        try {
+            undo.push(wireColourUi(root));
+            undoLoading = setLoading(root);
+        } catch (error) {
+            clearTimeout(timer);
+            bail(error);
+            return;
+        }
+
+        fetchVariants({productId, token, signal: controller.signal})
+            .then((variants) => {
+                // "colour" also matches "Color" (see matrix.ts).
+                const matrix = buildMatrix(variants, "colour", "size");
+                const colourGroup = root.querySelector("[data-variant-colours]");
+                const problem = validateMatrix(matrix, colourGroup ? choicesIn(colourGroup).map((choice) => choice.label) : []);
+                if (problem) throw new Error(problem);
+                undoLoading();
+                undo.push(wireAvailability(root, matrix));
+                root.setAttribute("data-variant-enhancer", "ready");
+            })
+            .catch((error: unknown) => {
+                // Leaving the page (the effect's own cleanup aborts the request) is not a failure.
+                if (controller.signal.aborted && !timedOut) return;
+                bail(timedOut ? new Error(`the variant request took longer than ${FETCH_TIMEOUT_MS} ms`) : error);
+            })
+            .finally(() => clearTimeout(timer));
+
+        return () => {
+            clearTimeout(timer);
+            controller.abort();
+            undoLoading();
+            undoAll();
         };
     }, [productId, token]);
-    return null;
+    return <span ref={marker} hidden />;
 };

@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
+- Add a colour and size variant selector to the PDP: when a product has a swatch option named Colour/Color and an option named Size, show a colour card (chosen-colour swatch, count, search, scrolling grid of 3 to 6 columns by card width, halo on the chosen colour) and the sizes, instead of the plain option list. Works without JS (CSS only, including the chosen-colour swatch). A `VariantEnhancer` island adds the colour search, hides sizes that do not exist for the chosen colour (disabled variants do not exist), marks out-of-stock sizes, and keeps the colour count to colours that can be bought; any failure logs `[variant-selector]` to the console and leaves the plain selector. Image swatches use the `gallery_size` image, inset 5%
+- Fix product options being hidden without JS: the options wrapper is now hidden by `.js [data-product-option-change]` instead of an inline `display:none`
 - Port the remaining TSX templates 1-1 with the originals: restore original attribute whitespace, scope behaviour of `add-payment-method` / `edit-payment-method`, `price-range`, `related`, `product-aria-label`, and the language selector condition in `navigation`
 - Display product attributes on the PDP (inline, or in the Additional Information tab via the new `show_attributes_tabs` theme setting), shown before custom fields ([#2746](https://github.com/bigcommerce/cornerstone/pull/2746))
 - Fix the Additional Information tab having no title when its label setting is empty, and not opening when it is the first tab on the PDP ([#2746](https://github.com/bigcommerce/cornerstone/pull/2746))

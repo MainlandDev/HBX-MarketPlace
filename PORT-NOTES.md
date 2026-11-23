@@ -493,3 +493,18 @@ Still raw, and why:
 | `{{#each}}{{#if}}{{lang}}` inside the `aria-label` of channel-selector-mobile | whitespace between the standalone block tags is part of the output |
 | conditional attributes (`checked`, `selected`, `required`, `disabled`, `style`, `data-slick`) inside `dangerouslyInlineAttributes` | no typed conditional attribute exists; `$ifAttribute` covers the `name="{{x}}"` shape only |
 | `<!DOCTYPE html>`, `<meta viewport>`, `</a>`, `<!-- … -->` comments, `&amp;` inside attribute strings | not expressible as JSX |
+
+
+## Colour and size variant selector (not a port: new feature)
+
+Files: `src/templates/components/products/options/colour-size.tsx` (static selector), `swatch.tsx` (active-colour copy, large image variable), `src/server/variantSelector.tsx` (scratch flags and name gates), `src/client/variantSelector/*` (island and logic), `assets/scss/layouts/products/_variantSelector.scss`.
+
+- **Detection is in Handlebars.** A first pass over `product.options` sets `hasColour` (the option is named Colour/Color, in any case, *and* its `partial` is `swatch`) and `hasSize` with `assignVar`; the branch frees both with `assignVar … null` on both paths (Paper's scratchpad holds 50 keys). Anything else keeps the plain option list.
+- **Helpers live in `src/server`, not `src/templates`.** The HBX plugin builds every export of a file under `src/templates` as a template of its own.
+- **JS is an enhancement, not the UI.** The static markup is the whole selector; `VariantEnhancer` renders nothing. Any failure (request, 8 s timeout, data that does not match the page, an error while wiring) logs `[variant-selector] …` and undoes every change, so the visitor gets the no-JS selector. State is on `data-variant-enhancer` (`ready` / `failed`).
+- **Variants come from Storefront GraphQL** (`settings.storefront_api.token`, passed as an island prop). The token only works from the store's origin; the Stencil dev proxy needs the Origin fix (`bigcommerce-stencil`, `storeOriginHeader`), which the theme currently takes from a local tarball (`file:` in package.json). Disabled variants (`isPurchasable: false`) are returned by the API and are treated as missing.
+- **Islands do not hydrate in quick view** (the islands runtime is not on listing pages), so quick view shows the static selector: no search, every size.
+- **CSS-only chosen colour.** Each swatch carries a hidden copy of itself; `.form-radio:checked ~ .form-option-active-copy` shows it over the header box. The tile wrapper is `position: static` so the copy's containing block is the card, not the scroll area.
+- **Image swatches** carry `--swatch-image-large` (`gallery_size`); the default 22x22 `swatch_option_size` image is set inline, so the tile rule needs `!important`.
+- **SCSS** uses container queries and `:has()`. The dev server compiles with `@bigcommerce/stencil-styles` (the `node-sass` engine), the same path as `stencil bundle`; a bundle upload is the only check against the platform's own compile.
+- **Hardcoded English:** "Choose Colour", "Colours", "Search Colour", "No colours match your search." and "(out of stock)" still need language keys.

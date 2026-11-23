@@ -11,12 +11,12 @@ export interface FetchVariantsOptions {
     fetcher?: typeof fetch;
 }
 
-// Variant fields the selector needs: the option labels and whether the variant is purchasable (disabled ones are not).
+// Variant fields the selector needs: the option labels, whether the variant is purchasable (disabled ones are not) and whether it is in stock.
 const QUERY = `query Variants($productId: Int!, $after: String) {
   site { product(entityId: $productId) {
     variants(first: 250, after: $after) {
       pageInfo { hasNextPage endCursor }
-      edges { node { entityId isPurchasable options { edges { node { displayName values { edges { node { label } } } } } } } }
+      edges { node { entityId isPurchasable inventory { isInStock } options { edges { node { displayName values { edges { node { label } } } } } } } }
     }
   } }
 }`;

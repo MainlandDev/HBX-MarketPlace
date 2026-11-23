@@ -18,6 +18,13 @@ describe("fetchVariants", () => {
         expect((init.headers as Record<string, string>).Authorization).toBe("Bearer t0k");
     });
 
+    it("asks for the stock of each variant", async () => {
+        const fetcher = vi.fn().mockResolvedValue(respond(page([1], null)));
+        await fetchVariants({productId: 5, token: "t", fetcher});
+        const body = JSON.parse((fetcher.mock.calls[0] as [string, RequestInit])[1].body as string) as {query: string};
+        expect(body.query).toContain("inventory { isInStock }");
+    });
+
     it("follows endCursor across pages", async () => {
         const fetcher = vi.fn().mockResolvedValueOnce(respond(page([1], "c1"))).mockResolvedValueOnce(respond(page([2], null)));
         const result = await fetchVariants({productId: 5, token: "t", fetcher});

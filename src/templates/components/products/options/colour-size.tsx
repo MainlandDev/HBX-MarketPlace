@@ -19,7 +19,9 @@ const colourHeader = () => (
     <div className="variant-selector__header">
         <span className="variant-selector__active" aria-hidden="true" />
         <h3 className="variant-selector__title">Choose Colour</h3>
-        <span className="variant-selector__count">{$pointer("values.length")} Colours</span>
+        <span className="variant-selector__count" data-variant-count={""}>
+            {$pointer("values.length")} Colours
+        </span>
     </div>
 );
 

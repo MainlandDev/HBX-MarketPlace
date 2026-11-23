@@ -218,13 +218,17 @@ $variant-selector-visible-rows: 2;
     }
 }
 
-// Image swatches: the tile shows the larger image (`--swatch-image-large`, set by the swatch template) filling the tile. The default is the
-// 22x22 swatch image at its natural size, which in a tile is a tiny blurred picture.
+// Image swatches: the tile shows the larger image (`--swatch-image-large`, set by the swatch template), inset 5% from the tile's edge and
+// scaled to fit inside that inset, so the whole picture shows rather than being cropped. The default is the 22x22 swatch image at its natural
+// size, which in a tile is a tiny blurred picture.
 .variant-selector__colours .form-option-variant--pattern:not(#pseudoID) {
     // !important: the template sets the 22x22 image inline, which a stylesheet rule cannot otherwise beat.
     background-image: var(--swatch-image-large) !important;
+    background-origin: content-box;
     background-position: center;
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 5%;
 }
 
 // The halo of the chosen colour.
@@ -248,4 +252,15 @@ $variant-selector-visible-rows: 2;
 // The enhancer hides unavailable choices with the `hidden` attribute, which the option wrappers' own `display` would otherwise override.
 .variant-selector [hidden] {
     display: none !important;
+}
+
+// Sizes while the variant data is still arriving: shown, but not yet choosable.
+.variant-selector__sizes[data-loading] {
+    opacity: 0.6;
+}
+
+// A size that exists but is out of stock stays choosable (backorder, notify me) and is marked.
+.variant-selector__sizes .form-option-wrapper[data-out-of-stock] .form-option {
+    opacity: 0.6;
+    text-decoration: line-through;
 }
