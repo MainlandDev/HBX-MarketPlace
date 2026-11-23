@@ -6,7 +6,6 @@
 
 $variant-selector-radius: 12px;
 $variant-selector-bg: #f2f2f2;
-$variant-selector-columns: 4;
 $variant-selector-visible-rows: 2;
 
 .variant-selector__colours,
@@ -23,8 +22,6 @@ $variant-selector-visible-rows: 2;
     --vs-gap: 0.5rem;
     // Room around the tiles for the halo of the chosen colour, which the scroll area would otherwise clip.
     --vs-pad: 0.75rem;
-    // Width of one tile: the card's content width less the gaps and the scroll area's padding, over the column count.
-    --vs-tile: calc((100cqw - #{$variant-selector-columns - 1} * var(--vs-gap) - 2 * var(--vs-pad)) / #{$variant-selector-columns});
 
     container-type: inline-size;
     // The containing block of the chosen colour's copy (`.form-option-active-copy`), which sits over the header's swatch box.
@@ -43,6 +40,8 @@ $variant-selector-visible-rows: 2;
     background-color: #fff;
     border-radius: $variant-selector-radius;
     display: flex;
+    // Stays at the top when a narrow card wraps the title, where the chosen colour's copy (top: 1rem) is laid over it.
+    align-self: flex-start;
     flex: none;
     height: 3rem;
     overflow: hidden;
@@ -111,9 +110,14 @@ $variant-selector-visible-rows: 2;
 
 // The scroll area: four tiles to a row, two rows tall, scrolling when there are more.
 .variant-selector__colours [data-product-attribute] {
+    // More tiles to a row as the card widens (see the container queries below).
+    --vs-cols: 3;
+    // Width of one tile: the card's content width less the gaps and the scroll area's padding, over the column count.
+    --vs-tile: calc((100cqw - (var(--vs-cols) - 1) * var(--vs-gap) - 2 * var(--vs-pad)) / var(--vs-cols));
+
     display: grid;
     gap: var(--vs-gap);
-    grid-template-columns: repeat(#{$variant-selector-columns}, minmax(0, 1fr));
+    grid-template-columns: repeat(var(--vs-cols), minmax(0, 1fr));
     margin: 0;
     max-height: calc(#{$variant-selector-visible-rows} * var(--vs-tile) + #{$variant-selector-visible-rows - 1} * var(--vs-gap) + 2 * var(--vs-pad));
     overflow-y: auto;
@@ -166,6 +170,25 @@ $variant-selector-visible-rows: 2;
     // The enlarged preview that follows the pointer is clipped by the tile, so it is left out here.
     .form-option-expanded {
         display: none;
+    }
+}
+
+// Columns by the width of the card, so a narrow phone keeps tiles big enough to tap and a wide card fits more colours in view.
+@container (min-width: 260px) {
+    .variant-selector__colours [data-product-attribute] {
+        --vs-cols: 4;
+    }
+}
+
+@container (min-width: 420px) {
+    .variant-selector__colours [data-product-attribute] {
+        --vs-cols: 5;
+    }
+}
+
+@container (min-width: 540px) {
+    .variant-selector__colours [data-product-attribute] {
+        --vs-cols: 6;
     }
 }
 
