@@ -1,0 +1,38 @@
+<h2 id="islands-data">Islands and data map</h2>
+<p>HBX renders as much as possible statically. A component becomes an island only when it needs state or live data that cannot be a link, a form or CSS. Every island ships with static markup that already works, and fails safe: a script error leaves the static page usable.</p>
+
+<h3 id="islands-contract">Data contract</h3>
+<ol>
+<li><strong>Server prefetch.</strong> Page data comes from the template's front matter (the platform's GraphQL data) and is rendered into HTML. Nothing paints from a client request.</li>
+<li><strong>One batched client query.</strong> All islands on a page register their data needs with a shared client module that merges them into one GraphQL request per tick, dedupes identical fields and caches by key. Targets: at most one request in flight on load, and none when the server already provided the data.</li>
+<li><strong>Defer and idle.</strong> Islands hydrate on visibility or interaction; only islands needed to use the page hydrate on load.</li>
+<li><strong>Fail safe.</strong> Each island defines loading, error and empty states, a timeout, and a way back to the static behaviour (form submit, link).</li>
+<li><strong>Token handling.</strong> The storefront token is passed from the template as a prop (as <code>VariantEnhancer</code> already does); no secrets in the bundle.</li>
+</ol>
+
+<h3 id="islands-table">Islands</h3>
+<table class="plain">
+<thead><tr><th scope="col">Island</th><th scope="col">Page</th><th scope="col">Needs data</th><th scope="col">Static fallback</th><th scope="col">States</th></tr></thead>
+<tbody>
+<tr><th scope="row">Variant enhancer (exists)</th><td>Product</td><td>Availability for all options (one query)</td><td>Native radio inputs and form POST</td><td>loading, error (selection still works), unavailable</td></tr>
+<tr><th scope="row">Facet filters</th><td>Category, search</td><td>Products and facets for the chosen filters</td><td>GET form and facet links</td><td>loading, empty, error</td></tr>
+<tr><th scope="row">Product tabs enhancer</th><td>Home</td><td>None (server-rendered both lists)</td><td>Stacked sections with anchors</td><td>n/a</td></tr>
+<tr><th scope="row">Gallery enhancer</th><td>Product</td><td>None</td><td>Scroll-snap strip and links</td><td>zoom open/closed</td></tr>
+<tr><th scope="row">Mini cart</th><td>All (not cart)</td><td>Cart lines and subtotal</td><td>Link to the cart page</td><td>loading, empty, error</td></tr>
+<tr><th scope="row">Cart line updater</th><td>Cart</td><td>Cart mutation result</td><td>Form posts</td><td>updating, error</td></tr>
+<tr><th scope="row">Add-to-cart enhancer</th><td>Product, cards</td><td>Cart mutation result</td><td>Form POST</td><td>adding, added, error</td></tr>
+<tr><th scope="row">Theme toggle</th><td>All</td><td>None</td><td>OS preference</td><td>auto, light, dark</td></tr>
+</tbody>
+</table>
+
+<h3 id="islands-budget">Request budget</h3>
+<table class="plain">
+<thead><tr><th scope="col">Page</th><th scope="col">Requests after load</th></tr></thead>
+<tbody>
+<tr><th scope="row">Home</th><td>0 (all server rendered); mini cart fetches on first open</td></tr>
+<tr><th scope="row">Category / search</th><td>0 on load; 1 per filter change</td></tr>
+<tr><th scope="row">Product</th><td>1 batched request (availability and price for the variants), shared by all islands</td></tr>
+<tr><th scope="row">Cart</th><td>0 on load; 1 per update</td></tr>
+</tbody>
+</table>
+<p class="placeholder">Consent-gated tracking scripts are not islands in this sense and are covered by the marketing brief.</p>

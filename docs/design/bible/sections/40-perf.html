@@ -1,0 +1,38 @@
+<h2 id="perf">Performance budget</h2>
+<p class="placeholder">All numbers here are proposals to be confirmed against a real baseline measurement of the live site and the first built pages.</p>
+
+<h3 id="perf-targets">Targets (mobile, mid-range device, 4G)</h3>
+<table class="plain">
+<thead><tr><th scope="col">Metric</th><th scope="col">Target</th><th scope="col">Why</th></tr></thead>
+<tbody>
+<tr><th scope="row">LCP</th><td>2.5 s or better at p75</td><td>Hero or first product image is static HTML with <code>fetchpriority="high"</code>.</td></tr>
+<tr><th scope="row">CLS</th><td>0.1 or better</td><td>Reserved image sizes, no late-injected banners above content.</td></tr>
+<tr><th scope="row">INP</th><td>200 ms or better</td><td>Small islands, no large hydration on load.</td></tr>
+<tr><th scope="row">Requests in flight</th><td>One batched GraphQL request per page for island data</td><td>Server prefetch plus a single deduped client query.</td></tr>
+</tbody>
+</table>
+
+<h3 id="perf-budget">Weight budget per page type (compressed)</h3>
+<table class="plain">
+<thead><tr><th scope="col">Page</th><th scope="col">HTML + CSS</th><th scope="col">JavaScript</th><th scope="col">Fonts</th><th scope="col">Notes</th></tr></thead>
+<tbody>
+<tr><th scope="row">Home</th><td>60 KB</td><td>30 KB</td><td>40 KB</td><td>Static content; islands for tabs, theme toggle, mini-cart.</td></tr>
+<tr><th scope="row">Category / search</th><td>70 KB</td><td>40 KB</td><td>40 KB</td><td>Filters work as links and forms; the island only enhances.</td></tr>
+<tr><th scope="row">Product</th><td>70 KB</td><td>50 KB</td><td>40 KB</td><td>Variant selector island and gallery enhancer.</td></tr>
+<tr><th scope="row">Cart</th><td>50 KB</td><td>25 KB</td><td>40 KB</td><td>Form posts work without JS.</td></tr>
+</tbody>
+</table>
+
+<h3 id="perf-origins">Allowed external origins</h3>
+<ul>
+<li>BigCommerce image CDN (product and platform images) and the BigCommerce checkout.</li>
+<li>Everything else is first party. Tracking and marketing origins are decided in the marketing brief and must load only after consent, deferred, never blocking render.</li>
+</ul>
+
+<h3 id="perf-rules">Rules</h3>
+<ul>
+<li>Critical CSS is inline per page type; the rest is a single cached stylesheet.</li>
+<li>No render-blocking third-party anything. No web font blocking text.</li>
+<li>Islands hydrate on visibility or interaction unless the page is unusable without them.</li>
+<li>Run Lighthouse (<code>npm run lighthouse</code>) per page type before release and record results.</li>
+</ul>

@@ -1,0 +1,53 @@
+<h2 id="tokens">Design tokens</h2>
+<p>Every colour, size and duration in this bible is generated from <code>docs/design/tokens.json</code>. Run <code>npm run design</code> to regenerate the theme's SCSS custom properties, check contrast, and rebuild this document. Swatches show light and dark values.</p>
+<!--tokens-->
+
+<h3 id="brand-red">Brand red rules</h3>
+<div class="callout">
+<p><strong>Brand red <code>#EE0700</code> is kept exactly</strong> (header colour on the live site). Measured contrast: black on red is 4.67:1; white on red is 4.50:1, an AA pass by 0.0008 and not AAA for either. Because the white margin is that thin, anti-aliasing or any opacity can tip it under.</p>
+<ul>
+<li>Default to black text (<code>--color-on-brand</code>) on red.</li>
+<li>White on red only for large or bold text, never for small body text or thin icons.</li>
+<li>Red text or links on light surfaces use <code>--color-brand-text</code>, a darker red. Plain <code>#EE0700</code> on white is also only 4.50:1.</li>
+<li>Never place red text on the red surface, or pale text on amber.</li>
+</ul>
+</div>
+
+<div class="grid-2">
+<div class="sample"><p><span class="btn">Black on red</span> Default button</p></div>
+<div class="sample"><p><span class="btn" style="color:var(--color-white);border-color:var(--color-white)"><strong>White on red, bold only</strong></span></p></div>
+</div>
+
+<h3 id="contrast">Contrast</h3>
+<div class="contrast-wrap"><!--contrast--></div>
+
+<h3 id="type">Type</h3>
+<p>Interim stack: <code>Poppins</code> then the system UI stack. The final font is decided later from Google fonts and default system fonts; whichever is chosen is self-hosted as a subset woff2 with <code>font-display: swap</code>. Base is 16px/24px; sizes are <code>rem</code> so user font settings and 400% zoom work.</p>
+<div class="sample">
+<p style="font-size:var(--font-size-3xl);margin:0">3xl 2.25rem, page title</p>
+<p style="font-size:var(--font-size-2xl);margin:0">2xl 1.75rem, section heading</p>
+<p style="font-size:var(--font-size-xl);margin:0">xl 1.375rem, card heading</p>
+<p style="font-size:var(--font-size-lg);margin:0">lg 1.125rem, lede</p>
+<p style="margin:0">base 1rem, body text on a 1.5 line height</p>
+<p style="font-size:var(--font-size-sm);margin:0">sm 0.875rem, secondary and captions</p>
+<p style="font-size:var(--font-size-xs);margin:0">xs 0.75rem, legal only; never for essential information</p>
+</div>
+
+<h3 id="space-radius-motion">Space, radius and motion</h3>
+<table class="plain">
+<thead><tr><th scope="col">Token</th><th scope="col">Values</th><th scope="col">Use</th></tr></thead>
+<tbody>
+<tr><th scope="row">Space 1 to 8</th><td>0.25, 0.5, 0.75, 1, 1.5, 2, 3, 4 rem</td><td>Gaps, padding, section rhythm. Layouts use gap before margin.</td></tr>
+<tr><th scope="row">Radius</th><td>sm 0.25, md 0.5, lg 1 rem, pill</td><td>Buttons and chips pill; cards md.</td></tr>
+<tr><th scope="row">Motion</th><td>fast 120ms, base 200ms, slow 400ms</td><td>All durations become 0ms under <code>prefers-reduced-motion</code>. Motion never carries meaning alone.</td></tr>
+</tbody>
+</table>
+<div class="sample" style="display:flex;gap:var(--space-4);flex-wrap:wrap">
+<span class="btn" style="border-radius:var(--radius-sm)">sm</span>
+<span class="btn" style="border-radius:var(--radius-md)">md</span>
+<span class="btn" style="border-radius:var(--radius-lg)">lg</span>
+<span class="btn" style="border-radius:var(--radius-pill)">pill</span>
+</div>
+
+<h3 id="config-mapping">Theme config mapping</h3>
+<p>Core colours are exposed in <code>config.json</code> so the store admin can adjust them; <code>node scripts/generate-design-tokens.mjs</code> reports where config defaults differ from these tokens. Contrast is re-checked at build, so a bad admin choice must also be caught by the in-theme guard (to be specified in the implementation brief).</p>

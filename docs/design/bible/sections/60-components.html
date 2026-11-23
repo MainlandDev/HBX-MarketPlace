@@ -1,0 +1,215 @@
+<h2 id="components">Component catalogue</h2>
+<p>Each entry shows a live sample, whether it is <strong>static</strong> (server-rendered HTML and CSS only) or an <strong>island</strong> (static markup plus a small hydrated enhancer), what happens without JavaScript, its states, accessibility notes and the tokens it uses. Samples render in the current theme; use the toggle above to see dark.</p>
+<p class="placeholder">Decoration flow (embroidery, printing, logo upload): second pass. Components marked "Decoration: second pass" get an extra step there.</p>
+
+<article class="component" data-kind="static">
+<h3>Header, skip link and landmarks</h3>
+<div class="sample">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap;background:var(--color-brand);color:var(--color-on-brand);padding:var(--space-3) var(--space-4);border-radius:var(--radius-sm)">
+<strong>Online Workwear</strong>
+<form role="search" style="display:flex;gap:var(--space-2)"><label for="s-hdr" style="position:absolute;left:-9999px">Search products</label><input id="s-hdr" type="search" placeholder="Search workwear" style="min-height:2.75rem;padding:0 var(--space-3);border-radius:var(--radius-pill);border:2px solid var(--color-on-brand);background:var(--color-surface);color:var(--color-text)"><button class="btn btn-secondary" type="submit">Search</button></form>
+</div>
+</div>
+<div class="no-js"><strong>No JS:</strong> fully functional. The search is a GET form; navigation is links and <code>&lt;details&gt;</code>.</div>
+<div class="states"><strong>States:</strong> sticky on scroll (offsets anchors), compact on mobile with the menu in a <code>&lt;details&gt;</code>, cart count as text.</div>
+<div class="a11y"><strong>A11y:</strong> skip link first; one <code>&lt;header&gt;</code>; <code>role="search"</code>; search label is real text (visually hidden is acceptable here only because the placeholder is not the label).</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>brand</code>, <code>on-brand</code>, <code>surface</code>, <code>focus</code>, <code>space-3/4</code>. Decoration: second pass.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>Primary navigation</h3>
+<div class="sample">
+<nav aria-label="Main"><ul style="display:flex;gap:var(--space-4);flex-wrap:wrap;list-style:none;margin:0;padding:0"><li><a href="#components">Hi Vis</a></li><li><a href="#components">Work pants and shorts</a></li><li><a href="#components">Polos</a></li><li><a href="#components">Footwear</a></li><li><a href="#components">Brands</a></li></ul></nav>
+</div>
+<div class="no-js"><strong>No JS:</strong> top-level links go to category pages; submenus open with CSS (<code>:focus-within</code>) or <code>&lt;details&gt;</code> on mobile. No hover-only content.</div>
+<div class="states"><strong>States:</strong> default, hover, focus-visible, current page (<code>aria-current="page"</code> plus underline), open submenu.</div>
+<div class="a11y"><strong>A11y:</strong> labelled <code>&lt;nav&gt;</code>; disclosure buttons use <code>aria-expanded</code>; Escape closes and returns focus; links at least 24px tall.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>link</code>, <code>text</code>, <code>focus</code>, <code>space-2/4</code>.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>Buttons</h3>
+<div class="sample" style="display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center">
+<button class="btn" type="button">Primary</button>
+<button class="btn btn-secondary" type="button">Secondary</button>
+<button class="btn" type="button" disabled>Disabled</button>
+<a class="btn btn-secondary" href="#components">Link styled as button</a>
+</div>
+<div class="no-js"><strong>No JS:</strong> buttons submit forms or links navigate; no behaviour depends on script.</div>
+<div class="states"><strong>States:</strong> default, hover (1px lift, removed under reduced motion), focus-visible ring, disabled (60% opacity, never the only cue: text or a message explains why), loading (text changes, <code>aria-busy</code>).</div>
+<div class="a11y"><strong>A11y:</strong> 44px tall; real <code>&lt;button&gt;</code>/<code>&lt;a&gt;</code>; the name states the action; black text on brand red.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>brand</code>, <code>on-brand</code>, <code>surface</code>, <code>text</code>, <code>radius-pill</code>, <code>motion-fast</code>.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>Form controls</h3>
+<div class="sample">
+<form onsubmit="return false" style="display:grid;gap:var(--space-3);max-width:24rem">
+<div><label for="f-email">Email address</label><br><input id="f-email" type="email" autocomplete="email" aria-describedby="f-email-hint" style="width:100%;min-height:2.75rem;padding:0 var(--space-3);border:2px solid var(--color-text-muted);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text)"><br><small id="f-email-hint">We only use this for your order.</small></div>
+<div><label for="f-qty">Quantity</label><br><input id="f-qty" type="number" min="1" value="1" inputmode="numeric" style="min-height:2.75rem;width:6rem;padding:0 var(--space-3);border:2px solid var(--color-text-muted);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text)"></div>
+</form>
+</div>
+<div class="no-js"><strong>No JS:</strong> native validation and server-side validation; errors rendered by the server next to the field.</div>
+<div class="states"><strong>States:</strong> default, focus, filled, error (message plus icon plus border), disabled, read-only.</div>
+<div class="a11y"><strong>A11y:</strong> visible labels, hints via <code>aria-describedby</code>, correct <code>type</code> and <code>autocomplete</code>, errors not colour-only, 44px height.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>text-muted</code>, <code>surface</code>, <code>error</code>, <code>focus</code>, <code>radius-md</code>.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>Product card</h3>
+<div class="grid-2">
+<div class="sample"><div style="display:grid;gap:var(--space-2)"><div class="wire" aria-hidden="true"><span>Image 4:5</span></div><h4 style="margin:0"><a href="#components">Hi-vis day/night long sleeve polo</a></h4><p style="margin:0;color:var(--color-text-muted)">Hard Yakka</p><p style="margin:0"><strong>$49.95</strong></p></div></div>
+<div class="sample" data-theme-sample="dark"><div style="display:grid;gap:var(--space-2)"><div class="wire" aria-hidden="true"><span>Image 4:5</span></div><h4 style="margin:0"><a href="#components" style="color:#9DB2FF">Hi-vis day/night long sleeve polo</a></h4><p style="margin:0;color:#C4C4C4">Hard Yakka</p><p style="margin:0"><strong>$49.95</strong></p></div></div>
+</div>
+<div class="no-js"><strong>No JS:</strong> the whole card is one link (title link stretched over the card); "Quick add" is hidden without JS, the product page handles adding.</div>
+<div class="states"><strong>States:</strong> default, hover, focus-visible (ring on the card), sale (badge), out of stock (text badge), loading skeleton for island-fed grids.</div>
+<div class="a11y"><strong>A11y:</strong> heading per card, one link name, image <code>alt</code> describes colour and style or is empty when the title already says it, price text includes currency.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>surface</code>, <code>border</code>, <code>text-muted</code>, <code>radius-md</code>, <code>space-2/4</code>.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>Price and badges</h3>
+<div class="sample" style="display:flex;gap:var(--space-4);align-items:center;flex-wrap:wrap">
+<span><s style="color:var(--color-text-muted)"><span class="sr">Was </span>$59.95</s> <strong style="color:var(--color-brand-text)"><span class="sr">Now </span>$49.95</strong></span>
+<span style="background:var(--color-accent-amber);color:var(--color-on-amber);padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);font-weight:600">Sale</span>
+<span style="border:2px solid var(--color-success);color:var(--color-success);padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);font-weight:600">In stock</span>
+</div>
+<div class="no-js"><strong>No JS:</strong> all server-rendered.</div>
+<div class="states"><strong>States:</strong> regular, sale (was/now), price range, out of stock, price on request.</div>
+<div class="a11y"><strong>A11y:</strong> "Was" and "Now" exist as text for screen readers (strikethrough alone is not announced); badges are text, never colour-only.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>brand-text</code>, <code>accent-amber</code>, <code>on-amber</code>, <code>success</code>, <code>radius-pill</code>.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>Breadcrumbs and pagination</h3>
+<div class="sample">
+<nav aria-label="Breadcrumb"><ol style="display:flex;gap:var(--space-2);flex-wrap:wrap;list-style:none;margin:0 0 var(--space-4);padding:0"><li><a href="#components">Home</a> /</li><li><a href="#components">Hi Vis</a> /</li><li aria-current="page">Polos</li></ol></nav>
+<nav aria-label="Pagination"><ul style="display:flex;gap:var(--space-2);list-style:none;margin:0;padding:0;flex-wrap:wrap"><li><a class="btn btn-secondary" href="#components">Previous</a></li><li><a class="btn btn-secondary" href="#components" aria-label="Page 1">1</a></li><li><a class="btn" href="#components" aria-current="page" aria-label="Page 2, current page">2</a></li><li><a class="btn btn-secondary" href="#components">Next</a></li></ul></nav>
+</div>
+<div class="no-js"><strong>No JS:</strong> plain links with real URLs; works with the back button.</div>
+<div class="states"><strong>States:</strong> current, first/last (Previous/Next omitted or disabled with text), many pages (ellipsis as non-interactive text).</div>
+<div class="a11y"><strong>A11y:</strong> labelled <code>&lt;nav&gt;</code>s, <code>aria-current</code>, 44px targets, separators are CSS not read out.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>link</code>, <code>brand</code>, <code>space-2</code>.</div>
+</article>
+
+<article class="component" data-kind="island">
+<h3>Facet filters and sort</h3>
+<div class="sample">
+<form onsubmit="return false" style="display:grid;gap:var(--space-3)">
+<details open><summary>Colour</summary><label><input type="checkbox"> Navy</label><br><label><input type="checkbox"> Black</label><br><label><input type="checkbox"> Hi-vis orange</label></details>
+<label for="sort">Sort by</label><select id="sort" style="min-height:2.75rem;max-width:16rem"><option>Featured</option><option>Price low to high</option></select>
+<button class="btn" type="submit">Apply filters</button>
+</form>
+</div>
+<div class="no-js"><strong>No JS:</strong> a GET form that reloads the category with the chosen filters in the URL ("Apply filters" visible). Facet links are crawlable.</div>
+<div class="states"><strong>States:</strong> default; with JS the island applies filters on change and updates the grid and URL, shows a loading state (<code>aria-busy</code>) and announces the result count in a polite live region; error falls back to the form submit.</div>
+<div class="a11y"><strong>A11y:</strong> native checkboxes and <code>&lt;details&gt;</code>; result count announced; focus stays on the control after an update.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>text-muted</code>, <code>border</code>, <code>focus</code>.</div>
+</article>
+
+<article class="component" data-kind="island">
+<h3>Variant selector (colour and size)</h3>
+<div class="sample">
+<fieldset style="border:0;padding:0;margin:0 0 var(--space-3)"><legend>Colour: <strong>Navy</strong></legend>
+<div style="display:flex;gap:var(--space-2);flex-wrap:wrap">
+<label style="display:inline-flex;align-items:center;gap:var(--space-1)"><input type="radio" name="vc" checked><span class="chip" style="width:2rem;height:2rem;background:#1b2a4a" aria-hidden="true"></span> Navy</label>
+<label style="display:inline-flex;align-items:center;gap:var(--space-1)"><input type="radio" name="vc"><span class="chip" style="width:2rem;height:2rem;background:#111" aria-hidden="true"></span> Black</label>
+<label style="display:inline-flex;align-items:center;gap:var(--space-1)"><input type="radio" name="vc"><span class="chip" style="width:2rem;height:2rem;background:#f08a00" aria-hidden="true"></span> Orange</label>
+</div></fieldset>
+<fieldset style="border:0;padding:0;margin:0"><legend>Size</legend>
+<div style="display:flex;gap:var(--space-2);flex-wrap:wrap"><label><input type="radio" name="vs"> S</label><label><input type="radio" name="vs" checked> M</label><label><input type="radio" name="vs"> L</label><label><input type="radio" name="vs" disabled> XL (sold out)</label></div></fieldset>
+</div>
+<div class="no-js"><strong>No JS:</strong> the theme renders native radio inputs for every option; picking them and submitting the form works (existing <code>src/templates/components/products/options/colour-size.tsx</code>).</div>
+<div class="states"><strong>States:</strong> selected, unavailable (text "sold out", not colour-only), search box for long colour lists appears only with JS (<code>src/client/variantSelector/VariantEnhancer.tsx</code>), loading availability, error (selection still works).</div>
+<div class="a11y"><strong>A11y:</strong> fieldset and legend per option group; the selected colour name is text; swatches have a text name; unavailable options remain focusable but explained.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>focus</code>, <code>border</code>, <code>radius-sm</code>. Decoration: second pass.</div>
+</article>
+
+<article class="component" data-kind="island">
+<h3>Product gallery</h3>
+<div class="sample">
+<div class="wire" aria-hidden="true"><span>Main image 1:1</span><span style="display:flex;gap:var(--space-2)">thumb thumb thumb thumb</span></div>
+</div>
+<div class="no-js"><strong>No JS:</strong> images in a scroll-snap strip or a stacked list; thumbnails are anchor links to each image.</div>
+<div class="states"><strong>States:</strong> default; with JS thumbnails swap the main image, optional zoom dialog; loading blur-up; one image only (no thumbnails).</div>
+<div class="a11y"><strong>A11y:</strong> thumbnails are buttons or links with the image alt as the name; zoom dialog traps focus and closes with Escape; swipe has button alternatives.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>border</code>, <code>radius-md</code>, <code>focus</code>.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>Quantity and add to cart</h3>
+<div class="sample">
+<form method="post" action="#components" onsubmit="return false" style="display:flex;gap:var(--space-3);align-items:end;flex-wrap:wrap">
+<div><label for="aq">Quantity</label><br><input id="aq" type="number" min="1" value="1" style="min-height:2.75rem;width:6rem;padding:0 var(--space-3);border:2px solid var(--color-text-muted);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text)"></div>
+<button class="btn" type="submit">Add to cart</button>
+</form>
+</div>
+<div class="no-js"><strong>No JS:</strong> a normal form POST to the cart; the next page confirms the item.</div>
+<div class="states"><strong>States:</strong> default, adding (button text "Adding…", <code>aria-busy</code>), added (polite live message "Added to cart"), error (message with the fix), out of stock (button disabled with reason).</div>
+<div class="a11y"><strong>A11y:</strong> button keeps its name; confirmation announced, focus not stolen; limits and bulk pricing as text.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>brand</code>, <code>on-brand</code>, <code>error</code>. Decoration: second pass.</div>
+</article>
+
+<article class="component" data-kind="island">
+<h3>Mini cart</h3>
+<div class="sample"><p><a class="btn btn-secondary" href="#components">Cart (2)</a></p></div>
+<div class="no-js"><strong>No JS:</strong> "Cart (n)" is a link to the cart page; the count is rendered by the server.</div>
+<div class="states"><strong>States:</strong> link only; with JS a dialog or popover lists items, subtotal and "View cart"/"Checkout"; empty, loading, error.</div>
+<div class="a11y"><strong>A11y:</strong> disclosure with <code>aria-expanded</code>; focus moves in and returns; escape closes; contents readable at 400% zoom.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>surface</code>, <code>border</code>, <code>radius-md</code>.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>FAQ accordion</h3>
+<div class="sample">
+<details><summary>Is there a minimum order for embroidery?</summary><p>No minimum orders. Spend $499 or more for free embroidery set-up.</p></details>
+<details><summary>Do you deliver Australia wide?</summary><p>Yes. Delivery options show at checkout.</p></details>
+</div>
+<div class="no-js"><strong>No JS:</strong> native <code>&lt;details&gt;</code>; nothing needed.</div>
+<div class="states"><strong>States:</strong> closed, open, focus-visible. FAQ items are real text and may be marked up as FAQPage JSON-LD.</div>
+<div class="a11y"><strong>A11y:</strong> summary is the control; the whole row is the target; the marker is CSS and never the only cue.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>border</code>, <code>space-3</code>.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>Promo and spend-and-save banner</h3>
+<div class="sample">
+<div style="background:var(--color-brand);color:var(--color-on-brand);padding:var(--space-3) var(--space-4);border-radius:var(--radius-sm)"><p style="margin:0"><strong>Spend and save:</strong> 10% off $299, 15% off $499, 20% off $2,399 or more. <a href="#components" style="color:var(--color-on-brand)">Shop now</a></p></div>
+<p style="margin-top:var(--space-3)"><span style="background:var(--color-accent-amber);color:var(--color-on-amber);padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);font-weight:600">Free embroidery set-up over $499</span></p>
+</div>
+<div class="no-js"><strong>No JS:</strong> static. Thresholds and copy come from theme settings, so they change without a rebuild.</div>
+<div class="states"><strong>States:</strong> default, dismissed (only with JS and a stored choice; never the sole way to see an offer), expired (hidden by the server).</div>
+<div class="a11y"><strong>A11y:</strong> text, not an image; link text meaningful; if dismissable, a real button with a name. General promotion areas follow this pattern; marketing materials are a separate brief.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>brand</code>, <code>on-brand</code>, <code>accent-amber</code>, <code>on-amber</code>.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>Reviews block</h3>
+<div class="sample">
+<figure style="margin:0"><blockquote style="margin:0 0 var(--space-2)">Great quality and quick delivery.</blockquote><figcaption>Verified customer, <span aria-label="5 out of 5 stars">★★★★★ 5/5</span></figcaption></figure>
+</div>
+<div class="no-js"><strong>No JS:</strong> quotes are static text from the theme or the catalogue. A live reviews fetch (if any) is an island with the static quotes as the fallback.</div>
+<div class="states"><strong>States:</strong> default, no reviews (hide the block), many reviews (link to the full list).</div>
+<div class="a11y"><strong>A11y:</strong> rating exposed as text ("5 out of 5"); stars are decoration. Real quotes only.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>surface</code>, <code>text-muted</code>, <code>accent-amber</code>.</div>
+</article>
+
+<article class="component" data-kind="island">
+<h3>Theme toggle</h3>
+<div class="sample"><p>The toggle in this document's header is the reference: three states (auto, light, dark), choice stored in <code>localStorage</code> inside try/catch.</p></div>
+<div class="no-js"><strong>No JS:</strong> the button is hidden; the site follows <code>prefers-color-scheme</code>.</div>
+<div class="states"><strong>States:</strong> auto, light, dark. The chosen theme is applied before first paint by a tiny inline script to avoid a flash.</div>
+<div class="a11y"><strong>A11y:</strong> a button whose name states the current mode and that activating changes it; 44px target; works with keyboard.</div>
+<div class="tokens-used"><strong>Tokens:</strong> every colour token, both themes.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>Footer</h3>
+<div class="sample">
+<footer style="display:grid;gap:var(--space-3)"><nav aria-label="Customer service"><ul style="display:flex;gap:var(--space-4);flex-wrap:wrap;list-style:none;margin:0;padding:0"><li><a href="#components">Contact us</a></li><li><a href="#components">Delivery</a></li><li><a href="#components">Returns</a></li></ul></nav><p style="margin:0;color:var(--color-text-muted)">Australian owned and operated.</p></footer>
+</div>
+<div class="no-js"><strong>No JS:</strong> static links; the newsletter signup is a normal form POST.</div>
+<div class="states"><strong>States:</strong> default, focus-visible links; newsletter success and error messages from the server.</div>
+<div class="a11y"><strong>A11y:</strong> one page-level <code>&lt;footer&gt;</code>; sections are labelled <code>&lt;nav&gt;</code>s.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>text-muted</code>, <code>link</code>, <code>space-3/4</code>.</div>
+</article>

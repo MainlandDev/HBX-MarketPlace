@@ -1,0 +1,60 @@
+<h2 id="a11y">Accessibility playbook</h2>
+<p>Baseline <strong>WCAG 2.2 AA</strong>, with AAA adopted where it costs little (the contrast table marks AAA per pair). Accessibility is a build rule, not a review step: artistic intent is preserved by tuning tokens, not by relaxing the rule.</p>
+
+<h3 id="a11y-fixes">Fixes carried over from the live site</h3>
+<table class="plain">
+<thead><tr><th scope="col">Live site today</th><th scope="col">New theme</th></tr></thead>
+<tbody>
+<tr><td>No <code>&lt;main&gt;</code> landmark</td><td>One <code>&lt;main id="main"&gt;</code> per page, focus target of the skip link.</td></tr>
+<tr><td>No skip link</td><td>First focusable element: "Skip to content"; visible on focus.</td></tr>
+<tr><td>H1 rendered at 0px on the home page</td><td>Exactly one visible <code>&lt;h1&gt;</code> per page; no visually hidden headline hacks.</td></tr>
+<tr><td>11 <code>&lt;footer&gt;</code> elements</td><td>One page <code>&lt;footer&gt;</code>; groups inside use <code>&lt;section&gt;</code> or <code>&lt;nav aria-label&gt;</code>.</td></tr>
+<tr><td>Images without <code>alt</code></td><td>Every <code>&lt;img&gt;</code> has <code>alt</code>; decorative images use <code>alt=""</code>. Checked by <code>npm run check-bible</code> for this document.</td></tr>
+</tbody>
+</table>
+
+<h3 id="a11y-structure">Structure</h3>
+<ul>
+<li>Landmarks: <code>header</code>, <code>nav</code> (each labelled), <code>main</code>, <code>footer</code>. Heading levels descend without skipping.</li>
+<li>Links are links, actions are buttons. Whole-card links expose one name, not the image alt plus the title twice.</li>
+<li>Page title and <code>lang="en-AU"</code> on every page.</li>
+</ul>
+
+<h3 id="a11y-interaction">Interaction</h3>
+<ul>
+<li>Focus is always visible: 3px ring using <code>--color-focus</code>, offset 2px, 3:1 against both themes (checked).</li>
+<li>Focus is never hidden under sticky headers: sticky elements set <code>scroll-padding-top</code> and the page offsets anchors (WCAG 2.2 focus not obscured).</li>
+<li>Target size at least 24x24 CSS px (AA); aim for 44px on touch controls. Buttons in this bible are 44px tall.</li>
+<li>Everything works by keyboard; no keyboard traps; menus and dialogs return focus to their trigger.</li>
+<li>No drag-only interaction (gallery swipe has buttons). No gesture timing.</li>
+<li>Do not require re-entering information in the same checkout flow; show errors next to fields and in a summary.</li>
+</ul>
+
+<h3 id="a11y-forms">Forms</h3>
+<ul>
+<li>Every control has a visible <code>&lt;label&gt;</code>; placeholders are never the label.</li>
+<li>Required and format hints are text, linked with <code>aria-describedby</code>.</li>
+<li>Errors: plain-language message, tied to the field, announced once via <code>role="alert"</code> or a live summary; colour is never the only cue.</li>
+<li><code>autocomplete</code> tokens on name, address, email, phone and card fields.</li>
+</ul>
+
+<h3 id="a11y-themes">Colour, themes and motion</h3>
+<ul>
+<li>Light follows the design, dark follows <code>prefers-color-scheme</code>, and a toggle stores the visitor's choice. Without JS the page follows the OS.</li>
+<li>Every token pair is contrast-checked in both themes at build time; AA failures fail the build.</li>
+<li><code>prefers-reduced-motion: reduce</code> sets motion tokens to 0ms; carousels do not autoplay, and any motion over 5 seconds has a pause control.</li>
+<li>Information is never conveyed by colour alone (stock status, errors, selected variant use text or icons too).</li>
+</ul>
+
+<h3 id="a11y-test">Test checklist</h3>
+<table class="plain">
+<thead><tr><th scope="col">Check</th><th scope="col">How</th></tr></thead>
+<tbody>
+<tr><td>Keyboard only</td><td>Tab through the page: order, focus ring, no traps, skip link works.</td></tr>
+<tr><td>Screen reader</td><td>NVDA or VoiceOver pass on landmarks, headings, forms, dynamic updates.</td></tr>
+<tr><td>Zoom and reflow</td><td>200% text and 400% zoom (320 CSS px wide): no horizontal scroll, no clipped content.</td></tr>
+<tr><td>No JavaScript</td><td>Browse, filter, add to cart and reach checkout with scripts disabled.</td></tr>
+<tr><td>Reduced motion and dark</td><td>Emulate both; layouts and focus stay intact.</td></tr>
+<tr><td>Automated</td><td><code>npm run design</code> (tokens, structure) plus an axe or Lighthouse accessibility run per page.</td></tr>
+</tbody>
+</table>

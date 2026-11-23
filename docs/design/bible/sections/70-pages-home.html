@@ -1,0 +1,36 @@
+<h2 id="page-home">Page spec: Home</h2>
+<p>Order follows the live site, rebuilt with landmarks and one real <code>&lt;h1&gt;</code>. Everything above the fold is static HTML; the only islands are tabs enhancement, the theme toggle and the mini cart.</p>
+
+<div class="grid-2">
+<div class="wire" aria-label="Home wireframe, mobile">
+<span>Skip link</span>
+<span>Header: logo, search, cart, menu (details)</span>
+<span>Promo bar: spend-and-save tiers</span>
+<span><strong>h1</strong> Hero: "Online workwear done right" + wet-weather campaign image + button</span>
+<span>Banner: free embroidery set-up over $499</span>
+<span>Popular categories: tiles (Mens / Womens as two linked groups)</span>
+<span>Popular brands: logo grid (links)</span>
+<span>Featured and new products: product cards</span>
+<span>Copy blocks: lightweight workwear, uniform embroidery</span>
+<span>Trust points: Australian owned, local support, quality</span>
+<span>FAQ: 7 questions (details)</span>
+<span>Reviews: quotes</span>
+<span>Footer</span>
+</div>
+<div>
+<table class="plain">
+<tbody>
+<tr><th scope="row">Landmarks</th><td><code>header</code>, <code>nav</code>, <code>main</code> (sections each with a heading), <code>footer</code>.</td></tr>
+<tr><th scope="row">Desktop</th><td>Categories 6 per row, brands 8 per row, product cards 4 per row; hero is image beside text.</td></tr>
+<tr><th scope="row">Components</th><td>Header, navigation, buttons, product card, promo banner, FAQ accordion, reviews block, footer.</td></tr>
+<tr><th scope="row">Data</th><td>Server prefetch via page front matter: featured and new products, brands, categories, carousel/promo settings. No client request is needed to paint the page.</td></tr>
+<tr><th scope="row">No JS</th><td>Product tabs are anchor-linked sections (both lists visible, stacked); FAQ is <code>&lt;details&gt;</code>; all links work.</td></tr>
+<tr><th scope="row">Islands</th><td>Featured/new tabs enhancer, theme toggle, mini cart.</td></tr>
+<tr><th scope="row">A11y</th><td>Exactly one h1; hero text is real text over the image with AA contrast; no autoplay carousel; tab order matches visual order.</td></tr>
+<tr><th scope="row">Performance</th><td>Hero image is the LCP image: <code>fetchpriority="high"</code>, sized; the rest lazy.</td></tr>
+<tr><th scope="row">Structured data</th><td>Organization JSON-LD kept.</td></tr>
+</tbody>
+</table>
+<p class="placeholder">Decoration and branding (embroidery, printing) entry points on Home: second pass.</p>
+</div>
+</div>

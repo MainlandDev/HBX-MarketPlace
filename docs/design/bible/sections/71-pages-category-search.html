@@ -1,0 +1,30 @@
+<h2 id="page-category">Page spec: Category and search</h2>
+<p>One listing layout for category, brand and search results. Filters and sorting are links and a GET form first; the island only makes them faster.</p>
+
+<div class="grid-2">
+<div class="wire" aria-label="Category wireframe">
+<span>Header</span>
+<span>Breadcrumbs</span>
+<span><strong>h1</strong> Category name + result count</span>
+<span>Filters (aside, details groups) | Sort select</span>
+<span>Product grid: 2 columns mobile, 3 tablet, 4 desktop</span>
+<span>Pagination</span>
+<span>Category description (static text)</span>
+<span>Footer</span>
+</div>
+<div>
+<table class="plain">
+<tbody>
+<tr><th scope="row">Landmarks</th><td><code>main</code> holds the results; filters in a labelled <code>&lt;aside&gt;</code> (or <code>&lt;form&gt;</code> with a heading); breadcrumbs and pagination are labelled <code>&lt;nav&gt;</code>s.</td></tr>
+<tr><th scope="row">Mobile</th><td>Filters collapse into a <code>&lt;details&gt;</code> "Filter and sort" above the grid.</td></tr>
+<tr><th scope="row">Components</th><td>Breadcrumbs, facet filters and sort, product card, pagination, buttons.</td></tr>
+<tr><th scope="row">Data</th><td>Server renders the first page of products and the facet list. The filter island sends one GraphQL request per filter change, deduped and cancellable; the URL always reflects the filters.</td></tr>
+<tr><th scope="row">No JS</th><td>"Apply filters" submits a GET to the same URL; every facet value and page is a real link.</td></tr>
+<tr><th scope="row">States</th><td>Loading (skeleton cards, <code>aria-busy</code>), empty (clear explanation and a "Clear filters" link), error (retry button, form submit still works).</td></tr>
+<tr><th scope="row">A11y</th><td>Result count in a polite live region after changes; focus stays on the changed control; no infinite scroll (pagination).</td></tr>
+<tr><th scope="row">Search</th><td>Search results page reuses the layout; "No results" offers spelling suggestions and category links.</td></tr>
+</tbody>
+</table>
+<p class="placeholder">Decoration filters (embroiderable, printable): second pass.</p>
+</div>
+</div>

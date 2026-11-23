@@ -1,0 +1,54 @@
+<h2 id="assets">Asset policy</h2>
+<p><strong>Embed, do not link.</strong> Nothing the page needs at runtime is fetched from a third-party CDN. This applies to icons, fonts, JavaScript libraries and images where the platform allows.</p>
+
+<h3 id="assets-replace">What the live site loads from elsewhere, and the replacement</h3>
+<table class="plain">
+<thead><tr><th scope="col">Live site dependency</th><th scope="col">New theme</th></tr></thead>
+<tbody>
+<tr><td>Font Awesome 6 via cdnjs.cloudflare.com</td><td>Static inline SVG at build time, only the icons used.</td></tr>
+<tr><td>Poppins via fonts.googleapis.com</td><td>Self-hosted subset woff2 (latin), <code>font-display: swap</code>, system fallback stack. Final font choice later.</td></tr>
+<tr><td>PapaThemes script and theme code</td><td>Replaced by this theme's own templates and islands. No vendor script.</td></tr>
+<tr><td>websitespeedycdn.b-cdn.net</td><td>Dropped. Caching and image sizing handled by the platform CDN and <code>srcset</code>.</td></tr>
+<tr><td>GTM, PostHog, Bing, Mailchimp</td><td>Out of scope here; handled in the marketing brief. The site must work with all of them absent.</td></tr>
+<tr><td>BigCommerce platform CDN (images, checkout SDK)</td><td>Platform-provided and unavoidable for product images and checkout; the only external origins allowed, listed in the performance budget.</td></tr>
+</tbody>
+</table>
+
+<h3 id="assets-icons">Icons</h3>
+<ul>
+<li>Packs: Lucide, Heroicons and Font Awesome (free set) are all permitted, chosen per icon for fit, one pack per concept.</li>
+<li>Delivery: server-rendered inline <code>&lt;svg&gt;</code>, <code>currentColor</code>, <code>aria-hidden="true"</code> and <code>focusable="false"</code> unless the icon is the only content, in which case the control carries a text label or <code>aria-label</code>.</li>
+<li>No icon fonts. No sprite sheet request by default.</li>
+<li>Sizing in <code>em</code> so icons scale with text; stroke icons use a 2px stroke.</li>
+</ul>
+<div class="sample">
+<p>Sample (inline SVG, decorative, paired with visible text):</p>
+<p><span class="btn"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg> Add to cart</span></p>
+</div>
+
+<h3 id="assets-licences">Icon and asset licence log</h3>
+<table class="plain">
+<thead><tr><th scope="col">Source</th><th scope="col">Licence</th><th scope="col">Attribution</th></tr></thead>
+<tbody>
+<tr><td>Lucide</td><td>ISC</td><td>Keep the licence text in the repo.</td></tr>
+<tr><td>Heroicons</td><td>MIT</td><td>Keep the licence text in the repo.</td></tr>
+<tr><td>Font Awesome Free (icons)</td><td>CC BY 4.0 (icons)</td><td>Attribution comment required in the source; confirm before shipping.</td></tr>
+<tr><td>Fonts (when chosen)</td><td>OFL for Google fonts</td><td>Ship the licence file with the font.</td></tr>
+</tbody>
+</table>
+<p class="placeholder">Licence terms above are from memory of the public licences; verify each before release.</p>
+
+<h3 id="assets-js">JavaScript libraries</h3>
+<ul>
+<li>Bundle through the build; no <code>&lt;script src="https://..."&gt;</code>.</li>
+<li>Prefer no library: native <code>&lt;details&gt;</code>, CSS scroll snap, <code>popover</code> and the platform before adding a dependency. New packages need approval.</li>
+<li>React runs only inside islands (see the islands and data map).</li>
+</ul>
+
+<h3 id="assets-images">Images</h3>
+<ul>
+<li>Every image has <code>width</code> and <code>height</code> (no layout shift), <code>alt</code> text per the voice section, <code>loading="lazy"</code> below the fold and <code>fetchpriority="high"</code> on the LCP image only.</li>
+<li>Responsive <code>srcset</code> and <code>sizes</code> from the platform image CDN; modern formats where available.</li>
+<li>Brand images are shipped in the theme (<code>assets/img</code>); product images come from the catalogue.</li>
+<li>Text is real text, never baked into an image (hero headlines, promo banners).</li>
+</ul>

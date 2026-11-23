@@ -1,0 +1,31 @@
+<h2 id="page-product">Page spec: Product</h2>
+<p>The product page is where most of the interactive weight lives, and where the no-JS fallback matters most: a visitor can always choose options and add to cart with plain form controls.</p>
+
+<div class="grid-2">
+<div class="wire" aria-label="Product wireframe">
+<span>Header, breadcrumbs</span>
+<span>Gallery (scroll-snap strip + thumbnails)</span>
+<span><strong>h1</strong> Product name, brand, price, stock</span>
+<span>Variant selector: colour swatches then sizes</span>
+<span>Quantity + Add to cart</span>
+<span>Delivery and returns notes</span>
+<span>Description / specs / size guide (details tabs)</span>
+<span>Reviews</span>
+<span>Related products</span>
+<span>Footer</span>
+</div>
+<div>
+<table class="plain">
+<tbody>
+<tr><th scope="row">Layout</th><td>Mobile: single column, add to cart after options. Desktop: gallery left, buy box right, sticky only if it never obscures focused fields.</td></tr>
+<tr><th scope="row">Components</th><td>Breadcrumbs, gallery, price and badges, variant selector, quantity and add to cart, FAQ-style details for specs, reviews, product cards.</td></tr>
+<tr><th scope="row">Data</th><td>Server renders product, options and initial variant data. The variant island receives the product id and storefront token from the template (existing <code>colour-size.tsx</code> pattern) and issues one batched availability query for all option combinations, shared with the gallery and price islands.</td></tr>
+<tr><th scope="row">No JS</th><td>Native radio inputs for every option; add to cart is a form POST; gallery is a stacked or scroll-snap list; specs are <code>&lt;details&gt;</code>.</td></tr>
+<tr><th scope="row">States</th><td>Out of stock, unavailable combination (explained in text), loading availability (selection still allowed), added to cart (live message), error.</td></tr>
+<tr><th scope="row">A11y</th><td>One h1; fieldsets for option groups; swatch names are text; price change after selecting a variant is announced politely.</td></tr>
+<tr><th scope="row">Structured data</th><td>Product JSON-LD (name, image, offers, availability) and BreadcrumbList.</td></tr>
+</tbody>
+</table>
+<p class="placeholder">Decoration and branding step (logo placement, embroidery, print options) on the product page: second pass; this layout reserves the space between options and add to cart.</p>
+</div>
+</div>

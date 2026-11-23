@@ -1,0 +1,1016 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Online Workwear Design Bible</title>
+<style>
+:root {
+    color-scheme: light dark;
+    --color-brand: #EE0700;
+    --color-white: #FFFFFF;
+    --color-on-brand: #000000;
+    --color-brand-text: #BE0600;
+    --color-bg: #F2F2F2;
+    --color-surface: #FFFFFF;
+    --color-text: #000000;
+    --color-text-muted: #454545;
+    --color-border: #DDDDDD;
+    --color-link: #0023A3;
+    --color-focus: #1F4FFF;
+    --color-accent-amber: #FBBE24;
+    --color-accent-blue: #1F4FFF;
+    --color-accent-navy: #0023A3;
+    --color-tint: #E5EBFF;
+    --color-on-amber: #000000;
+    --color-success: #006B05;
+    --color-error: #B3202A;
+    --font-stack: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --font-size-base: 1rem;
+    --line-height-base: 1.5;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.375rem;
+    --font-size-2xl: 1.75rem;
+    --font-size-3xl: 2.25rem;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 3rem;
+    --space-8: 4rem;
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+    --radius-pill: 999px;
+    --motion-fast: 120ms;
+    --motion-base: 200ms;
+    --motion-slow: 400ms;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --color-brand: #EE0700;
+        --color-white: #FFFFFF;
+        --color-on-brand: #000000;
+        --color-brand-text: #FF7A73;
+        --color-bg: #121212;
+        --color-surface: #1E1E1E;
+        --color-text: #F2F2F2;
+        --color-text-muted: #C4C4C4;
+        --color-border: #3A3A3A;
+        --color-link: #9DB2FF;
+        --color-focus: #FBBE24;
+        --color-accent-amber: #FBBE24;
+        --color-accent-blue: #9DB2FF;
+        --color-accent-navy: #C2CEFF;
+        --color-tint: #1B2340;
+        --color-on-amber: #000000;
+        --color-success: #7BD87F;
+        --color-error: #FF8A91;
+    }
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --color-brand: #EE0700;
+    --color-white: #FFFFFF;
+    --color-on-brand: #000000;
+    --color-brand-text: #FF7A73;
+    --color-bg: #121212;
+    --color-surface: #1E1E1E;
+    --color-text: #F2F2F2;
+    --color-text-muted: #C4C4C4;
+    --color-border: #3A3A3A;
+    --color-link: #9DB2FF;
+    --color-focus: #FBBE24;
+    --color-accent-amber: #FBBE24;
+    --color-accent-blue: #9DB2FF;
+    --color-accent-navy: #C2CEFF;
+    --color-tint: #1B2340;
+    --color-on-amber: #000000;
+    --color-success: #7BD87F;
+    --color-error: #FF8A91;
+}
+
+:root[data-theme="light"] {
+    color-scheme: light;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --motion-fast: 0ms;
+        --motion-base: 0ms;
+        --motion-slow: 0ms;
+    }
+}
+
+@media print {
+    :root, :root:not([data-theme="light"]), :root[data-theme="dark"], :root[data-theme="light"] {
+        color-scheme: light;
+        --color-brand: #EE0700;
+        --color-white: #FFFFFF;
+        --color-on-brand: #000000;
+        --color-brand-text: #BE0600;
+        --color-bg: #F2F2F2;
+        --color-surface: #FFFFFF;
+        --color-text: #000000;
+        --color-text-muted: #454545;
+        --color-border: #DDDDDD;
+        --color-link: #0023A3;
+        --color-focus: #1F4FFF;
+        --color-accent-amber: #FBBE24;
+        --color-accent-blue: #1F4FFF;
+        --color-accent-navy: #0023A3;
+        --color-tint: #E5EBFF;
+        --color-on-amber: #000000;
+        --color-success: #006B05;
+        --color-error: #B3202A;
+    }
+}
+
+/* Design bible styles. Colours, type, space and motion come from the generated token custom properties. */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-padding-top: 4.5rem; }
+body { margin: 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font-stack); font-size: var(--font-size-base); line-height: var(--line-height-base); }
+img, svg { max-width: 100%; }
+a { color: var(--color-link); text-underline-offset: 0.15em; }
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focus-visible {
+    outline: 3px solid var(--color-focus); outline-offset: 2px; border-radius: var(--radius-sm);
+}
+code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; }
+h1, h2, h3, h4 { line-height: 1.2; }
+h1 { font-size: var(--font-size-3xl); margin: 0 0 var(--space-3); }
+h2 { font-size: var(--font-size-2xl); margin: var(--space-7) 0 var(--space-4); padding-bottom: var(--space-2); border-bottom: 4px solid var(--color-brand); }
+h3 { font-size: var(--font-size-xl); margin: var(--space-5) 0 var(--space-2); }
+p, li { max-width: 70ch; }
+
+.sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.skip { position: absolute; left: var(--space-3); top: -4rem; background: var(--color-surface); color: var(--color-text); padding: var(--space-2) var(--space-4); border-radius: var(--radius-md); z-index: 20; }
+.skip:focus { top: var(--space-3); }
+
+.bar { position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); padding: var(--space-3) var(--space-5); background: var(--color-brand); color: var(--color-on-brand); font-weight: 600; }
+.theme-toggle { font: inherit; min-height: 2.75rem; padding: 0 var(--space-4); border: 2px solid var(--color-on-brand); border-radius: var(--radius-pill); background: transparent; color: var(--color-on-brand); cursor: pointer; }
+.theme-toggle:focus-visible { outline-color: var(--color-on-brand); }
+
+.toc { padding: var(--space-4) var(--space-5); background: var(--color-surface); border-bottom: 1px solid var(--color-border); }
+.toc ol { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); }
+.toc a { display: inline-block; padding: var(--space-1) 0; min-height: 1.5rem; }
+
+main { max-width: 72rem; margin: 0 auto; padding: var(--space-6) var(--space-5) var(--space-8); }
+main:focus { outline: none; }
+.foot { padding: var(--space-5); text-align: center; color: var(--color-text-muted); }
+
+.cover { padding: var(--space-7) 0 var(--space-5); }
+.cover .lede { font-size: var(--font-size-lg); color: var(--color-text-muted); }
+.cover dl { display: grid; grid-template-columns: max-content 1fr; gap: var(--space-1) var(--space-4); }
+.cover dt { font-weight: 600; }
+.cover dd { margin: 0; }
+
+.swatches { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: var(--space-4); }
+.swatch { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-3) var(--space-4); break-inside: avoid; }
+.swatch h3 { margin: 0 0 var(--space-2); font-size: var(--font-size-base); }
+.swatch-pair { display: flex; gap: var(--space-4); }
+.swatch-pair > div { display: grid; gap: var(--space-1); }
+.chip { display: block; width: 5rem; height: 2.5rem; border-radius: var(--radius-sm); border: 1px solid var(--color-border); }
+.swatch-note { font-size: var(--font-size-sm); color: var(--color-text-muted); margin: var(--space-2) 0 0; }
+
+.contrast { width: 100%; border-collapse: collapse; font-size: var(--font-size-sm); background: var(--color-surface); }
+.contrast caption { text-align: left; padding: var(--space-2) 0; color: var(--color-text-muted); }
+.contrast th, .contrast td { text-align: left; padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--color-border); }
+.contrast-wrap { overflow-x: auto; }
+
+/* Samples used by component and page sections */
+.sample { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4); margin: var(--space-3) 0; break-inside: avoid; }
+.sample[data-theme-sample="dark"] { background: #121212; color: #F2F2F2; border-color: #3A3A3A; }
+.component { border-top: 1px solid var(--color-border); padding: var(--space-4) 0; break-inside: avoid-page; }
+.component > h3 { margin-top: 0; }
+.component dl { display: grid; grid-template-columns: max-content 1fr; gap: var(--space-1) var(--space-4); font-size: var(--font-size-sm); }
+.component dt { font-weight: 600; }
+.component dd { margin: 0; }
+.placeholder { border: 2px dashed var(--color-border); padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); color: var(--color-text-muted); font-size: var(--font-size-sm); }
+.callout { border-left: 6px solid var(--color-brand); background: var(--color-surface); padding: var(--space-3) var(--space-4); margin: var(--space-4) 0; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: 2.75rem; padding: 0 var(--space-5); border: 2px solid var(--color-on-brand); border-radius: var(--radius-pill); background: var(--color-brand); color: var(--color-on-brand); font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; transition: transform var(--motion-fast); }
+.btn:hover { transform: translateY(-1px); }
+.btn[disabled] { opacity: 0.6; cursor: not-allowed; }
+.btn-secondary { background: var(--color-surface); color: var(--color-text); border-color: var(--color-text); }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: var(--space-4); }
+.wire { border: 2px dashed var(--color-border); border-radius: var(--radius-md); padding: var(--space-3); display: grid; gap: var(--space-2); }
+.wire > * { background: var(--color-tint); border-radius: var(--radius-sm); padding: var(--space-2) var(--space-3); }
+.icon { width: 1.25em; height: 1.25em; vertical-align: -0.2em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+table.plain { border-collapse: collapse; width: 100%; font-size: var(--font-size-sm); }
+table.plain th, table.plain td { text-align: left; padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--color-border); vertical-align: top; }
+
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; scroll-behavior: auto !important; transition: none !important; }
+}
+
+@media (max-width: 40rem) {
+    .bar, main, .toc { padding-left: var(--space-4); padding-right: var(--space-4); }
+    .cover dl { grid-template-columns: 1fr; }
+}
+
+@page { size: A4; margin: 15mm; }
+@media print {
+    :root, :root[data-theme="dark"] { color-scheme: light; }
+    body { background: #fff; color: #000; font-size: 10.5pt; }
+    .bar, .skip, .theme-toggle { display: none; }
+    .toc { border: 0; padding: 0 0 6mm; }
+    main { max-width: none; padding: 0; }
+    h2 { break-before: page; border-bottom-color: #000; }
+    h2:first-of-type { break-before: auto; }
+    h2, h3 { break-after: avoid; }
+    .sample, .swatch, .component, tr, figure { break-inside: avoid; }
+    a { color: #000; }
+    a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; word-break: break-all; }
+    .sample[data-theme-sample="dark"], .chip, .btn, .wire > * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+<span class="bar-title">Online Workwear Design Bible</span>
+<button type="button" class="theme-toggle" data-theme-toggle hidden>Theme: auto</button>
+</header>
+<nav class="toc" aria-label="Contents"><ol><li><a href="#tokens">Design tokens</a></li><li><a href="#a11y">Accessibility playbook</a></li><li><a href="#assets">Asset policy</a></li><li><a href="#perf">Performance budget</a></li><li><a href="#voice">Content and brand voice</a></li><li><a href="#components">Component catalogue</a></li><li><a href="#page-home">Page spec: Home</a></li><li><a href="#page-category">Page spec: Category and search</a></li><li><a href="#page-product">Page spec: Product</a></li><li><a href="#page-cart">Page spec: Cart and checkout entry</a></li><li><a href="#islands-data">Islands and data map</a></li></ol></nav>
+<main id="main" tabindex="-1">
+<section class="cover" aria-labelledby="title">
+<h1 id="title">Online Workwear Design Bible</h1>
+<p class="lede">The single reference for the marketplace-hbx theme that replaces onlineworkwear.com.au: static first, accessible, working without JavaScript, and self-contained.</p>
+<dl>
+<dt>Status</dt><dd>Draft 0.1, 2026-11-23</dd>
+<dt>Baseline</dt><dd>WCAG 2.2 AA, AAA where cheap</dd>
+<dt>Themes</dt><dd>Light, dark (follows the OS), manual toggle</dd>
+<dt>Source of truth</dt><dd><code>docs/design/tokens.json</code></dd>
+<dt>Fonts</dt><dd>System stack until the final font is chosen (Poppins is the live-site font)</dd>
+<dt>Second pass</dt><dd>Decoration and branding (embroidery, printing), marketing and tracking, Tailwind migration</dd>
+</dl>
+</section>
+
+<h2 id="tokens">Design tokens</h2>
+<p>Every colour, size and duration in this bible is generated from <code>docs/design/tokens.json</code>. Run <code>npm run design</code> to regenerate the theme's SCSS custom properties, check contrast, and rebuild this document. Swatches show light and dark values.</p>
+<ul class="swatches"><li class="swatch"><h3>brand</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#EE0700" role="img" aria-label="brand light #EE0700"></span><code>#EE0700</code><small>light</small></div>
+<div><span class="chip" style="background:#EE0700" role="img" aria-label="brand dark #EE0700"></span><code>#EE0700</code><small>dark</small></div>
+</div><p class="swatch-note">Header red from the live site. Kept exactly.</p></li>
+<li class="swatch"><h3>white</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#FFFFFF" role="img" aria-label="white light #FFFFFF"></span><code>#FFFFFF</code><small>light</small></div>
+<div><span class="chip" style="background:#FFFFFF" role="img" aria-label="white dark #FFFFFF"></span><code>#FFFFFF</code><small>dark</small></div>
+</div></li>
+<li class="swatch"><h3>onBrand</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#000000" role="img" aria-label="onBrand light #000000"></span><code>#000000</code><small>light</small></div>
+<div><span class="chip" style="background:#000000" role="img" aria-label="onBrand dark #000000"></span><code>#000000</code><small>dark</small></div>
+</div><p class="swatch-note">Text on brand red. Black is 4.67:1; white is only 4.50:1.</p></li>
+<li class="swatch"><h3>brandText</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#BE0600" role="img" aria-label="brandText light #BE0600"></span><code>#BE0600</code><small>light</small></div>
+<div><span class="chip" style="background:#FF7A73" role="img" aria-label="brandText dark #FF7A73"></span><code>#FF7A73</code><small>dark</small></div>
+</div><p class="swatch-note">Red used as text or link colour on surfaces.</p></li>
+<li class="swatch"><h3>bg</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#F2F2F2" role="img" aria-label="bg light #F2F2F2"></span><code>#F2F2F2</code><small>light</small></div>
+<div><span class="chip" style="background:#121212" role="img" aria-label="bg dark #121212"></span><code>#121212</code><small>dark</small></div>
+</div></li>
+<li class="swatch"><h3>surface</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#FFFFFF" role="img" aria-label="surface light #FFFFFF"></span><code>#FFFFFF</code><small>light</small></div>
+<div><span class="chip" style="background:#1E1E1E" role="img" aria-label="surface dark #1E1E1E"></span><code>#1E1E1E</code><small>dark</small></div>
+</div></li>
+<li class="swatch"><h3>text</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#000000" role="img" aria-label="text light #000000"></span><code>#000000</code><small>light</small></div>
+<div><span class="chip" style="background:#F2F2F2" role="img" aria-label="text dark #F2F2F2"></span><code>#F2F2F2</code><small>dark</small></div>
+</div></li>
+<li class="swatch"><h3>textMuted</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#454545" role="img" aria-label="textMuted light #454545"></span><code>#454545</code><small>light</small></div>
+<div><span class="chip" style="background:#C4C4C4" role="img" aria-label="textMuted dark #C4C4C4"></span><code>#C4C4C4</code><small>dark</small></div>
+</div></li>
+<li class="swatch"><h3>border</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#DDDDDD" role="img" aria-label="border light #DDDDDD"></span><code>#DDDDDD</code><small>light</small></div>
+<div><span class="chip" style="background:#3A3A3A" role="img" aria-label="border dark #3A3A3A"></span><code>#3A3A3A</code><small>dark</small></div>
+</div></li>
+<li class="swatch"><h3>link</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#0023A3" role="img" aria-label="link light #0023A3"></span><code>#0023A3</code><small>light</small></div>
+<div><span class="chip" style="background:#9DB2FF" role="img" aria-label="link dark #9DB2FF"></span><code>#9DB2FF</code><small>dark</small></div>
+</div></li>
+<li class="swatch"><h3>focus</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#1F4FFF" role="img" aria-label="focus light #1F4FFF"></span><code>#1F4FFF</code><small>light</small></div>
+<div><span class="chip" style="background:#FBBE24" role="img" aria-label="focus dark #FBBE24"></span><code>#FBBE24</code><small>dark</small></div>
+</div></li>
+<li class="swatch"><h3>accent-amber</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#FBBE24" role="img" aria-label="accent-amber light #FBBE24"></span><code>#FBBE24</code><small>light</small></div>
+<div><span class="chip" style="background:#FBBE24" role="img" aria-label="accent-amber dark #FBBE24"></span><code>#FBBE24</code><small>dark</small></div>
+</div></li>
+<li class="swatch"><h3>accent-blue</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#1F4FFF" role="img" aria-label="accent-blue light #1F4FFF"></span><code>#1F4FFF</code><small>light</small></div>
+<div><span class="chip" style="background:#9DB2FF" role="img" aria-label="accent-blue dark #9DB2FF"></span><code>#9DB2FF</code><small>dark</small></div>
+</div></li>
+<li class="swatch"><h3>accent-navy</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#0023A3" role="img" aria-label="accent-navy light #0023A3"></span><code>#0023A3</code><small>light</small></div>
+<div><span class="chip" style="background:#C2CEFF" role="img" aria-label="accent-navy dark #C2CEFF"></span><code>#C2CEFF</code><small>dark</small></div>
+</div></li>
+<li class="swatch"><h3>tint</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#E5EBFF" role="img" aria-label="tint light #E5EBFF"></span><code>#E5EBFF</code><small>light</small></div>
+<div><span class="chip" style="background:#1B2340" role="img" aria-label="tint dark #1B2340"></span><code>#1B2340</code><small>dark</small></div>
+</div></li>
+<li class="swatch"><h3>onAmber</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#000000" role="img" aria-label="onAmber light #000000"></span><code>#000000</code><small>light</small></div>
+<div><span class="chip" style="background:#000000" role="img" aria-label="onAmber dark #000000"></span><code>#000000</code><small>dark</small></div>
+</div></li>
+<li class="swatch"><h3>success</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#006B05" role="img" aria-label="success light #006B05"></span><code>#006B05</code><small>light</small></div>
+<div><span class="chip" style="background:#7BD87F" role="img" aria-label="success dark #7BD87F"></span><code>#7BD87F</code><small>dark</small></div>
+</div></li>
+<li class="swatch"><h3>error</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#B3202A" role="img" aria-label="error light #B3202A"></span><code>#B3202A</code><small>light</small></div>
+<div><span class="chip" style="background:#FF8A91" role="img" aria-label="error dark #FF8A91"></span><code>#FF8A91</code><small>dark</small></div>
+</div></li></ul>
+
+<h3 id="brand-red">Brand red rules</h3>
+<div class="callout">
+<p><strong>Brand red <code>#EE0700</code> is kept exactly</strong> (header colour on the live site). Measured contrast: black on red is 4.67:1; white on red is 4.50:1, an AA pass by 0.0008 and not AAA for either. Because the white margin is that thin, anti-aliasing or any opacity can tip it under.</p>
+<ul>
+<li>Default to black text (<code>--color-on-brand</code>) on red.</li>
+<li>White on red only for large or bold text, never for small body text or thin icons.</li>
+<li>Red text or links on light surfaces use <code>--color-brand-text</code>, a darker red. Plain <code>#EE0700</code> on white is also only 4.50:1.</li>
+<li>Never place red text on the red surface, or pale text on amber.</li>
+</ul>
+</div>
+
+<div class="grid-2">
+<div class="sample"><p><span class="btn">Black on red</span> Default button</p></div>
+<div class="sample"><p><span class="btn" style="color:var(--color-white);border-color:var(--color-white)"><strong>White on red, bold only</strong></span></p></div>
+</div>
+
+<h3 id="contrast">Contrast</h3>
+<div class="contrast-wrap"><table class="contrast"><caption>Contrast of every token pair, per theme. Non-text pairs use the large-text 3:1 threshold.</caption>
+<thead><tr><th scope="col">Pair</th><th scope="col">Theme</th><th scope="col">Ratio</th><th scope="col">AA</th><th scope="col">AAA</th><th scope="col">Note</th></tr></thead>
+<tbody><tr><td>Body text on page</td><td>light</td><td>18.76:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Body text on card</td><td>light</td><td>21.00:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Secondary text on page</td><td>light</td><td>8.56:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Secondary text on card</td><td>light</td><td>9.59:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Text on brand red</td><td>light</td><td>4.67:1</td><td>pass</td><td>no</td><td></td></tr>
+<tr><td>White text on brand red</td><td>light</td><td>4.50:1</td><td>pass</td><td>no</td><td>fragile pass: use large or bold text only</td></tr>
+<tr><td>Red text on card</td><td>light</td><td>6.53:1</td><td>pass</td><td>no</td><td></td></tr>
+<tr><td>Red text on page</td><td>light</td><td>5.83:1</td><td>pass</td><td>no</td><td></td></tr>
+<tr><td>Link on page</td><td>light</td><td>10.60:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Link on card</td><td>light</td><td>11.87:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Link on tint</td><td>light</td><td>9.98:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Focus ring on page (non-text 3:1)</td><td>light</td><td>5.18:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Focus ring on card (non-text 3:1)</td><td>light</td><td>5.80:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Text on amber</td><td>light</td><td>12.49:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Success text on card</td><td>light</td><td>6.76:1</td><td>pass</td><td>no</td><td></td></tr>
+<tr><td>Error text on card</td><td>light</td><td>6.65:1</td><td>pass</td><td>no</td><td></td></tr>
+<tr><td>Body text on page</td><td>dark</td><td>16.73:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Body text on card</td><td>dark</td><td>14.89:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Secondary text on page</td><td>dark</td><td>10.74:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Secondary text on card</td><td>dark</td><td>9.56:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Text on brand red</td><td>dark</td><td>4.67:1</td><td>pass</td><td>no</td><td></td></tr>
+<tr><td>White text on brand red</td><td>dark</td><td>4.50:1</td><td>pass</td><td>no</td><td>fragile pass: use large or bold text only</td></tr>
+<tr><td>Red text on card</td><td>dark</td><td>6.58:1</td><td>pass</td><td>no</td><td></td></tr>
+<tr><td>Red text on page</td><td>dark</td><td>7.39:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Link on page</td><td>dark</td><td>9.14:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Link on card</td><td>dark</td><td>8.13:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Link on tint</td><td>dark</td><td>7.53:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Focus ring on page (non-text 3:1)</td><td>dark</td><td>11.14:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Focus ring on card (non-text 3:1)</td><td>dark</td><td>9.92:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Text on amber</td><td>dark</td><td>12.49:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Success text on card</td><td>dark</td><td>9.50:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Error text on card</td><td>dark</td><td>7.38:1</td><td>pass</td><td>pass</td><td>AAA</td></tr></tbody></table></div>
+
+<h3 id="type">Type</h3>
+<p>Interim stack: <code>Poppins</code> then the system UI stack. The final font is decided later from Google fonts and default system fonts; whichever is chosen is self-hosted as a subset woff2 with <code>font-display: swap</code>. Base is 16px/24px; sizes are <code>rem</code> so user font settings and 400% zoom work.</p>
+<div class="sample">
+<p style="font-size:var(--font-size-3xl);margin:0">3xl 2.25rem, page title</p>
+<p style="font-size:var(--font-size-2xl);margin:0">2xl 1.75rem, section heading</p>
+<p style="font-size:var(--font-size-xl);margin:0">xl 1.375rem, card heading</p>
+<p style="font-size:var(--font-size-lg);margin:0">lg 1.125rem, lede</p>
+<p style="margin:0">base 1rem, body text on a 1.5 line height</p>
+<p style="font-size:var(--font-size-sm);margin:0">sm 0.875rem, secondary and captions</p>
+<p style="font-size:var(--font-size-xs);margin:0">xs 0.75rem, legal only; never for essential information</p>
+</div>
+
+<h3 id="space-radius-motion">Space, radius and motion</h3>
+<table class="plain">
+<thead><tr><th scope="col">Token</th><th scope="col">Values</th><th scope="col">Use</th></tr></thead>
+<tbody>
+<tr><th scope="row">Space 1 to 8</th><td>0.25, 0.5, 0.75, 1, 1.5, 2, 3, 4 rem</td><td>Gaps, padding, section rhythm. Layouts use gap before margin.</td></tr>
+<tr><th scope="row">Radius</th><td>sm 0.25, md 0.5, lg 1 rem, pill</td><td>Buttons and chips pill; cards md.</td></tr>
+<tr><th scope="row">Motion</th><td>fast 120ms, base 200ms, slow 400ms</td><td>All durations become 0ms under <code>prefers-reduced-motion</code>. Motion never carries meaning alone.</td></tr>
+</tbody>
+</table>
+<div class="sample" style="display:flex;gap:var(--space-4);flex-wrap:wrap">
+<span class="btn" style="border-radius:var(--radius-sm)">sm</span>
+<span class="btn" style="border-radius:var(--radius-md)">md</span>
+<span class="btn" style="border-radius:var(--radius-lg)">lg</span>
+<span class="btn" style="border-radius:var(--radius-pill)">pill</span>
+</div>
+
+<h3 id="config-mapping">Theme config mapping</h3>
+<p>Core colours are exposed in <code>config.json</code> so the store admin can adjust them; <code>node scripts/generate-design-tokens.mjs</code> reports where config defaults differ from these tokens. Contrast is re-checked at build, so a bad admin choice must also be caught by the in-theme guard (to be specified in the implementation brief).</p>
+
+<h2 id="a11y">Accessibility playbook</h2>
+<p>Baseline <strong>WCAG 2.2 AA</strong>, with AAA adopted where it costs little (the contrast table marks AAA per pair). Accessibility is a build rule, not a review step: artistic intent is preserved by tuning tokens, not by relaxing the rule.</p>
+
+<h3 id="a11y-fixes">Fixes carried over from the live site</h3>
+<table class="plain">
+<thead><tr><th scope="col">Live site today</th><th scope="col">New theme</th></tr></thead>
+<tbody>
+<tr><td>No <code>&lt;main&gt;</code> landmark</td><td>One <code>&lt;main id="main"&gt;</code> per page, focus target of the skip link.</td></tr>
+<tr><td>No skip link</td><td>First focusable element: "Skip to content"; visible on focus.</td></tr>
+<tr><td>H1 rendered at 0px on the home page</td><td>Exactly one visible <code>&lt;h1&gt;</code> per page; no visually hidden headline hacks.</td></tr>
+<tr><td>11 <code>&lt;footer&gt;</code> elements</td><td>One page <code>&lt;footer&gt;</code>; groups inside use <code>&lt;section&gt;</code> or <code>&lt;nav aria-label&gt;</code>.</td></tr>
+<tr><td>Images without <code>alt</code></td><td>Every <code>&lt;img&gt;</code> has <code>alt</code>; decorative images use <code>alt=""</code>. Checked by <code>npm run check-bible</code> for this document.</td></tr>
+</tbody>
+</table>
+
+<h3 id="a11y-structure">Structure</h3>
+<ul>
+<li>Landmarks: <code>header</code>, <code>nav</code> (each labelled), <code>main</code>, <code>footer</code>. Heading levels descend without skipping.</li>
+<li>Links are links, actions are buttons. Whole-card links expose one name, not the image alt plus the title twice.</li>
+<li>Page title and <code>lang="en-AU"</code> on every page.</li>
+</ul>
+
+<h3 id="a11y-interaction">Interaction</h3>
+<ul>
+<li>Focus is always visible: 3px ring using <code>--color-focus</code>, offset 2px, 3:1 against both themes (checked).</li>
+<li>Focus is never hidden under sticky headers: sticky elements set <code>scroll-padding-top</code> and the page offsets anchors (WCAG 2.2 focus not obscured).</li>
+<li>Target size at least 24x24 CSS px (AA); aim for 44px on touch controls. Buttons in this bible are 44px tall.</li>
+<li>Everything works by keyboard; no keyboard traps; menus and dialogs return focus to their trigger.</li>
+<li>No drag-only interaction (gallery swipe has buttons). No gesture timing.</li>
+<li>Do not require re-entering information in the same checkout flow; show errors next to fields and in a summary.</li>
+</ul>
+
+<h3 id="a11y-forms">Forms</h3>
+<ul>
+<li>Every control has a visible <code>&lt;label&gt;</code>; placeholders are never the label.</li>
+<li>Required and format hints are text, linked with <code>aria-describedby</code>.</li>
+<li>Errors: plain-language message, tied to the field, announced once via <code>role="alert"</code> or a live summary; colour is never the only cue.</li>
+<li><code>autocomplete</code> tokens on name, address, email, phone and card fields.</li>
+</ul>
+
+<h3 id="a11y-themes">Colour, themes and motion</h3>
+<ul>
+<li>Light follows the design, dark follows <code>prefers-color-scheme</code>, and a toggle stores the visitor's choice. Without JS the page follows the OS.</li>
+<li>Every token pair is contrast-checked in both themes at build time; AA failures fail the build.</li>
+<li><code>prefers-reduced-motion: reduce</code> sets motion tokens to 0ms; carousels do not autoplay, and any motion over 5 seconds has a pause control.</li>
+<li>Information is never conveyed by colour alone (stock status, errors, selected variant use text or icons too).</li>
+</ul>
+
+<h3 id="a11y-test">Test checklist</h3>
+<table class="plain">
+<thead><tr><th scope="col">Check</th><th scope="col">How</th></tr></thead>
+<tbody>
+<tr><td>Keyboard only</td><td>Tab through the page: order, focus ring, no traps, skip link works.</td></tr>
+<tr><td>Screen reader</td><td>NVDA or VoiceOver pass on landmarks, headings, forms, dynamic updates.</td></tr>
+<tr><td>Zoom and reflow</td><td>200% text and 400% zoom (320 CSS px wide): no horizontal scroll, no clipped content.</td></tr>
+<tr><td>No JavaScript</td><td>Browse, filter, add to cart and reach checkout with scripts disabled.</td></tr>
+<tr><td>Reduced motion and dark</td><td>Emulate both; layouts and focus stay intact.</td></tr>
+<tr><td>Automated</td><td><code>npm run design</code> (tokens, structure) plus an axe or Lighthouse accessibility run per page.</td></tr>
+</tbody>
+</table>
+
+<h2 id="assets">Asset policy</h2>
+<p><strong>Embed, do not link.</strong> Nothing the page needs at runtime is fetched from a third-party CDN. This applies to icons, fonts, JavaScript libraries and images where the platform allows.</p>
+
+<h3 id="assets-replace">What the live site loads from elsewhere, and the replacement</h3>
+<table class="plain">
+<thead><tr><th scope="col">Live site dependency</th><th scope="col">New theme</th></tr></thead>
+<tbody>
+<tr><td>Font Awesome 6 via cdnjs.cloudflare.com</td><td>Static inline SVG at build time, only the icons used.</td></tr>
+<tr><td>Poppins via fonts.googleapis.com</td><td>Self-hosted subset woff2 (latin), <code>font-display: swap</code>, system fallback stack. Final font choice later.</td></tr>
+<tr><td>PapaThemes script and theme code</td><td>Replaced by this theme's own templates and islands. No vendor script.</td></tr>
+<tr><td>websitespeedycdn.b-cdn.net</td><td>Dropped. Caching and image sizing handled by the platform CDN and <code>srcset</code>.</td></tr>
+<tr><td>GTM, PostHog, Bing, Mailchimp</td><td>Out of scope here; handled in the marketing brief. The site must work with all of them absent.</td></tr>
+<tr><td>BigCommerce platform CDN (images, checkout SDK)</td><td>Platform-provided and unavoidable for product images and checkout; the only external origins allowed, listed in the performance budget.</td></tr>
+</tbody>
+</table>
+
+<h3 id="assets-icons">Icons</h3>
+<ul>
+<li>Packs: Lucide, Heroicons and Font Awesome (free set) are all permitted, chosen per icon for fit, one pack per concept.</li>
+<li>Delivery: server-rendered inline <code>&lt;svg&gt;</code>, <code>currentColor</code>, <code>aria-hidden="true"</code> and <code>focusable="false"</code> unless the icon is the only content, in which case the control carries a text label or <code>aria-label</code>.</li>
+<li>No icon fonts. No sprite sheet request by default.</li>
+<li>Sizing in <code>em</code> so icons scale with text; stroke icons use a 2px stroke.</li>
+</ul>
+<div class="sample">
+<p>Sample (inline SVG, decorative, paired with visible text):</p>
+<p><span class="btn"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg> Add to cart</span></p>
+</div>
+
+<h3 id="assets-licences">Icon and asset licence log</h3>
+<table class="plain">
+<thead><tr><th scope="col">Source</th><th scope="col">Licence</th><th scope="col">Attribution</th></tr></thead>
+<tbody>
+<tr><td>Lucide</td><td>ISC</td><td>Keep the licence text in the repo.</td></tr>
+<tr><td>Heroicons</td><td>MIT</td><td>Keep the licence text in the repo.</td></tr>
+<tr><td>Font Awesome Free (icons)</td><td>CC BY 4.0 (icons)</td><td>Attribution comment required in the source; confirm before shipping.</td></tr>
+<tr><td>Fonts (when chosen)</td><td>OFL for Google fonts</td><td>Ship the licence file with the font.</td></tr>
+</tbody>
+</table>
+<p class="placeholder">Licence terms above are from memory of the public licences; verify each before release.</p>
+
+<h3 id="assets-js">JavaScript libraries</h3>
+<ul>
+<li>Bundle through the build; no <code>&lt;script src="https://..."&gt;</code>.</li>
+<li>Prefer no library: native <code>&lt;details&gt;</code>, CSS scroll snap, <code>popover</code> and the platform before adding a dependency. New packages need approval.</li>
+<li>React runs only inside islands (see the islands and data map).</li>
+</ul>
+
+<h3 id="assets-images">Images</h3>
+<ul>
+<li>Every image has <code>width</code> and <code>height</code> (no layout shift), <code>alt</code> text per the voice section, <code>loading="lazy"</code> below the fold and <code>fetchpriority="high"</code> on the LCP image only.</li>
+<li>Responsive <code>srcset</code> and <code>sizes</code> from the platform image CDN; modern formats where available.</li>
+<li>Brand images are shipped in the theme (<code>assets/img</code>); product images come from the catalogue.</li>
+<li>Text is real text, never baked into an image (hero headlines, promo banners).</li>
+</ul>
+
+<h2 id="perf">Performance budget</h2>
+<p class="placeholder">All numbers here are proposals to be confirmed against a real baseline measurement of the live site and the first built pages.</p>
+
+<h3 id="perf-targets">Targets (mobile, mid-range device, 4G)</h3>
+<table class="plain">
+<thead><tr><th scope="col">Metric</th><th scope="col">Target</th><th scope="col">Why</th></tr></thead>
+<tbody>
+<tr><th scope="row">LCP</th><td>2.5 s or better at p75</td><td>Hero or first product image is static HTML with <code>fetchpriority="high"</code>.</td></tr>
+<tr><th scope="row">CLS</th><td>0.1 or better</td><td>Reserved image sizes, no late-injected banners above content.</td></tr>
+<tr><th scope="row">INP</th><td>200 ms or better</td><td>Small islands, no large hydration on load.</td></tr>
+<tr><th scope="row">Requests in flight</th><td>One batched GraphQL request per page for island data</td><td>Server prefetch plus a single deduped client query.</td></tr>
+</tbody>
+</table>
+
+<h3 id="perf-budget">Weight budget per page type (compressed)</h3>
+<table class="plain">
+<thead><tr><th scope="col">Page</th><th scope="col">HTML + CSS</th><th scope="col">JavaScript</th><th scope="col">Fonts</th><th scope="col">Notes</th></tr></thead>
+<tbody>
+<tr><th scope="row">Home</th><td>60 KB</td><td>30 KB</td><td>40 KB</td><td>Static content; islands for tabs, theme toggle, mini-cart.</td></tr>
+<tr><th scope="row">Category / search</th><td>70 KB</td><td>40 KB</td><td>40 KB</td><td>Filters work as links and forms; the island only enhances.</td></tr>
+<tr><th scope="row">Product</th><td>70 KB</td><td>50 KB</td><td>40 KB</td><td>Variant selector island and gallery enhancer.</td></tr>
+<tr><th scope="row">Cart</th><td>50 KB</td><td>25 KB</td><td>40 KB</td><td>Form posts work without JS.</td></tr>
+</tbody>
+</table>
+
+<h3 id="perf-origins">Allowed external origins</h3>
+<ul>
+<li>BigCommerce image CDN (product and platform images) and the BigCommerce checkout.</li>
+<li>Everything else is first party. Tracking and marketing origins are decided in the marketing brief and must load only after consent, deferred, never blocking render.</li>
+</ul>
+
+<h3 id="perf-rules">Rules</h3>
+<ul>
+<li>Critical CSS is inline per page type; the rest is a single cached stylesheet.</li>
+<li>No render-blocking third-party anything. No web font blocking text.</li>
+<li>Islands hydrate on visibility or interaction unless the page is unusable without them.</li>
+<li>Run Lighthouse (<code>npm run lighthouse</code>) per page type before release and record results.</li>
+</ul>
+
+<h2 id="voice">Content and brand voice</h2>
+<p>Derived from the live site's copy on 2026-11-23. Online Workwear is an Australian-owned, family-operated uniform and workwear supplier serving tradies, businesses and teams.</p>
+
+<h3 id="voice-tone">Tone</h3>
+<ul>
+<li><strong>Straight and practical.</strong> Say what the garment does and who it suits. No hype words.</li>
+<li><strong>Trustworthy and local.</strong> Lead with Australian owned, Australian-based service, standing behind quality.</li>
+<li><strong>Helpful to teams.</strong> Make ordering for a business feel easy: no minimum orders, free embroidery set-up over a threshold.</li>
+<li>Australian English (colour, organisation). Plain words; short sentences.</li>
+</ul>
+
+<h3 id="voice-copy">Copy rules</h3>
+<table class="plain">
+<thead><tr><th scope="col">Rule</th><th scope="col">Example</th></tr></thead>
+<tbody>
+<tr><th scope="row">Button text says the action</th><td>"Add to cart", "Choose colour", never "Click here".</td></tr>
+<tr><th scope="row">Links say where they go</th><td>"Hi Vis workwear", not "Read more".</td></tr>
+<tr><th scope="row">Prices and offers are text</th><td>"Spend $299 and save 10%". Thresholds come from theme settings, not a baked image.</td></tr>
+<tr><th scope="row">Errors tell the fix</th><td>"Enter an email like name@example.com", not "Invalid input".</td></tr>
+<tr><th scope="row">Sentence case headings</th><td>"Popular categories", not "POPULAR CATEGORIES" (use CSS only if the case is purely visual).</td></tr>
+<tr><th scope="row">Spell out specs</th><td>"UPF 50+ with mesh vent panels" keeps the live site's practical detail.</td></tr>
+</tbody>
+</table>
+
+<h3 id="voice-imagery">Imagery</h3>
+<ul>
+<li>Real people in real work settings, clothing clearly visible; hi-vis and flame-resistant ranges shown in use.</li>
+<li>Consistent product shots on a plain background for grids, one crop ratio per grid.</li>
+<li>Alt text describes the product (colour, style) for products, the meaning for promo images, and is empty for decoration.</li>
+</ul>
+
+<h3 id="voice-seo">Structured content</h3>
+<ul>
+<li>Keep the Organization JSON-LD from the live site; add Product and BreadcrumbList on product and category pages.</li>
+<li>Reviews are real quotes with attribution; never fabricated or rewritten.</li>
+</ul>
+<p class="placeholder">Decoration and branding copy (embroidery, printing) and marketing copy: second pass, separate briefs.</p>
+
+<h2 id="components">Component catalogue</h2>
+<p>Each entry shows a live sample, whether it is <strong>static</strong> (server-rendered HTML and CSS only) or an <strong>island</strong> (static markup plus a small hydrated enhancer), what happens without JavaScript, its states, accessibility notes and the tokens it uses. Samples render in the current theme; use the toggle above to see dark.</p>
+<p class="placeholder">Decoration flow (embroidery, printing, logo upload): second pass. Components marked "Decoration: second pass" get an extra step there.</p>
+
+<article class="component" data-kind="static">
+<h3>Header, skip link and landmarks</h3>
+<div class="sample">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap;background:var(--color-brand);color:var(--color-on-brand);padding:var(--space-3) var(--space-4);border-radius:var(--radius-sm)">
+<strong>Online Workwear</strong>
+<form role="search" style="display:flex;gap:var(--space-2)"><label for="s-hdr" style="position:absolute;left:-9999px">Search products</label><input id="s-hdr" type="search" placeholder="Search workwear" style="min-height:2.75rem;padding:0 var(--space-3);border-radius:var(--radius-pill);border:2px solid var(--color-on-brand);background:var(--color-surface);color:var(--color-text)"><button class="btn btn-secondary" type="submit">Search</button></form>
+</div>
+</div>
+<div class="no-js"><strong>No JS:</strong> fully functional. The search is a GET form; navigation is links and <code>&lt;details&gt;</code>.</div>
+<div class="states"><strong>States:</strong> sticky on scroll (offsets anchors), compact on mobile with the menu in a <code>&lt;details&gt;</code>, cart count as text.</div>
+<div class="a11y"><strong>A11y:</strong> skip link first; one <code>&lt;header&gt;</code>; <code>role="search"</code>; search label is real text (visually hidden is acceptable here only because the placeholder is not the label).</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>brand</code>, <code>on-brand</code>, <code>surface</code>, <code>focus</code>, <code>space-3/4</code>. Decoration: second pass.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>Primary navigation</h3>
+<div class="sample">
+<nav aria-label="Main"><ul style="display:flex;gap:var(--space-4);flex-wrap:wrap;list-style:none;margin:0;padding:0"><li><a href="#components">Hi Vis</a></li><li><a href="#components">Work pants and shorts</a></li><li><a href="#components">Polos</a></li><li><a href="#components">Footwear</a></li><li><a href="#components">Brands</a></li></ul></nav>
+</div>
+<div class="no-js"><strong>No JS:</strong> top-level links go to category pages; submenus open with CSS (<code>:focus-within</code>) or <code>&lt;details&gt;</code> on mobile. No hover-only content.</div>
+<div class="states"><strong>States:</strong> default, hover, focus-visible, current page (<code>aria-current="page"</code> plus underline), open submenu.</div>
+<div class="a11y"><strong>A11y:</strong> labelled <code>&lt;nav&gt;</code>; disclosure buttons use <code>aria-expanded</code>; Escape closes and returns focus; links at least 24px tall.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>link</code>, <code>text</code>, <code>focus</code>, <code>space-2/4</code>.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>Buttons</h3>
+<div class="sample" style="display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center">
+<button class="btn" type="button">Primary</button>
+<button class="btn btn-secondary" type="button">Secondary</button>
+<button class="btn" type="button" disabled>Disabled</button>
+<a class="btn btn-secondary" href="#components">Link styled as button</a>
+</div>
+<div class="no-js"><strong>No JS:</strong> buttons submit forms or links navigate; no behaviour depends on script.</div>
+<div class="states"><strong>States:</strong> default, hover (1px lift, removed under reduced motion), focus-visible ring, disabled (60% opacity, never the only cue: text or a message explains why), loading (text changes, <code>aria-busy</code>).</div>
+<div class="a11y"><strong>A11y:</strong> 44px tall; real <code>&lt;button&gt;</code>/<code>&lt;a&gt;</code>; the name states the action; black text on brand red.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>brand</code>, <code>on-brand</code>, <code>surface</code>, <code>text</code>, <code>radius-pill</code>, <code>motion-fast</code>.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>Form controls</h3>
+<div class="sample">
+<form onsubmit="return false" style="display:grid;gap:var(--space-3);max-width:24rem">
+<div><label for="f-email">Email address</label><br><input id="f-email" type="email" autocomplete="email" aria-describedby="f-email-hint" style="width:100%;min-height:2.75rem;padding:0 var(--space-3);border:2px solid var(--color-text-muted);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text)"><br><small id="f-email-hint">We only use this for your order.</small></div>
+<div><label for="f-qty">Quantity</label><br><input id="f-qty" type="number" min="1" value="1" inputmode="numeric" style="min-height:2.75rem;width:6rem;padding:0 var(--space-3);border:2px solid var(--color-text-muted);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text)"></div>
+</form>
+</div>
+<div class="no-js"><strong>No JS:</strong> native validation and server-side validation; errors rendered by the server next to the field.</div>
+<div class="states"><strong>States:</strong> default, focus, filled, error (message plus icon plus border), disabled, read-only.</div>
+<div class="a11y"><strong>A11y:</strong> visible labels, hints via <code>aria-describedby</code>, correct <code>type</code> and <code>autocomplete</code>, errors not colour-only, 44px height.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>text-muted</code>, <code>surface</code>, <code>error</code>, <code>focus</code>, <code>radius-md</code>.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>Product card</h3>
+<div class="grid-2">
+<div class="sample"><div style="display:grid;gap:var(--space-2)"><div class="wire" aria-hidden="true"><span>Image 4:5</span></div><h4 style="margin:0"><a href="#components">Hi-vis day/night long sleeve polo</a></h4><p style="margin:0;color:var(--color-text-muted)">Hard Yakka</p><p style="margin:0"><strong>$49.95</strong></p></div></div>
+<div class="sample" data-theme-sample="dark"><div style="display:grid;gap:var(--space-2)"><div class="wire" aria-hidden="true"><span>Image 4:5</span></div><h4 style="margin:0"><a href="#components" style="color:#9DB2FF">Hi-vis day/night long sleeve polo</a></h4><p style="margin:0;color:#C4C4C4">Hard Yakka</p><p style="margin:0"><strong>$49.95</strong></p></div></div>
+</div>
+<div class="no-js"><strong>No JS:</strong> the whole card is one link (title link stretched over the card); "Quick add" is hidden without JS, the product page handles adding.</div>
+<div class="states"><strong>States:</strong> default, hover, focus-visible (ring on the card), sale (badge), out of stock (text badge), loading skeleton for island-fed grids.</div>
+<div class="a11y"><strong>A11y:</strong> heading per card, one link name, image <code>alt</code> describes colour and style or is empty when the title already says it, price text includes currency.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>surface</code>, <code>border</code>, <code>text-muted</code>, <code>radius-md</code>, <code>space-2/4</code>.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>Price and badges</h3>
+<div class="sample" style="display:flex;gap:var(--space-4);align-items:center;flex-wrap:wrap">
+<span><s style="color:var(--color-text-muted)"><span class="sr">Was </span>$59.95</s> <strong style="color:var(--color-brand-text)"><span class="sr">Now </span>$49.95</strong></span>
+<span style="background:var(--color-accent-amber);color:var(--color-on-amber);padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);font-weight:600">Sale</span>
+<span style="border:2px solid var(--color-success);color:var(--color-success);padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);font-weight:600">In stock</span>
+</div>
+<div class="no-js"><strong>No JS:</strong> all server-rendered.</div>
+<div class="states"><strong>States:</strong> regular, sale (was/now), price range, out of stock, price on request.</div>
+<div class="a11y"><strong>A11y:</strong> "Was" and "Now" exist as text for screen readers (strikethrough alone is not announced); badges are text, never colour-only.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>brand-text</code>, <code>accent-amber</code>, <code>on-amber</code>, <code>success</code>, <code>radius-pill</code>.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>Breadcrumbs and pagination</h3>
+<div class="sample">
+<nav aria-label="Breadcrumb"><ol style="display:flex;gap:var(--space-2);flex-wrap:wrap;list-style:none;margin:0 0 var(--space-4);padding:0"><li><a href="#components">Home</a> /</li><li><a href="#components">Hi Vis</a> /</li><li aria-current="page">Polos</li></ol></nav>
+<nav aria-label="Pagination"><ul style="display:flex;gap:var(--space-2);list-style:none;margin:0;padding:0;flex-wrap:wrap"><li><a class="btn btn-secondary" href="#components">Previous</a></li><li><a class="btn btn-secondary" href="#components" aria-label="Page 1">1</a></li><li><a class="btn" href="#components" aria-current="page" aria-label="Page 2, current page">2</a></li><li><a class="btn btn-secondary" href="#components">Next</a></li></ul></nav>
+</div>
+<div class="no-js"><strong>No JS:</strong> plain links with real URLs; works with the back button.</div>
+<div class="states"><strong>States:</strong> current, first/last (Previous/Next omitted or disabled with text), many pages (ellipsis as non-interactive text).</div>
+<div class="a11y"><strong>A11y:</strong> labelled <code>&lt;nav&gt;</code>s, <code>aria-current</code>, 44px targets, separators are CSS not read out.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>link</code>, <code>brand</code>, <code>space-2</code>.</div>
+</article>
+
+<article class="component" data-kind="island">
+<h3>Facet filters and sort</h3>
+<div class="sample">
+<form onsubmit="return false" style="display:grid;gap:var(--space-3)">
+<details open><summary>Colour</summary><label><input type="checkbox"> Navy</label><br><label><input type="checkbox"> Black</label><br><label><input type="checkbox"> Hi-vis orange</label></details>
+<label for="sort">Sort by</label><select id="sort" style="min-height:2.75rem;max-width:16rem"><option>Featured</option><option>Price low to high</option></select>
+<button class="btn" type="submit">Apply filters</button>
+</form>
+</div>
+<div class="no-js"><strong>No JS:</strong> a GET form that reloads the category with the chosen filters in the URL ("Apply filters" visible). Facet links are crawlable.</div>
+<div class="states"><strong>States:</strong> default; with JS the island applies filters on change and updates the grid and URL, shows a loading state (<code>aria-busy</code>) and announces the result count in a polite live region; error falls back to the form submit.</div>
+<div class="a11y"><strong>A11y:</strong> native checkboxes and <code>&lt;details&gt;</code>; result count announced; focus stays on the control after an update.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>text-muted</code>, <code>border</code>, <code>focus</code>.</div>
+</article>
+
+<article class="component" data-kind="island">
+<h3>Variant selector (colour and size)</h3>
+<div class="sample">
+<fieldset style="border:0;padding:0;margin:0 0 var(--space-3)"><legend>Colour: <strong>Navy</strong></legend>
+<div style="display:flex;gap:var(--space-2);flex-wrap:wrap">
+<label style="display:inline-flex;align-items:center;gap:var(--space-1)"><input type="radio" name="vc" checked><span class="chip" style="width:2rem;height:2rem;background:#1b2a4a" aria-hidden="true"></span> Navy</label>
+<label style="display:inline-flex;align-items:center;gap:var(--space-1)"><input type="radio" name="vc"><span class="chip" style="width:2rem;height:2rem;background:#111" aria-hidden="true"></span> Black</label>
+<label style="display:inline-flex;align-items:center;gap:var(--space-1)"><input type="radio" name="vc"><span class="chip" style="width:2rem;height:2rem;background:#f08a00" aria-hidden="true"></span> Orange</label>
+</div></fieldset>
+<fieldset style="border:0;padding:0;margin:0"><legend>Size</legend>
+<div style="display:flex;gap:var(--space-2);flex-wrap:wrap"><label><input type="radio" name="vs"> S</label><label><input type="radio" name="vs" checked> M</label><label><input type="radio" name="vs"> L</label><label><input type="radio" name="vs" disabled> XL (sold out)</label></div></fieldset>
+</div>
+<div class="no-js"><strong>No JS:</strong> the theme renders native radio inputs for every option; picking them and submitting the form works (existing <code>src/templates/components/products/options/colour-size.tsx</code>).</div>
+<div class="states"><strong>States:</strong> selected, unavailable (text "sold out", not colour-only), search box for long colour lists appears only with JS (<code>src/client/variantSelector/VariantEnhancer.tsx</code>), loading availability, error (selection still works).</div>
+<div class="a11y"><strong>A11y:</strong> fieldset and legend per option group; the selected colour name is text; swatches have a text name; unavailable options remain focusable but explained.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>focus</code>, <code>border</code>, <code>radius-sm</code>. Decoration: second pass.</div>
+</article>
+
+<article class="component" data-kind="island">
+<h3>Product gallery</h3>
+<div class="sample">
+<div class="wire" aria-hidden="true"><span>Main image 1:1</span><span style="display:flex;gap:var(--space-2)">thumb thumb thumb thumb</span></div>
+</div>
+<div class="no-js"><strong>No JS:</strong> images in a scroll-snap strip or a stacked list; thumbnails are anchor links to each image.</div>
+<div class="states"><strong>States:</strong> default; with JS thumbnails swap the main image, optional zoom dialog; loading blur-up; one image only (no thumbnails).</div>
+<div class="a11y"><strong>A11y:</strong> thumbnails are buttons or links with the image alt as the name; zoom dialog traps focus and closes with Escape; swipe has button alternatives.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>border</code>, <code>radius-md</code>, <code>focus</code>.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>Quantity and add to cart</h3>
+<div class="sample">
+<form method="post" action="#components" onsubmit="return false" style="display:flex;gap:var(--space-3);align-items:end;flex-wrap:wrap">
+<div><label for="aq">Quantity</label><br><input id="aq" type="number" min="1" value="1" style="min-height:2.75rem;width:6rem;padding:0 var(--space-3);border:2px solid var(--color-text-muted);border-radius:var(--radius-md);background:var(--color-surface);color:var(--color-text)"></div>
+<button class="btn" type="submit">Add to cart</button>
+</form>
+</div>
+<div class="no-js"><strong>No JS:</strong> a normal form POST to the cart; the next page confirms the item.</div>
+<div class="states"><strong>States:</strong> default, adding (button text "Adding…", <code>aria-busy</code>), added (polite live message "Added to cart"), error (message with the fix), out of stock (button disabled with reason).</div>
+<div class="a11y"><strong>A11y:</strong> button keeps its name; confirmation announced, focus not stolen; limits and bulk pricing as text.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>brand</code>, <code>on-brand</code>, <code>error</code>. Decoration: second pass.</div>
+</article>
+
+<article class="component" data-kind="island">
+<h3>Mini cart</h3>
+<div class="sample"><p><a class="btn btn-secondary" href="#components">Cart (2)</a></p></div>
+<div class="no-js"><strong>No JS:</strong> "Cart (n)" is a link to the cart page; the count is rendered by the server.</div>
+<div class="states"><strong>States:</strong> link only; with JS a dialog or popover lists items, subtotal and "View cart"/"Checkout"; empty, loading, error.</div>
+<div class="a11y"><strong>A11y:</strong> disclosure with <code>aria-expanded</code>; focus moves in and returns; escape closes; contents readable at 400% zoom.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>surface</code>, <code>border</code>, <code>radius-md</code>.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>FAQ accordion</h3>
+<div class="sample">
+<details><summary>Is there a minimum order for embroidery?</summary><p>No minimum orders. Spend $499 or more for free embroidery set-up.</p></details>
+<details><summary>Do you deliver Australia wide?</summary><p>Yes. Delivery options show at checkout.</p></details>
+</div>
+<div class="no-js"><strong>No JS:</strong> native <code>&lt;details&gt;</code>; nothing needed.</div>
+<div class="states"><strong>States:</strong> closed, open, focus-visible. FAQ items are real text and may be marked up as FAQPage JSON-LD.</div>
+<div class="a11y"><strong>A11y:</strong> summary is the control; the whole row is the target; the marker is CSS and never the only cue.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>border</code>, <code>space-3</code>.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>Promo and spend-and-save banner</h3>
+<div class="sample">
+<div style="background:var(--color-brand);color:var(--color-on-brand);padding:var(--space-3) var(--space-4);border-radius:var(--radius-sm)"><p style="margin:0"><strong>Spend and save:</strong> 10% off $299, 15% off $499, 20% off $2,399 or more. <a href="#components" style="color:var(--color-on-brand)">Shop now</a></p></div>
+<p style="margin-top:var(--space-3)"><span style="background:var(--color-accent-amber);color:var(--color-on-amber);padding:var(--space-1) var(--space-3);border-radius:var(--radius-pill);font-weight:600">Free embroidery set-up over $499</span></p>
+</div>
+<div class="no-js"><strong>No JS:</strong> static. Thresholds and copy come from theme settings, so they change without a rebuild.</div>
+<div class="states"><strong>States:</strong> default, dismissed (only with JS and a stored choice; never the sole way to see an offer), expired (hidden by the server).</div>
+<div class="a11y"><strong>A11y:</strong> text, not an image; link text meaningful; if dismissable, a real button with a name. General promotion areas follow this pattern; marketing materials are a separate brief.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>brand</code>, <code>on-brand</code>, <code>accent-amber</code>, <code>on-amber</code>.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>Reviews block</h3>
+<div class="sample">
+<figure style="margin:0"><blockquote style="margin:0 0 var(--space-2)">Great quality and quick delivery.</blockquote><figcaption>Verified customer, <span aria-label="5 out of 5 stars">★★★★★ 5/5</span></figcaption></figure>
+</div>
+<div class="no-js"><strong>No JS:</strong> quotes are static text from the theme or the catalogue. A live reviews fetch (if any) is an island with the static quotes as the fallback.</div>
+<div class="states"><strong>States:</strong> default, no reviews (hide the block), many reviews (link to the full list).</div>
+<div class="a11y"><strong>A11y:</strong> rating exposed as text ("5 out of 5"); stars are decoration. Real quotes only.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>surface</code>, <code>text-muted</code>, <code>accent-amber</code>.</div>
+</article>
+
+<article class="component" data-kind="island">
+<h3>Theme toggle</h3>
+<div class="sample"><p>The toggle in this document's header is the reference: three states (auto, light, dark), choice stored in <code>localStorage</code> inside try/catch.</p></div>
+<div class="no-js"><strong>No JS:</strong> the button is hidden; the site follows <code>prefers-color-scheme</code>.</div>
+<div class="states"><strong>States:</strong> auto, light, dark. The chosen theme is applied before first paint by a tiny inline script to avoid a flash.</div>
+<div class="a11y"><strong>A11y:</strong> a button whose name states the current mode and that activating changes it; 44px target; works with keyboard.</div>
+<div class="tokens-used"><strong>Tokens:</strong> every colour token, both themes.</div>
+</article>
+
+<article class="component" data-kind="static">
+<h3>Footer</h3>
+<div class="sample">
+<footer style="display:grid;gap:var(--space-3)"><nav aria-label="Customer service"><ul style="display:flex;gap:var(--space-4);flex-wrap:wrap;list-style:none;margin:0;padding:0"><li><a href="#components">Contact us</a></li><li><a href="#components">Delivery</a></li><li><a href="#components">Returns</a></li></ul></nav><p style="margin:0;color:var(--color-text-muted)">Australian owned and operated.</p></footer>
+</div>
+<div class="no-js"><strong>No JS:</strong> static links; the newsletter signup is a normal form POST.</div>
+<div class="states"><strong>States:</strong> default, focus-visible links; newsletter success and error messages from the server.</div>
+<div class="a11y"><strong>A11y:</strong> one page-level <code>&lt;footer&gt;</code>; sections are labelled <code>&lt;nav&gt;</code>s.</div>
+<div class="tokens-used"><strong>Tokens:</strong> <code>text-muted</code>, <code>link</code>, <code>space-3/4</code>.</div>
+</article>
+
+<h2 id="page-home">Page spec: Home</h2>
+<p>Order follows the live site, rebuilt with landmarks and one real <code>&lt;h1&gt;</code>. Everything above the fold is static HTML; the only islands are tabs enhancement, the theme toggle and the mini cart.</p>
+
+<div class="grid-2">
+<div class="wire" aria-label="Home wireframe, mobile">
+<span>Skip link</span>
+<span>Header: logo, search, cart, menu (details)</span>
+<span>Promo bar: spend-and-save tiers</span>
+<span><strong>h1</strong> Hero: "Online workwear done right" + wet-weather campaign image + button</span>
+<span>Banner: free embroidery set-up over $499</span>
+<span>Popular categories: tiles (Mens / Womens as two linked groups)</span>
+<span>Popular brands: logo grid (links)</span>
+<span>Featured and new products: product cards</span>
+<span>Copy blocks: lightweight workwear, uniform embroidery</span>
+<span>Trust points: Australian owned, local support, quality</span>
+<span>FAQ: 7 questions (details)</span>
+<span>Reviews: quotes</span>
+<span>Footer</span>
+</div>
+<div>
+<table class="plain">
+<tbody>
+<tr><th scope="row">Landmarks</th><td><code>header</code>, <code>nav</code>, <code>main</code> (sections each with a heading), <code>footer</code>.</td></tr>
+<tr><th scope="row">Desktop</th><td>Categories 6 per row, brands 8 per row, product cards 4 per row; hero is image beside text.</td></tr>
+<tr><th scope="row">Components</th><td>Header, navigation, buttons, product card, promo banner, FAQ accordion, reviews block, footer.</td></tr>
+<tr><th scope="row">Data</th><td>Server prefetch via page front matter: featured and new products, brands, categories, carousel/promo settings. No client request is needed to paint the page.</td></tr>
+<tr><th scope="row">No JS</th><td>Product tabs are anchor-linked sections (both lists visible, stacked); FAQ is <code>&lt;details&gt;</code>; all links work.</td></tr>
+<tr><th scope="row">Islands</th><td>Featured/new tabs enhancer, theme toggle, mini cart.</td></tr>
+<tr><th scope="row">A11y</th><td>Exactly one h1; hero text is real text over the image with AA contrast; no autoplay carousel; tab order matches visual order.</td></tr>
+<tr><th scope="row">Performance</th><td>Hero image is the LCP image: <code>fetchpriority="high"</code>, sized; the rest lazy.</td></tr>
+<tr><th scope="row">Structured data</th><td>Organization JSON-LD kept.</td></tr>
+</tbody>
+</table>
+<p class="placeholder">Decoration and branding (embroidery, printing) entry points on Home: second pass.</p>
+</div>
+</div>
+
+<h2 id="page-category">Page spec: Category and search</h2>
+<p>One listing layout for category, brand and search results. Filters and sorting are links and a GET form first; the island only makes them faster.</p>
+
+<div class="grid-2">
+<div class="wire" aria-label="Category wireframe">
+<span>Header</span>
+<span>Breadcrumbs</span>
+<span><strong>h1</strong> Category name + result count</span>
+<span>Filters (aside, details groups) | Sort select</span>
+<span>Product grid: 2 columns mobile, 3 tablet, 4 desktop</span>
+<span>Pagination</span>
+<span>Category description (static text)</span>
+<span>Footer</span>
+</div>
+<div>
+<table class="plain">
+<tbody>
+<tr><th scope="row">Landmarks</th><td><code>main</code> holds the results; filters in a labelled <code>&lt;aside&gt;</code> (or <code>&lt;form&gt;</code> with a heading); breadcrumbs and pagination are labelled <code>&lt;nav&gt;</code>s.</td></tr>
+<tr><th scope="row">Mobile</th><td>Filters collapse into a <code>&lt;details&gt;</code> "Filter and sort" above the grid.</td></tr>
+<tr><th scope="row">Components</th><td>Breadcrumbs, facet filters and sort, product card, pagination, buttons.</td></tr>
+<tr><th scope="row">Data</th><td>Server renders the first page of products and the facet list. The filter island sends one GraphQL request per filter change, deduped and cancellable; the URL always reflects the filters.</td></tr>
+<tr><th scope="row">No JS</th><td>"Apply filters" submits a GET to the same URL; every facet value and page is a real link.</td></tr>
+<tr><th scope="row">States</th><td>Loading (skeleton cards, <code>aria-busy</code>), empty (clear explanation and a "Clear filters" link), error (retry button, form submit still works).</td></tr>
+<tr><th scope="row">A11y</th><td>Result count in a polite live region after changes; focus stays on the changed control; no infinite scroll (pagination).</td></tr>
+<tr><th scope="row">Search</th><td>Search results page reuses the layout; "No results" offers spelling suggestions and category links.</td></tr>
+</tbody>
+</table>
+<p class="placeholder">Decoration filters (embroiderable, printable): second pass.</p>
+</div>
+</div>
+
+<h2 id="page-product">Page spec: Product</h2>
+<p>The product page is where most of the interactive weight lives, and where the no-JS fallback matters most: a visitor can always choose options and add to cart with plain form controls.</p>
+
+<div class="grid-2">
+<div class="wire" aria-label="Product wireframe">
+<span>Header, breadcrumbs</span>
+<span>Gallery (scroll-snap strip + thumbnails)</span>
+<span><strong>h1</strong> Product name, brand, price, stock</span>
+<span>Variant selector: colour swatches then sizes</span>
+<span>Quantity + Add to cart</span>
+<span>Delivery and returns notes</span>
+<span>Description / specs / size guide (details tabs)</span>
+<span>Reviews</span>
+<span>Related products</span>
+<span>Footer</span>
+</div>
+<div>
+<table class="plain">
+<tbody>
+<tr><th scope="row">Layout</th><td>Mobile: single column, add to cart after options. Desktop: gallery left, buy box right, sticky only if it never obscures focused fields.</td></tr>
+<tr><th scope="row">Components</th><td>Breadcrumbs, gallery, price and badges, variant selector, quantity and add to cart, FAQ-style details for specs, reviews, product cards.</td></tr>
+<tr><th scope="row">Data</th><td>Server renders product, options and initial variant data. The variant island receives the product id and storefront token from the template (existing <code>colour-size.tsx</code> pattern) and issues one batched availability query for all option combinations, shared with the gallery and price islands.</td></tr>
+<tr><th scope="row">No JS</th><td>Native radio inputs for every option; add to cart is a form POST; gallery is a stacked or scroll-snap list; specs are <code>&lt;details&gt;</code>.</td></tr>
+<tr><th scope="row">States</th><td>Out of stock, unavailable combination (explained in text), loading availability (selection still allowed), added to cart (live message), error.</td></tr>
+<tr><th scope="row">A11y</th><td>One h1; fieldsets for option groups; swatch names are text; price change after selecting a variant is announced politely.</td></tr>
+<tr><th scope="row">Structured data</th><td>Product JSON-LD (name, image, offers, availability) and BreadcrumbList.</td></tr>
+</tbody>
+</table>
+<p class="placeholder">Decoration and branding step (logo placement, embroidery, print options) on the product page: second pass; this layout reserves the space between options and add to cart.</p>
+</div>
+</div>
+
+<h2 id="page-cart">Page spec: Cart and checkout entry</h2>
+<p>The cart is a plain server-rendered form. Checkout itself is the platform's hosted checkout and is out of scope for restyling here, but the handoff must be clear and accessible.</p>
+
+<div class="grid-2">
+<div class="wire" aria-label="Cart wireframe">
+<span>Header, breadcrumbs</span>
+<span><strong>h1</strong> Your cart (n items)</span>
+<span>Line items: image, name and options, price, quantity, remove</span>
+<span>Coupon / gift certificate (details)</span>
+<span>Shipping estimate (form)</span>
+<span>Summary: subtotal, savings (spend-and-save tiers), total</span>
+<span>Checkout button (primary) + continue shopping link</span>
+<span>Footer</span>
+</div>
+<div>
+<table class="plain">
+<tbody>
+<tr><th scope="row">Components</th><td>Buttons, form controls, price, promo banner (tier progress as text, "Add $X more to save 15%"), mini cart (hidden on this page).</td></tr>
+<tr><th scope="row">Data</th><td>Server renders the cart. Quantity updates are form posts; with JS an island updates the line and summary with one request and replaces the region.</td></tr>
+<tr><th scope="row">No JS</th><td>Quantity input with an "Update" button; remove is a button in the line's form; coupon and shipping estimate are forms; the Checkout button is a link to the platform checkout.</td></tr>
+<tr><th scope="row">States</th><td>Empty cart (message, link to categories), updating (<code>aria-busy</code>), item unavailable (explained), error with a retry that keeps what the visitor typed.</td></tr>
+<tr><th scope="row">A11y</th><td>Line items in a table or list with clear names for each button ("Remove Hi-vis polo, size M"); the total and tier progress are text; updates announced politely; no timeouts.</td></tr>
+<tr><th scope="row">Checkout handoff</th><td>The button states that checkout opens the secure checkout; the page the platform serves is kept visually consistent where its settings allow (colours, logo).</td></tr>
+</tbody>
+</table>
+<p class="placeholder">Decoration details on cart line items (artwork preview, set-up fees): second pass.</p>
+</div>
+</div>
+
+<h2 id="islands-data">Islands and data map</h2>
+<p>HBX renders as much as possible statically. A component becomes an island only when it needs state or live data that cannot be a link, a form or CSS. Every island ships with static markup that already works, and fails safe: a script error leaves the static page usable.</p>
+
+<h3 id="islands-contract">Data contract</h3>
+<ol>
+<li><strong>Server prefetch.</strong> Page data comes from the template's front matter (the platform's GraphQL data) and is rendered into HTML. Nothing paints from a client request.</li>
+<li><strong>One batched client query.</strong> All islands on a page register their data needs with a shared client module that merges them into one GraphQL request per tick, dedupes identical fields and caches by key. Targets: at most one request in flight on load, and none when the server already provided the data.</li>
+<li><strong>Defer and idle.</strong> Islands hydrate on visibility or interaction; only islands needed to use the page hydrate on load.</li>
+<li><strong>Fail safe.</strong> Each island defines loading, error and empty states, a timeout, and a way back to the static behaviour (form submit, link).</li>
+<li><strong>Token handling.</strong> The storefront token is passed from the template as a prop (as <code>VariantEnhancer</code> already does); no secrets in the bundle.</li>
+</ol>
+
+<h3 id="islands-table">Islands</h3>
+<table class="plain">
+<thead><tr><th scope="col">Island</th><th scope="col">Page</th><th scope="col">Needs data</th><th scope="col">Static fallback</th><th scope="col">States</th></tr></thead>
+<tbody>
+<tr><th scope="row">Variant enhancer (exists)</th><td>Product</td><td>Availability for all options (one query)</td><td>Native radio inputs and form POST</td><td>loading, error (selection still works), unavailable</td></tr>
+<tr><th scope="row">Facet filters</th><td>Category, search</td><td>Products and facets for the chosen filters</td><td>GET form and facet links</td><td>loading, empty, error</td></tr>
+<tr><th scope="row">Product tabs enhancer</th><td>Home</td><td>None (server-rendered both lists)</td><td>Stacked sections with anchors</td><td>n/a</td></tr>
+<tr><th scope="row">Gallery enhancer</th><td>Product</td><td>None</td><td>Scroll-snap strip and links</td><td>zoom open/closed</td></tr>
+<tr><th scope="row">Mini cart</th><td>All (not cart)</td><td>Cart lines and subtotal</td><td>Link to the cart page</td><td>loading, empty, error</td></tr>
+<tr><th scope="row">Cart line updater</th><td>Cart</td><td>Cart mutation result</td><td>Form posts</td><td>updating, error</td></tr>
+<tr><th scope="row">Add-to-cart enhancer</th><td>Product, cards</td><td>Cart mutation result</td><td>Form POST</td><td>adding, added, error</td></tr>
+<tr><th scope="row">Theme toggle</th><td>All</td><td>None</td><td>OS preference</td><td>auto, light, dark</td></tr>
+</tbody>
+</table>
+
+<h3 id="islands-budget">Request budget</h3>
+<table class="plain">
+<thead><tr><th scope="col">Page</th><th scope="col">Requests after load</th></tr></thead>
+<tbody>
+<tr><th scope="row">Home</th><td>0 (all server rendered); mini cart fetches on first open</td></tr>
+<tr><th scope="row">Category / search</th><td>0 on load; 1 per filter change</td></tr>
+<tr><th scope="row">Product</th><td>1 batched request (availability and price for the variants), shared by all islands</td></tr>
+<tr><th scope="row">Cart</th><td>0 on load; 1 per update</td></tr>
+</tbody>
+</table>
+<p class="placeholder">Consent-gated tracking scripts are not islands in this sense and are covered by the marketing brief.</p>
+
+</main>
+<footer class="foot"><p>Generated from docs/design/tokens.json. Edit the sources, not this file.</p></footer>
+<script>(function(){var b=document.querySelector('[data-theme-toggle]');if(!b)return;var order=['auto','light','dark'];var cur='auto';try{cur=localStorage.getItem('bible-theme')||'auto'}catch(e){}
+function apply(){if(cur==='auto')document.documentElement.removeAttribute('data-theme');else document.documentElement.setAttribute('data-theme',cur);b.textContent='Theme: '+cur;b.setAttribute('aria-label','Theme: '+cur+'. Activate to change.')}
+b.hidden=false;apply();b.addEventListener('click',function(){cur=order[(order.indexOf(cur)+1)%3];try{localStorage.setItem('bible-theme',cur)}catch(e){}apply()})})();</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<h2 id="page-cart">Page spec: Cart and checkout entry</h2>
+<p>The cart is a plain server-rendered form. Checkout itself is the platform's hosted checkout and is out of scope for restyling here, but the handoff must be clear and accessible.</p>
+
+<div class="grid-2">
+<div class="wire" aria-label="Cart wireframe">
+<span>Header, breadcrumbs</span>
+<span><strong>h1</strong> Your cart (n items)</span>
+<span>Line items: image, name and options, price, quantity, remove</span>
+<span>Coupon / gift certificate (details)</span>
+<span>Shipping estimate (form)</span>
+<span>Summary: subtotal, savings (spend-and-save tiers), total</span>
+<span>Checkout button (primary) + continue shopping link</span>
+<span>Footer</span>
+</div>
+<div>
+<table class="plain">
+<tbody>
+<tr><th scope="row">Components</th><td>Buttons, form controls, price, promo banner (tier progress as text, "Add $X more to save 15%"), mini cart (hidden on this page).</td></tr>
+<tr><th scope="row">Data</th><td>Server renders the cart. Quantity updates are form posts; with JS an island updates the line and summary with one request and replaces the region.</td></tr>
+<tr><th scope="row">No JS</th><td>Quantity input with an "Update" button; remove is a button in the line's form; coupon and shipping estimate are forms; the Checkout button is a link to the platform checkout.</td></tr>
+<tr><th scope="row">States</th><td>Empty cart (message, link to categories), updating (<code>aria-busy</code>), item unavailable (explained), error with a retry that keeps what the visitor typed.</td></tr>
+<tr><th scope="row">A11y</th><td>Line items in a table or list with clear names for each button ("Remove Hi-vis polo, size M"); the total and tier progress are text; updates announced politely; no timeouts.</td></tr>
+<tr><th scope="row">Checkout handoff</th><td>The button states that checkout opens the secure checkout; the page the platform serves is kept visually consistent where its settings allow (colours, logo).</td></tr>
+</tbody>
+</table>
+<p class="placeholder">Decoration details on cart line items (artwork preview, set-up fees): second pass.</p>
+</div>
+</div>
