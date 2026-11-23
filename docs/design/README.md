@@ -15,6 +15,8 @@ The single design reference for the marketplace-hbx theme (replacement for onlin
 | `node scripts/generate-design-tokens.mjs --check` | Fail if the SCSS is stale; prints `config.json` colour drift |
 | `npm run check-design-tokens` | Fail if any token pair misses WCAG AA (AAA is reported) |
 | `npm run build-bible` / `npm run check-bible` | Build / lint the document |
+| `npm run generate-bridge` / `npm run check-bridge` | Write / check `assets/scss/settings/global/_css-vars.scss` (SCSS variables as `--sv-*`) |
+| `npm run tw-diff -- before.json after.json` | Compare two computed-style snapshots (see `tailwind-playbook.md`) |
 | `npx vitest run scripts` | Unit tests for the tooling |
 
 ## Editing
@@ -29,4 +31,4 @@ The single design reference for the marketplace-hbx theme (replacement for onlin
 - Final font (interim: system stack; Poppins is the live-site font). Self-host when chosen.
 - Decoration and branding (embroidery, printing) and marketing/tracking: separate briefs.
 - `config.json` colour defaults differ from the tokens (reported by `--check`); update by hand after review.
-- Tailwind migration: later.
+- Tailwind migration: in progress, see `docs/design/tailwind-playbook.md`.

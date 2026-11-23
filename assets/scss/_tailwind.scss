@@ -1,4 +1,23 @@
-@import "tailwindcss";
+/*
+ * `important`: every utility is `!important`. The legacy CSS (Foundation/Citadel/Stencil) is unlayered, so it beats anything
+ * in a layer, including its own element resets (`div { padding: 0 }`, `h3 { margin }`). Without this a utility on a legacy
+ * element silently loses. Found by the variant selector pilot (computed-style diff: padding and margin were 0).
+ * Temporary: drop it once the legacy element rules are gone or moved into a lower layer.
+ */
+@import "tailwindcss" important source(none);
+
+/*
+ * source(none) turns off automatic detection: with it Tailwind scanned every file, saw legacy class names that are also utility names
+ * (container, table, hidden, block, flex, grid ...) and emitted them, and with `important` they overrode the legacy CSS site-wide
+ * (pilot diff: the product column changed width). Only folders already converted are listed here. Add a folder when you convert it.
+ */
+@source "../../src/templates/components/products/options";
+/*
+ * Words in attributes and comments of a listed folder (`type="hidden"`, "containing block") are also picked up as candidates. With `important` an
+ * emitted `.hidden` or `.block` would override third-party and merchant markup site-wide, so such strays are excluded here. The test in
+ * scripts/tailwind/theme.test.mjs fails when a utility is emitted that no className uses: add its name to this list.
+ */
+@source not inline("block hidden");
 
 /*
  * Normalisation on top of Preflight, in the base layer. Declared after the import, so on equal
@@ -187,3 +206,57 @@
  */
 @custom-variant js (&:where(html:not(.no-js), html:not(.no-js) *));
 
+
+/*
+ * Theme layer. `inline` makes utilities emit the var() directly; `reference` stops Tailwind writing these entries to
+ * :root. That matters because an entry may share its name with the property it points at, and
+ * `--color-brand: var(--color-brand)` would be a cycle.
+ *
+ * 1. Merchant colours: --sv-* is the SCSS bridge (scripts/generate-bridge.mjs), resolved from config.json by stencilColor().
+ * 2. Design tokens: --color-* from docs/design/tokens.json (light/dark aware), generated into _design-tokens.scss.
+ * Spacing, type and radius entries are added when a conversion needs them (see docs/design/tailwind-playbook.md).
+ */
+@theme inline reference {
+    /* 1. merchant colours */
+    --color-primary: var(--sv-color-primary);
+    --color-primary-dark: var(--sv-color-primaryDark);
+    --color-primary-darker: var(--sv-color-primaryDarker);
+    --color-primary-light: var(--sv-color-primaryLight);
+    --color-secondary: var(--sv-color-secondary);
+    --color-secondary-dark: var(--sv-color-secondaryDark);
+    --color-secondary-darker: var(--sv-color-secondaryDarker);
+    --color-highlight: var(--sv-color-highlight);
+    --color-highlight-dark: var(--sv-color-highlightDark);
+    --color-highlight-darker: var(--sv-color-highlightDarker);
+    --color-grey: var(--sv-color-grey);
+    --color-grey-darkest: var(--sv-color-greyDarkest);
+    --color-grey-darker: var(--sv-color-greyDarker);
+    --color-grey-dark: var(--sv-color-greyDark);
+    --color-grey-medium: var(--sv-color-greyMedium);
+    --color-grey-light: var(--sv-color-greyLight);
+    --color-grey-lighter: var(--sv-color-greyLighter);
+    --color-grey-lightest: var(--sv-color-greyLightest);
+
+    /* promoted from rounded-[12px], used at 3 sites (the variant selector cards) */
+    --radius-card: 12px;
+
+    /* 2. design tokens */
+    --color-brand: var(--color-brand);
+    --color-white: var(--color-white);
+    --color-on-brand: var(--color-on-brand);
+    --color-brand-text: var(--color-brand-text);
+    --color-bg: var(--color-bg);
+    --color-surface: var(--color-surface);
+    --color-text: var(--color-text);
+    --color-text-muted: var(--color-text-muted);
+    --color-border: var(--color-border);
+    --color-link: var(--color-link);
+    --color-focus: var(--color-focus);
+    --color-accent-amber: var(--color-accent-amber);
+    --color-accent-blue: var(--color-accent-blue);
+    --color-accent-navy: var(--color-accent-navy);
+    --color-tint: var(--color-tint);
+    --color-on-amber: var(--color-on-amber);
+    --color-success: var(--color-success);
+    --color-error: var(--color-error);
+}

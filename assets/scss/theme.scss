@@ -1,7 +1,7 @@
 // =============================================================================
 // STENCIL
 // =============================================================================
-@import "./tailwind";
+@import "_tailwind";
 
 // Tools
 // -----------------------------------------------------------------------------
@@ -46,6 +46,7 @@
 @import "settings/stencil/stencil"; // 4
 @import "settings/layouts/layouts"; // 4
 @import "settings/global/color/design-tokens"; // generated custom properties (docs/design/tokens.json)
+@import "settings/global/css-vars"; // generated: SCSS variables as --sv-* custom properties (npm run generate-bridge)
 
 
 // Utilities

@@ -16,10 +16,10 @@ const option = () => $unescaped($dynamicComponent($string("components/products/o
  * TODO: "Choose Colour", "Colours", "Search Colour" and "No colours match your search." are hardcoded; move them to language keys.
  */
 const colourHeader = () => (
-    <div className="variant-selector__header">
-        <span className="variant-selector__active" aria-hidden="true" />
-        <h3 className="variant-selector__title">Choose Colour</h3>
-        <span className="variant-selector__count" data-variant-count={""}>
+    <div className="mb-3 flex items-center gap-3">
+        <span className="flex h-12 w-12 flex-none self-start overflow-hidden rounded-card bg-white" aria-hidden="true" />
+        <h3 className="m-0 flex-1 text-left text-[1.25rem] font-bold">Choose Colour</h3>
+        <span className="rounded-full bg-white px-4 py-2 text-[0.8125rem] font-semibold whitespace-nowrap" data-variant-count={""}>
             {$pointer("values.length")} Colours
         </span>
     </div>
@@ -32,23 +32,24 @@ const colourHeader = () => (
 export default (_props: PartialProps) => {
     const options = $pointer<unknown[]>("product.options");
     return (
-        <div className="variant-selector" data-variant-selector={""}>
-            <div className="variant-selector__colours" data-variant-colours={""}>
+        <div data-variant-selector={""}>
+            {/* --vs-pad leaves room around the tiles for the chosen colour's halo, which the scroll area would clip. `relative` is the containing block of the chosen colour's copy. */}
+            <div className="@container relative mb-4 rounded-card bg-[#f2f2f2] p-4 [--vs-gap:0.5rem] [--vs-pad:0.75rem]" data-variant-colours={""}>
                 <$Each list={options} $then={() => WhenColour({$then: colourHeader})} />
                 {/* Hidden until the enhancer is running: without JS the box would do nothing. */}
-                <div className="variant-selector__search" data-variant-search={""} hidden>
-                    <svg className="variant-selector__search-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+                <div className="mb-2 flex items-center gap-2 rounded-full border border-[rgba(0,0,0,0.15)] bg-white px-4 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-current" data-variant-search={""} hidden>
+                    <svg className="flex-none" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
                         <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" strokeWidth="2" />
                         <path d="M20 20l-4-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                     </svg>
-                    <input className="variant-selector__search-input" type="search" placeholder="Search Colour" aria-label="Search colour" autoComplete="off" />
+                    <input className="h-[44px] min-w-0 flex-1 border-0 bg-transparent p-0 text-[16px] shadow-none outline-0 focus:border-0 focus:shadow-none focus:outline-0" type="search" placeholder="Search Colour" aria-label="Search colour" autoComplete="off" />
                 </div>
                 <$Each list={options} $then={() => WhenColour({$then: option})} />
-                <p className="variant-selector__empty" data-variant-empty={""} role="status" hidden>
+                <p className="mt-2 mb-0 text-center text-[0.875rem]" data-variant-empty={""} role="status" hidden>
                     No colours match your search.
                 </p>
             </div>
-            <div className="variant-selector__sizes" data-variant-sizes={""}>
+            <div className="mb-4 rounded-card bg-[#f2f2f2] p-4 data-loading:opacity-60" data-variant-sizes={""}>
                 <$Each list={options} $then={() => WhenSize({$then: option})} />
             </div>
             <$Each list={options} $then={() => WhenColour({$else: () => WhenSize({$else: option})})} />

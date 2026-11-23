@@ -3,117 +3,19 @@
 // Markup: src/templates/components/products/options/colour-size.tsx
 // Behaviour (search, active swatch, per-colour sizes): src/client/variantSelector/VariantEnhancer.tsx
 // =============================================================================
+//
+// The card, header, search and sizes wrapper are Tailwind utilities in the markup. This file keeps what utilities cannot express
+// or what styles elements rendered by other templates (swatches, option inputs): the colour grid and its container queries, the swatch
+// tiles, the chosen-colour halo and copy, and the touch sizes. Hooks are the data-variant-* attributes, not classes.
+// =============================================================================
 
 $variant-selector-radius: 12px;
-$variant-selector-bg: #f2f2f2;
 $variant-selector-visible-rows: 2;
-
-.variant-selector__colours,
-.variant-selector__sizes {
-    background-color: $variant-selector-bg;
-    border-radius: $variant-selector-radius;
-    margin-bottom: 1rem;
-    padding: 1rem;
-}
 
 // Colour card ---------------------------------------------------------------
 
-.variant-selector__colours {
-    --vs-gap: 0.5rem;
-    // Room around the tiles for the halo of the chosen colour, which the scroll area would otherwise clip.
-    --vs-pad: 0.75rem;
-
-    container-type: inline-size;
-    // The containing block of the chosen colour's copy (`.form-option-active-copy`), which sits over the header's swatch box.
-    position: relative;
-}
-
-.variant-selector__header {
-    align-items: center;
-    display: flex;
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
-}
-
-// The box the chosen colour's copy (`.form-option-active-copy`) is laid over. White until a colour is chosen.
-.variant-selector__active {
-    background-color: #fff;
-    border-radius: $variant-selector-radius;
-    display: flex;
-    // Stays at the top when a narrow card wraps the title, where the chosen colour's copy (top: 1rem) is laid over it.
-    align-self: flex-start;
-    flex: none;
-    height: 3rem;
-    overflow: hidden;
-    width: 3rem;
-}
-
-.variant-selector__title {
-    flex: 1;
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin: 0;
-    // The theme centres headings on small screens; the title sits beside the swatch box.
-    text-align: left;
-}
-
-.variant-selector__count {
-    background-color: #fff;
-    border-radius: 999px;
-    font-size: 0.8125rem;
-    font-weight: 600;
-    padding: 0.5rem 1rem;
-    white-space: nowrap;
-}
-
-.variant-selector__search {
-    align-items: center;
-    background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 999px;
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-    padding: 0 1rem;
-
-    &:focus-within {
-        outline: 2px solid currentColor;
-        outline-offset: 2px;
-    }
-}
-
-.variant-selector__search-icon {
-    flex: none;
-}
-
-.variant-selector__search-input {
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    flex: 1;
-    // 16px: iOS Safari zooms the page when focusing an input under 16px. 44px high is the minimum comfortable tap target.
-    font-size: 16px;
-    height: 44px;
-    min-width: 0;
-    outline: 0;
-    padding: 0;
-
-    // The theme's own input focus style would add a second box inside the pill, which already shows focus.
-    &:focus {
-        border: 0;
-        box-shadow: none;
-        outline: 0;
-    }
-}
-
-.variant-selector__empty {
-    font-size: 0.875rem;
-    margin: 0.5rem 0 0;
-    text-align: center;
-}
-
 // The scroll area: four tiles to a row, two rows tall, scrolling when there are more.
-.variant-selector__colours [data-product-attribute] {
+[data-variant-colours] [data-product-attribute] {
     // More tiles to a row as the card widens (see the container queries below).
     --vs-cols: 3;
     // Width of one tile: the card's content width less the gaps and the scroll area's padding, over the column count.
@@ -179,19 +81,19 @@ $variant-selector-visible-rows: 2;
 
 // Columns by the width of the card, so a narrow phone keeps tiles big enough to tap and a wide card fits more colours in view.
 @container (min-width: 260px) {
-    .variant-selector__colours [data-product-attribute] {
+    [data-variant-colours] [data-product-attribute] {
         --vs-cols: 4;
     }
 }
 
 @container (min-width: 420px) {
-    .variant-selector__colours [data-product-attribute] {
+    [data-variant-colours] [data-product-attribute] {
         --vs-cols: 5;
     }
 }
 
 @container (min-width: 540px) {
-    .variant-selector__colours [data-product-attribute] {
+    [data-variant-colours] [data-product-attribute] {
         --vs-cols: 6;
     }
 }
@@ -203,7 +105,7 @@ $variant-selector-visible-rows: 2;
     display: none;
 }
 
-.variant-selector__colours {
+[data-variant-colours] {
     [data-product-attribute] .form-option-wrapper {
         position: static;
     }
@@ -225,7 +127,7 @@ $variant-selector-visible-rows: 2;
 // Image swatches: the tile shows the larger image (`--swatch-image-large`, set by the swatch template), inset 5% from the tile's edge and
 // scaled to fit inside that inset, so the whole picture shows rather than being cropped. The default is the 22x22 swatch image at its natural
 // size, which in a tile is a tiny blurred picture.
-.variant-selector__colours .form-option-variant--pattern:not(#pseudoID) {
+[data-variant-colours] .form-option-variant--pattern:not(#pseudoID) {
     // !important: the template sets the 22x22 image inline, which a stylesheet rule cannot otherwise beat.
     background-image: var(--swatch-image-large) !important;
     background-origin: content-box;
@@ -236,42 +138,37 @@ $variant-selector-visible-rows: 2;
 }
 
 // The halo of the chosen colour.
-.variant-selector__colours .form-radio:checked + .form-option {
+[data-variant-colours] .form-radio:checked + .form-option {
     box-shadow:
         0 0 0 3px #fff,
         0 0 0 6px stencilColor("input-border-color-active"),
         0 0 12px 6px rgba(stencilColor("input-border-color-active"), 0.45);
 }
 
-.variant-selector__colours .form-radio:focus-visible + .form-option {
+[data-variant-colours] .form-radio:focus-visible + .form-option {
     outline: 2px solid currentColor;
     outline-offset: 2px;
 }
 
 // A colour the search filtered out.
-.variant-selector__colours .form-option-wrapper[data-filtered] {
+[data-variant-colours] .form-option-wrapper[data-filtered] {
     display: none;
 }
 
 // The enhancer hides unavailable choices with the `hidden` attribute, which the option wrappers' own `display` would otherwise override.
-.variant-selector [hidden] {
+[data-variant-selector] [hidden] {
     display: none !important;
 }
 
-// Sizes while the variant data is still arriving: shown, but not yet choosable.
-.variant-selector__sizes[data-loading] {
-    opacity: 0.6;
-}
-
 // A size that exists but is out of stock stays choosable (backorder, notify me) and is marked.
-.variant-selector__sizes .form-option-wrapper[data-out-of-stock] .form-option {
+[data-variant-sizes] .form-option-wrapper[data-out-of-stock] .form-option {
     opacity: 0.6;
     text-decoration: line-through;
 }
 
 // Touch: the sizes are tap targets, so give them the 44px minimum (the theme's rectangle buttons are about 32px high and 42px wide).
 @media (pointer: coarse), (max-width: 800px) {
-    .variant-selector__sizes {
+    [data-variant-sizes] {
         .form-option {
             align-items: center;
             display: inline-flex;
