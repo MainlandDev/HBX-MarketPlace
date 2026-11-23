@@ -515,7 +515,8 @@ export default (_props: PartialProps) => {
                                 test={product.cart_order_source}
                                 $then={() => <input type="hidden" name="cart_order_source" value={product.cart_order_source} />}
                             />
-                            <div data-product-option-change={""} style={{display: "none"}}>
+                            {/* Hidden by `.js [data-product-option-change]` (productView scss) until product-details.js shows it, so without JS the options stay usable. */}
+                            <div data-product-option-change={""}>
                                 <$Inject keyName={$string("showSwatchNames")} value={theme.show_product_swatch_names} />
                                 {/* Pass 1 flags a Colour and a Size option; the branch frees both flags (50-key scratchpad cap). */}
                                 <$Each list={$pointer<unknown[]>("product.options")} $then={markOptionFlags} />

@@ -83,3 +83,13 @@
         }
     }
 }
+
+
+// Product options
+// -----------------------------------------------------------------------------
+
+// With JS the options wait until product-details.js has applied the default selection and shows them. Without JS (`no-js` on <html>, see the
+// base layout) nothing would ever show them, so they are only hidden once `js` is set.
+.js [data-product-option-change] {
+    display: none;
+}
