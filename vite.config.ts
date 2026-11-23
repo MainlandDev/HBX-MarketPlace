@@ -4,6 +4,7 @@ import path from "node:path";
 import {BigcommerceStencil} from "@mainlanddev/bigcommerce-stencil";
 import {HBXBigCommerce} from "@mainlanddev/hbx-bigcommerce/plugin";
 import {islands} from "@vitejs/plugin-islands";
+import {VirtualTailwind} from "./vite/tailwind-override-scss.ts";
 
 
 // Only "use client" modules matched here can hydrate.
@@ -15,6 +16,7 @@ const islandsOptions = {
 
 export default defineConfig({
     plugins: [
+        VirtualTailwind("_tailwind.scss", []),
         // A custom `exclude` replaces the plugin's default (node_modules), so keep it or the pre-bundled deps get Fast Refresh code.
         // Islands under src/client refresh in place: the islands client entry installs the preamble Stencil's pages do not carry.
         react({exclude: [/[\\/]node_modules[\\/]/]}),

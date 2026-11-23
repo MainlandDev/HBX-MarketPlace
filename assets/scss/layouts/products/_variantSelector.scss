@@ -53,6 +53,8 @@ $variant-selector-visible-rows: 2;
     font-size: 1.25rem;
     font-weight: 700;
     margin: 0;
+    // The theme centres headings on small screens; the title sits beside the swatch box.
+    text-align: left;
 }
 
 .variant-selector__count {
@@ -89,7 +91,9 @@ $variant-selector-visible-rows: 2;
     border: 0;
     box-shadow: none;
     flex: 1;
-    height: 2.5rem;
+    // 16px: iOS Safari zooms the page when focusing an input under 16px. 44px high is the minimum comfortable tap target.
+    font-size: 16px;
+    height: 44px;
     min-width: 0;
     outline: 0;
     padding: 0;
@@ -263,4 +267,21 @@ $variant-selector-visible-rows: 2;
 .variant-selector__sizes .form-option-wrapper[data-out-of-stock] .form-option {
     opacity: 0.6;
     text-decoration: line-through;
+}
+
+// Touch: the sizes are tap targets, so give them the 44px minimum (the theme's rectangle buttons are about 32px high and 42px wide).
+@media (pointer: coarse), (max-width: 800px) {
+    .variant-selector__sizes {
+        .form-option {
+            align-items: center;
+            display: inline-flex;
+            justify-content: center;
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        select {
+            min-height: 44px;
+        }
+    }
 }

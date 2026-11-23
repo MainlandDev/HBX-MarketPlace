@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+/*
+ * no-js: → matches when <html> carries the `no-js` class.
+ *
+ * `&:where(...)` keeps the generated selector at zero extra specificity,
+ * so these variants don't unexpectedly beat other utilities.
+ * Listing `html.no-js` alongside `html.no-js *` also covers the case where
+ * the utility is placed on the <html> element itself.
+ */
+@custom-variant no-js (&:where(html.no-js, html.no-js *));
+
+/*
+ * js: → the inverse. Matches when <html> does NOT have `no-js`.
+ *
+ * Note this is "no-js class absent", not "JavaScript is verifiably running".
+ * It only works if a script removes the class (see the HTML below).
+ */
+@custom-variant js (&:where(html:not(.no-js), html:not(.no-js) *));
+

@@ -1,7 +1,7 @@
 // =============================================================================
 // STENCIL
 // =============================================================================
-
+@import "./tailwind";
 
 // Tools
 // -----------------------------------------------------------------------------
@@ -45,6 +45,7 @@
 @import "settings/citadel/citadel"; // 4
 @import "settings/stencil/stencil"; // 4
 @import "settings/layouts/layouts"; // 4
+@import "settings/global/color/design-tokens"; // generated custom properties (docs/design/tokens.json)
 
 
 // Utilities
