@@ -8,6 +8,8 @@ import ProductsModalsWriteReview from "./modals/writeReview.tsx";
 import ProductsBulkDiscountRates from "./bulk-discount-rates.tsx";
 import ProductsCustomFields from "./custom-fields.tsx";
 import ProductsAddToCart from "./add-to-cart.tsx";
+import ProductsOptionsColourSize from "./options/colour-size.tsx";
+import {clearFlags, setFlag, WhenColour, WhenSize} from "../../../server/variantSelector.tsx";
 import ProductsDescriptionTabs from "./description-tabs.tsx";
 import ProductsDescription from "./description.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
@@ -38,6 +40,7 @@ import {
     $unescaped,
     $Unless,
     $unlessExpression,
+    $$scratch,
     $Or,
 } from "@mainlanddev/hbx-bigcommerce";
 
@@ -90,6 +93,17 @@ interface Product {
     reviews: {messages: Message[]};
     featured_promotions: unknown;
 }
+
+const hasColour = $$scratch<number>("hasColour").get();
+const hasSize = $$scratch<number>("hasSize").get();
+
+/** Body of the flag pass: sets a flag for a Colour or a Size option. */
+const markOptionFlags = () => (
+    <>
+        {WhenColour({$then: () => setFlag("hasColour")})}
+        {WhenSize({$then: () => setFlag("hasSize")})}
+    </>
+);
 
 interface Settings {
     show_product_rating: boolean;
@@ -503,9 +517,25 @@ export default (_props: PartialProps) => {
                             />
                             <div data-product-option-change={""} style={{display: "none"}}>
                                 <$Inject keyName={$string("showSwatchNames")} value={theme.show_product_swatch_names} />
-                                <$Each
-                                    list={$pointer<unknown[]>("product.options")}
-                                    $then={() => $unescaped($dynamicComponent($string("components/products/options")))}
+                                {/* Pass 1 flags a Colour and a Size option; the branch frees both flags (50-key scratchpad cap). */}
+                                <$Each list={$pointer<unknown[]>("product.options")} $then={markOptionFlags} />
+                                <$All
+                                    values={[hasColour, hasSize]}
+                                    $then={() => (
+                                        <>
+                                            {clearFlags()}
+                                            <ProductsOptionsColourSize />
+                                        </>
+                                    )}
+                                    $else={() => (
+                                        <>
+                                            {clearFlags()}
+                                            <$Each
+                                                list={$pointer<unknown[]>("product.options")}
+                                                $then={() => $unescaped($dynamicComponent($string("components/products/options")))}
+                                            />
+                                        </>
+                                    )}
                                 />
                             </div>
                             <div className={`form-field form-field--stock${$Unless({test: product.stock_level, $then: () => " u-hiddenVisually"})}`}>

@@ -1,0 +1,198 @@
+// =============================================================================
+// COLOUR + SIZE VARIANT SELECTOR
+// Markup: src/templates/components/products/options/colour-size.tsx
+// Behaviour (search, active swatch, per-colour sizes): src/client/variantSelector/VariantEnhancer.tsx
+// =============================================================================
+
+$variant-selector-radius: 12px;
+$variant-selector-bg: #f2f2f2;
+$variant-selector-columns: 4;
+$variant-selector-visible-rows: 2;
+
+.variant-selector__colours,
+.variant-selector__sizes {
+    background-color: $variant-selector-bg;
+    border-radius: $variant-selector-radius;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
+// Colour card ---------------------------------------------------------------
+
+.variant-selector__colours {
+    --vs-gap: 0.5rem;
+    // Room around the tiles for the halo of the chosen colour, which the scroll area would otherwise clip.
+    --vs-pad: 0.75rem;
+    // Width of one tile: the card's content width less the gaps and the scroll area's padding, over the column count.
+    --vs-tile: calc((100cqw - #{$variant-selector-columns - 1} * var(--vs-gap) - 2 * var(--vs-pad)) / #{$variant-selector-columns});
+
+    container-type: inline-size;
+}
+
+.variant-selector__header {
+    align-items: center;
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+// The chosen colour, copied in by the enhancer. Empty (and white) until a colour is chosen, or without JS.
+.variant-selector__active {
+    background-color: #fff;
+    border-radius: $variant-selector-radius;
+    display: flex;
+    flex: none;
+    height: 3rem;
+    overflow: hidden;
+    width: 3rem;
+
+    .form-option-variant:not(#pseudoID) {
+        align-self: stretch;
+        flex: 1;
+        height: auto;
+        width: auto;
+    }
+}
+
+.variant-selector__title {
+    flex: 1;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.variant-selector__count {
+    background-color: #fff;
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+}
+
+.variant-selector__search {
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 999px;
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0 1rem;
+
+    &:focus-within {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+}
+
+.variant-selector__search-icon {
+    flex: none;
+}
+
+.variant-selector__search-input {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    flex: 1;
+    height: 2.5rem;
+    min-width: 0;
+    outline: 0;
+    padding: 0;
+
+    // The theme's own input focus style would add a second box inside the pill, which already shows focus.
+    &:focus {
+        border: 0;
+        box-shadow: none;
+        outline: 0;
+    }
+}
+
+.variant-selector__empty {
+    font-size: 0.875rem;
+    margin: 0.5rem 0 0;
+    text-align: center;
+}
+
+// The scroll area: four tiles to a row, two rows tall, scrolling when there are more.
+.variant-selector__colours [data-product-attribute] {
+    display: grid;
+    gap: var(--vs-gap);
+    grid-template-columns: repeat(#{$variant-selector-columns}, minmax(0, 1fr));
+    margin: 0;
+    max-height: calc(#{$variant-selector-visible-rows} * var(--vs-tile) + #{$variant-selector-visible-rows - 1} * var(--vs-gap) + 2 * var(--vs-pad));
+    overflow-y: auto;
+    padding: var(--vs-pad);
+    scrollbar-width: thin;
+
+    // The group's label stays for screen readers (the radiogroup is named by it) but the card has its own title.
+    > .form-label {
+        clip: rect(0 0 0 0);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+    }
+
+    .form-option-wrapper {
+        display: block;
+        margin: 0;
+        min-width: 0;
+    }
+
+    .form-option.form-option-swatch {
+        aspect-ratio: 1;
+        background-color: #fff;
+        border: 0;
+        border-radius: $variant-selector-radius;
+        display: flex;
+        margin: 0;
+        overflow: hidden;
+        padding: 0;
+        width: 100%;
+    }
+
+    // `height: auto` so the swatches stretch to the tile (a percentage height would not resolve against an aspect-ratio box).
+    // `:not(#pseudoID)` matches the specificity of the product table rule that sets a fixed swatch size, which would otherwise win.
+    .form-option-variant:not(#pseudoID) {
+        align-self: stretch;
+        flex: 1;
+        height: auto;
+        width: auto;
+    }
+
+    // The field's clearfix pseudo-elements would each take a grid cell.
+    &::before,
+    &::after {
+        display: none;
+    }
+
+    // The enlarged preview that follows the pointer is clipped by the tile, so it is left out here.
+    .form-option-expanded {
+        display: none;
+    }
+}
+
+// The halo of the chosen colour.
+.variant-selector__colours .form-radio:checked + .form-option {
+    box-shadow:
+        0 0 0 3px #fff,
+        0 0 0 6px stencilColor("input-border-color-active"),
+        0 0 12px 6px rgba(stencilColor("input-border-color-active"), 0.45);
+}
+
+.variant-selector__colours .form-radio:focus-visible + .form-option {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+// A colour the search filtered out.
+.variant-selector__colours .form-option-wrapper[data-filtered] {
+    display: none;
+}
+
+// The enhancer hides unavailable choices with the `hidden` attribute, which the option wrappers' own `display` would otherwise override.
+.variant-selector [hidden] {
+    display: none !important;
+}

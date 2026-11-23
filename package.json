@@ -33,7 +33,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-env": "^7.12.17",
     "@bigcommerce/citadel": "^2.15.1",
-    "@mainlanddev/bigcommerce-stencil": "0.0.10",
+    "@mainlanddev/bigcommerce-stencil": "file:../../../stencil/bigcommerce-stencil/mainlanddev-bigcommerce-stencil-0.0.10.tgz",
     "@mainlanddev/hbx-bigcommerce": "file:../../../hbx/bigcommerce",
     "@stylistic/stylelint-plugin": "^3.1.2",
     "@types/react": "^19.3.0",
@@ -72,6 +72,7 @@
     "typescript": "~7.0.2",
     "url": "^0.11.0",
     "vite": "^8.3.0",
+    "vitest": "^5.1.1",
     "webpack": "^5.95.0",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^4.5.0",
@@ -81,6 +82,7 @@
     "vite-dev": "vite",
     "vite-build": "tsc -b && vite build",
     "check-islands": "node scripts/check-islands.mjs",
+    "check-variant-selector": "node scripts/check-variant-selector.mjs",
     "cloudflared-tunnel": "cloudflared tunnel --url http://localhost:5173",
     "prepare-sass-runtime": "npm explore @bigcommerce/node-sass -- npm run install",
     "hbx-hints": "hbx-bigcommerce generate",
@@ -91,6 +93,7 @@
     "test": "npx jest",
     "test:watch": "npx jest --watch",
     "stylelint": "npx stylelint **/*.scss",
-    "stylelint:fix": "npx stylelint --fix **/*.scss"
+    "stylelint:fix": "npx stylelint --fix **/*.scss",
+    "test:unit": "vitest run"
   }
 }
