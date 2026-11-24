@@ -51,7 +51,7 @@ export default () => {
                             <$If
                                 test={$pointer("brand.image")}
                                 $then={() => (
-                                    <div className="brand-image-container">
+                                    <div className="brand-image-container relative after:block after:h-0 after:w-full after:pb-(--sv-derived-brand-thumb-padding) after:content-[''] [&_img]:absolute [&_img]:inset-0 [&_img]:m-auto">
                                         <ResponsiveImg image={$pointer("brand.image")} fallback_size={settings.thumb_size} lazyload={$string("disabled")} />
                                     </div>
                                 )}

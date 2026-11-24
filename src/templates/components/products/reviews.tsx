@@ -34,7 +34,7 @@ export default (_props: PartialProps) => {
                             )}
                         />
                     </h4>
-                    <div className="toggle-content is-open" id="productReviews-content" aria-hidden="false">
+                    <div className="toggle-content is-open [:where(&:not(.is-open))]:[display:none] [:where(&.is-open)]:[display:block]" id="productReviews-content" aria-hidden="false">
                         <ul className="productReviews-list -mx-gutter-half my-0 w-auto max-w-none flow-root text-[0px] [list-style-type:none]" id="productReviews-list">
                             <$Each
                                 list={$pointer<Review[]>("reviews.list")}

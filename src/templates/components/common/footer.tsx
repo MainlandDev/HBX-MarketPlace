@@ -3,6 +3,7 @@ import type {ThemeSettingsObject} from "@mainlanddev/hbx-bigcommerce";
 import SocialLinks from "./social-links.tsx";
 import SubscriptionForm from "./subscription-form.tsx";
 import PaymentIcons from "./payment-icons.tsx";
+import {Container} from "../../../server/componentParts.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {
     $And,
@@ -63,7 +64,7 @@ export default (_props: PartialProps) => {
                 <h2 className="footer-title-sr-only absolute top-auto -left-[10000px] size-px overflow-hidden">
                     <$Lang keyName={$string("footer.title")} />
                 </h2>
-                <div className="container">
+                <Container>
                     <$If
                         test={$pointer("theme_settings.social_icon_placement_bottom")}
                         operator={$string("!==")}
@@ -218,7 +219,7 @@ export default (_props: PartialProps) => {
                             </div>
                         )}
                     />
-                </div>
+                </Container>
                 {region("ssl_site_seal--global")}
             </footer>
         </>

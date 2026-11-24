@@ -22,7 +22,7 @@ export default (_props: PartialProps) => (
             </a>
         </h4>
 
-        <div className="toggle-content is-open" id="videoGallery-content">
+        <div className="toggle-content is-open [:where(&:not(.is-open))]:[display:none] [:where(&.is-open)]:[display:block]" id="videoGallery-content">
             <div className="videoGallery-main widescreen relative mb-single-quarter h-0 overflow-hidden pt-0 pb-[56.34%] [&_iframe]:absolute [&_iframe]:top-0 [&_iframe]:left-0 [&_iframe]:size-full">
                 <iframe
                     id="player"

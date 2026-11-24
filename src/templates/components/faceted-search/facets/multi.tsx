@@ -3,7 +3,7 @@ import FacetedSearchFacetedSearchNavigation from "../faceted-search-navigation.t
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$dashcase, $Each, $If, $Lang, $pointer, $sanitize, $string, $unescaped, $Unless} from "@mainlanddev/hbx-bigcommerce";
 import {Icon} from "../../../../server/formParts.tsx";
-import {NavList} from "../../../../server/componentParts.tsx";
+import {NavList, NavListCheckbox} from "../../../../server/componentParts.tsx";
 
 interface FacetOption {
     id: string;
@@ -34,9 +34,9 @@ export default (_props: PartialProps) => (
                             list={$pointer<FacetOption[]>("items")}
                             $then={(item) => (
                                 <li className="navList-item [&_.navList-action]:no-underline [&_.navList-action.is-active]:font-bold">
-                                    <a
+                                    <NavListCheckbox
                                         href={item.url}
-                                        className={`navList-action navList-action--checkbox${$If({test: item.selected, $then: () => " is-selected"})}`}
+                                        className={`${$If({test: item.selected, $then: () => " is-selected"})}`}
                                         rel="nofollow"
                                         data-faceted-search-facet={""}
                                     >
@@ -50,7 +50,7 @@ export default (_props: PartialProps) => (
                                                 <use href="#icon-close" />
                                             </Icon>
                                         </span>
-                                    </a>
+                                    </NavListCheckbox>
                                 </li>
                             )}
                         />

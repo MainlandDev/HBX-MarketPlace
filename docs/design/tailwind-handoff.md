@@ -1,6 +1,6 @@
 # Tailwind conversion: live handoff
 
-Maintained by the lead after every merged work package (WP). Workers: read `docs/design/tailwind-worker-brief.md` first, then this file at the start of your WP. Last updated: 2026-11-24 (R4-1 and R4-2 merged; R4-3 not started).
+Maintained by the lead after every merged work package (WP). Workers: read `docs/design/tailwind-worker-brief.md` first, then this file at the start of your WP. Last updated: 2026-11-25 (R4-1, R4-2 and R4-3 merged; round 4 complete).
 
 ## Goal and standard
 
@@ -313,7 +313,7 @@ How: a shared TSX helper (a function component returning JSX with literal classN
 | --- | --- | --- |
 | R4-1 | buttons and forms compat blocks (.button*, .form*, icon, dropdown-menu) | merged: converted via shared helpers; `_tailwind.scss` 3,088 -> 2,622 lines |
 | R4-2 | modal, alertBox, loading, panel, breadcrumbs, tabs, accordion, pagination, actionBar, card, table, navBar/navList compat blocks | merged: `_tailwind.scss` 2,622 -> 1,786 lines; shared helpers in `src/server/componentParts.tsx` |
-| R4-3 | the second components block and base leftovers: `.container`, `.icon`, `.form-select`, `.tab/.tab-title`, ribbon, textTruncate, toggle-content, blog/brand thumbs, slick wiring where the markup is ours, element rules kept in `@layer base` | todo |
+| R4-3 | the second components block and base leftovers: `.container`, `.icon`, `.form-select`, `.tab/.tab-title`, ribbon, textTruncate, toggle-content, blog/brand thumbs, slick wiring where the markup is ours, element rules kept in `@layer base` | merged: `_tailwind.scss` 1,786 -> 1,636 lines; `NavListCheckbox` and `Container` helpers |
 
 ## R4-1 report (buttons and forms to utilities)
 
@@ -356,3 +356,28 @@ Edge: baseline at HEAD before editing plus a control run (B1/B2): 13 pages x 4 s
 ## R4-3 (not started) and what remains
 
 `assets/scss/_tailwind.scss` is 1,786 lines. Remaining compat rules: the `.button` family leftovers (merchant `a.button` in page content), `.form-input` radius, `.form-fieldset` padding, `.form-inlineMessage` and `.cart-total .form-inlineMessage` (nod.js-created), modal/tabs/loading runtime pieces above, `.navList-action--checkbox`, `.container`, `.icon`-related residue, ribbon, textTruncate, toggle-content, blog/brand thumbs, slick wiring (mask-image arrows), the `@layer base` element rules (legitimate Tailwind base-layer use), `@layer legacy` (global focus ring). Next worker (R4-3): convert the ones whose markup the theme owns (`.navList-action--checkbox` via the `NavList` helper plus an `is-selected:` variant, `.container`, ribbon, textTruncate where the markup is ours, slick hosts), and report each leftover with the exact reason. `important` and `source(none)` stay (measured in R3-2).
+
+## R4-3 report (owned leftovers to utilities; round 4 complete)
+
+Converted: `.navList-action--checkbox` (new `NavListCheckbox` in `src/server/componentParts.tsx`, disjoint `[:where(&:not(.is-selected))]` / `[:where(&.is-selected)]` selectors, callers pass the `$If` classes; `faceted-search.js` only toggles `is-selected`, no JS change), `.container` (`Container` helper in body, footer, quick-search), `.toggle-content` (reviews, videos, advanced-search), `.blog-thumbnail`, `.brand-image-container` (position and ratio spacer), `.category-header-image`, `.carousel-play-pause-button` (inline-display guard for the jQuery toggle), picklist backorder items (descendant variants on the owning `ul` in `product-view.tsx`).
+
+**Real defect found:** 8 template files were never listed in `@source` (carousel, carousel-content, carousel-content-announcement, carousel-play-pause-button, sitemap/links, blog-post, product, sitemap), so their utilities were never emitted. Added 8 `@source` lines (theme CSS about 463 -> 470 KB). Check `@source` coverage for every converted file.
+
+**Stays in `_tailwind.scss` (reasons):** Tailwind/Foundation wiring (`@import`, `@source`, `@theme`, variants, `meta.foundation-*`); `@layer base` element rules; `a:hover/focus`, `button:active/focus`, `.subheader` (no consumer in our templates); `.button` family (merchant page content has bare `a.button`) and `.button`/`.form-input` radius (store injects `:not(#pseudoID)` rules); `.form-fieldset` padding (store footer rule); `.form-inlineMessage` (nod.js runtime); `body.has-activeModal`, `.modal-background`, `.loadingOverlay` + keyframes (modal.js/Foundation create them); merchant inline-tabs widget (`.tabs/.tab/.tab-title/.tabs-contents/.tab-content`); `.hide-content` (cart.js); `.u-hidden`, `.u-hiddenVisually`, `.aria-description--hidden` (assets/js); slick block (plugin generates the elements; our hosts already carry utilities); `.carousel-tooltip` (tooltipSetup.js creates it); `.has-ribbon/.ribbon/.shareProduct/.blocker-container/.productMasonry/.pin_it_iframe_widget` (no consumer in our templates; store or Pinterest may render them); `.textTruncate*` (text-truncate.js imported nowhere, host markup merchant-only); merchant `div.container` on the account page; `.brand-image-container { max-width }` (store injects `:not(#pseudoID)` max-width 200px; an important utility shrinks it to 100px: caught as a real diff); `.js [data-product-option-change]` (jQuery inline display); `.form-option-variant--color/--pattern` sizing (store injects `:not(#pseudoID)`); `@layer legacy` focus ring; `@keyframes animate-icon*`.
+
+**Unverified by equivalence:** play-pause button (hero carousel does not render here; checked synthetically on the product page, jQuery toggle and click not driven); picklist backorder items (synthetic values only); category header image; blog and brand images with data beyond the pages tested; toggle-content on videos (no gallery renders) and advanced-search (class toggled synthetically); hero carousel, sitemap and sitemap links (newly in `@source`, never rendered); home page not baselined; `NavListCheckbox` hover, focus and has-children states; facet rows in show-more-facets, rating, hierarchy and hierarchy-children on pages without those facets.
+
+Edge: baseline at HEAD before editing then compare at 375/768/1280/no-JS iframes on `/fashion-biz/` (2,187 elements plus 3 rows forced to `is-selected`), `/brands/as-colour`, a blog post, advanced search, `/account.php`, a product reviews toggle: 0 diffs on 28 compares after fixing the brand max-width diff. No separate old-CSS control run (no drift observed). A real click on a facet checkbox toggled `is-selected` (`::after` opacity 0 -> 1); a real click on the reviews toggle moved display none -> block -> none. Nothing submitted, cart untouched.
+
+## Lessons added by R4-3
+
+- Never set a property the store injects with `:not(#pseudoID)` (brand-image-container max-width/margin-inline, button/form-input radius): even a zero-specificity base is `!important` and wins.
+- List `src/templates` files not covered by an `@source` entry after each conversion; 8 were missing.
+- Template-literal `className` props can go through a helper's `withClass`; the HBX build serialises them to `{{#if this.selected}} is-selected{{/if}}`.
+- JS-bundle utilities fail the stray test unless each token also appears in a className literal; use descendant variants on the owning template element instead.
+- `className` regex checks match a utility's own variants (`.is-open` inside `[:where(&.is-open)]`): use `classList.contains`.
+- After deleting CSS blocks by script, check brace balance (a zero-width insert can duplicate its marker; vitest caught it).
+
+## Round 4 outcome
+
+`_tailwind.scss` is 1,636 lines (from 1,786 at R4-3 start, 3,088 at R4-1 start). What remains is CSS for markup the theme does not own (store-injected, JS/jQuery-created, merchant content, third-party plugins), Tailwind/Foundation wiring, base-layer element rules and the legacy focus ring. Further reduction needs changes outside this repo (store injected CSS, merchant page content) or removal of dead families with no consumers (`.ribbon`, `.productMasonry`, `.textTruncate*`, `.shareProduct`, `.subheader`), which is a user decision.

@@ -561,7 +561,7 @@ export default (_props: PartialProps) => {
                                     <span className="[&:not(:empty)]:font-bold" data-qty-backordered-message={""}></span>
                                     <span className="[[data-qty-backordered-message]:not(:empty)+&:not(:empty)]:before:content-['|_']" data-backorder-message={""}></span>
                                 </FormLabel>
-                                <ul className="productView-picklist-backorder m-0 list-none p-0 text-[1rem]" data-picklist-backorder-list={""} style={{display: "none"}}></ul>
+                                <ul className="productView-picklist-backorder m-0 list-none p-0 text-[1rem] [&>.productView-picklist-backorder-item]:mt-0 [&>.productView-picklist-backorder-item]:text-(--sv-form-label-font-color) [&>.productView-picklist-backorder-item]:font-(family-name:--sv-fontFamily-headings) [&>.productView-picklist-backorder-item]:text-smallest [&>.productView-picklist-backorder-item]:leading-[1.8] [&_.productView-picklist-backorder-name]:font-(weight:--sv-fontWeight-bold)" data-picklist-backorder-list={""} style={{display: "none"}}></ul>
                             </FormField>
                             <ProductsAddToCart with_wallet_buttons={$boolean(true)} />
                         </form>

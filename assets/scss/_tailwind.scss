@@ -48,6 +48,14 @@
 @source "../../src/server/navParts.tsx";
 @source "../../src/server/formParts.tsx";
 @source "../../src/server/componentParts.tsx";
+@source "../../src/templates/components/carousel.tsx";
+@source "../../src/templates/components/carousel-content.tsx";
+@source "../../src/templates/components/carousel-content-announcement.tsx";
+@source "../../src/templates/components/carousel-play-pause-button.tsx";
+@source "../../src/templates/components/sitemap/links.tsx";
+@source "../../src/templates/pages/blog-post.tsx";
+@source "../../src/templates/pages/product.tsx";
+@source "../../src/templates/pages/sitemap.tsx";
 @source "../../assets/js/theme/common/form-classes.js";
 /*
  * Words in attributes and comments of a listed folder (`type="hidden"`, "containing block") are also picked up as candidates. With `important` an
@@ -1376,52 +1384,6 @@
         top: -7px;
     }
 
-    .carousel-play-pause-button {
-        background-color: var(--sv-slick-play-pause-button-bgColor);
-        border: 1px solid var(--sv-slick-play-pause-button-borderColor);
-        bottom: var(--sv-spacing-third);
-        color: var(--sv-slick-play-pause-button-color);
-        display: none;
-        font-size: 14px;
-        font-weight: 700;
-        height: 32px;
-        left: 15px;
-        line-height: 1.25;
-        max-width: 60px;
-        min-width: 60px;
-        overflow: hidden;
-        position: absolute;
-        text-overflow: ellipsis;
-        transition: color 100ms ease-out;
-        white-space: nowrap;
-        z-index: var(--sv-zIndex-lowest);
-    }
-
-    @media (min-width: 551px) {
-        .carousel-play-pause-button {
-            font-size: 18px;
-            max-width: 150px;
-        }
-    }
-
-    @media (min-width: 801px) {
-        .carousel-play-pause-button {
-            bottom: var(--sv-spacing-single);
-            left: 25px;
-        }
-    }
-
-    .carousel-play-pause-button:hover {
-        color: var(--sv-slick-play-pause-button-color-hover);
-    }
-
-    @media (min-width: 375px) {
-        .carousel-play-pause-button {
-            max-width: 90px;
-            min-width: 80px;
-        }
-    }
-
     /* modal: the alert modal's icon keyframes are referenced by utilities in the TSX; cart.js adds .hide-content to .modal-content */
     .hide-content {
         opacity: 0;
@@ -1496,67 +1458,6 @@
 }
 
 @layer components {
-    /* faceted-search checkbox rows (navList-action--checkbox, class toggled by assets/js/theme/common/faceted-search.js) */
-    .navList-action--checkbox {
-        display: inline-block;
-        font-size: 1rem;
-        font-weight: 400;
-        margin-bottom: var(--sv-spacing-quarter);
-        padding-left: 1.85714rem;
-        position: relative;
-        vertical-align: baseline;
-        width: 100%;
-    }
-
-    .navList-action--checkbox::before, .navList-action--checkbox::after {
-        content: "";
-        display: block;
-        position: absolute;
-        transition: all 50ms ease-out;
-        top: 50%;
-    }
-
-    .navList-action--checkbox::before {
-        background-color: var(--sv-checkRadio-bg);
-        border: var(--sv-checkRadio-borderStyle) var(--sv-checkRadio-borderColor);
-        border-width: var(--sv-checkRadio-borderWidth);
-        border-radius: var(--sv-input-border-radius);
-        height: var(--sv-checkRadio-outerSize);
-        left: 0;
-        margin-top: calc(var(--sv-checkRadio-outerSize) / -2);
-        width: var(--sv-checkRadio-outerSize);
-    }
-
-    .navList-action--checkbox::after {
-        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z' fill='rgba(51, 51, 51, 0.999)' /%3E%3C/svg%3E");
-        background-position: 50%;
-        background-repeat: no-repeat;
-        background-size: 100%;
-        color: var(--sv-radio-pip-color);
-        font-size: 1rem;
-        height: var(--sv-checkRadio-pip-size);
-        left: 1px;
-        line-height: 1;
-        margin-top: -0.5rem;
-        opacity: 0;
-        text-align: center;
-        transform: var(--sv-checkRadio-pip-zoomStart);
-        width: var(--sv-checkRadio-pip-size);
-    }
-
-    .navList-action--checkbox.is-disabled {
-        cursor: default;
-    }
-
-    .navList-action--checkbox.is-disabled::before {
-        background-color: var(--sv-checkRadio-disabled-bg);
-    }
-
-    .navList-action--checkbox.is-checked::after, .navList-action--checkbox.is-selected::after {
-        opacity: 1;
-        transform: var(--sv-checkRadio-pip-zoomEnd);
-    }
-
     .loadingOverlay {
         background-color: var(--sv-derived-loadingOverlay-bg);
         display: none;
@@ -1584,19 +1485,6 @@
 
     .pin_it_iframe_widget {
         display: none;
-    }
-
-    /* created by assets/js/theme/common/picklist-backorder.js */
-    .productView-picklist-backorder-item {
-        color: var(--sv-form-label-font-color);
-        font-family: var(--sv-fontFamily-headings);
-        font-size: var(--sv-fontSize-smallest);
-        line-height: 1.8;
-        margin-top: 0;
-    }
-
-    .productView-picklist-backorder-name {
-        font-weight: var(--sv-fontWeight-bold);
     }
 
     .shareProduct {
@@ -1631,19 +1519,7 @@
         width: 100%;
     }
 
-    .toggle-content {
-        display: none;
-    }
-
-    .toggle-content.is-open {
-        display: block;
-    }
-
-    .category-header-image {
-        width: 100%;
-    }
-
-    /* the account page carries a merchant-injected div.container, so the class rule stays */
+    /* the merchant injects a div.container on the account page (a bare class that cannot take utilities); the theme's own columns use the Container helper (componentParts.tsx) */
     .container {
         margin-left: auto;
         margin-right: auto;
@@ -1659,36 +1535,10 @@
         }
     }
 
-    .blog-thumbnail {
-        margin: 0 auto calc(var(--sv-spacing-base) * 2);
-        max-width: var(--sv-derived-blog-thumb-width);
-        position: relative;
-    }
-
-    .blog-thumbnail img {
-        width: 100%;
-    }
-
+    /* brand image box: its position and ::after ratio spacer are utilities in pages/brand.tsx; the width cap stays here because the store injects a non-important
+       `.brand-image-container:not(#pseudoID) { max-width: 200px }` that an important utility would beat */
     .brand-image-container {
         max-width: var(--sv-derived-brand-thumb-width);
-        position: relative;
-    }
-
-    .brand-image-container::after {
-        content: "";
-        display: block;
-        height: 0;
-        padding-bottom: var(--sv-derived-brand-thumb-padding);
-        width: 100%;
-    }
-
-    .brand-image-container img {
-        bottom: 0;
-        left: 0;
-        margin: auto;
-        position: absolute;
-        right: 0;
-        top: 0;
     }
 
     .productMasonry {

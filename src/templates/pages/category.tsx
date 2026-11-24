@@ -56,7 +56,7 @@ export default () => {
                             <$If
                                 test={$pointer("category.image")}
                                 $then={() =>
-                                    <ResponsiveImg image={$pointer("category.image")} fallback_size={settings.zoom_size} lazyload={settings.lazyload_mode} class={$string("category-header-image")} />
+                                    <ResponsiveImg image={$pointer("category.image")} fallback_size={settings.zoom_size} lazyload={settings.lazyload_mode} class={$string("category-header-image w-full")} />
                                 }
                             />
                             <$Unless

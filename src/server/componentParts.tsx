@@ -154,11 +154,30 @@ export const PaginationItem = ({current, className, children, ...rest}: Props & 
 
 const NAV_LIST = "[:where(&)]:[display:flow-root] [:where(&_.navList-item)]:[display:block] [:where(&_.navList-action)]:text-(--sv-navList-action-color) [:where(&_.navList-action:not(.navList-action--checkbox))]:text-(length:--sv-navList-action-fontSize) [:where(&_.navList-action)]:py-eighth [:where(&_.navList-action)]:pr-0 [:where(&_.navList-action:not(.navList-action--checkbox))]:pl-0 [:where(&_.navList-action:not(.navList-action--checkbox))]:[display:block] [:where(&_.navList-action:is(:hover,:focus))]:text-(--sv-anchor-font-color-hover)";
 
-/** `navList`: the list of links of a sidebar block or facet. The checkbox variant of the action (`navList-action--checkbox`, toggled by faceted-search.js) keeps its own rule in _tailwind.scss. */
+/** `navList`: the list of links of a sidebar block or facet. */
 export const NavList = ({className, children, ...rest}: Props) => (
     <ul className={withClass(cx("navList", NAV_LIST), className)} {...rest}>
         {children as ReactNode}
     </ul>
+);
+
+const CONTAINER = "[:where(&)]:relative [:where(&)]:mx-auto [:where(&)]:w-(--sv-layout-widthFixed) [:where(&)]:max-w-[calc(var(--sv-layout-widthMax)+var(--sv-container-padding)*4)] [:where(&)]:px-(--sv-container-padding) large:[:where(&)]:px-[calc(var(--sv-container-padding)*4)]";
+
+/** `container`: the centred page column. The merchant's own `div.container` (account banner) cannot take utilities, so the class keeps a rule in _tailwind.scss. */
+export const Container = ({className, children, ...rest}: Props) => (
+    <div className={withClass(cx("container", CONTAINER), className)} {...rest}>
+        {children as ReactNode}
+    </div>
+);
+
+// The checked box of a facet row follows `is-selected`, which faceted-search.js toggles on the link at runtime: the two states are disjoint :where() selectors.
+const NAV_LIST_CHECKBOX = "[:where(&)]:[display:inline-block] [:where(&)]:text-[1rem] [:where(&)]:font-normal [:where(&)]:mb-quarter [:where(&)]:pl-[1.85714rem] [:where(&)]:relative [:where(&)]:align-baseline [:where(&)]:w-full [:where(&)]:before:content-[''] [:where(&)]:before:[display:block] [:where(&)]:before:absolute [:where(&)]:before:[transition:all_50ms_ease-out] [:where(&)]:before:top-1/2 [:where(&)]:before:left-0 [:where(&)]:before:bg-(--sv-checkRadio-bg) [:where(&)]:before:border-(--sv-checkRadio-borderColor) [:where(&)]:before:[border-style:var(--sv-checkRadio-borderStyle)] [:where(&)]:before:[border-width:var(--sv-checkRadio-borderWidth)] [:where(&)]:before:rounded-(--sv-input-border-radius) [:where(&)]:before:size-(--sv-checkRadio-outerSize) [:where(&)]:before:mt-[calc(var(--sv-checkRadio-outerSize)/-2)] [:where(&)]:after:content-[''] [:where(&)]:after:[display:block] [:where(&)]:after:absolute [:where(&)]:after:[transition:all_50ms_ease-out] [:where(&)]:after:top-1/2 [:where(&)]:after:left-px [:where(&)]:after:[background-image:var(--sv-derived-checkmark)] [:where(&)]:after:[background-position:50%] [:where(&)]:after:bg-no-repeat [:where(&)]:after:bg-[length:100%] [:where(&)]:after:text-(--sv-radio-pip-color) [:where(&)]:after:text-[1rem] [:where(&)]:after:leading-none [:where(&)]:after:text-center [:where(&)]:after:size-(--sv-checkRadio-pip-size) [:where(&)]:after:mt-[-0.5rem] [:where(&:not(.is-selected))]:after:opacity-0 [:where(&:not(.is-selected))]:after:[transform:var(--sv-checkRadio-pip-zoomStart)] [:where(&.is-selected)]:after:opacity-100 [:where(&.is-selected)]:after:[transform:var(--sv-checkRadio-pip-zoomEnd)]";
+
+/** `navList-action navList-action--checkbox`: a facet row with a checkbox. The caller adds `is-selected` (and `has-children`) through className. */
+export const NavListCheckbox = ({className, children, ...rest}: Props) => (
+    <a className={withClass(cx("navList-action navList-action--checkbox", NAV_LIST_CHECKBOX), className)} {...rest}>
+        {children as ReactNode}
+    </a>
 );
 
 // The merchant tab widget on the home page is injected markup, so tabs/tab/tab-title/tabs-contents/tab-content keep a compat rule in

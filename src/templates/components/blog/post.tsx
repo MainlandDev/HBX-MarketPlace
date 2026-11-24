@@ -18,7 +18,7 @@ export default (_props: PartialProps) => {
                 <$If
                     test={$pointer("post.thumbnail")}
                     $then={() => (
-                        <figure className="blog-thumbnail">
+                        <figure className="blog-thumbnail relative mx-auto mt-0 mb-[calc(var(--sv-spacing-base)*2)] max-w-(--sv-derived-blog-thumb-width) [&_img]:w-full">
                             <a href={$pointer("post.url")}>
                                 <ResponsiveImg image={$pointer("post.thumbnail")} fallback_size={settings.blog_size} lazyload={settings.lazyload_mode} />
                             </a>

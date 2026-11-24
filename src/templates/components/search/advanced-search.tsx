@@ -12,7 +12,7 @@ export default (_props: PartialProps) => (
     <div className="page -mx-gutter-half w-auto max-w-none flow-root">
         <div className="page-content page-content--centered float-left w-full px-gutter-half medium:float-none medium:mx-auto medium:w-8/12">
             <form
-                className="advancedSearch-form toggle-content mb-double"
+                className="advancedSearch-form toggle-content mb-double [:where(&:not(.is-open))]:[display:none] [:where(&.is-open)]:[display:block]"
                 action={$pointer("forms.search.action")}
                 data-advanced-search-form={""}
                 id="advanced-search-content"

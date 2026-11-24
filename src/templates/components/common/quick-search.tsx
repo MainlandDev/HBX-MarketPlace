@@ -3,9 +3,10 @@ import {$if, type PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$If, $Lang, $lang, $pointer, $raw, $string, $unescaped} from "@mainlanddev/hbx-bigcommerce";
 import type { $hb } from "@mainlanddev/hbx-bigcommerce/grammar";
 import {FormField, FormInput} from "../../../server/formParts.tsx";
+import {Container} from "../../../server/componentParts.tsx";
 
 export default (_props: PartialProps) => (
-    <div className="container">
+    <Container>
         <form className="form [:where(&)]:[margin:var(--sv-form-margin)]" data-url={$pointer("urls.search")} data-quick-search-form={""}>
             <fieldset className="form-fieldset [:where(&)]:[border-width:var(--sv-fieldset-border-width)] [:where(&)]:[margin:var(--sv-fieldset-margin)]">
                 <FormField>
@@ -42,5 +43,5 @@ export default (_props: PartialProps) => (
             className="aria-description--hidden"
             data-search-aria-message-predefined-text={$unescaped($lang($string("search.results.quick_count_live")))}
         ></p>
-    </div>
+    </Container>
 );

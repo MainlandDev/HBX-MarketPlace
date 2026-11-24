@@ -3,7 +3,7 @@ import FacetedSearchFacetedSearchNavigation from "../faceted-search-navigation.t
 import FacetedSearchFacetsHierarchyChildren from "./hierarchy-children.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$dashcase, $Each, $If, $Lang, $pointer, $sanitize, $string, $unescaped, $Unless} from "@mainlanddev/hbx-bigcommerce";
-import {NavList} from "../../../../server/componentParts.tsx";
+import {NavList, NavListCheckbox} from "../../../../server/componentParts.tsx";
 
 interface Facet {
     id: string;
@@ -36,9 +36,9 @@ export default (_props: PartialProps) => (
                             list={$pointer<Facet[]>("items")}
                             $then={(item) => (
                                 <li className="navList-item [&_.navList-action]:no-underline [&_.navList-action.is-active]:font-bold">
-                                    <a
+                                    <NavListCheckbox
                                         href={item.url}
-                                        className={`navList-action navList-action--checkbox${$If({test: item.selected, $then: () => " is-selected"})}${$If({test: item.has_sub_categories, $then: () => " has-children"})}`}
+                                        className={`${$If({test: item.selected, $then: () => " is-selected"})}${$If({test: item.has_sub_categories, $then: () => " has-children"})}`}
                                         rel="nofollow"
                                         data-id={item.id}
                                         data-faceted-search-facet={""}
@@ -48,7 +48,7 @@ export default (_props: PartialProps) => (
                                             test={$pointer("../show_product_counts")}
                                             $then={() => <span>({item.count})</span>}
                                         />
-                                    </a>
+                                    </NavListCheckbox>
                                     <$If
                                         test={item.children}
                                         $then={() => <FacetedSearchFacetsHierarchyChildren $positionalHash={item.children} />}
