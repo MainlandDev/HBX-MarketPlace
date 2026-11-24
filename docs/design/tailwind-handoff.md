@@ -153,7 +153,7 @@ New tooling (lead): `generate-bridge` also bridges every `stencilColor/Number/St
 | R2-3 | header/footer/nav and Foundation JS widgets: navUser, navPages, header, footer rest, heroCarousel, banners, modal, dropdown, accordion, tabs, sidebar, body, container | merged: SCSS 3326 -> 2379 lines; left: navPages, heroCarousel, slick, tabs, container, modal keyframes |
 | R2-4 | navPages, facetedSearch, toggleLink, search, variantSelector, heroCarousel, blog, brandGrid, captcha, blocker, price | merged: SCSS 2379 -> 1478 lines; left: slick, setting-size rules, JS-created/unused classes |
 | R2-5 | shared pool: page-heading, form-*, button, card, pagination, tables, type, alerts, icons, lazyLoad, actionBar, loading, global, slick-adjacent theme rules, common/* | merged: SCSS 1478 -> 703 lines; left: slick, buttons, form states, element rules, keyframes, JS-created |
-| R2-L | lead: unused-class sweep, retire Citadel/Foundation imports if inventory shows zero used, drop `important`/`source(none)` if possible | todo |
+| R2-L | superseded by round 3 below | see R3 |
 
 ## R2-1 report (account family, complete)
 
@@ -235,3 +235,16 @@ Converted and deleted: cards, tables, pagination, panels, alerts, breadcrumbs, a
 - `p-0` is a shorthand and loses to `px-*`/`py-*` longhands on the same element: do not combine them. Citadel `.card-figcaption-body > :first-child` beat the old rule: `first:mt-0`.
 - `$If`/`$else` pairs are easiest with a shared JSX const for the inner content; spreading shared attributes works. Utilities inside attribute strings (`class="form-radio ..."`) pass the stray test if the same tokens appear in a literal `className`.
 - Cold-loaded iframes can fail with `document.body` null while HMR reloads: re-run the batch.
+
+## ROUND 3 (retire the legacy CSS; started)
+
+State after R2-5: theme-owned SCSS under components+layouts is 703 lines in 51 partials. The compiled theme CSS is ~506 KB: ~360 KB Tailwind output and ~146 KB legacy (262 distinct selectors): Citadel components (forms, buttons, switches, modal, alertBox, loading, panel, breadcrumbs, tabs, nav, pagination, accordion, actionBar, card, table, dropdown, icon), Citadel utilities (`.u-*`, `.is-srOnly`), Foundation element rules (h1-h6, a, hr, lists, blockquote, cite, figure, img, button, textarea, select, td, html, body) and Foundation JS media-query meta tags (`meta.foundation-mq-*`, needed by Foundation JS: keep). `$include-html-classes` is false, so Foundation's class CSS is NOT emitted; only mixins and these.
+
+Why legacy remains: the theme's copies were converted, but Citadel's own rules in node_modules still supply properties the utilities never set. Retire them by removal and measurement, family by family:
+
+| R3 WP | Scope | Status |
+| --- | --- | --- |
+| R3-1a | Citadel forms, buttons, switch, form states, icon, buttonGroup, dropdown-menu | todo |
+| R3-1b | Citadel modal, alertBox, loadingNotification/Overlay, panel, breadcrumbs, tabs, nav (navBar/navList/pageNavigation/subPagesList), pagination, accordion, actionBar, card, table, inlineList | todo |
+| R3-2 | Citadel utilities (`.u-*`, `.is-srOnly`), Foundation element rules (type, global, normalize remainder, lists, tables), slick, focus-tooltip, remaining theme partials moved into `_tailwind.scss` layers, retire the aggregates from theme.scss | todo |
+| R3-L | lead: drop `important` and `source(none)` (or document why not), final measurement, final report | todo |
