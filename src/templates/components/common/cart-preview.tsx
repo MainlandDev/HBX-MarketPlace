@@ -18,6 +18,7 @@ import {
     $ifExpression,
     $Or,
 } from "@mainlanddev/hbx-bigcommerce";
+import {Button} from "../../../server/formParts.tsx";
 
 interface CartItem {
     type: string;
@@ -100,21 +101,21 @@ export default (_props: PartialProps) => (
                                 test={$pointer("cart.show_primary_checkout_button")}
                                 $then={() => (
                                     <div className="previewCartAction-checkout float-left w-6/12 pr-quarter pl-gutter-half">
-                                        <a
+                                        <Button
                                             href={$pointer("urls.checkout.single_address")}
-                                            className="button button--small button--primary"
+                                            tag="a" variant="primary" size="small"
                                             data-primary-checkout-now-action={""}
                                         >
                                             <$Lang keyName={$string("cart.preview.checkout_now")} />
-                                        </a>
+                                        </Button>
                                     </div>
                                 )}
                             />
 
                             <div className={`previewCartAction-viewCart${$Unless({test: $pointer("cart.show_primary_checkout_button"), $then: () => " previewCartAction-viewCart--sole"})}`}>
-                                <a href={$pointer("urls.cart")} className="button button--small button--action">
+                                <Button href={$pointer("urls.cart")} tag="a" size="small" className="button--action">
                                     <$Lang keyName={$string("cart.preview.view_cart")} />
-                                </a>
+                                </Button>
                             </div>
 
                             <$If

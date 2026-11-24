@@ -24,6 +24,7 @@ import {
     $Unless,
     $unlessExpression,
 } from "@mainlanddev/hbx-bigcommerce";
+import {Button} from "../../../server/formParts.tsx";
 
 /** `{{{region name="…"}}}` */
 const region = (name: string) => $unescaped($region({name: $string(name)}));
@@ -109,14 +110,14 @@ export default (_props: PartialProps) => {
                                         <$If
                                             test={settings.show_product_quick_view}
                                             $then={() => (
-                                                <button
+                                                <Button
                                                     type="button"
-                                                    className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block] quickview"
+                                                    size="small" className="card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block] quickview bg-(--sv-card-figcaption-button-background) text-(--sv-card-figcaption-button-color)"
                                                     data-event-type="product-click"
                                                     data-product-id={id}
                                                 >
                                                     <$Lang keyName={$string("products.quick_view")} />
-                                                </button>
+                                                </Button>
                                             )}
                                         />
                                     )}
@@ -124,9 +125,9 @@ export default (_props: PartialProps) => {
                                 <$If
                                     test={$pointer("show_compare")}
                                     $then={() => (
-                                        <label className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block]" htmlFor={`compare-${id}`}>
+                                        <Button tag="label" size="small" className="card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block] bg-(--sv-card-figcaption-button-background) text-(--sv-card-figcaption-button-color)" htmlFor={`compare-${id}`}>
                                             <$Lang keyName={$string("products.compare")} /> <input type="checkbox" name="products[]" value={id} id={`compare-${id}`} data-compare-id={id} />
-                                        </label>
+                                        </Button>
                                     )}
                                 />
                                 <$If
@@ -136,26 +137,26 @@ export default (_props: PartialProps) => {
                                             <$If
                                                 test={$pointer("has_options")}
                                                 $then={() => (
-                                                    <a href={url} data-event-type="product-click" className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block]" data-product-id={id}>
+                                                    <Button href={url} data-event-type="product-click" tag="a" size="small" className="card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block] bg-(--sv-card-figcaption-button-background) text-(--sv-card-figcaption-button-color)" data-product-id={id}>
                                                         <$Lang keyName={$string("products.choose_options")} />
-                                                    </a>
+                                                    </Button>
                                                 )}
                                             />
                                             <$If
                                                 test={$pointer("pre_order")}
                                                 $then={() => (
-                                                    <a href={$pointer("pre_order_add_to_cart_url")} data-event-type="product-click" className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block]">
+                                                    <Button href={$pointer("pre_order_add_to_cart_url")} data-event-type="product-click" tag="a" size="small" className="card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block] bg-(--sv-card-figcaption-button-background) text-(--sv-card-figcaption-button-color)">
                                                         <$Lang keyName={$string("products.pre_order")} />
-                                                    </a>
+                                                    </Button>
                                                 )}
                                             />
                                             <$If
                                                 test={addToCartUrl}
                                                 $then={() => (
                                                     <>
-                                                        <a href={addToCartUrl} data-event-type="product-click" data-button-type="add-cart" className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block]">
+                                                        <Button href={addToCartUrl} data-event-type="product-click" data-button-type="add-cart" tag="a" size="small" className="card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block] bg-(--sv-card-figcaption-button-background) text-(--sv-card-figcaption-button-color)">
                                                             <$Lang keyName={$string("products.add_to_cart")} />
-                                                        </a>
+                                                        </Button>
                                                         <span className="product-status-message aria-description--hidden">
                                                             <$Lang keyName={$string("category.add_cart_announcement")} />
                                                         </span>
@@ -165,9 +166,9 @@ export default (_props: PartialProps) => {
                                             <$If
                                                 test={outOfStockMessage}
                                                 $then={() => (
-                                                    <a href={url} data-event-type="product-click" className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block]" data-product-id={id}>
+                                                    <Button href={url} data-event-type="product-click" tag="a" size="small" className="card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block] bg-(--sv-card-figcaption-button-background) text-(--sv-card-figcaption-button-color)" data-product-id={id}>
                                                         {outOfStockMessage}
-                                                    </a>
+                                                    </Button>
                                                 )}
                                             />
                                         </>
@@ -279,14 +280,14 @@ export default (_props: PartialProps) => {
                                         <$If
                                             test={settings.show_product_quick_view}
                                             $then={() => (
-                                                <button
+                                                <Button
                                                     type="button"
-                                                    className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block] quickview"
+                                                    size="small" className="card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block] quickview bg-(--sv-card-figcaption-button-background) text-(--sv-card-figcaption-button-color)"
                                                     data-event-type="product-click"
                                                     data-product-id={id}
                                                 >
                                                     <$Lang keyName={$string("products.quick_view")} />
-                                                </button>
+                                                </Button>
                                             )}
                                         />
                                     )}
@@ -294,9 +295,9 @@ export default (_props: PartialProps) => {
                                 <$If
                                     test={$pointer("show_compare")}
                                     $then={() => (
-                                        <label className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block]" htmlFor={`compare-${id}`}>
+                                        <Button tag="label" size="small" className="card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block] bg-(--sv-card-figcaption-button-background) text-(--sv-card-figcaption-button-color)" htmlFor={`compare-${id}`}>
                                             <$Lang keyName={$string("products.compare")} /> <input type="checkbox" name="products[]" value={id} id={`compare-${id}`} data-compare-id={id} />
-                                        </label>
+                                        </Button>
                                     )}
                                 />
                                 <$If
@@ -306,26 +307,26 @@ export default (_props: PartialProps) => {
                                             <$If
                                                 test={$pointer("has_options")}
                                                 $then={() => (
-                                                    <a href={url} data-event-type="product-click" className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block]" data-product-id={id}>
+                                                    <Button href={url} data-event-type="product-click" tag="a" size="small" className="card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block] bg-(--sv-card-figcaption-button-background) text-(--sv-card-figcaption-button-color)" data-product-id={id}>
                                                         <$Lang keyName={$string("products.choose_options")} />
-                                                    </a>
+                                                    </Button>
                                                 )}
                                             />
                                             <$If
                                                 test={$pointer("pre_order")}
                                                 $then={() => (
-                                                    <a href={$pointer("pre_order_add_to_cart_url")} data-event-type="product-click" className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block]">
+                                                    <Button href={$pointer("pre_order_add_to_cart_url")} data-event-type="product-click" tag="a" size="small" className="card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block] bg-(--sv-card-figcaption-button-background) text-(--sv-card-figcaption-button-color)">
                                                         <$Lang keyName={$string("products.pre_order")} />
-                                                    </a>
+                                                    </Button>
                                                 )}
                                             />
                                             <$If
                                                 test={addToCartUrl}
                                                 $then={() => (
                                                     <>
-                                                        <a href={addToCartUrl} data-event-type="product-click" data-button-type="add-cart" className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block]">
+                                                        <Button href={addToCartUrl} data-event-type="product-click" data-button-type="add-cart" tag="a" size="small" className="card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block] bg-(--sv-card-figcaption-button-background) text-(--sv-card-figcaption-button-color)">
                                                             <$Lang keyName={$string("products.add_to_cart")} />
-                                                        </a>
+                                                        </Button>
                                                         <span className="product-status-message aria-description--hidden">
                                                             <$Lang keyName={$string("category.add_cart_announcement")} />
                                                         </span>
@@ -335,9 +336,9 @@ export default (_props: PartialProps) => {
                                             <$If
                                                 test={outOfStockMessage}
                                                 $then={() => (
-                                                    <a href={url} data-event-type="product-click" className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block]" data-product-id={id}>
+                                                    <Button href={url} data-event-type="product-click" tag="a" size="small" className="card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block] bg-(--sv-card-figcaption-button-background) text-(--sv-card-figcaption-button-color)" data-product-id={id}>
                                                         {outOfStockMessage}
-                                                    </a>
+                                                    </Button>
                                                 )}
                                             />
                                         </>

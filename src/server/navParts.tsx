@@ -3,6 +3,7 @@
 // `has-subMenu`, `is-open`, `activePage` ...) stay on the elements as hooks: Foundation collapsibles and mobile-menu-toggle.js select them.
 // `activePage` is a render-time condition (`$If`), so each action exists as an active/inactive literal pair.
 import type {ReactNode} from "react";
+import {Icon} from "./formParts.tsx";
 
 type Attrs = Record<string, unknown>;
 
@@ -21,33 +22,33 @@ export const moreIcon = (kind: "top" | "child" | "max" | "maxRoot" | "maxNested"
     switch (kind) {
         case "top":
             return (
-                <i className="icon navPages-action-moreIcon mx-single my-0 size-[11px] [transform:rotate(-90deg)] group-is-open:[transform:rotate(0)] medium:mr-0 medium:ml-half medium:size-[8px] medium:[transform:none]" aria-hidden="true">
+                <Icon className="navPages-action-moreIcon mx-single my-0 size-[11px] [transform:rotate(-90deg)] group-is-open:[transform:rotate(0)] medium:mr-0 medium:ml-half medium:size-[8px] medium:[transform:none]" aria-hidden="true">
                     {svg}
-                </i>
+                </Icon>
             );
         case "child":
             return (
-                <i className="icon navPages-action-moreIcon mx-single my-0 size-[11px] [transform:rotate(-90deg)] group-is-open:[transform:rotate(0)] [[class~=collapsible-icon-wrapper][class~=is-open]_&]:[transform:rotate(0)] medium:mr-0 medium:ml-half medium:size-[8px] medium:[display:none] medium:[transform:none]" aria-hidden="true">
+                <Icon className="navPages-action-moreIcon mx-single my-0 size-[11px] [transform:rotate(-90deg)] group-is-open:[transform:rotate(0)] [[class~=collapsible-icon-wrapper][class~=is-open]_&]:[transform:rotate(0)] medium:mr-0 medium:ml-half medium:size-[8px] medium:[display:none] medium:[transform:none]" aria-hidden="true">
                     {svg}
-                </i>
+                </Icon>
             );
         case "max":
             return (
-                <i className="icon navPages-action-moreIcon ml-half size-[8px] [transform:rotate(-90deg)] group-is-open:float-left group-is-open:-mt-[10px] group-is-open:size-[35px] group-is-open:rounded-[4px] group-is-open:border group-is-open:border-(--sv-navPages-action-moreIcon-borderColor) group-is-open:p-[11.7px] group-is-open:[transform:rotate(90deg)] medium:[transform:none] medium:group-is-open:float-none medium:group-is-open:mt-0 medium:group-is-open:size-[8px] medium:group-is-open:rounded-none medium:group-is-open:border-0 medium:group-is-open:p-0 medium:group-is-open:[transform:rotate(-90deg)]" aria-hidden="true">
+                <Icon className="navPages-action-moreIcon ml-half size-[8px] [transform:rotate(-90deg)] group-is-open:float-left group-is-open:-mt-[10px] group-is-open:size-[35px] group-is-open:rounded-[4px] group-is-open:border group-is-open:border-(--sv-navPages-action-moreIcon-borderColor) group-is-open:p-[11.7px] group-is-open:[transform:rotate(90deg)] medium:[transform:none] medium:group-is-open:float-none medium:group-is-open:mt-0 medium:group-is-open:size-[8px] medium:group-is-open:rounded-none medium:group-is-open:border-0 medium:group-is-open:p-0 medium:group-is-open:[transform:rotate(-90deg)]" aria-hidden="true">
                     {maxSvg}
-                </i>
+                </Icon>
             );
         case "maxRoot":
             return (
-                <i className="icon navPages-action-moreIcon ml-half size-[8px] [transform:rotate(-90deg)] group-is-open:float-left group-is-open:-mt-[10px] group-is-open:size-[35px] group-is-open:rounded-[4px] group-is-open:border group-is-open:border-(--sv-navPages-action-moreIcon-borderColor) group-is-open:p-[11.7px] group-is-open:[transform:rotate(90deg)] medium:[transform:none] medium:group-is-open:float-none medium:group-is-open:mt-0 medium:group-is-open:size-[8px] medium:group-is-open:rounded-none medium:group-is-open:border-0 medium:group-is-open:p-0 medium:group-is-open:[transform:rotate(0)]" aria-hidden="true">
+                <Icon className="navPages-action-moreIcon ml-half size-[8px] [transform:rotate(-90deg)] group-is-open:float-left group-is-open:-mt-[10px] group-is-open:size-[35px] group-is-open:rounded-[4px] group-is-open:border group-is-open:border-(--sv-navPages-action-moreIcon-borderColor) group-is-open:p-[11.7px] group-is-open:[transform:rotate(90deg)] medium:[transform:none] medium:group-is-open:float-none medium:group-is-open:mt-0 medium:group-is-open:size-[8px] medium:group-is-open:rounded-none medium:group-is-open:border-0 medium:group-is-open:p-0 medium:group-is-open:[transform:rotate(0)]" aria-hidden="true">
                     {maxSvg}
-                </i>
+                </Icon>
             );
         default:
             return (
-                <i className="icon navPages-action-moreIcon ml-half size-[8px] [transform:rotate(-90deg)] group-is-open:float-left group-is-open:-mt-[10px] group-is-open:size-[35px] group-is-open:rounded-[4px] group-is-open:border group-is-open:border-(--sv-navPages-action-moreIcon-borderColor) group-is-open:p-[11.7px] group-is-open:[transform:rotate(90deg)] medium:[display:inline-block] medium:[transform:rotate(-90deg)] medium:group-is-open:float-none medium:group-is-open:mt-0 medium:group-is-open:size-[8px] medium:group-is-open:rounded-none medium:group-is-open:border-0 medium:group-is-open:p-0 medium:group-is-open:[transform:rotate(-90deg)]" aria-hidden="true">
+                <Icon className="navPages-action-moreIcon ml-half size-[8px] [transform:rotate(-90deg)] group-is-open:float-left group-is-open:-mt-[10px] group-is-open:size-[35px] group-is-open:rounded-[4px] group-is-open:border group-is-open:border-(--sv-navPages-action-moreIcon-borderColor) group-is-open:p-[11.7px] group-is-open:[transform:rotate(90deg)] medium:[display:inline-block] medium:[transform:rotate(-90deg)] medium:group-is-open:float-none medium:group-is-open:mt-0 medium:group-is-open:size-[8px] medium:group-is-open:rounded-none medium:group-is-open:border-0 medium:group-is-open:p-0 medium:group-is-open:[transform:rotate(-90deg)]" aria-hidden="true">
                     {maxSvg}
-                </i>
+                </Icon>
             );
     }
 };

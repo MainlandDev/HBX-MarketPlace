@@ -1,6 +1,7 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$add, $And, $boolean, $If, $ifExpression, $lang, $number, $pointer, $string, $unescaped} from "@mainlanddev/hbx-bigcommerce";
+import {Button} from "../../server/formParts.tsx";
 
 // "heroCarousel-content--empty" is a render-time condition: the content is built once and placed in an empty or a regular literal element.
 const content = (
@@ -16,7 +17,7 @@ const content = (
         <$If
             test={$pointer("button_text")}
             $then={() => (
-                <a
+                <Button
                     href={$pointer("url")}
                     aria-label={`${$If({
                         test: $pointer("this.alt_text.length"),
@@ -25,10 +26,10 @@ const content = (
                         $then: () => `${$pointer("alt_text")}`,
                         $else: () => `${$lang($string("carousel.slide_number"), {slide_number: $add($pointer<number>("@index"), $number(1))})}`,
                     })}, ${$pointer("button_text")}`}
-                    className="heroCarousel-action button button--primary button--large mt-single mr-0 mb-0 ml-0"
+                    tag="a" variant="primary" size="large" className="heroCarousel-action mt-single mr-0 mb-0 ml-0"
                 >
                     {$unescaped($pointer("button_text"))}
-                </a>
+                </Button>
             )}
         />
     </>

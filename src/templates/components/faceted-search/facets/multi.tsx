@@ -2,6 +2,7 @@
 import FacetedSearchFacetedSearchNavigation from "../faceted-search-navigation.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$dashcase, $Each, $If, $Lang, $pointer, $sanitize, $string, $unescaped, $Unless} from "@mainlanddev/hbx-bigcommerce";
+import {Icon} from "../../../../server/formParts.tsx";
 
 interface FacetOption {
     id: string;
@@ -44,9 +45,9 @@ export default (_props: PartialProps) => (
                                             $then={() => <span>({item.count})</span>}
                                         />{" "}
                                         <span className="navList-action-close float-right inline-block rounded-[100%] bg-(--sv-navList-action-close-background) p-(--sv-navList-action-close-padding) leading-[0] opacity-0 [visibility:hidden] [transition:var(--sv-navList-action-close-transition)] [&_.icon]:size-(--sv-navList-action-close-iconSize) [&_.icon]:fill-(--sv-setting-color-textLink) [[class~=navList-action][class~=is-selected]:hover_&]:opacity-100 [[class~=navList-action][class~=is-selected]:hover_&]:[visibility:visible]" aria-hidden="true">
-                                            <svg className="icon">
+                                            <Icon tag="svg">
                                                 <use href="#icon-close" />
-                                            </svg>
+                                            </Icon>
                                         </span>
                                     </a>
                                 </li>

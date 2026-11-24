@@ -2,6 +2,7 @@
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import AlertAlertInfo from "../common/alert/alert-info.tsx";
 import {$cdn, $concat, $Each, $If, $InArray, $lang, $Lang, $pointer, $string, $Unless, $raw} from "@mainlanddev/hbx-bigcommerce";
+import {Button} from "../../../server/formParts.tsx";
 
 interface Instrument {
     type: string;
@@ -274,17 +275,17 @@ export default (_props: PartialProps) => (
                                                         <$If
                                                             test={inst.edit_url}
                                                             $then={() => (
-                                                                <a className="button button--primary button--small methodActions-button" href={inst.edit_url}>
+                                                                <Button tag="a" variant="primary" size="small" className="methodActions-button" href={inst.edit_url}>
                                                                     <$Lang keyName={$string("common.edit")} />
-                                                                </a>
+                                                                </Button>
                                                             )}
                                                         />{" "}
                                                         <$If
                                                             test={inst.delete_url}
                                                             $then={() => (
-                                                                <button type="submit" className="button button--small methodActions-button">
+                                                                <Button type="submit" size="small" className="methodActions-button">
                                                                     <$Lang keyName={$string("common.delete")} />
-                                                                </button>
+                                                                </Button>
                                                             )}
                                                         />
                                                     </form>

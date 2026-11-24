@@ -2,6 +2,7 @@
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$Each, $If, $Lang, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
 import {$ifAttribute} from "@/components/hbx/ifAttribute.ts";
+import {FormCheck, FormField, FormLabel} from "../../../../server/formParts.tsx";
 
 interface Radio {
     id: string;
@@ -14,11 +15,11 @@ export default (_props: PartialProps) => {
     // Read outside the loop, so inside it the path gains `../` (`{{../name}}`).
     const name = $pointer("name");
     return (
-        <div className="form-field" id={$pointer("id")} data-validation={$pointer("validation")}>
-            <label className="form-label [&_small]:float-right [&_small]:mt-quarter">
+        <FormField id={$pointer("id")} data-validation={$pointer("validation")}>
+            <FormLabel className="[&_small]:float-right [&_small]:mt-quarter">
                 {$pointer("label")}
                 <$If test={$pointer("required")} $then={() => <small><$Lang keyName={$string("common.required")} /></small>} />
-            </label>
+            </FormLabel>
             <$If
                 test={$pointer("radios")}
                 $then={() => (
@@ -26,9 +27,9 @@ export default (_props: PartialProps) => {
                         list={$pointer<Radio[]>("radios")}
                         $then={(item, loop) => (
                             <>
-                                <input
+                                <FormCheck
                                     type="radio"
-                                    className="form-radio [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
+                                    kind="radio" className="[&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
                                     id={`${name}_${loop["@index"]}`}
                                     data-label={item.label}
                                     data-input={""}
@@ -39,14 +40,14 @@ export default (_props: PartialProps) => {
                                         attributes: `name="${name}" value="${item.value}" ${$If({test: $pointer("checked"), $then: () => "checked"})} ${$ifAttribute("data-field-type", "private_id")}`,
                                     }}
                                 />
-                                <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor={`${name}_${loop["@index"]}`}>
+                                <FormLabel check="radio" className="[&_small]:float-right [&_small]:mt-quarter" htmlFor={`${name}_${loop["@index"]}`}>
                                     {item.label}
-                                </label>
+                                </FormLabel>
                             </>
                         )}
                     />
                 )}
             />
-        </div>
+        </FormField>
     );
 };

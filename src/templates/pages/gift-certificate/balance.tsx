@@ -2,6 +2,7 @@ import GiftCertificateNavigation from "../../components/gift-certificate/navigat
 import Breadcrumbs from "../../components/common/breadcrumbs.tsx";
 import AlertAlertError from "../../components/common/alert/alert-error.tsx";
 import {$If, $Lang, $lang, $Page, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
+import {Button, FormField, FormInput, FormLabel} from "../../../server/formParts.tsx";
 
 export default () => (
     <$Page
@@ -40,21 +41,21 @@ export default () => (
                             )}
                         />
 
-                        <form className="form form--oneField" id="gift-certificate-balance" method="get">
+                        <form className="form form--oneField [:where(&)]:[margin:var(--sv-form-margin)]" id="gift-certificate-balance" method="get">
                             <input type="hidden" name="action" value="balance" />
-                            <div className="form-field">
-                                <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="giftcertificatecode">
+                            <FormField>
+                                <FormLabel className="[&_small]:float-right [&_small]:mt-quarter" htmlFor="giftcertificatecode">
                                     <$Lang keyName={$string("forms.gift_certificate.balance.code")} />
-                                </label>
-                                <div className="form-prefixPostfix wrap flex-wrap [&_.form-input]:block [&_.form-input]:w-full large:[&_.form-input]:w-auto [&_.form-input::placeholder]:text-(--sv-formInput-placeholder-color) [&_.button]:w-full [&_.button]:[display:block] large:[&_.button]:w-auto [&_.form-inlineMessage]:mb-quarter large:[&_.form-inlineMessage]:mb-0">
-                                    <input className="form-input" id="giftcertificatecode" name="giftcertificatecode" />{" "}
-                                    <input
+                                </FormLabel>
+                                <div className="form-prefixPostfix wrap flex-wrap [&_.form-input]:block [&_.form-input]:w-full large:[&_.form-input]:w-auto [&_.form-input::placeholder]:text-(--sv-formInput-placeholder-color) [&_.button]:w-full [&_.button]:[display:block] large:[&_.button]:w-auto [&_.form-inlineMessage]:mb-quarter large:[&_.form-inlineMessage]:mb-0 [:where(&)]:flex [:where(&)]:flex-row [:where(&)]:flex-nowrap [:where(&_.form-input)]:flex-1 [:where(&_.button)]:h-[3rem]">
+                                    <FormInput id="giftcertificatecode" name="giftcertificatecode" />{" "}
+                                    <Button
                                         type="submit"
-                                        className="button button--primary form-prefixPostfix-button--postfix order-1 mx-0 mt-half mb-0 large:order-0 large:m-0 large:ml-half"
+                                        tag="input" variant="primary" className="form-prefixPostfix-button--postfix order-1 mx-0 mt-half mb-0 large:order-0 large:m-0 large:ml-half"
                                         value={$lang($string("forms.gift_certificate.balance.submit_value"))}
                                     />
                                 </div>
-                            </div>
+                            </FormField>
                         </form>
                     </main>
                 </>

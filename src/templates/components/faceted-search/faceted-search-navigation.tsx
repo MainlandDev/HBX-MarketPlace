@@ -1,6 +1,7 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$dashcase, $If, $Lang, $lang, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
+import {Icon} from "../../../server/formParts.tsx";
 
 export default (_props: PartialProps) => (
     <h2 className="accordion-heading accordion-nav-clear-holder relative m-0 text-(length:--sv-fontSize-base) leading-(--sv-lineHeight-smaller)">
@@ -16,12 +17,12 @@ export default (_props: PartialProps) => (
                     <span className="accordion-title m-0 p-(--sv-accordion-navList-padding) text-[15px] font-normal text-(--sv-setting-color-textHeading) [font-family:'Montserrat',Arial,Helvetica,sans-serif] [text-decoration:none] [text-transform:inherit] medium:p-0">{$pointer("title")}</span>{" "}
 
                     <span>
-                        <svg className="icon accordion-indicator fill-(--sv-color-greyLight) toggleLink-text toggleLink-text--off text-smallest font-normal [display:inline-block] [[class~=toggleLink][class~=is-open]_&]:[display:none]">
+                        <Icon tag="svg" className="accordion-indicator fill-(--sv-color-greyLight) toggleLink-text toggleLink-text--off text-smallest font-normal [display:inline-block] [[class~=toggleLink][class~=is-open]_&]:[display:none]">
                             <use href="#icon-add" />
-                        </svg>{" "}
-                        <svg className="icon accordion-indicator fill-(--sv-color-greyLight) toggleLink-text toggleLink-text--on text-smallest font-normal [display:none] [[class~=toggleLink][class~=is-open]_&]:[display:inline-block]">
+                        </Icon>{" "}
+                        <Icon tag="svg" className="accordion-indicator fill-(--sv-color-greyLight) toggleLink-text toggleLink-text--on text-smallest font-normal [display:none] [[class~=toggleLink][class~=is-open]_&]:[display:inline-block]">
                             <use href="#icon-remove" />
-                        </svg>
+                        </Icon>
                     </span>
                 </button>
             )}
@@ -35,12 +36,12 @@ export default (_props: PartialProps) => (
                     <span className="accordion-title m-0 p-(--sv-accordion-navList-padding) text-[15px] font-normal text-(--sv-setting-color-textHeading) [font-family:'Montserrat',Arial,Helvetica,sans-serif] [text-decoration:none] [text-transform:inherit] medium:p-0">{$pointer("title")}</span>{" "}
 
                     <span>
-                        <svg className="icon accordion-indicator fill-(--sv-color-greyLight) toggleLink-text toggleLink-text--off text-smallest font-normal [display:inline-block] [[class~=toggleLink][class~=is-open]_&]:[display:none]">
+                        <Icon tag="svg" className="accordion-indicator fill-(--sv-color-greyLight) toggleLink-text toggleLink-text--off text-smallest font-normal [display:inline-block] [[class~=toggleLink][class~=is-open]_&]:[display:none]">
                             <use href="#icon-add" />
-                        </svg>{" "}
-                        <svg className="icon accordion-indicator fill-(--sv-color-greyLight) toggleLink-text toggleLink-text--on text-smallest font-normal [display:none] [[class~=toggleLink][class~=is-open]_&]:[display:inline-block]">
+                        </Icon>{" "}
+                        <Icon tag="svg" className="accordion-indicator fill-(--sv-color-greyLight) toggleLink-text toggleLink-text--on text-smallest font-normal [display:none] [[class~=toggleLink][class~=is-open]_&]:[display:inline-block]">
                             <use href="#icon-remove" />
-                        </svg>
+                        </Icon>
                     </span>
                 </button>
             )}

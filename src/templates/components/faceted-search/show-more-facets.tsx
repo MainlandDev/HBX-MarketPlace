@@ -1,6 +1,7 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$Each, $If, $lang, $pointer, $string, $unescaped} from "@mainlanddev/hbx-bigcommerce";
+import {FormField, FormInput} from "../../../server/formParts.tsx";
 
 interface FacetOption {
     id: string;
@@ -23,9 +24,9 @@ export default (_props: PartialProps) => (
                 $else={() => <>{$pointer("all_facets")}</>}
             />
         </h1>
-        <div className="form-field" id="facetedSearch-filterItems">
-            <input className="form-input" type="search" placeholder={$lang($string("forms.search.search"))} />
-        </div>
+        <FormField id="facetedSearch-filterItems">
+            <FormInput type="search" placeholder={$lang($string("forms.search.search"))} />
+        </FormField>
         <ul className="navList ml-0 facetedSearch-optionColumns [column-count:3] [column-gap:20px]">
             <$Each
                 list={$pointer<Facet[]>("facets")}

@@ -1,6 +1,7 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$capitalize, $Each, $If, $pointer, $string, $unescaped} from "@mainlanddev/hbx-bigcommerce";
+import {Icon} from "../../../server/formParts.tsx";
 
 interface SocialMedia {
     display_name: string;
@@ -21,18 +22,18 @@ export default (_props: PartialProps) => (
                             rvalue={$string("twitter")}
                             $then={() => (
                                 <li className="socialLinks-item">
-                                    <a className="icon icon--x" href={social.url} target="_blank" rel="noopener" title="X">
+                                    <Icon tag="a" className="icon--x" href={social.url} target="_blank" rel="noopener" title="X">
                                         <span className="aria-description--hidden">X</span>
                                         <svg>
                                             <use href="#icon-x" />
                                         </svg>
-                                    </a>
+                                    </Icon>
                                 </li>
                             )}
                             $else={() => (
                                 <li className="socialLinks-item">
-                                    <a
-                                        className={`icon icon--${social.display_name}`}
+                                    <Icon tag="a"
+                                        className={`icon--${social.display_name}`}
                                         href={social.url}
                                         target="_blank"
                                         rel="noopener"
@@ -42,7 +43,7 @@ export default (_props: PartialProps) => (
                                         <svg>
                                             <use href={`#icon-${social.display_name}`} />
                                         </svg>
-                                    </a>
+                                    </Icon>
                                 </li>
                             )}
                         />

@@ -1,6 +1,7 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$lang, $Lang, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
+import {Button, FormInput, FormLabel} from "../../../server/formParts.tsx";
 
 export default (_props: PartialProps) => (
     <>
@@ -31,12 +32,12 @@ export default (_props: PartialProps) => (
             aria-hidden="true"
             style={{display: "none"}}
         >
-            <form className="form form--hiddenLabels [&_.form-label]:absolute [&_.form-label]:size-px [&_.form-label]:overflow-hidden [&_.form-label]:border-0 [&_.form-label]:p-0 [&_.form-label]:[clip:rect(1px,1px,1px,1px)] coupon-form flow-root text-[0px] mb-base" method="post" action={$pointer("urls.cart")}>
-                <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="couponcode">
+            <form className="form form--hiddenLabels [&_.form-label]:absolute [&_.form-label]:size-px [&_.form-label]:overflow-hidden [&_.form-label]:border-0 [&_.form-label]:p-0 [&_.form-label]:[clip:rect(1px,1px,1px,1px)] coupon-form flow-root text-[0px] mb-base [:where(&)]:[margin:var(--sv-form-margin)]" method="post" action={$pointer("urls.cart")}>
+                <FormLabel className="[&_small]:float-right [&_small]:mt-quarter" htmlFor="couponcode">
                     <$Lang keyName={$string("cart.coupons.coupon_code")} />
-                </label>
-                <input
-                    className="form-input float-left inline-block h-[32px] w-[78%] p-third align-top"
+                </FormLabel>
+                <FormInput
+                    className="float-left inline-block h-[32px] w-[78%] p-third align-top"
                     data-error={$lang($string("cart.coupons.empty_error"))}
                     id="couponcode"
                     type="text"
@@ -44,8 +45,8 @@ export default (_props: PartialProps) => (
                     value=""
                     placeholder={$lang($string("cart.coupons.coupon_code"))}
                 />
-                <input
-                    className="button button--primary button--small float-left m-0 ml-[2%] w-[20%] px-half"
+                <Button
+                    tag="input" variant="primary" size="small" className="float-left m-0 ml-[2%] w-[20%] px-half"
                     type="submit"
                     aria-label={$lang($string("cart.coupons.apply_coupon"))}
                     value={$lang($string("cart.coupons.button"))}

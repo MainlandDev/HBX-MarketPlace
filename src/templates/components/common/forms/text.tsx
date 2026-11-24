@@ -2,22 +2,21 @@
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$If, $Lang, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
 import {$ifAttribute} from "@/components/hbx/ifAttribute.ts";
+import {FormField, FormInput, FormLabel} from "../../../../server/formParts.tsx";
 
 export default (_props: PartialProps) => (
-    <div
-        className="form-field"
+    <FormField
         id={$pointer("id")}
         data-validation={$pointer("validation")}
         dangerouslyInlineAttributes={{attributes: `${$ifAttribute("data-type", "private_id")}`}}
     >
-        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor={`${$pointer("id")}_input`}>
+        <FormLabel className="[&_small]:float-right [&_small]:mt-quarter" htmlFor={`${$pointer("id")}_input`}>
             {$pointer("label")}
             <$If test={$pointer("required")} $then={() => <small><$Lang keyName={$string("common.required")} /></small>} />
-        </label>
-        <input
+        </FormLabel>
+        <FormInput
             type="text"
             id={`${$pointer("id")}_input`}
-            className="form-input"
             data-label={$pointer("label")}
             data-input={""}
             aria-required={$pointer("required")}
@@ -27,5 +26,5 @@ export default (_props: PartialProps) => (
                 attributes: `name="${$pointer("name")}" ${$ifAttribute("value", "value", " ")}${$ifAttribute("maxlength", "maxlength")}${$ifAttribute("placeholder", "placeholder", " ")}${$ifAttribute("data-field-type", "private_id")}`,
             }}
         />
-    </div>
+    </FormField>
 );

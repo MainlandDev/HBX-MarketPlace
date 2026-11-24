@@ -4,6 +4,7 @@ import AlertAlertError from "../../components/common/alert/alert-error.tsx";
 import FormsText from "../../components/common/forms/text.tsx";
 import FormsSelect from "../../components/common/forms/select.tsx";
 import {$boolean, $cdn, $concat, $Each, $If, $Inject, $lang, $Lang, $Page, $pointer, $string, $this, $unescaped} from "@mainlanddev/hbx-bigcommerce";
+import {Button, FormCheck, FormField, FormLabel, Icon} from "../../../server/formParts.tsx";
 
 export default () => (
     <$Page
@@ -69,7 +70,7 @@ export default () => (
                                 </>
                             )}
                             $else={() => (
-                                <form data-payment-method-form={""} className="form">
+                                <form data-payment-method-form={""} className="form [:where(&)]:[margin:var(--sv-form-margin)]">
                                     <input type="hidden" name="email" value={$pointer("customer.email")} />
                                     <input type="hidden" name="provider_id" value={$pointer("forms.provider")} />
                                     <input type="hidden" name="currency_code" value={$pointer("currency_selector.active_currency_code")} />
@@ -94,13 +95,13 @@ export default () => (
                                                 />
                                             </span>
                                         </p>
-                                        <fieldset className="form-fieldset">
+                                        <fieldset className="form-fieldset [:where(&)]:[border-width:var(--sv-fieldset-border-width)] [:where(&)]:[margin:var(--sv-fieldset-margin)]">
                                             <div className="paymentMethodForm-column small:flex small:[&:first-child_.form-field]:mb-half">
                                                 <div className="paymentMethodForm-inputs relative small:first:w-[70%] small:last:w-[30%] small:last:pl-single">
                                                     <FormsText id={$string("credit_card_number")} name={$string("credit_card_number")} label={$lang($string("account.payment_methods.credit_card_number"))} />
-                                                    <svg className="paymentMethodForm-inputs-icon icon absolute top-[39px] right-[9px] size-[21px] fill-grey-light">
+                                                    <Icon tag="svg" className="paymentMethodForm-inputs-icon absolute top-[39px] right-[9px] size-[21px] fill-grey-light">
                                                         <use href="#icon-lock" />
-                                                    </svg>
+                                                    </Icon>
                                                 </div>
                                                 <div className="paymentMethodForm-inputs relative small:first:w-[70%] small:last:w-[30%] small:last:pl-single">
                                                     <FormsText id={$string("expiration")} name={$string("expiration")} label={$lang($string("account.payment_methods.expiration"))} placeholder={$string("MM/YY")} />
@@ -112,23 +113,23 @@ export default () => (
                                                 </div>
                                                 <div className="paymentMethodForm-inputs relative small:first:w-[70%] small:last:w-[30%] small:last:pl-single">
                                                     <FormsText id={$string("cvv")} name={$string("cvv")} label={$lang($string("account.payment_methods.cvv"))} />
-                                                    <svg className="paymentMethodForm-inputs-icon icon absolute top-[39px] right-[9px] size-[21px] fill-grey-light">
+                                                    <Icon tag="svg" className="paymentMethodForm-inputs-icon absolute top-[39px] right-[9px] size-[21px] fill-grey-light">
                                                         <use href="#icon-lock" />
-                                                    </svg>
+                                                    </Icon>
                                                 </div>
                                             </div>
-                                            <div className="form-field">
-                                                <input
+                                            <FormField>
+                                                <FormCheck
                                                     type="checkbox"
                                                     name="default_instrument"
                                                     id="default_instrument"
                                                     data-label={$lang($string("forms.payment_methods.default_instrument"))}
-                                                    className="form-checkbox [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
+                                                    kind="checkbox" className="[&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
                                                 />
-                                                <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="default_instrument">
+                                                <FormLabel check="checkbox" className="[&_small]:float-right [&_small]:mt-quarter" htmlFor="default_instrument">
                                                     <$Lang keyName={$string("forms.payment_methods.default_instrument")} />
-                                                </label>
-                                            </div>
+                                                </FormLabel>
+                                            </FormField>
                                         </fieldset>
                                     </div>
 
@@ -136,8 +137,8 @@ export default () => (
                                         <$Lang keyName={$string("account.payment_methods.billing_address")} />
                                     </h3>
 
-                                    <fieldset className="form-fieldset">
-                                        <div className="form-row form-row--half small:[&>.form-field:nth-child(odd)]:clear-left">
+                                    <fieldset className="form-fieldset [:where(&)]:[border-width:var(--sv-fieldset-border-width)] [:where(&)]:[margin:var(--sv-fieldset-margin)]">
+                                        <div className="form-row form-row--half small:[&>.form-field:nth-child(odd)]:clear-left [:where(&)]:-mx-[0.75rem] [:where(&)]:max-w-none [:where(&)]:w-auto [:where(&)]:[display:flow-root] [:where(&_.form-field)]:float-left [:where(&_.form-field)]:w-full [:where(&_.form-field)]:max-w-none [:where(&_.form-field)]:px-[0.75rem] small:[:where(&_.form-field)]:w-1/2">
                                             <FormsText private_id={$string("FirstName")} required={$boolean(true)} id={$string("first_name")} name={$string("first_name")} label={$lang($string("forms.payment_methods.first_name"))} />
                                             <FormsText private_id={$string("LastName")} required={$boolean(true)} id={$string("last_name")} name={$string("last_name")} label={$lang($string("forms.payment_methods.last_name"))} />
                                             <FormsText private_id={$string("CompanyName")} required={$boolean(false)} id={$string("company")} name={$string("company")} label={$lang($string("forms.payment_methods.company"))} />
@@ -150,11 +151,11 @@ export default () => (
                                             <FormsText private_id={$string("Zip")} required={$boolean(true)} id={$string("postal_code")} name={$string("postal_code")} label={$lang($string("forms.payment_methods.postal_code"))} />
                                         </div>
                                     </fieldset>
-                                    <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
-                                        <input type="submit" className="button button--primary" value={$lang($string("forms.payment_methods.submit_value"))} />
-                                        <a href={$pointer("urls.account.payment_methods.all")} className="button">
+                                    <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half [:where(&)]:[background:none] [:where(&)]:[border:0] [:where(&)]:text-center xsmall:[:where(&)]:text-left [:where(&>*)]:[display:inline-block] [:where(&>*)]:mb-[1rem] [:where(&>*)]:w-full xsmall:[:where(&>*)]:align-baseline xsmall:[:where(&>*)]:w-auto">
+                                        <Button type="submit" tag="input" variant="primary" value={$lang($string("forms.payment_methods.submit_value"))} />
+                                        <Button href={$pointer("urls.account.payment_methods.all")} tag="a">
                                             <$Lang keyName={$string("common.cancel")} />
-                                        </a>
+                                        </Button>
                                         <$Inject keyName={$string("required")} value={$lang($string("common.required"))} />{" "}
                                         <$Inject keyName={$string("state_error")} value={$lang($string("errors.state_error"))} />{" "}
                                         <$Inject keyName={$string("generic_error")} value={$lang($string("common.generic_error"))} />

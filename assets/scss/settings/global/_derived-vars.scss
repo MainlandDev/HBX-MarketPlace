@@ -14,4 +14,6 @@
     --sv-derived-swatch-width: #{get-width(stencilString("swatch_option_size"))};
     --sv-derived-swatch-height: #{get-height(stencilString("swatch_option_size"))};
     --sv-derived-loadingOverlay-bg: #{rgba(stencilColor("loadingOverlay-backgroundColor"), 0.9)};
+    // The checkbox mark: a data: URI cannot take var(), so the colour is baked in (it was baked into the compat rule before).
+    --sv-derived-checkmark: #{"url(\"data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z' fill='rgba(51, 51, 51, 0.999)' /%3E%3C/svg%3E\")"};
 }

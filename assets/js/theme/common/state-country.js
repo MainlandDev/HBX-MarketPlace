@@ -2,6 +2,7 @@ import utils from '@bigcommerce/stencil-utils';
 import _ from 'lodash';
 import { insertStateHiddenField } from './utils/form-utils';
 import { showAlertModal } from '../global/modal';
+import { FORM_INPUT_CLASS, FORM_SELECT_CLASS } from './form-classes';
 
 /**
  * Extracts attributes from a jQuery element into a plain object
@@ -27,7 +28,7 @@ function makeStateSelectRequired(stateElement, context) {
 
     const replacementAttributes = {
         ...attrs,
-        class: 'form-select',
+        class: FORM_SELECT_CLASS,
         'aria-required': 'true',
     };
 
@@ -60,7 +61,7 @@ function makeStateSelectOptional(stateElement) {
 
     const replacementAttributes = {
         ...attrs,
-        class: 'form-select',
+        class: FORM_SELECT_CLASS,
         'aria-required': 'false',
     };
 
@@ -90,7 +91,7 @@ function makeStateTextOptional(stateElement) {
     const replacementAttributes = {
         ...attrs,
         type: 'text',
-        class: 'form-input',
+        class: FORM_INPUT_CLASS,
     };
 
     stateElement.replaceWith($('<input />', replacementAttributes));

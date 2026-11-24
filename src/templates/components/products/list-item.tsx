@@ -22,6 +22,7 @@ import {
     $Unless,
     $unlessExpression,
 } from "@mainlanddev/hbx-bigcommerce";
+import {Button} from "../../../server/formParts.tsx";
 
 /** `{{{region name="…"}}}` */
 const region = (name: string) => $unescaped($region({name: $string(name)}));
@@ -97,9 +98,9 @@ export default (_props: PartialProps) => {
                             test={settings.show_product_quick_view}
                             $then={() => (
                                 <div className="listItem-figureBody text-center opacity-100 large:absolute large:top-1/2 large:left-1/2 large:opacity-0 large:[transform:translateX(-50%)_translateY(-50%)] large:[[class~=listItem]:hover_&]:opacity-100">
-                                    <button type="button" data-event-type="product-click" className="button button--small listItem-button quickview my-single mx-0 bg-(--sv-card-figcaption-button-background) text-(--sv-card-figcaption-button-color) hover:bg-(--sv-card-figcaption-button-backgroundHover) hover:text-(--sv-card-figcaption-button-color) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:text-(--sv-card-figcaption-button-color) large:pointer-events-auto large:m-0 large:[display:inline-block]" data-product-id={id}>
+                                    <Button type="button" data-event-type="product-click" size="small" className="listItem-button quickview my-single mx-0 bg-(--sv-card-figcaption-button-background) text-(--sv-card-figcaption-button-color) hover:bg-(--sv-card-figcaption-button-backgroundHover) hover:text-(--sv-card-figcaption-button-color) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:text-(--sv-card-figcaption-button-color) large:pointer-events-auto large:m-0 large:[display:inline-block]" data-product-id={id}>
                                         <$Lang keyName={$string("products.quick_view")} />
-                                    </button>
+                                    </Button>
                                 </div>
                             )}
                         />
@@ -153,33 +154,33 @@ export default (_props: PartialProps) => {
                                     <$If
                                         test={$pointer("has_options")}
                                         $then={() => (
-                                            <a href={url} data-event-type="product-click" className="button button--small" data-product-id={id}>
+                                            <Button href={url} data-event-type="product-click" tag="a" size="small" data-product-id={id}>
                                                 <$Lang keyName={$string("products.choose_options")} />
-                                            </a>
+                                            </Button>
                                         )}
                                     />
                                     <$If
                                         test={$pointer("pre_order")}
                                         $then={() => (
-                                            <a href={$pointer("pre_order_add_to_cart_url")} data-event-type="product-click" className="button button--primary">
+                                            <Button href={$pointer("pre_order_add_to_cart_url")} data-event-type="product-click" tag="a" variant="primary">
                                                 <$Lang keyName={$string("products.pre_order")} />
-                                            </a>
+                                            </Button>
                                         )}
                                     />
                                     <$If
                                         test={addToCartUrl}
                                         $then={() => (
-                                            <a href={addToCartUrl} data-event-type="product-click" className="button button--primary">
+                                            <Button href={addToCartUrl} data-event-type="product-click" tag="a" variant="primary">
                                                 <$Lang keyName={$string("products.add_to_cart")} />
-                                            </a>
+                                            </Button>
                                         )}
                                     />
                                     <$If
                                         test={outOfStockMessage}
                                         $then={() => (
-                                            <a href={url} data-event-type="product-click" className="button button--small" data-product-id={id}>
+                                            <Button href={url} data-event-type="product-click" tag="a" size="small" data-product-id={id}>
                                                 {outOfStockMessage}
-                                            </a>
+                                            </Button>
                                         )}
                                     />
                                 </>
@@ -188,9 +189,9 @@ export default (_props: PartialProps) => {
                         <$If
                             test={$pointer("show_compare")}
                             $then={() => (
-                                <label className="button button--small" htmlFor={`compare-${id}`}>
+                                <Button tag="label" size="small" htmlFor={`compare-${id}`}>
                                     <$Lang keyName={$string("products.compare")} /> <input type="checkbox" name="products[]" value={id} id={`compare-${id}`} data-compare-id={id} />
-                                </label>
+                                </Button>
                             )}
                         />
                     </div>

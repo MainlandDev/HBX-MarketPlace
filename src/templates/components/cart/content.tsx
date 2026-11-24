@@ -19,6 +19,7 @@ import {
     $string,
     $Unless, $unlessExpression, $ifExpression,
 } from "@mainlanddev/hbx-bigcommerce";
+import {Button, FormInput, FormLabel, Icon} from "../../../server/formParts.tsx";
 
 interface StockPosition {
     quantity_on_hand: number;
@@ -195,27 +196,27 @@ export default (_props: PartialProps) => (
                         </td>
 
                         <td className="cart-item-block cart-item-info cart-item-quantity clear-both w-full small:float-left small:clear-none small:w-4/12 small:overflow-hidden small:[.cart-item-info+&]:mt-0 [display:block] medium:float-none medium:p-single medium:align-top medium:[display:table-cell] medium:w-4/12 medium:text-left">
-                            <label className="form-label cart-item-label float-left mb-quarter w-4/12 text-right text-text-base small:block small:w-full small:pl-single small:text-left medium:hidden" htmlFor={`qty-${item.id}`}>
+                            <FormLabel className="cart-item-label float-left mb-quarter w-4/12 text-right text-text-base small:block small:w-full small:pl-single small:text-left medium:hidden" htmlFor={`qty-${item.id}`}>
                                 <$Lang keyName={$string("products.quantity")} />
-                            </label>
+                            </FormLabel>
                             <div className="form-increment [&_.button]:m-0 [&_.button]:px-quarter [&_.button]:py-[0.21429rem] mr-eighth mb-[1px] ml-single inline-block align-middle medium:ml-0">
                                 <$If
                                     test={item.can_modify}
                                     $then={() => (
-                                        <button className="button button--icon" data-cart-update={""} data-cart-itemid={item.id} data-action="dec">
+                                        <Button size="icon" data-cart-update={""} data-cart-itemid={item.id} data-action="dec">
                                             <span className="absolute h-px w-px overflow-hidden [border:0] p-0 [clip:rect(1px,1px,1px,1px)]">
                                                 <$Lang keyName={$string("products.quantity_decrease")} name={item.name} />
                                             </span>
-                                            <i className="icon" aria-hidden="true">
+                                            <Icon aria-hidden="true">
                                                 <svg>
                                                     <use href="#icon-keyboard-arrow-down" />
                                                 </svg>
-                                            </i>
-                                        </button>
+                                            </Icon>
+                                        </Button>
                                     )}
                                 />
-                                <input
-                                    className="form-input form-input--incrementTotal cart-item-qty-input inline-block h-auto w-[2.5rem] border-0 p-0 text-center align-middle text-smaller font-bold [[class~=form-field--success]_&]:float-none"
+                                <FormInput
+                                    className="form-input--incrementTotal cart-item-qty-input inline-block h-auto w-[2.5rem] border-0 p-0 text-center align-middle text-smaller font-bold [[class~=form-field--success]_&]:float-none"
                                     id={`qty-${item.id}`}
                                     type="tel"
                                     data-quantity-min={item.min_purchase_quantity}
@@ -233,16 +234,16 @@ export default (_props: PartialProps) => (
                                 <$If
                                     test={item.can_modify}
                                     $then={() => (
-                                        <button className="button button--icon" data-cart-update={""} data-cart-itemid={item.id} data-action="inc">
+                                        <Button size="icon" data-cart-update={""} data-cart-itemid={item.id} data-action="inc">
                                             <span className="absolute h-px w-px overflow-hidden [border:0] p-0 [clip:rect(1px,1px,1px,1px)]">
                                                 <$Lang keyName={$string("products.quantity_increase")} name={item.name} />
                                             </span>
-                                            <i className="icon" aria-hidden="true">
+                                            <Icon aria-hidden="true">
                                                 <svg>
                                                     <use href="#icon-keyboard-arrow-up" />
                                                 </svg>
-                                            </i>
-                                        </button>
+                                            </Icon>
+                                        </Button>
                                     )}
                                 />
                             </div>
@@ -356,8 +357,8 @@ export default (_props: PartialProps) => (
                             </span>
                             <$Or values={[$pointer("../customer"), $unlessExpression($pointer("../settings.hide_price_from_guests")), $ifExpression($pointer("type"), $string("=="), $string("GiftCertificate"))]} $then={() => (<><$If test={item.total_discounted} $then={() => <strong className="cart-item-value pl-single medium:pl-0 price--discounted line-through text-grey-light">{item.total.formatted}</strong>} $else={() => <strong className="cart-item-value pl-single medium:pl-0">{item.total.formatted}</strong>} />
                             <$If test={item.total_discounted} $then={() => <strong className="cart-item-value pl-single medium:pl-0">{item.total_discounted.formatted}</strong>} /></>)} $else={() => (<>--</>)} />
-                            <$Or values={[$pointer("can_modify"), $ifExpression($pointer("type"), $string("=="), $string("GiftCertificate"))]} $then={() => (<><button
-                                className="cart-remove float-right mt-[2px] size-[18px] cursor-pointer rounded-[50%] bg-fill-dark p-eighth transition-[background-color] duration-150 ease-[ease] small:ml-base [&>svg]:fill-icon icon"
+                            <$Or values={[$pointer("can_modify"), $ifExpression($pointer("type"), $string("=="), $string("GiftCertificate"))]} $then={() => (<><Icon
+                                tag="button" className="cart-remove float-right mt-[2px] size-[18px] cursor-pointer rounded-[50%] bg-fill-dark p-eighth transition-[background-color] duration-150 ease-[ease] small:ml-base [&>svg]:fill-icon"
                                 data-cart-itemid={item.id}
                                 data-confirm-delete={$lang($string("cart.confirm_delete"))}
                                 aria-label={$lang($string("cart.remove_item"), {name: item.name})}
@@ -365,7 +366,7 @@ export default (_props: PartialProps) => (
                                 <svg aria-hidden="true">
                                     <use href="#icon-close"></use>
                                 </svg>
-                            </button></>)} />
+                            </Icon></>)} />
                         </td>
                     </tr>
                 )}

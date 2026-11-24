@@ -3,6 +3,7 @@ import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import ResponsiveImg from "../common/responsive-img.tsx";
 import ProductOptions from "../common/product-options.tsx";
 import {$Each, $If, $Lang, $pointer, $string, $unescaped, $Unless, $cdn, $raw} from "@mainlanddev/hbx-bigcommerce";
+import {Button, FormCheck, FormLabel, Icon} from "../../../server/formParts.tsx";
 
 interface ShippingRow {
     is_shipping: boolean;
@@ -84,15 +85,15 @@ export default (_props: PartialProps) => (
                                         test={item.show_reorder}
                                         $then={() => (
                                             <>
-                                                <input
-                                                    className="form-checkbox [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
+                                                <FormCheck
+                                                    kind="checkbox" className="[&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
                                                     type="checkbox"
                                                     id={`account-product-id-${item.order_product_id}`}
                                                     value={item.order_product_id}
                                                 />{" "}
-                                                <label htmlFor={`account-product-id-${item.order_product_id}`} className="form-label [&_small]:float-right [&_small]:mt-quarter">
+                                                <FormLabel check="checkbox" htmlFor={`account-product-id-${item.order_product_id}`} className="[&_small]:float-right [&_small]:mt-quarter">
                                                     <span className="absolute h-px w-px overflow-hidden [border:0] p-0 [clip:rect(1px,1px,1px,1px)]">Checkbox {item.order_product_id} label</span>
-                                                </label>
+                                                </FormLabel>
                                             </>
                                         )}
                                     />
@@ -119,16 +120,16 @@ export default (_props: PartialProps) => (
                                             <$If
                                                 test={item.download_url}
                                                 $then={() => (
-                                                    <a href={item.download_url} className="account-product-download button button--primary absolute -top-half -right-half z-[1] size-[33px] rounded-[50%] p-0 [&_.icon]:mt-quarter [&_.icon]:size-single [&_svg]:fill-(--sv-color-white)">
+                                                    <Button href={item.download_url} tag="a" variant="primary" className="account-product-download absolute -top-half -right-half z-[1] size-[33px] rounded-[50%] p-0 [&_.icon]:mt-quarter [&_.icon]:size-single [&_svg]:fill-(--sv-color-white)">
                                                         <span className="absolute h-px w-px overflow-hidden [border:0] p-0 [clip:rect(1px,1px,1px,1px)]">
                                                             <$Lang keyName={$string("account.orders.details.download_items")} />
                                                         </span>
-                                                        <span className="icon">
+                                                        <Icon tag="span">
                                                             <svg>
                                                                 <use href="#icon-arrow-down"></use>
                                                             </svg>
-                                                        </span>
-                                                    </a>
+                                                        </Icon>
+                                                    </Button>
                                                 )}
                                             />
                                         )}

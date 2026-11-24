@@ -1,6 +1,7 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$For, $If, $lang, $number, $pointer, $raw, $string} from "@mainlanddev/hbx-bigcommerce";
+import {Icon} from "../../../server/formParts.tsx";
 
 const star = () => (
     <svg>
@@ -38,8 +39,8 @@ export default (_props: PartialProps) => (
                         test={$pointer("../this.rating")}
                         operator={$string(">=")}
                         rvalue={$pointer("$index")}
-                        $then={() => <span className="icon icon--ratingFull [&_svg]:fill-(--sv-setting-icon-ratingFull)">{star()}</span>}
-                        $else={() => <span className="icon icon--ratingEmpty [&_svg]:fill-(--sv-setting-icon-ratingEmpty)">{star()}</span>}
+                        $then={() => <Icon tag="span" className="icon--ratingFull [&_svg]:fill-(--sv-setting-icon-ratingFull)">{star()}</Icon>}
+                        $else={() => <Icon tag="span" className="icon--ratingEmpty [&_svg]:fill-(--sv-setting-icon-ratingEmpty)">{star()}</Icon>}
                     />
                 </>
             )}

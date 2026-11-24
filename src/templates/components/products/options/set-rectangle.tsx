@@ -2,6 +2,7 @@
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import RequirenessMsg from "../../common/requireness-msg.tsx";
 import {$Each, $If, $Lang, $pointer, $string, $Unless} from "@mainlanddev/hbx-bigcommerce";
+import {FormCheck, FormField, FormLabel} from "../../../../server/formParts.tsx";
 
 interface Value {
     id: string;
@@ -14,18 +15,18 @@ export default (_props: PartialProps) => {
     const id = $pointer("id");
     const required = $pointer("required");
     return (
-        <div className="form-field" data-product-attribute="set-rectangle" role="radiogroup" aria-labelledby="rectangle-group-label">
-            <label className="form-label form-label--alternate form-label--inlineSmall mb-half text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-none [&_small]:mt-quarter [&_small]:ml-quarter [&_small]:text-text-secondary [&_small]:font-normal [&_small]:normal-case [&_small]:[font-size:inherit]" id="rectangle-group-label">
+        <FormField data-product-attribute="set-rectangle" role="radiogroup" aria-labelledby="rectangle-group-label">
+            <FormLabel className="form-label--alternate form-label--inlineSmall mb-half text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-none [&_small]:mt-quarter [&_small]:ml-quarter [&_small]:text-text-secondary [&_small]:font-normal [&_small]:normal-case [&_small]:[font-size:inherit]" id="rectangle-group-label">
                 {$pointer("display_name")}:{" "}
                 <span data-option-value={""} />{" "}
                 <RequirenessMsg />
-            </label>
+            </FormLabel>
             <$Unless
                 test={required}
                 $then={() => (
                     <>
-                        <input
-                            className="form-radio [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
+                        <FormCheck
+                            kind="radio" className="[&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
                             type="radio"
                             id={`attribute_rectangle__${id}_none`}
                             dangerouslyInlineAttributes={{
@@ -44,8 +45,8 @@ export default (_props: PartialProps) => {
                 list={$pointer<Value[]>("values")}
                 $then={(item) => (
                     <div className="form-option-wrapper relative [display:inline-block] [&_.form-radio]:bottom-[0.5rem] [&_.form-radio]:left-[0.5rem] [&_.form-checkbox]:bottom-[0.5rem] [&_.form-checkbox]:left-[0.5rem]">
-                        <input
-                            className="form-radio [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
+                        <FormCheck
+                            kind="radio" className="[&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
                             type="radio"
                             id={`attribute_rectangle__${id}_${item.id}`}
                             dangerouslyInlineAttributes={{
@@ -58,6 +59,6 @@ export default (_props: PartialProps) => {
                     </div>
                 )}
             />
-        </div>
+        </FormField>
     );
 };

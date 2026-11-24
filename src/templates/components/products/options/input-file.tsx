@@ -2,13 +2,14 @@
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import RequirenessMsg from "../../common/requireness-msg.tsx";
 import {$And, $If, $Lang, $lang, $pointer, $string, $unescaped, $unlessExpression} from "@mainlanddev/hbx-bigcommerce";
+import {FormField, FormLabel} from "../../../../server/formParts.tsx";
 
 export default (_props: PartialProps) => (
-    <div className="form-field" data-product-attribute="input-file">
-        <label className="form-label form-label--alternate form-label--inlineSmall mb-half text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-none [&_small]:mt-quarter [&_small]:ml-quarter [&_small]:text-text-secondary [&_small]:font-normal [&_small]:normal-case [&_small]:[font-size:inherit]" htmlFor={`attribute_file_${$pointer("id")}`}>
+    <FormField data-product-attribute="input-file">
+        <FormLabel className="form-label--alternate form-label--inlineSmall mb-half text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-none [&_small]:mt-quarter [&_small]:ml-quarter [&_small]:text-text-secondary [&_small]:font-normal [&_small]:normal-case [&_small]:[font-size:inherit]" htmlFor={`attribute_file_${$pointer("id")}`}>
             {$pointer("display_name")}:{" "}
             <RequirenessMsg />
-        </label>
+        </FormLabel>
         <input
             className="form-file mb-third"
             type="file"
@@ -53,5 +54,5 @@ export default (_props: PartialProps) => (
                 )}
             />
         </p>
-    </div>
+    </FormField>
 );

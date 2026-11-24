@@ -1,6 +1,7 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$Each, $If, $Lang, $lang, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
+import {Button, FormCheck, FormField, FormInput, FormLabel, FormSelect} from "../../../server/formParts.tsx";
 
 interface Brand {
     id: string;
@@ -21,30 +22,29 @@ export default (_props: PartialProps) => (
                 <h5 className="advancedSearch-title m-0 mb-single [text-transform:inherit]">
                     <$Lang keyName={$string("forms.search.title")} />
                 </h5>
-                <div className="form-row -mb-single">
-                    <fieldset className="form-fieldset form-column float-left w-full px-[0.75rem] small:w-6/12">
-                        <div className="form-field">
-                            <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="search_query_adv">
+                <div className="form-row -mb-single [:where(&)]:-mx-[0.75rem] [:where(&)]:max-w-none [:where(&)]:w-auto [:where(&)]:[display:flow-root] [:where(&_.form-field)]:float-left [:where(&_.form-field)]:w-full [:where(&_.form-field)]:max-w-none [:where(&_.form-field)]:px-[0.75rem]">
+                    <fieldset className="form-fieldset form-column float-left w-full px-[0.75rem] small:w-6/12 [:where(&)]:[border-width:var(--sv-fieldset-border-width)] [:where(&)]:[margin:var(--sv-fieldset-margin)]">
+                        <FormField>
+                            <FormLabel className="[&_small]:float-right [&_small]:mt-quarter" htmlFor="search_query_adv">
                                 <$Lang keyName={$string("forms.search.query")} />{" "}
                                 <small>
                                     <$Lang keyName={$string("common.required")} />
                                 </small>
-                            </label>
-                            <input
+                            </FormLabel>
+                            <FormInput
                                 type="text"
-                                className="form-input"
                                 name="search_query_adv"
                                 data-error-message={$lang($string("search.error.empty_field"))}
                                 id="search_query_adv"
                                 value={$pointer("forms.search.query")}
                             />
-                        </div>
+                        </FormField>
 
-                        <div className="form-field">
-                            <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="search-form-brand">
+                        <FormField>
+                            <FormLabel className="[&_small]:float-right [&_small]:mt-quarter" htmlFor="search-form-brand">
                                 <$Lang keyName={$string("forms.search.brand")} />
-                            </label>
-                            <select className="form-select" name="brand" id="search-form-brand">
+                            </FormLabel>
+                            <FormSelect name="brand" id="search-form-brand">
                                 <option value="">
                                     <$Lang keyName={$string("common.no_preference")} />
                                 </option>
@@ -61,40 +61,40 @@ export default (_props: PartialProps) => (
                                         </option>
                                     )}
                                 />
-                            </select>
-                        </div>
+                            </FormSelect>
+                        </FormField>
                     </fieldset>
-                    <fieldset className="form-fieldset form-column float-left w-full px-[0.75rem] small:w-6/12">
-                        <div className="form-field">
-                            <label className="form-label [&_small]:float-right [&_small]:mt-quarter">
+                    <fieldset className="form-fieldset form-column float-left w-full px-[0.75rem] small:w-6/12 [:where(&)]:[border-width:var(--sv-fieldset-border-width)] [:where(&)]:[margin:var(--sv-fieldset-margin)]">
+                        <FormField>
+                            <FormLabel className="[&_small]:float-right [&_small]:mt-quarter">
                                 <$Lang keyName={$string("forms.search.categories")} />
-                            </label>
+                            </FormLabel>
                             <div className="form-field-group rounded-[4px] border border-(--sv-setting-input-border-color) p-single" data-search-category-tree={""}></div>
-                        </div>
-                        <div className="form-field">
-                            <input
+                        </FormField>
+                        <FormField>
+                            <FormCheck
                                 type="checkbox"
-                                className="form-checkbox [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
+                                kind="checkbox" className="[&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
                                 name="searchsubs"
                                 value="ON"
                                 id="search-form-searchsubs"
                                 checked={true}
                             />{" "}
-                            <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="search-form-searchsubs">
+                            <FormLabel check="checkbox" className="[&_small]:float-right [&_small]:mt-quarter" htmlFor="search-form-searchsubs">
                                 <$Lang keyName={$string("forms.search.searchsubs")} />
-                            </label>
-                        </div>
+                            </FormLabel>
+                        </FormField>
                     </fieldset>
                 </div>
                 <hr />
-                <div className="form-row -mb-single">
-                    <div className="form-field search-price-range [&_label]:[display:inline] [&_label_input]:[display:block] [&_label_input]:pl-single small:[&_label_input]:[display:inline] small:[&_label_input]:w-[6rem] small:[&_label_span]:[display:inline] small:[&_label_span]:px-single">
+                <div className="form-row -mb-single [:where(&)]:-mx-[0.75rem] [:where(&)]:max-w-none [:where(&)]:w-auto [:where(&)]:[display:flow-root] [:where(&_.form-field)]:float-left [:where(&_.form-field)]:w-full [:where(&_.form-field)]:max-w-none [:where(&_.form-field)]:px-[0.75rem]">
+                    <FormField className="search-price-range [&_label]:[display:inline] [&_label_input]:[display:block] [&_label_input]:pl-single small:[&_label_input]:[display:inline] small:[&_label_input]:w-[6rem] small:[&_label_span]:[display:inline] small:[&_label_span]:px-single">
                         <h5 className="advancedSearch-title m-0 mb-single [text-transform:inherit]">
                             <$Lang keyName={$string("forms.search.by_price")} />
                         </h5>
-                        <p className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="search-form-price_from">
+                        <FormLabel tag="p" className="[&_small]:float-right [&_small]:mt-quarter" htmlFor="search-form-price_from">
                             <$Lang keyName={$string("forms.search.price_range")} />
-                        </p>
+                        </FormLabel>
                         <label>
                             <span className="absolute h-px w-px overflow-hidden [border:0] p-0 [clip:rect(1px,1px,1px,1px)]">
                                 <$Lang keyName={$string("forms.search.price_range")} />
@@ -102,10 +102,9 @@ export default (_props: PartialProps) => (
                             <span>
                                 <$Lang keyName={$string("common.from")} />
                             </span>
-                            <input
+                            <FormInput
                                 type="number"
                                 step="any"
-                                className="form-input"
                                 name="price_from"
                                 id="search-form-price_from"
                                 value={$pointer("forms.search.values.price_from")}
@@ -118,27 +117,26 @@ export default (_props: PartialProps) => (
                             <span>
                                 <$Lang keyName={$string("common.to")} />
                             </span>
-                            <input
+                            <FormInput
                                 type="number"
                                 step="any"
-                                className="form-input"
                                 name="price_to"
                                 id="search-form-price_to"
                                 value={$pointer("forms.search.values.price_to")}
                             />
                         </label>
-                    </div>
+                    </FormField>
                 </div>
                 <hr />
                 <h5 className="advancedSearch-title m-0 mb-single [text-transform:inherit]">
                     <$Lang keyName={$string("forms.search.by_setting")} />
                 </h5>
-                <div className="form-row form-row--half -mb-single small:[&>.form-field:nth-child(odd)]:clear-left">
-                    <div className="form-field">
-                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="search-form-featured">
+                <div className="form-row form-row--half -mb-single small:[&>.form-field:nth-child(odd)]:clear-left [:where(&)]:-mx-[0.75rem] [:where(&)]:max-w-none [:where(&)]:w-auto [:where(&)]:[display:flow-root] [:where(&_.form-field)]:float-left [:where(&_.form-field)]:w-full [:where(&_.form-field)]:max-w-none [:where(&_.form-field)]:px-[0.75rem] small:[:where(&_.form-field)]:w-1/2">
+                    <FormField>
+                        <FormLabel className="[&_small]:float-right [&_small]:mt-quarter" htmlFor="search-form-featured">
                             <$Lang keyName={$string("forms.search.featured_products.title")} />
-                        </label>
-                        <select className="form-select" name="featured" id="search-form-featured">
+                        </FormLabel>
+                        <FormSelect name="featured" id="search-form-featured">
                             <option value="">
                                 <$Lang keyName={$string("common.no_preference")} />
                             </option>
@@ -158,13 +156,13 @@ export default (_props: PartialProps) => (
                             >
                                 <$Lang keyName={$string("forms.search.featured_products.disabled")} />
                             </option>
-                        </select>
-                    </div>
-                    <div className="form-field">
-                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="search-form-shipping">
+                        </FormSelect>
+                    </FormField>
+                    <FormField>
+                        <FormLabel className="[&_small]:float-right [&_small]:mt-quarter" htmlFor="search-form-shipping">
                             <$Lang keyName={$string("forms.search.free_shipping.title")} />
-                        </label>
-                        <select className="form-select" name="shipping" id="search-form-shipping">
+                        </FormLabel>
+                        <FormSelect name="shipping" id="search-form-shipping">
                             <option value="">
                                 <$Lang keyName={$string("common.no_preference")} />
                             </option>
@@ -184,13 +182,13 @@ export default (_props: PartialProps) => (
                             >
                                 <$Lang keyName={$string("forms.search.free_shipping.paid")} />
                             </option>
-                        </select>
-                    </div>
+                        </FormSelect>
+                    </FormField>
                 </div>
-                <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
-                    <input
+                <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half [:where(&)]:[background:none] [:where(&)]:[border:0] [:where(&)]:text-center xsmall:[:where(&)]:text-left [:where(&>*)]:[display:inline-block] [:where(&>*)]:mb-[1rem] [:where(&>*)]:w-full xsmall:[:where(&>*)]:align-baseline xsmall:[:where(&>*)]:w-auto">
+                    <Button
                         id="advanced-search-submit"
-                        className="button button--primary"
+                        tag="input" variant="primary"
                         type="submit"
                         value={$lang($string("forms.search.search"))}
                     />

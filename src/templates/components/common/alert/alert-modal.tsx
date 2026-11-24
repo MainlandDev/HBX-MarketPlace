@@ -1,6 +1,7 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$Lang, $string} from "@mainlanddev/hbx-bigcommerce";
+import {Button} from "../../../../server/formParts.tsx";
 
 export default (_props: PartialProps) => (
     <div id="alert-modal" className="modal modal--alert modal--small left-1/2 top-1/2 m-0 max-h-[90%] min-h-[240px] max-w-[95%] overflow-hidden p-0 outline-none [transform:translate(-50%,-50%)] [&_.form-field]:relative rounded-(--sv-alert-modal-borderRadius) bg-(--sv-alert-modal-bgColor) px-[20px] pt-[40px] pb-[20px] text-center [font-family:var(--sv-alert-font-body)]" data-reveal={""} data-prevent-quick-search-close={""}>
@@ -18,12 +19,12 @@ export default (_props: PartialProps) => (
         <div className="modal-content text-(--sv-alert-font-bodyColor) text-[length:var(--sv-alert-font-bodySize)]"></div>
 
         <div className="button-container mt-[25px] [&_.confirm]:border-(--sv-alert-button-borderColor) [&_.confirm]:bg-(--sv-alert-button-bgColor) [&_.confirm]:text-(--sv-alert-button-color) [&_.confirm:focus]:border-(--sv-alert-button-borderColorHover) [&_.confirm:focus]:bg-(--sv-alert-button-bgColorHover) [&_.confirm:focus]:text-(--sv-alert-button-colorHover) [&_.confirm:hover]:border-(--sv-alert-button-borderColorHover) [&_.confirm:hover]:bg-(--sv-alert-button-bgColorHover) [&_.confirm:hover]:text-(--sv-alert-button-colorHover) [&_.confirm:active]:border-(--sv-alert-button-borderColorActive) [&_.confirm:active]:bg-(--sv-alert-button-bgColorActive) [&_.confirm:active]:text-(--sv-alert-button-colorActive)">
-            <button type="button" className="confirm button" data-reveal-close={""}>
+            <Button type="button" className="confirm" data-reveal-close={""}>
                 <$Lang keyName={$string("common.ok")} />
-            </button>
-            <button type="button" className="cancel button" data-reveal-close={""}>
+            </Button>
+            <Button type="button" className="cancel" data-reveal-close={""}>
                 <$Lang keyName={$string("common.cancel")} />
-            </button>
+            </Button>
         </div>
     </div>
 );

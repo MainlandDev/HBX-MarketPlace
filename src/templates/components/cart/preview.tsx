@@ -5,6 +5,7 @@ import LoginForPricing from "../common/login-for-pricing.tsx";
 import ResponsiveImg from "../common/responsive-img.tsx";
 import ProductOptions from "../common/product-options.tsx";
 import {$boolean, $Each, $If, $Lang, $pointer, $string, $unescaped, $With, $unlessExpression, $Or, $raw} from "@mainlanddev/hbx-bigcommerce";
+import {Button} from "../../../server/formParts.tsx";
 
 interface AddedItem {
     name: string;
@@ -28,9 +29,9 @@ export default (_props: PartialProps) => (
                     <$If
                         test={$pointer("cart.show_primary_checkout_button")}
                         $then={() => (
-                            <a href={$pointer("urls.checkout.single_address")} className="button button--primary" data-primary-checkout-now-action={""}>
+                            <Button href={$pointer("urls.checkout.single_address")} tag="a" variant="primary" data-primary-checkout-now-action={""}>
                                 <$Lang keyName={$string("cart.added_to_cart.proceed_to_checkout")} />
-                            </a>
+                            </Button>
                         )}
                     />
 
@@ -60,13 +61,13 @@ export default (_props: PartialProps) => (
                         <$Lang keyName={$string("cart.added_to_cart.your_cart_contains")} num_products={$pointer<number>("cart.quantity")} />
                     </p>
 
-                    <a href="#" className="button button--primary" role="button" data-reveal-close={""}>
+                    <Button href="#" tag="a" variant="primary" role="button" data-reveal-close={""}>
                         <$Lang keyName={$string("cart.added_to_cart.continue_shopping")} />
-                    </a>
+                    </Button>
 
-                    <a href={$pointer("urls.cart")} className="button">
+                    <Button href={$pointer("urls.cart")} tag="a">
                         <$Lang keyName={$string("cart.added_to_cart.view_or_edit_cart")} />
-                    </a>
+                    </Button>
                 </section>
 
                 <section className="productView flex w-auto max-w-none flex-col justify-start -mx-base py-0 medium:float-left medium:m-0 medium:w-9/12 medium:px-gutter-half">

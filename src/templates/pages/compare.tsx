@@ -15,6 +15,7 @@ import {
     $string,
     $unescaped, $unlessExpression, $Or,
 } from "@mainlanddev/hbx-bigcommerce";
+import {Button, Icon} from "../../server/formParts.tsx";
 
 interface Comparison {
     id: number;
@@ -77,9 +78,9 @@ export default () => (
                                                                 $else: () => "#",
                                                             })}`}
                                                         >
-                                                            <svg className="icon mt-third size-single fill-icon">
+                                                            <Icon tag="svg" className="mt-third size-single fill-icon">
                                                                 <use href="#icon-close"></use>
-                                                            </svg>
+                                                            </Icon>
                                                         </a>
                                                     </figure>
                                                     <div className="card-body min-h-[calc(var(--sv-spacing-single)*4)] pt-base text-center small:text-left">
@@ -118,48 +119,48 @@ export default () => (
                                                             <$If
                                                                 test={product.has_options}
                                                                 $then={() => (
-                                                                    <a
+                                                                    <Button
                                                                         href={product.url}
                                                                         data-event-type="product-click"
-                                                                        className="button button--primary [display:block] w-full px-half"
+                                                                        tag="a" variant="primary" className="[display:block] w-full px-half"
                                                                         data-product-id={product.id}
                                                                     >
                                                                         <$Lang keyName={$string("products.choose_options")} />
-                                                                    </a>
+                                                                    </Button>
                                                                 )}
                                                             />
                                                             <$If
                                                                 test={product.pre_order}
                                                                 $then={() => (
-                                                                    <a
+                                                                    <Button
                                                                         href={product.url}
                                                                         data-event-type="product-click"
-                                                                        className="button button--primary [display:block] w-full px-half"
+                                                                        tag="a" variant="primary" className="[display:block] w-full px-half"
                                                                         data-product-id={product.id}
                                                                     >
                                                                         <$Lang keyName={$string("products.pre_order")} />
-                                                                    </a>
+                                                                    </Button>
                                                                 )}
                                                             />
                                                             <$If
                                                                 test={product.add_to_cart_url}
                                                                 $then={() => (
-                                                                    <a
+                                                                    <Button
                                                                         href={product.add_to_cart_url}
                                                                         data-event-type="product-click"
-                                                                        className="button button--primary [display:block] w-full px-half"
+                                                                        tag="a" variant="primary" className="[display:block] w-full px-half"
                                                                         data-product-id={product.id}
                                                                     >
                                                                         <$Lang keyName={$string("products.add_to_cart")} />
-                                                                    </a>
+                                                                    </Button>
                                                                 )}
                                                             />
                                                             <$If
                                                                 test={product.out_of_stock_message}
                                                                 $then={() => (
-                                                                    <a href={product.url} className="button button--primary [display:block] w-full px-half" data-product-id={product.id}>
+                                                                    <Button href={product.url} tag="a" variant="primary" className="[display:block] w-full px-half" data-product-id={product.id}>
                                                                         {product.out_of_stock_message}
-                                                                    </a>
+                                                                    </Button>
                                                                 )}
                                                             />
                                                         </>

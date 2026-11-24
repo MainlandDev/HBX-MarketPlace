@@ -43,6 +43,7 @@ import {
     $$scratch,
     $Or,
 } from "@mainlanddev/hbx-bigcommerce";
+import {FormField, FormLabel} from "../../../server/formParts.tsx";
 
 /** The size a `getImageSrcset` descriptor accepts; the theme-settings type is a plain string (LIBRARY GAP, see PORT-NOTES.md). */
 type SrcsetSize = `${bigint}x${bigint}` | `${bigint}w`;
@@ -508,7 +509,7 @@ export default (_props: PartialProps) => {
                 <section className="productView-details product-options float-left w-full px-base pb-single-third medium:clear-right medium:float-right medium:w-6/12 [[class~=productView--quickView]_&]:relative">
                     <div className="productView-options mb-single flow-root text-center small:text-left small:[&_.form-input[type=number]]:w-2/12 [&_.form]:[display:inline] [&_.add-to-cart-wrapper:not([style*=none])]:[display:inline] [&_input[type=file]]:text-smallest [&_.form-field]:text-[0px] [&_.form-field:not([data-variant-colours]_.form-field)]:mb-[2rem] [&_.form-field--error>.form-inlineMessage]:text-[1rem] [&_.form-field>.form-checkbox+.form-label]:ml-single [&_.form-field>.form-checkbox+.form-label]:w-auto [&_.form-field>.form-checkbox+.form-label]:[display:inline-block] small:[&_.form-field>.form-checkbox+.form-label]:ml-0 small:[&_.form-field>.form-checkbox+.form-label]:w-full [&_.form-field>.form-radio+.form-label]:[display:inline-block] [&_.form-field>.form-radio+.form-label]:text-justify [&_.form-field>.form-label:nth-of-type(2)]:ml-0 [&_.add-to-cart-buttons]:[display:inline-grid] [&_.add-to-cart-buttons]:float-left [&_.add-to-cart-buttons]:mb-[1rem] [&_.add-to-cart-buttons]:w-full small:[&_.add-to-cart-buttons]:px-[10px] small:[&_.add-to-cart-buttons]:py-0 small:[&_.add-to-cart-buttons]:w-1/2 medium:[&_.add-to-cart-buttons]:pr-half large:[&_.add-to-cart-buttons]:[display:inline-block] large:[&_.add-to-cart-buttons]:mt-[1rem] small:[&_.add-to-cart-buttons.pre-order-buttons]:w-auto small:[&_.add-to-cart-buttons.pre-order-buttons]:min-w-[50%] medium:[&_.add-to-cart-buttons.pre-order-buttons]:mr-[11px] medium:[&_.add-to-cart-buttons.pre-order-buttons]:min-w-[auto] medium:[&_.add-to-cart-buttons.pre-order-buttons]:p-0 [&_.add-to-cart-buttons.pre-order-buttons_.button]:px-[24px] [&_.add-to-cart-buttons.pre-order-buttons_.button]:py-[13px] [&_.add-to-cart-buttons_.button]:mx-0 [&_.add-to-cart-buttons_.button]:mb-0 [&_.add-to-cart-buttons_.button]:w-full">
                         <$If test={product.release_date} $then={() => <p>{product.release_date}</p>} />
-                        <form className="form" method="post" action={product.cart_url} encType="multipart/form-data" data-cart-item-add={""}>
+                        <form className="form [:where(&)]:[margin:var(--sv-form-margin)]" method="post" action={product.cart_url} encType="multipart/form-data" data-cart-item-add={""}>
                             <input type="hidden" name="action" value="add" />
                             <input type="hidden" name="product_id" value={product.id} />
                             <$If
@@ -539,8 +540,8 @@ export default (_props: PartialProps) => {
                                     )}
                                 />
                             </div>
-                            <div className={`form-field form-field--stock${$Unless({test: product.stock_level, $then: () => " u-hiddenVisually"})}`}>
-                                <label className="form-label form-label--alternate m-0 cursor-default text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-right [&_small]:mt-quarter">
+                            <FormField className={`form-field--stock${$Unless({test: product.stock_level, $then: () => " u-hiddenVisually"})}`}>
+                                <FormLabel className="form-label--alternate m-0 cursor-default text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-right [&_small]:mt-quarter">
                                     <span className="productView-stock-message font-bold">
                                         <span data-product-stock={""}>{product.stock_level}</span>{" "}
                                         <$Lang keyName={$string("products.in_stock")} />
@@ -554,13 +555,13 @@ export default (_props: PartialProps) => {
                                         )}
                                         $else={() => <span className="productView-backorder-availability-prompt before:content-['|_']" data-backorder-prompt={""} style={{display: "none"}}></span>}
                                     />
-                                </label>
-                                <p className="form-label form-label--alternate m-0 cursor-default text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-right [&_small]:mt-quarter" data-product-backordered={""} style={{display: "none"}}>
+                                </FormLabel>
+                                <FormLabel tag="p" className="form-label--alternate m-0 cursor-default text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-right [&_small]:mt-quarter" data-product-backordered={""} style={{display: "none"}}>
                                     <span className="[&:not(:empty)]:font-bold" data-qty-backordered-message={""}></span>
                                     <span className="[[data-qty-backordered-message]:not(:empty)+&:not(:empty)]:before:content-['|_']" data-backorder-message={""}></span>
-                                </p>
+                                </FormLabel>
                                 <ul className="productView-picklist-backorder m-0 list-none p-0 text-[1rem]" data-picklist-backorder-list={""} style={{display: "none"}}></ul>
-                            </div>
+                            </FormField>
                             <ProductsAddToCart with_wallet_buttons={$boolean(true)} />
                         </form>
                         <$If test={settings.show_wishlist} $then={() => <WishlistDropdown />} />

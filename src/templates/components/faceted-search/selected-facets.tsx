@@ -1,6 +1,7 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$Each, $If, $Lang, $lang, $pointer, $string, $sanitize, $unescaped} from "@mainlanddev/hbx-bigcommerce";
+import {Icon} from "../../../server/formParts.tsx";
 
 interface SelectedFacet {
     url: string;
@@ -37,9 +38,9 @@ export default (_props: PartialProps) => (
                                             </>
                                         )}
                                     />{" "}
-                                    <svg className="icon relative -top-px inline-block size-[12px] fill-(--sv-facetLabel-removeIcon-color)">
+                                    <Icon tag="svg" className="relative -top-px inline-block size-[12px] fill-(--sv-facetLabel-removeIcon-color)">
                                         <use href="#icon-close" />
-                                    </svg>
+                                    </Icon>
                                 </a>
                             </li>
                         )}

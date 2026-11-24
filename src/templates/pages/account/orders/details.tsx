@@ -3,6 +3,7 @@ import AccountOrderContents from "../../../components/account/order-contents.tsx
 import Breadcrumbs from "../../../components/common/breadcrumbs.tsx";
 import AlertAlertInfo from "../../../components/common/alert/alert-info.tsx";
 import {$Each, $If, $Inject, $Lang, $lang, $nl2br, $Page, $pointer, $raw, $sanitize, $string, $unescaped} from "@mainlanddev/hbx-bigcommerce";
+import {Button} from "../../../../server/formParts.tsx";
 
 // Local shapes: the library's `Order` lacks these keys and types `shipments` as Record<string, unknown>.
 // Fields are read from details.html, not from the API docs.
@@ -193,9 +194,9 @@ export default () => {
                                             />
                                         </dl>
 
-                                        <button data-print-invoice={order.invoice_url} className="button">
+                                        <Button data-print-invoice={order.invoice_url}>
                                             <$Lang keyName={$string("account.orders.details.print_invoice")} />
-                                        </button>
+                                        </Button>
                                     </section>
 
                                     <$If
@@ -387,7 +388,7 @@ export default () => {
                                                         />
                                                     )}
                                                 />
-                                                <input type="submit" className="button" value={$lang($string("account.orders.details.reorder"))} />
+                                                <Button type="submit" tag="input" value={$lang($string("account.orders.details.reorder"))} />
                                             </form>
                                             <$If
                                                 test={$pointer("settings.returns_enabled")}
@@ -395,9 +396,9 @@ export default () => {
                                                     <$If
                                                         test={order.is_complete}
                                                         $then={() => (
-                                                            <a href={order.return_url} className="button">
+                                                            <Button href={order.return_url} tag="a">
                                                                 <$Lang keyName={$string("account.orders.details.return")} />
-                                                            </a>
+                                                            </Button>
                                                         )}
                                                     />
                                                 )}

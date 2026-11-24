@@ -2,6 +2,7 @@ import Breadcrumbs from "../../components/common/breadcrumbs.tsx";
 import AlertAlertError from "../../components/common/alert/alert-error.tsx";
 import AlertAlertSuccess from "../../components/common/alert/alert-success.tsx";
 import {$Inject, $Lang, $lang, $Page, $pointer, $string, $If} from "@mainlanddev/hbx-bigcommerce";
+import {Button, FormField, FormInput, FormLabel} from "../../../server/formParts.tsx";
 
 export default () => (
     <$Page
@@ -21,23 +22,23 @@ export default () => (
                         $then={() => <AlertAlertSuccess $positionalHash={$pointer("forms.login.success")} />}
                     />
                     <div className="login-row mx-auto flow-root w-full max-w-(--sv-layout-widthMax) medium:mt-[calc(var(--sv-spacing-double)*2)]">
-                        <form className="login-form form float-left w-full px-gutter-half medium:mt-double medium:w-1/2" action={$pointer("urls.auth.check_login")} method="post">
+                        <form className="login-form form float-left w-full px-gutter-half medium:mt-double medium:w-1/2 [:where(&)]:[margin:var(--sv-form-margin)]" action={$pointer("urls.auth.check_login")} method="post">
                             <$Inject keyName={$string("useValidEmail")} value={$lang($string("forms.validate.common.email_address"))} />{" "}
                             <$Inject keyName={$string("enterPass")} value={$lang($string("forms.validate.common.password"))} />
-                            <div className="form-field">
-                                <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="login_email">
+                            <FormField>
+                                <FormLabel className="[&_small]:float-right [&_small]:mt-quarter" htmlFor="login_email">
                                     <$Lang keyName={$string("login.field_email")} />
-                                </label>
-                                <input className="form-input" name="login_email" id="login_email" type="email" />
-                            </div>
-                            <div className="form-field">
-                                <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="login_pass">
+                                </FormLabel>
+                                <FormInput name="login_email" id="login_email" type="email" />
+                            </FormField>
+                            <FormField>
+                                <FormLabel className="[&_small]:float-right [&_small]:mt-quarter" htmlFor="login_pass">
                                     <$Lang keyName={$string("login.field_password")} />
-                                </label>
-                                <input className="form-input" id="login_pass" type="password" name="login_pass" autoComplete="off" />
-                            </div>
-                            <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
-                                <input type="submit" className="button button--primary" value={$lang($string("login.submit_value"))} />{" "}
+                                </FormLabel>
+                                <FormInput id="login_pass" type="password" name="login_pass" autoComplete="off" />
+                            </FormField>
+                            <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half [:where(&)]:[background:none] [:where(&)]:[border:0] [:where(&)]:text-center xsmall:[:where(&)]:text-left [:where(&>*)]:[display:inline-block] [:where(&>*)]:mb-[1rem] [:where(&>*)]:w-full xsmall:[:where(&>*)]:align-baseline xsmall:[:where(&>*)]:w-auto">
+                                <Button type="submit" tag="input" variant="primary" value={$lang($string("login.submit_value"))} />{" "}
                                 <a className="forgot-password" href={$pointer("urls.auth.forgot_password")}>
                                     <$Lang keyName={$string("login.forgot_password")} />
                                 </a>
@@ -75,9 +76,9 @@ export default () => (
                                                 </li>
                                             </ul>
                                             <a href={$pointer("urls.auth.create_account")}>
-                                                <button className="button button--primary">
+                                                <Button variant="primary">
                                                     <$Lang keyName={$string("login.new_customer.create_account")} />
-                                                </button>
+                                                </Button>
                                             </a>
                                         </div>
                                     </div>

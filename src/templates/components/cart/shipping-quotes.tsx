@@ -1,6 +1,7 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$cdn, $If, $Each, $Lang, $lang, $pointer, $raw, $string, $this} from "@mainlanddev/hbx-bigcommerce";
+import {Button} from "../../../server/formParts.tsx";
 
 interface Quote {
     id: string;
@@ -160,8 +161,8 @@ export default (_props: PartialProps) => (
                         </div>
                     )}
                 />
-                <input
-                    className="button button--small button--primary select-shipping-quote"
+                <Button
+                    tag="input" variant="primary" size="small" className="select-shipping-quote"
                     type="submit"
                     value={$lang($string("cart.checkout.update"))}
                 />

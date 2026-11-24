@@ -1,4 +1,5 @@
 import {$lang, $Lang, $Page, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
+import {Button} from "../../../server/formParts.tsx";
 
 export default () => (
     <$Page
@@ -15,9 +16,9 @@ export default () => (
                                 email: $pointer("customer.email"),
                             })}
                         </p>
-                        <a className="button button--primary" href={$pointer("create_account.continue_url")}>
+                        <Button tag="a" variant="primary" href={$pointer("create_account.continue_url")}>
                             <$Lang keyName={$string("create_account.created.continue")} />
-                        </a>
+                        </Button>
                     </section>
                 </main>
             ),

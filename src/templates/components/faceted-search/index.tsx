@@ -2,6 +2,7 @@
 import FacetedSearchSelectedFacets from "./selected-facets.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$Any, $boolean, $Each, $If, $join, $Lang, $lang, $number, $pluck, $pointer, $string, $toLowerCase, $unescaped, $dynamicComponent} from "@mainlanddev/hbx-bigcommerce";
+import {Icon} from "../../../server/formParts.tsx";
 
 interface Facet {
     title: string;
@@ -39,21 +40,21 @@ export default (_props: PartialProps) => (
                 <span className="toggleLink-text toggleLink-text--on text-smallest font-normal [display:none] [[class~=toggleLink][class~=is-open]_&]:[display:inline-block]">
                     <$Lang keyName={$string("search.faceted.hide-filters")} />{" "}
 
-                    <i className="icon" aria-hidden="true">
+                    <Icon aria-hidden="true">
                         <svg>
                             <use href="#icon-keyboard-arrow-up" />
                         </svg>
-                    </i>
+                    </Icon>
                 </span>{" "}
 
                 <span className="toggleLink-text toggleLink-text--off text-smallest font-normal [display:inline-block] [[class~=toggleLink][class~=is-open]_&]:[display:none]">
                     <$Lang keyName={$string("search.faceted.show-filters")} />{" "}
 
-                    <i className="icon" aria-hidden="true">
+                    <Icon aria-hidden="true">
                         <svg>
                             <use href="#icon-keyboard-arrow-down" />
                         </svg>
-                    </i>
+                    </Icon>
                 </span>
             </span>
         </a>
@@ -63,7 +64,7 @@ export default (_props: PartialProps) => (
             predicate={{visible: $boolean(true)}}
             $then={() => (
                 <div id="facetedSearch-navList" className="facetedSearch-navList [display:none] is-open:[display:block] medium:[display:block]">
-                    <div className="accordion accordion--navList rounded-[4px] [[class~=facetedSearch-navList][class~=is-open]_&]:rounded-t-none [[class~=facetedSearch-navList][class~=is-open]_&]:rounded-t-none shadow-none medium:border-0 medium:[[class~=sidebarBlock]+&]:mt-(--sv-accordion-navList-spacing) [&_.navList]:mb-0 [&_.accordion-content]:border-0 [&_.accordion-content]:p-(--sv-accordion-navList-padding) medium:[&_.accordion-content]:p-0 [&_.accordion-content_.form:only-child]:mb-0">
+                    <div className="accordion accordion--navList rounded-[4px] [[class~=facetedSearch-navList][class~=is-open]_&]:rounded-t-none shadow-none medium:border-0 medium:[[class~=sidebarBlock]+&]:mt-(--sv-accordion-navList-spacing) [&_.navList]:mb-0 [&_.accordion-content]:border-0 [&_.accordion-content]:p-(--sv-accordion-navList-padding) medium:[&_.accordion-content]:p-0 [&_.accordion-content_.form:only-child]:mb-0">
                         <$Each
                             list={$pointer<Facet[]>("facets")}
                             $then={(facet) => (

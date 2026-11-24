@@ -5,6 +5,7 @@ import ResponsiveImg from "../../common/responsive-img.tsx";
 import FormsText from "../../common/forms/text.tsx";
 import FormsMultiline from "../../common/forms/multiline.tsx";
 import {$concat, $For, $If, $Inject, $Lang, $lang, $number, $pointer, $raw, $string, $unescaped} from "@mainlanddev/hbx-bigcommerce";
+import {Button, FormField, FormLabel, FormSelect} from "../../../../server/formParts.tsx";
 
 export default (_props: PartialProps) => (
     <div id="modal-review-form" className="modal left-1/2 top-1/2 m-0 max-h-[90%] min-h-[240px] max-w-[95%] overflow-hidden p-0 outline-none [transform:translate(-50%,-50%)] [&_.form-field]:relative" data-reveal={""}>
@@ -27,18 +28,18 @@ export default (_props: PartialProps) => (
                 <h6 className="product-brand m-0 text-grey-light">{$pointer("product.brand.name")}</h6>
                 <h5 className="product-title mt-0">{$pointer("product.title")}</h5>
             </div>
-            <form className="form writeReview-form medium:float-left medium:w-6/12 medium:px-gutter-half" action={$pointer("urls.product.post_review")} method="post">
-                <fieldset className="form-fieldset">
-                    <div className="form-field">
-                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="rating-rate">
+            <form className="form writeReview-form medium:float-left medium:w-6/12 medium:px-gutter-half last:mb-0 [:where(&)]:[margin:var(--sv-form-margin)]" action={$pointer("urls.product.post_review")} method="post">
+                <fieldset className="form-fieldset [:where(&)]:[border-width:var(--sv-fieldset-border-width)] [:where(&)]:[margin:var(--sv-fieldset-margin)]">
+                    <FormField>
+                        <FormLabel className="[&_small]:float-right [&_small]:mt-quarter" htmlFor="rating-rate">
                             <$Lang keyName={$string("products.reviews.rating_label")} />{" "}
                             <small>
                                 <$Lang keyName={$string("common.required")} />
                             </small>
-                        </label>
+                        </FormLabel>
                         {$raw("<!-- Stars -->")}
                         {$raw("<!-- TODO: Review Stars need to be componentised, both for display and input -->")}
-                        <select id="rating-rate" className="form-select" name="revrating" data-input={""} aria-required="true">
+                        <FormSelect id="rating-rate" name="revrating" data-input={""} aria-required="true">
                             <option value="">
                                 <$Lang keyName={$string("products.reviews.select_rating")} />
                             </option>
@@ -65,8 +66,8 @@ export default (_props: PartialProps) => (
                                     </>
                                 )}
                             />
-                        </select>
-                    </div>
+                        </FormSelect>
+                    </FormField>
 
                     {$raw("<!-- Name -->")}
                     <$If
@@ -105,9 +106,9 @@ export default (_props: PartialProps) => (
 
                     {$unescaped($pointer("product.reviews.recaptcha.markup"))}
 
-                    <div className="form-field">
-                        <input type="submit" className="button button--primary" value={$lang($string("products.reviews.form_write.submit_value"))} />
-                    </div>
+                    <FormField>
+                        <Button type="submit" tag="input" variant="primary" value={$lang($string("products.reviews.form_write.submit_value"))} />
+                    </FormField>
                     <input type="hidden" name="product_id" value={$pointer("product.id")} />
                     <input type="hidden" name="action" value="post_review" />
                     <$If

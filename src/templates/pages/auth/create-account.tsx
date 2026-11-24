@@ -1,6 +1,7 @@
 import Breadcrumbs from "../../components/common/breadcrumbs.tsx";
 import AlertAlertError from "../../components/common/alert/alert-error.tsx";
 import {$Each, $If, $Inject, $Lang, $lang, $Page, $pointer, $string, $unescaped, $dynamicComponent} from "@mainlanddev/hbx-bigcommerce";
+import {Button} from "../../../server/formParts.tsx";
 
 export default () => (
     <>
@@ -28,9 +29,9 @@ export default () => (
                                             action={$pointer("urls.auth.save_new_account")}
                                             data-create-account-form={""}
                                             method="post"
-                                            className="form"
+                                            className="form [:where(&)]:[margin:var(--sv-form-margin)]"
                                         >
-                                            <div className="form-row form-row--half small:[&>.form-field:nth-child(odd)]:clear-left">
+                                            <div className="form-row form-row--half small:[&>.form-field:nth-child(odd)]:clear-left [:where(&)]:-mx-[0.75rem] [:where(&)]:max-w-none [:where(&)]:w-auto [:where(&)]:[display:flow-root] [:where(&_.form-field)]:float-left [:where(&_.form-field)]:w-full [:where(&_.form-field)]:max-w-none [:where(&_.form-field)]:px-[0.75rem] small:[:where(&_.form-field)]:w-1/2">
                                                 <$Each
                                                     list={$pointer<unknown[]>("forms.create_account.account_fields")}
                                                     $then={() => $unescaped($dynamicComponent($string("components/common/forms")))}
@@ -43,10 +44,10 @@ export default () => (
                                                 <$Inject keyName={$string("state_error")} value={$lang($string("errors.state_error"))} />
                                             </div>
                                             {$unescaped($pointer("forms.create_account.recaptcha.markup"))}
-                                            <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
-                                                <input
+                                            <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half [:where(&)]:[background:none] [:where(&)]:[border:0] [:where(&)]:text-center xsmall:[:where(&)]:text-left [:where(&>*)]:[display:inline-block] [:where(&>*)]:mb-[1rem] [:where(&>*)]:w-full xsmall:[:where(&>*)]:align-baseline xsmall:[:where(&>*)]:w-auto">
+                                                <Button
                                                     type="submit"
-                                                    className="button button--primary"
+                                                    tag="input" variant="primary"
                                                     value={$lang($string("forms.create_account.submit_value"))}
                                                 />
                                             </div>

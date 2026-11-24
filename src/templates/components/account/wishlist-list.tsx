@@ -2,6 +2,7 @@
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import AlertAlertInfo from "../common/alert/alert-info.tsx";
 import {$Each, $If, $Inject, $Lang, $lang, $pointer, $string, $Unless} from "@mainlanddev/hbx-bigcommerce";
+import {Button} from "../../../server/formParts.tsx";
 
 interface Wishlist {
     id: string;
@@ -50,20 +51,20 @@ export default (_props: PartialProps) => (
                                 />
                             </td>
                             <td className="table-actions m-single px-0 text-center [display:block] small:last:text-right [td+&]:pl-single [&_.form]:mb-0 [&_.button]:mx-0 [&_.button]:w-full [&_.button]:[display:block] small:[&_.button]:mb-0 small:[&_.button]:w-auto small:[&_.button]:[display:inline-block] small:[&_.button+.button]:ml-quarter">
-                                <form method="post" action={wishlist.delete_url} className="form">
-                                    <fieldset className="form-fieldset">
+                                <form method="post" action={wishlist.delete_url} className="form [:where(&)]:[margin:var(--sv-form-margin)]">
+                                    <fieldset className="form-fieldset [:where(&)]:[border-width:var(--sv-fieldset-border-width)] [:where(&)]:[margin:var(--sv-fieldset-margin)]">
                                         <$If
                                             test={wishlist.is_public}
                                             $then={() => (
-                                                <a href={wishlist.share_url} className="button button--primary button--small" role="button">
+                                                <Button href={wishlist.share_url} tag="a" variant="primary" size="small" role="button">
                                                     <$Lang keyName={$string("common.share")} />
-                                                </a>
+                                                </Button>
                                             )}
                                         />{" "}
-                                        <a href={wishlist.edit_url} className="button button--small" data-wishlist={""}>
+                                        <Button href={wishlist.edit_url} tag="a" size="small" data-wishlist={""}>
                                             <$Lang keyName={$string("common.edit")} />
-                                        </a>{" "}
-                                        <input type="submit" value={$lang($string("common.delete"))} className="button button--small" data-wishlist-delete={""} />
+                                        </Button>{" "}
+                                        <Button type="submit" value={$lang($string("common.delete"))} tag="input" size="small" data-wishlist-delete={""} />
                                     </fieldset>
                                 </form>
                             </td>
@@ -72,19 +73,19 @@ export default (_props: PartialProps) => (
                 />
             </tbody>
         </table>
-        <form method="post" action={$pointer("urls.account.wishlists.delete")} className="form">
+        <form method="post" action={$pointer("urls.account.wishlists.delete")} className="form [:where(&)]:[margin:var(--sv-form-margin)]">
             <$Unless
                 test={$pointer("customer.wishlists")}
                 $then={() => (
-                    <p className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
+                    <p className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half [:where(&)]:[background:none] [:where(&)]:[border:0] [:where(&)]:text-center xsmall:[:where(&)]:text-left [:where(&>*)]:[display:inline-block] [:where(&>*)]:mb-[1rem] [:where(&>*)]:w-full xsmall:[:where(&>*)]:align-baseline xsmall:[:where(&>*)]:w-auto">
                         <AlertAlertInfo $positionalHash={$lang($string("account.wishlists.you_have_none"))} />
                     </p>
                 )}
             />
-            <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
-                <a href={$pointer("urls.account.wishlists.add")} className="button button--primary" role="button" data-wishlist={""}>
+            <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half [:where(&)]:[background:none] [:where(&)]:[border:0] [:where(&)]:text-center xsmall:[:where(&)]:text-left [:where(&>*)]:[display:inline-block] [:where(&>*)]:mb-[1rem] [:where(&>*)]:w-full xsmall:[:where(&>*)]:align-baseline xsmall:[:where(&>*)]:w-auto">
+                <Button href={$pointer("urls.account.wishlists.add")} tag="a" variant="primary" role="button" data-wishlist={""}>
                     <$Lang keyName={$string("account.wishlists.new")} />
-                </a>{" "}
+                </Button>{" "}
                 <$Inject keyName={$string("wishlistDelete")} value={$lang($string("account.wishlists.delete_alert"))} />{" "}
                 <$If
                     test={$pointer("customer.wishlists")}
@@ -94,7 +95,7 @@ export default (_props: PartialProps) => (
                                 list={$pointer<Wishlist[]>("customer.wishlists")}
                                 $then={(wishlist) => <input type="hidden" value={wishlist.id} name="deletewishlist[]" />}
                             />
-                            <input type="submit" value={$lang($string("account.wishlists.delete_all"))} className="button" data-wishlist-delete={""} />
+                            <Button type="submit" value={$lang($string("account.wishlists.delete_all"))} tag="input" data-wishlist-delete={""} />
                         </>
                     )}
                 />

@@ -2,6 +2,7 @@
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import AlertAlertInfo from "../common/alert/alert-info.tsx";
 import {$Each, $If, $Lang, $lang, $pointer, $string, $Unless, $raw} from "@mainlanddev/hbx-bigcommerce";
+import {Button} from "../../../server/formParts.tsx";
 
 interface Address {
     first_name: string;
@@ -65,13 +66,13 @@ export default (_props: PartialProps) => (
                                     )}
                                 />
                                 <form action={address.delete_url} method="post" data-delete-address={$lang($string("forms.address.confirm_delete"))}>
-                                    <div className="form-actions -mb-half mt-single text-left small:absolute small:bottom-single small:w-auto mx-auto w-full max-w-(--sv-layout-widthMax) flow-root [display:block] [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
-                                        <a className="button button--primary button--small mb-half" href={address.edit_url}>
+                                    <div className="form-actions -mb-half mt-single text-left small:absolute small:bottom-single small:w-auto mx-auto w-full max-w-(--sv-layout-widthMax) flow-root [display:block] [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half [:where(&)]:[background:none] [:where(&)]:[border:0] [:where(&)]:text-center xsmall:[:where(&)]:text-left [:where(&>*)]:[display:inline-block] [:where(&>*)]:mb-[1rem] [:where(&>*)]:w-full xsmall:[:where(&>*)]:align-baseline xsmall:[:where(&>*)]:w-auto">
+                                        <Button tag="a" variant="primary" size="small" className="mb-half" href={address.edit_url}>
                                             <$Lang keyName={$string("common.edit")} />
-                                        </a>{" "}
-                                        <button type="submit" className="button secondary button--small mb-half ml-0 mt-0 small:ml-quarter">
+                                        </Button>{" "}
+                                        <Button type="submit" size="small" className="secondary mb-half ml-0 mt-0 small:ml-quarter">
                                             <$Lang keyName={$string("common.delete")} />
-                                        </button>
+                                        </Button>
                                     </div>
                                 </form>
                             </div>

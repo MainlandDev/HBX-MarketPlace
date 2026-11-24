@@ -17,6 +17,7 @@ import {
     $string,
     $unescaped, $unlessExpression, $Or,
 } from "@mainlanddev/hbx-bigcommerce";
+import {Button} from "../../server/formParts.tsx";
 
 export const frontmatter = $frontmatter.other({cart: true});
 
@@ -61,14 +62,14 @@ export default () => (
                                                 test={$pointer("cart.show_primary_checkout_button")}
                                                 $then={() => (
                                                     <div className="cart-actions clear-both flow-root pr-[4px] [&_.button]:mb-0 [&_.button]:[display:block] small:[&_.button]:float-right small:[&_.button]:[display:inline-block]">
-                                                        <a
-                                                            className="button button--primary"
+                                                        <Button
+                                                            tag="a" variant="primary"
                                                             href={$pointer("urls.checkout.single_address")}
                                                             title={$lang($string("cart.checkout.title"))}
                                                             data-primary-checkout-now-action={""}
                                                         >
                                                             {" "}<$Lang keyName={$string("cart.checkout.button")} />{" "}
-                                                        </a>
+                                                        </Button>
                                                         {" "}
                                                         <$If
                                                             test={$pointer("cart.show_multiple_address_shipping")}
@@ -82,13 +83,13 @@ export default () => (
                                                 )}
                                                 $else={() => (
                                                     <div className="cart-actions clear-both flow-root pr-[4px] [&_.button]:mb-0 [&_.button]:[display:block] small:[&_.button]:float-right small:[&_.button]:[display:inline-block]">
-                                                        <a
-                                                            className="button"
+                                                        <Button
+                                                            tag="a"
                                                             href={$pointer("urls.home")}
                                                             title={$lang($string("cart.continue_shopping"))}
                                                         >
                                                             <$Lang keyName={$string("cart.continue_shopping")} />
-                                                        </a>
+                                                        </Button>
                                                     </div>
                                                 )}
                                             />
@@ -103,13 +104,13 @@ export default () => (
                                                     </div>
                                                 )}
                                             /></>)} $else={() => (<><div className="cart-actions clear-both flow-root pr-[4px] [&_.button]:mb-0 [&_.button]:[display:block] small:[&_.button]:float-right small:[&_.button]:[display:inline-block]">
-                                                <a
-                                                    className="button"
+                                                <Button
+                                                    tag="a"
                                                     href={$pointer("urls.auth.login")}
                                                     title={$lang($string("cart.login_to_checkout"))}
                                                 >
                                                     <$Lang keyName={$string("cart.login_to_checkout")} />
-                                                </a>
+                                                </Button>
                                             </div></>)} />
                                         </>
                                     )}

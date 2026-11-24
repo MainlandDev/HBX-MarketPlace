@@ -3,6 +3,7 @@ import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import RequirenessMsg from "../../common/requireness-msg.tsx";
 import ResponsiveImg from "../../common/responsive-img.tsx";
 import {$Each, $If, $Lang, $pointer, $string, $Unless} from "@mainlanddev/hbx-bigcommerce";
+import {FormCheck, FormField, FormLabel} from "../../../../server/formParts.tsx";
 
 interface Value {
     id: string;
@@ -16,12 +17,12 @@ export default (_props: PartialProps) => {
     const id = $pointer("id");
     const required = $pointer("required");
     return (
-        <div className="form-field [&_.unavailable]:opacity-[calc(var(--sv-productOptions-disable-opacity)*2)] [&_.unavailable]:line-through" data-product-attribute="product-list" role="radiogroup" aria-labelledby="product-list-label">
-            <label className="form-label form-label--alternate form-label--inlineSmall mb-half text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-none [&_small]:mt-quarter [&_small]:ml-quarter [&_small]:text-text-secondary [&_small]:font-normal [&_small]:normal-case [&_small]:[font-size:inherit]" id="product-list-label">
+        <FormField className="[&_.unavailable]:opacity-[calc(var(--sv-productOptions-disable-opacity)*2)] [&_.unavailable]:line-through" data-product-attribute="product-list" role="radiogroup" aria-labelledby="product-list-label">
+            <FormLabel className="form-label--alternate form-label--inlineSmall mb-half text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-none [&_small]:mt-quarter [&_small]:ml-quarter [&_small]:text-text-secondary [&_small]:font-normal [&_small]:normal-case [&_small]:[font-size:inherit]" id="product-list-label">
                 {$pointer("display_name")}:{" "}
                 <span data-option-value={""} />{" "}
                 <RequirenessMsg />
-            </label>
+            </FormLabel>
             <$If
                 test={$pointer("values.0.image")}
                 $then={() => (
@@ -30,17 +31,17 @@ export default (_props: PartialProps) => {
                             test={required}
                             $then={() => (
                                 <li className="productOptions-list-item p-single [.productOptions-list-item+&]:[border-top:var(--sv-productOptions-list-item-borderTop)] [&_.form-label]:-top-[2px] [&_.form-label]:text-left">
-                                    <input
-                                        className="form-radio [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
+                                    <FormCheck
+                                        kind="radio" className="[&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
                                         type="radio"
                                         id={`attribute_productlist_${id}_none`}
                                         dangerouslyInlineAttributes={{
                                             attributes: `name="attribute[${id}]" value="" ${$Unless({test: $pointer("defaultValue"), $then: () => "checked"})}`,
                                         }}
                                     />{" "}
-                                    <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor={`attribute_productlist_${id}_none`}>
+                                    <FormLabel check="radio" className="[&_small]:float-right [&_small]:mt-quarter" htmlFor={`attribute_productlist_${id}_none`}>
                                         <$Lang keyName={$string("products.none")} />
-                                    </label>
+                                    </FormLabel>
                                 </li>
                             )}
                         />
@@ -57,17 +58,17 @@ export default (_props: PartialProps) => {
                                         )}
                                     />
                                     <div className="productOptions-list-item-content pl-base-sixth align-middle [display:table-cell]">
-                                        <input
-                                            className="form-radio [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
+                                        <FormCheck
+                                            kind="radio" className="[&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
                                             type="radio"
                                             id={`attribute_productlist_${id}_${item.id}`}
                                             dangerouslyInlineAttributes={{
                                                 attributes: `name="attribute[${id}]" value="${item.id}"${$If({test: item.selected, $then: () => " checked data-default"})}${$If({test: required, $then: () => " required"})}`,
                                             }}
                                         />{" "}
-                                        <label data-product-attribute-value={item.id} className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor={`attribute_productlist_${id}_${item.id}`}>
+                                        <FormLabel check="radio" data-product-attribute-value={item.id} className="[&_small]:float-right [&_small]:mt-quarter" htmlFor={`attribute_productlist_${id}_${item.id}`}>
                                             {item.label}
-                                        </label>
+                                        </FormLabel>
                                     </div>
                                 </li>
                             )}
@@ -80,17 +81,17 @@ export default (_props: PartialProps) => {
                             test={required}
                             $then={() => (
                                 <>
-                                    <input
-                                        className="form-radio [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
+                                    <FormCheck
+                                        kind="radio" className="[&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
                                         type="radio"
                                         id={`attribute_productlist_0_${id}`}
                                         dangerouslyInlineAttributes={{
                                             attributes: `name="attribute[${id}]" value="0" ${$Unless({test: $pointer("defaultValue"), $then: () => "checked"})}`,
                                         }}
                                     />{" "}
-                                    <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor={`attribute_productlist_0_${id}`}>
+                                    <FormLabel check="radio" className="[&_small]:float-right [&_small]:mt-quarter" htmlFor={`attribute_productlist_0_${id}`}>
                                         <$Lang keyName={$string("products.none")} />
-                                    </label>{" "}
+                                    </FormLabel>{" "}
                                 </>
                             )}
                         />
@@ -98,23 +99,23 @@ export default (_props: PartialProps) => {
                             list={$pointer<Value[]>("values")}
                             $then={(item) => (
                                 <>
-                                    <input
-                                        className="form-radio [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
+                                    <FormCheck
+                                        kind="radio" className="[&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
                                         type="radio"
                                         id={`attribute_productlist_${id}_${item.id}`}
                                         dangerouslyInlineAttributes={{
                                             attributes: `name="attribute[${id}]" value="${item.id}"${$If({test: item.selected, $then: () => " checked data-default"})}${$If({test: required, $then: () => " required"})}`,
                                         }}
                                     />{" "}
-                                    <label data-product-attribute-value={item.id} className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor={`attribute_productlist_${id}_${item.id}`}>
+                                    <FormLabel check="radio" data-product-attribute-value={item.id} className="[&_small]:float-right [&_small]:mt-quarter" htmlFor={`attribute_productlist_${id}_${item.id}`}>
                                         {item.label}
-                                    </label>{" "}
+                                    </FormLabel>{" "}
                                 </>
                             )}
                         />
                     </>
                 )}
             />
-        </div>
+        </FormField>
     );
 };

@@ -1,6 +1,7 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$If, $Each, $lang, $Lang, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
+import {Button, FormInput, Icon} from "../../../server/formParts.tsx";
 
 interface Coupon {
     display_name: string;
@@ -17,9 +18,9 @@ export default (_props: PartialProps) => (
         </div>
 
         <div className="cart-form coupon-code-form" data-coupon-form={""} style={{display: "none"}}>
-            <form className="form form--hiddenLabels [&_.form-label]:absolute [&_.form-label]:size-px [&_.form-label]:overflow-hidden [&_.form-label]:border-0 [&_.form-label]:p-0 [&_.form-label]:[clip:rect(1px,1px,1px,1px)] coupon-form flow-root text-[0px] mb-base mt-base" action={$pointer("urls.cart")} method="post">
-                <input
-                    className="form-input float-left inline-block h-[32px] w-[78%] p-third align-top"
+            <form className="form form--hiddenLabels [&_.form-label]:absolute [&_.form-label]:size-px [&_.form-label]:overflow-hidden [&_.form-label]:border-0 [&_.form-label]:p-0 [&_.form-label]:[clip:rect(1px,1px,1px,1px)] coupon-form flow-root text-[0px] mb-base mt-base [:where(&)]:[margin:var(--sv-form-margin)]" action={$pointer("urls.cart")} method="post">
+                <FormInput
+                    className="float-left inline-block h-[32px] w-[78%] p-third align-top"
                     data-error={$lang($string("cart.coupons.empty_error"))}
                     id="couponcode"
                     type="text"
@@ -27,8 +28,8 @@ export default (_props: PartialProps) => (
                     value=""
                     placeholder={$lang($string("cart.coupons.coupon_code"))}
                 />
-                <input
-                    className="button button--primary button--small float-left m-0 ml-[2%] w-[20%] px-half bg-(--sv-container-fill-base) font-bold text-text-base"
+                <Button
+                    tag="input" variant="primary" size="small" className="float-left m-0 ml-[2%] w-[20%] px-half bg-(--sv-container-fill-base) font-bold text-text-base"
                     type="submit"
                     aria-label={$lang($string("cart.coupons.apply_coupon"))}
                     value={$lang($string("cart.coupons.button"))}
@@ -46,11 +47,11 @@ export default (_props: PartialProps) => (
                             list={$pointer<Coupon[]>("cart.coupons")}
                             $then={(coupon) => (
                                 <li className="cart-coupon-item inline-flex max-w-full items-center gap-[0.5rem] rounded-[3px] border border-(color:--sv-setting-color-coupon-pill-border) bg-(--sv-setting-color-coupon-pill-background) p-[0.5rem] text-(--sv-setting-color-coupon-pill-text) [&_svg]:fill-(--sv-setting-icon-color)">
-                                    <i className="icon" aria-hidden="true">
+                                    <Icon aria-hidden="true">
                                         <svg>
                                             <use href="#icon-promotions" />
                                         </svg>
-                                    </i>
+                                    </Icon>
                                     <$If
                                         test={coupon.display_name}
                                         $then={() => (
@@ -61,11 +62,11 @@ export default (_props: PartialProps) => (
                                         $else={() => <span className="cart-coupon-name ml-sixth inline-flex flex-1 flex-col">{coupon.code}</span>}
                                     />
                                     <a className="cart-coupon-remove" aria-label={$lang($string("cart.coupons.remove"))} href={coupon.remove_url}>
-                                        <i className="icon" aria-hidden="true">
+                                        <Icon aria-hidden="true">
                                             <svg>
                                                 <use href="#icon-close" />
                                             </svg>
-                                        </i>
+                                        </Icon>
                                     </a>
                                 </li>
                             )}

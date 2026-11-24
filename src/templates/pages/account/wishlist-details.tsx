@@ -3,6 +3,7 @@ import AccountWishlistItemList from "../../components/account/wishlist-item-list
 import Breadcrumbs from "../../components/common/breadcrumbs.tsx";
 import AlertAlertInfo from "../../components/common/alert/alert-info.tsx";
 import {$If, $Lang, $lang, $number, $Page, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
+import {FormInput} from "../../../server/formParts.tsx";
 
 export default () => (
     <$Page
@@ -36,7 +37,7 @@ export default () => (
                                                     <h5>
                                                         <$Lang keyName={$string("account.wishlists.share_intro")} />
                                                     </h5>
-                                                    <input className="form-input" value={`${$pointer("settings.base_url")}${$pointer("wishlist.share_url")}`} readOnly={true} />
+                                                    <FormInput value={`${$pointer("settings.base_url")}${$pointer("wishlist.share_url")}`} readOnly={true} />
                                                 </div>
                                             </div>
                                         </>

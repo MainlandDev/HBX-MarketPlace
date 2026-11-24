@@ -22,6 +22,7 @@ import {
     $string,
     $Unless, $unlessExpression,
 } from "@mainlanddev/hbx-bigcommerce";
+import {Icon} from "../../../server/formParts.tsx";
 
 interface Money {
     value: number;
@@ -109,11 +110,11 @@ export default (_props: PartialProps) => {
                                     <strong>
                                         <$Lang keyName={$string("cart.discounts")} />
                                     </strong>
-                                    <i className="icon cart-discount-icon [transition:transform_0.3s_ease] is-open:[transform:rotate(180deg)] [&_svg]:fill-text-base" aria-hidden="true">
+                                    <Icon className="cart-discount-icon [transition:transform_0.3s_ease] is-open:[transform:rotate(180deg)] [&_svg]:fill-text-base" aria-hidden="true">
                                         <svg>
                                             <use href="#icon-keyboard-arrow-up" />
                                         </svg>
-                                    </i>
+                                    </Icon>
                                 </div>
                                 <div className="cart-total-value float-left py-third pr-0 pl-single text-left small:text-right medium:w-6/12 medium:py-base medium:pl-0 [[data-enhanced]_&]:float-right [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:font-semibold" data-discount-toggle={""}>
                                     <span>{cart.display_discount_total.formatted}</span>
@@ -124,11 +125,11 @@ export default (_props: PartialProps) => {
                                         $then={() => (
                                             <li className="cart-discount-item justify-between py-eighth text-text-secondary [&:not([style*=none])]:flex">
                                                 <div className="cart-discount-item-label text-left">
-                                                    <i className="icon" aria-hidden="true">
+                                                    <Icon aria-hidden="true">
                                                         <svg>
                                                             <use href="#icon-promotions" />
                                                         </svg>
-                                                    </i>
+                                                    </Icon>
                                                     <span className="cart-coupon-name ml-sixth inline-flex flex-1 flex-col">
                                                         <$Lang keyName={$string("cart.automatic_discount")} />{" "}
                                                         <$If
@@ -150,11 +151,11 @@ export default (_props: PartialProps) => {
                                         $then={() => (
                                             <li className="cart-discount-item justify-between py-eighth text-text-secondary [&:not([style*=none])]:flex">
                                                 <div className="cart-discount-item-label text-left">
-                                                    <i className="icon" aria-hidden="true">
+                                                    <Icon aria-hidden="true">
                                                         <svg>
                                                             <use href="#icon-promotions" />
                                                         </svg>
-                                                    </i>
+                                                    </Icon>
                                                     <span className="cart-coupon-name ml-sixth inline-flex flex-1 flex-col">
                                                         <$Lang keyName={$string("cart.manual_discount")} />
                                                     </span>
@@ -168,11 +169,11 @@ export default (_props: PartialProps) => {
                                         $then={(coupon) => (
                                             <li className="cart-discount-item justify-between py-eighth text-text-secondary [&:not([style*=none])]:flex">
                                                 <div className="cart-discount-item-label text-left">
-                                                    <i className="icon" aria-hidden="true">
+                                                    <Icon aria-hidden="true">
                                                         <svg>
                                                             <use href="#icon-promotions" />
                                                         </svg>
-                                                    </i>
+                                                    </Icon>
                                                     <span className="cart-coupon-name ml-sixth inline-flex flex-1 flex-col">
                                                         <$If
                                                             test={coupon.display_name}
@@ -414,11 +415,11 @@ export default (_props: PartialProps) => {
                                     $then={(certificate) => (
                                         <li className="cart-total cart-total-gift-certificate-list-item flow-root border-b-0">
                                             <div className="cart-total-label float-left flex w-auto max-w-[80%] flex-wrap items-center gap-third py-third pr-0 pl-0 text-left text-text-secondary [&_.icon]:shrink-0 [&_a]:text-(--sv-setting-optimizedCheckout-link-color) [&_a]:font-normal [&_a]:no-underline [&_a]:hover:underline">
-                                                <i className="icon" aria-hidden="true">
+                                                <Icon aria-hidden="true">
                                                     <svg>
                                                         <use href="#icon-gifts" />
                                                     </svg>
-                                                </i>{" "}
+                                                </Icon>{" "}
                                                 <span>{certificate.code}</span>{" "}
                                                 <$If test={certificate.remaining.value} $then={() => <span>| {certificate.remaining.formatted} left</span>} />{" "}
                                                 <a href={certificate.remove_url}>

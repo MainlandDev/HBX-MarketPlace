@@ -3,6 +3,7 @@ import ProductsCard from "../products/card.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import Paginator from "../common/paginator.tsx";
 import {$Each, $If, $lang, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
+import {Button} from "../../../server/formParts.tsx";
 
 interface WishlistItem {
     product_id: string;
@@ -21,8 +22,8 @@ export default (_props: PartialProps) => (
                         <$If
                             test={$pointer("../show_remove")}
                             $then={() => (
-                                <form action={item.remove_url} className="form" method="post">
-                                    <input type="submit" className="button button--primary button--small" value={$lang($string("account.wishlists.remove_item"))} />
+                                <form action={item.remove_url} className="form [:where(&)]:[margin:var(--sv-form-margin)]" method="post">
+                                    <Button type="submit" tag="input" variant="primary" size="small" value={$lang($string("account.wishlists.remove_item"))} />
                                 </form>
                             )}
                         />

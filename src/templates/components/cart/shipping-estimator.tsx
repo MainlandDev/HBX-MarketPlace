@@ -1,6 +1,7 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$If, $Each, $Inject, $Lang, $lang, $pointer, $raw, $string, $Unless, $ifExpression, $And} from "@mainlanddev/hbx-bigcommerce";
+import {Button, FormInput, FormLabel, FormSelect} from "../../../server/formParts.tsx";
 
 interface Option {
     id: string;
@@ -46,16 +47,16 @@ export default (_props: PartialProps) => (
         />
 
         <div id="add-shipping" className="shipping-estimator u-hidden">
-            <form className="form estimator-form mb-0 [&_.button--primary]:w-[60%]" data-shipping-estimator={""}>
+            <form className="form estimator-form mb-0 [&_.button--primary]:w-[60%] [:where(&)]:[margin:var(--sv-form-margin)]" data-shipping-estimator={""}>
                 <dl>
                     <dt className="estimator-form-label clear-both float-left mb-0 font-normal [&_.form-label]:mb-0 [&_.form-label]:leading-[32px]">
-                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="shipping-country">
+                        <FormLabel className="[&_small]:float-right [&_small]:mt-quarter" htmlFor="shipping-country">
                             <$Lang keyName={$string("cart.shipping_estimator.select_a_country")} />
-                        </label>
+                        </FormLabel>
                     </dt>
 
                     <dd className="estimator-form-input float-right mb-[1em] w-[60%]">
-                        <select className="form-select mb-0 h-[32px] px-half py-0 [background-position:right_5px_center] [background-size:20px_20px]" id="shipping-country" name="shipping-country" data-field-type="Country">
+                        <FormSelect className="mb-0 h-[32px] px-half py-0 [background-position:right_5px_center] [background-size:20px_20px]" id="shipping-country" name="shipping-country" data-field-type="Country">
                             <option>
                                 <$Lang keyName={$string("cart.shipping_estimator.select_a_country")} />
                             </option>
@@ -71,20 +72,20 @@ export default (_props: PartialProps) => (
                                     </option>
                                 )}
                             />
-                        </select>
+                        </FormSelect>
                     </dd>
 
                     <dt className="estimator-form-label clear-both float-left mb-0 font-normal [&_.form-label]:mb-0 [&_.form-label]:leading-[32px]">
-                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="shipping-state">
+                        <FormLabel className="[&_small]:float-right [&_small]:mt-quarter" htmlFor="shipping-state">
                             <$Lang keyName={$string("cart.shipping_estimator.select_a_state")} />
-                        </label>
+                        </FormLabel>
                     </dt>
 
                     <dd className="estimator-form-input float-right mb-[1em] w-[60%]">
                         <$If
                             test={$pointer("states.length")}
                             $then={() => (
-                                <select className="form-select mb-0 h-[32px] px-half py-0 [background-position:right_5px_center] [background-size:20px_20px]" id="shipping-state" name="shipping-state" data-field-type="State">
+                                <FormSelect className="mb-0 h-[32px] px-half py-0 [background-position:right_5px_center] [background-size:20px_20px]" id="shipping-state" name="shipping-state" data-field-type="State">
                                     <option>
                                         <$Lang keyName={$string("cart.shipping_estimator.select_a_state")} />
                                     </option>
@@ -100,11 +101,11 @@ export default (_props: PartialProps) => (
                                             </option>
                                         )}
                                     />
-                                </select>
+                                </FormSelect>
                             )}
                             $else={() => (
-                                <input
-                                    className="form-input mb-0 inline-block h-[32px] w-full p-third align-top"
+                                <FormInput
+                                    className="mb-0 inline-block h-[32px] w-full p-third align-top"
                                     type="text"
                                     id="shipping-state"
                                     name="shipping-state"
@@ -116,13 +117,13 @@ export default (_props: PartialProps) => (
                     </dd>
 
                     <dt className="estimator-form-label clear-both float-left mb-0 font-normal [&_.form-label]:mb-0 [&_.form-label]:leading-[32px]">
-                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="shipping-city">
+                        <FormLabel className="[&_small]:float-right [&_small]:mt-quarter" htmlFor="shipping-city">
                             <$Lang keyName={$string("cart.shipping_estimator.suburb_city")} />
-                        </label>
+                        </FormLabel>
                     </dt>
                     <dd className="estimator-form-input float-right mb-[1em] w-[60%]">
-                        <input
-                            className="form-input mb-0 inline-block h-[32px] w-full p-third align-top"
+                        <FormInput
+                            className="mb-0 inline-block h-[32px] w-full p-third align-top"
                             type="text"
                             id="shipping-city"
                             name="shipping-city"
@@ -132,14 +133,14 @@ export default (_props: PartialProps) => (
                     </dd>
 
                     <dt className="estimator-form-label clear-both float-left mb-0 font-normal [&_.form-label]:mb-0 [&_.form-label]:leading-[32px]">
-                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="shipping-zip">
+                        <FormLabel className="[&_small]:float-right [&_small]:mt-quarter" htmlFor="shipping-zip">
                             <$Lang keyName={$string("cart.shipping_estimator.zip_postal_code")} />
-                        </label>
+                        </FormLabel>
                     </dt>
                     <dd className="estimator-form-input float-right mb-[1em] w-[60%]">
-                        <input
+                        <FormInput
                             autoComplete="postal-code"
-                            className="form-input mb-0 inline-block h-[32px] w-full p-third align-top"
+                            className="mb-0 inline-block h-[32px] w-full p-third align-top"
                             type="text"
                             id="shipping-zip"
                             name="shipping-zip"
@@ -147,9 +148,9 @@ export default (_props: PartialProps) => (
                             placeholder={$lang($string("cart.shipping_estimator.zip_postal_code"))}
                         />
                     </dd>
-                    <button className="button button--primary button--small shipping-estimate-submit">
+                    <Button variant="primary" size="small" className="shipping-estimate-submit">
                         <$Lang keyName={$string("cart.shipping_estimator.estimate_shipping")} />
-                    </button>
+                    </Button>
                 </dl>
             </form>
             <div className="shipping-quotes" role="alert" aria-atomic="true" aria-live="assertive"></div>

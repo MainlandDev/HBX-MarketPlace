@@ -1,6 +1,7 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$Each, $If, $Lang, $lang, $pointer, $raw, $string, $Unless} from "@mainlanddev/hbx-bigcommerce";
+import {Icon} from "../../../server/formParts.tsx";
 
 interface PageLink {
     number: string;
@@ -21,11 +22,11 @@ export default (_props: PartialProps) => (
                                 attributes: `${$Unless({test: $pointer("reload"), $then: () => "data-faceted-search-facet"})} aria-label="${$lang($string("common.previous"))}"`,
                             }}
                         >
-                            <i className="icon -mt-[2px] -ml-[12px] size-[20px]" aria-hidden="true">
+                            <Icon className="-mt-[2px] -ml-[12px] size-[20px]" aria-hidden="true">
                                 <svg>
                                     <use href="#icon-chevron-left"></use>
                                 </svg>
-                            </i>
+                            </Icon>
                             <$Lang keyName={$string("common.previous")} />
                         </a>
                     </li>
@@ -68,11 +69,11 @@ export default (_props: PartialProps) => (
                             }}
                         >
                             <$Lang keyName={$string("common.next")} />
-                            <i className="icon -mt-[2px] -mr-[12px] size-[20px]" aria-hidden="true">
+                            <Icon className="-mt-[2px] -mr-[12px] size-[20px]" aria-hidden="true">
                                 <svg>
                                     <use href="#icon-chevron-right"></use>
                                 </svg>
-                            </i>
+                            </Icon>
                         </a>
                     </li>
                 )}

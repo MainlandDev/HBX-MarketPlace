@@ -24,7 +24,8 @@ const files = roots.flatMap((root) => walk(root).sort()).map((path) => ({path, t
 const {names, duplicates} = scanVariables(files);
 const themeScss = walk(fileURLToPath(new URL("../assets/scss/", import.meta.url))).sort().map((path) => ({path, text: readFileSync(path, "utf8")}));
 const config = JSON.parse(readFileSync(new URL("../config.json", import.meta.url), "utf8"));
-const markup = walk(fileURLToPath(new URL("../src/templates/", import.meta.url)), /\.tsx$/).sort().map((path) => ({path, text: readFileSync(path, "utf8")}));
+// src/server holds the shared helpers (navParts, formParts) whose utilities read --sv-setting-* variables too.
+const markup = ["../src/templates/", "../src/server/"].flatMap((dir) => walk(fileURLToPath(new URL(dir, import.meta.url)), /\.tsx$/).sort()).map((path) => ({path, text: readFileSync(path, "utf8")}));
 const settingCalls = [...scanSettingCalls(themeScss), ...scanMarkupSettings([...markup, ...themeScss], config.settings)].filter((call, index, all) => all.findIndex((other) => settingName(other.fn, other.key) === settingName(call.fn, call.key)) === index);
 const scss = renderBridge(names, settingCalls);
 console.log(`settings ${settingCalls.length}, declared ${names.length}, duplicates ${duplicates.length}${duplicates.length ? ` (${duplicates.join(", ")})` : ""}`);
