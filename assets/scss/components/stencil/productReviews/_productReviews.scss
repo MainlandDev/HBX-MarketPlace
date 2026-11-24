@@ -33,22 +33,3 @@
         width: grid-calc(4, $total-columns);
     }
 }
-
-.productReview-title {
-    margin: 0;
-    text-transform: none;
-}
-
-.productReview-author {
-    color: stencilColor("color-textSecondary");
-    margin-bottom: spacing("base");
-}
-
-.productReview-rating {
-    display: inline-block;
-    margin-bottom: spacing("quarter");
-}
-
-.productReview-ratingNumber {
-    @include u-hidden("visually");
-}

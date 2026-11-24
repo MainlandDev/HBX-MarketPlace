@@ -17,12 +17,13 @@
 @source "../../src/templates/components/account";
 @source "../../src/templates/pages/account";
 @source "../../src/templates/pages/auth";
+@source "../../src/templates/components/products";
 /*
  * Words in attributes and comments of a listed folder (`type="hidden"`, "containing block") are also picked up as candidates. With `important` an
  * emitted `.hidden` or `.block` would override third-party and merchant markup site-wide, so such strays are excluded here. The test in
  * scripts/tailwind/theme.test.mjs fails when a utility is emitted that no className uses: add its name to this list.
  */
-@source not inline("block hidden table");
+@source not inline("block hidden table fixed");
 
 /*
  * Normalisation on top of Preflight, in the base layer. Declared after the import, so on equal

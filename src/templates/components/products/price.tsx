@@ -48,7 +48,7 @@ If you are making a change here or in price-range.html, you probably want to mak
                 <span>
                     <ProductsPriceLabel label_value={settings["pdp-retail-price-label"]} fallback={$lang($string("page_builder.pdp-retail-price-label"))} />
                 </span>
-                <span data-product-rrp-with-tax={""} className="price price--rrp">
+                <span data-product-rrp-with-tax={""} className="price price--rrp line-through">
                     {price.rrp_with_tax.formatted}
                 </span>
             </div>
@@ -61,7 +61,7 @@ If you are making a change here or in price-range.html, you probably want to mak
                 <span>
                     <ProductsPriceLabel label_value={settings["pdp-non-sale-price-label"]} fallback={$lang($string("page_builder.pdp-non-sale-price-label"))} />
                 </span>
-                <span data-product-non-sale-price-with-tax={""} className="price price--non-sale">
+                <span data-product-non-sale-price-with-tax={""} className="price price--non-sale line-through">
                     {price.non_sale_price_with_tax.formatted}
                 </span>
             </div>
@@ -85,7 +85,7 @@ If you are making a change here or in price-range.html, you probably want to mak
                 />
             </div>
             <div
-                className={`price-section price-section--withoutTax rrp-price--withoutTax${$If({test: price.with_tax, $then: () => " price-section--minor"})}`}
+                className={`price-section price-section--withoutTax rrp-price--withoutTax${$If({test: price.with_tax, $then: () => " price-section--minor text-grey-light"})}`}
                 dangerouslyInlineAttributes={{
                     attributes: `${$Unless({test: price.rrp_without_tax, $then: () => $raw('style="display: none;"')})}`,
                 }}
@@ -93,12 +93,12 @@ If you are making a change here or in price-range.html, you probably want to mak
                 <span>
                     <ProductsPriceLabel label_value={settings["pdp-retail-price-label"]} fallback={$lang($string("page_builder.pdp-retail-price-label"))} />
                 </span>
-                <span data-product-rrp-price-without-tax={""} className="price price--rrp">
+                <span data-product-rrp-price-without-tax={""} className="price price--rrp line-through">
                     {price.rrp_without_tax.formatted}
                 </span>
             </div>
             <div
-                className={`price-section price-section--withoutTax non-sale-price--withoutTax${$If({test: price.with_tax, $then: () => " price-section--minor"})}`}
+                className={`price-section price-section--withoutTax non-sale-price--withoutTax${$If({test: price.with_tax, $then: () => " price-section--minor text-grey-light"})}`}
                 dangerouslyInlineAttributes={{
                     attributes: `${$Unless({test: price.non_sale_price_without_tax, $then: () => $raw('style="display: none;"')})}`,
                 }}
@@ -106,7 +106,7 @@ If you are making a change here or in price-range.html, you probably want to mak
                 <span>
                     <ProductsPriceLabel label_value={settings["pdp-non-sale-price-label"]} fallback={$lang($string("page_builder.pdp-non-sale-price-label"))} />
                 </span>
-                <span data-product-non-sale-price-without-tax={""} className="price price--non-sale">
+                <span data-product-non-sale-price-without-tax={""} className="price price--non-sale line-through">
                     {price.non_sale_price_without_tax.formatted}
                 </span>
             </div>
@@ -117,7 +117,7 @@ If you are making a change here or in price-range.html, you probably want to mak
                 <span className="price-now-label" dangerouslyInlineAttributes={{attributes: `${$Unless({test: price.non_sale_price_without_tax, $then: () => $raw('style="display: none;"')})}`}}>
                     <ProductsPriceLabel label_value={settings["pdp-sale-price-label"]} fallback={$lang($string("page_builder.pdp-sale-price-label"))} />
                 </span>
-                <span data-product-price-without-tax={""} className={`price${$If({test: price.with_tax, $then: () => " price-section--minor"})}`}>
+                <span data-product-price-without-tax={""} className={`price${$If({test: price.with_tax, $then: () => " price-section--minor text-grey-light"})}`}>
                     {price.without_tax.formatted}
                 </span>
                 <$If

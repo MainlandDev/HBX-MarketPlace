@@ -42,15 +42,15 @@ export default (_props: PartialProps) => {
                                     <li className="productReview">
                                         <article>
                                             <header>
-                                                <span className="productReview-rating rating--small">
+                                                <span className="productReview-rating rating--small inline-block mb-quarter">
                                                     <ProductsRatings rating={review.rating} />
-                                                    <span className="productReview-ratingNumber">{review.rating}</span>
+                                                    <span className="productReview-ratingNumber absolute size-px overflow-hidden border-0 p-0 [clip:rect(1px,1px,1px,1px)]">{review.rating}</span>
                                                 </span>
-                                                <h5 className="productReview-title">{$unescaped($sanitize(review.title))}</h5>
+                                                <h5 className="productReview-title m-0 normal-case">{$unescaped($sanitize(review.title))}</h5>
                                                 <$If
                                                     test={review.name}
                                                     $then={() => (
-                                                        <p className="productReview-author">
+                                                        <p className="productReview-author mb-base text-text-secondary">
                                                             {$unescaped(
                                                                 $lang($string("products.reviews.post_on_by"), {
                                                                     date: review.date,
@@ -60,7 +60,7 @@ export default (_props: PartialProps) => {
                                                         </p>
                                                     )}
                                                     $else={() => (
-                                                        <p className="productReview-author">
+                                                        <p className="productReview-author mb-base text-text-secondary">
                                                             <$Lang
                                                                 keyName={$string("products.reviews.post_on_by")}
                                                                 date={review.date}

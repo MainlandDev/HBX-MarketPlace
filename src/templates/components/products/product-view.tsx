@@ -159,7 +159,7 @@ export default (_props: PartialProps) => {
                     )}
                 />
 
-                <section className="productView-images" data-image-gallery={""}>
+                <section className="productView-images mb-double" data-image-gallery={""}>
                     {/*
             Note that these image sizes are coupled to image sizes used in /assets/js/theme/common/product-details.js
             for variant/rule image replacement
@@ -225,7 +225,7 @@ export default (_props: PartialProps) => {
                 </section>
 
                 <section className="productView-details product-data">
-                    <div className="productView-product">
+                    <div className="productView-product medium:border-b medium:border-container-border medium:pb-[calc(var(--sv-spacing-single)+var(--sv-spacing-third))] [&>:last-child]:mb-0">
                         <h1 className="productView-title">{product.title}</h1>
                         <$If
                             test={product.brand}
@@ -285,7 +285,7 @@ export default (_props: PartialProps) => {
                                     <>
                                         <a
                                             href={`${product.url}${$If({test: isAjax, $then: () => "#write_review"})}`}
-                                            className="productView-reviewLink productView-reviewLink--new"
+                                            className="productView-reviewLink productView-reviewLink--new ml-quarter inline-block p-0 align-middle text-text-secondary hover:text-(--sv-color-textSecondary-hover)"
                                             dangerouslyInlineAttributes={{
                                                 attributes: `${$Unless({test: isAjax, $then: () => $raw('data-reveal-id="modal-review-form"')})}`,
                                             }}
@@ -541,7 +541,7 @@ export default (_props: PartialProps) => {
                             </div>
                             <div className={`form-field form-field--stock${$Unless({test: product.stock_level, $then: () => " u-hiddenVisually"})}`}>
                                 <label className="form-label form-label--alternate">
-                                    <span className="productView-stock-message">
+                                    <span className="productView-stock-message font-bold">
                                         <span data-product-stock={""}>{product.stock_level}</span>{" "}
                                         <$Lang keyName={$string("products.in_stock")} />
                                     </span>{" "}
@@ -559,7 +559,7 @@ export default (_props: PartialProps) => {
                                     <span data-qty-backordered-message={""}></span>
                                     <span data-backorder-message={""}></span>
                                 </p>
-                                <ul className="productView-picklist-backorder" data-picklist-backorder-list={""} style={{display: "none"}}></ul>
+                                <ul className="productView-picklist-backorder m-0 list-none p-0 text-[1rem]" data-picklist-backorder-list={""} style={{display: "none"}}></ul>
                             </div>
                             <ProductsAddToCart with_wallet_buttons={$boolean(true)} />
                         </form>

@@ -14,9 +14,6 @@
 // Images
 // -----------------------------------------------------------------------------
 
-.productView-images {
-    margin-bottom: spacing("double");
-}
 
 .productView-image {
     align-items: center;
@@ -135,16 +132,6 @@
 // Details - Product details
 // -----------------------------------------------------------------------------
 
-.productView-product {
-    @include breakpoint("medium") {
-        border-bottom: container("border");
-        padding-bottom: spacing("single") + spacing("third");
-    }
-
-    > :last-child {
-        margin-bottom: 0;
-    }
-}
 
 .productView-title {
     font-size: fontSize("small");
@@ -201,27 +188,8 @@
     }
 }
 
-.productView-reviewLink {
-    color: stencilColor("color-textSecondary");
-    display: inline-block;
-    margin-left: spacing("quarter");
-    vertical-align: middle;
-
-    &:hover {
-        color: stencilColor("color-textSecondary--hover");
-    }
-
-    &--new {
-        padding: 0;
-    }
-}
-
 // Details - Product backorder message
 // -----------------------------------------------------------------------------
-
-.productView-stock-message {
-    font-weight: fontWeight("bold");
-}
 
 .productView-backorder-availability-prompt::before {
     content: "| ";
@@ -233,13 +201,6 @@
 
 [data-qty-backordered-message]:not(:empty) + [data-backorder-message]:not(:empty)::before {
     content: "| ";
-}
-
-.productView-picklist-backorder {
-    font-size: 1rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
 }
 
 .productView-picklist-backorder-item {

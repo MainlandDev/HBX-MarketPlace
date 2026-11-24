@@ -35,7 +35,7 @@ Convert the theme's remaining SCSS (`assets/scss/components`, `assets/scss/layou
 | --- | --- | --- | --- |
 | 0 | cart slice A, variant selector, tooling | cart (partial), products/options | merged (`31c354d1`, `32e8a01c`) |
 | 1 | `components/stencil/{account,addressBox,addReturn,paymentMethods,_wishlists,_login}`, `layouts/account` | `components/account`, `pages/account`, `pages/auth` | merged, partial (see report) |
-| 2 | `components/stencil/{productView,productReviews,writeReview,productCarousel,quickView,price,rating,ribbon,tags,toggleLink,videoGallery,socialLinks}`, `layouts/products/*` (incl. the rest of `_variantSelector`) | `components/products` (not `options`), `pages/product.tsx` | todo |
+| 2 | `components/stencil/{productView,productReviews,writeReview,productCarousel,quickView,price,rating,ribbon,tags,toggleLink,videoGallery,socialLinks}`, `layouts/products/*` (incl. the rest of `_variantSelector`) | `components/products` (not `options`), `pages/product.tsx` | merged, small (see report) |
 | 3 | `components/stencil/{navUser,navPages,heroCarousel,banners}`, `layouts/{header,footer,body,container,sidebar}` | `layout`, `components/common`, `components/carousel*.tsx`, `pages/home.tsx` | todo |
 | 4 | `components/stencil/{search,category,compare,facetedSearch,facetLabel,contact,blocker,textTruncate}`, `layouts/{blog,brands}` | `components/{search,category,brand,blog,faceted-search,sitemap,page}`, `pages/{search,category,brand,brands,blog,blog-post,compare,contact-us,page,sitemap}.tsx` | todo |
 | 5 | rest of `components/stencil/cart/_cart.scss`, `previewCart` | `components/cart`, `pages/cart.tsx`, `components/common/cart-preview.tsx` | todo |
@@ -44,6 +44,7 @@ Convert the theme's remaining SCSS (`assets/scss/components`, `assets/scss/layou
 
 ## Merge log
 
+- WP2 merged by the lead (product family, small): SCSS lines 6353 -> 6300; vitest 119/119, vite-build ok. `@source` now lists `components/products`; stray list is `block hidden table fixed`.
 - WP1 merged by the lead (account family, partial): theme CSS 6490 -> 6353 SCSS lines in `tw-inventory`; vitest 119/119, vite-build ok.
 
 ## Lessons added by WP1
@@ -62,3 +63,14 @@ Convert the theme's remaining SCSS (`assets/scss/components`, `assets/scss/layou
 ### WP1 (account family): summary
 Converted and Edge-verified (0 diffs at 375/768/1280/no-JS except sub-pixel width noise of at most 0.013px and invisible zero-width border colours): navBar--account, listShipping(+title), product-price, product-refundQty, orderTotal(+key/value), reorder-form (order list/details), addressBox (address list), login intro/fact list, wishlists-table; deleted the UNUSED `account-product-subtitle`. Stayed in SCSS: shared classes with unreachable consumers (heading, list, listItem, product-title, detail-heading, orderStatus*, product-description, backorder prompts, orderTotal-discount, download*, payment description), layout/mixin rules (product, figure, body, details, alignMiddle, order-address, downloadsList), sidebar sibling rule, pagination, panel--address descendants, login-row/form/new-customer, wishlist-header/form/share, layouts/account, addReturn, paymentMethods. Follow-up: giving the worker returns/inbox data would unlock most shared account rules; the user decided not to convert unverified.
 
+## Lessons added by WP2
+
+- Product, account and login pages have no `.page`: root `#main-content`. A full snapshot of the product page is about 850 KB per state; sessionStorage (5 MB) overflows with four states, so keep snapshots compact (arrays joined by a separator) or store only the subtree you changed (a narrower root such as `.productView` or `.productView-details` is better). Do not return full diff lines from `javascript_tool`: the tool blocks results containing query strings or cookie-like data (`[BLOCKED: Cookie/query string data]`); return counts and short fields.
+- Edge screenshots (`Page.captureScreenshot`) often time out on heavy pages (product page, address book); retry on a lighter scroll position or rely on computed-style diffs and say so.
+- The Edge tab group can disappear mid-session, wiping sessionStorage baselines: redo the baseline in a new tab.
+- The live store's inline stylesheet targets `.productView-details`, `.price.price--rrp`, `.productView-price`, `.price-section--saving`, `.productView-info-name--availability`, `.productView-price + div`: keep those class names as hooks.
+- `sr-only` adds a -1px margin; use explicit `absolute size-px overflow-hidden border-0 p-0 [clip:rect(1px,1px,1px,1px)]` when matching an older visually-hidden mixin. The hover variable is `--sv-color-textSecondary-hover`. Stray list additions go in `@source not inline(...)`.
+- Reachability limits for product partials: no promotion callouts render (no featured promotion), list view needs the theme setting `product_list_display_mode = list` (it is grid), no video gallery, write-review/quick-view modals not driven. `productView-title|brand|price|info*|details|image|img-container` are shared with the cart preview modal (`components/cart/preview.tsx`, WP5): convert them together once that modal is reachable.
+
+### WP2 (product family): summary
+Converted and Edge-verified on the product page (4-5 explained differences per state: harmless border-style/zero-width border colour): productView-product, -images, -reviewLink(+--new), -stock-message, -picklist-backorder (ul); productReview title/author/rating/ratingNumber; price--rrp, price--non-sale, price-section--minor (also spot-checked on category cards, no baseline). Stayed in SCSS: promotion callouts and product list (unreachable states), shared productView rules (cart preview), thumbnails/slick, options descendants, JS-created backorder items, grid/clearfix/pseudo partials (productGrid, saleBadges, swatch), toggleLink, videoGallery, socialLinks, writeReview, quickView, carousel, ribbon/tags. UNUSED safe-delete candidates (not deleted, live store injects markup): ribbon, shareProduct, productMasonry, productGrid--maxCol*.
