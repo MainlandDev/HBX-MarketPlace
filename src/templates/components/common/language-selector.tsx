@@ -9,10 +9,10 @@ interface Language {
 }
 
 export default (_props: PartialProps) => (
-    <ul className="navUser-section">
+    <ul className="navUser-section medium:relative">
         <li className="navUser-item">
             <a
-                className="navUser-action navUser-action--languageSelector has-dropdown"
+                className="navUser-action font-bold uppercase no-underline px-half py-base navUser-action--languageSelector has-dropdown"
                 href="#"
                 data-locale-code={$pointer("language_selector.active_language_code")}
                 data-dropdown="languageSelection"

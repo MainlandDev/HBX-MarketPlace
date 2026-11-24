@@ -43,7 +43,7 @@ export default (_props: PartialProps) => {
                     </div>
                 )}
             />
-            <header className="header" role="banner">
+            <header className="header border-b border-container-border bg-(--sv-header-bg)" role="banner">
                 <a href="#" className="mobileMenu-toggle" data-mobile-menu-toggle="menu">
                     <span className="mobileMenu-toggleIcon">Toggle menu</span>
                 </a>

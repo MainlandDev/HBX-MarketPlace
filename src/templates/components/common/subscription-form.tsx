@@ -4,7 +4,7 @@ import {$If, $Lang, $lang, $pointer, $string} from "@mainlanddev/hbx-bigcommerce
 
 export default (_props: PartialProps) => (
     <>
-        <h3 className="footer-info-heading">
+        <h3 className="footer-info-heading text-(length:--sv-fontSize-base) [text-transform:inherit]">
             <$Lang keyName={$string("newsletter.subscribe")} />
         </h3>
         <p>
@@ -41,7 +41,7 @@ export default (_props: PartialProps) => (
                     </div>
                     <$If
                         test={$pointer("settings.show_newsletter_summary")}
-                        $then={() => <div className="footer-newsletter-summary">{$pointer("settings.newsletter_summary")}</div>}
+                        $then={() => <div className="footer-newsletter-summary text-left">{$pointer("settings.newsletter_summary")}</div>}
                     />
                 </div>
             </fieldset>

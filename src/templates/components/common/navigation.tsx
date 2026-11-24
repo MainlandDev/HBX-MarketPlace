@@ -18,7 +18,7 @@ export default (_props: PartialProps) => {
 
             <$If test={theme.show_channels} $then={() => <ChannelSelector />} />
 
-            <ul className="navUser-section navUser-section--alt">
+            <ul className="navUser-section medium:relative navUser-section--alt">
                 <$If
                     test={$pointer("customer.store_credit.value")}
                     operator={$string(">")}
@@ -26,7 +26,7 @@ export default (_props: PartialProps) => {
                     $then={() => (
                 <li className="navUser-item">
                     <a
-                        className="navUser-action navUser-action--storeCredit"
+                        className="navUser-action font-bold uppercase no-underline px-half py-base navUser-action--storeCredit"
                         data-dropdown="storeCredit-dropdown"
                         data-options="align:bottom"
                         href={$pointer("urls.cart")}
@@ -45,7 +45,7 @@ export default (_props: PartialProps) => {
 
                 <li className="navUser-item">
                     <a
-                        className="navUser-action navUser-item--compare"
+                        className="navUser-action font-bold uppercase no-underline px-half py-base navUser-item--compare"
                         href={$pointer("urls.compare")}
                         data-compare-nav={""}
                         aria-label={$lang($string("common.compare"))}
@@ -64,7 +64,7 @@ export default (_props: PartialProps) => {
                 />
                 <li className="navUser-item">
                     <button
-                        className="navUser-action navUser-action--quickSearch"
+                        className="navUser-action font-bold uppercase no-underline px-half py-base navUser-action--quickSearch"
                         type="button"
                         id="quick-search-expand"
                         data-search="quickSearch"
@@ -78,7 +78,7 @@ export default (_props: PartialProps) => {
                     test={$pointer("settings.gift_certificates_enabled")}
                     $then={() => (
                         <li className="navUser-item">
-                            <a className="navUser-action" href={$pointer("urls.gift_certificate.purchase")} aria-label={$lang($string("common.gift_cert"))}>
+                            <a className="navUser-action font-bold uppercase no-underline px-half py-base" href={$pointer("urls.gift_certificate.purchase")} aria-label={$lang($string("common.gift_cert"))}>
                                 <$Lang keyName={$string("common.gift_cert")} />
                             </a>
                         </li>
@@ -89,17 +89,17 @@ export default (_props: PartialProps) => {
                         test={$pointer("customer")}
                         $then={() => (
                             <>
-                                <a className="navUser-action" href={$pointer("urls.account.index")} aria-label={$lang($string("common.account"))}>
+                                <a className="navUser-action font-bold uppercase no-underline px-half py-base" href={$pointer("urls.account.index")} aria-label={$lang($string("common.account"))}>
                                     <$Lang keyName={$string("common.account")} />
                                 </a>
-                                <a className="navUser-action" href={$pointer("urls.auth.logout")} aria-label={$lang($string("common.logout"))}>
+                                <a className="navUser-action font-bold uppercase no-underline px-half py-base" href={$pointer("urls.auth.logout")} aria-label={$lang($string("common.logout"))}>
                                     <$Lang keyName={$string("common.logout")} />
                                 </a>
                             </>
                         )}
                         $else={() => (
                             <>
-                                <a className="navUser-action" href={$pointer("urls.auth.login")} aria-label={$lang($string("common.login"))}>
+                                <a className="navUser-action font-bold uppercase no-underline px-half py-base" href={$pointer("urls.auth.login")} aria-label={$lang($string("common.login"))}>
                                     <$Lang keyName={$string("common.login")} />
                                 </a>
                                 <$If
@@ -110,7 +110,7 @@ export default (_props: PartialProps) => {
                                                 <$Lang keyName={$string("common.or")} />
                                             </span>
                                             <a
-                                                className="navUser-action"
+                                                className="navUser-action font-bold uppercase no-underline px-half py-base"
                                                 href={$pointer("urls.auth.create_account")}
                                                 aria-label={$lang($string("common.sign_up"))}
                                             >
@@ -125,14 +125,14 @@ export default (_props: PartialProps) => {
                 </li>
                 <li className="navUser-item navUser-item--cart">
                     <a
-                        className="navUser-action"
+                        className="navUser-action font-bold uppercase no-underline px-half py-base"
                         data-cart-preview={""}
                         data-dropdown="cart-preview-dropdown"
                         data-options="align:right"
                         href={$pointer("urls.cart")}
                         aria-label={$lang($string("cart.nav_aria_label"))}
                     >
-                        <span className="navUser-item-cartLabel">
+                        <span className="navUser-item-cartLabel [display:none] small:inline">
                             <$Lang keyName={$string("common.cart")} />
                         </span>
                         <span className="countPill cart-quantity"></span>
@@ -141,7 +141,7 @@ export default (_props: PartialProps) => {
                     <div className="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content={""} aria-hidden="true"></div>
                 </li>
             </ul>
-            <div className="dropdown dropdown--quickSearch" id="quickSearch" aria-hidden="true" data-prevent-quick-search-close={""}>
+            <div className="dropdown dropdown--quickSearch py-single small:p-double" id="quickSearch" aria-hidden="true" data-prevent-quick-search-close={""}>
                 <QuickSearch name={$string("nav-quick-search")} />
             </div>
         </nav>

@@ -22,13 +22,13 @@ export default (_props: PartialProps) => (
                 <$Or
                     values={methods.map(([flag]) => $pointer(flag))}
                     $then={() => (
-                        <ul className="footer-payment-icons" aria-label={$lang($string("account.payment_methods.payment_icons_label"))}>
+                        <ul className="footer-payment-icons mt-single ml-0 flex list-none flex-wrap justify-center small:justify-normal medium:mt-double" aria-label={$lang($string("account.payment_methods.payment_icons_label"))}>
                             {methods.map(([flag, label, icon]) => (
                                 <$If
                                     test={$pointer(flag)}
                                     $then={() => (
                                         <li>
-                                            <svg className="footer-payment-icon" role="img">
+                                            <svg className="footer-payment-icon m-quarter h-[40px] w-[50px] fill-icon align-middle" role="img">
                                                 <title>{label}</title>
                                                 <use href={`#${icon}`}></use>
                                             </svg>

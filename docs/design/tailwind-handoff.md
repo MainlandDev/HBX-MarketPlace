@@ -36,7 +36,7 @@ Convert the theme's remaining SCSS (`assets/scss/components`, `assets/scss/layou
 | 0 | cart slice A, variant selector, tooling | cart (partial), products/options | merged (`31c354d1`, `32e8a01c`) |
 | 1 | `components/stencil/{account,addressBox,addReturn,paymentMethods,_wishlists,_login}`, `layouts/account` | `components/account`, `pages/account`, `pages/auth` | merged, partial (see report) |
 | 2 | `components/stencil/{productView,productReviews,writeReview,productCarousel,quickView,price,rating,ribbon,tags,toggleLink,videoGallery,socialLinks}`, `layouts/products/*` (incl. the rest of `_variantSelector`) | `components/products` (not `options`), `pages/product.tsx` | merged, small (see report) |
-| 3 | `components/stencil/{navUser,navPages,heroCarousel,banners}`, `layouts/{header,footer,body,container,sidebar}` | `layout`, `components/common`, `components/carousel*.tsx`, `pages/home.tsx` | todo |
+| 3 | `components/stencil/{navUser,navPages,heroCarousel,banners}`, `layouts/{header,footer,body,container,sidebar}` | `layout`, `components/common`, `components/carousel*.tsx`, `pages/home.tsx` | merged, small (see report) |
 | 4 | `components/stencil/{search,category,compare,facetedSearch,facetLabel,contact,blocker,textTruncate}`, `layouts/{blog,brands}` | `components/{search,category,brand,blog,faceted-search,sitemap,page}`, `pages/{search,category,brand,brands,blog,blog-post,compare,contact-us,page,sitemap}.tsx` | todo |
 | 5 | rest of `components/stencil/cart/_cart.scss`, `previewCart` | `components/cart`, `pages/cart.tsx`, `components/common/cart-preview.tsx` | todo |
 | 6 | theme copies of Citadel/Foundation: `components/{citadel,foundation,vendor,common}` and `common/*` | any (global); verify on several page types | todo |
@@ -44,6 +44,7 @@ Convert the theme's remaining SCSS (`assets/scss/components`, `assets/scss/layou
 
 ## Merge log
 
+- WP3 merged by the lead (header/footer/nav, small): SCSS lines 6300 -> see `npm run tw-inventory`; `@source` adds `components/common` and `layout`; stray list is `block hidden table fixed container visible`.
 - WP2 merged by the lead (product family, small): SCSS lines 6353 -> 6300; vitest 119/119, vite-build ok. `@source` now lists `components/products`; stray list is `block hidden table fixed`.
 - WP1 merged by the lead (account family, partial): theme CSS 6490 -> 6353 SCSS lines in `tw-inventory`; vitest 119/119, vite-build ok.
 
@@ -74,3 +75,15 @@ Converted and Edge-verified (0 diffs at 375/768/1280/no-JS except sub-pixel widt
 
 ### WP2 (product family): summary
 Converted and Edge-verified on the product page (4-5 explained differences per state: harmless border-style/zero-width border colour): productView-product, -images, -reviewLink(+--new), -stock-message, -picklist-backorder (ul); productReview title/author/rating/ratingNumber; price--rrp, price--non-sale, price-section--minor (also spot-checked on category cards, no baseline). Stayed in SCSS: promotion callouts and product list (unreachable states), shared productView rules (cart preview), thumbnails/slick, options descendants, JS-created backorder items, grid/clearfix/pseudo partials (productGrid, saleBadges, swatch), toggleLink, videoGallery, socialLinks, writeReview, quickView, carousel, ribbon/tags. UNUSED safe-delete candidates (not deleted, live store injects markup): ribbon, shareProduct, productMasonry, productGrid--maxCol*.
+
+## Lessons added by WP3
+
+- `scripts/tailwind/theme.test.mjs` collects only double-quoted `className="..."` literals. Utilities held in TSX constants or template literals fail the "only emits used classes" test: inline them as literals (a utility that appears only inside a template literal needs a literal sibling using it).
+- A null SCSS variable (`$footer-heading-fontColor`, `navUser-color` are unset in config.json) emits nothing: nothing to convert. Working bridge vars: `--sv-footer-background`, `--sv-header-bg`, `--sv-header-height`, `--sv-header-logo-marginVertical`, `--sv-fontSize-base`.
+- Header/footer roots: `header` and `footer` (the home page is about 48,000 px tall; top-of-page screenshots time out, screenshot a smaller region). Frame helper tip: `__twFrame` uses `location.pathname`; to test another page pass a path (edit the helper) instead of navigating.
+- Colour utilities with Foundation `.is-open` state: leave the colours in SCSS (an important utility would beat the JS-toggled state) until a data/aria attribute replaces the class.
+- `border-b border-container-border` sets all four border colours; the old rule set only the bottom: a harmless top-colour diff on a zero-width border.
+- `.container` collides with the utility name (site-wide class): it stays. `.sidebarBlock*` is shared with category/brand/faceted-search (WP4).
+
+### WP3 (header/footer/nav): summary
+Converted and Edge-verified on / and /fashion-biz/ (footer, body, navUser, main: 0 diffs; header: one zero-width border colour and sub-pixel logo sizes): footer (footer, title-sr-only, info-heading, info-list + links, copyright, powered-by, payment icons, newsletter summary, info-col leaf styles), navUser (action weight/padding/uppercase, section position, cartLabel, quickSearch padding), header (background/border, logo image), body margins. Mobile menu toggle and desktop cart preview dropdown interactions checked. Stayed in SCSS: footer-info/info-col grid mixins, social column (unrendered), navUser colours/dropdowns/pseudo/JS state/unrendered states, countPill, header position/is-open/fixed/logo variants/mobileMenu/skip link, sidebar block (WP4), container, body .page* grid mixins, navPages (Foundation JS), heroCarousel and banners (not rendered).

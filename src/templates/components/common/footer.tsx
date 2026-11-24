@@ -59,8 +59,8 @@ export default (_props: PartialProps) => {
                     </div>
                 )}
             />
-            <footer className="footer" role="contentinfo">
-                <h2 className="footer-title-sr-only">
+            <footer className="footer relative border-t border-container-border bg-(--sv-footer-background) py-double [transform:translateZ(0)]" role="contentinfo">
+                <h2 className="footer-title-sr-only absolute top-auto -left-[10000px] size-px overflow-hidden">
                     <$Lang keyName={$string("footer.title")} />
                 </h2>
                 <div className="container">
@@ -70,10 +70,10 @@ export default (_props: PartialProps) => {
                         rvalue={$string("bottom_none")}
                         $then={() => (
                             <article
-                                className={`footer-info-col footer-info-col--social footer-info-col--${$If({test: $pointer("theme_settings.social_icon_placement_bottom"), operator: $string("==="), rvalue: $string("bottom_left"), $then: () => "left", $else: () => "right"})}`}
+                                className={`footer-info-col footer-info-col--social inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) footer-info-col--${$If({test: $pointer("theme_settings.social_icon_placement_bottom"), operator: $string("==="), rvalue: $string("bottom_left"), $then: () => "left", $else: () => "right"})}`}
                                 data-section-type="footer-webPages"
                             >
-                                <h3 className="footer-info-heading">
+                                <h3 className="footer-info-heading text-(length:--sv-fontSize-base) [text-transform:inherit]">
                                     <$Lang keyName={$string("social.connect")} />
                                 </h3>
                                 <SocialLinks />
@@ -82,11 +82,11 @@ export default (_props: PartialProps) => {
                     />
 
                     <section className="footer-info">
-                        <article className="footer-info-col footer-info-col--small" data-section-type="footer-webPages">
-                            <h3 className="footer-info-heading">
+                        <article className="footer-info-col footer-info-col--small inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) text-center small:text-left small:w-1/2 medium:w-1/6" data-section-type="footer-webPages">
+                            <h3 className="footer-info-heading text-(length:--sv-fontSize-base) [text-transform:inherit]">
                                 <$Lang keyName={$string("footer.navigate")} />
                             </h3>
-                            <ul className="footer-info-list">
+                            <ul className="footer-info-list list-none ml-0 [&_a]:inline-block [&_a]:py-sixth [&_a]:text-text-secondary [&_a]:no-underline [&_a:hover]:text-(--sv-color-textSecondary-hover)">
                                 <$Each
                                     list={$pointer<Link[]>("pages")}
                                     $then={(page) => (
@@ -103,11 +103,11 @@ export default (_props: PartialProps) => {
                             </ul>
                         </article>
 
-                        <article className="footer-info-col footer-info-col--small" data-section-type="footer-categories">
-                            <h3 className="footer-info-heading">
+                        <article className="footer-info-col footer-info-col--small inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) text-center small:text-left small:w-1/2 medium:w-1/6" data-section-type="footer-categories">
+                            <h3 className="footer-info-heading text-(length:--sv-fontSize-base) [text-transform:inherit]">
                                 <$Lang keyName={$string("footer.categories")} />
                             </h3>
-                            <ul className="footer-info-list">
+                            <ul className="footer-info-list list-none ml-0 [&_a]:inline-block [&_a]:py-sixth [&_a]:text-text-secondary [&_a]:no-underline [&_a:hover]:text-(--sv-color-textSecondary-hover)">
                                 <$Each
                                     list={$pointer<Link[]>("categories")}
                                     $then={(category) => (
@@ -123,11 +123,11 @@ export default (_props: PartialProps) => {
                             a={theme.shop_by_brand_show_footer}
                             b={$pointer("shop_by_brand.length")}
                             $then={() => (
-                                <article className="footer-info-col footer-info-col--small" data-section-type="footer-brands">
-                                    <h3 className="footer-info-heading">
+                                <article className="footer-info-col footer-info-col--small inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) text-center small:text-left small:w-1/2 medium:w-1/6" data-section-type="footer-brands">
+                                    <h3 className="footer-info-heading text-(length:--sv-fontSize-base) [text-transform:inherit]">
                                         <$Lang keyName={$string("footer.brands")} />
                                     </h3>
-                                    <ul className="footer-info-list">
+                                    <ul className="footer-info-list list-none ml-0 [&_a]:inline-block [&_a]:py-sixth [&_a]:text-text-secondary [&_a]:no-underline [&_a:hover]:text-(--sv-color-textSecondary-hover)">
                                         <$Each
                                             list={$pointer<Link[]>("shop_by_brand")}
                                             $then={(brand) => (
@@ -149,8 +149,8 @@ export default (_props: PartialProps) => {
                         <$If
                             test={$pointer("settings.address")}
                             $then={() => (
-                                <article className="footer-info-col footer-info-col--small" data-section-type="storeInfo">
-                                    <h3 className="footer-info-heading">
+                                <article className="footer-info-col footer-info-col--small inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) text-center small:text-left small:w-1/2 medium:w-1/6" data-section-type="storeInfo">
+                                    <h3 className="footer-info-heading text-(length:--sv-fontSize-base) [text-transform:inherit]">
                                         <$Lang keyName={$string("footer.info")} />
                                     </h3>
                                     <address>
@@ -168,7 +168,7 @@ export default (_props: PartialProps) => {
                             )}
                         />
 
-                        <article className="footer-info-col" data-section-type="newsletterSubscription">
+                        <article className="footer-info-col inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) text-center small:text-left small:w-1/2 medium:w-1/3" data-section-type="newsletterSubscription">
                             <$If
                                 test={$pointer("settings.show_newsletter_box")}
                                 $then={() => <SubscriptionForm />}
@@ -179,8 +179,8 @@ export default (_props: PartialProps) => {
                     <$If
                         test={theme.show_powered_by}
                         $then={() => (
-                            <div className="footer-copyright">
-                                <p className="powered-by">
+                            <div className="footer-copyright text-center small:text-left [&_a]:text-text-secondary [&_a]:no-underline [&_a:hover]:text-(--sv-color-textSecondary-hover)">
+                                <p className="powered-by m-0 text-text-secondary text-tiny">
                                     <$Lang keyName={$string("footer.powered_by")} />{" "}
                                     <a href="https://www.bigcommerce.com?utm_source=merchant&amp;utm_medium=poweredbyBC" rel="nofollow">
                                         BigCommerce
@@ -192,8 +192,8 @@ export default (_props: PartialProps) => {
                     <$If
                         test={theme.show_copyright_footer}
                         $then={() => (
-                            <div className="footer-copyright">
-                                <p className="powered-by">
+                            <div className="footer-copyright text-center small:text-left [&_a]:text-text-secondary [&_a]:no-underline [&_a:hover]:text-(--sv-color-textSecondary-hover)">
+                                <p className="powered-by m-0 text-text-secondary text-tiny">
                                     {$raw("&copy; ")}
                                     {$moment({format: $string("YYYY")})} {$pointer("settings.store_name")}{" "}
                                 </p>

@@ -1,6 +1,9 @@
 // =============================================================================
 // FOOTER (CSS)
 // =============================================================================
+//
+// Leaf styling lives as utilities in components/common/{footer,payment-icons,subscription-form}.tsx.
+// What stays here: the grid mixins (clearfix pseudo-elements) and the social column placement states.
 
 
 // Layout and columns
@@ -8,27 +11,9 @@
 //
 // 1. To enable the grid's display: inline-block; to work properly, we need to
 //    remove the white-space that it creates between columns with font-size: 0;
-// 2. Re-set the font-size that was reduced to 0 in point 1 for children.
-// 3. Fix for text flickers on windows devices
+//    (the columns reset the font size via utilities)
 //
 // -----------------------------------------------------------------------------
-
-.footer {
-    background-color: $footer-background;
-    border-top: container("border");
-    padding: spacing("double") 0;
-    position: relative;
-    transform: translateZ(0); // 3
-}
-
-.footer-title-sr-only {
-    height: 1px;
-    left: -10000px;
-    overflow: hidden;
-    position: absolute;
-    top: auto;
-    width: 1px;
-}
 
 .footer-info {
     @include grid-row($behavior: nest);
@@ -37,23 +22,6 @@
 
 .footer-info-col {
     @include grid-column(12);
-    color: stencilColor("color-textSecondary");
-    display: inline-block;
-    float: none;
-    font-size: fontSize("base"); // 2
-    overflow-wrap: break-word;
-    text-align: center;
-    vertical-align: top;
-    // TODO: specifically use vendor only for IE11 since overflow-wrap is not supported here
-    -ms-word-break: break-all;
-    @include breakpoint("small") {
-        text-align: left;
-        width: width("6/12");
-    }
-
-    @include breakpoint("medium") {
-        width: width("4/12");
-    }
 
     > :first-child {
         margin-top: 0;
@@ -64,14 +32,15 @@
     }
 }
 
-.footer-info-col--small {
-    @include breakpoint("medium") {
-        width: width("2/12");
-    }
-}
-
+// Social column: placement depends on the social_icon_placement_bottom theme setting
+// (bottom_left / bottom_right), which is not rendered on this store, so unverified.
 .footer-info-col--social {
+    text-align: center;
     width: 100%;
+
+    @include breakpoint("small") {
+        text-align: left;
+    }
 }
 
 .footer-info-col--left {
@@ -93,85 +62,4 @@
         text-align: right;
         width: 100%;
     }
-}
-
-
-// Content
-// -----------------------------------------------------------------------------
-
-.footer-info-heading {
-    color: $footer-heading-fontColor;
-    font-size: fontSize("base");
-    text-transform: inherit;
-}
-
-.footer-info-list {
-    list-style: none;
-    margin-left: 0;
-
-    a {
-        color: stencilColor("color-textSecondary");
-        text-decoration: none;
-        display: inline-block;
-        padding: spacing("sixth") 0;
-
-        &:hover {
-            color: stencilColor("color-textSecondary--hover");
-        }
-    }
-}
-
-.footer-copyright {
-    text-align: center;
-
-    @include breakpoint("small") {
-        text-align: left;
-    }
-
-    > .powered-by {
-        color: stencilColor("color-textSecondary");
-        font-size: fontSize("tiny");
-        margin: 0;
-    }
-
-    a {
-        color: stencilColor("color-textSecondary");
-        text-decoration: none;
-
-        &:hover {
-            color: stencilColor("color-textSecondary--hover");
-        }
-    }
-}
-
-.footer-payment-icons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    list-style-type: none;
-    margin-left: 0;
-    margin-top: spacing("single");
-
-    @include breakpoint("small") {
-        justify-content: normal;
-    }
-
-    @include breakpoint("medium") {
-        margin-top: spacing("double");
-    }
-
-    .footer-payment-icon {
-        height: remCalc(40);
-        margin: spacing("quarter");
-        vertical-align: middle;
-        width: remCalc(50);
-    }
-
-    svg {
-        fill: stencilColor("icon-color");
-    }
-}
-
-.footer-newsletter-summary {
-    text-align: left;
 }

@@ -22,7 +22,7 @@ export default (_props: PartialProps) => (
                     $else={() => (
                         <div className="header-logo-image-container">
                             <img
-                                className="header-logo-image"
+                                className="header-logo-image mx-auto [display:block] max-h-[calc(var(--sv-header-height)-var(--sv-header-logo-marginVertical)*2)] medium:max-h-none"
                                 src={$raw("{{getImage settings.store_logo.image 'logo_size'}}")}
                                 srcSet={$getImageSrcset1x2x($pointer<{data: string}>("settings.store_logo.image"), $pointer("theme_settings.logo_size"))}
                                 alt={$pointer("settings.store_logo.title")}

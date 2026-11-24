@@ -65,18 +65,10 @@
     }
 }
 
-.navUser-section {
-    @include breakpoint("medium") {
-        position: relative; // 7
-    }
-}
-
+// Weight, padding, decoration and case of .navUser-action, and .navUser-section's medium position: relative (7), are utilities in
+// components/common/navigation.tsx. The colours stay here: .is-open / hover state set by Foundation JS must beat a base colour.
 .navUser-action {
     color: stencilColor("navUser-color");
-    font-weight: fontWeight("bold");
-    padding: spacing("base") spacing("half");
-    text-decoration: none;
-    text-transform: uppercase;
 
     &:hover,
     &.is-open {
@@ -223,14 +215,6 @@
     }
 }
 
-.navUser-item-cartLabel {
-    display: none;
-
-    @include breakpoint("small") {
-        display: inline;
-    }
-}
-
 .navUser-item--compare {
     display: none;
 
@@ -289,11 +273,6 @@
 .dropdown--quickSearch {
     background-color: $dropdown--quickSearch-backgroundColor;
     display: none;
-    padding: spacing("single") 0;
-
-    @include breakpoint("small") {
-        padding: spacing("double");
-    }
 
     &.is-open {
         display: block;

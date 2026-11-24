@@ -16,10 +16,10 @@ export default (_props: PartialProps) => (
         operator={$string(">")}
         rvalue={$number(1)}
         $then={() => (
-            <ul className="navUser-section">
+            <ul className="navUser-section medium:relative">
                 <li className="navUser-item">
                     <a
-                        className="navUser-action navUser-action--currencySelector has-dropdown"
+                        className="navUser-action font-bold uppercase no-underline px-half py-base navUser-action--currencySelector has-dropdown"
                         href="#"
                         data-dropdown="currencySelection"
                         aria-controls="currencySelection"
