@@ -1,6 +1,6 @@
 # Tailwind conversion: live handoff
 
-Maintained by the lead after every merged work package (WP). Workers: read `docs/design/tailwind-worker-brief.md` first, then this file at the start of your WP. Last updated: 2026-11-24 (before WP1).
+Maintained by the lead after every merged work package (WP). Workers: read `docs/design/tailwind-worker-brief.md` first, then this file at the start of your WP. Last updated: 2026-11-24 (after WP7; all work packages run).
 
 ## Goal and standard
 
@@ -40,6 +40,7 @@ Convert the theme's remaining SCSS (`assets/scss/components`, `assets/scss/layou
 | 4 | `components/stencil/{search,category,compare,facetedSearch,facetLabel,contact,blocker,textTruncate}`, `layouts/{blog,brands}` | `components/{search,category,brand,blog,faceted-search,sitemap,page}`, `pages/{search,category,brand,brands,blog,blog-post,compare,contact-us,page,sitemap}.tsx` | merged (see report) |
 | 5 | rest of `components/stencil/cart/_cart.scss`, `previewCart` | `components/cart`, `pages/cart.tsx`, `components/common/cart-preview.tsx` | merged, small (see report) |
 | 6 | theme copies of Citadel/Foundation: `components/{citadel,foundation,vendor,common}` and `common/*` | any (global); verify on several page types | merged, small (see report) |
+| 7 | shared pool: `.page-heading` (43 consumers), `.form-label/.form-field/.form-input` | any | scoped, nothing converted (blocked by rule 4: consumers on unreachable or unsubmittable pages) |
 | L | Tasks 32-34 (retire Citadel/Foundation imports, drop `important`/`source(none)`) | lead | todo |
 
 ## Merge log
@@ -125,3 +126,16 @@ Converted and Edge-verified (cart page and header dropdown; only zero-width bord
 
 ### WP6 (shared copies): summary
 Converted and Edge-verified (0 computed-style diffs on category, filtered category, brands, login, product, cart, compare): card-body, card-title (font-size, margin), card-text margin, panel-title font-size, inlineList--labels, ol.breadcrumbs. Everything else in WP6 stays with the reasons above.
+
+## Status after WP7 (lead)
+
+Theme SCSS under components+layouts: 6,550 -> 5,906 non-empty code lines (about 10% converted; 126 -> 122 partials; 2 partials deleted: compare, facetLabel). That is below the 20-30% estimate because rule 4 (delete a rule only when every consumer is converted and verified in Edge) keeps every shared class whose consumers render only for data the user's account does not have.
+
+Unlockers, in order of yield (each needs a user decision or data):
+1. **Relax rule 4 for mechanically identical shared classes** (for example `.page-heading` = `margin: 0 0 double; text-align: center`, 43 consumers, about 20 on unreachable pages): convert all consumers with the same utilities and delete the rule after verifying the reachable page types. Risk is low; the unverified pages are covered by identical utilities.
+2. **Test data**: an account with returns, inbox messages, downloads, a wishlist, a coupon, a gift certificate; a promotion product; a category in list mode; and one add-to-cart so the cart preview modal can render. This unlocks account/returns/messages/downloads, promotion callouts, product list, productView-* shared with the cart preview modal, estimator/coupon/gift-certificate totals.
+3. **Bridge more merchant settings** (`optimizedCheckout-*`, `label-*`, promotion colours, footer/nav colours that are set) so colour rules that use `stencilColor()` of unbridged settings can be converted.
+4. **Replace JS-state classes** (`is-open`, `active`) with data/aria attributes in the JS to let Foundation dropdown/accordion/navList colours convert.
+5. Safe-delete candidates (UNUSED in the repo, kept because the live store injects markup/CSS): ribbon, shareProduct, productMasonry, productGrid--maxCol*, FloatRight, cart-item-discount, blocker-container, facetedSearch-content--rating.
+
+Tasks 32-34 (retire Citadel/Foundation imports, drop `important` and `source(none)`) are NOT possible yet: the theme still uses Citadel/Foundation classes site-wide (forms, buttons, cards, modal, dropdown, tabs, grid mixins).
