@@ -511,7 +511,6 @@
     @include sv("setting-checkRadio-color", stencilColor("checkRadio-color"));
     @include sv("setting-input-font-color", stencilColor("input-font-color"));
     @include sv("setting-icon-color", stencilColor("icon-color"));
-    @include sv("setting-overlay-backgroundColor", stencilColor("overlay-backgroundColor"));
     @include sv("setting-spinner-borderColor-light", stencilColor("spinner-borderColor-light"));
     @include sv("setting-spinner-borderColor-dark", stencilColor("spinner-borderColor-dark"));
     @include sv("setting-color-textLink", stencilColor("color-textLink"));
@@ -593,6 +592,7 @@
     @include sv("setting-container-border-global-color-base", stencilColor("container-border-global-color-base"));
     @include sv("setting-container-fill-base", stencilColor("container-fill-base"));
     @include sv("setting-container-fill-dark", stencilColor("container-fill-dark"));
+    @include sv("setting-overlay-backgroundColor", stencilColor("overlay-backgroundColor"));
     @include sv("setting-fontSize-h1", stencilNumber("fontSize-h1"));
     @include sv("setting-fontSize-h2", stencilNumber("fontSize-h2"));
     @include sv("setting-fontSize-h3", stencilNumber("fontSize-h3"));

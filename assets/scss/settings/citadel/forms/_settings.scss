@@ -17,7 +17,6 @@
 //
 // -----------------------------------------------------------------------------
 
-$exportCSS--bcForms:                        true; // 1
 
 
 // =============================================================================
@@ -31,7 +30,6 @@ $exportCSS--bcForms:                        true; // 1
 // $formBody-maxWidth:                         none;
 // $formBody-padding:                          container("padding");
 
-$formRow-modernBrowsers:                    false;
 // $formRow-flex-gutter:                       $column-gutter;
 
 
@@ -52,28 +50,18 @@ $checkRadio-pip-zoomEnd:                    scale(1);
 // label
 $checkRadio-label-fontSize:                 fontSize("base");
 $checkRadio-label-fontWeight:               fontWeight("normal");
-$checkRadio-label-lineHeight:               null;
 $checkRadio-label-spacing:                  spacing("single") + spacing("quarter");
 $checkRadio-label-marginBottom:             spacing("quarter");
 // visual
 $checkRadio-bg:                             stencilColor("checkRadio-backgroundColor");
-$checkRadio-boxShadow:                      null;
-$checkRadio-focus-borderColor:              null;
-$checkRadio-focus-boxShadow:                null;
 $checkRadio-disabled-bg:                    $input-disabled-bg;
-$checkRadio-disabled-opacity:               null;
 
-$check-radius:                              $global-radius;
 $check-pip-color:                           rgba(stencilColor("checkRadio-color"), 0.999);
-$check-pip-backgroundImage:                 url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z' fill='#{$check-pip-color}' /%3E%3C/svg%3E");
-$check-pip-content:                         "";
-$check-pip-size:                            $checkRadio-pip-size;
 
 $radio-radius:                              50%;
 $radio-pip-color:                           $check-pip-color;
 $radio-pipInset:                            3px;
 $radio-pipInset-color:                      $checkRadio-bg;
-$radio-pip-size:                            $checkRadio-pip-size;
 
 
 // =============================================================================
@@ -179,8 +167,6 @@ $radio-pip-size:                            $checkRadio-pip-size;
 
 // $form-actions-background:                   none;
 // $form-actions-border:                       0;
-$form-actions-margin:                       null;
-$form-actions-padding:                      null;
 // $form-actions-textAlign:                    left;
 
 // $form-actions--fixed-background:            container("fill");
@@ -202,7 +188,6 @@ $form-actions-padding:                      null;
 // $form-inputIndicator-size:                  22px;
 // $form-inputIndicator-top:                   remCalc(10px);
 
-$form-inlineMessage-fontWeight:             null;
 $form-inlineMessage-margin:                 spacing("quarter") 0 (-(spacing("third")));
 
 

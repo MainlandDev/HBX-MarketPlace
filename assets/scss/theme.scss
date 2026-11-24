@@ -33,13 +33,10 @@
 
 @import "settings/global/tools"; // 5
 
-@import "../../node_modules/@bigcommerce/citadel/dist/settings/normalize/normalize"; // 2
 @import "../../node_modules/@bigcommerce/citadel/dist/settings/foundation/foundation"; // 2
-@import "../../node_modules/@bigcommerce/citadel/dist/settings/bigcommerce/bigcommerce"; // 2
 
 // (removed in R3-2) Citadel's Foundation vendor import: no SCSS mixin is used any more; the meta.foundation-mq-* tags Foundation JS reads live in _tailwind.scss.
 
-@import "settings/normalize/normalize"; // 4
 @import "settings/vendor/vendor"; // 4
 @import "settings/foundation/foundation"; // 4
 @import "settings/citadel/citadel"; // 4
