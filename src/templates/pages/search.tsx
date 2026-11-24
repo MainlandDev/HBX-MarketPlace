@@ -120,16 +120,16 @@ export default () => {
                                             $then={() => (
                                                 <li className="navBar-item navBar-item--separate">
                                                     <a
-                                                        className="navBar-action toggleLink"
+                                                        className="navBar-action toggleLink text-(--sv-setting-color-textSecondary) hover:text-(--sv-setting-color-textSecondary--hover)"
                                                         data-collapsible="advanced-search-content"
                                                         href="#"
                                                         aria-controls="advanced-search-content"
                                                         aria-expanded="false"
                                                     >
-                                                        <span className="toggleLink-text toggleLink-text--on">
+                                                        <span className="toggleLink-text toggleLink-text--on text-smallest font-normal [display:none] [[class~=toggleLink][class~=is-open]_&]:[display:inline-block]">
                                                             <$Lang keyName={$string("forms.search.hide")} />
                                                         </span>
-                                                        <span className="toggleLink-text toggleLink-text--off">
+                                                        <span className="toggleLink-text toggleLink-text--off text-smallest font-normal [display:inline-block] [[class~=toggleLink][class~=is-open]_&]:[display:none]">
                                                             <$Lang keyName={$string("forms.search.show")} />
                                                         </span>
                                                     </a>
@@ -207,11 +207,11 @@ export default () => {
                                                                 <h5 className="suggestion-title mt-0 [text-transform:inherit]">
                                                                     <$Lang keyName={$string("forms.search.categories")} />
                                                                 </h5>
-                                                                <ul className="category-suggestion-list">
+                                                                <ul className="category-suggestion-list -mx-gutter-half w-auto max-w-none flow-root list-none">
                                                                     <$Each
                                                                         list={$pointer<Crumb[][]>("category_results")}
                                                                         $then={() => (
-                                                                            <li className="category-suggestion">
+                                                                            <li className="category-suggestion float-left w-1/3 px-gutter-half text-smaller">
                                                                                 <$Each
                                                                                     list={$this<Crumb[]>()}
                                                                                     $then={(crumb, loop) => (

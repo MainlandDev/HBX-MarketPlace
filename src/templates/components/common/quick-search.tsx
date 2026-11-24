@@ -35,7 +35,7 @@ export default (_props: PartialProps) => (
                 </div>
             </fieldset>
         </form>
-        <section className="quickSearchResults" data-bind="html: results"></section>
+        <section className="quickSearchResults mt-single medium:mt-0 [&_[class~=modal-close]]:[display:none] medium:[&_[class~=modal-close]]:[display:block]" data-bind="html: results"></section>
         <p
             role="status"
             aria-live="polite"

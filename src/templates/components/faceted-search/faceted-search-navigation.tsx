@@ -9,17 +9,17 @@ export default (_props: PartialProps) => (
             $then={() => (
                 <button
                     type="button"
-                    className="accordion-navigation toggleLink relative flex w-full flex-row items-center justify-between pr-[1rem] no-underline medium:mb-half medium:border-0 medium:p-0 medium:[background-position:right_0_top_50%]"
+                    className="accordion-navigation toggleLink text-(--sv-setting-color-textSecondary) hover:text-(--sv-setting-color-textSecondary--hover) relative flex w-full flex-row items-center justify-between pr-[1rem] no-underline medium:mb-half medium:border-0 medium:p-0 medium:[background-position:right_0_top_50%]"
                     data-collapsible={`#facetedSearch-content--${$dashcase($pointer("facet"))}`}
                     aria-label={$lang($string("search.faceted.toggleSection"), {title: $pointer("title")})}
                 >
                     <span className="accordion-title m-0 p-(--sv-accordion-navList-padding) text-[15px] font-normal text-(--sv-setting-color-textHeading) [font-family:'Montserrat',Arial,Helvetica,sans-serif] [text-decoration:none] [text-transform:inherit] medium:p-0">{$pointer("title")}</span>{" "}
 
                     <span>
-                        <svg className="icon accordion-indicator fill-(--sv-color-greyLight) toggleLink-text toggleLink-text--off">
+                        <svg className="icon accordion-indicator fill-(--sv-color-greyLight) toggleLink-text toggleLink-text--off text-smallest font-normal [display:inline-block] [[class~=toggleLink][class~=is-open]_&]:[display:none]">
                             <use href="#icon-add" />
                         </svg>{" "}
-                        <svg className="icon accordion-indicator fill-(--sv-color-greyLight) toggleLink-text toggleLink-text--on">
+                        <svg className="icon accordion-indicator fill-(--sv-color-greyLight) toggleLink-text toggleLink-text--on text-smallest font-normal [display:none] [[class~=toggleLink][class~=is-open]_&]:[display:inline-block]">
                             <use href="#icon-remove" />
                         </svg>
                     </span>
@@ -28,17 +28,17 @@ export default (_props: PartialProps) => (
             $else={() => (
                 <button
                     type="button"
-                    className="accordion-navigation toggleLink relative flex w-full flex-row items-center justify-between pr-[1rem] no-underline medium:mb-half medium:border-0 medium:p-0 medium:[background-position:right_0_top_50%] is-open"
+                    className="accordion-navigation toggleLink text-(--sv-setting-color-textSecondary) hover:text-(--sv-setting-color-textSecondary--hover) relative flex w-full flex-row items-center justify-between pr-[1rem] no-underline medium:mb-half medium:border-0 medium:p-0 medium:[background-position:right_0_top_50%] is-open"
                     data-collapsible={`#facetedSearch-content--${$dashcase($pointer("facet"))}`}
                     aria-label={$lang($string("search.faceted.toggleSection"), {title: $pointer("title")})}
                 >
                     <span className="accordion-title m-0 p-(--sv-accordion-navList-padding) text-[15px] font-normal text-(--sv-setting-color-textHeading) [font-family:'Montserrat',Arial,Helvetica,sans-serif] [text-decoration:none] [text-transform:inherit] medium:p-0">{$pointer("title")}</span>{" "}
 
                     <span>
-                        <svg className="icon accordion-indicator fill-(--sv-color-greyLight) toggleLink-text toggleLink-text--off">
+                        <svg className="icon accordion-indicator fill-(--sv-color-greyLight) toggleLink-text toggleLink-text--off text-smallest font-normal [display:inline-block] [[class~=toggleLink][class~=is-open]_&]:[display:none]">
                             <use href="#icon-add" />
                         </svg>{" "}
-                        <svg className="icon accordion-indicator fill-(--sv-color-greyLight) toggleLink-text toggleLink-text--on">
+                        <svg className="icon accordion-indicator fill-(--sv-color-greyLight) toggleLink-text toggleLink-text--on text-smallest font-normal [display:none] [[class~=toggleLink][class~=is-open]_&]:[display:inline-block]">
                             <use href="#icon-remove" />
                         </svg>
                     </span>

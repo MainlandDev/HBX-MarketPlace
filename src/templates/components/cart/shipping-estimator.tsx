@@ -22,15 +22,17 @@ export default (_props: PartialProps) => (
                             test={$pointer("multi_coupon_ui_enabled")}
                             $then={() => (
                                 <>
-                                    <$And a={$pointer("shipping_cost_discounted")} b={$ifExpression($pointer("shipping_cost_discounted.formatted"), $string("!=="), $pointer("shipping_cost.formatted"))} $then={() => (<><span className="price--discounted">{$pointer("shipping_cost.formatted")}</span>{" "}
+                                    <$And a={$pointer("shipping_cost_discounted")} b={$ifExpression($pointer("shipping_cost_discounted.formatted"), $string("!=="), $pointer("shipping_cost.formatted"))} $then={() => (<><span className="price--discounted line-through">{$pointer("shipping_cost.formatted")}</span>{" "}
                                     <span id="shipping-cost-discounted">{$pointer("shipping_cost_discounted.formatted")}</span></>)} $else={() => (<><span id="shipping-cost-discounted">{$pointer("shipping_cost.formatted")}</span></>)} />
                                 </>
                             )}
                             $else={() => (
                                 <a href="#" className="shipping-estimate-value [&_#shipping-cost-discounted]:ml-quarter">
-                                    <span className={`${$If({test: $pointer("shipping_cost_discounted"), $then: () => "price--discounted"})}`}>
-                                        {$pointer("shipping_cost.formatted")}
-                                    </span>{" "}
+                                    <$If
+                                        test={$pointer("shipping_cost_discounted")}
+                                        $then={() => <span className="price--discounted line-through">{$pointer("shipping_cost.formatted")}</span>}
+                                        $else={() => <span>{$pointer("shipping_cost.formatted")}</span>}
+                                    />{" "}
                                     <$If
                                         test={$pointer("shipping_cost_discounted")}
                                         $then={() => <span id="shipping-cost-discounted">{$pointer("shipping_cost_discounted.formatted")}</span>}

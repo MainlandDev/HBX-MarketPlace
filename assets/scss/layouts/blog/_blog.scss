@@ -1,33 +1,8 @@
 // =============================================================================
 // BLOG
 // =============================================================================
-
-
-// Blog post
-// -----------------------------------------------------------------------------
-
-.blog {
-    margin-bottom: spacing("single");
-
-    @include breakpoint("medium") {
-        margin: auto;
-        width: 100%;
-    }
-
-    + .blog {
-        border-top: container("border");
-        margin-top: spacing("double");
-        padding-top: spacing("double");
-    }
-
-    .socialLinks {
-        text-align: center;
-    }
-
-    .addthis_toolbox {
-        margin-top: spacing("double");
-    }
-}
+//
+// `.blog` is utilities in components/blog/post.tsx.
 
 // Thumbnail stays: max-width comes from the blog_size theme setting and the img rule is a descendant of a component we do not own.
 .blog-thumbnail {

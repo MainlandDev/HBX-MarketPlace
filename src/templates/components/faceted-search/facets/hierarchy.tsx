@@ -18,7 +18,7 @@ export default (_props: PartialProps) => (
     <$If
         test={$pointer("items")}
         $then={() => (
-            <div className="accordion-block medium:mt-(--sv-accordion-navList-spacing) first:mt-0 first:[&_.accordion-navigation]:[border-radius:4px_4px_0_0] last:[&_.accordion-navigation]:[border-radius:0_0_4px_4px] last:[&_.accordion-content]:[border-radius:0_0_4px_4px] last:[&_.accordion-navigation]:border-b-0 last:[&_.accordion-navigation.is-open]:border-b-[1px] medium:last:[&_.accordion-navigation.is-open]:border-b-0 last:[&_.accordion-navigation.is-open]:rounded-none">
+            <div className="accordion-block [[class~=facetedSearch-navList][class~=is-open]_&:first-child_[class~=accordion-navigation]]:rounded-t-none medium:mt-(--sv-accordion-navList-spacing) first:mt-0 first:[&_.accordion-navigation]:[border-radius:4px_4px_0_0] last:[&_.accordion-navigation]:[border-radius:0_0_4px_4px] last:[&_.accordion-content]:[border-radius:0_0_4px_4px] last:[&_.accordion-navigation]:border-b-0 last:[&_.accordion-navigation.is-open]:border-b-[1px] medium:last:[&_.accordion-navigation.is-open]:border-b-0 last:[&_.accordion-navigation.is-open]:rounded-none">
                 <FacetedSearchFacetedSearchNavigation />
 
                 <div
@@ -60,8 +60,8 @@ export default (_props: PartialProps) => (
                     <$If
                         test={$pointer("show_more_toggle")}
                         $then={() => (
-                            <a href={`#facetedSearch-navList--${$dashcase($pointer("facet"))}`} role="button" className="toggleLink">
-                                <span className="toggleLink-text toggleLink-text--off">
+                            <a href={`#facetedSearch-navList--${$dashcase($pointer("facet"))}`} role="button" className="toggleLink text-(--sv-setting-color-textSecondary) hover:text-(--sv-setting-color-textSecondary--hover)">
+                                <span className="toggleLink-text toggleLink-text--off text-smallest font-normal [display:inline-block] [[class~=toggleLink][class~=is-open]_&]:[display:none]">
                                     <$Lang keyName={$string("search.faceted.show-more")} />
                                 </span>
                             </a>

@@ -190,7 +190,7 @@ export default (_props: PartialProps) => (
                             <span className="cart-item-label float-left mb-quarter w-4/12 text-right text-text-base small:block small:w-full small:pl-single small:text-left medium:hidden">
                                 <$Lang keyName={$string("cart.checkout.price")} />
                             </span>
-                            <$Or values={[$pointer("../customer"), $unlessExpression($pointer("../settings.hide_price_from_guests")), $ifExpression($pointer("type"), $string("=="), $string("GiftCertificate"))]} $then={() => (<><span className={`cart-item-value pl-single medium:pl-0 ${$If({test: item.price_discounted, $then: () => "price--discounted"})}`}>{item.price.formatted}</span>
+                            <$Or values={[$pointer("../customer"), $unlessExpression($pointer("../settings.hide_price_from_guests")), $ifExpression($pointer("type"), $string("=="), $string("GiftCertificate"))]} $then={() => (<><$If test={item.price_discounted} $then={() => <span className="cart-item-value pl-single medium:pl-0 price--discounted line-through text-grey-light">{item.price.formatted}</span>} $else={() => <span className="cart-item-value pl-single medium:pl-0">{item.price.formatted}</span>} />
                             <$If test={item.price_discounted} $then={() => <span className="cart-item-value pl-single medium:pl-0">{item.price_discounted.formatted}</span>} /></>)} $else={() => (<><LoginForPricing /></>)} />
                         </td>
 
@@ -354,7 +354,7 @@ export default (_props: PartialProps) => (
                             <span className="cart-item-label float-left mb-quarter w-4/12 text-right text-text-base small:block small:w-full small:pl-single small:text-left medium:hidden">
                                 <$Lang keyName={$string("cart.checkout.total")} />
                             </span>
-                            <$Or values={[$pointer("../customer"), $unlessExpression($pointer("../settings.hide_price_from_guests")), $ifExpression($pointer("type"), $string("=="), $string("GiftCertificate"))]} $then={() => (<><strong className={`cart-item-value pl-single medium:pl-0 ${$If({test: item.total_discounted, $then: () => "price--discounted"})}`}>{item.total.formatted}</strong>
+                            <$Or values={[$pointer("../customer"), $unlessExpression($pointer("../settings.hide_price_from_guests")), $ifExpression($pointer("type"), $string("=="), $string("GiftCertificate"))]} $then={() => (<><$If test={item.total_discounted} $then={() => <strong className="cart-item-value pl-single medium:pl-0 price--discounted line-through text-grey-light">{item.total.formatted}</strong>} $else={() => <strong className="cart-item-value pl-single medium:pl-0">{item.total.formatted}</strong>} />
                             <$If test={item.total_discounted} $then={() => <strong className="cart-item-value pl-single medium:pl-0">{item.total_discounted.formatted}</strong>} /></>)} $else={() => (<>--</>)} />
                             <$Or values={[$pointer("can_modify"), $ifExpression($pointer("type"), $string("=="), $string("GiftCertificate"))]} $then={() => (<><button
                                 className="cart-remove float-right mt-[2px] size-[18px] cursor-pointer rounded-[50%] bg-fill-dark p-eighth transition-[background-color] duration-150 ease-[ease] small:ml-base [&>svg]:fill-icon icon"

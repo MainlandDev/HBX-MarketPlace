@@ -94,7 +94,7 @@ export default () => {
                     {/* Scripts off: hide the placeholders of islands that have no-JS content. Last in the head, so it comes after the theme's own CSS. */}
                     <IslandsNoScriptStyle css={NOSCRIPT_CSS} />
                 </head>
-                <body>
+                <body className="[&.has-activeNavPages]:[overflow:hidden] [&.has-activeNavPages]:[-webkit-overflow-scrolling:auto]">
                     <svg data-src={$cdn($string("img/icon-sprite.svg"))} className="icons-svg-sprite"></svg>
 
                     <Header />

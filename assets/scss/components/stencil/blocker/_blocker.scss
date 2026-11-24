@@ -1,19 +1,8 @@
 // =============================================================================
 // BLOCKER (CSS)
-//
-// Purpose: Position .blocker element above another element to prevent user event
 // =============================================================================
-
-
-.blocker {
-    background: rgba($body-bg, 0.5);
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: zIndex("highest");
-}
+//
+// `.blocker` is utilities in faceted-search/index.tsx. Unused by the theme's templates; kept because the live store may render it.
 
 .blocker-container {
     position: relative;

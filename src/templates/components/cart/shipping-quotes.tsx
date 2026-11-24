@@ -49,9 +49,11 @@ export default (_props: PartialProps) => (
                                                 </dt>
                                                 <dd className="estimator-form-input estimator-form-input--price float-right mb-[1em] w-[30%]">
                                                     <label htmlFor={`shipping-quote-${quote.type}-${quote.id}`}>
-                                                        <span className={`${$If({test: quote.cost_after_discount, $then: () => "price--discounted"})}`}>
-                                                            <b>{quote.cost.formatted}</b>
-                                                        </span>
+                                                        <$If
+                                                            test={quote.cost_after_discount}
+                                                            $then={() => <span className="price--discounted line-through"><b>{quote.cost.formatted}</b></span>}
+                                                            $else={() => <span><b>{quote.cost.formatted}</b></span>}
+                                                        />
                                                         <$If
                                                             test={quote.cost_after_discount}
                                                             $then={() => (
@@ -124,9 +126,11 @@ export default (_props: PartialProps) => (
                                                 </dt>
                                                 <dd className="estimator-form-input estimator-form-input--price float-right mb-[1em] w-[30%]">
                                                     <label htmlFor={`shipping-quote-${quote.type}-${quote.id}`}>
-                                                        <span className={`${$If({test: quote.cost_after_discount, $then: () => "price--discounted"})}`}>
-                                                            <b>{quote.cost.formatted}</b>
-                                                        </span>
+                                                        <$If
+                                                            test={quote.cost_after_discount}
+                                                            $then={() => <span className="price--discounted line-through"><b>{quote.cost.formatted}</b></span>}
+                                                            $else={() => <span><b>{quote.cost.formatted}</b></span>}
+                                                        />
                                                         <$If
                                                             test={quote.cost_after_discount}
                                                             $then={() => (

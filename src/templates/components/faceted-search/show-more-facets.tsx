@@ -16,7 +16,7 @@ interface Facet {
 
 export default (_props: PartialProps) => (
     <div className="modal-body overflow-auto p-(--sv-reveal-modal-padding) [-webkit-overflow-scrolling:touch]">
-        <h1 className="facet-quick-heading">
+        <h1 className="facet-quick-heading capitalize">
             <$If
                 test={$pointer("facet_title")}
                 $then={() => <>{$pointer("facet_title")}</>}
@@ -26,7 +26,7 @@ export default (_props: PartialProps) => (
         <div className="form-field" id="facetedSearch-filterItems">
             <input className="form-input" type="search" placeholder={$lang($string("forms.search.search"))} />
         </div>
-        <ul className="navList facetedSearch-optionColumns">
+        <ul className="navList facetedSearch-optionColumns [column-count:3] [column-gap:20px]">
             <$Each
                 list={$pointer<Facet[]>("facets")}
                 $then={() => (

@@ -12,11 +12,11 @@ export default (_props: PartialProps) => (
     <section className="toggle videoGallery mb-single-half border-t border-container-border last-of-type:mb-[calc(calc(var(--sv-spacing-single)+var(--sv-spacing-half))*2)]" data-video-gallery={""}>
         <h4 className="toggle-title mb-single-half">
             <$Lang keyName={$string("products.videos.header")} />
-            <a href="#videoGallery-content" className="toggleLink is-open" data-collapsible={""}>
-                <span className="toggleLink-text toggleLink-text--on">
+            <a href="#videoGallery-content" className="toggleLink is-open float-right leading-[24px] text-(--sv-setting-color-textSecondary) hover:text-(--sv-setting-color-textSecondary--hover)" data-collapsible={""}>
+                <span className="toggleLink-text toggleLink-text--on text-smallest font-normal [display:none] [[class~=toggleLink][class~=is-open]_&]:[display:inline-block]">
                     <$Lang keyName={$string("products.videos.hide")} />
                 </span>
-                <span className="toggleLink-text toggleLink-text--off">
+                <span className="toggleLink-text toggleLink-text--off text-smallest font-normal [display:inline-block] [[class~=toggleLink][class~=is-open]_&]:[display:none]">
                     <$Lang keyName={$string("products.videos.show")} />
                 </span>
             </a>

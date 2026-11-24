@@ -17,7 +17,7 @@ export default (_props: PartialProps) => {
 
                     <FacetedSearchRangeForm shop_by_price={settings.shop_by_price_visibility} />
 
-                    <div className="reset-filters">
+                    <div className="reset-filters [&:not([style*=block])]:[display:none]">
                         <a href={$pointer("category.url")} className="navList-action reset-btn">
                             <$Lang keyName={$string("category.reset")} />
                         </a>{" "}

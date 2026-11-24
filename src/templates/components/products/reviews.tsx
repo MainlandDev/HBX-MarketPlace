@@ -23,11 +23,11 @@ export default (_props: PartialProps) => {
                         <$If
                             test={$pointer("theme_settings.show_product_reviews")}
                             $then={() => (
-                                <a className="toggleLink is-open" data-collapsible={""} href="#productReviews-content">
-                                    <span className="toggleLink-text toggleLink-text--on">
+                                <a className="toggleLink is-open float-right leading-[24px] text-(--sv-setting-color-textSecondary) hover:text-(--sv-setting-color-textSecondary--hover)" data-collapsible={""} href="#productReviews-content">
+                                    <span className="toggleLink-text toggleLink-text--on text-smallest font-normal [display:none] [[class~=toggleLink][class~=is-open]_&]:[display:inline-block]">
                                         <$Lang keyName={$string("products.reviews.hide")} />
                                     </span>
-                                    <span className="toggleLink-text toggleLink-text--off">
+                                    <span className="toggleLink-text toggleLink-text--off text-smallest font-normal [display:inline-block] [[class~=toggleLink][class~=is-open]_&]:[display:none]">
                                         <$Lang keyName={$string("products.reviews.show")} />
                                     </span>
                                 </a>

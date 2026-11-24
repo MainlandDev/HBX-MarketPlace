@@ -26,11 +26,11 @@ export default () => (
                             <$Lang keyName={$string("brand.label")} />
                         </h1>
                         {region("brands_below_header")}
-                        <ul className="brandGrid">
+                        <ul className="brandGrid -mx-gutter-half mt-0 mb-single w-auto max-w-none flow-root list-none text-[0px]">
                             <$Each
                                 list={$pointer<Brand[]>("brands")}
                                 $then={(brand) => (
-                                    <li className="brand">
+                                    <li className="brand w-1/2 px-gutter-half align-top text-(length:--sv-fontSize-base) [display:inline-block] float-none small:w-1/3 medium:w-1/4">
                                         <article className={`card ${$If({test: brand.alternate, $then: () => "card--alternate"})}`}>
                                             <figure className="card-figure">
                                                 <a className="card-figure__link" aria-label={brand.name} href={brand.url}>

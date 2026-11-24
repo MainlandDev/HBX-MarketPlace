@@ -145,7 +145,7 @@ export default (_props: PartialProps) => {
                             />
                         </label>{" "}
                         {/* The colour selector shows this beside its title while the radio is checked (CSS only, so it works without JS). */}
-                        <span className="form-option-active-copy" aria-hidden="true">
+                        <span className="form-option-active-copy [display:none] [[data-variant-colours]_[class~=form-radio]:checked~&]:[display:flex] [[data-variant-colours]_[class~=form-radio]:checked~&]:absolute [[data-variant-colours]_[class~=form-radio]:checked~&]:top-[1rem] [[data-variant-colours]_[class~=form-radio]:checked~&]:left-[1rem] [[data-variant-colours]_[class~=form-radio]:checked~&]:z-[1] [[data-variant-colours]_[class~=form-radio]:checked~&]:h-[3rem] [[data-variant-colours]_[class~=form-radio]:checked~&]:w-[3rem] [[data-variant-colours]_[class~=form-radio]:checked~&]:overflow-hidden [[data-variant-colours]_[class~=form-radio]:checked~&]:rounded-[12px] [[data-variant-colours]_[class~=form-radio]:checked~&]:pointer-events-none" aria-hidden="true">
                             {variants()}
                         </span>
                     </div>

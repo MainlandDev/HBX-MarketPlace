@@ -64,7 +64,7 @@ export default (_props: PartialProps) => {
                         </div>
                     )}
                 />
-                <div className="navPages-container" id="menu" data-menu={""}>
+                <div className="navPages-container absolute inset-x-0 bottom-0 z-(--sv-zIndex-lower) h-full [display:none] [-webkit-overflow-scrolling:touch] is-open:[display:block] is-open:pt-(--sv-header-height) medium:relative medium:[display:block] medium:h-auto medium:[background:transparent] medium:p-0" id="menu" data-menu={""}>
                     <NavigationMenu />
                 </div>
                 {region("header_navigation_bottom--global")}

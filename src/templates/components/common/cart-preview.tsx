@@ -82,7 +82,7 @@ export default (_props: PartialProps) => (
                                                 />
                                                 <$Or values={[$pointer("../customer"), $unlessExpression($pointer("../settings.hide_price_from_guests")), $ifExpression($pointer("type"), $string("=="), $string("GiftCertificate"))]} $then={() => (<><span
                                                     dangerouslyInlineAttributes={{
-                                                        attributes: `${$If({test: item.price_discounted, $then: () => $raw(' class="price--discounted"')})}`,
+                                                        attributes: `${$If({test: item.price_discounted, $then: () => $raw(' class="price--discounted line-through"')})}`,
                                                     }}
                                                 >
                                                     {item.price.formatted}

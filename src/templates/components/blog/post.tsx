@@ -13,7 +13,7 @@ interface Tag {
 export default (_props: PartialProps) => {
     const settings = $pointer<ThemeSettingsObject>("theme_settings");
     return (
-        <article className="blog">
+        <article className="blog mb-single medium:m-auto medium:w-full [[class~=blog]+&]:mt-double [[class~=blog]+&]:border-t [[class~=blog]+&]:border-container-border [[class~=blog]+&]:pt-double [&_[class~=socialLinks]]:text-center [&_[class~=addthis_toolbox]]:mt-double">
             <div className="blog-post-figure m-auto text-center medium:w-8/12">
                 <$If
                     test={$pointer("post.thumbnail")}

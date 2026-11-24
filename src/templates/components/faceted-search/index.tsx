@@ -12,8 +12,8 @@ export default (_props: PartialProps) => (
     <div id="facetedSearch" className="facetedSearch sidebarBlock [[class~=sidebarBlock]+&]:mt-single-third [[class~=sidebarBlock]+&]:border-t [[class~=sidebarBlock]+&]:border-(--sv-container-border-global-color-base) [[class~=sidebarBlock]+&]:pt-single-third" role="region" aria-label={$lang($string("search.faceted.label"))}>
         <FacetedSearchSelectedFacets $positionalHash={$pointer("selected")} />
 
-        <a href="#facetedSearch-navList" role="button" className="facetedSearch-toggle toggleLink" data-collapsible={""}>
-            <span className="facetedSearch-toggle-text">
+        <a href="#facetedSearch-navList" role="button" className="facetedSearch-toggle toggleLink mx-auto mb-(--sv-facetedSearch-toggle-verticalSpacing) w-full max-w-(--sv-layout-widthMax) flow-root rounded-(--sv-facetedSearch-toggle-borderRadius) border-(length:--sv-facetedSearch-toggle-borderWidth) border-solid border-(--sv-accordion-borderColor) p-(--sv-facetedSearch-toggle-padding) [display:block] is-open:mb-0 is-open:rounded-b-none medium:[display:none] text-(--sv-setting-color-textSecondary) hover:text-(--sv-setting-color-textSecondary--hover)" data-collapsible={""}>
+            <span className="facetedSearch-toggle-text float-left w-7/12 p-0 text-left font-normal [display:block]">
                 <$If
                     test={$pointer("facets.length")}
                     operator={$string(">")}
@@ -35,8 +35,8 @@ export default (_props: PartialProps) => (
                 />
             </span>{" "}
 
-            <span className="facetedSearch-toggle-indicator">
-                <span className="toggleLink-text toggleLink-text--on">
+            <span className="facetedSearch-toggle-indicator float-left w-5/12 p-0 text-right font-bold [display:block]">
+                <span className="toggleLink-text toggleLink-text--on text-smallest font-normal [display:none] [[class~=toggleLink][class~=is-open]_&]:[display:inline-block]">
                     <$Lang keyName={$string("search.faceted.hide-filters")} />{" "}
 
                     <i className="icon" aria-hidden="true">
@@ -46,7 +46,7 @@ export default (_props: PartialProps) => (
                     </i>
                 </span>{" "}
 
-                <span className="toggleLink-text toggleLink-text--off">
+                <span className="toggleLink-text toggleLink-text--off text-smallest font-normal [display:inline-block] [[class~=toggleLink][class~=is-open]_&]:[display:none]">
                     <$Lang keyName={$string("search.faceted.show-filters")} />{" "}
 
                     <i className="icon" aria-hidden="true">
@@ -62,8 +62,8 @@ export default (_props: PartialProps) => (
             list={$pointer<Facet[]>("facets")}
             predicate={{visible: $boolean(true)}}
             $then={() => (
-                <div id="facetedSearch-navList" className="facetedSearch-navList">
-                    <div className="accordion accordion--navList rounded-[4px] shadow-none medium:border-0 medium:[[class~=sidebarBlock]+&]:mt-(--sv-accordion-navList-spacing) [&_.navList]:mb-0 [&_.accordion-content]:border-0 [&_.accordion-content]:p-(--sv-accordion-navList-padding) medium:[&_.accordion-content]:p-0 [&_.accordion-content_.form:only-child]:mb-0">
+                <div id="facetedSearch-navList" className="facetedSearch-navList [display:none] is-open:[display:block] medium:[display:block]">
+                    <div className="accordion accordion--navList rounded-[4px] [[class~=facetedSearch-navList][class~=is-open]_&]:rounded-t-none [[class~=facetedSearch-navList][class~=is-open]_&]:rounded-t-none shadow-none medium:border-0 medium:[[class~=sidebarBlock]+&]:mt-(--sv-accordion-navList-spacing) [&_.navList]:mb-0 [&_.accordion-content]:border-0 [&_.accordion-content]:p-(--sv-accordion-navList-padding) medium:[&_.accordion-content]:p-0 [&_.accordion-content_.form:only-child]:mb-0">
                         <$Each
                             list={$pointer<Facet[]>("facets")}
                             $then={(facet) => (
@@ -75,7 +75,7 @@ export default (_props: PartialProps) => (
                         />
                     </div>
 
-                    <div className="blocker" style={{display: "none"}}></div>
+                    <div className="blocker absolute inset-0 z-(--sv-zIndex-highest) bg-(--sv-body-bg)/50" style={{display: "none"}}></div>
                 </div>
             )}
         />

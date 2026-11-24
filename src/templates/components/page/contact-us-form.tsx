@@ -107,8 +107,8 @@ export default (_props: PartialProps) => (
                             <$Lang keyName={$string("common.required")} />
                         </small>
                     </label>
-                    <div className="manual-captcha-input-container">
-                        <span className="question">{$pointer("forms.contact.manualcaptcha.question")}</span>{" "}
+                    <div className="manual-captcha-input-container flex items-center [&_[class~=form-input]]:flex-1">
+                        <span className="question mr-[1rem] text-[1.25rem]">{$pointer("forms.contact.manualcaptcha.question")}</span>{" "}
                         <input
                             className="form-input"
                             type="text"

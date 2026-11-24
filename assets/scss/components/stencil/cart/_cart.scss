@@ -5,13 +5,8 @@
 // The cart layout, totals, forms, coupons, estimator and header preview are utilities in
 // src/templates/components/cart, components/common/cart-preview.tsx and pages/cart.tsx.
 //
-// Stays: the class is added through a template-literal className (`$If`), which cannot hold
-// utilities (stray-utility test), and the live store/JS read the class name.
+// Stays: elements the JS creates, which have no markup to carry utilities.
 // -----------------------------------------------------------------------------
-
-.cart-item-value.price--discounted {
-    color: stencilColor("color-greyLight");
-}
 
 // JS-created inline message (assets/js/theme/common/form-utils) inside the totals.
 .cart-total .form-inlineMessage {

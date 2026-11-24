@@ -23,6 +23,7 @@
 @source "../../src/templates/components/common";
 @source "../../src/templates/layout";
 @source "../../src/templates/components/blog";
+@source "../../src/templates/components/page";
 @source "../../src/templates/pages/search.tsx";
 @source "../../src/templates/components/faceted-search";
 @source "../../src/templates/components/category";
@@ -43,6 +44,7 @@
 @source "../../src/templates/pages/unavailable";
 @source "../../src/templates/pages/unsubscribe.tsx";
 @source "../../src/templates/pages/home.tsx";
+@source "../../src/server/navParts.tsx";
 /*
  * Words in attributes and comments of a listed folder (`type="hidden"`, "containing block") are also picked up as candidates. With `important` an
  * emitted `.hidden` or `.block` would override third-party and merchant markup site-wide, so such strays are excluded here. The test in
@@ -355,6 +357,9 @@
 
     /* single + quarter: video gallery spacing (3 sites) */
     --spacing-single-quarter: calc(var(--sv-spacing-single) + var(--sv-spacing-quarter));
+
+    /* half + quarter: the main navigation link padding (navParts.tsx, 14 sites) */
+    --spacing-half-quarter: calc(var(--sv-spacing-half) + var(--sv-spacing-quarter));
 
     /* backorder copy colour (BACK-699), the design-specified hex of the former $account-backorder-textColor */
     --color-backorder: #757575;

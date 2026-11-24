@@ -1098,10 +1098,6 @@
     @include sv("setting-alert-color-alt", stencilColor("alert-color-alt"));
     @include sv("setting-button--icon-svg-color", stencilColor("button--icon-svg-color"));
     @include sv("setting-body-bg", stencilColor("body-bg"));
-    @include sv("setting-color-greyLight", stencilColor("color-greyLight"));
-    @include sv("setting-navPages-color", stencilColor("navPages-color"));
-    @include sv("setting-navPages-subMenu-backgroundColor", stencilColor("navPages-subMenu-backgroundColor"));
-    @include sv("setting-navPages-subMenu-separatorColor", stencilColor("navPages-subMenu-separatorColor"));
     @include sv("setting-blog_size", stencilString("blog_size"));
     @include sv("setting-thumb_size", stencilString("thumb_size"));
     @include sv("setting-brand_size", stencilString("brand_size"));
@@ -1224,6 +1220,7 @@
     @include sv("setting-color-greyDarker", stencilColor("color-greyDarker"));
     @include sv("setting-color-greyDark", stencilColor("color-greyDark"));
     @include sv("setting-color-greyMedium", stencilColor("color-greyMedium"));
+    @include sv("setting-color-greyLight", stencilColor("color-greyLight"));
     @include sv("setting-color-greyLighter", stencilColor("color-greyLighter"));
     @include sv("setting-color-greyLightest", stencilColor("color-greyLightest"));
     @include sv("setting-color-primaryDarker", stencilColor("color-primaryDarker"));
@@ -1262,6 +1259,8 @@
     @include sv("setting-footer-heading-fontColor", stencilColor("footer-heading-fontColor"));
     @include sv("setting-header-backgroundColor", stencilColor("header-backgroundColor"));
     @include sv("setting-storeName-color", stencilColor("storeName-color"));
+    @include sv("setting-navPages-subMenu-separatorColor", stencilColor("navPages-subMenu-separatorColor"));
+    @include sv("setting-navPages-subMenu-backgroundColor", stencilColor("navPages-subMenu-backgroundColor"));
     @include sv("setting-navPages-color-hover", stencilColor("navPages-color-hover"));
     @include sv("setting-dropdown--quickSearch-backgroundColor", stencilColor("dropdown--quickSearch-backgroundColor"));
     @include sv("setting-carousel-arrow-color", stencilColor("carousel-arrow-color"));
@@ -1286,6 +1285,7 @@
     @include sv("setting-navUser-color", stencilColor("navUser-color"));
     @include sv("setting-navUser-color-hover", stencilColor("navUser-color-hover"));
     @include sv("setting-icon-color-hover", stencilColor("icon-color-hover"));
+    @include sv("setting-navPages-color", stencilColor("navPages-color"));
     @include sv("setting-navUser-dropdown-borderColor", stencilColor("navUser-dropdown-borderColor"));
     @include sv("setting-navUser-dropdown-backgroundColor", stencilColor("navUser-dropdown-backgroundColor"));
     @include sv("setting-navUser-indicator-backgroundColor", stencilColor("navUser-indicator-backgroundColor"));

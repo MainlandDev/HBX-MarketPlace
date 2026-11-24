@@ -11,17 +11,17 @@ export default (_props: PartialProps) => (
     <div className="page -mx-gutter-half w-auto max-w-none flow-root">
         <div className="page-content page-content--centered float-left w-full px-gutter-half medium:float-none medium:mx-auto medium:w-8/12">
             <form
-                className="advancedSearch-form toggle-content"
+                className="advancedSearch-form toggle-content mb-double"
                 action={$pointer("forms.search.action")}
                 data-advanced-search-form={""}
                 id="advanced-search-content"
                 aria-hidden="true"
             >
                 <input type="hidden" name="mode" value="1" />
-                <h5 className="advancedSearch-title">
+                <h5 className="advancedSearch-title m-0 mb-single [text-transform:inherit]">
                     <$Lang keyName={$string("forms.search.title")} />
                 </h5>
-                <div className="form-row">
+                <div className="form-row -mb-single">
                     <fieldset className="form-fieldset form-column">
                         <div className="form-field">
                             <label className="form-label" htmlFor="search_query_adv">
@@ -87,9 +87,9 @@ export default (_props: PartialProps) => (
                     </fieldset>
                 </div>
                 <hr />
-                <div className="form-row">
-                    <div className="form-field search-price-range">
-                        <h5 className="advancedSearch-title">
+                <div className="form-row -mb-single">
+                    <div className="form-field search-price-range [&_label]:[display:inline] [&_label_input]:[display:block] [&_label_input]:pl-single small:[&_label_input]:[display:inline] small:[&_label_input]:w-[6rem] small:[&_label_span]:[display:inline] small:[&_label_span]:px-single">
+                        <h5 className="advancedSearch-title m-0 mb-single [text-transform:inherit]">
                             <$Lang keyName={$string("forms.search.by_price")} />
                         </h5>
                         <p className="form-label" htmlFor="search-form-price_from">
@@ -130,10 +130,10 @@ export default (_props: PartialProps) => (
                     </div>
                 </div>
                 <hr />
-                <h5 className="advancedSearch-title">
+                <h5 className="advancedSearch-title m-0 mb-single [text-transform:inherit]">
                     <$Lang keyName={$string("forms.search.by_setting")} />
                 </h5>
-                <div className="form-row form-row--half">
+                <div className="form-row form-row--half -mb-single">
                     <div className="form-field">
                         <label className="form-label" htmlFor="search-form-featured">
                             <$Lang keyName={$string("forms.search.featured_products.title")} />

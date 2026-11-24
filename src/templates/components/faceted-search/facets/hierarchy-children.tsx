@@ -14,7 +14,7 @@ interface ChildFacet {
 }
 
 export default (_props: PartialProps) => (
-    <ul className="navList navList--inner">
+    <ul className="navList navList--inner ml-single">
         <$Each
             list={$this<ChildFacet[]>()}
             $then={(item) => (
