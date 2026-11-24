@@ -415,21 +415,8 @@ $card-preview-zoom-bottom-offset:       6rem;
     .cart-total-with-savings {
         border-top: container("border");
 
-        .cart-total-label {
-            font-size: fontSize("larger");
-        }
-
+        // Total label, grand total layout and amount are utilities in totals.tsx.
         .cart-total-grandTotal {
-            display: flex;
-            flex-direction: column;
-            text-align: right;
-            font-weight: fontWeight("normal");
-
-            .cart-total-amount {
-                font-size: fontSize("larger");
-                font-weight: fontWeight("semibold");
-            }
-
             .cart-total-savings {
                 font-family: $body-font-family;
                 font-size: fontSize("smaller");
@@ -588,24 +575,8 @@ $card-preview-zoom-bottom-offset:       6rem;
 }
 
 // Cart coupons section
+// Container layout is utilities in coupons.tsx; the descendant form rules stay (hidden form, not drivable without submitting).
 .cart-coupons {
-    width: 100%;
-    padding-bottom: spacing("base");
-    border-bottom: container("border");
-
-    @include breakpoint("small") {
-        float: right;
-        width: grid-calc(9, $total-columns);
-    }
-
-    @include breakpoint("medium") {
-        width: grid-calc(7, $total-columns);
-    }
-
-    @include breakpoint("large") {
-        width: grid-calc(5, $total-columns);
-    }
-
     .coupon-form {
         margin-top: spacing("base");
 
@@ -617,16 +588,12 @@ $card-preview-zoom-bottom-offset:       6rem;
     }
 }
 
+// Link colour stays: optimizedCheckout-link-color is a merchant setting that is not bridged to a --sv var.
 .cart-coupon-link {
     color: stencilColor("optimizedCheckout-link-color");
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    font-weight: fontWeight("normal");
 
     &:hover {
         color: stencilColor("optimizedCheckout-link-color");
-        text-decoration: underline;
     }
 }
 
@@ -807,19 +774,6 @@ $card-preview-zoom-bottom-offset:       6rem;
 //
 // -----------------------------------------------------------------------------
 
-.previewCartWrapper {
-    max-height: calc(100vh - #{$card-preview-zoom-bottom-offset});
-    overflow: auto;
-}
-
-.previewCartList {
-    @include u-listReset;
-    border-collapse: collapse;
-    display: table;
-    table-layout: fixed;
-    width: 100%;
-}
-
 .previewCartItem {
     @include grid-row;
     display: table-row;
@@ -863,27 +817,6 @@ $card-preview-zoom-bottom-offset:       6rem;
 .previewCartItem-content {
     @include grid-column(8, $float: false);
     padding-left: 0;
-}
-
-.previewCartItem-name {
-    margin: 0;
-    text-transform: none;
-
-    > a {
-        text-decoration: none;
-    }
-}
-
-.previewCartItem-brand,
-.previewCartItem-name {
-    margin-bottom: spacing("eighth");
-}
-
-.previewCartItem-brand,
-.previewCartItem-price {
-    color: $small-font-color;
-    display: inline-block;
-    font-size: fontSize("smallest");
 }
 
 .previewCartAction {

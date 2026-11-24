@@ -439,13 +439,13 @@ export default (_props: PartialProps) => {
                     test={multi}
                     $then={() => (
                         <>
-                            <div className="cart-total-label">
+                            <div className="cart-total-label text-larger">
                                 <strong>
                                     <$Lang keyName={$string("cart.checkout.total")} />
                                 </strong>
                             </div>
-                            <div className="cart-total-value cart-total-grandTotal">
-                                <$Or values={[$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))]} $then={() => (<><span className="cart-total-amount">{cart.grand_total.formatted}</span>
+                            <div className="cart-total-value cart-total-grandTotal flex flex-col text-right font-normal">
+                                <$Or values={[$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))]} $then={() => (<><span className="cart-total-amount text-larger font-semibold">{cart.grand_total.formatted}</span>
                                 <$If
                                     test={cart.total_discount.value}
                                     $then={() => (

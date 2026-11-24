@@ -38,12 +38,13 @@ Convert the theme's remaining SCSS (`assets/scss/components`, `assets/scss/layou
 | 2 | `components/stencil/{productView,productReviews,writeReview,productCarousel,quickView,price,rating,ribbon,tags,toggleLink,videoGallery,socialLinks}`, `layouts/products/*` (incl. the rest of `_variantSelector`) | `components/products` (not `options`), `pages/product.tsx` | merged, small (see report) |
 | 3 | `components/stencil/{navUser,navPages,heroCarousel,banners}`, `layouts/{header,footer,body,container,sidebar}` | `layout`, `components/common`, `components/carousel*.tsx`, `pages/home.tsx` | merged, small (see report) |
 | 4 | `components/stencil/{search,category,compare,facetedSearch,facetLabel,contact,blocker,textTruncate}`, `layouts/{blog,brands}` | `components/{search,category,brand,blog,faceted-search,sitemap,page}`, `pages/{search,category,brand,brands,blog,blog-post,compare,contact-us,page,sitemap}.tsx` | merged (see report) |
-| 5 | rest of `components/stencil/cart/_cart.scss`, `previewCart` | `components/cart`, `pages/cart.tsx`, `components/common/cart-preview.tsx` | todo |
+| 5 | rest of `components/stencil/cart/_cart.scss`, `previewCart` | `components/cart`, `pages/cart.tsx`, `components/common/cart-preview.tsx` | merged, small (see report) |
 | 6 | theme copies of Citadel/Foundation: `components/{citadel,foundation,vendor,common}` and `common/*` | any (global); verify on several page types | todo |
 | L | Tasks 32-34 (retire Citadel/Foundation imports, drop `important`/`source(none)`) | lead | todo |
 
 ## Merge log
 
+- WP5 merged by the lead (cart rest, small): `_cart.scss` 732 -> 675; no new `@source`/theme entries.
 - WP4 merged by the lead (listings/content): SCSS lines 6170 -> 5992 (122 partials; compare and facetLabel partials deleted); `@source` adds blog, search, faceted-search, category, brand, compare.tsx, brands.tsx; stray list now `block hidden table fixed container visible grid`.
 - WP3 merged by the lead (header/footer/nav, small): SCSS lines 6300 -> see `npm run tw-inventory`; `@source` adds `components/common` and `layout`; stray list is `block hidden table fixed container visible`.
 - WP2 merged by the lead (product family, small): SCSS lines 6353 -> 6300; vitest 119/119, vite-build ok. `@source` now lists `components/products`; stray list is `block hidden table fixed`.
@@ -101,3 +102,14 @@ Converted and Edge-verified on / and /fashion-biz/ (footer, body, navUser, main:
 
 ### WP4 (listings/content): summary
 Converted and Edge-verified (0 diffs at 375/768/1280/no-JS except sub-pixel remCalc noise and zero-width border styles): blog title/date/post/figure/body/tags (deleted unused blog-author); search-suggestion/suggestion-title/search-refine/search-nav/quickSearchMessage (a real 28px margin diff found and fixed with last:mb-0); facetedSearch-refineFilters; facetLabel (partial deleted); sidebarBlock-heading; brands card-title; the whole compare table (partial deleted). Stayed in SCSS: .blog root/sibling, socialLinks/addthis, blog-thumbnail, category-suggestion grid mixins, advancedSearch (not rendered), quickSearchResults/modal-close (WP3 files), facetedSearch toggle/navList/is-open/show-more (JS state), reset-filters/blocker (JS display), sidebar sibling rule, shop-by-price heading, brandGrid mixins, category-header-image, captcha, textTruncate (JS). Unverified: quickSearchMessage in its real dropdown context, blog post (value check only, no baseline).
+
+## Lessons added by WP5
+
+- **The live store injects `!important` CSS on `.previewCartList`** (display flex, flex-direction column, overflow-y scroll, max-height): never add display/overflow/max-height utilities there (an important utility beat it and broke the dropdown). Keep the class name.
+- `optimizedCheckout-*` (e.g. `optimizedCheckout-link-color`) and other merchant settings are NOT bridged to `--sv-*`: `text-(--sv-color-optimizedCheckout-link-color)` silently falls back to the inherited colour. Rules using them stay in SCSS (the bridge could be extended to `stencilColor()` settings read from config.json later).
+- The cart page with the user's cart renders only Subtotal, Total and the coupon trigger (enhanced multi-coupon mode); estimator, gift certificate, coupon list, discounts, non-enhanced totals and the add-to-cart preview modal are unreachable. The header cart dropdown is reachable: click `[data-cart-preview]` (state-neutral), root `#cart-preview-dropdown`, ajax-loaded.
+- A template-literal className on a row (cart-with-savings) blocks a literal-only utility under the stray test.
+- Remaining PayPal third-party iframes (6 in the dropdown, buttons on the cart page) produce nondeterministic diffs: ignore.
+
+### WP5 (cart rest): summary
+Converted and Edge-verified (cart page and header dropdown; only zero-width border colour, PayPal frames and lazy-load noise): cart-total-with-savings label/grandTotal/amount (enhanced branch), cart-coupons container and coupon-link layout (colour stays: unbridged optimizedCheckout colour), header dropdown wrapper/list/item name/brand/price. Stayed in SCSS: all productView-* (cart preview modal unreachable; the live store and JS select them), cart table layout, base totals rules, estimator/gift-certificate/coupon forms and list, discount toggle, additional checkout buttons, previewCart modal and grid-mixin rules.

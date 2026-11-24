@@ -9,9 +9,9 @@ interface Coupon {
 }
 
 export default (_props: PartialProps) => (
-    <div className="cart-coupons">
+    <div className="cart-coupons w-full pb-base border-b border-(--sv-container-border-global-color-base) small:float-right small:w-[75%] medium:w-[58.3333%] large:w-[41.6667%]">
         <div className="cart-coupon-trigger">
-            <a href="#" className="cart-coupon-link" data-coupon-trigger={""}>
+            <a href="#" className="cart-coupon-link inline-flex items-center font-normal no-underline hover:underline" data-coupon-trigger={""}>
                 <$Lang keyName={$string("cart.coupons.apply_coupon_code")} />
             </a>
         </div>

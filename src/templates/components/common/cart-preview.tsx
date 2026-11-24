@@ -31,13 +31,13 @@ interface CartItem {
 }
 
 export default (_props: PartialProps) => (
-    <div className="previewCartWrapper">
+    <div className="previewCartWrapper max-h-[calc(100vh-6rem)] overflow-auto">
         <div className="previewCart">
             <$If
                 test={$pointer("cart.items.length")}
                 $then={() => (
                     <>
-                        <ul className="previewCartList">
+                        <ul className="previewCartList m-0 p-0 [list-style:none] border-collapse table-fixed w-full">
                             <$Each
                                 list={$limit($pointer<CartItem[]>("cart.items"), $number(4))}
                                 $then={(item) => (
@@ -60,15 +60,15 @@ export default (_props: PartialProps) => (
                                             />
                                         </div>
                                         <div className="previewCartItem-content">
-                                            <span className="previewCartItem-brand">{item.brand.name}</span>
+                                            <span className="previewCartItem-brand inline-block text-smallest text-(--sv-small-font-color) mb-eighth">{item.brand.name}</span>
 
-                                            <h6 className="previewCartItem-name">
+                                            <h6 className="previewCartItem-name m-0 mb-eighth [text-transform:none] [&>a]:no-underline">
                                                 <a href={item.url} alt={item.name} title={item.name}>
                                                     {item.name}
                                                 </a>
                                             </h6>
 
-                                            <span className="previewCartItem-price">
+                                            <span className="previewCartItem-price inline-block text-smallest text-(--sv-small-font-color)">
                                                 <$If
                                                     test={$pointer("quantity")}
                                                     operator={$string(">")}
