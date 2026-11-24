@@ -10,12 +10,3 @@ ul.inlineList {
     overflow: visible;
 }
 
-.inlineList--labels {
-    margin-bottom: 0;
-    margin-left: -1 * spacing("half");
-
-    > li {
-        margin-bottom: spacing("half");
-        margin-left: spacing("half");
-    }
-}

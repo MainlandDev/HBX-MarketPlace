@@ -39,8 +39,8 @@ export default () => (
                                                     </div>
                                                 </a>
                                             </figure>
-                                            <div className="card-body">
-                                                <h3 className="card-title text-center">
+                                            <div className="card-body text-center small:text-left">
+                                                <h3 className="card-title m-0 text-smaller text-center">
                                                     <a href={brand.url}>{brand.name}</a>
                                                 </h3>
                                             </div>

@@ -173,12 +173,12 @@ export default (_props: PartialProps) => {
                     </div>
                 </figcaption>
             </figure>
-            <div className="card-body">
+            <div className="card-body text-center small:text-left">
                 <$And
                     a={$pointer("rating")}
                     b={showRating}
                     $then={() => (
-                        <p className="card-text" data-test-info-type="productRating">
+                        <p className="card-text mb-eighth" data-test-info-type="productRating">
                             <span className="rating--small">
                                 <ProductsRatings rating_target={name} rating={$pointer("rating")} />
                             </span>
@@ -188,18 +188,18 @@ export default (_props: PartialProps) => {
                 <$If
                     test={brand.name}
                     $then={() => (
-                        <p className="card-text" data-test-info-type="brandName">
+                        <p className="card-text mb-eighth" data-test-info-type="brandName">
                             {brand.name}
                         </p>
                     )}
                 />
-                <h3 className="card-title">
+                <h3 className="card-title mb-sixth text-smaller mt-0">
                     <a aria-label={$partial("components/products/product-info")} href={url} data-event-type="product-click">
                         {name}
                     </a>
                 </h3>
 
-                <div className="card-text" data-test-info-type="price">
+                <div className="card-text mb-eighth" data-test-info-type="price">
                     <$Or values={[$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))]} $then={() => (<><ProductsPrice price={$pointer("price")} /></>)} $else={() => (<><LoginForPricing /></>)} />
                 </div>
                 {region("product_item_below_price")}

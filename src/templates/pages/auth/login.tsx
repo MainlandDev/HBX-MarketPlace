@@ -49,7 +49,7 @@ export default () => (
                                 <div className="new-customer">
                                     <div className="panel">
                                         <div className="panel-header">
-                                            <h2 className="panel-title">
+                                            <h2 className="panel-title text-small">
                                                 <$Lang keyName={$string("login.new_customer.heading")} />
                                             </h2>
                                         </div>

@@ -16,7 +16,7 @@ export default (_props: PartialProps) => (
         <$If
             test={$pointer("items")}
             $then={() => (
-                <ul className="inlineList inlineList--labels">
+                <ul className="inlineList inlineList--labels mb-0 -ml-half [&>li]:mb-half [&>li]:ml-half">
                     <$Each
                         list={$pointer<SelectedFacet[]>("items")}
                         $then={(item) => (

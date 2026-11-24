@@ -12,15 +12,7 @@
 //
 // -----------------------------------------------------------------------------
 
-ol.breadcrumbs {
-    display: none; // 1
-    font-size: 0; // 2
-    overflow: visible;
-    text-align: center;
-    @include breakpoint("small") {
-        display: block; // 1
-    }
-}
+// ol.breadcrumbs display/font-size/overflow/text-align are utilities in breadcrumbs.tsx (notes 1 and 2 above)
 
 .breadcrumb {
     display: inline-block;

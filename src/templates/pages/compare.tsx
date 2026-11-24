@@ -82,16 +82,16 @@ export default () => (
                                                             </svg>
                                                         </a>
                                                     </figure>
-                                                    <div className="card-body min-h-[calc(var(--sv-spacing-single)*4)] pt-base">
+                                                    <div className="card-body min-h-[calc(var(--sv-spacing-single)*4)] pt-base text-center small:text-left">
                                                         <$If
                                                             test={product.brand.name}
                                                             $then={() => (
-                                                                <p className="card-text">
+                                                                <p className="card-text mb-eighth">
                                                                     <a href={product.brand.url}>{product.brand.name}</a>
                                                                 </p>
                                                             )}
                                                         />
-                                                        <h3 className="card-title">
+                                                        <h3 className="card-title mb-sixth text-smaller mt-0">
                                                             <a href={product.url}>{product.name}</a>
                                                         </h3>
                                                         <$Or values={[$pointer("../customer"), $unlessExpression($pointer("../settings.hide_price_from_guests"))]} $then={() => (<><$If

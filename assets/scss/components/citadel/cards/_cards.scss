@@ -76,9 +76,7 @@
 }
 
 .card-title {
-    font-size: $card-title-fontSize;
-    margin: $card-title-margin;
-
+    // font-size/margin are utilities in the markup (text-smaller, mt-0, mb-sixth)
     > a {
         color: $card-title-color;
         display: block;
@@ -91,8 +89,7 @@
 }
 
 .card-text {
-    margin-bottom: $card-text-marginBottom;
-
+    // margin-bottom is a utility in the markup (mb-eighth)
     abbr {
         border: 0;
         color: inherit;
@@ -121,15 +118,6 @@
         margin: $card-figcaption-button-margin;
     }
 }
-
-.card-body {
-    text-align: center;
-
-    @include breakpoint("small") {
-        text-align: left;
-    }
-}
-
 
 //
 // Alternate card
