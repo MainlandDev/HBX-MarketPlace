@@ -42,25 +42,25 @@ export default () => (
                                     $then={() => (
                                         <>
                                             <div className="loadingOverlay"></div>
-                                            <div data-cart-content={""} className="cart-content-padding-right">
+                                            <div data-cart-content={""} className="pr-[4px]">
                                                 <CartContent />
                                             </div>
                                             <$If
                                                 test={$pointer("cart.multi_coupon_ui_enabled")}
                                                 $then={() => (
-                                                    <div data-cart-coupons={""} className="cart-content-padding-right">
+                                                    <div data-cart-coupons={""} className="pr-[4px]">
                                                         <CartCoupons />
                                                     </div>
                                                 )}
                                             />
-                                            <div data-cart-totals={""} className="cart-content-padding-right">
+                                            <div data-cart-totals={""} className="pr-[4px]">
                                                 <CartTotals />
                                             </div>
                                             {region("cart_below_totals")}
                                             <$Or values={[$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))]} $then={() => (<><$If
                                                 test={$pointer("cart.show_primary_checkout_button")}
                                                 $then={() => (
-                                                    <div className="cart-actions cart-content-padding-right">
+                                                    <div className="cart-actions pr-[4px]">
                                                         <a
                                                             className="button button--primary"
                                                             href={$pointer("urls.checkout.single_address")}
@@ -81,7 +81,7 @@ export default () => (
                                                     </div>
                                                 )}
                                                 $else={() => (
-                                                    <div className="cart-actions cart-content-padding-right">
+                                                    <div className="cart-actions pr-[4px]">
                                                         <a
                                                             className="button"
                                                             href={$pointer("urls.home")}
@@ -97,12 +97,12 @@ export default () => (
                                                 $then={() => (
                                                     <div
                                                         data-cart-additional-checkout-buttons={""}
-                                                        className="cart-additionalCheckoutButtons cart-content-padding-right"
+                                                        className="cart-additionalCheckoutButtons pr-[4px]"
                                                     >
                                                         <CartAdditionalCheckoutButtons />
                                                     </div>
                                                 )}
-                                            /></>)} $else={() => (<><div className="cart-actions cart-content-padding-right">
+                                            /></>)} $else={() => (<><div className="cart-actions pr-[4px]">
                                                 <a
                                                     className="button"
                                                     href={$pointer("urls.auth.login")}

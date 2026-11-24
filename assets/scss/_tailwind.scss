@@ -12,6 +12,8 @@
  * (pilot diff: the product column changed width). Only folders already converted are listed here. Add a folder when you convert it.
  */
 @source "../../src/templates/components/products/options";
+@source "../../src/templates/components/cart";
+@source "../../src/templates/pages/cart.tsx";
 /*
  * Words in attributes and comments of a listed folder (`type="hidden"`, "containing block") are also picked up as candidates. With `important` an
  * emitted `.hidden` or `.block` would override third-party and merchant markup site-wide, so such strays are excluded here. The test in
@@ -236,6 +238,12 @@
     --color-grey-light: var(--sv-color-greyLight);
     --color-grey-lighter: var(--sv-color-greyLighter);
     --color-grey-lightest: var(--sv-color-greyLightest);
+
+    /* text and container colours the legacy SCSS reads with stencilColor("color-textBase"), container("fill", "dark") and so on */
+    --color-text-base: var(--sv-color-textBase);
+    --color-text-secondary: var(--sv-color-textSecondary);
+    --color-fill-dark: var(--sv-container-fill-dark);
+    --color-icon: var(--sv-icon-color);
 
     /* promoted from rounded-[12px], used at 3 sites (the variant selector cards) */
     --radius-card: 12px;

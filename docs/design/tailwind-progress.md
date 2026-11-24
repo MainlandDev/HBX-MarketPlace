@@ -7,7 +7,7 @@ Start: 126 non-empty partials, 6550 lines (components + layouts + common), measu
 
 | Task | Partial (under `assets/scss/`) | Lines at start | Status | Notes |
 | --- | --- | ---: | --- | --- |
-| 4 | `components/stencil/cart/_cart.scss` | 792 | blocked: needs a cart with items; adding to the live store's cart is not done without the user's say | |
+| 4 | `components/stencil/cart/_cart.scss` | 792 | partial: slice A done (item brand/name/label/value, remove button, content padding; Edge parity at 375/768/1280/no-JS, only remCalc sub-pixel rounding and third-party PayPal frame differences). Rest stays or is todo under the ~10-utilities cap: responsive table/list layout, clearfix, pseudo-elements, totals, estimator, coupons | signed in, cart has 1 item |
 | 5 | `components/stencil/productView/_productView.scss` | 376 | todo | |
 | 5 | `components/stencil/productView/_component.scss` | 1 | todo | |
 | 6 | `components/stencil/navPages/_navPages.scss` | 362 | todo | |
@@ -133,5 +133,9 @@ Start: 126 non-empty partials, 6550 lines (components + layouts + common), measu
 | 30 | `components/citadel/loading/_component.scss` | 1 | todo | |
 | 31 | `components/_components.scss` | 54 | todo | |
 | 31 | `layouts/_layouts.scss` | 16 | todo | |
+
+## Expected yield under the ~10-utilities cap (measured 2026-11-24)
+
+"Leaf" = a top-level rule on plain classes whose body is only declarations (plus `@include breakpoint`), with no mixins, pseudo-elements, combinators or nesting. Only about 982 of about 6,110 lines (16%) in the partials of 20+ lines qualify; nested descendant rules convertible with arbitrary variants add some more. So "convert everything" is not reachable under the cap: expect roughly 20-30% of the SCSS to become utilities, and the rest to stay with a recorded reason. Highest leaf yield (lines, of the partial): cart 148/732, account 104/336, productView 77/376, citadel forms 60/306, footer 49/131, addressBox 48/99, navUser 47/274, productList 41/177, layouts/account 31/55, blog 31/72, promotionCallout 31/45. Work in that order (the user chose yield over size on 2026-11-24).
 
 Tasks 32-34 (retire Citadel, Foundation, the temporary Tailwind settings) have no partial rows; track them in the plan.
