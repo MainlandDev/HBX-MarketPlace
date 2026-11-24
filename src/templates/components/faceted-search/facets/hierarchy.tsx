@@ -3,6 +3,7 @@ import FacetedSearchFacetedSearchNavigation from "../faceted-search-navigation.t
 import FacetedSearchFacetsHierarchyChildren from "./hierarchy-children.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$dashcase, $Each, $If, $Lang, $pointer, $sanitize, $string, $unescaped, $Unless} from "@mainlanddev/hbx-bigcommerce";
+import {NavList} from "../../../../server/componentParts.tsx";
 
 interface Facet {
     id: string;
@@ -25,9 +26,9 @@ export default (_props: PartialProps) => (
                     id={`facetedSearch-content--${$dashcase($pointer("facet"))}`}
                     className={`accordion-content${$Unless({test: $pointer("start_collapsed"), $then: () => " is-open"})}`}
                 >
-                    <ul
+                    <NavList
                         id={`facetedSearch-navList--${$dashcase($pointer("facet"))}`}
-                        className="navList ml-0"
+                        className="ml-0"
                         data-facet={$pointer("facet")}
                         data-has-more-results={$pointer("has_more_results")}
                     >
@@ -55,7 +56,7 @@ export default (_props: PartialProps) => (
                                 </li>
                             )}
                         />
-                    </ul>
+                    </NavList>
 
                     <$If
                         test={$pointer("show_more_toggle")}

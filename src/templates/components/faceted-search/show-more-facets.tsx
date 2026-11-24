@@ -2,6 +2,7 @@
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$Each, $If, $lang, $pointer, $string, $unescaped} from "@mainlanddev/hbx-bigcommerce";
 import {FormField, FormInput} from "../../../server/formParts.tsx";
+import {ModalBody, NavList} from "../../../server/componentParts.tsx";
 
 interface FacetOption {
     id: string;
@@ -16,7 +17,7 @@ interface Facet {
 }
 
 export default (_props: PartialProps) => (
-    <div className="modal-body overflow-auto p-(--sv-reveal-modal-padding) [-webkit-overflow-scrolling:touch]">
+    <ModalBody className="overflow-auto p-(--sv-reveal-modal-padding) [-webkit-overflow-scrolling:touch]">
         <h1 className="facet-quick-heading capitalize">
             <$If
                 test={$pointer("facet_title")}
@@ -27,7 +28,7 @@ export default (_props: PartialProps) => (
         <FormField id="facetedSearch-filterItems">
             <FormInput type="search" placeholder={$lang($string("forms.search.search"))} />
         </FormField>
-        <ul className="navList ml-0 facetedSearch-optionColumns [column-count:3] [column-gap:20px]">
+        <NavList className="ml-0 facetedSearch-optionColumns [column-count:3] [column-gap:20px]">
             <$Each
                 list={$pointer<Facet[]>("facets")}
                 $then={() => (
@@ -64,6 +65,6 @@ export default (_props: PartialProps) => (
                     </>
                 )}
             />
-        </ul>
-    </div>
+        </NavList>
+    </ModalBody>
 );

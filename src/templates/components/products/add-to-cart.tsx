@@ -4,6 +4,7 @@ import AlertAlertError from "../common/alert/alert-error.tsx";
 import WalletButtons from "../common/wallet-buttons.tsx";
 import {$If, $Inject, $Lang, $lang, $pointer, $raw, $string, $Unless, $unlessExpression, $Or} from "@mainlanddev/hbx-bigcommerce";
 import {Button, FormField, FormInput, FormLabel, Icon} from "../../../server/formParts.tsx";
+import {AlertBox, AlertColumn} from "../../../server/componentParts.tsx";
 
 interface Product {
     can_purchase: boolean;
@@ -95,16 +96,16 @@ export default (_props: PartialProps) => {
                 )}
             />
 
-            <div className="alertBox alertBox--error productAttributes-message rounded-[4px] text-(--sv-setting-alert-color)" style={{display: "none"}}>
-                <div className="alertBox-column alertBox-icon [&_.icon]:size-[25px] [&_svg]:fill-(--sv-alert-error-iconColor)">
+            <AlertBox className="productAttributes-message rounded-[4px] text-(--sv-setting-alert-color)" variant="error" style={{display: "none"}}>
+                <AlertColumn className="[&_.icon]:size-[25px] [&_svg]:fill-(--sv-alert-error-iconColor)" part="icon">
                     <Icon glyph="ic-error" tag="icon" aria-hidden="true">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
                         </svg>
                     </Icon>
-                </div>
-                <p className="alertBox-column alertBox-message"></p>
-            </div>
+                </AlertColumn>
+                <AlertColumn tag="p" part="message"></AlertColumn>
+            </AlertBox>
             <$Or values={[$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))]} $then={() => (<><div className={`add-to-cart-buttons ${$If({test: product.pre_order, $then: () => "pre-order-buttons"})}`}>
                 <div className="form-action">
                     <Button

@@ -2,6 +2,7 @@
 import FacetedSearchFacetsHierarchyChildren from "./hierarchy-children.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$Each, $If, $pointer, $sanitize, $this, $unescaped} from "@mainlanddev/hbx-bigcommerce";
+import {NavList} from "../../../../server/componentParts.tsx";
 
 interface ChildFacet {
     id: string;
@@ -14,7 +15,7 @@ interface ChildFacet {
 }
 
 export default (_props: PartialProps) => (
-    <ul className="navList navList--inner ml-single">
+    <NavList className="navList--inner ml-single">
         <$Each
             list={$this<ChildFacet[]>()}
             $then={(item) => (
@@ -39,5 +40,5 @@ export default (_props: PartialProps) => (
                 </li>
             )}
         />
-    </ul>
+    </NavList>
 );

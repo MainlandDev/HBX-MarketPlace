@@ -18,7 +18,7 @@ export default (_props: PartialProps) => {
                     <FacetedSearchRangeForm shop_by_price={settings.shop_by_price_visibility} />
 
                     <div className="reset-filters [&:not([style*=block])]:[display:none]">
-                        <a href={$pointer("category.url")} className="navList-action reset-btn no-underline">
+                        <a href={$pointer("category.url")} className="navList-action reset-btn no-underline [:where(&)]:text-(--sv-navList-action-color) [:where(&)]:text-(length:--sv-navList-action-fontSize) [:where(&)]:py-eighth [:where(&)]:px-0 [:where(&)]:[display:block] [:where(&:is(:hover,:focus))]:text-(--sv-anchor-font-color-hover)">
                             <$Lang keyName={$string("category.reset")} />
                         </a>{" "}
                         <span className="reset-message aria-description--hidden">

@@ -3,6 +3,7 @@ import FacetedSearchFacetedSearchNavigation from "../faceted-search-navigation.t
 import ProductsRatings from "../../products/ratings.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$dashcase, $Each, $If, $Lang, $pointer, $string, $Unless} from "@mainlanddev/hbx-bigcommerce";
+import {NavList} from "../../../../server/componentParts.tsx";
 
 interface RatingOption {
     url: string;
@@ -22,7 +23,7 @@ export default (_props: PartialProps) => (
                     id={`facetedSearch-content--${$dashcase($pointer("facet"))}`}
                     className={`accordion-content facetedSearch-content--${$dashcase($pointer("facet"))}${$Unless({test: $pointer("start_collapsed"), $then: () => " is-open"})}`}
                 >
-                    <ul className="navList ml-0">
+                    <NavList className="ml-0">
                         <$Each
                             list={$pointer<RatingOption[]>("items")}
                             $then={(item) => (
@@ -45,7 +46,7 @@ export default (_props: PartialProps) => (
                                 </li>
                             )}
                         />
-                    </ul>
+                    </NavList>
                 </div>
             </div>
         )}

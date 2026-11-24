@@ -2,13 +2,14 @@
 import ProductsCarousel from "./carousel.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$If, $Lang, $number, $pointer, $string, $Unless} from "@mainlanddev/hbx-bigcommerce";
+import {Tabs, TabsContents} from "../../../server/componentParts.tsx";
 
 export default (_props: PartialProps) => {
     const relatedProducts = $pointer("product.related_products");
     const similarByViews = $pointer("product.similar_by_views");
     return (
         <>
-            <ul className="tabs" data-tab={""} role="tablist">
+            <Tabs data-tab={""} role="tablist">
                 <$If
                     test={relatedProducts}
                     $then={() => (
@@ -37,9 +38,9 @@ export default (_props: PartialProps) => {
                         </li>
                     )}
                 />
-            </ul>
+            </Tabs>
 
-            <div className="tabs-contents">
+            <TabsContents>
                 <$If
                     test={relatedProducts}
                     $then={() => (
@@ -62,7 +63,7 @@ export default (_props: PartialProps) => {
                         </div>
                     )}
                 />
-            </div>
+            </TabsContents>
         </>
     );
 };

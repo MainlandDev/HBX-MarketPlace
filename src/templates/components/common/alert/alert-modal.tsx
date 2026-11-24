@@ -2,9 +2,10 @@
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$Lang, $string} from "@mainlanddev/hbx-bigcommerce";
 import {Button} from "../../../../server/formParts.tsx";
+import {Modal} from "../../../../server/componentParts.tsx";
 
 export default (_props: PartialProps) => (
-    <div id="alert-modal" className="modal modal--alert modal--small left-1/2 top-1/2 m-0 max-h-[90%] min-h-[240px] max-w-[95%] overflow-hidden p-0 outline-none [transform:translate(-50%,-50%)] [&_.form-field]:relative rounded-(--sv-alert-modal-borderRadius) bg-(--sv-alert-modal-bgColor) px-[20px] pt-[40px] pb-[20px] text-center [font-family:var(--sv-alert-font-body)]" data-reveal={""} data-prevent-quick-search-close={""}>
+    <Modal id="alert-modal" className="modal--alert modal--small left-1/2 top-1/2 m-0 max-h-[90%] min-h-[240px] max-w-[95%] overflow-hidden p-0 outline-none [transform:translate(-50%,-50%)] [&_.form-field]:relative rounded-(--sv-alert-modal-borderRadius) bg-(--sv-alert-modal-bgColor) px-[20px] pt-[40px] pb-[20px] text-center [font-family:var(--sv-alert-font-body)]" data-reveal={""} data-prevent-quick-search-close={""}>
         <div className="alert-icon relative mx-auto mt-[1.25em] mb-[1.875em] box-content h-[5em] w-[5em] cursor-default select-none justify-center rounded-[50%] border-[0.25em] border-solid [font-family:inherit] leading-[5em] [&:not([style*=none])]:flex error-icon border-[#f27474] text-[#f27474] [animation:animate-icon_0.5s]">
             <span className="icon-content relative grow [animation:animate-icon-content_0.5s]">
                 <span className="line line-left absolute top-[2.3125em] left-[1.0625em] [display:block] h-[0.3125em] w-[2.9375em] rounded-[0.125em] bg-[#f27474] [transform:rotate(45deg)]"></span>
@@ -26,5 +27,5 @@ export default (_props: PartialProps) => (
                 <$Lang keyName={$string("common.cancel")} />
             </Button>
         </div>
-    </div>
+    </Modal>
 );

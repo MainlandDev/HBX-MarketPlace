@@ -4,6 +4,7 @@ import ProductsCustomFields from "./custom-fields.tsx";
 import ProductsReviews from "./reviews.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$All, $dashcase, $If, $Lang, $lowercase, $pointer, $sanitize, $string, $unescaped, $Unless} from "@mainlanddev/hbx-bigcommerce";
+import {Tabs, TabsContents} from "../../../server/componentParts.tsx";
 
 export default (_props: PartialProps) => {
     const theme = $pointer<ThemeSettingsObject>("theme_settings");
@@ -13,7 +14,7 @@ export default (_props: PartialProps) => {
     const customFieldsTabId = $dashcase($lowercase($sanitize($pointer<string>("theme_settings.pdp-custom-fields-tab-label"))));
     return (
         <>
-            <ul className="tabs" data-tab={""}>
+            <Tabs data-tab={""}>
                 <$If
                     test={product.description}
                     $then={() => (
@@ -54,8 +55,8 @@ export default (_props: PartialProps) => {
                         </li>
                     )}
                 />
-            </ul>
-            <div className="tabs-contents">
+            </Tabs>
+            <TabsContents>
                 <$If
                     test={product.description}
                     $then={() => (
@@ -88,7 +89,7 @@ export default (_props: PartialProps) => {
                         </div>
                     )}
                 />
-            </div>
+            </TabsContents>
         </>
     );
 };

@@ -17,7 +17,7 @@ interface Wishlist {
 
 export default (_props: PartialProps) => (
     <>
-        <table className="table table--line mx-auto mt-[2rem] max-w-(--sv-layout-widthMax) border-x-0 border-t-0 border-b border-container-border">
+        <table className="table table--line [:where(&)]:w-(--sv-table-width) [:where(&)]:mb-(--sv-table-margin-bottom) [:where(&)]:[table-layout:var(--sv-table-layout)] [:where(&_tr_th,&_tr_td)]:py-half [:where(&_tr_th,&_tr_td)]:px-single [:where(&_tr_th,&_tr_td)]:[text-align:left] [:where(&_thead_tr_th,&_thead_tr_td)]:text-(length:--sv-table-head-font-size) [:where(&_thead_tr_th)]:font-(weight:--sv-table-head-font-weight) [:where(&_tr_th,&_tr_td)]:[display:var(--sv-table-display)] [:where(&_th.table-header--numericData,&_td.table-cell--numericData)]:[text-align:var(--sv-table-numericData-textAlign)] mx-auto mt-[2rem] max-w-(--sv-layout-widthMax) border-x-0 border-t-0 border-b border-container-border">
             <thead className="table-thead border-x-0 border-t-0 border-b border-container-border bg-(--sv-setting-body-bg)">
                 <tr>
                     <th className="px-0 small:text-center small:first:text-left small:last:text-right [th+&]:pl-single">
@@ -34,7 +34,7 @@ export default (_props: PartialProps) => (
                     </th>
                 </tr>
             </thead>
-            <tbody className="table-tbody">
+            <tbody className="table-tbody [:where(&>tr)]:[border-bottom:var(--sv-table-row-border)] [:where(&>tr:last-child)]:[border-bottom:0]">
                 <$Each
                     list={$pointer<Wishlist[]>("customer.wishlists")}
                     $then={(wishlist) => (

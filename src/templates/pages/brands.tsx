@@ -2,6 +2,7 @@ import Breadcrumbs from "../components/common/breadcrumbs.tsx";
 import ResponsiveImg from "../components/common/responsive-img.tsx";
 import Paginator from "../components/common/paginator.tsx";
 import {$Each, $frontmatter, $If, $Lang, $Page, $pointer, $region, $string, $unescaped} from "@mainlanddev/hbx-bigcommerce";
+import {Card, CardBody, CardFigure} from "../../server/componentParts.tsx";
 
 export const frontmatter = $frontmatter.brands({brands: null});
 
@@ -34,36 +35,36 @@ export default () => (
                                         <$If
                                             test={brand.alternate}
                                             $then={() => (
-                                                <article className="card group/card card--alternate border-[3px] border-solid border-(--sv-setting-card--alternate-borderColor) [transition:all_0.15s_ease] hover:border-(--sv-setting-color-primary) [&_.card-body]:bg-(--sv-setting-card--alternate-backgroundColor) [&_.card-body]:p-half small:[&_.card-body]:p-single [&_.card-body]:[transition:all_0.15s_ease] hover:[&_.card-body]:bg-(--sv-setting-color-primary) hover:[&_.card-body_.card-text]:text-(--sv-setting-card--alternate-color--hover) hover:[&_.card-title>a]:text-(--sv-setting-card--alternate-color--hover)">
-                                                <figure className="card-figure group/fig relative mt-0 overflow-hidden p-[3px]">
+                                                <Card className="group/card card--alternate border-[3px] border-solid border-(--sv-setting-card--alternate-borderColor) [transition:all_0.15s_ease] hover:border-(--sv-setting-color-primary) [&_.card-body]:bg-(--sv-setting-card--alternate-backgroundColor) [&_.card-body]:p-half small:[&_.card-body]:p-single [&_.card-body]:[transition:all_0.15s_ease] hover:[&_.card-body]:bg-(--sv-setting-color-primary) hover:[&_.card-body_.card-text]:text-(--sv-setting-card--alternate-color--hover) hover:[&_.card-title>a]:text-(--sv-setting-card--alternate-color--hover)">
+                                                <CardFigure className="group/fig relative mt-0 overflow-hidden p-[3px]">
                                                     <a className="card-figure__link relative [display:block]" aria-label={brand.name} href={brand.url}>
                                                         <div className="card-img-container max-w-[190px] after:block after:h-0 after:w-full after:pb-[131.57895%] after:content-[''] [&_.card-image]:absolute [&_.card-image]:inset-0 [&_.card-image]:m-auto [&_.card-image]:max-h-full [&_.card-image]:w-full [&_.card-image]:border-0 [&_.card-image]:object-contain [&_.card-image]:[font-family:'object-fit:_contain;']">
                                                             <ResponsiveImg image={brand.image} class={$string("card-image")} fallback_size={$pointer("../theme_settings.brand_size")} lazyload={$pointer("../theme_settings.lazyload_mode")} default_image={$pointer("../theme_settings.default_image_brand")} />
                                                         </div>
                                                     </a>
-                                                </figure>
-                                                <div className="card-body text-center small:text-left">
+                                                </CardFigure>
+                                                <CardBody className="text-center small:text-left">
                                                     <h3 className="card-title [&>a]:text-(--sv-setting-card-title-color) [&>a]:no-underline [&>a]:[display:block] [&>a:hover]:text-(--sv-setting-card-title-color-hover) m-0 text-smaller text-center">
                                                         <a href={brand.url}>{brand.name}</a>
                                                     </h3>
-                                                </div>
-                                                </article>
+                                                </CardBody>
+                                                </Card>
                                             )}
                                             $else={() => (
-                                                <article className="card group/card">
-                                                <figure className="card-figure group/fig relative mt-0 overflow-hidden p-[3px]">
+                                                <Card className="group/card">
+                                                <CardFigure className="group/fig relative mt-0 overflow-hidden p-[3px]">
                                                     <a className="card-figure__link relative [display:block]" aria-label={brand.name} href={brand.url}>
                                                         <div className="card-img-container max-w-[190px] after:block after:h-0 after:w-full after:pb-[131.57895%] after:content-[''] [&_.card-image]:absolute [&_.card-image]:inset-0 [&_.card-image]:m-auto [&_.card-image]:max-h-full [&_.card-image]:w-full [&_.card-image]:border-0 [&_.card-image]:object-contain [&_.card-image]:[font-family:'object-fit:_contain;']">
                                                             <ResponsiveImg image={brand.image} class={$string("card-image")} fallback_size={$pointer("../theme_settings.brand_size")} lazyload={$pointer("../theme_settings.lazyload_mode")} default_image={$pointer("../theme_settings.default_image_brand")} />
                                                         </div>
                                                     </a>
-                                                </figure>
-                                                <div className="card-body text-center small:text-left">
+                                                </CardFigure>
+                                                <CardBody className="text-center small:text-left">
                                                     <h3 className="card-title [&>a]:text-(--sv-setting-card-title-color) [&>a]:no-underline [&>a]:[display:block] [&>a:hover]:text-(--sv-setting-card-title-color-hover) m-0 text-smaller text-center">
                                                         <a href={brand.url}>{brand.name}</a>
                                                     </h3>
-                                                </div>
-                                                </article>
+                                                </CardBody>
+                                                </Card>
                                             )}
                                         />
                                     </li>

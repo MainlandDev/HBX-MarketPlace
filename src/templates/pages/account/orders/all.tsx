@@ -4,6 +4,7 @@ import Breadcrumbs from "../../../components/common/breadcrumbs.tsx";
 import SmallPaginator from "../../../components/common/small-paginator.tsx";
 import AlertAlertInfo from "../../../components/common/alert/alert-info.tsx";
 import {$frontmatter, $If, $Lang, $lang, $number, $Page, $pointer, $string, $unescaped} from "@mainlanddev/hbx-bigcommerce";
+import {AlertBox} from "../../../../server/componentParts.tsx";
 
 export const frontmatter = $frontmatter.other({customer: {orders: {limit: 10}}});
 
@@ -26,11 +27,11 @@ export default () => (
                                 rvalue={$number(0)}
                                 $then={() => (
                                     <>
-                                        <div className="alertBox alertBox--storeCredit rounded-[4px] text-(--sv-setting-alert-color)">
+                                        <AlertBox className="alertBox--storeCredit rounded-[4px] text-(--sv-setting-alert-color)">
                                             {$unescaped(
                                                 $lang($string("common.store_credit"), {store_credit: $pointer("customer.store_credit.formatted")}),
                                             )}
-                                        </div>
+                                        </AlertBox>
                                     </>
                                 )}
                             />

@@ -17,7 +17,7 @@ export default (_props: PartialProps) => (
         <$If
             test={$pointer("items")}
             $then={() => (
-                <ul className="inlineList inlineList--labels flow-root overflow-visible mb-0 -ml-half [&>li]:mb-half [&>li]:ml-half">
+                <ul className="inlineList inlineList--labels [:where(&)]:list-none [:where(&)]:mt-0 [:where(&)]:mr-0 [:where(&)]:p-0 [:where(&>li)]:float-left [:where(&>li)]:[display:block] [:where(&>li)]:list-none [:where(&>li>*)]:[display:block] flow-root overflow-visible mb-0 -ml-half [&>li]:mb-half [&>li]:ml-half">
                     <$Each
                         list={$pointer<SelectedFacet[]>("items")}
                         $then={(item) => (

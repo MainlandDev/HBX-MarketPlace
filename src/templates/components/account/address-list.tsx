@@ -3,6 +3,7 @@ import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import AlertAlertInfo from "../common/alert/alert-info.tsx";
 import {$Each, $If, $Lang, $lang, $pointer, $string, $Unless, $raw} from "@mainlanddev/hbx-bigcommerce";
 import {Button} from "../../../server/formParts.tsx";
+import {Panel, PanelBody} from "../../../server/componentParts.tsx";
 
 interface Address {
     first_name: string;
@@ -30,8 +31,8 @@ export default (_props: PartialProps) => (
                 list={$pointer<Address[]>("customer.addresses")}
                 $then={(address) => (
                     <li className="inline-block w-full px-half align-top small:w-1/2 large:w-1/3">
-                        <div className="panel panel--address relative text-(length:--sv-fontSize-base)">
-                            <div className="panel-body min-h-[250px] p-single small:pb-single-double">
+                        <Panel className="panel--address relative text-(length:--sv-fontSize-base)">
+                            <PanelBody className="min-h-[250px] p-single small:pb-single-double">
                                 <h5 className="m-0 mb-half [text-transform:none]">
                                     {address.first_name} {address.last_name}
                                 </h5>
@@ -75,21 +76,21 @@ export default (_props: PartialProps) => (
                                         </Button>
                                     </div>
                                 </form>
-                            </div>
-                        </div>
+                            </PanelBody>
+                        </Panel>
                     </li>
                 )}
             />
             <li className="inline-block w-full px-half align-top small:w-1/2 large:w-1/3">
                 <a className="group panel panel--address panel--newAddress relative [display:block] text-center text-(length:--sv-fontSize-base) no-underline" href={$pointer("urls.account.add_address")}>
-                    <span className="panel-body min-h-[250px] border border-container-border bg-transparent p-single [display:block] small:pb-single-double">
+                    <PanelBody className="min-h-[250px] border border-container-border bg-transparent p-single [display:block] small:pb-single-double" tag="span">
                         <span className="absolute top-1/2 left-1/2 [transform:translateX(-50%)_translateY(-55%)]">
                             <span className="text-hero leading-none">{$raw("&plus;")}</span>
                             <h5 className="m-0 [text-transform:none] [transition:all_0.15s_ease] group-hover:text-(--sv-color-textLink-hover)">
                                 <$Lang keyName={$string("account.addresses.new_address")} />
                             </h5>
                         </span>
-                    </span>
+                    </PanelBody>
                 </a>
             </li>
         </ul>

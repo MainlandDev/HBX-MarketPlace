@@ -2,6 +2,7 @@
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$Each, $If, $Lang, $lang, $pointer, $raw, $string, $Unless} from "@mainlanddev/hbx-bigcommerce";
 import {Icon} from "../../../server/formParts.tsx";
+import {PaginationItem, PaginationList} from "../../../server/componentParts.tsx";
 
 interface PageLink {
     number: string;
@@ -10,11 +11,11 @@ interface PageLink {
 
 export default (_props: PartialProps) => (
     <nav className="pagination" aria-label="pagination">
-        <ul className="pagination-list flow-root text-[0px] mb-single text-center">
+        <PaginationList className="flow-root text-[0px] mb-single text-center">
             <$If
                 test={$pointer("previous")}
                 $then={() => (
-                    <li className="pagination-item pagination-item--previous float-left inline-block border border-transparent leading-none [&>a]:text-(--sv-pagination-item-previousNext-color) [&>a:hover]:text-(--sv-pagination-item-previousNext-color-hover) [&>a:hover_.icon>svg]:fill-(--sv-pagination-item-previousNext-color-hover)">
+                    <PaginationItem className="pagination-item--previous float-left inline-block border border-transparent leading-none [&>a]:text-(--sv-pagination-item-previousNext-color) [&>a:hover]:text-(--sv-pagination-item-previousNext-color-hover) [&>a:hover_.icon>svg]:fill-(--sv-pagination-item-previousNext-color-hover)">
                         <a
                             className="pagination-link no-underline [transition:all_0.2s_ease] hover:text-(--sv-pagination-link-color-hover)"
                             href={$pointer("previous")}
@@ -29,7 +30,7 @@ export default (_props: PartialProps) => (
                             </Icon>
                             <$Lang keyName={$string("common.previous")} />
                         </a>
-                    </li>
+                    </PaginationItem>
                 )}
             />
             <$Each
@@ -51,8 +52,8 @@ export default (_props: PartialProps) => (
                             test={$pointer("this.number")}
                             operator={$string("==")}
                             rvalue={$pointer("../current")}
-                            $then={() => <li className="pagination-item pagination-item--current first:ml-0 inline-block border leading-none border-(--sv-pagination-link-current-borderColor) mr-[0.35714rem] ml-[0.78571rem] rounded-[4px]">{anchor}</li>}
-                            $else={() => <li className="pagination-item inline-block border border-transparent leading-none">{anchor}</li>}
+                            $then={() => <PaginationItem className="first:ml-0 inline-block border leading-none border-(--sv-pagination-link-current-borderColor) mr-[0.35714rem] ml-[0.78571rem] rounded-[4px]" current={true}>{anchor}</PaginationItem>}
+                            $else={() => <PaginationItem className="inline-block border border-transparent leading-none">{anchor}</PaginationItem>}
                         />
                     );
                 }}
@@ -60,7 +61,7 @@ export default (_props: PartialProps) => (
             <$If
                 test={$pointer("next")}
                 $then={() => (
-                    <li className="pagination-item pagination-item--next float-right inline-block border border-transparent leading-none [&>a]:text-(--sv-pagination-item-previousNext-color) [&>a:hover]:text-(--sv-pagination-item-previousNext-color-hover) [&>a:hover_.icon>svg]:fill-(--sv-pagination-item-previousNext-color-hover)">
+                    <PaginationItem className="pagination-item--next float-right inline-block border border-transparent leading-none [&>a]:text-(--sv-pagination-item-previousNext-color) [&>a:hover]:text-(--sv-pagination-item-previousNext-color-hover) [&>a:hover_.icon>svg]:fill-(--sv-pagination-item-previousNext-color-hover)">
                         <a
                             className="pagination-link no-underline [transition:all_0.2s_ease] hover:text-(--sv-pagination-link-color-hover)"
                             href={$pointer("next")}
@@ -75,9 +76,9 @@ export default (_props: PartialProps) => (
                                 </svg>
                             </Icon>
                         </a>
-                    </li>
+                    </PaginationItem>
                 )}
             />
-        </ul>
+        </PaginationList>
     </nav>
 );

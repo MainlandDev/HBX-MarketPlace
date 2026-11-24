@@ -25,6 +25,7 @@ import {
     $unlessExpression,
 } from "@mainlanddev/hbx-bigcommerce";
 import {Button} from "../../../server/formParts.tsx";
+import {Card, CardBody, CardFigcaption, CardFigcaptionBody, CardFigure} from "../../../server/componentParts.tsx";
 
 /** `{{{region name="…"}}}` */
 const region = (name: string) => $unescaped($region({name: $string(name)}));
@@ -49,8 +50,8 @@ export default (_props: PartialProps) => {
         <$If
             test={$pointer("alternate")}
             $then={() => (
-                <article
-                    className="card group/card card--alternate border-[3px] border-solid border-(--sv-setting-card--alternate-borderColor) [transition:all_0.15s_ease] hover:border-(--sv-setting-color-primary) [&_.card-body]:bg-(--sv-setting-card--alternate-backgroundColor) [&_.card-body]:p-half small:[&_.card-body]:p-single [&_.card-body]:[transition:all_0.15s_ease] hover:[&_.card-body]:bg-(--sv-setting-color-primary) hover:[&_.card-body_.card-text]:text-(--sv-setting-card--alternate-color--hover) hover:[&_.card-title>a]:text-(--sv-setting-card--alternate-color--hover)"
+                <Card
+                    className="group/card card--alternate border-[3px] border-solid border-(--sv-setting-card--alternate-borderColor) [transition:all_0.15s_ease] hover:border-(--sv-setting-color-primary) [&_.card-body]:bg-(--sv-setting-card--alternate-backgroundColor) [&_.card-body]:p-half small:[&_.card-body]:p-single [&_.card-body]:[transition:all_0.15s_ease] hover:[&_.card-body]:bg-(--sv-setting-color-primary) hover:[&_.card-body_.card-text]:text-(--sv-setting-card--alternate-color--hover) hover:[&_.card-title>a]:text-(--sv-setting-card--alternate-color--hover)"
                     data-test={`card-${id}`}
                     data-event-type={$pointer("event")}
                     data-entity-id={id}
@@ -61,7 +62,7 @@ export default (_props: PartialProps) => {
                         attributes: `data-product-category="${$Each({list: $pointer<string[]>("category"), $then: (item, loop) => ` ${$If({test: loop["@last"], $then: () => ` ${item} `, $else: () => ` ${item}, `})} `})}" data-product-price="${$Or({values: [$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))], $then: () => ` ${$If({test: price.with_tax, $then: () => ` ${price.with_tax.value} `, $else: () => ` ${price.without_tax.value} `})} `, $else: () => ` ${$lang($string("common.login_for_pricing"))} `})}"`,
                     }}
                 >
-                    <figure className="card-figure group/fig relative mt-0 overflow-hidden p-[3px]">
+                    <CardFigure className="group/fig relative mt-0 overflow-hidden p-[3px]">
                         <$If
                             test={$pointer("stock_level")}
                             operator={$string("===")}
@@ -102,8 +103,8 @@ export default (_props: PartialProps) => {
                             </div>
                         </a>
 
-                        <figcaption className="card-figcaption m-0 pointer-events-none [display:none] medium:[display:block] group-hover/fig:opacity-100 group-focus-within/card:opacity-100 group-[.focus-within]/card:opacity-100">
-                            <div className="card-figcaption-body inline-block [pointer-events:all] [transform:translate3d(0,-50%,0)]">
+                        <CardFigcaption className="m-0 pointer-events-none [display:none] medium:[display:block] group-hover/fig:opacity-100 group-focus-within/card:opacity-100 group-[.focus-within]/card:opacity-100">
+                            <CardFigcaptionBody className="inline-block [pointer-events:all] [transform:translate3d(0,-50%,0)]">
                                 <$Unless
                                     test={$pointer("hide_product_quick_view")}
                                     $then={() => (
@@ -174,10 +175,10 @@ export default (_props: PartialProps) => {
                                         </>
                                     )}
                                 />
-                            </div>
-                        </figcaption>
-                    </figure>
-                    <div className="card-body text-center small:text-left">
+                            </CardFigcaptionBody>
+                        </CardFigcaption>
+                    </CardFigure>
+                    <CardBody className="text-center small:text-left">
                         <$And
                             a={$pointer("rating")}
                             b={showRating}
@@ -214,13 +215,13 @@ export default (_props: PartialProps) => {
                                 <ProductsPromotionCallout promotions={$pointer("featured_promotions")} mode={$string("compact")} />
                             }
                         />
-                    </div>
+                    </CardBody>
 
-                </article>
+                </Card>
             )}
             $else={() => (
-                <article
-                    className="card group/card"
+                <Card
+                    className="group/card"
                     data-test={`card-${id}`}
                     data-event-type={$pointer("event")}
                     data-entity-id={id}
@@ -231,7 +232,7 @@ export default (_props: PartialProps) => {
                         attributes: `data-product-category="${$Each({list: $pointer<string[]>("category"), $then: (item, loop) => ` ${$If({test: loop["@last"], $then: () => ` ${item} `, $else: () => ` ${item}, `})} `})}" data-product-price="${$Or({values: [$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))], $then: () => ` ${$If({test: price.with_tax, $then: () => ` ${price.with_tax.value} `, $else: () => ` ${price.without_tax.value} `})} `, $else: () => ` ${$lang($string("common.login_for_pricing"))} `})}"`,
                     }}
                 >
-                    <figure className="card-figure group/fig relative mt-0 overflow-hidden p-[3px]">
+                    <CardFigure className="group/fig relative mt-0 overflow-hidden p-[3px]">
                         <$If
                             test={$pointer("stock_level")}
                             operator={$string("===")}
@@ -272,8 +273,8 @@ export default (_props: PartialProps) => {
                             </div>
                         </a>
 
-                        <figcaption className="card-figcaption m-0 pointer-events-none [display:none] medium:[display:block] group-hover/fig:opacity-100 group-focus-within/card:opacity-100 group-[.focus-within]/card:opacity-100">
-                            <div className="card-figcaption-body inline-block [pointer-events:all] [transform:translate3d(0,-50%,0)]">
+                        <CardFigcaption className="m-0 pointer-events-none [display:none] medium:[display:block] group-hover/fig:opacity-100 group-focus-within/card:opacity-100 group-[.focus-within]/card:opacity-100">
+                            <CardFigcaptionBody className="inline-block [pointer-events:all] [transform:translate3d(0,-50%,0)]">
                                 <$Unless
                                     test={$pointer("hide_product_quick_view")}
                                     $then={() => (
@@ -344,10 +345,10 @@ export default (_props: PartialProps) => {
                                         </>
                                     )}
                                 />
-                            </div>
-                        </figcaption>
-                    </figure>
-                    <div className="card-body text-center small:text-left">
+                            </CardFigcaptionBody>
+                        </CardFigcaption>
+                    </CardFigure>
+                    <CardBody className="text-center small:text-left">
                         <$And
                             a={$pointer("rating")}
                             b={showRating}
@@ -384,9 +385,9 @@ export default (_props: PartialProps) => {
                                 <ProductsPromotionCallout promotions={$pointer("featured_promotions")} mode={$string("compact")} />
                             }
                         />
-                    </div>
+                    </CardBody>
 
-                </article>
+                </Card>
             )}
         />
     );

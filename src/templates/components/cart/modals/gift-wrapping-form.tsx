@@ -2,6 +2,7 @@
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$getImage, $If, $Each, $For, $Lang, $number, $pointer, $raw, $string, $this, $Unless} from "@mainlanddev/hbx-bigcommerce";
 import {Button, FormCheck, FormField, FormInput, FormLabel, FormSelect} from "../../../../server/formParts.tsx";
+import {ModalBody, ModalHeader, ModalTitle} from "../../../../server/componentParts.tsx";
 
 interface GiftWrapping {
     id: string;
@@ -14,12 +15,12 @@ interface GiftWrapping {
 
 export default (_props: PartialProps) => (
     <>
-        <div className="modal-header pl-(--sv-reveal-modal-paddingHorizontal) pr-[calc(32px+var(--sv-reveal-close-side))]">
-            <h2 className="modal-header-title text-center text-large medium:text-larger">
+        <ModalHeader className="pl-(--sv-reveal-modal-paddingHorizontal) pr-[calc(32px+var(--sv-reveal-close-side))]">
+            <ModalTitle className="text-center text-large medium:text-larger">
                 <$Lang keyName={$string("cart.gift_wrapping.title")} />
-            </h2>
-        </div>
-        <div className="modal-body overflow-auto p-(--sv-reveal-modal-padding) [-webkit-overflow-scrolling:touch]">
+            </ModalTitle>
+        </ModalHeader>
+        <ModalBody className="overflow-auto p-(--sv-reveal-modal-padding) [-webkit-overflow-scrolling:touch]">
             <$If
                 test={$pointer("quantity")}
                 operator={$string(">")}
@@ -199,6 +200,6 @@ export default (_props: PartialProps) => (
                     </Button>
                 </div>
             </form>
-        </div>
+        </ModalBody>
     </>
 );

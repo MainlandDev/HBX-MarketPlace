@@ -13,7 +13,7 @@ export default (_props: PartialProps) => {
     return (
         <>
             <nav aria-label="Breadcrumb">
-                <ol className="breadcrumbs [display:none] small:[display:block] overflow-visible text-center text-[0px]">
+                <ol className="breadcrumbs [:where(&)]:list-none [:where(&)]:ml-0 [display:none] small:[display:block] overflow-visible text-center text-[0px]">
                     <$Unless
                         test={theme.hide_breadcrumbs}
                         $then={() => (
@@ -23,9 +23,9 @@ export default (_props: PartialProps) => {
                                     <$If
                                         test={loop["@last"]}
                                         $then={() => (
-                                            <li className="breadcrumb float-none mr-[0.25rem] inline-block not-first:before:mx-[0.25rem] not-first:before:inline-block not-first:before:h-[0.8em] not-first:before:border-r-[0.1em] not-first:before:border-r-(--sv-primary-color) not-first:before:[transform:rotate(15deg)] not-first:before:content-[''] is-active">
+                                            <li className="breadcrumb [:where(&)]:text-(--sv-crumb-font-color) [:where(&)]:text-(length:--sv-crumb-font-size) [:where(&)]:[line-height:var(--sv-crumb-lineHeight)] [:where(&)]:m-0 [:where(&)]:before:text-(--sv-crumb-slash-color) [:where(&)]:before:relative [:where(&)]:before:top-px first:before:content-['_'] first:before:m-0 float-none mr-[0.25rem] inline-block not-first:before:mx-[0.25rem] not-first:before:inline-block not-first:before:h-[0.8em] not-first:before:border-r-[0.1em] not-first:before:border-r-(--sv-primary-color) not-first:before:[transform:rotate(15deg)] not-first:before:content-[''] is-active">
                                                 <a
-                                                className="breadcrumb-label cursor-pointer font-bold"
+                                                className="breadcrumb-label cursor-pointer font-bold [:where(&)]:text-(--sv-crumb-font-color-current) [:where(&:hover)]:text-(--sv-crumb-font-color-current) [:where(&:hover)]:no-underline"
                                                 href={crumb.url}
                                                 dangerouslyInlineAttributes={{attributes: `${$raw('{{#if @last}}aria-current="page"{{/if}}')}`}}
                                             >
@@ -34,9 +34,9 @@ export default (_props: PartialProps) => {
                                             </li>
                                         )}
                                         $else={() => (
-                                            <li className="breadcrumb float-none mr-[0.25rem] inline-block not-first:before:mx-[0.25rem] not-first:before:inline-block not-first:before:h-[0.8em] not-first:before:border-r-[0.1em] not-first:before:border-r-(--sv-primary-color) not-first:before:[transform:rotate(15deg)] not-first:before:content-['']">
+                                            <li className="breadcrumb [:where(&)]:text-(--sv-crumb-font-color) [:where(&)]:text-(length:--sv-crumb-font-size) [:where(&)]:[line-height:var(--sv-crumb-lineHeight)] [:where(&)]:m-0 [:where(&)]:before:text-(--sv-crumb-slash-color) [:where(&)]:before:relative [:where(&)]:before:top-px first:before:content-['_'] first:before:m-0 float-none mr-[0.25rem] inline-block not-first:before:mx-[0.25rem] not-first:before:inline-block not-first:before:h-[0.8em] not-first:before:border-r-[0.1em] not-first:before:border-r-(--sv-primary-color) not-first:before:[transform:rotate(15deg)] not-first:before:content-['']">
                                                 <a
-                                                className="breadcrumb-label"
+                                                className="breadcrumb-label [:where(&)]:text-(--sv-crumb-font-color) [:where(&)]:cursor-pointer [:where(&:hover)]:text-(--sv-crumb-hover-color) [:where(&:hover)]:no-underline"
                                                 href={crumb.url}
                                                 dangerouslyInlineAttributes={{attributes: `${$raw('{{#if @last}}aria-current="page"{{/if}}')}`}}
                                             >

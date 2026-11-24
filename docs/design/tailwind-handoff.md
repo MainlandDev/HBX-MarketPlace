@@ -1,6 +1,6 @@
 # Tailwind conversion: live handoff
 
-Maintained by the lead after every merged work package (WP). Workers: read `docs/design/tailwind-worker-brief.md` first, then this file at the start of your WP. Last updated: 2026-11-24 (round 4 started).
+Maintained by the lead after every merged work package (WP). Workers: read `docs/design/tailwind-worker-brief.md` first, then this file at the start of your WP. Last updated: 2026-11-24 (R4-1 and R4-2 merged; R4-3 not started).
 
 ## Goal and standard
 
@@ -312,7 +312,7 @@ How: a shared TSX helper (a function component returning JSX with literal classN
 | R4 WP | Scope | Status |
 | --- | --- | --- |
 | R4-1 | buttons and forms compat blocks (.button*, .form*, icon, dropdown-menu) | merged: converted via shared helpers; `_tailwind.scss` 3,088 -> 2,622 lines |
-| R4-2 | modal, alertBox, loading, panel, breadcrumbs, tabs, accordion, pagination, actionBar, card, table, navBar/navList compat blocks | todo |
+| R4-2 | modal, alertBox, loading, panel, breadcrumbs, tabs, accordion, pagination, actionBar, card, table, navBar/navList compat blocks | merged: `_tailwind.scss` 2,622 -> 1,786 lines; shared helpers in `src/server/componentParts.tsx` |
 | R4-3 | the second components block and base leftovers: `.container`, `.icon`, `.form-select`, `.tab/.tab-title`, ribbon, textTruncate, toggle-content, blog/brand thumbs, slick wiring where the markup is ours, element rules kept in `@layer base` | todo |
 
 ## R4-1 report (buttons and forms to utilities)
@@ -333,3 +333,26 @@ Edge: 13 pages x 4 states plus forced states (toggled checks, disabled, readonly
 - **A helper's `className` prop may be an HBX element** (`$pointer("class")`, `item.class`): joining it with `.join()` throws `Attempted to serialise a Handlebars Grammar Element` at build time. Only a template literal (`${base} ${extra}`) may join it: use `withClass(base, className)`. The dev server hid this; `npm run vite-build` found it (lead caught it: always run the build gate).
 - A comment in a TSX file under an `@source` path can emit a stray utility (the word 'transform' in a comment emitted `.transform`): avoid utility-like words in comments.
 - The dev server serves repo files as `/@fs/<abs path>`: a test script can be fetched instead of pasted. `generate-bridge` now also scans `src/server/*.tsx` for `--sv-setting-*`. Node cannot parse TSX here (`typescript` 7 has no JS API): use `@babel/parser` for codemods.
+
+## R4-2 report (component compat blocks to utilities)
+
+New `src/server/componentParts.tsx` (same pattern as formParts: zero-specificity `[:where(&)]:` bases, state variants as disjoint `:where(...)` selectors, `withClass` for caller className, legacy class names kept as hooks, one `@source` line). Components: `Modal`, `ModalHeader`, `ModalTitle`, `ModalBody`, `AlertBox` (variant), `AlertColumn`, `Panel`, `PanelHeader`, `PanelTitle`, `PanelBody`, `Card`, `CardFigure`, `CardFigcaption`, `CardFigcaptionBody`, `CardBody`, `PaginationList`, `PaginationItem`, `NavList`, `Tabs`, `TabsContents`. 44 templates converted (modal, alert, panel, card, pagination, navList, navBar, breadcrumbs, actionBar, table, inlineList, accordion, tabs sites). Deleted from `_tailwind.scss`: modal, alertBox, panel, breadcrumbs, accordion, pagination, actionBar, card, table, inlineList, navBar/navList rules (about 836 lines net) and the three legacy-layer `!important` rules; unused families dropped (`loadingOverlay-container`, `card-surTitle/-footer/-button/-figcaption-action`, `table-tfoot`, `navList-section`, `.navBar-section--alt` pieces, `alertBox-heading/-close`, `actionBar-link/-item/-section--alt`, `accordion-navigation--success/--error/--warning`).
+
+**Stayed in `_tailwind.scss` (`@layer components`):** `body.has-activeModal` and `.modal-background` (Foundation reveal / `modal.js` create or toggle them at runtime); `.loadingOverlay` (+ spinner keyframes `loadingOverlay-spin`; `modal.js` creates it and jQuery toggles its display); `.tabs`, `.tab`, `.tab-title`, `.tabs-contents`, `.tab-content` (the merchant inline-tabs widget on the home page is injected markup; our own tabs carry the same values as utilities); `.navList-action--checkbox` (toggled by `faceted-search.js`, template literals; R4-3); `.hide-content` and `@keyframes animate-icon*`; the R4-1 leftovers (`.button`, `.form-input` radius, `.form-fieldset`, `.form-inlineMessage`).
+
+**Unverified by equivalence:** alertBox `--info/--success/--warning/--generic` and the store-credit alert (only the hidden `--error` alert rendered; the old `.alertBox--warning svg` fill is not reproduced because no template uses a warning alert; merchant-injected `alertBox--*` markup would be unstyled); the alert modal, bulk-pricing, configure-product, gift-wrapping and cart preview modals; the search panel (`panel--large`) and `share-wishlist`; pagination prev/next and small-paginator items; `table-tbody` rows (`wishlist-list.tsx`, `add-return.tsx`); inlineList (`selected-facets.tsx`); navBar on contact-us, gift-certificate and page (synthetic only), `shop-by-price`, `reset-btn`; breadcrumb `.current`/`.unavailable`; print rules; hover on the current pagination link and tab titles; the quick-view modal (value-checked only: display block, position fixed, width 1280px set by the JS size class, z-index 1005, overlay, spinner, close tooltip). A synthetic old-vs-new side-by-side test covered every unreachable state: 0 differences except the warning svg fill above.
+
+Edge: baseline at HEAD before editing plus a control run (B1/B2): 13 pages x 4 states (52) and 8 interaction pages at 375 and 1280, 68 states compared. Remaining differences: zero-width border colours (card image, accordion content), clearfix pseudo-elements replaced by `flow-root`, lazy-load class swaps, PayPal/ad iframes and sub-pixel cart widths, a `.form-increment > span` present/absent between runs, 10 card figcaption buttons in the product no-JS state (visibility; did not reproduce in an earlier run: likely carousel timing). Real-mouse hover: breadcrumb link, pagination link, facet navList action, card figure reveal. A real click opened the quick-view modal (closed with Escape). Nothing submitted, nothing added to the cart.
+
+## Lessons added by R4-2
+
+- `src/server/componentParts.tsx` is the pattern to extend. Helper constants use `:where(...)` forms (they escape the stray and collision tests); natural-specificity utilities stay as className literals at the call site.
+- Disjoint selectors avoid zero-specificity ties: `[:where(&:not(.is-active))]` against `[:where(&.is-active)]`, `[:where(html:not(.no-js)_&>...)]` against `no-js:[...]`. A tie between a base and a `:hover` utility written both as `[:where(...)]` resolved correctly in Edge (hover wins).
+- Important utilities beat the store's non-important CSS and inline styles: guard `display` and `visibility` with `[:where(&:not([style*=display]))]` (Foundation sets `display:block; visibility:visible; top:50px` inline when a modal opens; `product-details-base.js` toggles an alert's inline display). Do not give the account inbox nav link `display:block` (the store's CSS hides it).
+- A page that is not React can still load helper output for synthetic tests: fetch `/@fs/<abs>/src/server/componentParts.tsx`, cut at `$RefreshReg$`, swap the jsx import for a stub, import via Blob; `?raw` on a TSX path returns the file text (paths inside the repo root only).
+- Latent bug kept: `.card-figcaption-button:hover` was already dead (the important `bg-` utility beat it), so card buttons have no hover background; `hover:bg-(--sv-card-figcaption-button-backgroundHover)` would restore it.
+- Checkbox facet actions keep their own `font-size: 1rem` (otherwise every facet row grew 1.5px).
+
+## R4-3 (not started) and what remains
+
+`assets/scss/_tailwind.scss` is 1,786 lines. Remaining compat rules: the `.button` family leftovers (merchant `a.button` in page content), `.form-input` radius, `.form-fieldset` padding, `.form-inlineMessage` and `.cart-total .form-inlineMessage` (nod.js-created), modal/tabs/loading runtime pieces above, `.navList-action--checkbox`, `.container`, `.icon`-related residue, ribbon, textTruncate, toggle-content, blog/brand thumbs, slick wiring (mask-image arrows), the `@layer base` element rules (legitimate Tailwind base-layer use), `@layer legacy` (global focus ring). Next worker (R4-3): convert the ones whose markup the theme owns (`.navList-action--checkbox` via the `NavList` helper plus an `is-selected:` variant, `.container`, ribbon, textTruncate where the markup is ours, slick hosts), and report each leftover with the exact reason. `important` and `source(none)` stay (measured in R3-2).

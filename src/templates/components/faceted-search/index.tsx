@@ -64,7 +64,7 @@ export default (_props: PartialProps) => (
             predicate={{visible: $boolean(true)}}
             $then={() => (
                 <div id="facetedSearch-navList" className="facetedSearch-navList [display:none] is-open:[display:block] medium:[display:block]">
-                    <div className="accordion accordion--navList rounded-[4px] [[class~=facetedSearch-navList][class~=is-open]_&]:rounded-t-none shadow-none medium:border-0 medium:[[class~=sidebarBlock]+&]:mt-(--sv-accordion-navList-spacing) [&_.navList]:mb-0 [&_.accordion-content]:border-0 [&_.accordion-content]:p-(--sv-accordion-navList-padding) medium:[&_.accordion-content]:p-0 [&_.accordion-content_.form:only-child]:mb-0">
+                    <div className="accordion accordion--navList [:where(&)]:[display:flow-root] [:where(&)]:[margin:var(--sv-accordion-margin)] [:where(&)]:border [:where(&)]:border-solid [:where(&)]:border-(--sv-container-border-global-color-base) [:where(&_.accordion-content)]:[display:none] [&_.accordion-content.is-open]:[display:block] rounded-[4px] [[class~=facetedSearch-navList][class~=is-open]_&]:rounded-t-none shadow-none medium:border-0 medium:[[class~=sidebarBlock]+&]:mt-(--sv-accordion-navList-spacing) [&_.navList]:mb-0 [&_.accordion-content]:border-0 [&_.accordion-content]:p-(--sv-accordion-navList-padding) medium:[&_.accordion-content]:p-0 [&_.accordion-content_.form:only-child]:mb-0">
                         <$Each
                             list={$pointer<Facet[]>("facets")}
                             $then={(facet) => (

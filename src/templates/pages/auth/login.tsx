@@ -3,6 +3,7 @@ import AlertAlertError from "../../components/common/alert/alert-error.tsx";
 import AlertAlertSuccess from "../../components/common/alert/alert-success.tsx";
 import {$Inject, $Lang, $lang, $Page, $pointer, $string, $If} from "@mainlanddev/hbx-bigcommerce";
 import {Button, FormField, FormInput, FormLabel} from "../../../server/formParts.tsx";
+import {Panel, PanelBody, PanelHeader, PanelTitle} from "../../../server/componentParts.tsx";
 
 export default () => (
     <$Page
@@ -48,13 +49,13 @@ export default () => (
                             test={$pointer("settings.account_creation_enabled")}
                             $then={() => (
                                 <div className="new-customer float-left w-full px-gutter-half medium:w-1/2">
-                                    <div className="panel">
-                                        <div className="panel-header">
-                                            <h2 className="panel-title text-small">
+                                    <Panel>
+                                        <PanelHeader>
+                                            <PanelTitle className="text-small">
                                                 <$Lang keyName={$string("login.new_customer.heading")} />
-                                            </h2>
-                                        </div>
-                                        <div className="panel-body">
+                                            </PanelTitle>
+                                        </PanelHeader>
+                                        <PanelBody>
                                             <p className="mb-0">
                                                 <$Lang keyName={$string("login.new_customer.intro")} />
                                             </p>
@@ -80,8 +81,8 @@ export default () => (
                                                     <$Lang keyName={$string("login.new_customer.create_account")} />
                                                 </Button>
                                             </a>
-                                        </div>
-                                    </div>
+                                        </PanelBody>
+                                    </Panel>
                                 </div>
                             )}
                         />

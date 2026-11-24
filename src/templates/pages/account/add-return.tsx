@@ -35,7 +35,7 @@ export default () => (
                                         >
                                             <fieldset className="form-fieldset [:where(&)]:[border-width:var(--sv-fieldset-border-width)] [:where(&)]:[margin:var(--sv-fieldset-margin)]">
                                                 <input type="hidden" name="order_id" value={$pointer("forms.return.order_id")} />
-                                                <table className="table table--line mt-[2rem] border-x-0 border-t-0 border-b border-container-border [display:block] mb-double small:[display:table] small:mb-[calc(var(--sv-spacing-double)*2)]">
+                                                <table className="table table--line [:where(&)]:w-(--sv-table-width) [:where(&)]:mb-(--sv-table-margin-bottom) [:where(&)]:[table-layout:var(--sv-table-layout)] [:where(&_tr_th,&_tr_td)]:py-half [:where(&_tr_th,&_tr_td)]:px-single [:where(&_tr_th,&_tr_td)]:[text-align:left] [:where(&_thead_tr_th,&_thead_tr_td)]:text-(length:--sv-table-head-font-size) [:where(&_thead_tr_th)]:font-(weight:--sv-table-head-font-weight) [:where(&_tr_th,&_tr_td)]:[display:var(--sv-table-display)] [:where(&_th.table-header--numericData,&_td.table-cell--numericData)]:[text-align:var(--sv-table-numericData-textAlign)] mt-[2rem] border-x-0 border-t-0 border-b border-container-border [display:block] mb-double small:[display:table] small:mb-[calc(var(--sv-spacing-double)*2)]">
                                                     <thead className="table-thead border-x-0 border-t-0 border-b border-container-border bg-(--sv-setting-body-bg) [display:none] small:[display:table-header-group]">
                                                         <tr className="py-single small:p-0 [display:block] small:[display:table-row]">
                                                             <th className="return-itemName w-[60%] p-0 text-smaller font-bold [display:block] small:[display:table-cell] small:py-half small:font-normal">
@@ -49,7 +49,7 @@ export default () => (
                                                             </th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody className="table-tbody [display:block] small:[display:table-row-group]">
+                                                    <tbody className="table-tbody [:where(&>tr)]:[border-bottom:var(--sv-table-row-border)] [:where(&>tr:last-child)]:[border-bottom:0] [display:block] small:[display:table-row-group]">
                                                         <$Each
                                                             list={$pointer<ReturnProduct[]>("forms.return.order_products")}
                                                             $then={(product) => (

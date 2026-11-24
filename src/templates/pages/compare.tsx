@@ -16,6 +16,7 @@ import {
     $unescaped, $unlessExpression, $Or,
 } from "@mainlanddev/hbx-bigcommerce";
 import {Button, Icon} from "../../server/formParts.tsx";
+import {Card, CardBody, CardFigure} from "../../server/componentParts.tsx";
 
 interface Comparison {
     id: number;
@@ -57,8 +58,8 @@ export default () => (
                                         list={$pointer<Comparison[]>("comparisons")}
                                         $then={(product) => (
                                             <th className="compareTable-product px-base pt-[calc(var(--sv-spacing-single)+var(--sv-spacing-third))] pb-base-sixth font-normal">
-                                                <article className="card mb-0">
-                                                    <figure className="card-figure group/fig relative mt-0 overflow-visible p-[3px]">
+                                                <Card className="mb-0">
+                                                    <CardFigure className="group/fig relative mt-0 overflow-visible p-[3px]">
                                                         <a
                                                             className="card-figure__link relative [display:block]"
                                                             aria-label={product.name}
@@ -82,8 +83,8 @@ export default () => (
                                                                 <use href="#icon-close"></use>
                                                             </Icon>
                                                         </a>
-                                                    </figure>
-                                                    <div className="card-body min-h-[calc(var(--sv-spacing-single)*4)] pt-base text-center small:text-left">
+                                                    </CardFigure>
+                                                    <CardBody className="min-h-[calc(var(--sv-spacing-single)*4)] pt-base text-center small:text-left">
                                                         <$If
                                                             test={product.brand.name}
                                                             $then={() => (
@@ -100,8 +101,8 @@ export default () => (
                                                             $then={() => <ProductsPriceRange />}
                                                             $else={() => <ProductsPrice price={product.price} />}
                                                         /></>)} $else={() => (<><LoginForPricing /></>)} />
-                                                    </div>
-                                                </article>
+                                                    </CardBody>
+                                                </Card>
                                             </th>
                                         )}
                                     />

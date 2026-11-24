@@ -6,6 +6,7 @@ import ResponsiveImg from "../common/responsive-img.tsx";
 import ProductOptions from "../common/product-options.tsx";
 import {$boolean, $Each, $If, $Lang, $pointer, $string, $unescaped, $With, $unlessExpression, $Or, $raw} from "@mainlanddev/hbx-bigcommerce";
 import {Button} from "../../../server/formParts.tsx";
+import {ModalBody, ModalHeader, ModalTitle} from "../../../server/componentParts.tsx";
 
 interface AddedItem {
     name: string;
@@ -17,13 +18,13 @@ interface AddedItem {
 
 export default (_props: PartialProps) => (
     <>
-        <div className="modal-header pl-(--sv-reveal-modal-paddingHorizontal) pr-[calc(32px+var(--sv-reveal-close-side))]">
-            <h1 id="modal-header-title" className="modal-header-title text-center text-large medium:text-larger">
+        <ModalHeader className="pl-(--sv-reveal-modal-paddingHorizontal) pr-[calc(32px+var(--sv-reveal-close-side))]">
+            <ModalTitle id="modal-header-title" className="text-center text-large medium:text-larger" tag="h1">
                 <$Lang keyName={$string("cart.added_to_cart.what_next")} num_products={$pointer<number>("cart.quantity")} />
-            </h1>
-        </div>
+            </ModalTitle>
+        </ModalHeader>
 
-        <div className="modal-body overflow-auto p-(--sv-reveal-modal-padding) [-webkit-overflow-scrolling:touch]">
+        <ModalBody className="overflow-auto p-(--sv-reveal-modal-padding) [-webkit-overflow-scrolling:touch]">
             <div className="previewCart mx-auto w-full max-w-(--sv-layout-widthMax) flow-root">
                 <section className="previewCartCheckout bg-fill-dark p-base text-center medium:float-right medium:w-3/12 medium:p-single [&_.button]:m-0 [&_.button]:w-full [&_.button]:[display:block] [&_.button+p]:mt-half [&_.button:not(:last-child)]:mb-half">
                     <$If
@@ -128,6 +129,6 @@ export default (_props: PartialProps) => (
                     </section>
                 )}
             />
-        </div>
+        </ModalBody>
     </>
 );

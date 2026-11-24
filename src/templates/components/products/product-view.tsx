@@ -44,6 +44,7 @@ import {
     $Or,
 } from "@mainlanddev/hbx-bigcommerce";
 import {FormField, FormLabel} from "../../../server/formParts.tsx";
+import {Modal} from "../../../server/componentParts.tsx";
 
 /** The size a `getImageSrcset` descriptor accepts; the theme-settings type is a plain string (LIBRARY GAP, see PORT-NOTES.md). */
 type SrcsetSize = `${bigint}x${bigint}` | `${bigint}w`;
@@ -578,11 +579,11 @@ export default (_props: PartialProps) => {
                 </article>
             </div>
 
-            <div id="previewModal" className="modal modal--large left-1/2 top-1/2 m-0 max-h-[90%] min-h-[240px] max-w-[95%] overflow-hidden p-0 outline-none [transform:translate(-50%,-50%)] [&_.form-field]:relative large:w-(--sv-modal-width--large)" data-reveal={""}>
+            <Modal id="previewModal" className="modal--large left-1/2 top-1/2 m-0 max-h-[90%] min-h-[240px] max-w-[95%] overflow-hidden p-0 outline-none [transform:translate(-50%,-50%)] [&_.form-field]:relative large:w-(--sv-modal-width--large)" data-reveal={""}>
                 <ModalModalCloseBtn />
                 <div className="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-header-title"></div>
                 <div className="loadingOverlay"></div>
-            </div>
+            </Modal>
         </>
     );
 };

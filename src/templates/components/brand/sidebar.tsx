@@ -2,6 +2,7 @@
 import FacetedSearchIndex from "../faceted-search/index.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$Each, $If, $Lang, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
+import {NavList} from "../../../server/componentParts.tsx";
 
 interface ShopByBrand {
     url: string;
@@ -21,7 +22,7 @@ export default (_props: PartialProps) => (
                             <h5 className="sidebarBlock-heading mt-0 text-[15px] [text-transform:inherit]">
                                 <$Lang keyName={$string("brand.label")} />
                             </h5>
-                            <ul className="navList ml-0">
+                            <NavList className="ml-0">
                                 <$Each
                                     list={$pointer<ShopByBrand[]>("shop_by_brand")}
                                     $then={(brand) => (
@@ -37,7 +38,7 @@ export default (_props: PartialProps) => (
                                         <$Lang keyName={$string("common.view_all")} />
                                     </a>
                                 </li>
-                            </ul>
+                            </NavList>
                         </div>
                     )}
                 />

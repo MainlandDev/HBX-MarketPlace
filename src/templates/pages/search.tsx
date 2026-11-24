@@ -7,6 +7,7 @@ import FacetedSearchIndex from "../components/faceted-search/index.tsx";
 import SearchContentListing from "../components/search/content-listing.tsx";
 import SearchProductListing from "../components/search/product-listing.tsx";
 import Breadcrumbs from "../components/common/breadcrumbs.tsx";
+import {Panel, PanelBody} from "../../server/componentParts.tsx";
 import {
     $Each,
     $frontmatter,
@@ -84,11 +85,11 @@ export default () => {
                                         <div id="search-results-heading"><SearchHeading /></div>
                                     )}
                                 />
-                                <nav className="navBar navBar--sub search-nav relative mb-[calc(var(--sv-spacing-single)*3)] text-center">
+                                <nav className="navBar navBar--sub [:where(&)]:[display:flow-root] search-nav relative mb-[calc(var(--sv-spacing-single)*3)] text-center">
                                     <span id="search-tabs-widget-description" className="aria-description--hidden">
                                         <$Lang keyName={$string("search.tabs_accesibility_hint")} />
                                     </span>
-                                    <ul role="tablist" className="navBar-section account-navigation float-none [&_.navBar-item]:float-none [&_.navBar-item]:mx-half [&_.navBar-item]:my-0 medium:[&_.navBar-item]:[display:inline-block] medium:[&_.navBar-item.is-active]:border-b medium:[&_.navBar-item.is-active]:border-b-(--sv-setting-color-textBase) medium:[&_.navBar-item.navBar-item--separate]:m-0 medium:[&_.navBar-item.navBar-item--separate]:border-l medium:[&_.navBar-item.navBar-item--separate]:border-l-(--sv-setting-color-textSecondary) medium:[&_.navBar-item.navBar-item--separate]:pl-half [&_.navBar-item.is-active>.navBar-action]:text-grey-dark" data-search-page-tabs={""}>
+                                    <ul role="tablist" className="navBar-section [:where(&)]:list-none [:where(&)]:m-0 [:where(&)]:p-0 [:where(&)]:[display:flow-root] [:where(&>li)]:m-0 [:where(&>li)]:p-0 [:where(&_.navBar-item)]:[display:block] [:where(&_.navBar-action)]:[display:block] [:where([class~=navBar-section]+&)]:ml-(--sv-navBar-section-margin) account-navigation float-none [&_.navBar-item]:float-none [&_.navBar-item]:mx-half [&_.navBar-item]:my-0 medium:[&_.navBar-item]:[display:inline-block] medium:[&_.navBar-item.is-active]:border-b medium:[&_.navBar-item.is-active]:border-b-(--sv-setting-color-textBase) medium:[&_.navBar-item.navBar-item--separate]:m-0 medium:[&_.navBar-item.navBar-item--separate]:border-l medium:[&_.navBar-item.navBar-item--separate]:border-l-(--sv-setting-color-textSecondary) medium:[&_.navBar-item.navBar-item--separate]:pl-half [&_.navBar-item.is-active>.navBar-action]:text-grey-dark" data-search-page-tabs={""}>
                                         <li role="presentation" className="navBar-item">
                                             <a
                                                 aria-describedby="search-tabs-widget-description"
@@ -168,8 +169,8 @@ export default () => {
                                     <$If
                                         test={$pointer("forms.search.has_suggestions")}
                                         $then={() => (
-                                            <div className="panel panel--large">
-                                                <div className="panel-body mb-single-third p-single-third">
+                                            <Panel className="panel--large">
+                                                <PanelBody className="mb-single-third p-single-third">
                                                     <$If
                                                         test={$pointer("forms.search.suggested_query")}
                                                         $then={() => (
@@ -274,8 +275,8 @@ export default () => {
                                                             </div>
                                                         )}
                                                     />
-                                                </div>
-                                            </div>
+                                                </PanelBody>
+                                            </Panel>
                                         )}
                                     />
                                     <div
