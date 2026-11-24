@@ -14,14 +14,13 @@
     }
 }
 
-.sidebarBlock-heading {
+// Shop-by-price heading only renders when the shop_by_price_visibility setting is on (not reachable on the dev store), so it stays unconverted.
+.sidebarBlock-heading.heading-price {
     font-size: remCalc(15px);
     margin-top: 0;
     text-transform: inherit;
 
-    &.heading-price {
-        @media (min-width: $screen-medium) {
-            margin-top: -(remCalc(12px));
-        }
+    @media (min-width: $screen-medium) {
+        margin-top: -(remCalc(12px));
     }
 }

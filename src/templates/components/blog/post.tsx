@@ -14,7 +14,7 @@ export default (_props: PartialProps) => {
     const settings = $pointer<ThemeSettingsObject>("theme_settings");
     return (
         <article className="blog">
-            <div className="blog-post-figure">
+            <div className="blog-post-figure m-auto text-center medium:w-8/12">
                 <$If
                     test={$pointer("post.thumbnail")}
                     $then={() => (
@@ -27,22 +27,22 @@ export default (_props: PartialProps) => {
                 />
             </div>
 
-            <div className="blog-post-body">
+            <div className="blog-post-body mx-auto my-0 w-full text-center small:w-10/12 medium:w-8/12 large:w-6/12">
                 <header className="blog-header">
                     <$If
                         test={$pointer("is_blog_post")}
                         $then={() => (
-                            <h1 className="blog-title">
-                                <a href={$pointer("post.url")}>{$pointer("post.title")}</a>
+                            <h1 className="blog-title mx-single mt-0 mb-quarter text-large">
+                                <a className="no-underline" href={$pointer("post.url")}>{$pointer("post.title")}</a>
                             </h1>
                         )}
                         $else={() => (
-                            <h2 className="blog-title">
-                                <a href={$pointer("post.url")}>{$pointer("post.title")}</a>
+                            <h2 className="blog-title mx-single mt-0 mb-quarter text-large">
+                                <a className="no-underline" href={$pointer("post.url")}>{$pointer("post.title")}</a>
                             </h2>
                         )}
                     />
-                    <p className="blog-date">
+                    <p className="blog-date text-center text-text-secondary">
                         <$If
                             test={$pointer("post.author")}
                             $then={() => (
@@ -56,7 +56,7 @@ export default (_props: PartialProps) => {
                     </p>
                 </header>
 
-                <div className="blog-post">
+                <div className="blog-post text-left text-smaller">
                     <$If
                         test={$pointer("post.body")}
                         $then={() => <>{$unescaped($pointer("post.body"))}</>}
@@ -88,7 +88,7 @@ export default (_props: PartialProps) => {
                         <$If
                             test={$pointer("post.tags")}
                             $then={() => (
-                                <ul className="tags">
+                                <ul className="tags mt-double text-center">
                                     <$Each
                                         list={$pointer<Tag[]>("post.tags")}
                                         $then={(tag) => (

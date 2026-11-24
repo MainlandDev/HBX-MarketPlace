@@ -15,7 +15,7 @@ export default (_props: PartialProps) => (
             test={$pointer("category.subcategories")}
             $then={() => (
                 <div className="sidebarBlock">
-                    <h2 className="sidebarBlock-heading">{$pointer("category.name")}</h2>
+                    <h2 className="sidebarBlock-heading mt-0 text-[15px] [text-transform:inherit]">{$pointer("category.name")}</h2>
                     <ul className="navList">
                         <$Each
                             list={$pointer<Subcategory[]>("category.subcategories")}

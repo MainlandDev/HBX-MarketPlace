@@ -8,8 +8,8 @@ interface SelectedFacet {
 }
 
 export default (_props: PartialProps) => (
-    <div className="facetedSearch-refineFilters sidebarBlock" role="region" aria-label={$lang($string("search.faceted.selected.facet-label"))}>
-        <h2 className="sidebarBlock-heading">
+    <div className="facetedSearch-refineFilters sidebarBlock [display:none] medium:[display:block]" role="region" aria-label={$lang($string("search.faceted.selected.facet-label"))}>
+        <h2 className="sidebarBlock-heading mt-0 text-[15px] [text-transform:inherit]">
             <$Lang keyName={$string("search.faceted.selected.title")} />
         </h2>
 
@@ -21,7 +21,7 @@ export default (_props: PartialProps) => (
                         list={$pointer<SelectedFacet[]>("items")}
                         $then={(item) => (
                             <li>
-                                <a href={item.url} className="facetLabel" rel="nofollow" data-faceted-search-facet={""}>
+                                <a href={item.url} className="facetLabel rounded-(--sv-facetLabel-borderRadius) bg-(--sv-facetLabel-backgroundColor) py-eighth pr-third pl-[calc(var(--sv-spacing-third)+var(--sv-spacing-eighth))] no-underline" rel="nofollow" data-faceted-search-facet={""}>
                                     <$If
                                         test={$pointer("facet")}
                                         operator={$string("===")}
@@ -37,7 +37,7 @@ export default (_props: PartialProps) => (
                                             </>
                                         )}
                                     />{" "}
-                                    <svg className="icon">
+                                    <svg className="icon relative -top-px inline-block size-[12px] fill-(--sv-facetLabel-removeIcon-color)">
                                         <use href="#icon-close" />
                                     </svg>
                                 </a>

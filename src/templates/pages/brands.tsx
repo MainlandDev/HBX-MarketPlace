@@ -40,7 +40,7 @@ export default () => (
                                                 </a>
                                             </figure>
                                             <div className="card-body">
-                                                <h3 className="card-title">
+                                                <h3 className="card-title text-center">
                                                     <a href={brand.url}>{brand.name}</a>
                                                 </h3>
                                             </div>

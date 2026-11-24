@@ -102,20 +102,6 @@
 }
 
 
-// Faceted search refine filters
-// -----------------------------------------------------------------------------
-//
-// 1. Only show if viewport is over "medium" breakpoint
-//
-// -----------------------------------------------------------------------------
-.facetedSearch-refineFilters {
-    display: none;
-
-    @include breakpoint("medium") {
-        display: block; // 1
-    }
-}
-
 // Facted search ratings
 .facetedSearch-content--rating {
     .is-selected {

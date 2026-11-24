@@ -49,15 +49,15 @@ export default () => (
                     </h1>
                     <main className="page">
                         <div className="page-content">
-                            <table className="compareTable">
-                                <tr className="compareTable-row">
-                                    <th className="compareTable-heading"></th>
+                            <table className="compareTable w-full border-t border-container-border [table-layout:fixed]">
+                                <tr className="compareTable-row align-top">
+                                    <th className="compareTable-heading font-(family-name:--sv-fontFamily-headings) relative w-0 px-base py-base-sixth text-right text-smaller font-normal medium:w-3/12"></th>
                                     <$Each
                                         list={$pointer<Comparison[]>("comparisons")}
                                         $then={(product) => (
-                                            <th className="compareTable-product">
-                                                <article className="card">
-                                                    <figure className="card-figure">
+                                            <th className="compareTable-product px-base pt-[calc(var(--sv-spacing-single)+var(--sv-spacing-third))] pb-base-sixth font-normal">
+                                                <article className="card mb-0">
+                                                    <figure className="card-figure overflow-visible">
                                                         <a
                                                             className="card-figure__link"
                                                             aria-label={product.name}
@@ -69,7 +69,7 @@ export default () => (
                                                             </div>
                                                         </a>
                                                         <a
-                                                            className="compareTable-removeProduct"
+                                                            className="compareTable-removeProduct absolute -top-base -right-base size-[calc(var(--sv-spacing-single)+var(--sv-spacing-base))] rounded-[50%] bg-fill-dark [transition:background-color_0.15s_ease]"
                                                             data-comparison-remove={""}
                                                             href={`${$If({
                                                                 test: product.remove_url,
@@ -77,12 +77,12 @@ export default () => (
                                                                 $else: () => "#",
                                                             })}`}
                                                         >
-                                                            <svg className="icon">
+                                                            <svg className="icon mt-third size-single fill-icon">
                                                                 <use href="#icon-close"></use>
                                                             </svg>
                                                         </a>
                                                     </figure>
-                                                    <div className="card-body">
+                                                    <div className="card-body min-h-[calc(var(--sv-spacing-single)*4)] pt-base">
                                                         <$If
                                                             test={product.brand.name}
                                                             $then={() => (
@@ -105,12 +105,12 @@ export default () => (
                                         )}
                                     />
                                 </tr>
-                                <tr className="compareTable-row">
-                                    <th className="compareTable-heading"></th>
+                                <tr className="compareTable-row align-top">
+                                    <th className="compareTable-heading font-(family-name:--sv-fontFamily-headings) relative w-0 px-base py-base-sixth text-right text-smaller font-normal medium:w-3/12 border-t border-container-border empty:border-t-0"></th>
                                     <$Each
                                         list={$pointer<Comparison[]>("comparisons")}
                                         $then={(product) => (
-                                            <td className="compareTable-action">
+                                            <td className="compareTable-action px-base pt-0 pb-base">
                                                 <$If
                                                     test={product.show_cart_action}
                                                     $then={() => (
@@ -121,7 +121,7 @@ export default () => (
                                                                     <a
                                                                         href={product.url}
                                                                         data-event-type="product-click"
-                                                                        className="button button--primary"
+                                                                        className="button button--primary [display:block] w-full px-half"
                                                                         data-product-id={product.id}
                                                                     >
                                                                         <$Lang keyName={$string("products.choose_options")} />
@@ -134,7 +134,7 @@ export default () => (
                                                                     <a
                                                                         href={product.url}
                                                                         data-event-type="product-click"
-                                                                        className="button button--primary"
+                                                                        className="button button--primary [display:block] w-full px-half"
                                                                         data-product-id={product.id}
                                                                     >
                                                                         <$Lang keyName={$string("products.pre_order")} />
@@ -147,7 +147,7 @@ export default () => (
                                                                     <a
                                                                         href={product.add_to_cart_url}
                                                                         data-event-type="product-click"
-                                                                        className="button button--primary"
+                                                                        className="button button--primary [display:block] w-full px-half"
                                                                         data-product-id={product.id}
                                                                     >
                                                                         <$Lang keyName={$string("products.add_to_cart")} />
@@ -157,7 +157,7 @@ export default () => (
                                                             <$If
                                                                 test={product.out_of_stock_message}
                                                                 $then={() => (
-                                                                    <a href={product.url} className="button button--primary" data-product-id={product.id}>
+                                                                    <a href={product.url} className="button button--primary [display:block] w-full px-half" data-product-id={product.id}>
                                                                         {product.out_of_stock_message}
                                                                     </a>
                                                                 )}
@@ -169,32 +169,32 @@ export default () => (
                                         )}
                                     />
                                 </tr>
-                                <tr className="compareTable-row">
-                                    <th className="compareTable-heading">
-                                        <span className="compareTable-headingText">
+                                <tr className="compareTable-row align-top">
+                                    <th className="compareTable-heading font-(family-name:--sv-fontFamily-headings) relative w-0 px-base py-base-sixth text-right text-smaller font-normal medium:w-3/12 border-t border-container-border empty:border-t-0">
+                                        <span className="compareTable-headingText absolute top-base-sixth whitespace-nowrap medium:[position:inherit] medium:[top:inherit]">
                                             <$Lang keyName={$string("products.description")} />
                                         </span>
                                     </th>
                                     <$Each
                                         list={$pointer<Comparison[]>("comparisons")}
                                         $then={(product) => (
-                                            <td className="compareTable-item">{$unescaped(product.summary)}</td>
+                                            <td className="compareTable-item pt-[calc(var(--sv-spacing-double)+var(--sv-spacing-sixth))] px-base pb-base-sixth medium:pt-base-sixth border-t border-container-border">{$unescaped(product.summary)}</td>
                                         )}
                                     />
                                 </tr>
                                 <$If
                                     test={$pointer("settings.show_product_rating")}
                                     $then={() => (
-                                        <tr className="compareTable-row">
-                                            <th className="compareTable-heading">
-                                                <span className="compareTable-headingText">
+                                        <tr className="compareTable-row align-top">
+                                            <th className="compareTable-heading font-(family-name:--sv-fontFamily-headings) relative w-0 px-base py-base-sixth text-right text-smaller font-normal medium:w-3/12 border-t border-container-border empty:border-t-0">
+                                                <span className="compareTable-headingText absolute top-base-sixth whitespace-nowrap medium:[position:inherit] medium:[top:inherit]">
                                                     <$Lang keyName={$string("products.reviews.rating_label")} />
                                                 </span>
                                             </th>
                                             <$Each
                                                 list={$pointer<Comparison[]>("comparisons")}
                                                 $then={(product) => (
-                                                    <td className="compareTable-item">
+                                                    <td className="compareTable-item pt-[calc(var(--sv-spacing-double)+var(--sv-spacing-sixth))] px-base pb-base-sixth medium:pt-base-sixth border-t border-container-border">
                                                         <$If
                                                             test={product.rating}
                                                             $then={() => <ProductsRatings rating={product.rating} />}
@@ -206,16 +206,16 @@ export default () => (
                                         </tr>
                                     )}
                                 />
-                                <tr className="compareTable-row">
-                                    <th className="compareTable-heading">
-                                        <span className="compareTable-headingText">
+                                <tr className="compareTable-row align-top">
+                                    <th className="compareTable-heading font-(family-name:--sv-fontFamily-headings) relative w-0 px-base py-base-sixth text-right text-smaller font-normal medium:w-3/12 border-t border-container-border empty:border-t-0">
+                                        <span className="compareTable-headingText absolute top-base-sixth whitespace-nowrap medium:[position:inherit] medium:[top:inherit]">
                                             <$Lang keyName={$string("products.availability")} />
                                         </span>
                                     </th>
                                     <$Each
                                         list={$pointer<Comparison[]>("comparisons")}
                                         $then={(product) => (
-                                            <td className="compareTable-item">
+                                            <td className="compareTable-item pt-[calc(var(--sv-spacing-double)+var(--sv-spacing-sixth))] px-base pb-base-sixth medium:pt-base-sixth border-t border-container-border">
                                                 <$If
                                                     test={product.availability}
                                                     $then={() => <>{product.availability}</>}
@@ -225,16 +225,16 @@ export default () => (
                                         )}
                                     />
                                 </tr>
-                                <tr className="compareTable-row">
-                                    <th className="compareTable-heading">
-                                        <span className="compareTable-headingText">
+                                <tr className="compareTable-row align-top">
+                                    <th className="compareTable-heading font-(family-name:--sv-fontFamily-headings) relative w-0 px-base py-base-sixth text-right text-smaller font-normal medium:w-3/12 border-t border-container-border empty:border-t-0">
+                                        <span className="compareTable-headingText absolute top-base-sixth whitespace-nowrap medium:[position:inherit] medium:[top:inherit]">
                                             <$Lang keyName={$string("common.other_details")} />
                                         </span>
                                     </th>
                                     <$Each
                                         list={$pointer<Comparison[]>("comparisons")}
                                         $then={(product) => (
-                                            <td className="compareTable-item">
+                                            <td className="compareTable-item pt-[calc(var(--sv-spacing-double)+var(--sv-spacing-sixth))] px-base pb-base-sixth medium:pt-base-sixth border-t border-container-border">
                                                 <$If
                                                     test={product.custom_fields}
                                                     $then={() => (

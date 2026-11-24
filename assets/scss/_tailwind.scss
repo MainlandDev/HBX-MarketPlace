@@ -20,12 +20,20 @@
 @source "../../src/templates/components/products";
 @source "../../src/templates/components/common";
 @source "../../src/templates/layout";
+@source "../../src/templates/components/blog";
+@source "../../src/templates/pages/search.tsx";
+@source "../../src/templates/components/faceted-search";
+@source "../../src/templates/components/category";
+@source "../../src/templates/components/brand";
+@source "../../src/templates/pages/compare.tsx";
+@source "../../src/templates/components/search";
+@source "../../src/templates/pages/brands.tsx";
 /*
  * Words in attributes and comments of a listed folder (`type="hidden"`, "containing block") are also picked up as candidates. With `important` an
  * emitted `.hidden` or `.block` would override third-party and merchant markup site-wide, so such strays are excluded here. The test in
  * scripts/tailwind/theme.test.mjs fails when a utility is emitted that no className uses: add its name to this list.
  */
-@source not inline("block hidden table fixed container visible");
+@source not inline("block hidden table fixed container visible grid");
 
 /*
  * Normalisation on top of Preflight, in the base layer. Declared after the import, so on equal
@@ -304,6 +312,12 @@
     --spacing-fifth: var(--sv-spacing-fifth);
     --spacing-sixth: var(--sv-spacing-sixth);
     --spacing-eighth: var(--sv-spacing-eighth);
+
+    /* promoted from calc(single + third), used at 5 sites (search suggestions and the sidebar block divider) */
+    --spacing-single-third: calc(var(--sv-spacing-single) + var(--sv-spacing-third));
+
+    /* promoted from calc(base + sixth), used at 5 sites (compare table padding and offsets) */
+    --spacing-base-sixth: calc(var(--sv-spacing-base) + var(--sv-spacing-sixth));
 
     --text-hero: var(--sv-fontSize-hero);
     --text-largest: var(--sv-fontSize-largest);

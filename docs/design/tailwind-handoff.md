@@ -37,13 +37,14 @@ Convert the theme's remaining SCSS (`assets/scss/components`, `assets/scss/layou
 | 1 | `components/stencil/{account,addressBox,addReturn,paymentMethods,_wishlists,_login}`, `layouts/account` | `components/account`, `pages/account`, `pages/auth` | merged, partial (see report) |
 | 2 | `components/stencil/{productView,productReviews,writeReview,productCarousel,quickView,price,rating,ribbon,tags,toggleLink,videoGallery,socialLinks}`, `layouts/products/*` (incl. the rest of `_variantSelector`) | `components/products` (not `options`), `pages/product.tsx` | merged, small (see report) |
 | 3 | `components/stencil/{navUser,navPages,heroCarousel,banners}`, `layouts/{header,footer,body,container,sidebar}` | `layout`, `components/common`, `components/carousel*.tsx`, `pages/home.tsx` | merged, small (see report) |
-| 4 | `components/stencil/{search,category,compare,facetedSearch,facetLabel,contact,blocker,textTruncate}`, `layouts/{blog,brands}` | `components/{search,category,brand,blog,faceted-search,sitemap,page}`, `pages/{search,category,brand,brands,blog,blog-post,compare,contact-us,page,sitemap}.tsx` | todo |
+| 4 | `components/stencil/{search,category,compare,facetedSearch,facetLabel,contact,blocker,textTruncate}`, `layouts/{blog,brands}` | `components/{search,category,brand,blog,faceted-search,sitemap,page}`, `pages/{search,category,brand,brands,blog,blog-post,compare,contact-us,page,sitemap}.tsx` | merged (see report) |
 | 5 | rest of `components/stencil/cart/_cart.scss`, `previewCart` | `components/cart`, `pages/cart.tsx`, `components/common/cart-preview.tsx` | todo |
 | 6 | theme copies of Citadel/Foundation: `components/{citadel,foundation,vendor,common}` and `common/*` | any (global); verify on several page types | todo |
 | L | Tasks 32-34 (retire Citadel/Foundation imports, drop `important`/`source(none)`) | lead | todo |
 
 ## Merge log
 
+- WP4 merged by the lead (listings/content): SCSS lines 6170 -> 5992 (122 partials; compare and facetLabel partials deleted); `@source` adds blog, search, faceted-search, category, brand, compare.tsx, brands.tsx; stray list now `block hidden table fixed container visible grid`.
 - WP3 merged by the lead (header/footer/nav, small): SCSS lines 6300 -> see `npm run tw-inventory`; `@source` adds `components/common` and `layout`; stray list is `block hidden table fixed container visible`.
 - WP2 merged by the lead (product family, small): SCSS lines 6353 -> 6300; vitest 119/119, vite-build ok. `@source` now lists `components/products`; stray list is `block hidden table fixed`.
 - WP1 merged by the lead (account family, partial): theme CSS 6490 -> 6353 SCSS lines in `tw-inventory`; vitest 119/119, vite-build ok.
@@ -87,3 +88,16 @@ Converted and Edge-verified on the product page (4-5 explained differences per s
 
 ### WP3 (header/footer/nav): summary
 Converted and Edge-verified on / and /fashion-biz/ (footer, body, navUser, main: 0 diffs; header: one zero-width border colour and sub-pixel logo sizes): footer (footer, title-sr-only, info-heading, info-list + links, copyright, powered-by, payment icons, newsletter summary, info-col leaf styles), navUser (action weight/padding/uppercase, section position, cartLabel, quickSearch padding), header (background/border, logo image), body margins. Mobile menu toggle and desktop cart preview dropdown interactions checked. Stayed in SCSS: footer-info/info-col grid mixins, social column (unrendered), navUser colours/dropdowns/pseudo/JS state/unrendered states, countPill, header position/is-open/fixed/logo variants/mobileMenu/skip link, sidebar block (WP4), container, body .page* grid mixins, navPages (Foundation JS), heroCarousel and banners (not rendered).
+
+## Lessons added by WP4
+
+- **Important utilities beat higher-specificity legacy rules that used to win.** Example: Citadel `.panel-body > :last-child { margin-bottom: 0 }` beat `.search-suggestion`; after conversion the last item gained a 28px bottom margin until `last:mb-0` was added. Diff each converted element and expect this in WP5/6.
+- **True baseline after editing:** `git show HEAD:<file>` into a scratch copy, swap the HEAD versions of your files in, baseline, swap your converted files back, diff. (Never use git commands that change state; reading with `git show` is fine.)
+- A file edit triggers an HMR reload that wipes page globals and aborts a running `javascript_tool` call; `javascript_tool` times out at 45 s: run frames in the background and poll. Keep the helper in sessionStorage and `eval` it after a reload.
+- New theme entries: `--spacing-single-third` (mb-single-third), `--spacing-base-sixth` (py-base-sixth, top-base-sixth, pb-base-sixth).
+- Use `[display:block]`, `[display:none]`, `[text-transform:inherit]` instead of `block`/`hidden` utilities. Font family: `font-(family-name:--sv-fontFamily-headings)` (`fontFamily("headingSans")`).
+- `_tailwind.scss` must stay CRLF: workers that script-edit it normalise it to LF; the lead restores CRLF before committing. Prefer the Edit tool and check `file assets/scss/_tailwind.scss`.
+- Content pages (`pages/page.tsx`, `contact-us`, `sitemap`, `components/page`, `components/sitemap`) use none of the WP4 partials' classes: nothing to convert there.
+
+### WP4 (listings/content): summary
+Converted and Edge-verified (0 diffs at 375/768/1280/no-JS except sub-pixel remCalc noise and zero-width border styles): blog title/date/post/figure/body/tags (deleted unused blog-author); search-suggestion/suggestion-title/search-refine/search-nav/quickSearchMessage (a real 28px margin diff found and fixed with last:mb-0); facetedSearch-refineFilters; facetLabel (partial deleted); sidebarBlock-heading; brands card-title; the whole compare table (partial deleted). Stayed in SCSS: .blog root/sibling, socialLinks/addthis, blog-thumbnail, category-suggestion grid mixins, advancedSearch (not rendered), quickSearchResults/modal-close (WP3 files), facetedSearch toggle/navList/is-open/show-more (JS state), reset-filters/blocker (JS display), sidebar sibling rule, shop-by-price heading, brandGrid mixins, category-header-image, captcha, textTruncate (JS). Unverified: quickSearchMessage in its real dropdown context, blog post (value check only, no baseline).

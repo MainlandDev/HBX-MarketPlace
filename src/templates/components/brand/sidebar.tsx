@@ -18,7 +18,7 @@ export default (_props: PartialProps) => (
                     test={$pointer("shop_by_brand")}
                     $then={() => (
                         <div className="sidebarBlock">
-                            <h5 className="sidebarBlock-heading">
+                            <h5 className="sidebarBlock-heading mt-0 text-[15px] [text-transform:inherit]">
                                 <$Lang keyName={$string("brand.label")} />
                             </h5>
                             <ul className="navList">

@@ -84,7 +84,7 @@ export default () => {
                                         <div id="search-results-heading"><SearchHeading /></div>
                                     )}
                                 />
-                                <nav className="navBar navBar--sub search-nav">
+                                <nav className="navBar navBar--sub search-nav relative">
                                     <span id="search-tabs-widget-description" className="aria-description--hidden">
                                         <$Lang keyName={$string("search.tabs_accesibility_hint")} />
                                     </span>
@@ -165,10 +165,10 @@ export default () => {
                                                         test={$pointer("forms.search.suggested_query")}
                                                         $then={() => (
                                                             <>
-                                                                <div className="search-suggestion">
+                                                                <div className="search-suggestion mb-single-third last:mb-0 [&>:last-child]:mb-0">
                                                                     <$Lang keyName={$string("forms.search.did_you_mean")} />{" "}
                                                                     <strong>{$pointer("forms.search.suggested_query.query")}</strong>{" "}
-                                                                    <a href={$pointer("forms.search.suggested_query.url")} className="search-refine">
+                                                                    <a href={$pointer("forms.search.suggested_query.url")} className="search-refine ml-single">
                                                                         <$Lang keyName={$string("forms.search.refine")} />
                                                                     </a>
                                                                 </div>
@@ -177,7 +177,7 @@ export default () => {
                                                                     operator={$string("===")}
                                                                     rvalue={$number(0)}
                                                                     $then={() => (
-                                                                        <div className="search-suggestion">
+                                                                        <div className="search-suggestion mb-single-third last:mb-0 [&>:last-child]:mb-0">
                                                                             <p>
                                                                                 <$Lang keyName={$string("forms.search.your_search_for")} />{" "}
                                                                                 {$raw('"')}
@@ -194,8 +194,8 @@ export default () => {
                                                     <$If
                                                         test={$pointer("category_results.length")}
                                                         $then={() => (
-                                                            <div className="search-suggestion">
-                                                                <h5 className="suggestion-title">
+                                                            <div className="search-suggestion mb-single-third last:mb-0 [&>:last-child]:mb-0">
+                                                                <h5 className="suggestion-title mt-0 [text-transform:inherit]">
                                                                     <$Lang keyName={$string("forms.search.categories")} />
                                                                 </h5>
                                                                 <ul className="category-suggestion-list">
@@ -225,8 +225,8 @@ export default () => {
                                                     <$If
                                                         test={$pointer("brand_results.length")}
                                                         $then={() => (
-                                                            <div className="search-suggestion">
-                                                                <h5 className="suggestion-title">
+                                                            <div className="search-suggestion mb-single-third last:mb-0 [&>:last-child]:mb-0">
+                                                                <h5 className="suggestion-title mt-0 [text-transform:inherit]">
                                                                     <$Lang keyName={$string("forms.search.brand")} />
                                                                 </h5>
                                                                 <$Each
@@ -247,8 +247,8 @@ export default () => {
                                                         operator={$string("===")}
                                                         rvalue={$number(0)}
                                                         $then={() => (
-                                                            <div className="search-suggestion">
-                                                                <h5 className="suggestion-title">
+                                                            <div className="search-suggestion mb-single-third last:mb-0 [&>:last-child]:mb-0">
+                                                                <h5 className="suggestion-title mt-0 [text-transform:inherit]">
                                                                     <$Lang keyName={$string("forms.search.suggestions.title")} />
                                                                 </h5>
                                                                 <ul>

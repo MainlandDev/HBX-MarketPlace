@@ -2,19 +2,6 @@
 // SEARCH
 // =============================================================================
 
-.search-suggestion {
-    margin-bottom: spacing("single") + spacing("third");
-
-    > :last-child {
-        margin-bottom: 0;
-    }
-}
-
-.suggestion-title {
-    margin-top: 0;
-    text-transform: inherit;
-}
-
 .advancedSearch-form {
     margin-bottom: spacing("double");
 
@@ -80,18 +67,4 @@
 .category-suggestion {
     @include grid-column(4);
     font-size: fontSize("smaller");
-}
-
-.search-refine {
-    margin-left: spacing("single");
-}
-
-.quickSearchMessage {
-    font-size: fontSize("largest");
-    margin: spacing("single") 0 0;
-    text-align: center;
-}
-
-.search-nav {
-    position: relative;
 }

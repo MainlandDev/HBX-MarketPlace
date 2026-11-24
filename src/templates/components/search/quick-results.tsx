@@ -23,7 +23,7 @@ export default (_props: PartialProps) => (
             </>
         )}
         $else={() => (
-            <p className="quickSearchMessage">
+            <p className="quickSearchMessage mx-0 mt-single mb-0 text-largest text-center">
                 {$unescaped(
                     $lang($string("search.results.quick_count"), {
                         count: $pointer<number>("pagination.product_results.total"),
