@@ -938,10 +938,6 @@
 }
 
 @layer components {
-    .pin_it_iframe_widget {
-        display: none;
-    }
-
     /* the merchant injects a div.container on the account page (a bare class that cannot take utilities); the theme's own columns use the Container helper (componentParts.tsx) */
     .container {
         margin-left: auto;
