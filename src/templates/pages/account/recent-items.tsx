@@ -8,7 +8,7 @@ export default () => (
     <$Page
         blocks={{
             page: () => (
-                <div className="account">
+                <div className="account mb-single">
                     <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
                     <h2 className="page-heading">
                         <$Lang keyName={$string("account.recent_items.heading")} />

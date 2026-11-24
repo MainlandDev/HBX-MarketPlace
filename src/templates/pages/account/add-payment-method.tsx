@@ -47,7 +47,7 @@ export default () => (
 
                     <AccountNavigation account_page={$string("payment_methods")} />
 
-                    <div className="account account--fixed">
+                    <div className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3">
                         <$If
                             test={$pointer("forms.error")}
                             $then={() => <AlertAlertError $positionalHash={$pointer("forms.error")} />}
@@ -74,18 +74,18 @@ export default () => (
                                     <input type="hidden" name="provider_id" value={$pointer("forms.provider")} />
                                     <input type="hidden" name="currency_code" value={$pointer("currency_selector.active_currency_code")} />
 
-                                    <h3 className="paymentMethodForm-heading">
+                                    <h3 className="paymentMethodForm-heading mt-single font-(family-name:--sv-fontFamily-sans) text-grey-darker capitalize">
                                         <$Lang keyName={$string("account.payment_methods.payment_method")} />
                                     </h3>
-                                    <div className="paymentMethodForm">
-                                        <p className="paymentMethodForm-subheading">
+                                    <div className="paymentMethodForm small:max-w-[60%]">
+                                        <p className="paymentMethodForm-subheading flex font-semibold">
                                             {$pointer("forms.payment_method.provider_name")}{" "}
-                                            <span className="paymentMethodForm-cards">
+                                            <span className="paymentMethodForm-cards small:ml-auto">
                                                 <$Each
                                                     list={$pointer<string[]>("../theme_settings.supported_card_type_icons")}
                                                     $then={() => (
                                                         <img
-                                                            className="paymentMethodForm-cards-icon"
+                                                            className="paymentMethodForm-cards-icon mr-eighth w-[34px]"
                                                             src={$cdn($concat($concat($string("img/payment-methods/"), $this<string>()), $string(".svg")))}
                                                             alt={$lang($concat($string("account.payment_methods.card_types."), $this<string>()))}
                                                             title={$lang($concat($string("account.payment_methods.card_types."), $this<string>()))}
@@ -95,24 +95,24 @@ export default () => (
                                             </span>
                                         </p>
                                         <fieldset className="form-fieldset">
-                                            <div className="paymentMethodForm-column">
-                                                <div className="paymentMethodForm-inputs">
+                                            <div className="paymentMethodForm-column small:flex small:[&:first-child_.form-field]:mb-half">
+                                                <div className="paymentMethodForm-inputs relative small:first:w-[70%] small:last:w-[30%] small:last:pl-single">
                                                     <FormsText id={$string("credit_card_number")} name={$string("credit_card_number")} label={$lang($string("account.payment_methods.credit_card_number"))} />
-                                                    <svg className="paymentMethodForm-inputs-icon icon">
+                                                    <svg className="paymentMethodForm-inputs-icon icon absolute top-[39px] right-[9px] size-[21px] fill-grey-light">
                                                         <use href="#icon-lock" />
                                                     </svg>
                                                 </div>
-                                                <div className="paymentMethodForm-inputs">
+                                                <div className="paymentMethodForm-inputs relative small:first:w-[70%] small:last:w-[30%] small:last:pl-single">
                                                     <FormsText id={$string("expiration")} name={$string("expiration")} label={$lang($string("account.payment_methods.expiration"))} placeholder={$string("MM/YY")} />
                                                 </div>
                                             </div>
-                                            <div className="paymentMethodForm-column">
-                                                <div className="paymentMethodForm-inputs">
+                                            <div className="paymentMethodForm-column small:flex small:[&:first-child_.form-field]:mb-half">
+                                                <div className="paymentMethodForm-inputs relative small:first:w-[70%] small:last:w-[30%] small:last:pl-single">
                                                     <FormsText id={$string("name_on_card")} name={$string("name_on_card")} label={$lang($string("account.payment_methods.name_on_card"))} />
                                                 </div>
-                                                <div className="paymentMethodForm-inputs">
+                                                <div className="paymentMethodForm-inputs relative small:first:w-[70%] small:last:w-[30%] small:last:pl-single">
                                                     <FormsText id={$string("cvv")} name={$string("cvv")} label={$lang($string("account.payment_methods.cvv"))} />
-                                                    <svg className="paymentMethodForm-inputs-icon icon">
+                                                    <svg className="paymentMethodForm-inputs-icon icon absolute top-[39px] right-[9px] size-[21px] fill-grey-light">
                                                         <use href="#icon-lock" />
                                                     </svg>
                                                 </div>
@@ -132,7 +132,7 @@ export default () => (
                                         </fieldset>
                                     </div>
 
-                                    <h3 className="paymentMethodForm-heading">
+                                    <h3 className="paymentMethodForm-heading mt-single font-(family-name:--sv-fontFamily-sans) text-grey-darker capitalize">
                                         <$Lang keyName={$string("account.payment_methods.billing_address")} />
                                     </h3>
 

@@ -14,7 +14,7 @@ export default () => (
                     </h1>
                     <GiftCertificateNavigation gift_page={$string("balance")} />
 
-                    <main className="account account--fixed">
+                    <main className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3">
                         <h3>
                             <$Lang keyName={$string("gift_certificate.balance.heading")} />
                         </h3>

@@ -29,8 +29,8 @@ export default (_props: PartialProps) => (
                 list={$pointer<Address[]>("customer.addresses")}
                 $then={(address) => (
                     <li className="inline-block w-full px-half align-top small:w-1/2 large:w-1/3">
-                        <div className="panel panel--address">
-                            <div className="panel-body">
+                        <div className="panel panel--address relative text-(length:--sv-fontSize-base)">
+                            <div className="panel-body min-h-[250px] p-single small:pb-single-double">
                                 <h5 className="m-0 mb-half [text-transform:none]">
                                     {address.first_name} {address.last_name}
                                 </h5>
@@ -65,11 +65,11 @@ export default (_props: PartialProps) => (
                                     )}
                                 />
                                 <form action={address.delete_url} method="post" data-delete-address={$lang($string("forms.address.confirm_delete"))}>
-                                    <div className="form-actions">
-                                        <a className="button button--primary button--small" href={address.edit_url}>
+                                    <div className="form-actions -mb-half mt-single text-left small:absolute small:bottom-single small:w-auto">
+                                        <a className="button button--primary button--small mb-half" href={address.edit_url}>
                                             <$Lang keyName={$string("common.edit")} />
                                         </a>{" "}
-                                        <button type="submit" className="button secondary button--small">
+                                        <button type="submit" className="button secondary button--small mb-half ml-0 mt-0 small:ml-quarter">
                                             <$Lang keyName={$string("common.delete")} />
                                         </button>
                                     </div>
@@ -80,8 +80,8 @@ export default (_props: PartialProps) => (
                 )}
             />
             <li className="inline-block w-full px-half align-top small:w-1/2 large:w-1/3">
-                <a className="group panel panel--address panel--newAddress" href={$pointer("urls.account.add_address")}>
-                    <span className="panel-body">
+                <a className="group panel panel--address panel--newAddress relative [display:block] text-center text-(length:--sv-fontSize-base) no-underline" href={$pointer("urls.account.add_address")}>
+                    <span className="panel-body min-h-[250px] border border-container-border bg-transparent p-single [display:block] small:pb-single-double">
                         <span className="absolute top-1/2 left-1/2 [transform:translateX(-50%)_translateY(-55%)]">
                             <span className="text-hero leading-none">{$raw("&plus;")}</span>
                             <h5 className="m-0 [text-transform:none] [transition:all_0.15s_ease] group-hover:text-(--sv-color-textLink-hover)">

@@ -20,8 +20,8 @@ export default () => (
                         test={$pointer("forms.login.success")}
                         $then={() => <AlertAlertSuccess $positionalHash={$pointer("forms.login.success")} />}
                     />
-                    <div className="login-row">
-                        <form className="login-form form" action={$pointer("urls.auth.check_login")} method="post">
+                    <div className="login-row mx-auto flow-root w-full max-w-(--sv-layout-widthMax) medium:mt-[calc(var(--sv-spacing-double)*2)]">
+                        <form className="login-form form float-left w-full px-gutter-half medium:mt-double medium:w-1/2" action={$pointer("urls.auth.check_login")} method="post">
                             <$Inject keyName={$string("useValidEmail")} value={$lang($string("forms.validate.common.email_address"))} />{" "}
                             <$Inject keyName={$string("enterPass")} value={$lang($string("forms.validate.common.password"))} />
                             <div className="form-field">
@@ -46,7 +46,7 @@ export default () => (
                         <$If
                             test={$pointer("settings.account_creation_enabled")}
                             $then={() => (
-                                <div className="new-customer">
+                                <div className="new-customer float-left w-full px-gutter-half medium:w-1/2">
                                     <div className="panel">
                                         <div className="panel-header">
                                             <h2 className="panel-title text-small">

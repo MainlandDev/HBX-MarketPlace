@@ -7,7 +7,7 @@ export default (_props: PartialProps) => (
     <>
         <$Inject keyName={$string("enterWishlistNameError")} value={$lang($string("account.wishlists.enter_wishlist_name_error"))} />
         <div className="wishlist-add">
-            <header className="wishlist-header">
+            <header className="wishlist-header text-center [display:none] [[class~=modal]_&]:[display:block]">
                 <$If
                     test={$pointer("forms.wishlist.id")}
                     $then={() => (
@@ -32,7 +32,7 @@ export default (_props: PartialProps) => (
                 />
             </header>
             <form
-                className="form wishlist-form"
+                className="form wishlist-form mx-auto flow-root w-full max-w-[550px] [&_.form-field]:float-left [&_.form-field]:w-full [&_.form-field]:px-gutter-half"
                 method="post"
                 dangerouslyInlineAttributes={{
                     attributes: `action="${$If({

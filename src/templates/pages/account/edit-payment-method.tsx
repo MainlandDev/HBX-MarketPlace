@@ -21,7 +21,7 @@ export default () => (
 
                     <AccountNavigation account_page={$string("payment_methods")} />
 
-                    <div className="account account--fixed">
+                    <div className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3">
                         <$If
                             test={$pointer("forms.error")}
                             $then={() => <AlertAlertError $positionalHash={$pointer("forms.error")} />}
@@ -35,28 +35,28 @@ export default () => (
                                     <input type="hidden" name="currency_code" value={$pointer("../currency_selector.active_currency_code")} />
                                     <input type="hidden" name="type" value={$pointer("type")} />
 
-                                    <h3 className="paymentMethodForm-heading">
+                                    <h3 className="paymentMethodForm-heading mt-single font-(family-name:--sv-fontFamily-sans) text-grey-darker capitalize">
                                         <$Lang keyName={$string("account.payment_methods.payment_method")} />
                                     </h3>
 
-                                    <div className="paymentMethodForm">
+                                    <div className="paymentMethodForm small:max-w-[60%]">
                                         <$If
                                             test={$pointer("type")}
                                             operator={$string("===")}
                                             rvalue={$string("stored_card")}
                                             $then={() => (
                                                 <>
-                                                    <dl className="paymentMethodForm-details">
-                                                        <dt className="paymentMethodForm-details-term">
+                                                    <dl className="paymentMethodForm-details mb-0 small:m-0 small:mr-double small:inline-block">
+                                                        <dt className="paymentMethodForm-details-term mb-half font-normal">
                                                             <$Lang keyName={$string("account.payment_methods.credit_card_number")} />
                                                         </dt>
-                                                        <dd className="paymentMethodForm-details-description">**** **** **** {$pointer("last_4")}</dd>
+                                                        <dd className="paymentMethodForm-details-description text-smaller font-semibold tracking-(--sv-letterSpacing-large)">**** **** **** {$pointer("last_4")}</dd>
                                                     </dl>
-                                                    <dl className="paymentMethodForm-details">
-                                                        <dt className="paymentMethodForm-details-term">
+                                                    <dl className="paymentMethodForm-details mb-0 small:m-0 small:mr-double small:inline-block">
+                                                        <dt className="paymentMethodForm-details-term mb-half font-normal">
                                                             <$Lang keyName={$string("account.payment_methods.expiration")} />
                                                         </dt>
-                                                        <dd className="paymentMethodForm-details-description">
+                                                        <dd className="paymentMethodForm-details-description text-smaller font-semibold tracking-(--sv-letterSpacing-large)">
                                                             {$pointer("expiry_month")}/{$pointer("expiry_year")}
                                                         </dd>
                                                     </dl>
@@ -70,7 +70,7 @@ export default () => (
                                             $then={() => (
                                                 <>
                                                     <div className="form-field">
-                                                        <h3 className="paymentMethodForm-heading">
+                                                        <h3 className="paymentMethodForm-heading mt-single font-(family-name:--sv-fontFamily-sans) text-grey-darker capitalize">
                                                             <$Lang keyName={$string("account.payment_methods.paypal")} />{" "}
                                                             <$Lang keyName={$string("common.account")} />
                                                         </h3>
@@ -99,7 +99,7 @@ export default () => (
                                         rvalue={$string("stored_card")}
                                         $then={() => (
                                             <>
-                                                <h3 className="paymentMethodForm-heading">
+                                                <h3 className="paymentMethodForm-heading mt-single font-(family-name:--sv-fontFamily-sans) text-grey-darker capitalize">
                                                     <$Lang keyName={$string("account.payment_methods.billing_address")} />
                                                 </h3>
 

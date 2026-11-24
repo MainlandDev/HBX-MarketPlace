@@ -16,8 +16,8 @@ export default () => (
                     </h2>
                     <AccountNavigation account_page={$string("addresses")} />
 
-                    <div className="account account--fixedLarge">
-                        <div className="account-body">
+                    <div className="account account--fixedLarge mb-single medium:mx-auto medium:mb-0 medium:w-3/4">
+                        <div className="account-body -mx-gutter-half flow-root w-auto max-w-none">
                             <$If
                                 test={$pointer("customer.error")}
                                 $then={() => <AlertAlertError $positionalHash={$pointer("customer.error")} />}
@@ -26,7 +26,7 @@ export default () => (
                                 test={$pointer("customer.success")}
                                 $then={() => <AlertAlertSuccess $positionalHash={$pointer("customer.success")} />}
                             />
-                            <section className="account-content"><AccountAddressList /></section>
+                            <section className="account-content float-left w-full px-gutter-half"><AccountAddressList /></section>
                         </div>
                     </div>
                 </>

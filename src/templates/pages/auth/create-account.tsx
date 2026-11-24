@@ -15,8 +15,8 @@ export default () => (
                         <h1 className="page-heading">
                             <$Lang keyName={$string("create_account.heading")} />
                         </h1>
-                        <div className="account account--fixed">
-                            <div className="account-body">
+                        <div className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3">
+                            <div className="account-body -mx-gutter-half flow-root w-auto max-w-none">
                                 <$If
                                     test={$pointer("forms.create_account.error")}
                                     $then={() => <AlertAlertError $positionalHash={$pointer("forms.create_account.error")} />}

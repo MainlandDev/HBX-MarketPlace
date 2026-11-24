@@ -15,9 +15,9 @@ export default () => (
                     </h1>
                     <AccountNavigation account_page={$string("returns")} />
 
-                    <main className="account account--fixed">
-                        <div className="account-body">
-                            <section className="account-content">
+                    <main className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3">
+                        <div className="account-body -mx-gutter-half flow-root w-auto max-w-none">
+                            <section className="account-content float-left w-full px-gutter-half">
                                 <$If
                                     test={$pointer("customer.returns")}
                                     $then={() => <AccountReturnsList returns={$pointer("customer.returns")} />}

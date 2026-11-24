@@ -17,6 +17,8 @@
 @source "../../src/templates/components/account";
 @source "../../src/templates/pages/account";
 @source "../../src/templates/pages/auth";
+@source "../../src/templates/components/gift-certificate";
+@source "../../src/templates/pages/gift-certificate";
 @source "../../src/templates/components/products";
 @source "../../src/templates/components/common";
 @source "../../src/templates/layout";
@@ -325,6 +327,18 @@
 
     /* promoted from calc(base + sixth), used at 5 sites (compare table padding and offsets) */
     --spacing-base-sixth: calc(var(--sv-spacing-base) + var(--sv-spacing-sixth));
+
+    /* promoted from calc(double + third), account product body padding (3 sites) */
+    --spacing-double-third: calc(var(--sv-spacing-double) + var(--sv-spacing-third));
+
+    /* single + double: address panel bottom padding (2 sites) */
+    --spacing-single-double: calc(var(--sv-spacing-single) + var(--sv-spacing-double));
+
+    /* half of the Foundation grid gutter (the gutter is spacing("single")): grid-column padding and nested grid-row margin (account layout, login) */
+    --spacing-gutter-half: calc(var(--sv-spacing-single) / 2);
+
+    /* backorder copy colour (BACK-699), the design-specified hex of the former $account-backorder-textColor */
+    --color-backorder: #757575;
 
     --text-hero: var(--sv-fontSize-hero);
     --text-largest: var(--sv-fontSize-largest);

@@ -24,14 +24,14 @@ export default () => (
                     />
                     <AccountNavigation account_page={$string("addresses")} />
 
-                    <div className="account account--fixed">
+                    <div className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3">
                         <$If
                             test={$pointer("forms.address.error")}
                             $then={() => <AlertAlertError $positionalHash={$pointer("forms.address.error")} />}
                         />
 
-                        <div className="account-body">
-                            <section className="account-content">
+                        <div className="account-body -mx-gutter-half flow-root w-auto max-w-none">
+                            <section className="account-content float-left w-full px-gutter-half">
                                 <form action={$pointer("forms.address.action")} data-address-form={""} className="form" method="post">
                                     <$If
                                         test={$pointer("forms.address.address_id")}

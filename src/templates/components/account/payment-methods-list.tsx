@@ -49,16 +49,16 @@ export default (_props: PartialProps) => (
                     value={method.type}
                     $then={() => (
                         <>
-                            <h4 className="paymentMethodsTitle">{method.display_name}</h4>
+                            <h4 className="paymentMethodsTitle m-0 mb-half w-full p-0 [text-transform:none]">{method.display_name}</h4>
                             <$If test={method.description} $then={() => <p>{method.description}</p>} />
-                            <div className="paymentMethodsGrid">
+                            <div className="paymentMethodsGrid -m-half mb-single flex flex-wrap">
                                 <$Each
                                     list={method.stored_instruments}
                                     $then={(inst) => (
-                                        <div className="paymentMethodsGrid-item">
-                                            <div className="paymentMethod">
-                                                <div className="paymentMethod-row">
-                                                    <div className="methodHeader">
+                                        <div className="paymentMethodsGrid-item min-h-[250px] w-full p-half small:w-1/2">
+                                            <div className="paymentMethod flex h-full flex-col flex-nowrap rounded-[3px] border border-container-border bg-[#e5e5e5] [&_.button]:mb-0">
+                                                <div className="paymentMethod-row p-single first:bg-[#fff] last:mt-auto only:h-full">
+                                                    <div className="methodHeader flex flex-row items-center justify-between">
                                                         <$If
                                                             test={$pointer("type")}
                                                             operator={$string("===")}
@@ -75,14 +75,14 @@ export default (_props: PartialProps) => (
                                                                                     value={inst.brand}
                                                                                     $then={() => (
                                                                                         <img
-                                                                                            className="methodHeader-icon"
+                                                                                            className="methodHeader-icon mr-half w-[28px] large:w-[42px]"
                                                                                             src={$cdn($concat($concat($string("img/payment-methods/"), inst.brand), $string(".svg")))}
                                                                                             alt={$lang($concat($string("account.payment_methods.card_types."), inst.brand))}
                                                                                             title={$lang($concat($string("account.payment_methods.card_types."), inst.brand))}
                                                                                         />
                                                                                     )}
                                                                                 />{" "}
-                                                                                <span className="methodHeader-brand">
+                                                                                <span className="methodHeader-brand text-smallest font-semibold text-grey-dark large:text-(length:--sv-fontSize-base)">
                                                                                     <$Lang keyName={$concat($string("account.payment_methods.card_types."), inst.brand)} />{" "}
                                                                                     <$Lang keyName={$string("account.payment_methods.card_ending_in")} last_four={inst.last_4} />
                                                                                 </span>
@@ -91,12 +91,12 @@ export default (_props: PartialProps) => (
                                                                         $else={() => (
                                                                             <>
                                                                                 <img
-                                                                                    className="methodHeader-icon"
+                                                                                    className="methodHeader-icon mr-half w-[28px] large:w-[42px]"
                                                                                     src={$cdn($string("img/payment-methods/card.svg"))}
                                                                                     alt={$lang($string("account.payment_methods.card_types.credit_card"))}
                                                                                     title={$lang($string("account.payment_methods.card_types.credit_card"))}
                                                                                 />{" "}
-                                                                                <span className="methodHeader-brand">
+                                                                                <span className="methodHeader-brand text-smallest font-semibold text-grey-dark large:text-(length:--sv-fontSize-base)">
                                                                                     <$Lang keyName={$string("account.payment_methods.card_types.credit_card")} />{" "}
                                                                                     <$Lang keyName={$string("account.payment_methods.card_ending_in")} last_four={inst.last_4} />
                                                                                 </span>
@@ -122,12 +122,12 @@ export default (_props: PartialProps) => (
                                                                         $then={() => (
                                                                             <>
                                                                                 <img
-                                                                                    className="methodHeader-icon"
+                                                                                    className="methodHeader-icon mr-half w-[28px] large:w-[42px]"
                                                                                     src={$cdn($string("img/payment-methods/ach.svg"))}
                                                                                     alt={$lang($string("account.payment_methods.ach"))}
                                                                                     title={$lang($string("account.payment_methods.ach"))}
                                                                                 />{" "}
-                                                                                <span className="methodHeader-brand">
+                                                                                <span className="methodHeader-brand text-smallest font-semibold text-grey-dark large:text-(length:--sv-fontSize-base)">
                                                                                     <$Lang keyName={$string("account.payment_methods.bank_account")} />{" "}
                                                                                     <$Lang
                                                                                         keyName={$string("account.payment_methods.card_ending_in")}
@@ -144,12 +144,12 @@ export default (_props: PartialProps) => (
                                                                                 $then: () => (
                                                                                     <>
                                                                                         <img
-                                                                                            className="methodHeader-icon"
+                                                                                            className="methodHeader-icon mr-half w-[28px] large:w-[42px]"
                                                                                             src={$cdn($string("img/payment-methods/ach.svg"))}
                                                                                             alt={$lang($string("account.payment_methods.ach"))}
                                                                                             title={$lang($string("account.payment_methods.ach"))}
                                                                                         />{" "}
-                                                                                        <span className="methodHeader-brand">
+                                                                                        <span className="methodHeader-brand text-smallest font-semibold text-grey-dark large:text-(length:--sv-fontSize-base)">
                                                                                             <$Lang keyName={$string("account.payment_methods.bank_account")} />{" "}
                                                                                             <$Lang
                                                                                                 keyName={$string("account.payment_methods.card_ending_in")}
@@ -166,12 +166,12 @@ export default (_props: PartialProps) => (
                                                                                 $then: () => (
                                                                                     <>
                                                                                         <img
-                                                                                            className="methodHeader-icon"
+                                                                                            className="methodHeader-icon mr-half w-[28px] large:w-[42px]"
                                                                                             src={$cdn($string("img/payment-methods/sepa.svg"))}
                                                                                             alt={$lang($string("account.payment_methods.sepa_direct_debit"))}
                                                                                             title={$lang($string("account.payment_methods.sepa_direct_debit"))}
                                                                                         />{" "}
-                                                                                        <span className="methodHeader-brand">
+                                                                                        <span className="methodHeader-brand text-smallest font-semibold text-grey-dark large:text-(length:--sv-fontSize-base)">
                                                                                             <$Lang keyName={$string("account.payment_methods.bank_account")} />{" "}
                                                                                             {inst.masked_account_number}
                                                                                         </span>
@@ -182,12 +182,12 @@ export default (_props: PartialProps) => (
                                                                         $else={() => (
                                                                             <>
                                                                                 <img
-                                                                                    className="methodHeader-icon"
+                                                                                    className="methodHeader-icon mr-half w-[28px] large:w-[42px]"
                                                                                     src={$cdn($string("img/payment-methods/card.svg"))}
                                                                                     alt={$lang($string("account.payment_methods.card_types.credit_card"))}
                                                                                     title={$lang($string("account.payment_methods.card_types.credit_card"))}
                                                                                 />{" "}
-                                                                                <span className="methodHeader-brand">
+                                                                                <span className="methodHeader-brand text-smallest font-semibold text-grey-dark large:text-(length:--sv-fontSize-base)">
                                                                                     <$Lang keyName={$string("account.payment_methods.payment_method")} />
                                                                                 </span>
                                                                             </>
@@ -206,21 +206,21 @@ export default (_props: PartialProps) => (
                                                                 <>
                                                                     {/* If paypal STARTS */}
                                                                     <img
-                                                                        className="methodHeader-icon"
+                                                                        className="methodHeader-icon mr-half w-[28px] large:w-[42px]"
                                                                         src={$cdn($string("img/payment-methods/paypal.svg"))}
                                                                         alt={$lang($string("account.payment_methods.paypal"))}
                                                                         title={$lang($string("account.payment_methods.paypal"))}
                                                                     />{" "}
-                                                                    <span className="methodHeader-brand">{inst.email}</span>
+                                                                    <span className="methodHeader-brand text-smallest font-semibold text-grey-dark large:text-(length:--sv-fontSize-base)">{inst.email}</span>
                                                                     {/* If paypal ENDS */}
                                                                 </>
                                                             )}
                                                         />
-                                                        <div className="methodHeader-meta">
+                                                        <div className="methodHeader-meta ml-auto flex flex-nowrap pl-half">
                                                             <$If
                                                                 test={inst.expiry_year}
                                                                 $then={() => (
-                                                                    <span className="methodHeader-expiry">
+                                                                    <span className="methodHeader-expiry text-smaller capitalize">
                                                                         <$Lang
                                                                             keyName={$string("account.payment_methods.card_expiry")}
                                                                             month={inst.expiry_month}
@@ -232,7 +232,7 @@ export default (_props: PartialProps) => (
                                                             <$If
                                                                 test={inst.is_default}
                                                                 $then={() => (
-                                                                    <svg className="methodHeader-default">
+                                                                    <svg className="methodHeader-default ml-half h-[18px] w-[18px] fill-grey-dark large:h-[20px] large:w-[20px]">
                                                                         <use href="#icon-star" />
                                                                     </svg>
                                                                 )}
@@ -243,13 +243,13 @@ export default (_props: PartialProps) => (
                                                 <$If
                                                     test={inst.billing_address}
                                                     $then={() => (
-                                                        <div className="paymentMethod-row">
+                                                        <div className="paymentMethod-row p-single first:bg-[#fff] last:mt-auto only:h-full">
                                                             {/* If there is an address STARTS */}
-                                                            <p className="methodDetails">
-                                                                <span className="methodDetails-label">
+                                                            <p className="methodDetails m-0 flex">
+                                                                <span className="methodDetails-label flex-1 font-semibold">
                                                                     <$Lang keyName={$string("account.payment_methods.billing_address")} />:
                                                                 </span>{" "}
-                                                                <span className="methodDetails-description">
+                                                                <span className="methodDetails-description flex-2 text-smallest">
                                                                     <span>{inst.billing_address.address1}, </span>
                                                                     <$If
                                                                         test={inst.billing_address.address2}
@@ -265,7 +265,7 @@ export default (_props: PartialProps) => (
                                                         </div>
                                                     )}
                                                 />
-                                                <div className="paymentMethod-row">
+                                                <div className="paymentMethod-row p-single first:bg-[#fff] last:mt-auto only:h-full">
                                                     <form
                                                         action={inst.delete_url}
                                                         method="post"
@@ -296,12 +296,12 @@ export default (_props: PartialProps) => (
                                 <$If
                                     test={method.add_url}
                                     $then={() => (
-                                        <div className="paymentMethodsGrid-item">
-                                            <div className="paymentMethod">
-                                                <div className="paymentMethod-row">
-                                                    <a className="newPaymentMethod" href={method.add_url}>
-                                                        <div className="newPaymentMethod-icon">{$raw("&plus;")}</div>
-                                                        <h5 className="newPaymentMethod-title">
+                                        <div className="paymentMethodsGrid-item min-h-[250px] w-full p-half small:w-1/2">
+                                            <div className="paymentMethod flex h-full flex-col flex-nowrap rounded-[3px] border border-container-border bg-[#e5e5e5] [&_.button]:mb-0">
+                                                <div className="paymentMethod-row p-single first:bg-[#fff] last:mt-auto only:h-full">
+                                                    <a className="newPaymentMethod flex h-full min-h-[186px] flex-col items-center justify-items-center no-underline" href={method.add_url}>
+                                                        <div className="newPaymentMethod-icon m-0 mt-auto mb-half text-[50px] leading-none">{$raw("&plus;")}</div>
+                                                        <h5 className="newPaymentMethod-title m-0 mx-auto mb-auto text-center">
                                                             <$Lang keyName={$string("account.payment_methods.new_payment_method")} />
                                                         </h5>
                                                     </a>

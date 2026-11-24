@@ -9,7 +9,7 @@ export default () => (
         <$Page
             blocks={{
                 page: () => (
-                    <div className="account account--fixedSmall">
+                    <div className="account account--fixedSmall mb-single medium:mx-auto medium:mb-0 medium:w-1/2">
                         <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
                         <h2 className="page-heading">
                             <$Lang keyName={$string("reset_password.heading")} />

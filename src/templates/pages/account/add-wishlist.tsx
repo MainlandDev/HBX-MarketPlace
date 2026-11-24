@@ -7,7 +7,7 @@ export default () => (
     <$Page
         blocks={{
             page: () => (
-                <div className="account">
+                <div className="account mb-single">
                     <$If
                         test={$pointer("settings.show_wishlist")}
                         $then={() => (

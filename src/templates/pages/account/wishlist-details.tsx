@@ -8,7 +8,7 @@ export default () => (
     <$Page
         blocks={{
             page: () => (
-                <div className="account" data-pagination-wishlist={""}>
+                <div className="account mb-single [&_.pagination]:mt-double [&_.pagination]:text-center [&_.pagination]:text-grey-light" data-pagination-wishlist={""}>
                     <$If
                         test={$pointer("wishlist.is_editable")}
                         $then={() => <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />}
@@ -31,7 +31,7 @@ export default () => (
                                     rvalue={$number(0)}
                                     $then={() => (
                                         <>
-                                            <div className="panel share-wishlist">
+                                            <div className="panel share-wishlist mx-auto max-w-[650px] text-center">
                                                 <div className="panel-body">
                                                     <h5>
                                                         <$Lang keyName={$string("account.wishlists.share_intro")} />

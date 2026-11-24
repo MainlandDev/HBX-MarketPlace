@@ -105,9 +105,6 @@
 // Write a Review
 @import "stencil/writeReview/component";
 
-// Add Return
-@import "stencil/addReturn/component";
-
 // Product Carousel
 @import "stencil/productCarousel/component";
 
@@ -145,32 +142,17 @@
 // Cart
 @import "stencil/cart/component";
 
-// Address Box
-@import "stencil/addressBox/component";
-
 // videosViewer
 @import "stencil/videoGallery/component";
 
 // Preview Cart
 @import "stencil/previewCart/component";
 
-// Login
-@import "stencil/login";
-
 // Search
 @import "stencil/search/search";
 
-// Account
-@import "stencil/account/account";
-
-// Wishlists
-@import "stencil/wishlists";
-
 // Rating
 @import "stencil/rating/component";
-
-// Payment Methods
-@import "stencil/paymentMethods/component";
 
 // Categories
 @import "stencil/category/component";

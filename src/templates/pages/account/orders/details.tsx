@@ -107,13 +107,13 @@ export default () => {
                         </h2>
                         <AccountNavigation account_page={$string("orders")} />
 
-                        <div className="account">
-                            <div className="account-body">
+                        <div className="account mb-single">
+                            <div className="account-body -mx-gutter-half flow-root w-auto max-w-none">
                                 <$Each
                                     list={order.status_messages}
                                     $then={(status) => <AlertAlertInfo $positionalHash={status.message} />}
                                 />
-                                <div className="account-content account-content--fixedSmall">
+                                <div className="account-content account-content--fixedSmall float-left w-full px-gutter-half medium:w-1/2">
                                     <AccountOrderContents order={order} />
 
                                     <dl className="float-right -mt-single w-2/3 text-smaller">
@@ -132,7 +132,7 @@ export default () => {
                                                                     <dl>
                                                                         <$Each
                                                                             list={row.shipping_discounts}
-                                                                            $then={(discount) => <dt className="account-orderTotal-discount">{discount.label}</dt>}
+                                                                            $then={(discount) => <dt className="account-orderTotal-discount m-0 border-b-0 py-half text-right font-normal last-of-type:border-b last-of-type:border-container-border last-of-type:pt-0">{discount.label}</dt>}
                                                                         />
                                                                     </dl>
                                                                 )}
@@ -145,9 +145,9 @@ export default () => {
                                     </dl>
                                 </div>
 
-                                <aside className="account-sidebar">
-                                    <section className="account-sidebar-block">
-                                        <h3 className="account-heading">
+                                <aside className="account-sidebar float-left w-full px-gutter-half medium:w-1/3 medium:[.account-content--fixedSmall+&]:float-right">
+                                    <section className="account-sidebar-block text-smaller [&+&]:mt-double">
+                                        <h3 className="account-heading m-0 mb-single border-b border-container-border pb-base">
                                             <$Lang keyName={$string("account.orders.details.order_details")} />
                                         </h3>
                                         <dl className="definitionList">
@@ -184,7 +184,7 @@ export default () => {
                                                 test={order.order_instructions}
                                                 $then={() => (
                                                     <>
-                                                        <dt className="order-payments-description">
+                                                        <dt className="order-payments-description mt-single font-normal text-(--sv-setting-color-primary)">
                                                             <$Lang keyName={$string("account.orders.details.how_to_pay")} />
                                                         </dt>
                                                         <dd className="order-payments-value order-payments-value--long">{$nl2br(order.order_instructions)}</dd>
@@ -201,14 +201,14 @@ export default () => {
                                     <$If
                                         test={order.shipping_address}
                                         $then={() => (
-                                            <section className="account-sidebar-block">
-                                                <h3 className="account-heading">
+                                            <section className="account-sidebar-block text-smaller [&+&]:mt-double">
+                                                <h3 className="account-heading m-0 mb-single border-b border-container-border pb-base">
                                                     <$Lang keyName={$string("account.orders.details.ship_to")} />
                                                 </h3>
-                                                <ul className="account-order-address">{addressLines(order.shipping_address)}</ul>
+                                                <ul className="account-order-address ml-0 list-none [&_ul]:mb-0 [&_ul]:list-none [&_ol]:mb-0 [&_ol]:list-none">{addressLines(order.shipping_address)}</ul>
                                                 <$If
                                                     test={order.backorder_shipping_expectation_message}
-                                                    $then={() => <p className="account-order-backorder-expectation">{order.backorder_shipping_expectation_message}</p>}
+                                                    $then={() => <p className="account-order-backorder-expectation mt-base mb-0 text-smaller text-backorder">{order.backorder_shipping_expectation_message}</p>}
                                                 />
                                             </section>
                                         )}
@@ -216,8 +216,8 @@ export default () => {
                                     <$If
                                         test={order.pickup_addresses}
                                         $then={() => (
-                                            <section className="account-sidebar-block">
-                                                <h3 className="account-heading">
+                                            <section className="account-sidebar-block text-smaller [&+&]:mt-double">
+                                                <h3 className="account-heading m-0 mb-single border-b border-container-border pb-base">
                                                     <$Lang keyName={$string("account.orders.details.pickup")} />
                                                 </h3>
                                                 <$Each
@@ -231,7 +231,7 @@ export default () => {
                                                                 <dd className="definitionList-value">{$sanitize(pickup.pickup_method_display_name)}</dd>
                                                             </dl>
 
-                                                            <ul className="account-order-address">
+                                                            <ul className="account-order-address ml-0 list-none [&_ul]:mb-0 [&_ul]:list-none [&_ol]:mb-0 [&_ol]:list-none">
                                                                 <li>
                                                                     <b>{$unescaped($sanitize(pickup.location_name))}</b>
                                                                 </li>
@@ -269,7 +269,7 @@ export default () => {
                                                                 />
                                                             </dl>
 
-                                                            <ul className="account-order-address">
+                                                            <ul className="account-order-address ml-0 list-none [&_ul]:mb-0 [&_ul]:list-none [&_ol]:mb-0 [&_ol]:list-none">
                                                                 <li>
                                                                     <b>{$unescaped($lang($string("account.orders.details.opening_hours")))}</b>
                                                                 </li>
@@ -284,16 +284,16 @@ export default () => {
                                             <$If
                                                 test={order.has_multiple_shipping_addresses}
                                                 $then={() => (
-                                                    <section className="account-sidebar-block">
-                                                        <h3 className="account-heading">
+                                                    <section className="account-sidebar-block text-smaller [&+&]:mt-double">
+                                                        <h3 className="account-heading m-0 mb-single border-b border-container-border pb-base">
                                                             <$Lang keyName={$string("account.orders.details.ship_to")} />
                                                         </h3>
-                                                        <div className="account-order-address">
+                                                        <div className="account-order-address ml-0 list-none [&_ul]:mb-0 [&_ul]:list-none [&_ol]:mb-0 [&_ol]:list-none">
                                                             <$Lang keyName={$string("account.orders.details.ship_to_multi_text")} />
                                                         </div>
                                                         <$If
                                                             test={order.backorder_shipping_expectation_message}
-                                                            $then={() => <p className="account-order-backorder-expectation">{order.backorder_shipping_expectation_message}</p>}
+                                                            $then={() => <p className="account-order-backorder-expectation mt-base mb-0 text-smaller text-backorder">{order.backorder_shipping_expectation_message}</p>}
                                                         />
                                                     </section>
                                                 )}
@@ -301,18 +301,18 @@ export default () => {
                                         )}
                                     />
 
-                                    <section className="account-sidebar-block">
-                                        <h3 className="account-heading">
+                                    <section className="account-sidebar-block text-smaller [&+&]:mt-double">
+                                        <h3 className="account-heading m-0 mb-single border-b border-container-border pb-base">
                                             <$Lang keyName={$string("account.orders.details.bill_to")} />
                                         </h3>
-                                        <ul className="account-order-address">{addressLines(order.billing_address)}</ul>
+                                        <ul className="account-order-address ml-0 list-none [&_ul]:mb-0 [&_ul]:list-none [&_ol]:mb-0 [&_ol]:list-none">{addressLines(order.billing_address)}</ul>
                                     </section>
 
                                     <$If
                                         test={shipments}
                                         $then={() => (
-                                            <section className="account-sidebar-block">
-                                                <h3 className="account-heading">
+                                            <section className="account-sidebar-block text-smaller [&+&]:mt-double">
+                                                <h3 className="account-heading m-0 mb-single border-b border-container-border pb-base">
                                                     <$Lang keyName={$string("account.orders.details.shipments.header")} />
                                                 </h3>
                                                 <$Each
@@ -362,8 +362,8 @@ export default () => {
                                     <$If
                                         test={order.comments}
                                         $then={() => (
-                                            <section className="account-sidebar-block">
-                                                <h3 className="account-heading">
+                                            <section className="account-sidebar-block text-smaller [&+&]:mt-double">
+                                                <h3 className="account-heading m-0 mb-single border-b border-container-border pb-base">
                                                     <$Lang keyName={$string("account.orders.details.comments")} />
                                                 </h3>
                                                 <p>{order.comments}</p>
@@ -371,8 +371,8 @@ export default () => {
                                         )}
                                     />
 
-                                    <section className="account-sidebar-block">
-                                        <h3 className="account-heading">
+                                    <section className="account-sidebar-block text-smaller [&+&]:mt-double">
+                                        <h3 className="account-heading m-0 mb-single border-b border-container-border pb-base">
                                             <$Lang keyName={$string("account.orders.details.actions")} />
                                         </h3>
                                         <div className="order-details-info">

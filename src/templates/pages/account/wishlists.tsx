@@ -10,7 +10,7 @@ export default () => (
                 <$If
                     test={$pointer("settings.show_wishlist")}
                     $then={() => (
-                        <div className="account account--fixedLarge">
+                        <div className="account account--fixedLarge mb-single medium:mx-auto medium:mb-0 medium:w-3/4">
                             <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
                             <h2 className="page-heading">
                                 <$Lang keyName={$string("account.wishlists.heading")} />

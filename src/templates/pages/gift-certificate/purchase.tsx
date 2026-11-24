@@ -25,7 +25,7 @@ export default () => (
                     </h1>
                     <GiftCertificateNavigation gift_page={$string("purchase")} />
 
-                    <main className="account account--fixed">
+                    <main className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3">
                         <$Each
                             list={$pointer<string[]>("forms.gift_certificate.errors")}
                             $then={(error) => <AlertAlertError $positionalHash={error} />}

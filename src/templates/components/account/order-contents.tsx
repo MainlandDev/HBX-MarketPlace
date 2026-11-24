@@ -46,11 +46,11 @@ interface OrderItem {
 
 export default (_props: PartialProps) => (
     <>
-        <h3 className="account-heading">
+        <h3 className="account-heading m-0 border-b border-container-border pb-base">
             <$Lang keyName={$string("account.orders.details.order_contents")} />
         </h3>
 
-        <ul className="account-list">
+        <ul className="account-list ml-0 list-none">
             <$Each
                 list={$pointer<OrderItem[]>("order.items")}
                 $then={(item) => (
@@ -77,9 +77,9 @@ export default (_props: PartialProps) => (
                                 />
                             )}
                         />
-                        <li className="account-listItem">
-                            <div className="account-product account-product--alignMiddle">
-                                <div className="account-product-checkItem">
+                        <li className="account-listItem relative border-b border-container-border py-single [&_img]:w-full [&_.account-product-image]:relative [&_.account-product-image]:inset-0 [&_.account-product-image]:m-auto">
+                            <div className="account-product account-product--alignMiddle w-full [display:table]">
+                                <div className="account-product-checkItem relative w-[2rem] align-top large:-left-[2.5rem] [&_.form-label]:m-0 [&_.form-label]:size-single [&_.form-label]:p-0">
                                     <$If
                                         test={item.show_reorder}
                                         $then={() => (
@@ -97,7 +97,7 @@ export default (_props: PartialProps) => (
                                         )}
                                     />
                                 </div>
-                                <figure className="account-product-figure">
+                                <figure className="account-product-figure relative float-none m-0 w-[70px] flex-col items-center [display:table-cell] align-top [&>img]:block after:block after:h-0 after:w-full after:pb-[100%] after:content-['']">
                                     <$If
                                         test={$pointer("type")}
                                         operator={$string("===")}
@@ -119,7 +119,7 @@ export default (_props: PartialProps) => (
                                             <$If
                                                 test={item.download_url}
                                                 $then={() => (
-                                                    <a href={item.download_url} className="account-product-download button button--primary">
+                                                    <a href={item.download_url} className="account-product-download button button--primary absolute -top-half -right-half z-[1] size-[33px] rounded-[50%] p-0 [&_.icon]:mt-quarter [&_.icon]:size-single [&_svg]:fill-(--sv-color-white)">
                                                         <span className="is-srOnly">
                                                             <$Lang keyName={$string("account.orders.details.download_items")} />
                                                         </span>
@@ -134,9 +134,9 @@ export default (_props: PartialProps) => (
                                         )}
                                     />
                                 </figure>
-                                <div className="account-product-body">
+                                <div className="account-product-body relative overflow-hidden pb-double-third pl-[2rem] [display:table-cell] align-top small:pb-0 large:pl-0 [&_.definitionList]:mb-0 [&_.definitionList]:text-smaller">
                                     <span className="float-right text-smaller">{item.price.formatted}</span>
-                                    <h5 className="account-product-title">
+                                    <h5 className="account-product-title m-0 mb-eighth [text-transform:inherit] [&>a]:no-underline [&+.definitionList]:mt-half">
                                         {item.quantity} {$raw("&#215;")} {item.name}
                                     </h5>
                                     <$If
@@ -148,7 +148,7 @@ export default (_props: PartialProps) => (
                                     <$If
                                         test={item.quantity_ready_to_ship}
                                         $then={() => (
-                                            <p className="account-product-backorder-prompts">
+                                            <p className="account-product-backorder-prompts mb-0 text-smallest text-backorder [&+.definitionList]:mt-half [&+dt]:mt-half [&+dt+dd]:mt-half">
                                                 <$Lang keyName={$string("products.quantity_on_hand")} quantity={item.quantity_ready_to_ship} />
                                             </p>
                                         )}
@@ -156,14 +156,14 @@ export default (_props: PartialProps) => (
                                     <$If
                                         test={item.quantity_backordered}
                                         $then={() => (
-                                            <p className="account-product-backorder-prompts">
+                                            <p className="account-product-backorder-prompts mb-0 text-smallest text-backorder [&+.definitionList]:mt-half [&+dt]:mt-half [&+dt+dd]:mt-half">
                                                 <$Lang keyName={$string("products.quantity_backordered")} quantity={item.quantity_backordered} />
                                             </p>
                                         )}
                                     />
                                     <$If
                                         test={item.backorder_message}
-                                        $then={() => <p className="account-product-backorder-prompts">{item.backorder_message}</p>}
+                                        $then={() => <p className="account-product-backorder-prompts mb-0 text-smallest text-backorder [&+.definitionList]:mt-half [&+dt]:mt-half [&+dt+dd]:mt-half">{item.backorder_message}</p>}
                                     />
                                     <$If
                                         test={item.options}
@@ -178,7 +178,7 @@ export default (_props: PartialProps) => (
                                                             <$If
                                                                 test={option.linked_bundled_item.quantity_ready_to_ship}
                                                                 $then={() => (
-                                                                    <dd className="definitionList-value account-product-backorder-prompts">
+                                                                    <dd className="definitionList-value account-product-backorder-prompts mb-0 text-smallest text-backorder [&+.definitionList]:mt-half [&+dt]:mt-half [&+dt+dd]:mt-half">
                                                                         <$Lang
                                                                             keyName={$string("products.quantity_on_hand")}
                                                                             quantity={option.linked_bundled_item.quantity_ready_to_ship}
@@ -189,7 +189,7 @@ export default (_props: PartialProps) => (
                                                             <$If
                                                                 test={option.linked_bundled_item.quantity_backordered}
                                                                 $then={() => (
-                                                                    <dd className="definitionList-value account-product-backorder-prompts">
+                                                                    <dd className="definitionList-value account-product-backorder-prompts mb-0 text-smallest text-backorder [&+.definitionList]:mt-half [&+dt]:mt-half [&+dt+dd]:mt-half">
                                                                         <$Lang
                                                                             keyName={$string("products.quantity_backordered")}
                                                                             quantity={option.linked_bundled_item.quantity_backordered}
@@ -200,7 +200,7 @@ export default (_props: PartialProps) => (
                                                             <$If
                                                                 test={option.linked_bundled_item.backorder_message}
                                                                 $then={() => (
-                                                                    <dd className="definitionList-value account-product-backorder-prompts">
+                                                                    <dd className="definitionList-value account-product-backorder-prompts mb-0 text-smallest text-backorder [&+.definitionList]:mt-half [&+dt]:mt-half [&+dt+dd]:mt-half">
                                                                         {option.linked_bundled_item.backorder_message}
                                                                     </dd>
                                                                 )}

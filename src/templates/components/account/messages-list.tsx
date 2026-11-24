@@ -12,21 +12,21 @@ interface Message {
 
 export default (_props: PartialProps) => (
     <>
-        <h3 className="account-heading">
+        <h3 className="account-heading m-0 border-b border-container-border pb-base">
             <$Lang keyName={$string("account.messages.heading")} />
         </h3>
 
-        <ul className="account-list">
+        <ul className="account-list ml-0 list-none">
             <$Each
                 list={$pointer<Message[]>("messages")}
                 $then={(message) => (
-                    <li className="account-listItem">
-                        <div className="account-message">
-                            <div className="account-orderStatus">
+                    <li className="account-listItem relative border-b border-container-border py-single">
+                        <div className="account-message [&_.is-read]:text-grey-light">
+                            <div className="account-orderStatus absolute bottom-0 left-0 small:float-right small:text-right small:[position:inherit]">
                                 <span>{message.date}</span>
                             </div>
 
-                            <h5 className={`account-product-title ${$Unless({test: message.unread, $then: () => "is-read"})}`}>{message.subject}</h5>
+                            <h5 className={`account-product-title m-0 mb-eighth [text-transform:inherit] [&>a]:no-underline [&+.definitionList]:mt-half ${$Unless({test: message.unread, $then: () => "is-read"})}`}>{message.subject}</h5>
                             <p className={`${$Unless({test: message.unread, $then: () => "is-read"})}`}>
                                 <$If
                                     test={message.is_reply}

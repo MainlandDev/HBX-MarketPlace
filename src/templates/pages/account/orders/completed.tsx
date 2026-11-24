@@ -10,9 +10,9 @@ export default () => (
     <$Page
         blocks={{
             page: () => (
-                <div className="account">
+                <div className="account mb-single [&_.pagination]:mt-double [&_.pagination]:text-center [&_.pagination]:text-grey-light">
                     <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                    <h2 className="account-heading title">
+                    <h2 className="account-heading m-0 border-b border-container-border pb-base title">
                         <$Lang keyName={$string("account.orders.heading")} />
                     </h2>
                     <AccountNavigation account_page={$string("orders")} />

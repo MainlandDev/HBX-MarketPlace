@@ -18,8 +18,8 @@ export default () => (
                     </h1>
                     <AccountNavigation account_page={$string("orders")} />
 
-                    <main className="account account--fixed">
-                        <div className="account-head">
+                    <main className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3 [&_.pagination]:mt-double [&_.pagination]:text-center [&_.pagination]:text-grey-light">
+                        <div className="account-head mb-double text-center [&_.alertBox]:px-double [&_.alertBox]:text-left">
                             <$If
                                 test={$pointer("customer.store_credit.value")}
                                 operator={$string(">")}
@@ -35,8 +35,8 @@ export default () => (
                                 )}
                             />
                         </div>
-                        <div className="account-body">
-                            <section className="account-content">
+                        <div className="account-body -mx-gutter-half flow-root w-auto max-w-none">
+                            <section className="account-content float-left w-full px-gutter-half">
                                 <$If
                                     test={$pointer("customer.orders.length")}
                                     $then={() => (

@@ -148,9 +148,24 @@ New tooling (lead): `generate-bridge` also bridges every `stencilColor/Number/St
 
 | R2 WP | Scope | Status |
 | --- | --- | --- |
-| R2-1 | account family incl. all shared account classes, layouts/account, addReturn, paymentMethods, login/wishlist rest, pagination in account | todo |
+| R2-1 | account family incl. all shared account classes, layouts/account, addReturn, paymentMethods, login/wishlist rest, pagination in account | merged: all account-family SCSS deleted (999 lines) |
 | R2-2 | product + cart: productView-* (incl. cart preview modal markup), cart table layout and the rest of _cart.scss, previewCart, productList/Grid/SaleBadges/Swatch/promotionCallout, remaining product partials | todo |
 | R2-3 | header/footer/nav and Foundation JS widgets: navUser, navPages, header, footer rest, heroCarousel, banners, modal, dropdown, accordion, tabs, sidebar, body, container | todo |
 | R2-4 | listings/content rest: facetedSearch toggle/navList, blocker, reset-filters, search/category/brand/blog leftovers, contact, textTruncate, quickSearch, share/socialLinks, videoGallery | todo |
 | R2-5 | shared pool: page-heading, form-*, button, card, pagination, tables, type, alerts, icons, lazyLoad, actionBar, loading, global, slick-adjacent theme rules, common/* | todo |
 | R2-L | lead: unused-class sweep, retire Citadel/Foundation imports if inventory shows zero used, drop `important`/`source(none)` if possible | todo |
+
+## R2-1 report (account family, complete)
+
+All account, addressBox, addReturn, paymentMethods, wishlists, login and layouts/account SCSS converted and deleted (8 partials, 999 lines; their @imports removed). Edge computed-style diffs on 7 reachable pages (account, order_status, view_order, address_book, wishlist, payment_methods, login) show only explained differences (clearfix -> flow-root, zero-width border colours, sub-pixel grid fractions). New theme entries: `--spacing-double-third`, `--spacing-single-double`, `--spacing-gutter-half`, `--color-backorder`; `@source` adds components/gift-certificate and pages/gift-certificate.
+
+**Unverified by equivalence (user spot-check list):** returns-list.tsx and add-return.tsx (whole addReturn table, detail variants, orderStatus-label variants); messages-list.tsx (account-message `[&_.is-read]`, product-title); order-contents.tsx and orders/details.tsx (download button, backorder prompts x6, order-backorder-expectation, order-payments-description, orderTotal-discount, pickup/multi-address order-address); download-item.tsx (all downloads* classes); payment-methods-list, add-payment-method, edit-payment-method (paymentMethod*, methodHeader/Details, newPaymentMethod*, paymentMethodForm*); add-wishlist.tsx (wishlist-header incl. in-modal override, wishlist-form); wishlist-details.tsx (share-wishlist, pagination under .account); never-rendered pages: orders/completed, recent-items, return-saved, create-account, forgot-password, new-password, account-created, edit, add-address, gift-certificate balance/purchase/redeem (wrapper and layout utilities only). Check at 375 and 1280.
+
+## Lessons added by R2-1
+
+- **Layered `!important` utilities beat the live store's unlayered `!important` inline CSS regardless of specificity.** That inline CSS hides `.account-listItem .account-product-checkItem` and the last `.account-sidebar-block`, and sets `left: unset` on `.account-product--alignMiddle .account-product-figure`; converting the SCSS (display: table-cell, left: -2rem) un-hid them until those utilities were dropped. For any element the store's inline CSS targets, never set the properties it sets. Other injected rules: `nav.navBar--account a[href*=inbox]`, `.button[data-print-invoice]`, `#account-contact-us div.container div.account`.
+- `[.modal_&]` is rejected by the collision test (emits a `.modal` selector): use `[[class~=modal]_&]:...`. `[&+&]` only matches siblings with the same utility; for a different class use `[.other-class+&]`.
+- `lazy-loaded-padding("productthumb_size")` became `after:pb-[100%]`: correct for 100x100 only; it will not follow a change of the merchant image-size setting.
+- Bridged settings in use: `--sv-setting-label-backgroundColor`, `--sv-setting-label-color`, `--sv-setting-color-textSecondary--hover`, `--sv-setting-color-primary`.
+- `javascript_tool` blocks results containing `?`, `&` or `=` (treated as cookie/query data): return counts and short fields. Gzip-stored compact snapshots in sessionStorage work.
+- `components/_components.scss` and `layouts/_layouts.scss` are LF in the tree (git warns on touch): harmless.

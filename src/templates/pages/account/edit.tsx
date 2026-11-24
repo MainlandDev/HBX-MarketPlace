@@ -11,7 +11,7 @@ export default () => (
         <$Page
             blocks={{
                 page: () => (
-                    <div className="account account--fixed">
+                    <div className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3">
                         <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
                         <h2 className="page-heading">
                             <$Lang keyName={$string("account.settings.heading")} />
