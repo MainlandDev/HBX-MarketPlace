@@ -179,7 +179,7 @@ export default (_props: PartialProps) => {
                     b={showRating}
                     $then={() => (
                         <p className="card-text mb-eighth" data-test-info-type="productRating">
-                            <span className="rating--small">
+                            <span className="rating--small inline-block [&_.icon]:-mt-[3px] [&_.icon]:size-[14px]">
                                 <ProductsRatings rating_target={name} rating={$pointer("rating")} />
                             </span>
                         </p>

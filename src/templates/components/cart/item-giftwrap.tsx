@@ -6,7 +6,7 @@ export default (_props: PartialProps) => (
     <$If
         test={$pointer("show_gift_wrapping")}
         $then={() => (
-            <dl className="cart-item-options cart-item-options--giftWrapping">
+            <dl className="cart-item-options cart-item-options--giftWrapping mt-[calc(var(--spacing-half)+var(--spacing-quarter))]">
                 <dt className="cart-item-option-title">
                     <$Lang keyName={$string("cart.gift_wrapping.title")} />:
                 </dt>
@@ -14,7 +14,7 @@ export default (_props: PartialProps) => (
                     test={$pointer("gift_wrapping")}
                     $then={() => (
                         <>
-                            <dd className="cart-item-option-description">
+                            <dd className="cart-item-option-description text-(--sv-body-font-color)">
                                 {$pointer("gift_wrapping.name")}: {$pointer("gift_wrapping.price.formatted")}{" "}
                                 <span className="cart-item-option-actions">
                                     (
@@ -35,14 +35,14 @@ export default (_props: PartialProps) => (
                                         <dt className="cart-item-option-title">
                                             <$Lang keyName={$string("cart.gift_wrapping.gift_message")} />:
                                         </dt>
-                                        <dd className="cart-item-option-description">{$pointer("gift_wrapping.message")}</dd>
+                                        <dd className="cart-item-option-description text-(--sv-body-font-color)">{$pointer("gift_wrapping.message")}</dd>
                                     </>
                                 )}
                             />
                         </>
                     )}
                     $else={() => (
-                        <dd className="cart-item-option-description">
+                        <dd className="cart-item-option-description text-(--sv-body-font-color)">
                             <a href="" data-item-giftwrap={$pointer("id")}>
                                 <$Lang keyName={$string("cart.gift_wrapping.add")} />
                             </a>

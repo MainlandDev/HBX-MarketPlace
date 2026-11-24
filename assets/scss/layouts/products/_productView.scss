@@ -1,95 +1,15 @@
 // =============================================================================
 // PRODUCT VIEW (CSS)
 // =============================================================================
-
-
-// Product view layout
-// -----------------------------------------------------------------------------
-
-.productView {
-    @include grid-row($behavior: "nest");
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    margin-left: -(spacing("base"));
-    margin-right: -(spacing("base"));
-
-    @include breakpoint("medium") {
-        display: block;
-    }
-
-    .modal & {
-        padding-bottom: 0;
-        padding-top: 0;
-    }
-}
-
-.productView--quickView {
-    .socialLinks-item--print {
-        display: none;
-    }
-}
-
-.productView-images {
-    @include grid-column(12);
-    padding-left: spacing("base");
-    padding-right: spacing("base");
-
-    @include breakpoint("medium") {
-        width: grid-calc(6, $total-columns);
-    }
-}
-
-.productView-details {
-    @include grid-column(12);
-    padding-left: spacing("base");
-    padding-right: spacing("base");
-
-    @include breakpoint("medium") {
-        clear: right;
-        float: right;
-        width: grid-calc(6, $total-columns);
-    }
-
-    .productView--quickView & {
-        position: relative;
-    }
-
-    &.product-data {
-        order: -1;
-    }
-}
-
-.productView-description {
-    @include grid-column(12);
-    padding-left: spacing("base");
-    padding-right: spacing("base");
-    position: relative;
-    z-index: 1;
-
-    .productView-title {
-        border-bottom: container("border");
-        margin-bottom: spacing("base");
-        padding-left: spacing("base");
-        padding-right: spacing("base");
-    }
-
-    .productView-description {
-        @include breakpoint("medium") {
-            clear: both;
-            float: none;
-            width: 100%;
-        }
-    }
-}
-
+//
+// The layout is utilities in src/templates/components/products/product-view.tsx and cart/preview.tsx.
 
 // Product options
 // -----------------------------------------------------------------------------
 
-// With JS the options wait until product-details.js has applied the default selection and shows them. Without JS (`no-js` on <html>, see the
-// base layout) nothing would ever show them, so they are only hidden once `js` is set.
+// With JS the options wait until product-details.js has applied the default selection and shows them (jQuery sets an inline display, which an
+// important utility would override, so this stays here). Without JS (`no-js` on <html>, see the base layout) nothing would ever show them,
+// so they are only hidden once `js` is set.
 .js [data-product-option-change] {
     display: none;
 }

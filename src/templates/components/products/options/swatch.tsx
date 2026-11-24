@@ -111,7 +111,7 @@ export default (_props: PartialProps) => {
                             }}
                         />{" "}
                         <label className="form-option form-option-swatch" htmlFor={`attribute_swatch_${id}_none`}>
-                            <span className="form-option-variant form-option-variant--none" title={$lang($string("products.none"))}>
+                            <span className="form-option-variant form-option-variant--none h-[22px] overflow-hidden" title={$lang($string("products.none"))}>
                                 <$Lang keyName={$string("products.none")} />
                             </span>
                         </label>{" "}
@@ -135,9 +135,9 @@ export default (_props: PartialProps) => {
                             <$If
                                 test={item.pattern}
                                 $then={() => (
-                                    <span className="form-option-expanded">
+                                    <span className="form-option-expanded absolute top-[calc(100%+5px)] left-[calc(100%+55px)] border border-(color:--sv-setting-input-border-color-active) bg-(--sv-setting-body-bg) p-[3px] opacity-0 [transition:opacity_0.3s_cubic-bezier(0.25,0.46,0.45,0.94)] [visibility:hidden] [[class~=form-option]:hover_&]:z-[5000] [[class~=form-option]:hover_&]:opacity-100 [[class~=form-option]:hover_&]:[transform:translate(-50%,0)] [[class~=form-option]:hover_&]:[visibility:visible]">
                                         <span
-                                            className="form-option-image"
+                                            className="form-option-image h-[100px] w-[100px] bg-[position:50%] bg-cover bg-no-repeat [display:block]"
                                             dangerouslyInlineAttributes={{attributes: `style="background-image: url('${$raw("{{getImage image 'core-swatch'}}")}');"`}}
                                         />
                                     </span>

@@ -43,7 +43,7 @@ export default (_props: PartialProps) => {
     const showCartAction = $pointer<boolean>("show_cart_action");
     return (
         <article
-            className="listItem"
+            className="listItem small:-mx-gutter-half small:w-full small:max-w-none small:[display:table] large:[&:focus-within_.listItem-figureBody]:opacity-100 large:[&.focus-within_.listItem-figureBody]:opacity-100"
             data-event-type={$pointer("event")}
             data-entity-id={id}
             data-position={$pointer("position")}
@@ -53,10 +53,10 @@ export default (_props: PartialProps) => {
                 attributes: `data-product-category="${$Each({list: $pointer<string[]>("category"), $then: (item, loop) => `${$If({test: loop["@last"], $then: () => `${item}`, $else: () => `${item}, `})}`})}" data-product-price="${$Or({values: [$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))], $then: () => ` ${$If({test: price.with_tax, $then: () => ` ${price.with_tax.value} `, $else: () => ` ${price.without_tax.value} `})} `, $else: () => ` ${$lang($string("common.login_for_pricing"))} `})}"`,
             }}
         >
-            <figure className="listItem-figure">
+            <figure className="listItem-figure relative m-0 mb-single small:mb-0 small:w-3/12 small:px-half small:align-top small:[display:table-cell] large:align-middle">
                 <a
                     href={url}
-                    className="listItem-figure__link"
+                    className="listItem-figure__link m-[3px] [display:block] [&_.listItem-image]:w-full"
                     aria-label={$partial("components/products/product-info")}
                     data-event-type="product-click"
                 >
@@ -96,8 +96,8 @@ export default (_props: PartialProps) => {
                         <$If
                             test={settings.show_product_quick_view}
                             $then={() => (
-                                <div className="listItem-figureBody">
-                                    <button type="button" data-event-type="product-click" className="button button--small listItem-button quickview" data-product-id={id}>
+                                <div className="listItem-figureBody text-center opacity-100 large:absolute large:top-1/2 large:left-1/2 large:opacity-0 large:[transform:translateX(-50%)_translateY(-50%)] large:[[class~=listItem]:hover_&]:opacity-100">
+                                    <button type="button" data-event-type="product-click" className="button button--small listItem-button quickview my-single mx-0 bg-(--sv-card-figcaption-button-background) text-(--sv-card-figcaption-button-color) hover:bg-(--sv-card-figcaption-button-backgroundHover) hover:text-(--sv-card-figcaption-button-color) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:text-(--sv-card-figcaption-button-color) large:pointer-events-auto large:m-0 large:[display:inline-block]" data-product-id={id}>
                                         <$Lang keyName={$string("products.quick_view")} />
                                     </button>
                                 </div>
@@ -106,34 +106,34 @@ export default (_props: PartialProps) => {
                     )}
                 />
             </figure>
-            <div className="listItem-body">
-                <div className="listItem-content">
-                    <div className="listItem-details">
+            <div className="listItem-body small:w-9/12 small:pr-half small:pl-base-sixth small:align-top small:[display:table-cell] large:align-middle">
+                <div className="listItem-content large:[display:table]">
+                    <div className="listItem-details large:pr-[calc(var(--sv-spacing-double)*2)] large:align-top large:[display:table-cell] large:[&>:last-child]:mb-0 large:[[class~=page-sidebar]+[class~=page-content]_&]:pr-double">
                         <$If
                             test={$pointer("show_rating")}
                             $then={() => (
-                                <p className="listItem-rating">
+                                <p className="listItem-rating mb-quarter">
                                     <ProductsRatings rating_target={name} rating={$pointer("rating")} />
                                 </p>
                             )}
                         />
                         <$If
                             test={brand.name}
-                            $then={() => <p className="listItem-brand">{brand.name}</p>}
+                            $then={() => <p className="listItem-brand m-0 mb-eighth text-(length:--sv-fontSize-base) text-grey-light medium:mb-0 medium:text-smaller">{brand.name}</p>}
                         />
-                        <h4 className="listItem-title">
+                        <h4 className="listItem-title m-0 mb-eighth text-smaller medium:text-small [&>a]:no-underline">
                             <a href={url} aria-label={$partial("components/products/product-info")} data-event-type="product-click">
                                 {name}
                             </a>
                         </h4>
                         <$If test={$pointer("summary")} $then={() => <p>{$unescaped($pointer("summary"))}</p>} />
                     </div>
-                    <div className="listItem-actions">
+                    <div className="listItem-actions [&_.button]:mb-0 large:w-[22%] large:align-middle large:[display:table-cell] large:[&_.button]:w-full large:[&_.button+.button]:m-0 large:[&_.button+.button]:mt-half large:[[class~=page-sidebar]+[class~=page-content]_&]:w-[30%]">
                         <$Or values={[$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))]} $then={() => (<><$If
                             test={$pointer("price")}
                             $then={() => (
                                 <>
-                                    <div className="listItem-price">
+                                    <div className="listItem-price mb-base medium:text-small">
                                         <ProductsPrice price={$pointer("price")} />
                                     </div>
                                     {region("product_item_below_price")}

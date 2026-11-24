@@ -32,7 +32,7 @@ interface CartItem {
 
 export default (_props: PartialProps) => (
     <div className="previewCartWrapper max-h-[calc(100vh-6rem)] overflow-auto">
-        <div className="previewCart">
+        <div className="previewCart mx-auto w-full max-w-(--sv-layout-widthMax) flow-root">
             <$If
                 test={$pointer("cart.items.length")}
                 $then={() => (
@@ -41,8 +41,8 @@ export default (_props: PartialProps) => (
                             <$Each
                                 list={$limit($pointer<CartItem[]>("cart.items"), $number(4))}
                                 $then={(item) => (
-                                    <li className="previewCartItem">
-                                        <div className="previewCartItem-image">
+                                    <li className="previewCartItem mx-auto w-full max-w-(--sv-layout-widthMax) border-container-border leading-[19px] [.previewCartItem+&]:border-t">
+                                        <div className="previewCartItem-image relative w-4/12 p-0 text-center align-middle [display:table-cell] after:h-0 after:w-full after:pb-[100%] after:content-[''] after:[display:block] xxsmall:after:pb-[75%] xsmall:after:pb-[100%] [&_img]:absolute [&_img]:inset-0 [&_img]:m-auto [&_img]:max-h-[90%]">
                                             <$If
                                                 test={$pointer("type")}
                                                 operator={$string("==")}
@@ -59,7 +59,7 @@ export default (_props: PartialProps) => (
                                                 }
                                             />
                                         </div>
-                                        <div className="previewCartItem-content">
+                                        <div className="previewCartItem-content w-8/12 pr-gutter-half pl-0 align-middle [display:table-cell]">
                                             <span className="previewCartItem-brand inline-block text-smallest text-(--sv-small-font-color) mb-eighth">{item.brand.name}</span>
 
                                             <h6 className="previewCartItem-name m-0 mb-eighth [text-transform:none] [&>a]:no-underline">
@@ -95,11 +95,11 @@ export default (_props: PartialProps) => (
                             />
                         </ul>
                         {$unescaped($pointer("cart.preview_payment_widget"))}
-                        <div className="previewCartAction">
+                        <div className="previewCartAction mx-auto w-full max-w-(--sv-layout-widthMax) flow-root border-t border-container-border xxsmall:px-quarter xxsmall:py-half xsmall:px-half xsmall:py-single [display:block] [&_.button]:m-0 [&_.button]:w-full [&_.button]:px-half [&_.previewCartAction-viewCart:not(.previewCartAction-viewCart--sole)]:float-left [&_.previewCartAction-viewCart:not(.previewCartAction-viewCart--sole)]:w-6/12 [&_.previewCartAction-viewCart]:pr-gutter-half [&_.previewCartAction-viewCart]:pl-quarter [&_.previewCartAction-viewCart--sole]:float-none [&_.previewCartAction-viewCart--sole]:mx-auto [&_.previewCartAction-viewCart--sole]:w-6/12">
                             <$If
                                 test={$pointer("cart.show_primary_checkout_button")}
                                 $then={() => (
-                                    <div className="previewCartAction-checkout">
+                                    <div className="previewCartAction-checkout float-left w-6/12 pr-quarter pl-gutter-half">
                                         <a
                                             href={$pointer("urls.checkout.single_address")}
                                             className="button button--small button--primary"
@@ -120,7 +120,7 @@ export default (_props: PartialProps) => (
                             <$If
                                 test={$pointer("cart.show_multiple_address_shipping")}
                                 $then={() => (
-                                    <div className="previewCartAction-checkoutMultiple">
+                                    <div className="previewCartAction-checkoutMultiple clear-both pt-quarter pl-half">
                                         <a href={$pointer("urls.checkout.multiple_address")}>
                                             <$Lang keyName={$string("cart.preview.checkout_multiple")} />
                                         </a>
@@ -131,7 +131,7 @@ export default (_props: PartialProps) => (
                         <$If
                             test={$pointer("cart.additional_checkout_buttons")}
                             $then={() => (
-                                <div className="previewCart-additionalCheckoutButtons">
+                                <div className="previewCart-additionalCheckoutButtons [&_.FloatRight]:flow-root [&_.FloatRight_p]:float-none [&_.FloatRight_p]:my-third [&_.FloatRight_p]:text-right [&_.FloatRight_div]:float-right">
                                     <$Each
                                         list={$pointer<string[]>("cart.additional_checkout_buttons")}
                                         $then={(button) => $unescaped(button)}
@@ -142,7 +142,7 @@ export default (_props: PartialProps) => (
                     </>
                 )}
                 $else={() => (
-                    <div role="alert" aria-live="polite" aria-atomic="false" className="previewCart-emptyBody">
+                    <div role="alert" aria-live="polite" aria-atomic="false" className="previewCart-emptyBody p-double text-center">
                         <$Lang keyName={$string("cart.checkout.empty_cart")} />
                     </div>
                 )}

@@ -11,11 +11,11 @@ interface WishlistItem {
 
 export default (_props: PartialProps) => (
     <>
-        <ul className="productGrid">
+        <ul className="productGrid -mx-gutter-half mb-single w-auto max-w-none flow-root text-[0px] [list-style-type:none]">
             <$Each
                 list={$pointer<WishlistItem[]>("wishlist.items")}
                 $then={(item) => (
-                    <li className="product">
+                    <li className="product inline-block w-6/12 overflow-hidden px-gutter-half align-top text-(length:--sv-fontSize-base) small:w-4/12 medium:w-3/12 small:[[class~=page-sidebar]+[class~=page-content]_&]:w-4/12">
                         <ProductsCard id={item.product_id} theme_settings={$pointer("../theme_settings")} />
 
                         <$If

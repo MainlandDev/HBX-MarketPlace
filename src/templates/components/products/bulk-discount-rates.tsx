@@ -22,12 +22,12 @@ export default (_props: PartialProps) => {
                     <$If
                         test={$pointer("product")}
                         $then={() => (
-                            <dt className="productView-info-name">
+                            <dt className="productView-info-name clear-both float-left mr-quarter mb-eighth small:float-none small:font-(family-name:--sv-fontFamily-headings) small:text-smallest small:font-normal">
                                 <$Lang keyName={$string("products.bulk_pricing.title")} />
                             </dt>
                         )}
                     />
-                    <dd className="productView-info-value">
+                    <dd className="productView-info-value float-left mb-quarter small:float-none small:mb-base">
                         <a
                             href={`${product.url}#bulk_pricing`}
                             dangerouslyInlineAttributes={{

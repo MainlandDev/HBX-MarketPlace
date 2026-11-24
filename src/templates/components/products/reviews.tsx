@@ -17,8 +17,8 @@ export default (_props: PartialProps) => {
         <$If
             test={$pointer("reviews.total")}
             $then={() => (
-                <section className="toggle productReviews" id="product-reviews" data-product-reviews={""}>
-                    <h4 className="toggle-title">
+                <section className="toggle productReviews mb-single-half border-t border-container-border [[class~=tab-content]_&]:border-t-0 last-of-type:mb-[calc(calc(var(--sv-spacing-single)+var(--sv-spacing-half))*2)]" id="product-reviews" data-product-reviews={""}>
+                    <h4 className="toggle-title mb-single-half">
                         <$Lang keyName={$string("products.reviews.header")} total={$pointer<number>("reviews.total")} />
                         <$If
                             test={$pointer("theme_settings.show_product_reviews")}
@@ -35,14 +35,14 @@ export default (_props: PartialProps) => {
                         />
                     </h4>
                     <div className="toggle-content is-open" id="productReviews-content" aria-hidden="false">
-                        <ul className="productReviews-list" id="productReviews-list">
+                        <ul className="productReviews-list -mx-gutter-half my-0 w-auto max-w-none flow-root text-[0px] [list-style-type:none]" id="productReviews-list">
                             <$Each
                                 list={$pointer<Review[]>("reviews.list")}
                                 $then={(review) => (
-                                    <li className="productReview">
+                                    <li className="productReview inline-block w-full px-gutter-half align-top text-(length:--sv-fontSize-base) medium:w-6/12 large:w-4/12 small:[[class~=tab-content]_&]:w-1/2">
                                         <article>
                                             <header>
-                                                <span className="productReview-rating rating--small inline-block mb-quarter">
+                                                <span className="productReview-rating rating--small inline-block [&_.icon]:-mt-[3px] [&_.icon]:size-[14px] mb-quarter">
                                                     <ProductsRatings rating={review.rating} />
                                                     <span className="productReview-ratingNumber absolute size-px overflow-hidden border-0 p-0 [clip:rect(1px,1px,1px,1px)]">{review.rating}</span>
                                                 </span>

@@ -11,10 +11,10 @@ export default (_props: PartialProps) => {
                 test={description}
                 $then={() => (
                     <>
-                        <p className="productView-title">
+                        <p className="productView-title -mt-half mr-0 mb-base ml-0 border-b border-container-border px-base text-small medium:mt-single large:text-largest">
                             <$Lang keyName={$string("products.description")} />
                         </p>
-                        <div className="productView-description" data-event-type="product">
+                        <div className="productView-description relative z-[1] float-left w-full px-base medium:clear-both medium:float-none" data-event-type="product">
                             {$unescaped(description)}
                         </div>
                     </>
@@ -24,10 +24,10 @@ export default (_props: PartialProps) => {
                 test={warranty}
                 $then={() => (
                     <>
-                        <p className="productView-title">
+                        <p className="productView-title -mt-half mr-0 mb-base ml-0 border-b border-container-border px-base text-small medium:mt-single large:text-largest">
                             <$Lang keyName={$string("products.warranty")} />
                         </p>
-                        <div className="productView-description">{$unescaped(warranty)}</div>
+                        <div className="productView-description relative z-[1] float-left w-full px-base medium:clear-both medium:float-none">{$unescaped(warranty)}</div>
                     </>
                 )}
             />

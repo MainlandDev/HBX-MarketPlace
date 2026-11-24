@@ -11,7 +11,7 @@ export default (_props: PartialProps) => (
     <$If
         test={$pointer("social_media")}
         $then={() => (
-            <ul className="socialLinks socialLinks--alt">
+            <ul className="socialLinks socialLinks--alt m-0 p-0 flow-root leading-[37px] [list-style-type:none] [&_.socialLinks-item]:mr-half [&_.socialLinks-item]:mb-quarter [&_.socialLinks-item]:p-0 [&_.socialLinks-item]:text-[0px] [&_.socialLinks-item]:[display:inline-block] [&_.socialLinks-item:last-child]:mr-0 [&_.icon]:m-0 [&_.icon]:size-[21px] [&_.icon]:no-underline [&_.icon_svg]:fill-(--sv-setting-icon-color) [&_.icon_svg]:[transition:all_0.15s_ease] [&_.icon:hover_svg]:fill-(--sv-setting-icon-color-hover)">
                 <$Each
                     list={$pointer<SocialMedia[]>("social_media")}
                     $then={(social) => (

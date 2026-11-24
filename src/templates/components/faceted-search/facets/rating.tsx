@@ -33,7 +33,7 @@ export default (_props: PartialProps) => (
                                         rel="nofollow"
                                         data-faceted-search-facet={""}
                                     >
-                                        <span className="rating--small">
+                                        <span className="rating--small inline-block [&_.icon]:-mt-[3px] [&_.icon]:size-[14px]">
                                             <ProductsRatings rating={item.title} />
                                         </span>{" "}
                                         <$Lang keyName={$string("search.faceted.rating.and-up")} />{" "}

@@ -141,7 +141,7 @@ export default (_props: PartialProps) => {
             <$Inject keyName={$string("showBackorderMessage")} value={$pointer("product.show_backorder_message")} />
 
             <div
-                className="productView"
+                className="productView flex w-auto max-w-none flex-col justify-start -mx-base pt-base medium:flow-root [[class~=modal]_&]:py-0"
                 data-event-type="product"
                 data-entity-id={product.id}
                 data-name={product.title}
@@ -159,20 +159,20 @@ export default (_props: PartialProps) => {
                     )}
                 />
 
-                <section className="productView-images mb-double" data-image-gallery={""}>
+                <section className="productView-images float-left mb-double w-full px-base medium:w-6/12" data-image-gallery={""}>
                     {/*
             Note that these image sizes are coupled to image sizes used in /assets/js/theme/common/product-details.js
             for variant/rule image replacement
         */}
                     <$If test={$pointer("product.images.length")} operator={$string(">")} rvalue={$number(1)} $then={() => <CarouselContentAnnouncement />} />
                     <figure
-                        className="productView-image"
+                        className="productView-image relative m-auto flex items-center justify-center min-[320px]:max-[801px]:pointer-events-none medium:min-h-[366px] medium:[min-width:inherit] [&_.easyzoom-flyout]:absolute [&_.easyzoom-flyout]:top-0 [&_.easyzoom-flyout]:left-0 [&_.easyzoom-flyout]:size-full [&_.easyzoom-flyout]:overflow-hidden [&_.easyzoom-flyout_img]:max-w-none [&_.easyzoom-flyout_img]:w-auto"
                         data-image-gallery-main={""}
                         dangerouslyInlineAttributes={{
                             attributes: `${$If({test: product.main_image, $then: () => `${$raw('data-zoom-image="')}${$getImageSrcset(product.main_image, zoomSizes, $cdn(theme.default_image_product))}${$raw('"')}`})}`,
                         }}
                     >
-                        <div className="productView-img-container">
+                        <div className="productView-img-container relative m-auto w-full max-w-[500px] after:block after:h-0 after:w-full after:pb-[131.8%] after:content-[''] [&_img]:absolute [&_img]:inset-0 [&_img]:m-auto [&_img]:h-full [&_img]:w-full [&_img]:object-contain [&_img]:[font-family:'object-fit:_contain;']">
                             {/* Remove the surrounding a-element if there is no main image. */}
                             <$If
                                 test={product.main_image}
@@ -190,7 +190,7 @@ export default (_props: PartialProps) => {
                         </div>
                     </figure>
                     <ul
-                        className="productView-thumbnails"
+                        className="productView-thumbnails -mx-quarter my-0 w-auto max-w-none flow-root [list-style-type:none] [.productView-image+&]:mt-half [&[data-slick]]:opacity-0 [&[data-slick].slick-initialized]:opacity-100 [&_.slick-list]:mx-[40px] [&_.slick-next]:right-0 [&_.slick-prev]:left-0 [&_img]:relative [&_img]:inset-0 [&_img]:m-0 [&_img]:w-[50px] [&_img]:object-contain [&_img]:[font-family:'object-fit:_contain;']"
                         dangerouslyInlineAttributes={{
                             attributes: `${$Gt({
                                 a: $pointer<number>("product.images.length"),
@@ -206,9 +206,9 @@ export default (_props: PartialProps) => {
                                 const zoom = {"1x": $pointer<SrcsetSize>("../theme_settings.zoom_size")};
                                 const size = {"1x": $pointer<SrcsetSize>("../theme_settings.product_size")};
                                 return (
-                                    <li className="productView-thumbnail">
+                                    <li className="productView-thumbnail float-left p-quarter text-center [&:not([style*=width])]:w-3/12 large:[&:not([style*=width])]:w-[20%]">
                                         <a
-                                            className="productView-thumbnail-link"
+                                            className="productView-thumbnail-link relative box-content flex h-[67px] w-full max-w-[75px] justify-center border border-container-border p-[2px] hover:border-grey-darker is-active:border-grey-darker"
                                             href={`${$getImageSrcset(image, zoom, defaultImage)}`}
                                             data-image-gallery-item={""}
                                             data-image-gallery-new-image-url={`${$getImageSrcset(image, size, defaultImage)}`}
@@ -224,13 +224,13 @@ export default (_props: PartialProps) => {
                     </ul>
                 </section>
 
-                <section className="productView-details product-data">
+                <section className="productView-details product-data float-left w-full px-base pb-single-third order-[-1] medium:clear-right medium:float-right medium:w-6/12 [[class~=productView--quickView]_&]:relative">
                     <div className="productView-product medium:border-b medium:border-container-border medium:pb-[calc(var(--sv-spacing-single)+var(--sv-spacing-third))] [&>:last-child]:mb-0">
-                        <h1 className="productView-title">{product.title}</h1>
+                        <h1 className="productView-title -mt-half mr-0 mb-quarter ml-0 text-small medium:mt-single large:text-largest">{product.title}</h1>
                         <$If
                             test={product.brand}
                             $then={() => (
-                                <h2 className="productView-brand">
+                                <h2 className="productView-brand m-0 mb-half text-smaller text-(--sv-productView-brand-link-color) large:-mt-eighth large:mb-base large:text-small [&_a]:text-(--sv-productView-brand-link-color) [&_a]:hover:text-(--sv-productView-brand-link-color--hover)">
                                     <a href={product.brand.url}>
                                         <span>{product.brand.name}</span>
                                     </a>
@@ -240,12 +240,12 @@ export default (_props: PartialProps) => {
                         <$If
                             test={product.call_for_price}
                             $then={() => (
-                                <p className="productView-price">
+                                <p className="productView-price mb-third text-smaller medium:mb-base medium:text-larger [&_.price-section--saving]:text-smaller [&_abbr]:border-0 [&_abbr]:text-inherit [&_abbr]:[font-size:inherit]">
                                     <span>{product.call_for_price}</span>
                                 </p>
                             )}
                         />
-                        <div className="productView-price">
+                        <div className="productView-price mb-third text-smaller medium:mb-base medium:text-larger [&_.price-section--saving]:text-smaller [&_abbr]:border-0 [&_abbr]:text-inherit [&_abbr]:[font-size:inherit]">
                             <$Or values={[$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))]} $then={() => (<><ProductsPrice price={$pointer("product.price")} /></>)} $else={() => (<><LoginForPricing /></>)} />
                         </div>
                         {region("product_below_price")}
@@ -299,33 +299,33 @@ export default (_props: PartialProps) => {
                             />
                         </div>
                         {product.detail_messages}
-                        <dl className="productView-info">
+                        <dl className="productView-info mt-half flow-root small:mt-0 small:[&>:first-child]:mt-single [&>:last-child]:mb-0">
                             <dt
-                                className="productView-info-name sku-label"
+                                className="productView-info-name sku-label clear-both float-left mr-quarter mb-eighth small:float-none small:font-(family-name:--sv-fontFamily-headings) small:text-smallest small:font-normal"
                                 dangerouslyInlineAttributes={{attributes: `${$Unless({test: product.sku, $then: () => $raw(' style="display: none;"')})}`}}
                             >
                                 <$Lang keyName={$string("products.sku")} />
                             </dt>
-                            <dd className="productView-info-value" data-product-sku={""}>
+                            <dd className="productView-info-value float-left mb-quarter small:float-none small:mb-base" data-product-sku={""}>
                                 {product.sku}
                             </dd>
                             <dt
-                                className="productView-info-name upc-label"
+                                className="productView-info-name upc-label clear-both float-left mr-quarter mb-eighth small:float-none small:font-(family-name:--sv-fontFamily-headings) small:text-smallest small:font-normal"
                                 dangerouslyInlineAttributes={{attributes: `${$Unless({test: product.upc, $then: () => $raw(' style="display: none;"')})}`}}
                             >
                                 <$Lang keyName={$string("products.upc")} />
                             </dt>
-                            <dd className="productView-info-value" data-product-upc={""}>
+                            <dd className="productView-info-value float-left mb-quarter small:float-none small:mb-base" data-product-upc={""}>
                                 {product.upc}
                             </dd>
                             <$If
                                 test={product.condition}
                                 $then={() => (
                                     <>
-                                        <dt className="productView-info-name">
+                                        <dt className="productView-info-name clear-both float-left mr-quarter mb-eighth small:float-none small:font-(family-name:--sv-fontFamily-headings) small:text-smallest small:font-normal">
                                             <$Lang keyName={$string("products.condition")} />
                                         </dt>
-                                        <dd className="productView-info-value">{product.condition}</dd>
+                                        <dd className="productView-info-value float-left mb-quarter small:float-none small:mb-base">{product.condition}</dd>
                                     </>
                                 )}
                             />
@@ -333,10 +333,10 @@ export default (_props: PartialProps) => {
                                 test={product.availability}
                                 $then={() => (
                                     <>
-                                        <dt className="productView-info-name">
+                                        <dt className="productView-info-name clear-both float-left mr-quarter mb-eighth small:float-none small:font-(family-name:--sv-fontFamily-headings) small:text-smallest small:font-normal">
                                             <$Lang keyName={$string("products.availability")} />
                                         </dt>
-                                        <dd className="productView-info-value">{product.availability}</dd>
+                                        <dd className="productView-info-value float-left mb-quarter small:float-none small:mb-base">{product.availability}</dd>
                                     </>
                                 )}
                             />
@@ -344,10 +344,10 @@ export default (_props: PartialProps) => {
                                 values={[product.weight, theme.show_product_weight]}
                                 $then={() => (
                                     <>
-                                        <dt className="productView-info-name">
+                                        <dt className="productView-info-name clear-both float-left mr-quarter mb-eighth small:float-none small:font-(family-name:--sv-fontFamily-headings) small:text-smallest small:font-normal">
                                             <$Lang keyName={$string("products.weight")} />
                                         </dt>
-                                        <dd className="productView-info-value" data-product-weight={""}>
+                                        <dd className="productView-info-value float-left mb-quarter small:float-none small:mb-base" data-product-weight={""}>
                                             {product.weight}
                                         </dd>
                                     </>
@@ -357,10 +357,10 @@ export default (_props: PartialProps) => {
                                 values={[product.width, product.height, product.depth, theme.show_product_dimensions]}
                                 $then={() => (
                                     <>
-                                        <dt className="productView-info-name">
+                                        <dt className="productView-info-name clear-both float-left mr-quarter mb-eighth small:float-none small:font-(family-name:--sv-fontFamily-headings) small:text-smallest small:font-normal">
                                             <$Lang keyName={$string("products.width")} />
                                         </dt>
-                                        <dd className="productView-info-value" data-product-width={""}>
+                                        <dd className="productView-info-value float-left mb-quarter small:float-none small:mb-base" data-product-width={""}>
                                             {product.width}{" "}
                                             <$If
                                                 test={$pointer("settings.measurements.length")}
@@ -370,10 +370,10 @@ export default (_props: PartialProps) => {
                                                 $else={() => <>(<$Lang keyName={$string("products.measurement.imperial")} />)</>}
                                             />
                                         </dd>
-                                        <dt className="productView-info-name">
+                                        <dt className="productView-info-name clear-both float-left mr-quarter mb-eighth small:float-none small:font-(family-name:--sv-fontFamily-headings) small:text-smallest small:font-normal">
                                             <$Lang keyName={$string("products.height")} />
                                         </dt>
-                                        <dd className="productView-info-value" data-product-height={""}>
+                                        <dd className="productView-info-value float-left mb-quarter small:float-none small:mb-base" data-product-height={""}>
                                             {product.height}{" "}
                                             <$If
                                                 test={$pointer("settings.measurements.length")}
@@ -383,10 +383,10 @@ export default (_props: PartialProps) => {
                                                 $else={() => <>(<$Lang keyName={$string("products.measurement.imperial")} />)</>}
                                             />
                                         </dd>
-                                        <dt className="productView-info-name">
+                                        <dt className="productView-info-name clear-both float-left mr-quarter mb-eighth small:float-none small:font-(family-name:--sv-fontFamily-headings) small:text-smallest small:font-normal">
                                             <$Lang keyName={$string("products.depth")} />
                                         </dt>
-                                        <dd className="productView-info-value" data-product-depth={""}>
+                                        <dd className="productView-info-value float-left mb-quarter small:float-none small:mb-base" data-product-depth={""}>
                                             {product.depth}{" "}
                                             <$If
                                                 test={$pointer("settings.measurements.length")}
@@ -403,10 +403,10 @@ export default (_props: PartialProps) => {
                                 test={product.min_purchase_quantity}
                                 $then={() => (
                                     <>
-                                        <dt className="productView-info-name">
+                                        <dt className="productView-info-name clear-both float-left mr-quarter mb-eighth small:float-none small:font-(family-name:--sv-fontFamily-headings) small:text-smallest small:font-normal">
                                             <$Lang keyName={$string("products.min_purchase_quantity")} />
                                         </dt>
-                                        <dd className="productView-info-value">
+                                        <dd className="productView-info-value float-left mb-quarter small:float-none small:mb-base">
                                             <$Lang keyName={$string("products.purchase_units")} quantity={product.min_purchase_quantity} />
                                         </dd>
                                     </>
@@ -416,10 +416,10 @@ export default (_props: PartialProps) => {
                                 test={product.max_purchase_quantity}
                                 $then={() => (
                                     <>
-                                        <dt className="productView-info-name">
+                                        <dt className="productView-info-name clear-both float-left mr-quarter mb-eighth small:float-none small:font-(family-name:--sv-fontFamily-headings) small:text-smallest small:font-normal">
                                             <$Lang keyName={$string("products.max_purchase_quantity")} />
                                         </dt>
-                                        <dd className="productView-info-value">
+                                        <dd className="productView-info-value float-left mb-quarter small:float-none small:mb-base">
                                             <$Lang keyName={$string("products.purchase_units")} quantity={product.max_purchase_quantity} />
                                         </dd>
                                     </>
@@ -429,10 +429,10 @@ export default (_props: PartialProps) => {
                                 test={product.gift_wrapping_available}
                                 $then={() => (
                                     <>
-                                        <dt className="productView-info-name">
+                                        <dt className="productView-info-name clear-both float-left mr-quarter mb-eighth small:float-none small:font-(family-name:--sv-fontFamily-headings) small:text-smallest small:font-normal">
                                             <$Lang keyName={$string("products.gift_wrapping")} />
                                         </dt>
-                                        <dd className="productView-info-value">
+                                        <dd className="productView-info-value float-left mb-quarter small:float-none small:mb-base">
                                             <$Lang keyName={$string("products.gift_wrapping_available")} />
                                         </dd>
                                     </>
@@ -445,10 +445,10 @@ export default (_props: PartialProps) => {
                                         test={product.shipping.calculated}
                                         $then={() => (
                                             <>
-                                                <dt className="productView-info-name">
+                                                <dt className="productView-info-name clear-both float-left mr-quarter mb-eighth small:float-none small:font-(family-name:--sv-fontFamily-headings) small:text-smallest small:font-normal">
                                                     <$Lang keyName={$string("products.shipping")} />
                                                 </dt>
-                                                <dd className="productView-info-value">
+                                                <dd className="productView-info-value float-left mb-quarter small:float-none small:mb-base">
                                                     <$Lang keyName={$string("products.shipping_calculated")} />
                                                 </dd>
                                             </>
@@ -461,20 +461,20 @@ export default (_props: PartialProps) => {
                                                     rvalue={$number(0)}
                                                     $then={() => (
                                                         <>
-                                                            <dt className="productView-info-name">
+                                                            <dt className="productView-info-name clear-both float-left mr-quarter mb-eighth small:float-none small:font-(family-name:--sv-fontFamily-headings) small:text-smallest small:font-normal">
                                                                 <$Lang keyName={$string("products.shipping")} />
                                                             </dt>
-                                                            <dd className="productView-info-value">
+                                                            <dd className="productView-info-value float-left mb-quarter small:float-none small:mb-base">
                                                                 <$Lang keyName={$string("products.shipping_free")} />
                                                             </dd>
                                                         </>
                                                     )}
                                                     $else={() => (
                                                         <>
-                                                            <dt className="productView-info-name">
+                                                            <dt className="productView-info-name clear-both float-left mr-quarter mb-eighth small:float-none small:font-(family-name:--sv-fontFamily-headings) small:text-smallest small:font-normal">
                                                                 <$Lang keyName={$string("products.shipping")} />
                                                             </dt>
-                                                            <dd className="productView-info-value">
+                                                            <dd className="productView-info-value float-left mb-quarter small:float-none small:mb-base">
                                                                 <$Lang keyName={$string("products.shipping_fixed")} amount={product.shipping.price.formatted} />
                                                             </dd>
                                                         </>
@@ -505,8 +505,8 @@ export default (_props: PartialProps) => {
                     </div>
                 </section>
 
-                <section className="productView-details product-options">
-                    <div className="productView-options">
+                <section className="productView-details product-options float-left w-full px-base pb-single-third medium:clear-right medium:float-right medium:w-6/12 [[class~=productView--quickView]_&]:relative">
+                    <div className="productView-options mb-single flow-root text-center small:text-left small:[&_.form-input[type=number]]:w-2/12 [&_.form]:[display:inline] [&_.add-to-cart-wrapper:not([style*=none])]:[display:inline] [&_input[type=file]]:text-smallest [&_.form-field]:text-[0px] [&_.form-field:not([data-variant-colours]_.form-field)]:mb-[2rem] [&_.form-field--error>.form-inlineMessage]:text-[1rem] [&_.form-field>.form-checkbox+.form-label]:ml-single [&_.form-field>.form-checkbox+.form-label]:w-auto [&_.form-field>.form-checkbox+.form-label]:[display:inline-block] small:[&_.form-field>.form-checkbox+.form-label]:ml-0 small:[&_.form-field>.form-checkbox+.form-label]:w-full [&_.form-field>.form-radio+.form-label]:[display:inline-block] [&_.form-field>.form-radio+.form-label]:text-justify [&_.form-field>.form-label:nth-of-type(2)]:ml-0 [&_.add-to-cart-buttons]:[display:inline-grid] [&_.add-to-cart-buttons]:float-left [&_.add-to-cart-buttons]:mb-[1rem] [&_.add-to-cart-buttons]:w-full small:[&_.add-to-cart-buttons]:px-[10px] small:[&_.add-to-cart-buttons]:py-0 small:[&_.add-to-cart-buttons]:w-1/2 medium:[&_.add-to-cart-buttons]:pr-half large:[&_.add-to-cart-buttons]:[display:inline-block] large:[&_.add-to-cart-buttons]:mt-[1rem] small:[&_.add-to-cart-buttons.pre-order-buttons]:w-auto small:[&_.add-to-cart-buttons.pre-order-buttons]:min-w-[50%] medium:[&_.add-to-cart-buttons.pre-order-buttons]:mr-[11px] medium:[&_.add-to-cart-buttons.pre-order-buttons]:min-w-[auto] medium:[&_.add-to-cart-buttons.pre-order-buttons]:p-0 [&_.add-to-cart-buttons.pre-order-buttons_.button]:px-[24px] [&_.add-to-cart-buttons.pre-order-buttons_.button]:py-[13px] [&_.add-to-cart-buttons_.button]:mx-0 [&_.add-to-cart-buttons_.button]:mb-0 [&_.add-to-cart-buttons_.button]:w-full">
                         <$If test={product.release_date} $then={() => <p>{product.release_date}</p>} />
                         <form className="form" method="post" action={product.cart_url} encType="multipart/form-data" data-cart-item-add={""}>
                             <input type="hidden" name="action" value="add" />
@@ -540,7 +540,7 @@ export default (_props: PartialProps) => {
                                 />
                             </div>
                             <div className={`form-field form-field--stock${$Unless({test: product.stock_level, $then: () => " u-hiddenVisually"})}`}>
-                                <label className="form-label form-label--alternate">
+                                <label className="form-label form-label--alternate m-0 cursor-default">
                                     <span className="productView-stock-message font-bold">
                                         <span data-product-stock={""}>{product.stock_level}</span>{" "}
                                         <$Lang keyName={$string("products.in_stock")} />
@@ -548,16 +548,16 @@ export default (_props: PartialProps) => {
                                     <$All
                                         values={[product.show_backorder_availability_prompt, product.available_to_sell, product.available_for_backorder]}
                                         $then={() => (
-                                            <span className="productView-backorder-availability-prompt" data-backorder-prompt={""}>
+                                            <span className="productView-backorder-availability-prompt before:content-['|_']" data-backorder-prompt={""}>
                                                 {product.backorder_availability_prompt}
                                             </span>
                                         )}
-                                        $else={() => <span className="productView-backorder-availability-prompt" data-backorder-prompt={""} style={{display: "none"}}></span>}
+                                        $else={() => <span className="productView-backorder-availability-prompt before:content-['|_']" data-backorder-prompt={""} style={{display: "none"}}></span>}
                                     />
                                 </label>
-                                <p className="form-label form-label--alternate" data-product-backordered={""} style={{display: "none"}}>
-                                    <span data-qty-backordered-message={""}></span>
-                                    <span data-backorder-message={""}></span>
+                                <p className="form-label form-label--alternate m-0 cursor-default" data-product-backordered={""} style={{display: "none"}}>
+                                    <span className="[&:not(:empty)]:font-bold" data-qty-backordered-message={""}></span>
+                                    <span className="[[data-qty-backordered-message]:not(:empty)+&:not(:empty)]:before:content-['|_']" data-backorder-message={""}></span>
                                 </p>
                                 <ul className="productView-picklist-backorder m-0 list-none p-0 text-[1rem]" data-picklist-backorder-list={""} style={{display: "none"}}></ul>
                             </div>
@@ -568,7 +568,7 @@ export default (_props: PartialProps) => {
                     <Share url={product.url} />
                 </section>
 
-                <article className="productView-description">
+                <article className="productView-description relative z-[1] float-left w-full px-base">
                     <$If
                         test={theme.show_product_details_tabs}
                         $then={() => <ProductsDescriptionTabs />}

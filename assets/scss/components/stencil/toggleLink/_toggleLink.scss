@@ -1,25 +1,10 @@
 // =============================================================================
 // TOGGLE LINK (CSS)
 // =============================================================================
-
-
-// Toggle link
-// -----------------------------------------------------------------------------
-
-$toggle-spacing: spacing("single") + spacing("half");
-
-.toggle {
-    border-top: container("border");
-    margin-bottom: $toggle-spacing;
-
-    &:last-of-type {
-        margin-bottom: $toggle-spacing * 2;
-    }
-}
-
-.toggle-title {
-    margin-bottom: $toggle-spacing;
-}
+//
+// `.toggle` and `.toggle-title` are utilities in products/reviews.tsx and videos.tsx.
+// Stays: `.toggleLink` and its text variants. Their consumers include facetedSearch/faceted-search-navigation.tsx, whose className is a
+// template literal (it cannot hold utilities) and the faceted-search templates of another work package.
 
 .toggleLink {
     color: stencilColor("color-textSecondary");
@@ -55,6 +40,8 @@ $toggle-spacing: spacing("single") + spacing("half");
     }
 }
 
+// Stays: toggled through the `is-open` class by the collapsible JS, and a layered important `display` utility changed how the product
+// reviews section renders inside the description tabs (measured against the pre-conversion page).
 .toggle-content {
     display: none;
 

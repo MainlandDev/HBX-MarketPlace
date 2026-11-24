@@ -337,6 +337,12 @@
     /* half of the Foundation grid gutter (the gutter is spacing("single")): grid-column padding and nested grid-row margin (account layout, login) */
     --spacing-gutter-half: calc(var(--sv-spacing-single) / 2);
 
+    /* single + half: the toggle section spacing (product reviews and video gallery, 4 sites) */
+    --spacing-single-half: calc(var(--sv-spacing-single) + var(--sv-spacing-half));
+
+    /* single + quarter: video gallery spacing (3 sites) */
+    --spacing-single-quarter: calc(var(--sv-spacing-single) + var(--sv-spacing-quarter));
+
     /* backorder copy colour (BACK-699), the design-specified hex of the former $account-backorder-textColor */
     --color-backorder: #757575;
 

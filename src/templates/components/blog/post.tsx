@@ -88,11 +88,11 @@ export default (_props: PartialProps) => {
                         <$If
                             test={$pointer("post.tags")}
                             $then={() => (
-                                <ul className="tags mt-double text-center">
+                                <ul className="tags mt-double text-center text-[0px] [list-style-type:none]">
                                     <$Each
                                         list={$pointer<Tag[]>("post.tags")}
                                         $then={(tag) => (
-                                            <li className="tag">
+                                            <li className="tag inline-block text-(length:--sv-tag-fontSize) [&_a]:inline-block [&_a]:p-(--sv-tag-padding) [&_a]:text-(--sv-tag-color) [&_a]:no-underline [&_a]:hover:text-(--sv-tag-color-hover)">
                                                 <a href={tag.url}>#{tag.name}</a>
                                             </li>
                                         )}

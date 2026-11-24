@@ -86,15 +86,15 @@ export default (_props: PartialProps) => {
     const cart = $pointer<Cart>("cart");
     const multi = cart.multi_coupon_ui_enabled;
     return (
-        <ul className={`cart-totals ${$If({test: multi, $then: () => "cart-total-enhanced"})}`}>
-            <li className="cart-total">
-                <div className="cart-total-label">
+        <ul className="cart-totals mb-single ml-0 w-full text-right [list-style-type:none] small:clear-both small:float-right small:w-9/12 medium:mb-base medium:w-7/12 large:w-5/12" dangerouslyInlineAttributes={{attributes: `${$If({test: multi, $then: () => 'data-enhanced=""'})}`}}>
+            <li className="cart-total flow-root border-b-0 medium:[ul:not([data-enhanced])>.cart-total+&]:border-t medium:[ul:not([data-enhanced])>.cart-total+&]:border-container-border">
+                <div className="cart-total-label float-left w-4/12 py-third pr-0 pl-single text-text-secondary small:w-6/12 medium:py-base medium:pl-0 medium:text-left medium:[display:block] [[data-enhanced]_&]:w-6/12 [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:text-left [[data-enhanced]_&]:text-text-base">
                     <strong>
                         <$Lang keyName={$string("cart.checkout.subtotal")} />
                         {colon(multi)}
                     </strong>
                 </div>
-                <div className="cart-total-value">
+                <div className="cart-total-value float-left py-third pr-0 pl-single text-left small:text-right medium:w-6/12 medium:py-base medium:pl-0 [[data-enhanced]_&]:float-right [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:font-semibold">
                     <$Or values={[$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))]} $then={() => (<><span>{cart.sub_total.formatted}</span></>)} $else={() => (<><LoginForPricing /></>)} />
                 </div>
             </li>
@@ -104,37 +104,37 @@ export default (_props: PartialProps) => {
                     <$Or
                         values={[cart.coupons, cart.display_discount_total.value]}
                         $then={() => (
-                            <div className="cart-total cart-total-discounts">
-                                <div className="cart-total-label" data-discount-toggle={""}>
+                            <div className="cart-total cart-total-discounts flow-root border-b-0">
+                                <div className="cart-total-label float-left w-4/12 py-third pr-0 pl-single text-text-secondary small:w-6/12 medium:py-base medium:pl-0 medium:text-left medium:[display:block] [[data-enhanced]_&]:w-6/12 [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:text-left [[data-enhanced]_&]:text-text-base [[data-enhanced]_&]:cursor-pointer" data-discount-toggle={""}>
                                     <strong>
                                         <$Lang keyName={$string("cart.discounts")} />
                                     </strong>
-                                    <i className="icon cart-discount-icon" aria-hidden="true">
+                                    <i className="icon cart-discount-icon [transition:transform_0.3s_ease] is-open:[transform:rotate(180deg)] [&_svg]:fill-text-base" aria-hidden="true">
                                         <svg>
                                             <use href="#icon-keyboard-arrow-up" />
                                         </svg>
                                     </i>
                                 </div>
-                                <div className="cart-total-value" data-discount-toggle={""}>
+                                <div className="cart-total-value float-left py-third pr-0 pl-single text-left small:text-right medium:w-6/12 medium:py-base medium:pl-0 [[data-enhanced]_&]:float-right [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:font-semibold" data-discount-toggle={""}>
                                     <span>{cart.display_discount_total.formatted}</span>
                                 </div>
-                                <ul data-discount-details={""} className="cart-discount-list">
+                                <ul data-discount-details={""} className="cart-discount-list ml-0 w-full flex-col [&:not([style*=none])]:flex">
                                     <$If
                                         test={cart.order_based_auto_discount_total.value}
                                         $then={() => (
-                                            <li className="cart-discount-item">
-                                                <div className="cart-discount-item-label">
+                                            <li className="cart-discount-item justify-between py-eighth text-text-secondary [&:not([style*=none])]:flex">
+                                                <div className="cart-discount-item-label text-left">
                                                     <i className="icon" aria-hidden="true">
                                                         <svg>
                                                             <use href="#icon-promotions" />
                                                         </svg>
                                                     </i>
-                                                    <span className="cart-coupon-name">
+                                                    <span className="cart-coupon-name ml-sixth inline-flex flex-1 flex-col">
                                                         <$Lang keyName={$string("cart.automatic_discount")} />{" "}
                                                         <$If
                                                             test={cart.order_based_auto_discount_max_limit_reached}
                                                             $then={() => (
-                                                                <span className="cart-coupon-limit">
+                                                                <span className="cart-coupon-limit text-tiny text-success">
                                                                     <$Lang keyName={$string("cart.coupons.maximum_discount_applied")} />
                                                                 </span>
                                                             )}
@@ -148,14 +148,14 @@ export default (_props: PartialProps) => {
                                     <$If
                                         test={cart.manual_discount_total.value}
                                         $then={() => (
-                                            <li className="cart-discount-item">
-                                                <div className="cart-discount-item-label">
+                                            <li className="cart-discount-item justify-between py-eighth text-text-secondary [&:not([style*=none])]:flex">
+                                                <div className="cart-discount-item-label text-left">
                                                     <i className="icon" aria-hidden="true">
                                                         <svg>
                                                             <use href="#icon-promotions" />
                                                         </svg>
                                                     </i>
-                                                    <span className="cart-coupon-name">
+                                                    <span className="cart-coupon-name ml-sixth inline-flex flex-1 flex-col">
                                                         <$Lang keyName={$string("cart.manual_discount")} />
                                                     </span>
                                                 </div>
@@ -166,14 +166,14 @@ export default (_props: PartialProps) => {
                                     <$Each
                                         list={cart.coupons}
                                         $then={(coupon) => (
-                                            <li className="cart-discount-item">
-                                                <div className="cart-discount-item-label">
+                                            <li className="cart-discount-item justify-between py-eighth text-text-secondary [&:not([style*=none])]:flex">
+                                                <div className="cart-discount-item-label text-left">
                                                     <i className="icon" aria-hidden="true">
                                                         <svg>
                                                             <use href="#icon-promotions" />
                                                         </svg>
                                                     </i>
-                                                    <span className="cart-coupon-name">
+                                                    <span className="cart-coupon-name ml-sixth inline-flex flex-1 flex-col">
                                                         <$If
                                                             test={coupon.display_name}
                                                             $then={() => (
@@ -186,7 +186,7 @@ export default (_props: PartialProps) => {
                                                         <$If
                                                             test={coupon.has_max_limit_reached}
                                                             $then={() => (
-                                                                <span className="cart-coupon-limit">
+                                                                <span className="cart-coupon-limit text-tiny text-success">
                                                                     <$Lang keyName={$string("cart.coupons.maximum_discount_applied")} />
                                                                 </span>
                                                             )}
@@ -214,14 +214,14 @@ export default (_props: PartialProps) => {
             <$If
                 test={cart.gift_wrapping_cost.value}
                 $then={() => (
-                    <li className="cart-total">
-                        <div className="cart-total-label">
+                    <li className="cart-total flow-root border-b-0 medium:[ul:not([data-enhanced])>.cart-total+&]:border-t medium:[ul:not([data-enhanced])>.cart-total+&]:border-container-border">
+                        <div className="cart-total-label float-left w-4/12 py-third pr-0 pl-single text-text-secondary small:w-6/12 medium:py-base medium:pl-0 medium:text-left medium:[display:block] [[data-enhanced]_&]:w-6/12 [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:text-left [[data-enhanced]_&]:text-text-base">
                             <strong>
                                 <$Lang keyName={$string("cart.checkout.gift_wrapping")} />
                                 {colon(multi)}
                             </strong>
                         </div>
-                        <div className="cart-total-value">
+                        <div className="cart-total-value float-left py-third pr-0 pl-single text-left small:text-right medium:w-6/12 medium:py-base medium:pl-0 [[data-enhanced]_&]:float-right [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:font-semibold">
                             <span>{cart.gift_wrapping_cost.formatted}</span>
                         </div>
                     </li>
@@ -233,14 +233,14 @@ export default (_props: PartialProps) => {
                     <$Each
                         list={cart.fees}
                         $then={(fee) => (
-                            <li className="cart-total">
-                                <div className="cart-total-label">
+                            <li className="cart-total flow-root border-b-0 medium:[ul:not([data-enhanced])>.cart-total+&]:border-t medium:[ul:not([data-enhanced])>.cart-total+&]:border-container-border">
+                                <div className="cart-total-label float-left w-4/12 py-third pr-0 pl-single text-text-secondary small:w-6/12 medium:py-base medium:pl-0 medium:text-left medium:[display:block] [[data-enhanced]_&]:w-6/12 [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:text-left [[data-enhanced]_&]:text-text-base">
                                     <strong>
                                         {fee.display_name}
                                         {colon($pointer<boolean>("../cart.multi_coupon_ui_enabled"))}
                                     </strong>
                                 </div>
-                                <div className="cart-total-value">
+                                <div className="cart-total-value float-left py-third pr-0 pl-single text-left small:text-right medium:w-6/12 medium:py-base medium:pl-0 [[data-enhanced]_&]:float-right [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:font-semibold">
                                     <span>{fee.cost.formatted}</span>
                                 </div>
                             </li>
@@ -273,8 +273,8 @@ export default (_props: PartialProps) => {
                                 </>
                             )}
                         />
-                        <li className={`cart-total ${$If({test: multi, $then: () => "cart-total-shipping-estimator"})}`}>
-                            <div className="cart-total-label">
+                        <li className="cart-total flow-root border-b-0 medium:[ul:not([data-enhanced])>.cart-total+&]:border-t medium:[ul:not([data-enhanced])>.cart-total+&]:border-container-border">
+                            <div className="cart-total-label float-left w-4/12 py-third pr-0 pl-single text-text-secondary small:w-6/12 medium:py-base medium:pl-0 medium:text-left medium:[display:block] [[data-enhanced]_&]:w-6/12 [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:text-left [[data-enhanced]_&]:text-text-base">
                                 <strong>
                                     <$Lang keyName={$string("cart.checkout.shipping")} />
                                     {colon(multi)}
@@ -297,14 +297,14 @@ export default (_props: PartialProps) => {
                     <$Unless
                         test={tax.included}
                         $then={() => (
-                            <li className="cart-total">
-                                <div className="cart-total-label">
+                            <li className="cart-total flow-root border-b-0 medium:[ul:not([data-enhanced])>.cart-total+&]:border-t medium:[ul:not([data-enhanced])>.cart-total+&]:border-container-border">
+                                <div className="cart-total-label float-left w-4/12 py-third pr-0 pl-single text-text-secondary small:w-6/12 medium:py-base medium:pl-0 medium:text-left medium:[display:block] [[data-enhanced]_&]:w-6/12 [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:text-left [[data-enhanced]_&]:text-text-base">
                                     <strong>
                                         {tax.name}
                                         {colon($pointer<boolean>("../cart.multi_coupon_ui_enabled"))}
                                     </strong>
                                 </div>
-                                <div className="cart-total-value">
+                                <div className="cart-total-value float-left py-third pr-0 pl-single text-left small:text-right medium:w-6/12 medium:py-base medium:pl-0 [[data-enhanced]_&]:float-right [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:font-semibold">
                                     <span>{tax.cost.formatted}</span>
                                 </div>
                             </li>
@@ -319,13 +319,13 @@ export default (_props: PartialProps) => {
                         <$If
                             test={cart.discount}
                             $then={() => (
-                                <li className="cart-total">
-                                    <div className="cart-total-label">
+                                <li className="cart-total flow-root border-b-0 medium:[ul:not([data-enhanced])>.cart-total+&]:border-t medium:[ul:not([data-enhanced])>.cart-total+&]:border-container-border">
+                                    <div className="cart-total-label float-left w-4/12 py-third pr-0 pl-single text-text-secondary small:w-6/12 medium:py-base medium:pl-0 medium:text-left medium:[display:block] [[data-enhanced]_&]:w-6/12 [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:text-left [[data-enhanced]_&]:text-text-base">
                                         <strong>
                                             <$Lang keyName={$string("cart.discount")} />:
                                         </strong>
                                     </div>
-                                    <div className="cart-total-value">{cart.discount.formatted}</div>
+                                    <div className="cart-total-value float-left py-third pr-0 pl-single text-left small:text-right medium:w-6/12 medium:py-base medium:pl-0 [[data-enhanced]_&]:float-right [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:font-semibold">{cart.discount.formatted}</div>
                                 </li>
                             )}
                         />
@@ -335,8 +335,8 @@ export default (_props: PartialProps) => {
                                 <$Each
                                     list={cart.coupons}
                                     $then={(coupon) => (
-                                        <li className="cart-total">
-                                            <div className="cart-total-label">
+                                        <li className="cart-total flow-root border-b-0 medium:[ul:not([data-enhanced])>.cart-total+&]:border-t medium:[ul:not([data-enhanced])>.cart-total+&]:border-container-border">
+                                            <div className="cart-total-label float-left w-4/12 py-third pr-0 pl-single text-text-secondary small:w-6/12 medium:py-base medium:pl-0 medium:text-left medium:[display:block] [[data-enhanced]_&]:w-6/12 [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:text-left [[data-enhanced]_&]:text-text-base">
                                                 <strong>
                                                     <$Lang keyName={$string("cart.coupons.code_label")} code={coupon.code} />
                                                 </strong>
@@ -346,7 +346,7 @@ export default (_props: PartialProps) => {
                                                     </a>
                                                 </div>
                                             </div>
-                                            <div className="cart-total-value">
+                                            <div className="cart-total-value float-left py-third pr-0 pl-single text-left small:text-right medium:w-6/12 medium:py-base medium:pl-0 [[data-enhanced]_&]:float-right [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:font-semibold">
                                                 <span>{coupon.discount.formatted}</span>
                                             </div>
                                         </li>
@@ -354,8 +354,8 @@ export default (_props: PartialProps) => {
                                 />
                             )}
                             $else={() => (
-                                <li className="cart-total">
-                                    <div className="cart-total-label">
+                                <li className="cart-total flow-root border-b-0 medium:[ul:not([data-enhanced])>.cart-total+&]:border-t medium:[ul:not([data-enhanced])>.cart-total+&]:border-container-border">
+                                    <div className="cart-total-label float-left w-4/12 py-third pr-0 pl-single text-text-secondary small:w-6/12 medium:py-base medium:pl-0 medium:text-left medium:[display:block] [[data-enhanced]_&]:w-6/12 [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:text-left [[data-enhanced]_&]:text-text-base">
                                         <strong>
                                             <$Lang keyName={$string("cart.coupon_code")} />:
                                         </strong>
@@ -377,8 +377,8 @@ export default (_props: PartialProps) => {
                                 <$Each
                                     list={cart.gift_certificates}
                                     $then={(certificate) => (
-                                        <li className="cart-total">
-                                            <div className="cart-total-label">
+                                        <li className="cart-total flow-root border-b-0 medium:[ul:not([data-enhanced])>.cart-total+&]:border-t medium:[ul:not([data-enhanced])>.cart-total+&]:border-container-border">
+                                            <div className="cart-total-label float-left w-4/12 py-third pr-0 pl-single text-text-secondary small:w-6/12 medium:py-base medium:pl-0 medium:text-left medium:[display:block] [[data-enhanced]_&]:w-6/12 [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:text-left [[data-enhanced]_&]:text-text-base [[data-enhanced]_&]:flex [[data-enhanced]_&]:flex-wrap [[data-enhanced]_&]:gap-third">
                                                 <strong>
                                                     <$Lang keyName={$string("cart.gift_certificates.code_label")} code={certificate.code} />
                                                 </strong>
@@ -389,14 +389,14 @@ export default (_props: PartialProps) => {
                                                     </a>
                                                 </span>
                                             </div>
-                                            <div className="cart-total-value">{certificate.used.formatted}</div>
+                                            <div className="cart-total-value float-left py-third pr-0 pl-single text-left small:text-right medium:w-6/12 medium:py-base medium:pl-0 [[data-enhanced]_&]:float-right [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:font-semibold">{certificate.used.formatted}</div>
                                         </li>
                                     )}
                                 />
                             )}
                         />
-                        <li className={`cart-total ${$If({test: multi, $then: () => "cart-total-gift-certificate"})}`}>
-                            <div className="cart-total-label">
+                        <li className="cart-total flow-root border-b-0 medium:[ul:not([data-enhanced])>.cart-total+&]:border-t medium:[ul:not([data-enhanced])>.cart-total+&]:border-container-border">
+                            <div className="cart-total-label float-left w-4/12 py-third pr-0 pl-single text-text-secondary small:w-6/12 medium:py-base medium:pl-0 medium:text-left medium:[display:block] [[data-enhanced]_&]:w-6/12 [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:text-left [[data-enhanced]_&]:text-text-base">
                                 <strong>
                                     <$Lang keyName={$string("cart.gift_certificates.gift_certificate")} />
                                     {colon(multi)}
@@ -412,8 +412,8 @@ export default (_props: PartialProps) => {
                                 <$Each
                                     list={cart.gift_certificates}
                                     $then={(certificate) => (
-                                        <li className="cart-total cart-total-gift-certificate-list-item">
-                                            <div className="cart-total-label">
+                                        <li className="cart-total cart-total-gift-certificate-list-item flow-root border-b-0">
+                                            <div className="cart-total-label float-left flex w-auto max-w-[80%] flex-wrap items-center gap-third py-third pr-0 pl-0 text-left text-text-secondary [&_.icon]:shrink-0 [&_a]:text-(--sv-setting-optimizedCheckout-link-color) [&_a]:font-normal [&_a]:no-underline [&_a]:hover:underline">
                                                 <i className="icon" aria-hidden="true">
                                                     <svg>
                                                         <use href="#icon-gifts" />
@@ -425,7 +425,7 @@ export default (_props: PartialProps) => {
                                                     <$Lang keyName={$string("cart.gift_certificates.remove")} />
                                                 </a>
                                             </div>
-                                            <div className="cart-total-value">{certificate.used.formatted}</div>
+                                            <div className="cart-total-value float-right w-auto py-third pr-0 pl-0 text-left font-semibold small:text-right">{certificate.used.formatted}</div>
                                         </li>
                                     )}
                                 />
@@ -434,23 +434,23 @@ export default (_props: PartialProps) => {
                     </>
                 )}
             />
-            <li className={`cart-total ${$If({test: multi, $then: () => "cart-total-with-savings"})}`}>
+            <li className="cart-total cart-total-with-savings flow-root border-b-0 medium:[ul:not([data-enhanced])>.cart-total+&]:border-t medium:[ul:not([data-enhanced])>.cart-total+&]:border-container-border [[data-enhanced]_&]:border-t [[data-enhanced]_&]:border-container-border">
                 <$If
                     test={multi}
                     $then={() => (
                         <>
-                            <div className="cart-total-label text-larger">
+                            <div className="cart-total-label float-left w-4/12 py-third pr-0 pl-single text-text-secondary small:w-6/12 medium:py-base medium:pl-0 medium:text-left medium:[display:block] [[data-enhanced]_&]:w-6/12 [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:text-left [[data-enhanced]_&]:text-text-base text-larger">
                                 <strong>
                                     <$Lang keyName={$string("cart.checkout.total")} />
                                 </strong>
                             </div>
-                            <div className="cart-total-value cart-total-grandTotal flex flex-col text-right font-normal">
+                            <div className="cart-total-value cart-total-grandTotal relative float-right flex flex-col py-third pr-0 pl-0 text-right font-(family-name:--sv-fontFamily-headings) text-small font-normal medium:-top-sixth medium:w-6/12">
                                 <$Or values={[$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))]} $then={() => (<><span className="cart-total-amount text-larger font-semibold">{cart.grand_total.formatted}</span>
                                 <$If
                                     test={cart.total_discount.value}
                                     $then={() => (
-                                        <span className="cart-total-savings">
-                                            <$Lang keyName={$string("cart.checkout.you_saved")} /> <span className="cart-savings-amount">{cart.total_discount.formatted}</span>{" "}
+                                        <span className="cart-total-savings mt-eighth font-(family-name:--sv-body-font-family) text-smaller font-bold text-text-secondary [display:block]">
+                                            <$Lang keyName={$string("cart.checkout.you_saved")} /> <span className="cart-savings-amount text-success">{cart.total_discount.formatted}</span>{" "}
                                             <$Lang keyName={$string("cart.checkout.in_total")} />
                                         </span>
                                     )}
@@ -460,12 +460,12 @@ export default (_props: PartialProps) => {
                     )}
                     $else={() => (
                         <>
-                            <div className="cart-total-label">
+                            <div className="cart-total-label float-left w-4/12 py-third pr-0 pl-single text-text-secondary small:w-6/12 medium:py-base medium:pl-0 medium:text-left medium:[display:block] [[data-enhanced]_&]:w-6/12 [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:text-left [[data-enhanced]_&]:text-text-base">
                                 <strong>
                                     <$Lang keyName={$string("cart.checkout.grand_total")} />:
                                 </strong>
                             </div>
-                            <div className="cart-total-value cart-total-grandTotal">
+                            <div className="cart-total-value cart-total-grandTotal relative float-left py-eighth pr-0 pl-single text-left font-(family-name:--sv-fontFamily-headings) text-small small:text-right medium:-top-sixth medium:w-6/12 medium:py-base">
                                 <$Or values={[$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))]} $then={() => (<><span>{cart.grand_total.formatted}</span></>)} $else={() => (<><LoginForPricing /></>)} />
                             </div>
                         </>
@@ -478,14 +478,14 @@ export default (_props: PartialProps) => {
                     <$If
                         test={tax.included}
                         $then={() => (
-                            <li className="cart-total">
-                                <div className="cart-total-label">
+                            <li className="cart-total flow-root border-b-0 medium:[ul:not([data-enhanced])>.cart-total+&]:border-t medium:[ul:not([data-enhanced])>.cart-total+&]:border-container-border">
+                                <div className="cart-total-label float-left w-4/12 py-third pr-0 pl-single text-text-secondary small:w-6/12 medium:py-base medium:pl-0 medium:text-left medium:[display:block] [[data-enhanced]_&]:w-6/12 [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:text-left [[data-enhanced]_&]:text-text-base">
                                     <strong>
                                         {$concat(tax.name, $lang($string("cart.included_in_total")))}
                                         {colon($pointer<boolean>("../cart.multi_coupon_ui_enabled"))}
                                     </strong>
                                 </div>
-                                <div className="cart-total-value">
+                                <div className="cart-total-value float-left py-third pr-0 pl-single text-left small:text-right medium:w-6/12 medium:py-base medium:pl-0 [[data-enhanced]_&]:float-right [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:font-semibold">
                                     <span>{tax.cost.formatted}</span>
                                 </div>
                             </li>

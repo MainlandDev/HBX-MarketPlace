@@ -124,7 +124,7 @@ export default (_props: PartialProps) => {
                 <$If
                     test={$pointer("with_wallet_buttons")}
                     $then={() => (
-                        <div className="add-to-cart-wallet-buttons" data-add-to-cart-wallet-buttons={""}>
+                        <div className="add-to-cart-wallet-buttons mt-half [&_div[data-smart-button-container-id]]:mt-[6px] [&_div[data-smart-button-container-id]]:leading-[0] [&_div[data-smart-button-container-id]_button]:w-full [&_div[data-smart-button-container-id]_div]:w-full [&_button.show-more-button]:mt-quarter [&_button.show-more-button]:w-full [&_button.show-more-button]:py-quarter [&_button.show-more-button]:px-0 [&_button.show-more-button]:text-center [&_button.show-more-button]:align-middle [&_button.show-more-button]:text-text-secondary [&_button.show-more-button]:underline [&_button.show-more-button]:[display:block] [&_button.show-more-button]:hover:text-(--sv-setting-color-textSecondary--hover)" data-add-to-cart-wallet-buttons={""}>
                             <WalletButtons />
                         </div>
                     )}

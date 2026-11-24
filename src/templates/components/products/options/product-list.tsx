@@ -25,11 +25,11 @@ export default (_props: PartialProps) => {
             <$If
                 test={$pointer("values.0.image")}
                 $then={() => (
-                    <ul className="productOptions-list">
+                    <ul className="productOptions-list m-0 max-h-[400px] overflow-y-auto [border:var(--sv-productOptions-list-border)] [list-style:none]">
                         <$Unless
                             test={required}
                             $then={() => (
-                                <li className="productOptions-list-item">
+                                <li className="productOptions-list-item p-single [.productOptions-list-item+&]:[border-top:var(--sv-productOptions-list-item-borderTop)] [&_.form-label]:-top-[2px] [&_.form-label]:text-left">
                                     <input
                                         className="form-radio"
                                         type="radio"
@@ -47,16 +47,16 @@ export default (_props: PartialProps) => {
                         <$Each
                             list={$pointer<Value[]>("values")}
                             $then={(item) => (
-                                <li className="productOptions-list-item" data-product-attribute-value={item.id}>
+                                <li className="productOptions-list-item p-single [.productOptions-list-item+&]:[border-top:var(--sv-productOptions-list-item-borderTop)] [&_.form-label]:-top-[2px] [&_.form-label]:text-left" data-product-attribute-value={item.id}>
                                     <$If
                                         test={item.image}
                                         $then={() => (
-                                            <figure className="productOptions-list-item-figure">
+                                            <figure className="productOptions-list-item-figure w-double align-middle [display:table-cell]">
                                                 <ResponsiveImg image={item.image} class={$string("productOptions-list-item-image")} lazyload={$string("lazyload+lqip")} />
                                             </figure>
                                         )}
                                     />
-                                    <div className="productOptions-list-item-content">
+                                    <div className="productOptions-list-item-content pl-base-sixth align-middle [display:table-cell]">
                                         <input
                                             className="form-radio"
                                             type="radio"

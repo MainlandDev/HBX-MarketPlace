@@ -60,7 +60,7 @@ export default () => (
                                             <$Or values={[$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))]} $then={() => (<><$If
                                                 test={$pointer("cart.show_primary_checkout_button")}
                                                 $then={() => (
-                                                    <div className="cart-actions pr-[4px]">
+                                                    <div className="cart-actions clear-both flow-root pr-[4px] [&_.button]:mb-0 [&_.button]:[display:block] small:[&_.button]:float-right small:[&_.button]:[display:inline-block]">
                                                         <a
                                                             className="button button--primary"
                                                             href={$pointer("urls.checkout.single_address")}
@@ -73,7 +73,7 @@ export default () => (
                                                         <$If
                                                             test={$pointer("cart.show_multiple_address_shipping")}
                                                             $then={() => (
-                                                                <a className="checkoutMultiple" href={$pointer("urls.checkout.multiple_address")}>
+                                                                <a className="checkoutMultiple clear-right float-right pt-quarter [display:block]" href={$pointer("urls.checkout.multiple_address")}>
                                                                     {" "}<$Lang keyName={$string("cart.preview.checkout_multiple")} />{" "}
                                                                 </a>
                                                             )}
@@ -81,7 +81,7 @@ export default () => (
                                                     </div>
                                                 )}
                                                 $else={() => (
-                                                    <div className="cart-actions pr-[4px]">
+                                                    <div className="cart-actions clear-both flow-root pr-[4px] [&_.button]:mb-0 [&_.button]:[display:block] small:[&_.button]:float-right small:[&_.button]:[display:inline-block]">
                                                         <a
                                                             className="button"
                                                             href={$pointer("urls.home")}
@@ -97,12 +97,12 @@ export default () => (
                                                 $then={() => (
                                                     <div
                                                         data-cart-additional-checkout-buttons={""}
-                                                        className="cart-additionalCheckoutButtons pr-[4px]"
+                                                        className="cart-additionalCheckoutButtons pr-[4px] [&_.FloatRight]:flow-root [&_.FloatRight_p]:float-none [&_.FloatRight_p]:my-third [&_.FloatRight_p]:text-right [&_.FloatRight_div]:float-right"
                                                     >
                                                         <CartAdditionalCheckoutButtons />
                                                     </div>
                                                 )}
-                                            /></>)} $else={() => (<><div className="cart-actions pr-[4px]">
+                                            /></>)} $else={() => (<><div className="cart-actions clear-both flow-root pr-[4px] [&_.button]:mb-0 [&_.button]:[display:block] small:[&_.button]:float-right small:[&_.button]:[display:inline-block]">
                                                 <a
                                                     className="button"
                                                     href={$pointer("urls.auth.login")}

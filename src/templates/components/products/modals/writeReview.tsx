@@ -20,14 +20,14 @@ export default (_props: PartialProps) => (
             <ModalModalCloseBtn />
         </div>
         <div className="modal-body">
-            <div className="writeReview-productDetails">
-                <div className="writeReview-productImage-container">
+            <div className="writeReview-productDetails medium:float-left medium:w-6/12 medium:px-gutter-half">
+                <div className="writeReview-productImage-container relative after:block after:h-0 after:w-full after:pb-[131.8%] after:content-[''] [&_img]:absolute [&_img]:inset-0 [&_img]:m-auto [&_img]:h-full [&_img]:object-contain [&_img]:[font-family:'object-fit:_contain;']">
                     <ResponsiveImg image={$pointer("product.main_image")} fallback_size={$pointer("theme_settings.product_size")} lazyload={$pointer("theme_settings.lazyload_mode")} default_image={$pointer("theme_settings.default_image_product")} />
                 </div>
-                <h6 className="product-brand">{$pointer("product.brand.name")}</h6>
-                <h5 className="product-title">{$pointer("product.title")}</h5>
+                <h6 className="product-brand m-0 text-grey-light">{$pointer("product.brand.name")}</h6>
+                <h5 className="product-title mt-0">{$pointer("product.title")}</h5>
             </div>
-            <form className="form writeReview-form" action={$pointer("urls.product.post_review")} method="post">
+            <form className="form writeReview-form medium:float-left medium:w-6/12 medium:px-gutter-half" action={$pointer("urls.product.post_review")} method="post">
                 <fieldset className="form-fieldset">
                     <div className="form-field">
                         <label className="form-label" htmlFor="rating-rate">

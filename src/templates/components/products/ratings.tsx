@@ -38,8 +38,8 @@ export default (_props: PartialProps) => (
                         test={$pointer("../this.rating")}
                         operator={$string(">=")}
                         rvalue={$pointer("$index")}
-                        $then={() => <span className="icon icon--ratingFull">{star()}</span>}
-                        $else={() => <span className="icon icon--ratingEmpty">{star()}</span>}
+                        $then={() => <span className="icon icon--ratingFull [&_svg]:fill-(--sv-setting-icon-ratingFull)">{star()}</span>}
+                        $else={() => <span className="icon icon--ratingEmpty [&_svg]:fill-(--sv-setting-icon-ratingEmpty)">{star()}</span>}
                     />
                 </>
             )}

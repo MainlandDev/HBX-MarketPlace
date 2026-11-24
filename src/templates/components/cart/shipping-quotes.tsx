@@ -33,9 +33,9 @@ export default (_props: PartialProps) => (
                                 <$Each
                                     list={$pointer<Quote[]>("quotes.shipping_methods")}
                                     $then={(quote) => (
-                                        <li className="estimator-form-row">
+                                        <li className="estimator-form-row flow-root">
                                             <dl>
-                                                <dt className="estimator-form-label">
+                                                <dt className="estimator-form-label clear-both float-left mb-0 font-normal [&_.form-label]:mb-0 [&_.form-label]:leading-[32px]">
                                                     <input
                                                         id={`shipping-quote-${quote.type}-${quote.id}`}
                                                         className="shipping-quote"
@@ -43,11 +43,11 @@ export default (_props: PartialProps) => (
                                                         name="shipping_method"
                                                         value={quote.id}
                                                     />
-                                                    <label className="estimator-form-label-text" htmlFor={`shipping-quote-${quote.type}-${quote.id}`}>
+                                                    <label className="estimator-form-label-text ml-[10px]" htmlFor={`shipping-quote-${quote.type}-${quote.id}`}>
                                                         {quote.provider_name}
                                                     </label>
                                                 </dt>
-                                                <dd className="estimator-form-input estimator-form-input--price">
+                                                <dd className="estimator-form-input estimator-form-input--price float-right mb-[1em] w-[30%]">
                                                     <label htmlFor={`shipping-quote-${quote.type}-${quote.id}`}>
                                                         <span className={`${$If({test: quote.cost_after_discount, $then: () => "price--discounted"})}`}>
                                                             <b>{quote.cost.formatted}</b>
@@ -73,7 +73,7 @@ export default (_props: PartialProps) => (
                             <$If
                                 test={$pointer("quotes.ups_shipping_methods")}
                                 $then={() => (
-                                    <a className="estimator-form-toggleUPSRate" href="#">
+                                    <a className="estimator-form-toggleUPSRate mb-[1em] [display:block]" href="#">
                                         <$Lang keyName={$string("cart.shipping_estimator.show_ups_rates")} />
                                     </a>
                                 )}
@@ -93,9 +93,9 @@ export default (_props: PartialProps) => (
                                 <$Each
                                     list={$pointer<Quote[]>("quotes.ups_shipping_methods")}
                                     $then={(quote) => (
-                                        <li className="estimator-form-row">
+                                        <li className="estimator-form-row flow-root">
                                             <dl>
-                                                <dt className="estimator-form-label">
+                                                <dt className="estimator-form-label clear-both float-left mb-0 font-normal [&_.form-label]:mb-0 [&_.form-label]:leading-[32px]">
                                                     <input
                                                         id={`shipping-quote-${quote.type}-${quote.id}`}
                                                         className="shipping-quote"
@@ -103,7 +103,7 @@ export default (_props: PartialProps) => (
                                                         name="shipping_method"
                                                         value={quote.id}
                                                     />
-                                                    <label className="estimator-form-label-text" htmlFor={`shipping-quote-${quote.type}-${quote.id}`}>
+                                                    <label className="estimator-form-label-text ml-[10px]" htmlFor={`shipping-quote-${quote.type}-${quote.id}`}>
                                                         <$If
                                                             test={quote.logo_path}
                                                             $then={() => (
@@ -122,7 +122,7 @@ export default (_props: PartialProps) => (
                                                         {quote.provider_name} {$raw("&mdash;")} {quote.description}
                                                     </label>
                                                 </dt>
-                                                <dd className="estimator-form-input estimator-form-input--price">
+                                                <dd className="estimator-form-input estimator-form-input--price float-right mb-[1em] w-[30%]">
                                                     <label htmlFor={`shipping-quote-${quote.type}-${quote.id}`}>
                                                         <span className={`${$If({test: quote.cost_after_discount, $then: () => "price--discounted"})}`}>
                                                             <b>{quote.cost.formatted}</b>
@@ -148,7 +148,7 @@ export default (_props: PartialProps) => (
                             <$If
                                 test={$pointer("quotes.shipping_methods")}
                                 $then={() => (
-                                    <a className="estimator-form-toggleUPSRate" href="#">
+                                    <a className="estimator-form-toggleUPSRate mb-[1em] [display:block]" href="#">
                                         <$Lang keyName={$string("cart.shipping_estimator.hide_ups_rates")} />
                                     </a>
                                 )}
