@@ -41,7 +41,7 @@ export default (_props: PartialProps) => {
                                                             attributes: `title="${$unescaped($capitalize(button.service))}" href="https://facebook.com/sharer/sharer.php?u=${encodedUrl()}" target="_blank" rel="noopener" ${$unescaped(button.annotation)}`,
                                                         }}
                                                     >
-                                                        <span className="aria-description--hidden">{$unescaped($capitalize(button.service))}</span>
+                                                        <span className="aria-description--hidden absolute top-0 left-0 -ml-[10000px] size-px overflow-hidden">{$unescaped($capitalize(button.service))}</span>
                                                         <svg>
                                                             <use href="#icon-facebook" />
                                                         </svg>
@@ -59,7 +59,7 @@ export default (_props: PartialProps) => {
                                                                     attributes: `title="${$unescaped($capitalize(button.service))}" href="mailto:?subject=${encodedTitle()}&amp;body=${encodedUrl()}" target="_self" rel="noopener" ${$unescaped(button.annotation)}`,
                                                                 }}
                                                             >
-                                                                <span className="aria-description--hidden">{$unescaped($capitalize(button.service))}</span>
+                                                                <span className="aria-description--hidden absolute top-0 left-0 -ml-[10000px] size-px overflow-hidden">{$unescaped($capitalize(button.service))}</span>
                                                                 <svg>
                                                                     <use href="#icon-envelope" />
                                                                 </svg>
@@ -77,7 +77,7 @@ export default (_props: PartialProps) => {
                                                                     attributes: `title="${$unescaped($capitalize(button.service))}" onclick="window.print();return false;" ${$unescaped(button.annotation)}`,
                                                                 }}
                                                             >
-                                                                <span className="aria-description--hidden">{$unescaped($capitalize(button.service))}</span>
+                                                                <span className="aria-description--hidden absolute top-0 left-0 -ml-[10000px] size-px overflow-hidden">{$unescaped($capitalize(button.service))}</span>
                                                                 <svg>
                                                                     <use href="#icon-print" />
                                                                 </svg>
@@ -95,7 +95,7 @@ export default (_props: PartialProps) => {
                                                                     attributes: `href="https://x.com/intent/tweet/?text=${encodedTitle()}&amp;url=${encodedUrl()}" target="_blank" rel="noopener" title="X" ${$unescaped(button.annotation)}`,
                                                                 }}
                                                             >
-                                                                <span className="aria-description--hidden">X</span>
+                                                                <span className="aria-description--hidden absolute top-0 left-0 -ml-[10000px] size-px overflow-hidden">X</span>
                                                                 <svg>
                                                                     <use href="#icon-x" />
                                                                 </svg>
@@ -113,7 +113,7 @@ export default (_props: PartialProps) => {
                                                                     attributes: `title="${$unescaped($capitalize(button.service))}" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=${encodedUrl()}&amp;title=${encodedTitle()}&amp;summary=${encodedTitle()}&amp;source=${encodedUrl()}" target="_blank" rel="noopener" ${$unescaped(button.annotation)}`,
                                                                 }}
                                                             >
-                                                                <span className="aria-description--hidden">{$unescaped($capitalize(button.service))}</span>
+                                                                <span className="aria-description--hidden absolute top-0 left-0 -ml-[10000px] size-px overflow-hidden">{$unescaped($capitalize(button.service))}</span>
                                                                 <svg>
                                                                     <use href="#icon-linkedin" />
                                                                 </svg>
@@ -131,7 +131,7 @@ export default (_props: PartialProps) => {
                                                                     attributes: `title="${$unescaped($capitalize(button.service))}" href="https://pinterest.com/pin/create/button/?url=${encodedUrl()}&amp;media=${$getImageSrcset($pointer<{data: string}>("../product.main_image"), {"1x": $pointer<SrcsetSize>("../theme_settings.zoom_size")}, $cdn($pointer<string>("../theme_settings.default_image_product")))}&amp;description=${encodedTitle()}" target="_blank" rel="noopener" ${$unescaped(button.annotation)}`,
                                                                 }}
                                                             >
-                                                                <span className="aria-description--hidden">{$unescaped($capitalize(button.service))}</span>
+                                                                <span className="aria-description--hidden absolute top-0 left-0 -ml-[10000px] size-px overflow-hidden">{$unescaped($capitalize(button.service))}</span>
                                                                 <svg>
                                                                     <use href="#icon-pinterest" />
                                                                 </svg>

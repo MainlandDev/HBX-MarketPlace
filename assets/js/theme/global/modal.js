@@ -1,6 +1,7 @@
 import * as focusTrap from 'focus-trap';
 // eslint-disable-next-line import/no-cycle
 import foundation from './foundation';
+import { LOADING_OVERLAY_CLASS } from '../common/runtime-classes';
 
 const bodyActiveClass = 'has-activeModal';
 const loadingOverlayClass = 'loadingOverlay';
@@ -84,7 +85,7 @@ function createLoadingOverlay($modal) {
 
     if ($loadingOverlay.length === 0) {
         $loadingOverlay = $('<div>')
-            .addClass(loadingOverlayClass)
+            .addClass(LOADING_OVERLAY_CLASS)
             .appendTo($modal);
     }
 

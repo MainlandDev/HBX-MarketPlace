@@ -12,6 +12,7 @@ import { normalizeFormData } from './utils/api';
 import { isBrowserIE, convertIntoArray } from './utils/ie-helpers';
 import bannerUtils from './utils/banner-utils';
 import currencySelector from '../global/currency-selector';
+import { LOADING_OVERLAY_CLASS, HIDDEN_CLASS } from './runtime-classes';
 
 export default class ProductDetails extends ProductDetailsBase {
     constructor($scope, context, productAttributesData = {}) {
@@ -63,7 +64,7 @@ export default class ProductDetails extends ProductDetailsBase {
         });
 
         if (context.showSwatchNames) {
-            this.$swatchOptionMessage.removeClass('u-hidden');
+            this.$swatchOptionMessage.removeClass(HIDDEN_CLASS);
 
             $productSwatchGroup.on('change', ({ target }) => {
                 const swatchGroupElement = target.parentNode.parentNode;
@@ -581,7 +582,7 @@ export default class ProductDetails extends ProductDetailsBase {
             const bannerUpdateHandler = () => {
                 const $productContainer = $('#main-content > .container');
 
-                $productContainer.append('<div class="loadingOverlay pdp-update"></div>');
+                $productContainer.append(`<div class="${LOADING_OVERLAY_CLASS} pdp-update"></div>`);
                 $('.loadingOverlay.pdp-update', $productContainer).show();
                 window.location.reload();
             };

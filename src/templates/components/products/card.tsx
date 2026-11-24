@@ -158,7 +158,7 @@ export default (_props: PartialProps) => {
                                                         <Button href={addToCartUrl} data-event-type="product-click" data-button-type="add-cart" tag="a" size="small" className="card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block] bg-(--sv-card-figcaption-button-background) text-(--sv-card-figcaption-button-color)">
                                                             <$Lang keyName={$string("products.add_to_cart")} />
                                                         </Button>
-                                                        <span className="product-status-message aria-description--hidden">
+                                                        <span className="product-status-message aria-description--hidden absolute top-0 left-0 -ml-[10000px] size-px overflow-hidden">
                                                             <$Lang keyName={$string("category.add_cart_announcement")} />
                                                         </span>
                                                     </>
@@ -328,7 +328,7 @@ export default (_props: PartialProps) => {
                                                         <Button href={addToCartUrl} data-event-type="product-click" data-button-type="add-cart" tag="a" size="small" className="card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block] bg-(--sv-card-figcaption-button-background) text-(--sv-card-figcaption-button-color)">
                                                             <$Lang keyName={$string("products.add_to_cart")} />
                                                         </Button>
-                                                        <span className="product-status-message aria-description--hidden">
+                                                        <span className="product-status-message aria-description--hidden absolute top-0 left-0 -ml-[10000px] size-px overflow-hidden">
                                                             <$Lang keyName={$string("category.add_cart_announcement")} />
                                                         </span>
                                                     </>

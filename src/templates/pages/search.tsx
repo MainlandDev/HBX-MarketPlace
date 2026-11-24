@@ -86,7 +86,7 @@ export default () => {
                                     )}
                                 />
                                 <nav className="navBar navBar--sub [:where(&)]:[display:flow-root] search-nav relative mb-[calc(var(--sv-spacing-single)*3)] text-center">
-                                    <span id="search-tabs-widget-description" className="aria-description--hidden">
+                                    <span id="search-tabs-widget-description" className="aria-description--hidden absolute top-0 left-0 -ml-[10000px] size-px overflow-hidden">
                                         <$Lang keyName={$string("search.tabs_accesibility_hint")} />
                                     </span>
                                     <ul role="tablist" className="navBar-section [:where(&)]:list-none [:where(&)]:m-0 [:where(&)]:p-0 [:where(&)]:[display:flow-root] [:where(&>li)]:m-0 [:where(&>li)]:p-0 [:where(&_.navBar-item)]:[display:block] [:where(&_.navBar-action)]:[display:block] [:where([class~=navBar-section]+&)]:ml-(--sv-navBar-section-margin) account-navigation float-none [&_.navBar-item]:float-none [&_.navBar-item]:mx-half [&_.navBar-item]:my-0 medium:[&_.navBar-item]:[display:inline-block] medium:[&_.navBar-item.is-active]:border-b medium:[&_.navBar-item.is-active]:border-b-(--sv-setting-color-textBase) medium:[&_.navBar-item.navBar-item--separate]:m-0 medium:[&_.navBar-item.navBar-item--separate]:border-l medium:[&_.navBar-item.navBar-item--separate]:border-l-(--sv-setting-color-textSecondary) medium:[&_.navBar-item.navBar-item--separate]:pl-half [&_.navBar-item.is-active>.navBar-action]:text-grey-dark" data-search-page-tabs={""}>
@@ -153,7 +153,7 @@ export default () => {
                                             operator={$string("!=")}
                                             rvalue={$string("product")}
                                             $then={() => (
-                                        <aside className="page-sidebar u-hiddenVisually relative float-left w-full px-gutter-half medium:w-1/4" id="faceted-search-container">
+                                        <aside className="page-sidebar sr-only relative float-left w-full px-gutter-half medium:w-1/4" id="faceted-search-container">
                                             <FacetedSearchIndex $positionalHash={$pointer("product_results")} />
                                         </aside>
                                             )}
@@ -284,7 +284,7 @@ export default () => {
                                         id="search-results-content"
                                         aria-labelledby="search-results-content-count"
                                         dangerouslyInlineAttributes={{
-                                            attributes: `${$If({test: $pointer("forms.search.section"), operator: $string("!="), rvalue: $string("content"), $then: () => $raw('class="u-hidden"')})}`,
+                                            attributes: `${$If({test: $pointer("forms.search.section"), operator: $string("!="), rvalue: $string("content"), $then: () => $raw('class="[display:none]"')})}`,
                                         }}
                                     >
                                         <SearchContentListing />
@@ -294,7 +294,7 @@ export default () => {
                                         id="product-listing-container"
                                         aria-labelledby="search-results-product-count"
                                         dangerouslyInlineAttributes={{
-                                            attributes: `${$If({test: $pointer("forms.search.section"), operator: $string("!="), rvalue: $string("product"), $then: () => $raw('class="u-hidden"')})}`,
+                                            attributes: `${$If({test: $pointer("forms.search.section"), operator: $string("!="), rvalue: $string("product"), $then: () => $raw('class="[display:none]"')})}`,
                                         }}
                                     >
                                         <SearchProductListing />

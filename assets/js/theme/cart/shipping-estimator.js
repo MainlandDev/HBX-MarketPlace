@@ -4,6 +4,7 @@ import utils from '@bigcommerce/stencil-utils';
 import { Validators, announceInputErrorMessage } from '../common/utils/form-utils';
 import collapsibleFactory from '../common/collapsible';
 import { showAlertModal } from '../global/modal';
+import { HIDDEN_CLASS, HIDDEN_VISUALLY_CLASS } from '../common/runtime-classes';
 
 export default class ShippingEstimator {
     constructor($element, shippingErrorMessages, secureBaseUrl) {
@@ -104,8 +105,8 @@ export default class ShippingEstimator {
 
             event.preventDefault();
 
-            $estimatorFormUps.toggleClass('u-hiddenVisually');
-            $estimatorFormDefault.toggleClass('u-hiddenVisually');
+            $estimatorFormUps.toggleClass(HIDDEN_VISUALLY_CLASS);
+            $estimatorFormDefault.toggleClass(HIDDEN_VISUALLY_CLASS);
         });
     }
 
@@ -155,10 +156,10 @@ export default class ShippingEstimator {
 
         if (!this.isEstimatorFormOpened) {
             changeAttributesOnToggle('estimator-close');
-            $toggleContainer.removeClass('u-hidden');
+            $toggleContainer.removeClass(HIDDEN_CLASS);
         } else {
             changeAttributesOnToggle('estimator-add');
-            $toggleContainer.addClass('u-hidden');
+            $toggleContainer.addClass(HIDDEN_CLASS);
         }
         this.isEstimatorFormOpened = !this.isEstimatorFormOpened;
     }

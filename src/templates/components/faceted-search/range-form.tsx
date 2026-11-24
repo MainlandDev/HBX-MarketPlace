@@ -24,7 +24,7 @@ export default (_props: PartialProps) => (
                         aria-label={$lang($string("search.faceted.range.min-placeholder"))}
                         aria-describedby="min_price_description"
                     />{" "}
-                    <span id="min_price_description" className="aria-description--hidden">
+                    <span id="min_price_description" className="aria-description--hidden absolute top-0 left-0 -ml-[10000px] size-px overflow-hidden">
                         <$Lang keyName={$string("search.faceted.range.min-description")} />
                     </span>
                 </FormField>
@@ -41,7 +41,7 @@ export default (_props: PartialProps) => (
                         aria-label={$lang($string("search.faceted.range.max-placeholder"))}
                         aria-describedby="max_price_description"
                     />{" "}
-                    <span id="max_price_description" className="aria-description--hidden">
+                    <span id="max_price_description" className="aria-description--hidden absolute top-0 left-0 -ml-[10000px] size-px overflow-hidden">
                         <$Lang keyName={$string("search.faceted.range.max-description")} />
                     </span>
                 </FormField>

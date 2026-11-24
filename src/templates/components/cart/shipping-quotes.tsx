@@ -89,7 +89,7 @@ export default (_props: PartialProps) => (
                     $then={() => (
                         <div
                             dangerouslyInlineAttributes={{
-                                attributes: `${$If({test: $pointer("quotes.shipping_methods"), $then: () => $raw('class="estimator-form--ups u-hiddenVisually"')})}`,
+                                attributes: `${$If({test: $pointer("quotes.shipping_methods"), $then: () => $raw('class="estimator-form--ups sr-only"')})}`,
                             }}
                         >
                             <ul>

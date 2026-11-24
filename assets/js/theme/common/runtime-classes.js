@@ -1,0 +1,10 @@
+// Utility bundles for markup that assets/js creates or toggles at runtime (the theme's old `.loadingOverlay`, `.u-hidden`, `.u-hiddenVisually`,
+// `.aria-description--hidden` and `.hide-content` rules). Template markup carries the same strings: keep src/server/runtimeParts.tsx in sync.
+// _tailwind.scss lists this file with @source; the zero-specificity `[:where(&)]:` forms keep the bundles below any utility on the element.
+
+// Overlay with a spinner (::before); jQuery .show()/.hide() set the style attribute, which the guard leaves alone. Keyframes: `loadingOverlay-spin` in _tailwind.scss.
+export const LOADING_OVERLAY_CLASS = "loadingOverlay [:where(&)]:absolute [:where(&)]:inset-0 [:where(&)]:h-full [:where(&)]:w-full [:where(&)]:opacity-100 [:where(&)]:[transition:var(--sv-loadingOverlay-transitionProperty)_var(--sv-loadingOverlay-transitionSpeed)_var(--sv-loadingOverlay-transitionEase)] [:where(&)]:bg-(--sv-derived-loadingOverlay-bg) [:where(&)]:z-(--sv-zIndex-low) [:where(&:not([style*=display]))]:[display:none] [:where(&)]:before:content-[''] [:where(&)]:before:[display:block] [:where(&)]:before:absolute [:where(&)]:before:inset-x-0 [:where(&)]:before:top-1/2 [:where(&)]:before:mx-auto [:where(&)]:before:my-0 [:where(&)]:before:size-(--sv-loadingOverlay-spinner-size) [:where(&)]:before:rounded-(--sv-loadingOverlay-spinner-size) [:where(&)]:before:[border-style:solid] [:where(&)]:before:[border-width:var(--sv-loadingOverlay-spinner-borderWidth)] [:where(&)]:before:border-(--sv-loadingOverlay-spinner-borderColor) [:where(&)]:before:[transform:translateY(-50%)_rotate(0deg)] [:where(&)]:before:[transform-style:preserve-3d] [:where(&)]:before:[animation:loadingOverlay-spin_var(--sv-loadingOverlay-spinner-duration)_infinite_var(--sv-loadingOverlay-spinner-easing)]";
+export const HIDDEN_CLASS = "[display:none]";
+export const HIDDEN_VISUALLY_CLASS = "sr-only";
+export const ARIA_DESCRIPTION_HIDDEN_CLASS = "aria-description--hidden absolute top-0 left-0 -ml-[10000px] size-px overflow-hidden";
+export const HIDE_CONTENT_CLASS = "opacity-0";

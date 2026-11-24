@@ -45,6 +45,7 @@ import {
 } from "@mainlanddev/hbx-bigcommerce";
 import {FormField, FormLabel} from "../../../server/formParts.tsx";
 import {Modal} from "../../../server/componentParts.tsx";
+import {LoadingOverlay} from "../../../server/runtimeParts.tsx";
 
 /** The size a `getImageSrcset` descriptor accepts; the theme-settings type is a plain string (LIBRARY GAP, see PORT-NOTES.md). */
 type SrcsetSize = `${bigint}x${bigint}` | `${bigint}w`;
@@ -517,8 +518,8 @@ export default (_props: PartialProps) => {
                                 test={product.cart_order_source}
                                 $then={() => <input type="hidden" name="cart_order_source" value={product.cart_order_source} />}
                             />
-                            {/* Hidden by `.js [data-product-option-change]` (productView scss) until product-details.js shows it, so without JS the options stay usable. */}
-                            <div data-product-option-change={""}>
+                            {/* Hidden by its own `.js` variant until product-details.js shows it, so without JS the options stay usable. */}
+                            <div className="[:where(.js_&:not([style*=display]))]:[display:none]" data-product-option-change={""}>
                                 <$Inject keyName={$string("showSwatchNames")} value={theme.show_product_swatch_names} />
                                 {/* Pass 1 flags a Colour and a Size option; the branch frees both flags (50-key scratchpad cap). */}
                                 <$Each list={$pointer<unknown[]>("product.options")} $then={markOptionFlags} />
@@ -541,7 +542,7 @@ export default (_props: PartialProps) => {
                                     )}
                                 />
                             </div>
-                            <FormField className={`form-field--stock${$Unless({test: product.stock_level, $then: () => " u-hiddenVisually"})}`}>
+                            <FormField className={`form-field--stock${$Unless({test: product.stock_level, $then: () => " sr-only"})}`}>
                                 <FormLabel className="form-label--alternate m-0 cursor-default text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-right [&_small]:mt-quarter">
                                     <span className="productView-stock-message font-bold">
                                         <span data-product-stock={""}>{product.stock_level}</span>{" "}
@@ -582,7 +583,7 @@ export default (_props: PartialProps) => {
             <Modal id="previewModal" className="modal--large left-1/2 top-1/2 m-0 max-h-[90%] min-h-[240px] max-w-[95%] overflow-hidden p-0 outline-none [transform:translate(-50%,-50%)] [&_.form-field]:relative large:w-(--sv-modal-width--large)" data-reveal={""}>
                 <ModalModalCloseBtn />
                 <div className="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-header-title"></div>
-                <div className="loadingOverlay"></div>
+                <LoadingOverlay />
             </Modal>
         </>
     );

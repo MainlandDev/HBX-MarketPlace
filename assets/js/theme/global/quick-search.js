@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import utils from '@bigcommerce/stencil-utils';
 import StencilDropDown from './stencil-dropdown';
+import { HIDDEN_CLASS } from '../common/runtime-classes';
 
 export default function () {
     const TOP_STYLING = 'top: 49px;';
@@ -50,7 +51,7 @@ export default function () {
                 });
             } else {
                 const $quickSearchAriaMessage = $quickSearchResultsCurrent.next();
-                $quickSearchAriaMessage.addClass('u-hidden');
+                $quickSearchAriaMessage.addClass(HIDDEN_CLASS);
 
                 const predefinedText = $quickSearchAriaMessage.data('search-aria-message-predefined-text');
                 const itemsFoundCount = $quickSearchResultsCurrent.find('.product').length;
@@ -58,7 +59,7 @@ export default function () {
                 $quickSearchAriaMessage.text(`${itemsFoundCount} ${predefinedText} ${searchQuery}`);
 
                 setTimeout(() => {
-                    $quickSearchAriaMessage.removeClass('u-hidden');
+                    $quickSearchAriaMessage.removeClass(HIDDEN_CLASS);
                 }, 100);
             }
         });

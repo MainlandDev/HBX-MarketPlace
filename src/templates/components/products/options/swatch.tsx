@@ -96,7 +96,7 @@ export default (_props: PartialProps) => {
                 <span data-option-value={""} />{" "}
                 <RequirenessMsg />
             </FormLabel>
-            <span className="swatch-option-message aria-description--hidden u-hidden">
+            <span className="swatch-option-message aria-description--hidden absolute top-0 left-0 -ml-[10000px] size-px overflow-hidden [display:none]">
                 <$Lang keyName={$string("products.swatch_option_announcement")} swatch_name={$pointer("display_name")} />
             </span>
             <$Unless

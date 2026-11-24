@@ -8,6 +8,7 @@ import Url from 'url';
 import collapsibleFactory from './common/collapsible';
 import 'jstree';
 import nod from './common/nod';
+import { HIDDEN_CLASS, ARIA_DESCRIPTION_HIDDEN_CLASS } from './common/runtime-classes';
 
 const leftArrowKey = 37;
 const rightArrowKey = 39;
@@ -38,9 +39,9 @@ export default class Search extends CatalogPage {
     }
 
     showProducts(navigate = true) {
-        this.$productListingContainer.removeClass('u-hidden');
-        this.$facetedSearchContainer.removeClass('u-hidden');
-        this.$contentResultsContainer.addClass('u-hidden');
+        this.$productListingContainer.removeClass(HIDDEN_CLASS);
+        this.$facetedSearchContainer.removeClass(HIDDEN_CLASS);
+        this.$contentResultsContainer.addClass(HIDDEN_CLASS);
 
         $('[data-content-results-toggle]').removeClass('navBar-action-color--active');
         $('[data-content-results-toggle]').addClass('navBar-action');
@@ -63,9 +64,9 @@ export default class Search extends CatalogPage {
     }
 
     showContent(navigate = true) {
-        this.$contentResultsContainer.removeClass('u-hidden');
-        this.$productListingContainer.addClass('u-hidden');
-        this.$facetedSearchContainer.addClass('u-hidden');
+        this.$contentResultsContainer.removeClass(HIDDEN_CLASS);
+        this.$productListingContainer.addClass(HIDDEN_CLASS);
+        this.$facetedSearchContainer.addClass(HIDDEN_CLASS);
 
         $('[data-product-results-toggle]').removeClass('navBar-action-color--active');
         $('[data-product-results-toggle]').addClass('navBar-action');
@@ -205,7 +206,7 @@ export default class Search extends CatalogPage {
         });
 
         const $searchResultsMessage = $(`<p
-            class="aria-description--hidden"
+            class="${ARIA_DESCRIPTION_HIDDEN_CLASS}"
             tabindex="-1"
             role="status"
             aria-live="polite"

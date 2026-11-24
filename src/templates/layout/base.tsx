@@ -94,7 +94,7 @@ export default () => {
                     {/* Scripts off: hide the placeholders of islands that have no-JS content. Last in the head, so it comes after the theme's own CSS. */}
                     <IslandsNoScriptStyle css={NOSCRIPT_CSS} />
                 </head>
-                <body className="[&.has-activeNavPages]:[overflow:hidden] [&.has-activeNavPages]:[-webkit-overflow-scrolling:auto]">
+                <body className="[&.has-activeModal]:overflow-hidden [:where(&:not(.has-activeModal)_.modal-background:not([style*=display]))]:[display:none] [:where(&.has-activeModal_.modal-background:not([style*=display]))]:[display:block] [:where(&_.modal-background)]:fixed [:where(&_.modal-background)]:inset-0 [:where(&_.modal-background)]:z-[1004] [:where(&_.modal-background)]:[background:var(--sv-reveal-overlay-bg)] [:where(&_.form-inlineMessage)]:[display:block] [:where(&_.form-inlineMessage)]:leading-[24px] [:where(&_.form-inlineMessage)]:[margin:var(--sv-form-inlineMessage-margin)] [:where(&_.form-inlineMessage)]:w-full [:where(&_.cart-total_.form-inlineMessage)]:text-left [&.has-activeNavPages]:[overflow:hidden] [&.has-activeNavPages]:[-webkit-overflow-scrolling:auto]">
                     <svg data-src={$cdn($string("img/icon-sprite.svg"))} className="icons-svg-sprite [display:none]"></svg>
 
                     <Header />

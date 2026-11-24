@@ -2,6 +2,7 @@ import utils from '@bigcommerce/stencil-utils';
 import ProductDetailsBase, { optionChangeDecorator } from './product-details-base';
 import { isEmpty } from 'lodash';
 import { isBrowserIE, convertIntoArray } from './utils/ie-helpers';
+import { HIDE_CONTENT_CLASS } from './runtime-classes';
 
 export default class CartItemDetails extends ProductDetailsBase {
     constructor($scope, context, productAttributesData = {}) {
@@ -138,6 +139,6 @@ export default class CartItemDetails extends ProductDetailsBase {
     updateProductAttributes(data) {
         super.updateProductAttributes(data);
 
-        this.$scope.find('.modal-content').removeClass('hide-content');
+        this.$scope.find('.modal-content').removeClass(HIDE_CONTENT_CLASS);
     }
 }

@@ -6,6 +6,7 @@ import utils from '@bigcommerce/stencil-utils';
 import ShippingEstimator from './cart/shipping-estimator';
 import { defaultModal, showAlertModal, ModalEvents } from './global/modal';
 import CartItemDetails from './common/cart-item-details';
+import { HIDE_CONTENT_CLASS } from './common/runtime-classes';
 
 export default class Cart extends PageManager {
     onReady() {
@@ -133,7 +134,7 @@ export default class Cart extends PageManager {
         };
 
         modal.open();
-        this.$modal.find('.modal-content').addClass('hide-content');
+        this.$modal.find('.modal-content').addClass(HIDE_CONTENT_CLASS);
 
         utils.api.productAttributes.configureInCart(itemId, options, (err, response) => {
             modal.updateContent(response.content);

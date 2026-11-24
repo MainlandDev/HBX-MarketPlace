@@ -18,6 +18,7 @@ import {
     $unescaped, $unlessExpression, $Or,
 } from "@mainlanddev/hbx-bigcommerce";
 import {Button} from "../../server/formParts.tsx";
+import {LoadingOverlay} from "../../server/runtimeParts.tsx";
 
 export const frontmatter = $frontmatter.other({cart: true});
 
@@ -42,7 +43,7 @@ export default () => (
                                     test={$pointer("cart.items.length")}
                                     $then={() => (
                                         <>
-                                            <div className="loadingOverlay"></div>
+                                            <LoadingOverlay />
                                             <div data-cart-content={""} className="pr-[4px]">
                                                 <CartContent />
                                             </div>

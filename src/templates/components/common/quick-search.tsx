@@ -40,7 +40,7 @@ export default (_props: PartialProps) => (
         <p
             role="status"
             aria-live="polite"
-            className="aria-description--hidden"
+            className="aria-description--hidden absolute top-0 left-0 -ml-[10000px] size-px overflow-hidden"
             data-search-aria-message-predefined-text={$unescaped($lang($string("search.results.quick_count_live")))}
         ></p>
     </Container>

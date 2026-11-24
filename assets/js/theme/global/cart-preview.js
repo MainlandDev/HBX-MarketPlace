@@ -1,6 +1,7 @@
 import 'foundation-sites/js/foundation/foundation';
 import 'foundation-sites/js/foundation/foundation.dropdown';
 import utils from '@bigcommerce/stencil-utils';
+import { LOADING_OVERLAY_CLASS } from '../common/runtime-classes';
 
 export const CartPreviewEvents = {
     close: 'closed.fndtn.dropdown',
@@ -11,7 +12,7 @@ export default function (secureBaseUrl, cartId) {
     const loadingClass = 'is-loading';
     const $cart = $('[data-cart-preview]');
     const $cartDropdown = $('#cart-preview-dropdown');
-    const $cartLoading = $('<div class="loadingOverlay"></div>');
+    const $cartLoading = $('<div></div>').addClass(LOADING_OVERLAY_CLASS);
 
     const $body = $('body');
 

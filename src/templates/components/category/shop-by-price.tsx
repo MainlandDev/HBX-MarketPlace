@@ -21,7 +21,7 @@ export default (_props: PartialProps) => {
                         <a href={$pointer("category.url")} className="navList-action reset-btn no-underline [:where(&)]:text-(--sv-navList-action-color) [:where(&)]:text-(length:--sv-navList-action-fontSize) [:where(&)]:py-eighth [:where(&)]:px-0 [:where(&)]:[display:block] [:where(&:is(:hover,:focus))]:text-(--sv-anchor-font-color-hover)">
                             <$Lang keyName={$string("category.reset")} />
                         </a>{" "}
-                        <span className="reset-message aria-description--hidden">
+                        <span className="reset-message aria-description--hidden absolute top-0 left-0 -ml-[10000px] size-px overflow-hidden">
                             <$Lang keyName={$string("category.filter_reset_announcement")} />
                         </span>
                     </div>

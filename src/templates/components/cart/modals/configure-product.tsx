@@ -12,7 +12,7 @@ export default (_props: PartialProps) => (
                 <$Lang keyName={$string("cart.reconfigure_product")} name={$pointer("product_name")} />
             </ModalTitle>
         </ModalHeader>
-        <ModalBody className="overflow-auto p-(--sv-reveal-modal-padding) [-webkit-overflow-scrolling:touch]" data-product-option-change={""}>
+        <ModalBody className="[:where(.js_&:not([style*=display]))]:[display:none] overflow-auto p-(--sv-reveal-modal-padding) [-webkit-overflow-scrolling:touch]" data-product-option-change={""}>
             <div className="alertMessageBox" hidden={true}>
                 <AlertAlertInfo />
             </div>

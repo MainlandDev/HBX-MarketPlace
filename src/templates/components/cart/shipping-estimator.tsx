@@ -46,7 +46,7 @@ export default (_props: PartialProps) => (
             )}
         />
 
-        <div id="add-shipping" className="shipping-estimator u-hidden">
+        <div id="add-shipping" className="shipping-estimator [display:none]">
             <form className="form estimator-form mb-0 [&_.button--primary]:w-[60%] [:where(&)]:[margin:var(--sv-form-margin)]" data-shipping-estimator={""}>
                 <dl>
                     <dt className="estimator-form-label clear-both float-left mb-0 font-normal [&_.form-label]:mb-0 [&_.form-label]:leading-[32px]">

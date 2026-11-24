@@ -23,7 +23,7 @@ export default (_props: PartialProps) => (
                             $then={() => (
                                 <li className="socialLinks-item">
                                     <Icon tag="a" className="icon--x" href={social.url} target="_blank" rel="noopener" title="X">
-                                        <span className="aria-description--hidden">X</span>
+                                        <span className="aria-description--hidden absolute top-0 left-0 -ml-[10000px] size-px overflow-hidden">X</span>
                                         <svg>
                                             <use href="#icon-x" />
                                         </svg>
@@ -39,7 +39,7 @@ export default (_props: PartialProps) => (
                                         rel="noopener"
                                         title={$unescaped($capitalize(social.display_name))}
                                     >
-                                        <span className="aria-description--hidden">{$unescaped($capitalize(social.display_name))}</span>
+                                        <span className="aria-description--hidden absolute top-0 left-0 -ml-[10000px] size-px overflow-hidden">{$unescaped($capitalize(social.display_name))}</span>
                                         <svg>
                                             <use href={`#icon-${social.display_name}`} />
                                         </svg>

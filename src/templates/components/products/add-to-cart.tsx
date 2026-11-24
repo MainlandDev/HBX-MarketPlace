@@ -119,7 +119,7 @@ export default (_props: PartialProps) => {
                                 $else: () => $lang($string("products.add_to_cart")),
                             })}
                     />
-                    <span className="product-status-message aria-description--hidden">
+                    <span className="product-status-message aria-description--hidden absolute top-0 left-0 -ml-[10000px] size-px overflow-hidden">
                         <$Lang keyName={$string("products.adding_to_cart")} /> <$Lang keyName={$string("category.add_cart_announcement")} />
                     </span>
                 </div>

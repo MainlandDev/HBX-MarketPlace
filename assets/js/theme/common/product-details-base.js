@@ -2,6 +2,7 @@ import Wishlist from '../wishlist';
 import { initRadioOptions } from './aria';
 import PicklistBackorder from './picklist-backorder';
 import { findByBackorderMessageIdOrDefault } from './utils/backorder-utils';
+import { HIDDEN_VISUALLY_CLASS } from './runtime-classes';
 
 const optionsTypesMap = {
     INPUT_FILE: 'input-file',
@@ -655,11 +656,11 @@ export default class ProductDetailsBase {
         // if stock view is on (CP settings)
         if (viewModel.stock.$container.length && typeof data.stock === 'number') {
             // if the stock container is hidden, show
-            viewModel.stock.$container.removeClass('u-hiddenVisually');
+            viewModel.stock.$container.removeClass(HIDDEN_VISUALLY_CLASS);
 
             viewModel.stock.$input.text(data.stock);
         } else {
-            viewModel.stock.$container.addClass('u-hiddenVisually');
+            viewModel.stock.$container.addClass(HIDDEN_VISUALLY_CLASS);
             viewModel.stock.$input.text(data.stock);
         }
 
