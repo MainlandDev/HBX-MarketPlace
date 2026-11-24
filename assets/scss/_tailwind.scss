@@ -222,6 +222,13 @@
  */
 @custom-variant js (&:where(html:not(.no-js), html:not(.no-js) *));
 
+/*
+ * State classes the theme's and Foundation's JS add and remove (`.is-open`, `.is-active`). `is-open:block` styles the element while the JS has
+ * marked it, so state styling converts without changing the JS. `:is()` keeps the generated selector at the specificity of the class.
+ */
+@custom-variant is-open (&:is(.is-open));
+@custom-variant is-active (&:is(.is-active));
+
 
 /*
  * Theme layer. `inline` makes utilities emit the var() directly; `reference` stops Tailwind writing these entries to

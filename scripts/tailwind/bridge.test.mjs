@@ -1,5 +1,5 @@
 import {describe, expect, it} from "vitest";
-import {isCurrent, renderBridge, scanVariables} from "./bridge.mjs";
+import {isCurrent, renderBridge, scanSettingCalls, scanVariables} from "./bridge.mjs";
 
 const scan = (...texts) => scanVariables(texts.map((text, i) => ({path: `f${i}.scss`, text})));
 
@@ -57,5 +57,32 @@ describe("isCurrent", () => {
     it("still detects real changes and a missing file", () => {
         expect(isCurrent("a\nc\n", "a\nb\n")).toBe(false);
         expect(isCurrent("", "a\n")).toBe(false);
+    });
+});
+
+describe("scanSettingCalls", () => {
+    it("lists each stencil setting read directly in the SCSS once, with the function that reads it", () => {
+        const found = scanSettingCalls([
+            {path: "a.scss", text: '.a { color: stencilColor("optimizedCheckout-link-color"); font-family: stencilFontFamily("headings"); }\n// stencilColor("commented")\n'},
+            {path: "b.scss", text: '.b { color: stencilColor("optimizedCheckout-link-color"); content: stencilString("quote"); w: stencilNumber("gap", em); }'},
+        ]);
+        expect(found).toEqual([
+            {fn: "stencilColor", key: "optimizedCheckout-link-color"},
+            {fn: "stencilFontFamily", key: "headings"},
+            {fn: "stencilString", key: "quote"},
+            {fn: "stencilNumber", key: "gap"},
+        ]);
+    });
+
+    it("ignores image and boolean settings, which have no custom-property form", () => {
+        expect(scanSettingCalls([{path: "a.scss", text: 'a { b: stencilImage("x", 1); c: stencilBoolean("y"); }'}])).toEqual([]);
+    });
+});
+
+describe("renderBridge with settings", () => {
+    it("emits one --sv-setting-<key> property per setting call", () => {
+        const out = renderBridge(["a"], [{fn: "stencilColor", key: "label-color"}]);
+        expect(out).toContain('@include sv("setting-label-color", stencilColor("label-color"));');
+        expect(out).toMatch(/@include sv\("a", \$a\);[\s\S]*setting-label-color/);
     });
 });

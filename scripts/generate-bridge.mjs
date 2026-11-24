@@ -3,7 +3,7 @@
 import {readdirSync, readFileSync, writeFileSync} from "node:fs";
 import {join} from "node:path";
 import {fileURLToPath} from "node:url";
-import {isCurrent, renderBridge, scanVariables} from "./tailwind/bridge.mjs";
+import {isCurrent, renderBridge, scanSettingCalls, scanVariables} from "./tailwind/bridge.mjs";
 
 // The theme's settings first (its value wins for a duplicate name, as in Sass), then Citadel's global settings: spacing(), fontSize(),
 // container() and screenSize() read variables declared there, and the theme settings do not redeclare most of them.
@@ -22,8 +22,10 @@ const walk = (dir) =>
 
 const files = roots.flatMap((root) => walk(root).sort()).map((path) => ({path, text: readFileSync(path, "utf8")}));
 const {names, duplicates} = scanVariables(files);
-const scss = renderBridge(names);
-console.log(`declared ${names.length}, duplicates ${duplicates.length}${duplicates.length ? ` (${duplicates.join(", ")})` : ""}`);
+const themeScss = walk(fileURLToPath(new URL("../assets/scss/", import.meta.url))).sort().map((path) => ({path, text: readFileSync(path, "utf8")}));
+const settingCalls = scanSettingCalls(themeScss).filter((call, index, all) => all.findIndex((other) => other.key === call.key) === index);
+const scss = renderBridge(names, settingCalls);
+console.log(`settings ${settingCalls.length}, declared ${names.length}, duplicates ${duplicates.length}${duplicates.length ? ` (${duplicates.join(", ")})` : ""}`);
 
 if (process.argv.includes("--write")) {
     writeFileSync(target, scss);

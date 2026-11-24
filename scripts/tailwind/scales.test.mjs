@@ -50,3 +50,18 @@ describe("spacing and type scales", () => {
         expect(css).not.toMatch(/\.text-small\s*\{[^}]*line-height/);
     });
 });
+
+describe("JS state class variants", () => {
+    it("styles an element that Foundation/theme JS marks with .is-open or .is-active, without changing the JS", async () => {
+        const css = await compile(["is-open:p-half", "is-active:text-small"]);
+        expect(css).toMatch(/is-open\\:p-half[^{]*\.is-open[^{]*\{[^}]*padding: var\(--sv-spacing-half\)/);
+        expect(css).toMatch(/is-active\\:text-small[^{]*\.is-active[^{]*\{[^}]*font-size: var\(--sv-fontSize-small\)/);
+    });
+});
+
+describe("merchant settings bridge", () => {
+    it("exposes a stencil setting read directly in the SCSS as a custom property utilities can use", async () => {
+        const css = await compile(["text-(--sv-setting-optimizedCheckout-link-color)"]);
+        expect(css).toContain("color: var(--sv-setting-optimizedCheckout-link-color)");
+    });
+});

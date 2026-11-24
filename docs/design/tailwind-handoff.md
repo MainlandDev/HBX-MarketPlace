@@ -1,6 +1,6 @@
 # Tailwind conversion: live handoff
 
-Maintained by the lead after every merged work package (WP). Workers: read `docs/design/tailwind-worker-brief.md` first, then this file at the start of your WP. Last updated: 2026-11-24 (after WP7; all work packages run).
+Maintained by the lead after every merged work package (WP). Workers: read `docs/design/tailwind-worker-brief.md` first, then this file at the start of your WP. Last updated: 2026-11-24 (round 2 started).
 
 ## Goal and standard
 
@@ -139,3 +139,18 @@ Unlockers, in order of yield (each needs a user decision or data):
 5. Safe-delete candidates (UNUSED in the repo, kept because the live store injects markup/CSS): ribbon, shareProduct, productMasonry, productGrid--maxCol*, FloatRight, cart-item-discount, blocker-container, facetedSearch-content--rating.
 
 Tasks 32-34 (retire Citadel/Foundation imports, drop `important` and `source(none)`) are NOT possible yet: the theme still uses Citadel/Foundation classes site-wide (forms, buttons, cards, modal, dropdown, tabs, grid mixins).
+
+## ROUND 2 (started; the user's goal is to COMPLETE the conversion)
+
+Round 1 stopped at about 10% because of the strict delete rule and the 10-utility cap. Round 2 uses the standard in the brief (rules 4 and 5): convert everything in every consumer, identical utilities where a page cannot be rendered (listed as "Unverified by equivalence" in each report), cap about 16 with TSX component extraction, mixins/pseudo-elements/descendant/sibling rules expanded to utilities and arbitrary variants, JS state via the new `is-open:` and `is-active:` variants, merchant settings via `--sv-setting-<key>` (216 settings bridged: `optimizedCheckout-*`, `label-*`, promotion colours, footer/nav colours, etc.). Only third-party widget CSS and proven-impossible items stay.
+
+New tooling (lead): `generate-bridge` also bridges every `stencilColor/Number/String/FontFamily/FontWeight("key")` read in the SCSS; `@custom-variant is-open (&:is(.is-open))` and `is-active`. 124 tests green.
+
+| R2 WP | Scope | Status |
+| --- | --- | --- |
+| R2-1 | account family incl. all shared account classes, layouts/account, addReturn, paymentMethods, login/wishlist rest, pagination in account | todo |
+| R2-2 | product + cart: productView-* (incl. cart preview modal markup), cart table layout and the rest of _cart.scss, previewCart, productList/Grid/SaleBadges/Swatch/promotionCallout, remaining product partials | todo |
+| R2-3 | header/footer/nav and Foundation JS widgets: navUser, navPages, header, footer rest, heroCarousel, banners, modal, dropdown, accordion, tabs, sidebar, body, container | todo |
+| R2-4 | listings/content rest: facetedSearch toggle/navList, blocker, reset-filters, search/category/brand/blog leftovers, contact, textTruncate, quickSearch, share/socialLinks, videoGallery | todo |
+| R2-5 | shared pool: page-heading, form-*, button, card, pagination, tables, type, alerts, icons, lazyLoad, actionBar, loading, global, slick-adjacent theme rules, common/* | todo |
+| R2-L | lead: unused-class sweep, retire Citadel/Foundation imports if inventory shows zero used, drop `important`/`source(none)` if possible | todo |
