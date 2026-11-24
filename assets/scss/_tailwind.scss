@@ -232,7 +232,7 @@
  * R3-2: Foundation's and Citadel's element rules (components global, type, orderedList and the Stencil additions to them), re-expressed on --sv-*
  * variables in the base layer, after Preflight and the normalize remainder above. Dropped because Preflight already sets the same value:
  * `*, *:before, *:after { box-sizing }`, the `div, dl, ... td { margin: 0; padding: 0 }` reset, `html, body { height }` (auto either way).
- * Rules with a pseudo-class, and `.subheader`, are in the components layer below (they beat class rules by specificity in the old cascade).
+ * Rules with a pseudo-class are in the components layer below (they beat class rules by specificity in the old cascade).
  */
 @layer base {
     html {
@@ -950,12 +950,6 @@
         outline: none;
     }
 
-    .subheader {
-        font-weight: var(--sv-subheader-font-weight);
-        line-height: var(--sv-subheader-line-height);
-        margin-bottom: var(--sv-subheader-bottom-margin);
-    }
-
     .aria-description--hidden {
         height: 1px;
         left: 0;
@@ -1464,59 +1458,8 @@
         z-index: var(--sv-zIndex-low);
     }
 
-    /* ribbon and has-ribbon are not used by our templates; the store may render them */
-    .has-ribbon {
-        position: relative;
-    }
-
-    .ribbon {
-        background-color: var(--sv-ribbon-backgroundColor);
-        color: var(--sv-ribbon-color);
-        cursor: var(--sv-ribbon-cursor);
-        font-weight: var(--sv-ribbon-fontWeight);
-        margin: var(--sv-ribbon-margin);
-        padding: var(--sv-ribbon-padding);
-        position: absolute;
-        right: var(--sv-ribbon-positionRight);
-        text-transform: var(--sv-ribbon-textTransform);
-        top: var(--sv-ribbon-positionTop);
-        z-index: 1;
-    }
-
     .pin_it_iframe_widget {
         display: none;
-    }
-
-    .shareProduct {
-        text-align: center;
-    }
-
-    .blocker-container {
-        position: relative;
-    }
-
-    /* textTruncate classes exist in JS and merchant markup only */
-    .textTruncate {
-        padding-bottom: var(--sv-spacing-single);
-        position: relative;
-        transition: max-height 100ms ease-out;
-    }
-
-    .js .textTruncate {
-        max-height: 110px;
-        overflow: hidden;
-    }
-
-    .js .textTruncate--visible {
-        max-height: 71.42857rem;
-    }
-
-    .textTruncate-viewMore {
-        background-color: var(--sv-body-bg);
-        bottom: 0;
-        padding-top: 10px;
-        position: absolute;
-        width: 100%;
     }
 
     /* the merchant injects a div.container on the account page (a bare class that cannot take utilities); the theme's own columns use the Container helper (componentParts.tsx) */
@@ -1539,39 +1482,6 @@
        `.brand-image-container:not(#pseudoID) { max-width: 200px }` that an important utility would beat */
     .brand-image-container {
         max-width: var(--sv-derived-brand-thumb-width);
-    }
-
-    .productMasonry {
-        column-count: 2;
-        column-fill: auto;
-        column-gap: 1.42857rem;
-        margin: 0 0 var(--sv-spacing-single);
-        overflow: hidden;
-    }
-
-    @media (min-width: 551px) {
-        .productMasonry {
-            column-count: 3;
-        }
-    }
-
-    @media (min-width: 801px) {
-        .productMasonry {
-            column-count: 4;
-        }
-    }
-
-    .productMasonry .product {
-        break-inside: avoid;
-        display: block;
-        margin-bottom: var(--sv-spacing-double);
-        padding: 0;
-        page-break-inside: avoid;
-        width: 100%;
-    }
-
-    .productMasonry .card {
-        margin: 0;
     }
 
     .js [data-product-option-change] {

@@ -381,3 +381,7 @@ Edge: baseline at HEAD before editing then compare at 375/768/1280/no-JS iframes
 ## Round 4 outcome
 
 `_tailwind.scss` is 1,636 lines (from 1,786 at R4-3 start, 3,088 at R4-1 start). What remains is CSS for markup the theme does not own (store-injected, JS/jQuery-created, merchant content, third-party plugins), Tailwind/Foundation wiring, base-layer element rules and the legacy focus ring. Further reduction needs changes outside this repo (store injected CSS, merchant page content) or removal of dead families with no consumers (`.ribbon`, `.productMasonry`, `.textTruncate*`, `.shareProduct`, `.subheader`), which is a user decision.
+
+## R4-3 follow-up: dead families deleted
+
+User chose to delete the dead families. Removed from `_tailwind.scss` (1,636 -> 1,546 lines): `.ribbon`, `.has-ribbon`, `.productMasonry` (+ children), `.textTruncate*`, `.shareProduct`, `.blocker-container`, `.subheader`. Checked first: none of those class names appear in the HTML of 10 pages (home, category, product, brand, blog, account, contact-support, advanced search, cart, sitemap) in Edge. `.pin_it_iframe_widget` stays (Pinterest). `assets/js/theme/global/text-truncate.js` is now an unused file (imported nowhere); delete it if wanted.
