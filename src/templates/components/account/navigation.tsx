@@ -3,7 +3,7 @@ import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$If, $Lang, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
 
 export default (_props: PartialProps) => (
-    <nav className="navBar navBar--sub navBar--account">
+    <nav className="navBar navBar--sub navBar--account [display:none] medium:[display:block]">
         <ul className="navBar-section">
             <li className={`navBar-item ${$If({test: $pointer("account_page"), operator: $string("==="), rvalue: $string("orders"), $then: () => "is-active"})}`}>
                 <a className="navBar-action" href={$pointer("urls.account.orders.all")}>

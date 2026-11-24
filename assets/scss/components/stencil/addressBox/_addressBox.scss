@@ -2,37 +2,6 @@
 // ADDRESS BOX (CSS)
 // =============================================================================
 
-// Address layout
-// -----------------------------------------------------------------------------
-//
-// 1. Using display: inline-block; to vertically align blocks.
-//    Font-size gets redefined under the .address block.
-//
-// -----------------------------------------------------------------------------
-
-.addressList {
-    font-size: 0; // 1
-    list-style: none;
-    margin-left: -(spacing("half"));
-    margin-right: -(spacing("half"));
-}
-
-.address {
-    display: inline-block;
-    padding: 0 spacing("half");
-    vertical-align: top;
-    width: 100%;
-
-    @include breakpoint("small") {
-        width: grid-calc(6, $total-columns);
-    }
-
-    @include breakpoint("large") {
-        width: grid-calc(4, $total-columns);
-    }
-}
-
-
 // Address
 // -----------------------------------------------------------------------------
 //
@@ -44,6 +13,7 @@
 //
 // -----------------------------------------------------------------------------
 
+// Stays in SCSS: descendant .panel-body/.form-actions/.button rules with responsive and sibling combinators.
 .panel--address {
     font-size: fontSize("base"); // 1
     position: relative;
@@ -83,63 +53,15 @@
     }
 }
 
-.address-title {
-    margin: 0 0 spacing("half");
-    text-transform: none;
-}
-
-.address-details {
-    list-style: none;
-    margin: 0 0 spacing("half");
-}
-
-.address-details--postal {
-    font-size: fontSize("smaller");
-}
-
-.address-label,
-.address-description {
-    display: inline-block;
-    font-size: fontSize("base");
-    margin: 0;
-}
-
-.address-label {
-    color: stencilColor("color-textSecondary");
-    font-weight: fontWeight("normal");
-}
-
+// Stays in SCSS: descendant .panel-body override.
 .panel--newAddress {
     display: block;
     text-align: center;
     text-decoration: none;
-
-    &:hover {
-        .address-title {
-            color: stencilColor("color-textLink--hover");
-        }
-    }
 
     .panel-body {
         background-color: transparent;
         border: container("border");
         display: block;
     }
-
-    .address-title {
-        margin-bottom: 0;
-        transition: all 0.15s ease;
-    }
-}
-
-.address-addNew {
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translateX(-50%) translateY(-55%);
-}
-
-.address-symbol {
-    font-size: fontSize("hero");
-    line-height: 1;
 }

@@ -7,7 +7,7 @@ export default () => (
     <$Page
         blocks={{
             page: () => (
-                <div className="login">
+                <div className="mx-auto mt-double mb-[calc(var(--sv-spacing-double)*2)] max-w-[900px]">
                     <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
                     <h1 className="page-heading">
                         <$Lang keyName={$string("login.heading")} />
@@ -54,23 +54,23 @@ export default () => (
                                             </h2>
                                         </div>
                                         <div className="panel-body">
-                                            <p className="new-customer-intro">
+                                            <p className="mb-0">
                                                 <$Lang keyName={$string("login.new_customer.intro")} />
                                             </p>
-                                            <ul className="new-customer-fact-list">
-                                                <li className="new-customer-fact">
+                                            <ul className="ml-double">
+                                                <li className="pl-half">
                                                     <$Lang keyName={$string("login.new_customer.fact1")} />
                                                 </li>
-                                                <li className="new-customer-fact">
+                                                <li className="pl-half">
                                                     <$Lang keyName={$string("login.new_customer.fact2")} />
                                                 </li>
-                                                <li className="new-customer-fact">
+                                                <li className="pl-half">
                                                     <$Lang keyName={$string("login.new_customer.fact3")} />
                                                 </li>
-                                                <li className="new-customer-fact">
+                                                <li className="pl-half">
                                                     <$Lang keyName={$string("login.new_customer.fact4")} />
                                                 </li>
-                                                <li className="new-customer-fact">
+                                                <li className="pl-half">
                                                     <$Lang keyName={$string("login.new_customer.fact5")} />
                                                 </li>
                                             </ul>

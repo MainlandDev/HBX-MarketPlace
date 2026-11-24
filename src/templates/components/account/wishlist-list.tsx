@@ -16,7 +16,7 @@ interface Wishlist {
 
 export default (_props: PartialProps) => (
     <>
-        <table className="table table--line wishlists-table">
+        <table className="table table--line mx-auto max-w-(--sv-layout-widthMax)">
             <thead className="table-thead">
                 <tr>
                     <th>

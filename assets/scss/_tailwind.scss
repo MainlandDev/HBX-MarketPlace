@@ -14,12 +14,15 @@
 @source "../../src/templates/components/products/options";
 @source "../../src/templates/components/cart";
 @source "../../src/templates/pages/cart.tsx";
+@source "../../src/templates/components/account";
+@source "../../src/templates/pages/account";
+@source "../../src/templates/pages/auth";
 /*
  * Words in attributes and comments of a listed folder (`type="hidden"`, "containing block") are also picked up as candidates. With `important` an
  * emitted `.hidden` or `.block` would override third-party and merchant markup site-wide, so such strays are excluded here. The test in
  * scripts/tailwind/theme.test.mjs fails when a utility is emitted that no className uses: add its name to this list.
  */
-@source not inline("block hidden");
+@source not inline("block hidden table");
 
 /*
  * Normalisation on top of Preflight, in the base layer. Declared after the import, so on equal
@@ -247,6 +250,9 @@
 
     /* promoted from rounded-[12px], used at 3 sites (the variant selector cards) */
     --radius-card: 12px;
+
+    /* promoted from border-(--sv-container-border-global-color-base), used at 2 sites (account order list shipping row, order totals) */
+    --color-container-border: var(--sv-container-border-global-color-base);
 
     /* 2. design tokens */
     --color-brand: var(--color-brand);

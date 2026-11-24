@@ -24,17 +24,17 @@ export default (_props: PartialProps) => (
             test={$pointer("customer.addresses")}
             $then={() => <AlertAlertInfo $positionalHash={$lang($string("account.addresses.no_addresses"))} />}
         />
-        <ul className="addressList">
+        <ul className="-mx-half list-none text-[0px]">
             <$Each
                 list={$pointer<Address[]>("customer.addresses")}
                 $then={(address) => (
-                    <li className="address">
+                    <li className="inline-block w-full px-half align-top small:w-1/2 large:w-1/3">
                         <div className="panel panel--address">
                             <div className="panel-body">
-                                <h5 className="address-title">
+                                <h5 className="m-0 mb-half [text-transform:none]">
                                     {address.first_name} {address.last_name}
                                 </h5>
-                                <ul className="address-details address-details--postal">
+                                <ul className="m-0 mb-half list-none text-smaller">
                                     <li>{address.company}</li>
                                     <li>{address.address1}</li>
                                     <li>{address.address2}</li>
@@ -56,11 +56,11 @@ export default (_props: PartialProps) => (
                                 <$If
                                     test={address.phone}
                                     $then={() => (
-                                        <dl className="address-details">
-                                            <dt className="address-label">
+                                        <dl className="m-0 mb-half list-none">
+                                            <dt className="m-0 inline-block text-(length:--sv-fontSize-base) font-normal text-text-secondary">
                                                 <$Lang keyName={$string("account.addresses.phone")} />
                                             </dt>
-                                            <dd className="address-description">{address.phone}</dd>
+                                            <dd className="m-0 inline-block text-(length:--sv-fontSize-base)">{address.phone}</dd>
                                         </dl>
                                     )}
                                 />
@@ -79,12 +79,12 @@ export default (_props: PartialProps) => (
                     </li>
                 )}
             />
-            <li className="address">
-                <a className="panel panel--address panel--newAddress" href={$pointer("urls.account.add_address")}>
+            <li className="inline-block w-full px-half align-top small:w-1/2 large:w-1/3">
+                <a className="group panel panel--address panel--newAddress" href={$pointer("urls.account.add_address")}>
                     <span className="panel-body">
-                        <span className="address-addNew">
-                            <span className="address-symbol">{$raw("&plus;")}</span>
-                            <h5 className="address-title">
+                        <span className="absolute top-1/2 left-1/2 [transform:translateX(-50%)_translateY(-55%)]">
+                            <span className="text-hero leading-none">{$raw("&plus;")}</span>
+                            <h5 className="m-0 [text-transform:none] [transition:all_0.15s_ease] group-hover:text-(--sv-color-textLink-hover)">
                                 <$Lang keyName={$string("account.addresses.new_address")} />
                             </h5>
                         </span>

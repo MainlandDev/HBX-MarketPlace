@@ -116,7 +116,7 @@ export default () => {
                                 <div className="account-content account-content--fixedSmall">
                                     <AccountOrderContents order={order} />
 
-                                    <dl className="account-orderTotal">
+                                    <dl className="float-right -mt-single w-2/3 text-smaller">
                                         <$Each
                                             list={order.total_rows}
                                             $then={(row) => (
@@ -124,8 +124,8 @@ export default () => {
                                                     test={row.value.value}
                                                     $then={() => (
                                                         <>
-                                                            <dt className="account-orderTotal-key">{row.label}:</dt>
-                                                            <dd className="account-orderTotal-value">{row.value.formatted}</dd>
+                                                            <dt className="float-left m-0 py-single font-normal text-text-secondary last-of-type:relative last-of-type:top-fifth">{row.label}:</dt>
+                                                            <dd className="m-0 border-b border-container-border py-single text-right last:border-b-0 last:text-small">{row.value.formatted}</dd>
                                                             <$If
                                                                 test={row.shipping_discounts}
                                                                 $then={() => (
@@ -376,7 +376,7 @@ export default () => {
                                             <$Lang keyName={$string("account.orders.details.actions")} />
                                         </h3>
                                         <div className="order-details-info">
-                                            <form className="account-reorder-form" action={order.reorder_url} method="post" data-account-reorder-form={""}>
+                                            <form className="inline-block" action={order.reorder_url} method="post" data-account-reorder-form={""}>
                                                 <input type="hidden" name="orderid" value={order.id} />
                                                 <$Each
                                                     list={order.items}

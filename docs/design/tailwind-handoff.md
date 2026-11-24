@@ -34,7 +34,7 @@ Convert the theme's remaining SCSS (`assets/scss/components`, `assets/scss/layou
 | WP | Scope (SCSS under `assets/scss/`) | TSX owned (under `src/templates/`) | Status |
 | --- | --- | --- | --- |
 | 0 | cart slice A, variant selector, tooling | cart (partial), products/options | merged (`31c354d1`, `32e8a01c`) |
-| 1 | `components/stencil/{account,addressBox,addReturn,paymentMethods,_wishlists,_login}`, `layouts/account` | `components/account`, `pages/account`, `pages/auth` | todo |
+| 1 | `components/stencil/{account,addressBox,addReturn,paymentMethods,_wishlists,_login}`, `layouts/account` | `components/account`, `pages/account`, `pages/auth` | merged, partial (see report) |
 | 2 | `components/stencil/{productView,productReviews,writeReview,productCarousel,quickView,price,rating,ribbon,tags,toggleLink,videoGallery,socialLinks}`, `layouts/products/*` (incl. the rest of `_variantSelector`) | `components/products` (not `options`), `pages/product.tsx` | todo |
 | 3 | `components/stencil/{navUser,navPages,heroCarousel,banners}`, `layouts/{header,footer,body,container,sidebar}` | `layout`, `components/common`, `components/carousel*.tsx`, `pages/home.tsx` | todo |
 | 4 | `components/stencil/{search,category,compare,facetedSearch,facetLabel,contact,blocker,textTruncate}`, `layouts/{blog,brands}` | `components/{search,category,brand,blog,faceted-search,sitemap,page}`, `pages/{search,category,brand,brands,blog,blog-post,compare,contact-us,page,sitemap}.tsx` | todo |
@@ -44,8 +44,21 @@ Convert the theme's remaining SCSS (`assets/scss/components`, `assets/scss/layou
 
 ## Merge log
 
-(none yet)
+- WP1 merged by the lead (account family, partial): theme CSS 6490 -> 6353 SCSS lines in `tw-inventory`; vitest 119/119, vite-build ok.
+
+## Lessons added by WP1
+
+- **The live store injects inline CSS that targets theme class names** (e.g. `nav.navBar--account a[href*="/account.php?action=inbox"]`, and rules for `account-sidebar-block`, `account-listItem`, `account-product-checkItem`, `account-product--alignMiddle`, `.button[data-print-invoice]`). Never remove a class name from markup without checking the page's non-theme stylesheets; keep the name as a hook and add utilities beside it.
+- Helper root: account/login pages have no `.page`; use `#main-content`. Clear finished `tw-*` keys: sessionStorage (about 5 MB) overflows after a few pages.
+- `translate-*` utilities set the `translate` property, not `transform`: use `[transform:translateX(-50%)_translateY(-55%)]` for parity.
+- `fontSize("base")` is `text-(length:--sv-fontSize-base)`; container width is `max-w-(--sv-layout-widthMax)`; Citadel `color("greys","light")` is merchant `text-grey-light`; `stencilColor("label-*")` is not bridged (blocks `account-orderStatus-label`).
+- `table` is now in `@source not inline("block hidden table")` because `table table--line` markup made the stray-utility test fail; add other stray names the same way (the test comment says so).
+- `--color-container-border` now exists: use `border-container-border`.
+- Passing collision test: `inline-block`, `float-left|right`, `group`, `list-none`.
+- Reachability: orders list (10 orders), order details (id 141539), address book (3 addresses), wishlist page (table, no rows) and login render; returns list (`view_returns` redirects), inbox (0 messages), add-return, completed orders, download items and backorder/discount/payment states do NOT render with the user's data. Rules whose consumers include these stay in SCSS (rule 4).
 
 ## Worker reports
 
-(pasted by the lead after each WP)
+### WP1 (account family): summary
+Converted and Edge-verified (0 diffs at 375/768/1280/no-JS except sub-pixel width noise of at most 0.013px and invisible zero-width border colours): navBar--account, listShipping(+title), product-price, product-refundQty, orderTotal(+key/value), reorder-form (order list/details), addressBox (address list), login intro/fact list, wishlists-table; deleted the UNUSED `account-product-subtitle`. Stayed in SCSS: shared classes with unreachable consumers (heading, list, listItem, product-title, detail-heading, orderStatus*, product-description, backorder prompts, orderTotal-discount, download*, payment description), layout/mixin rules (product, figure, body, details, alignMiddle, order-address, downloadsList), sidebar sibling rule, pagination, panel--address descendants, login-row/form/new-customer, wishlist-header/form/share, layouts/account, addReturn, paymentMethods. Follow-up: giving the worker returns/inbox data would unlock most shared account rules; the user decided not to convert unverified.
+

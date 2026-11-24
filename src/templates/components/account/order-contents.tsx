@@ -61,8 +61,8 @@ export default (_props: PartialProps) => (
                                 <$If
                                     test={row.is_shipping}
                                     $then={() => (
-                                        <li className="account-listShipping">
-                                            <h5 className="account-listShipping-title">
+                                        <li className="border-b border-container-border py-[calc(var(--sv-spacing-single)+var(--sv-spacing-third))] font-bold">
+                                            <h5 className="m-0 [text-transform:inherit]">
                                                 <$Lang
                                                     keyName={$string("account.orders.details.ship_to_multi")}
                                                     street={row.address}
@@ -135,7 +135,7 @@ export default (_props: PartialProps) => (
                                     />
                                 </figure>
                                 <div className="account-product-body">
-                                    <span className="account-product-price">{item.price.formatted}</span>
+                                    <span className="float-right text-smaller">{item.price.formatted}</span>
                                     <h5 className="account-product-title">
                                         {item.quantity} {$raw("&#215;")} {item.name}
                                     </h5>
@@ -235,7 +235,7 @@ export default (_props: PartialProps) => (
                                     <$If
                                         test={item.refunded}
                                         $then={() => (
-                                            <p className="account-product-refundQty">
+                                            <p className="mb-0 text-grey-light">
                                                 <$Lang keyName={$string("account.orders.refunded_quantity")} qty={item.refunded_qty} />
                                             </p>
                                         )}
@@ -243,7 +243,7 @@ export default (_props: PartialProps) => (
                                             <$If
                                                 test={item.refunded_qty}
                                                 $then={() => (
-                                                    <p className="account-product-refundQty">
+                                                    <p className="mb-0 text-grey-light">
                                                         <$Lang keyName={$string("account.orders.refunded_quantity")} qty={item.refunded_qty} />
                                                     </p>
                                                 )}
