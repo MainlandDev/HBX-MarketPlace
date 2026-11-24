@@ -17,6 +17,8 @@ The single design reference for the marketplace-hbx theme (replacement for onlin
 | `npm run build-bible` / `npm run check-bible` | Build / lint the document |
 | `npm run generate-bridge` / `npm run check-bridge` | Write / check `assets/scss/settings/global/_css-vars.scss` (SCSS variables as `--sv-*`) |
 | `npm run tw-diff -- before.json after.json` | Compare two computed-style snapshots (see `tailwind-playbook.md`) |
+| `npm run tw-inventory` / `-- --classes <partial>` | SCSS partials by size, classes defined and files still using them |
+| `npm run tw-helper -- "<root>"` | Print the in-page parity helper to run in Edge |
 | `npx vitest run scripts` | Unit tests for the tooling |
 
 ## Editing
