@@ -40,28 +40,28 @@ export default (_props: PartialProps) => (
                         <input
                             type="radio"
                             dangerouslyInlineAttributes={{
-                                attributes: `class="form-radio" name="giftwraptype" id="girftWrapping-radio-same" checked="checked" value="same"`,
+                                attributes: `class="form-radio [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]" name="giftwraptype" id="girftWrapping-radio-same" checked="checked" value="same"`,
                             }}
                         />{" "}
-                        <label className="form-label" htmlFor="girftWrapping-radio-same">
+                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="girftWrapping-radio-same">
                             <$Lang keyName={$string("cart.gift_wrapping.option_same")} />
                         </label>
 
                         <input
                             type="radio"
-                            className="form-radio"
+                            className="form-radio [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
                             name="giftwraptype"
                             id="girftWrapping-radio-all"
                             value="different"
                         />{" "}
-                        <label className="form-label" htmlFor="girftWrapping-radio-all">
+                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="girftWrapping-radio-all">
                             <$Lang keyName={$string("cart.gift_wrapping.option_different")} />
                         </label>
                     </div>
 
                     <div className="giftWrapping-single">
                         <div className="form-field">
-                            <label className="form-label" htmlFor="giftWrapping-select-same">
+                            <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="giftWrapping-select-same">
                                 <$Lang keyName={$string("cart.gift_wrapping.item_single")} name={$pointer("product_name")} />
                                 <$Each
                                     list={$pointer<GiftWrapping[]>("gift_wrappings")}
@@ -105,7 +105,7 @@ export default (_props: PartialProps) => (
                                 attributes: `class="form-field" id="giftWrapping-message-all" ${$Unless({test: $pointer("selected_wrapping"), $then: () => $raw('style="display:none"')})}`,
                             }}
                         >
-                            <label className="form-label" htmlFor="giftMessage">
+                            <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="giftMessage">
                                 <$Lang keyName={$string("cart.gift_wrapping.gift_message")} />
                             </label>
                             <textarea
@@ -125,7 +125,7 @@ export default (_props: PartialProps) => (
                             $then={(ctx) => (
                                 <>
                                     <div className="form-field">
-                                        <label className="form-label" htmlFor={`giftWrapping-select-${ctx.$index}`}>
+                                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor={`giftWrapping-select-${ctx.$index}`}>
                                             <$Lang
                                                 keyName={$string("cart.gift_wrapping.item_multiple")}
                                                 index={ctx.$index}
@@ -176,7 +176,7 @@ export default (_props: PartialProps) => (
                                     </div>
 
                                     <div className="form-field" id={`giftWrapping-message-${ctx.$index}`} style={{display: "none"}}>
-                                        <label className="form-label" htmlFor="giftMessage">
+                                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="giftMessage">
                                             <$Lang keyName={$string("cart.gift_wrapping.gift_message")} />
                                         </label>
                                         <textarea
@@ -192,7 +192,7 @@ export default (_props: PartialProps) => (
                         />
                     </div>
                 </fieldset>
-                <div className="form-actions">
+                <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
                     <button className="button button--primary" type="submit">
                         <$Lang keyName={$string("common.form_submit")} />
                     </button>

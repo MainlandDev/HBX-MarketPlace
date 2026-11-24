@@ -26,7 +26,7 @@ export default (_props: PartialProps) => (
         <div className="form-field" id="facetedSearch-filterItems">
             <input className="form-input" type="search" placeholder={$lang($string("forms.search.search"))} />
         </div>
-        <ul className="navList facetedSearch-optionColumns [column-count:3] [column-gap:20px]">
+        <ul className="navList ml-0 facetedSearch-optionColumns [column-count:3] [column-gap:20px]">
             <$Each
                 list={$pointer<Facet[]>("facets")}
                 $then={() => (
@@ -40,7 +40,7 @@ export default (_props: PartialProps) => (
                                     <$Each
                                         list={$pointer<FacetOption[]>("items")}
                                         $then={(item) => (
-                                            <li className="navList-item">
+                                            <li className="navList-item [&_.navList-action]:no-underline [&_.navList-action.is-active]:font-bold">
                                                 <a
                                                     href={item.url}
                                                     className={`navList-action${$If({test: item.selected, $then: () => " is-active"})}`}

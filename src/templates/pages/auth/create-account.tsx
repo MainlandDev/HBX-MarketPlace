@@ -12,7 +12,7 @@ export default () => (
                 page: () => (
                     <>
                         <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                        <h1 className="page-heading">
+                        <h1 className="page-heading mx-0 mt-0 mb-double text-center">
                             <$Lang keyName={$string("create_account.heading")} />
                         </h1>
                         <div className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3">
@@ -30,7 +30,7 @@ export default () => (
                                             method="post"
                                             className="form"
                                         >
-                                            <div className="form-row form-row--half">
+                                            <div className="form-row form-row--half small:[&>.form-field:nth-child(odd)]:clear-left">
                                                 <$Each
                                                     list={$pointer<unknown[]>("forms.create_account.account_fields")}
                                                     $then={() => $unescaped($dynamicComponent($string("components/common/forms")))}
@@ -43,7 +43,7 @@ export default () => (
                                                 <$Inject keyName={$string("state_error")} value={$lang($string("errors.state_error"))} />
                                             </div>
                                             {$unescaped($pointer("forms.create_account.recaptcha.markup"))}
-                                            <div className="form-actions">
+                                            <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
                                                 <input
                                                     type="submit"
                                                     className="button button--primary"

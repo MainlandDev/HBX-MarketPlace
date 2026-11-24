@@ -21,19 +21,19 @@ export default (_props: PartialProps) => (
                             <h5 className="sidebarBlock-heading mt-0 text-[15px] [text-transform:inherit]">
                                 <$Lang keyName={$string("brand.label")} />
                             </h5>
-                            <ul className="navList">
+                            <ul className="navList ml-0">
                                 <$Each
                                     list={$pointer<ShopByBrand[]>("shop_by_brand")}
                                     $then={(brand) => (
                                         <li className="navList-item">
-                                            <a className="navList-action" href={brand.url}>
+                                            <a className="navList-action no-underline" href={brand.url}>
                                                 {brand.name}
                                             </a>
                                         </li>
                                     )}
                                 />
                                 <li className="navList-item">
-                                    <a className="navList-action" href={$pointer("urls.brands")}>
+                                    <a className="navList-action no-underline" href={$pointer("urls.brands")}>
                                         <$Lang keyName={$string("common.view_all")} />
                                     </a>
                                 </li>

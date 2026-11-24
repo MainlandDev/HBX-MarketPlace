@@ -16,7 +16,7 @@ export default (_props: PartialProps) => (
         dangerouslyInlineAttributes={{attributes: `${$ifAttribute("data-type", "private_id")}`}}
     >
         <noscript>
-            <label className="form-label" htmlFor={`${$pointer("id")}_input`}>
+            <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor={`${$pointer("id")}_input`}>
                 {$pointer("label")}
                 <$If test={$pointer("required")} $then={() => <small><$Lang keyName={$string("common.required")} /></small>} />
             </label>
@@ -34,7 +34,7 @@ export default (_props: PartialProps) => (
             />
         </noscript>
 
-        <label className="form-label" htmlFor={`${$pointer("id")}_select`}>
+        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor={`${$pointer("id")}_select`}>
             {$pointer("label")}
             <$If test={$pointer("required")} $then={() => <small><$Lang keyName={$string("common.required")} /></small>} />
         </label>

@@ -102,7 +102,7 @@ export default () => {
                     <>
                         <$Inject keyName={$string("selectItem")} value={$lang($string("forms.validate.account.reorder.select_item"))} />
                         <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                        <h2 className="page-heading title">
+                        <h2 className="page-heading mx-0 mt-0 mb-double text-center title">
                             <$Lang keyName={$string("account.orders.details.heading")} number={order.id} />
                         </h2>
                         <AccountNavigation account_page={$string("orders")} />
@@ -150,27 +150,27 @@ export default () => {
                                         <h3 className="account-heading m-0 mb-single border-b border-container-border pb-base">
                                             <$Lang keyName={$string("account.orders.details.order_details")} />
                                         </h3>
-                                        <dl className="definitionList">
-                                            <dt className="definitionList-key">
+                                        <dl className="definitionList flow-root">
+                                            <dt className="definitionList-key float-left m-0 mr-quarter font-normal text-text-secondary">
                                                 <$Lang keyName={$string("account.orders.details.order_status")} />
                                             </dt>
-                                            <dd className="definitionList-value">{order.status_text}</dd>
-                                            <dt className="definitionList-key">
+                                            <dd className="definitionList-value m-0">{order.status_text}</dd>
+                                            <dt className="definitionList-key float-left m-0 mr-quarter font-normal text-text-secondary">
                                                 <$Lang keyName={$string("account.orders.details.payment_date")} />
                                             </dt>
-                                            <dd className="definitionList-value">{order.date}</dd>
-                                            <dt className="definitionList-key">
+                                            <dd className="definitionList-value m-0">{order.date}</dd>
+                                            <dt className="definitionList-key float-left m-0 mr-quarter font-normal text-text-secondary">
                                                 <$Lang keyName={$string("account.orders.details.order_total")} />
                                             </dt>
-                                            <dd className="definitionList-value">{order.total.formatted}</dd>
+                                            <dd className="definitionList-value m-0">{order.total.formatted}</dd>
                                             <$If
                                                 test={order.payment_method}
                                                 $then={() => (
                                                     <>
-                                                        <dt className="definitionList-key">
+                                                        <dt className="definitionList-key float-left m-0 mr-quarter font-normal text-text-secondary">
                                                             <$Lang keyName={$string("account.orders.details.payment_method")} />
                                                         </dt>
-                                                        <dd className="definitionList-value">
+                                                        <dd className="definitionList-value m-0">
                                                             {order.payment_method}{" "}
                                                             <$If
                                                                 test={order.card_number_last_four}
@@ -224,11 +224,11 @@ export default () => {
                                                     list={order.pickup_addresses}
                                                     $then={(pickup) => (
                                                         <>
-                                                            <dl className="definitionList">
-                                                                <dt className="definitionList-key">
+                                                            <dl className="definitionList flow-root">
+                                                                <dt className="definitionList-key float-left m-0 mr-quarter font-normal text-text-secondary">
                                                                     <$Lang keyName={$string("account.orders.details.pickup_method")} />
                                                                 </dt>
-                                                                <dd className="definitionList-value">{$sanitize(pickup.pickup_method_display_name)}</dd>
+                                                                <dd className="definitionList-value m-0">{$sanitize(pickup.pickup_method_display_name)}</dd>
                                                             </dl>
 
                                                             <ul className="account-order-address ml-0 list-none [&_ul]:mb-0 [&_ul]:list-none [&_ol]:mb-0 [&_ol]:list-none">
@@ -244,15 +244,15 @@ export default () => {
                                                                 <li>{$unescaped($sanitize(pickup.location_country_name))}</li>
                                                             </ul>
 
-                                                            <dl className="definitionList">
+                                                            <dl className="definitionList flow-root">
                                                                 <$If
                                                                     test={pickup.location_phone}
                                                                     $then={() => (
                                                                         <>
-                                                                            <dt className="definitionList-key">
+                                                                            <dt className="definitionList-key float-left m-0 mr-quarter font-normal text-text-secondary">
                                                                                 <$Lang keyName={$string("account.orders.details.phone")} />
                                                                             </dt>
-                                                                            <dd className="definitionList-value">{$unescaped($sanitize(pickup.location_phone))}</dd>
+                                                                            <dd className="definitionList-value m-0">{$unescaped($sanitize(pickup.location_phone))}</dd>
                                                                         </>
                                                                     )}
                                                                 />
@@ -260,10 +260,10 @@ export default () => {
                                                                     test={pickup.location_email}
                                                                     $then={() => (
                                                                         <>
-                                                                            <dt className="definitionList-key">
+                                                                            <dt className="definitionList-key float-left m-0 mr-quarter font-normal text-text-secondary">
                                                                                 <$Lang keyName={$string("account.orders.details.email")} />
                                                                             </dt>
-                                                                            <dd className="definitionList-value">{$unescaped($sanitize(pickup.location_email))}</dd>
+                                                                            <dd className="definitionList-value m-0">{$unescaped($sanitize(pickup.location_email))}</dd>
                                                                         </>
                                                                     )}
                                                                 />
@@ -318,19 +318,19 @@ export default () => {
                                                 <$Each
                                                     list={shipments}
                                                     $then={(shipment) => (
-                                                        <dl className="definitionList">
-                                                            <dt className="definitionList-key">
+                                                        <dl className="definitionList flow-root">
+                                                            <dt className="definitionList-key float-left m-0 mr-quarter font-normal text-text-secondary">
                                                                 <$Lang keyName={$string("account.orders.details.shipments.date")} />:
                                                             </dt>
-                                                            <dd className="definitionList-value">{shipment.date_shipped}</dd>
-                                                            <dt className="definitionList-key">
+                                                            <dd className="definitionList-value m-0">{shipment.date_shipped}</dd>
+                                                            <dt className="definitionList-key float-left m-0 mr-quarter font-normal text-text-secondary">
                                                                 <$Lang keyName={$string("account.orders.details.shipments.method")} />:
                                                             </dt>
-                                                            <dd className="definitionList-value">{shipment.shipping_provider}</dd>
-                                                            <dt className="definitionList-key">
+                                                            <dd className="definitionList-value m-0">{shipment.shipping_provider}</dd>
+                                                            <dt className="definitionList-key float-left m-0 mr-quarter font-normal text-text-secondary">
                                                                 <$Lang keyName={$string("account.orders.details.shipments.link")} />:
                                                             </dt>
-                                                            <dd className="definitionList-value">
+                                                            <dd className="definitionList-value m-0">
                                                                 <$If
                                                                     test={shipment.shipping_track.url}
                                                                     $then={() => (

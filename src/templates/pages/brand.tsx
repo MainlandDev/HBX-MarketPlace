@@ -56,7 +56,7 @@ export default () => {
                                     </div>
                                 )}
                             />
-                            <h1 className="page-heading">{$pointer("brand.name")}</h1>
+                            <h1 className="page-heading mx-0 mt-0 mb-double text-center">{$pointer("brand.name")}</h1>
                             {region("brand_below_header")}
                             <div className="page -mx-gutter-half w-auto max-w-none flow-root">
                                 <aside className="page-sidebar relative float-left w-full px-gutter-half medium:w-1/4" id="faceted-search-container">

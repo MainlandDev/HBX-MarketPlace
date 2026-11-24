@@ -44,7 +44,7 @@ export default () => (
                     <$Inject keyName={$string("comparisons")} value={$pointer("comparisons")} />{" "}
                     <$Inject keyName={$string("compareRemoveMessage")} value={$lang($string("compare.no_remove"))} />
                     <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                    <h1 className="page-heading">
+                    <h1 className="page-heading mx-0 mt-0 mb-double text-center">
                         <$Lang keyName={$string("compare.header")} products={$pointer<number>("comparisons.length")} />
                     </h1>
                     <main className="page -mx-gutter-half w-auto max-w-none flow-root">
@@ -57,14 +57,14 @@ export default () => (
                                         $then={(product) => (
                                             <th className="compareTable-product px-base pt-[calc(var(--sv-spacing-single)+var(--sv-spacing-third))] pb-base-sixth font-normal">
                                                 <article className="card mb-0">
-                                                    <figure className="card-figure overflow-visible">
+                                                    <figure className="card-figure group/fig relative mt-0 overflow-visible p-[3px]">
                                                         <a
-                                                            className="card-figure__link"
+                                                            className="card-figure__link relative [display:block]"
                                                             aria-label={product.name}
                                                             href={product.url}
                                                             data-event-type="product-click"
                                                         >
-                                                            <div className="card-img-container">
+                                                            <div className="card-img-container max-w-[500px] after:block after:h-0 after:w-full after:pb-[131.8%] after:content-[''] [&_.card-image]:absolute [&_.card-image]:inset-0 [&_.card-image]:m-auto [&_.card-image]:max-h-full [&_.card-image]:w-full [&_.card-image]:border-0 [&_.card-image]:object-contain [&_.card-image]:[font-family:'object-fit:_contain;']">
                                                                 <ResponsiveImg image={product.image} class={$string("card-image")} fallback_size={$pointer("../theme_settings.product_size")} lazyload={$pointer("../theme_settings.lazyload_mode")} default_image={$pointer("../theme_settings.default_image_product")} />
                                                             </div>
                                                         </a>
@@ -86,12 +86,12 @@ export default () => (
                                                         <$If
                                                             test={product.brand.name}
                                                             $then={() => (
-                                                                <p className="card-text mb-eighth">
+                                                                <p className="card-text [&_abbr]:border-0 [&_abbr]:text-inherit [&_abbr]:[font-size:inherit] mb-eighth">
                                                                     <a href={product.brand.url}>{product.brand.name}</a>
                                                                 </p>
                                                             )}
                                                         />
-                                                        <h3 className="card-title mb-sixth text-smaller mt-0">
+                                                        <h3 className="card-title [&>a]:text-(--sv-setting-card-title-color) [&>a]:no-underline [&>a]:[display:block] [&>a:hover]:text-(--sv-setting-card-title-color-hover) mb-sixth text-smaller mt-0">
                                                             <a href={product.url}>{product.name}</a>
                                                         </h3>
                                                         <$Or values={[$pointer("../customer"), $unlessExpression($pointer("../settings.hide_price_from_guests"))]} $then={() => (<><$If

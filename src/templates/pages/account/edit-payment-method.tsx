@@ -15,7 +15,7 @@ export default () => (
                 <>
                     <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
 
-                    <h2 className="page-heading">
+                    <h2 className="page-heading mx-0 mt-0 mb-double text-center">
                         <$Lang keyName={$string("forms.payment_methods.edit.heading")} />
                     </h2>
 
@@ -84,10 +84,10 @@ export default () => (
                                             <input
                                                 type="checkbox"
                                                 dangerouslyInlineAttributes={{
-                                                    attributes: `value="default_instrument" name="is_default" id="default_instrument" data-label="${$lang($string("forms.payment_methods.default_instrument"))}" class="form-checkbox" ${$If({test: $pointer("is_default"), $then: () => "checked"})}`,
+                                                    attributes: `value="default_instrument" name="is_default" id="default_instrument" data-label="${$lang($string("forms.payment_methods.default_instrument"))}" class="form-checkbox [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]" ${$If({test: $pointer("is_default"), $then: () => "checked"})}`,
                                                 }}
                                             />
-                                            <label className="form-label" htmlFor="default_instrument">
+                                            <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="default_instrument">
                                                 <$Lang keyName={$string("forms.payment_methods.default_instrument")} />
                                             </label>
                                         </div>
@@ -104,7 +104,7 @@ export default () => (
                                                 </h3>
 
                                                 <fieldset className="form-fieldset">
-                                                    <div className="form-row form-row--half">
+                                                    <div className="form-row form-row--half small:[&>.form-field:nth-child(odd)]:clear-left">
                                                         <$Each
                                                             list={$pointer<unknown[]>("forms.billing_fields")}
                                                             $then={() => $unescaped($dynamicComponent($string("components/common/forms")))}
@@ -115,7 +115,7 @@ export default () => (
                                         )}
                                     />
 
-                                    <div className="form-actions">
+                                    <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
                                         <input type="submit" className="button button--primary" value={$lang($string("forms.payment_methods.submit_value"))} />
                                         <a href={$pointer("../urls.account.payment_methods.all")} className="button">
                                             <$Lang keyName={$string("common.cancel")} />

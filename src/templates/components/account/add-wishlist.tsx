@@ -45,7 +45,7 @@ export default (_props: PartialProps) => (
                 <input type="hidden" name="submit" />
 
                 <div className="form-field">
-                    <label className="form-label" htmlFor="wishlistname">
+                    <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="wishlistname">
                         <$Lang keyName={$string("forms.wishlist.name")} />{" "}
                         <small>
                             <$Lang keyName={$string("common.required")} />
@@ -57,14 +57,14 @@ export default (_props: PartialProps) => (
                     <input
                         type="checkbox"
                         dangerouslyInlineAttributes={{
-                            attributes: `class="form-checkbox" name="publicwishlist" id="publicwishlist" ${$If({test: $pointer("forms.wishlist.is_public"), $then: () => "checked"})}`,
+                            attributes: `class="form-checkbox [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]" name="publicwishlist" id="publicwishlist" ${$If({test: $pointer("forms.wishlist.is_public"), $then: () => "checked"})}`,
                         }}
                     />{" "}
-                    <label className="form-label" htmlFor="publicwishlist">
+                    <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="publicwishlist">
                         <$Lang keyName={$string("forms.wishlist.public")} />
                     </label>
                 </div>
-                <div className="form-actions">
+                <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
                     <$If
                         test={$pointer("forms.wishlist.id")}
                         $then={() => (

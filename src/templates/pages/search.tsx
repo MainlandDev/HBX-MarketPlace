@@ -84,18 +84,18 @@ export default () => {
                                         <div id="search-results-heading"><SearchHeading /></div>
                                     )}
                                 />
-                                <nav className="navBar navBar--sub search-nav relative">
+                                <nav className="navBar navBar--sub search-nav relative mb-[calc(var(--sv-spacing-single)*3)] text-center">
                                     <span id="search-tabs-widget-description" className="aria-description--hidden">
                                         <$Lang keyName={$string("search.tabs_accesibility_hint")} />
                                     </span>
-                                    <ul role="tablist" className="navBar-section account-navigation" data-search-page-tabs={""}>
+                                    <ul role="tablist" className="navBar-section account-navigation float-none [&_.navBar-item]:float-none [&_.navBar-item]:mx-half [&_.navBar-item]:my-0 medium:[&_.navBar-item]:[display:inline-block] medium:[&_.navBar-item.is-active]:border-b medium:[&_.navBar-item.is-active]:border-b-(--sv-setting-color-textBase) medium:[&_.navBar-item.navBar-item--separate]:m-0 medium:[&_.navBar-item.navBar-item--separate]:border-l medium:[&_.navBar-item.navBar-item--separate]:border-l-(--sv-setting-color-textSecondary) medium:[&_.navBar-item.navBar-item--separate]:pl-half [&_.navBar-item.is-active>.navBar-action]:text-grey-dark" data-search-page-tabs={""}>
                                         <li role="presentation" className="navBar-item">
                                             <a
                                                 aria-describedby="search-tabs-widget-description"
                                                 role="tab"
                                                 aria-controls="product-listing-container"
                                                 id="search-results-product-count"
-                                                className="navBar-action"
+                                                className="navBar-action p-0 text-text-secondary text-(length:--sv-fontSize-base) no-underline hover:text-(--sv-setting-color-textSecondary--hover)"
                                                 href={$pointer("forms.search.product_url")}
                                                 data-product-results-toggle={""}
                                             >
@@ -108,7 +108,7 @@ export default () => {
                                                 role="tab"
                                                 aria-controls="search-results-content"
                                                 id="search-results-content-count"
-                                                className="navBar-action"
+                                                className="navBar-action p-0 text-text-secondary text-(length:--sv-fontSize-base) no-underline hover:text-(--sv-setting-color-textSecondary--hover)"
                                                 href={$pointer("forms.search.content_url")}
                                                 data-content-results-toggle={""}
                                             >
@@ -120,7 +120,7 @@ export default () => {
                                             $then={() => (
                                                 <li className="navBar-item navBar-item--separate">
                                                     <a
-                                                        className="navBar-action toggleLink text-(--sv-setting-color-textSecondary) hover:text-(--sv-setting-color-textSecondary--hover)"
+                                                        className="navBar-action toggleLink p-0 text-(length:--sv-fontSize-base) no-underline text-(--sv-setting-color-textSecondary) hover:text-(--sv-setting-color-textSecondary--hover)"
                                                         data-collapsible="advanced-search-content"
                                                         href="#"
                                                         aria-controls="advanced-search-content"
@@ -169,7 +169,7 @@ export default () => {
                                         test={$pointer("forms.search.has_suggestions")}
                                         $then={() => (
                                             <div className="panel panel--large">
-                                                <div className="panel-body">
+                                                <div className="panel-body mb-single-third p-single-third">
                                                     <$If
                                                         test={$pointer("forms.search.suggested_query")}
                                                         $then={() => (

@@ -5,7 +5,7 @@ import {$If, $pointer, $raw} from "@mainlanddev/hbx-bigcommerce";
 
 export default (_props: PartialProps) => (
     <div className="form-field" data-product-attribute="textarea">
-        <label className="form-label form-label--alternate form-label--inlineSmall" htmlFor={`attribute_textarea_${$pointer("id")}`}>
+        <label className="form-label form-label--alternate form-label--inlineSmall mb-half text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-none [&_small]:mt-quarter [&_small]:ml-quarter [&_small]:text-text-secondary [&_small]:font-normal [&_small]:normal-case [&_small]:[font-size:inherit]" htmlFor={`attribute_textarea_${$pointer("id")}`}>
             {$pointer("display_name")}:{" "}
             <RequirenessMsg />
         </label>

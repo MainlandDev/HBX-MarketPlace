@@ -22,7 +22,7 @@ export default () => (
                 <>
                     <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
                     <main className="page -mx-gutter-half w-auto max-w-none flow-root">
-                        <h1 className="page-heading">
+                        <h1 className="page-heading mx-0 mt-0 mb-double text-center">
                             <$Lang keyName={$string("brand.label")} />
                         </h1>
                         {region("brands_below_header")}
@@ -31,20 +31,41 @@ export default () => (
                                 list={$pointer<Brand[]>("brands")}
                                 $then={(brand) => (
                                     <li className="brand w-1/2 px-gutter-half align-top text-(length:--sv-fontSize-base) [display:inline-block] float-none small:w-1/3 medium:w-1/4">
-                                        <article className={`card ${$If({test: brand.alternate, $then: () => "card--alternate"})}`}>
-                                            <figure className="card-figure">
-                                                <a className="card-figure__link" aria-label={brand.name} href={brand.url}>
-                                                    <div className="card-img-container">
-                                                        <ResponsiveImg image={brand.image} class={$string("card-image")} fallback_size={$pointer("../theme_settings.brand_size")} lazyload={$pointer("../theme_settings.lazyload_mode")} default_image={$pointer("../theme_settings.default_image_brand")} />
-                                                    </div>
-                                                </a>
-                                            </figure>
-                                            <div className="card-body text-center small:text-left">
-                                                <h3 className="card-title m-0 text-smaller text-center">
-                                                    <a href={brand.url}>{brand.name}</a>
-                                                </h3>
-                                            </div>
-                                        </article>
+                                        <$If
+                                            test={brand.alternate}
+                                            $then={() => (
+                                                <article className="card group/card card--alternate border-[3px] border-solid border-(--sv-setting-card--alternate-borderColor) [transition:all_0.15s_ease] hover:border-(--sv-setting-color-primary) [&_.card-body]:bg-(--sv-setting-card--alternate-backgroundColor) [&_.card-body]:p-half small:[&_.card-body]:p-single [&_.card-body]:[transition:all_0.15s_ease] hover:[&_.card-body]:bg-(--sv-setting-color-primary) hover:[&_.card-body_.card-text]:text-(--sv-setting-card--alternate-color--hover) hover:[&_.card-title>a]:text-(--sv-setting-card--alternate-color--hover)">
+                                                <figure className="card-figure group/fig relative mt-0 overflow-hidden p-[3px]">
+                                                    <a className="card-figure__link relative [display:block]" aria-label={brand.name} href={brand.url}>
+                                                        <div className="card-img-container max-w-[190px] after:block after:h-0 after:w-full after:pb-[131.57895%] after:content-[''] [&_.card-image]:absolute [&_.card-image]:inset-0 [&_.card-image]:m-auto [&_.card-image]:max-h-full [&_.card-image]:w-full [&_.card-image]:border-0 [&_.card-image]:object-contain [&_.card-image]:[font-family:'object-fit:_contain;']">
+                                                            <ResponsiveImg image={brand.image} class={$string("card-image")} fallback_size={$pointer("../theme_settings.brand_size")} lazyload={$pointer("../theme_settings.lazyload_mode")} default_image={$pointer("../theme_settings.default_image_brand")} />
+                                                        </div>
+                                                    </a>
+                                                </figure>
+                                                <div className="card-body text-center small:text-left">
+                                                    <h3 className="card-title [&>a]:text-(--sv-setting-card-title-color) [&>a]:no-underline [&>a]:[display:block] [&>a:hover]:text-(--sv-setting-card-title-color-hover) m-0 text-smaller text-center">
+                                                        <a href={brand.url}>{brand.name}</a>
+                                                    </h3>
+                                                </div>
+                                                </article>
+                                            )}
+                                            $else={() => (
+                                                <article className="card group/card">
+                                                <figure className="card-figure group/fig relative mt-0 overflow-hidden p-[3px]">
+                                                    <a className="card-figure__link relative [display:block]" aria-label={brand.name} href={brand.url}>
+                                                        <div className="card-img-container max-w-[190px] after:block after:h-0 after:w-full after:pb-[131.57895%] after:content-[''] [&_.card-image]:absolute [&_.card-image]:inset-0 [&_.card-image]:m-auto [&_.card-image]:max-h-full [&_.card-image]:w-full [&_.card-image]:border-0 [&_.card-image]:object-contain [&_.card-image]:[font-family:'object-fit:_contain;']">
+                                                            <ResponsiveImg image={brand.image} class={$string("card-image")} fallback_size={$pointer("../theme_settings.brand_size")} lazyload={$pointer("../theme_settings.lazyload_mode")} default_image={$pointer("../theme_settings.default_image_brand")} />
+                                                        </div>
+                                                    </a>
+                                                </figure>
+                                                <div className="card-body text-center small:text-left">
+                                                    <h3 className="card-title [&>a]:text-(--sv-setting-card-title-color) [&>a]:no-underline [&>a]:[display:block] [&>a:hover]:text-(--sv-setting-card-title-color-hover) m-0 text-smaller text-center">
+                                                        <a href={brand.url}>{brand.name}</a>
+                                                    </h3>
+                                                </div>
+                                                </article>
+                                            )}
+                                        />
                                     </li>
                                 )}
                             />

@@ -18,7 +18,7 @@ export default (_props: PartialProps) => (
         data-validation={$pointer("validation")}
         dangerouslyInlineAttributes={{attributes: `${$ifAttribute("data-type", "private_id")}`}}
     >
-        <label className="form-label" htmlFor={$pointer("id")}>
+        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor={$pointer("id")}>
             {$pointer("label")}
             <$If test={$pointer("required")} $then={() => <small><$Lang keyName={$string("common.required")} /></small>} />
         </label>
@@ -34,7 +34,7 @@ export default (_props: PartialProps) => (
                                 id={item.name}
                                 data-input={""}
                                 data-label={item.label}
-                                className="form-checkbox"
+                                className="form-checkbox [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
                                 aria-labelledby={item.id}
                                 aria-live="polite"
                                 dangerouslyInlineAttributes={{

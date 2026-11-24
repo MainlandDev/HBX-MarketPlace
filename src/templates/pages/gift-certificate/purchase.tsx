@@ -20,7 +20,7 @@ export default () => (
             page: () => (
                 <>
                     <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                    <h1 className="page-heading">
+                    <h1 className="page-heading mx-0 mt-0 mb-double text-center">
                         <$Lang keyName={$string("gift_certificate.heading")} />
                     </h1>
                     <GiftCertificateNavigation gift_page={$string("purchase")} />
@@ -43,9 +43,9 @@ export default () => (
                                     <input type="hidden" name="cartitemid" value={$pointer("forms.gift_certificate.cart_item_id")} />
                                 )}
                             />
-                            <div className="form-row form-row--half">
+                            <div className="form-row form-row--half small:[&>.form-field:nth-child(odd)]:clear-left">
                                 <div className="form-field">
-                                    <label className="form-label" htmlFor="from_name">
+                                    <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="from_name">
                                         <$Lang keyName={$string("forms.gift_certificate.purchase.from_name")} />{" "}
                                         <small>
                                             <$Lang keyName={$string("common.required")} />
@@ -60,7 +60,7 @@ export default () => (
                                     />
                                 </div>
                                 <div className="form-field">
-                                    <label className="form-label" htmlFor="from_email">
+                                    <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="from_email">
                                         <$Lang keyName={$string("forms.gift_certificate.purchase.from_email")} />{" "}
                                         <small>
                                             <$Lang keyName={$string("common.required")} />
@@ -75,9 +75,9 @@ export default () => (
                                     />
                                 </div>
                             </div>
-                            <div className="form-row form-row--half">
+                            <div className="form-row form-row--half small:[&>.form-field:nth-child(odd)]:clear-left">
                                 <div className="form-field">
-                                    <label className="form-label" htmlFor="to_name">
+                                    <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="to_name">
                                         <$Lang keyName={$string("forms.gift_certificate.purchase.to_name")} />{" "}
                                         <small>
                                             <$Lang keyName={$string("common.required")} />
@@ -92,7 +92,7 @@ export default () => (
                                     />
                                 </div>
                                 <div className="form-field">
-                                    <label className="form-label" htmlFor="to_email">
+                                    <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="to_email">
                                         <$Lang keyName={$string("forms.gift_certificate.purchase.to_email")} />{" "}
                                         <small>
                                             <$Lang keyName={$string("common.required")} />
@@ -108,12 +108,12 @@ export default () => (
                                 </div>
                             </div>
                             <div className="form-row">
-                                <fieldset className="form-fieldset form-column">
+                                <fieldset className="form-fieldset form-column float-left w-full px-[0.75rem] small:w-6/12">
                                     <$If
                                         test={$pointer("forms.gift_certificate.can_use_custom_amount")}
                                         $then={() => (
                                             <div className="form-field">
-                                                <label className="form-label" htmlFor="certificate_amount">
+                                                <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="certificate_amount">
                                                     <$Lang keyName={$string("forms.gift_certificate.purchase.amount")} />{" "}
                                                     <small>
                                                         <$Lang keyName={$string("common.required")} />
@@ -134,7 +134,7 @@ export default () => (
                                         )}
                                         $else={() => (
                                             <div className="form-field">
-                                                <label className="form-label" htmlFor="selected_amount">
+                                                <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="selected_amount">
                                                     <$Lang keyName={$string("forms.gift_certificate.purchase.amount")} />{" "}
                                                     <small>
                                                         <$Lang keyName={$string("common.required")} />
@@ -155,8 +155,8 @@ export default () => (
                                         test={$pointer("forms.gift_certificate.expires_in_days")}
                                         $then={() => (
                                             <div className="form-field">
-                                                <input type="checkbox" className="form-checkbox" name="agree" id="agree" />{" "}
-                                                <label className="form-label" htmlFor="agree">
+                                                <input type="checkbox" className="form-checkbox [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]" name="agree" id="agree" />{" "}
+                                                <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="agree">
                                                     {$lang($string("forms.gift_certificate.purchase.agree"), {
                                                         days: $pointer<number>("forms.gift_certificate.expires_in_days"),
                                                     })}
@@ -167,20 +167,20 @@ export default () => (
                                     <div className="form-field">
                                         <input
                                             dangerouslyInlineAttributes={{
-                                                attributes: `type="checkbox" class="form-checkbox" name="agree2" id="agree2"${$If({
+                                                attributes: `type="checkbox" class="form-checkbox [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]" name="agree2" id="agree2"${$If({
                                                     test: $pointer("forms.gift_certificate.editing"),
                                                     $then: () => " checked",
                                                 })}`,
                                             }}
                                         />{" "}
-                                        <label className="form-label" htmlFor="agree2">
+                                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="agree2">
                                             <$Lang keyName={$string("forms.gift_certificate.purchase.agree2")} />
                                         </label>
                                     </div>
                                 </fieldset>
-                                <fieldset className="form-fieldset form-column">
+                                <fieldset className="form-fieldset form-column float-left w-full px-[0.75rem] small:w-6/12">
                                     <div className="form-field">
-                                        <label className="form-label" htmlFor="message">
+                                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="message">
                                             <$Lang keyName={$string("forms.gift_certificate.purchase.message")} />
                                         </label>
                                         <textarea
@@ -191,23 +191,23 @@ export default () => (
                                             value={$pointer("forms.gift_certificate.values.message")}
                                         />
                                     </div>
-                                    <label className="form-label">
+                                    <label className="form-label [&_small]:float-right [&_small]:mt-quarter">
                                         <$Lang keyName={$string("forms.gift_certificate.purchase.theme")} />{" "}
                                         <small>
                                             <$Lang keyName={$string("common.required")} />
                                         </small>
                                     </label>
-                                    <div className="form-field form-field-group">
+                                    <div className="form-field form-field-group rounded-[4px] border border-(--sv-setting-input-border-color) p-single">
                                         <$Each
                                             list={$pointer<Theme[]>("forms.gift_certificate.themes")}
                                             $then={(theme) => (
                                                 <>
                                                     <input
                                                         dangerouslyInlineAttributes={{
-                                                            attributes: `type="radio" class="form-radio" name="certificate_theme" id="theme_${theme.value}" value="${theme.value}"${$If({test: $pointer("this.value"), operator: $string("=="), rvalue: $pointer("../forms.gift_certificate.values.theme"), $then: () => " checked"})}`,
+                                                            attributes: `type="radio" class="form-radio [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]" name="certificate_theme" id="theme_${theme.value}" value="${theme.value}"${$If({test: $pointer("this.value"), operator: $string("=="), rvalue: $pointer("../forms.gift_certificate.values.theme"), $then: () => " checked"})}`,
                                                         }}
                                                     />{" "}
-                                                    <label className="form-label" htmlFor={`theme_${theme.value}`}>
+                                                    <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor={`theme_${theme.value}`}>
                                                         {theme.display}
                                                     </label>
                                                 </>
@@ -216,7 +216,7 @@ export default () => (
                                     </div>
                                 </fieldset>
                             </div>
-                            <div className="form-actions">
+                            <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
                                 <$Inject keyName={$string("previewError")} value={$lang($string("forms.gift_certificate.purchase.preview_error"))} />{" "}
                                 {/* Key absent from lang/en.json (see LangContentIssues.md); `as string` skips the strict key check, output stays as in the original. */}
                                 <$Inject keyName={$string("enterAmount")} value={$lang($string("forms.validate.gift.amount" as string))} />{" "}

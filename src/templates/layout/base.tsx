@@ -95,7 +95,7 @@ export default () => {
                     <IslandsNoScriptStyle css={NOSCRIPT_CSS} />
                 </head>
                 <body className="[&.has-activeNavPages]:[overflow:hidden] [&.has-activeNavPages]:[-webkit-overflow-scrolling:auto]">
-                    <svg data-src={$cdn($string("img/icon-sprite.svg"))} className="icons-svg-sprite"></svg>
+                    <svg data-src={$cdn($string("img/icon-sprite.svg"))} className="icons-svg-sprite [display:none]"></svg>
 
                     <Header />
                     <Body />

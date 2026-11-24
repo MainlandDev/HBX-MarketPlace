@@ -17,7 +17,7 @@ export default (_props: PartialProps) => (
         </div>
 
         <div className="cart-form coupon-code-form" data-coupon-form={""} style={{display: "none"}}>
-            <form className="form form--hiddenLabels coupon-form flow-root text-[0px] mb-base mt-base" action={$pointer("urls.cart")} method="post">
+            <form className="form form--hiddenLabels [&_.form-label]:absolute [&_.form-label]:size-px [&_.form-label]:overflow-hidden [&_.form-label]:border-0 [&_.form-label]:p-0 [&_.form-label]:[clip:rect(1px,1px,1px,1px)] coupon-form flow-root text-[0px] mb-base mt-base" action={$pointer("urls.cart")} method="post">
                 <input
                     className="form-input float-left inline-block h-[32px] w-[78%] p-third align-top"
                     data-error={$lang($string("cart.coupons.empty_error"))}

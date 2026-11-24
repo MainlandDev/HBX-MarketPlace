@@ -9,9 +9,9 @@ export default (_props: PartialProps) => (
         <$Inject keyName={$string("phoneNumber")} value={$lang($string("forms.validate.account.edit.phone"))} />{" "}
         <$Inject keyName={$string("currentPassword")} value={$lang($string("forms.validate.account.edit.password"))} />
         <fieldset className="form-fieldset">
-            <div className="form-row form-row--half">
+            <div className="form-row form-row--half small:[&>.form-field:nth-child(odd)]:clear-left">
                 <div className="form-field" id="account_firstname_id">
-                    <label className="form-label" htmlFor="account_firstname">
+                    <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="account_firstname">
                         <$If
                             test={$lang($string("account.settings.first_name"))}
                             operator={$string("!==")}
@@ -35,7 +35,7 @@ export default (_props: PartialProps) => (
                     />
                 </div>
                 <div className="form-field" id="account_lastname_id">
-                    <label className="form-label" htmlFor="account_lastname">
+                    <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="account_lastname">
                         <$If
                             test={$lang($string("account.settings.last_name"))}
                             operator={$string("!==")}
@@ -59,7 +59,7 @@ export default (_props: PartialProps) => (
                     />
                 </div>
                 <div className="form-field" id="account_companyname_id">
-                    <label className="form-label" htmlFor="account_companyname">
+                    <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="account_companyname">
                         <$If
                             test={$lang($string("account.settings.company"))}
                             operator={$string("!==")}
@@ -80,7 +80,7 @@ export default (_props: PartialProps) => (
                     />
                 </div>
                 <div className="form-field" id="account_phone_id">
-                    <label className="form-label" htmlFor="account_phone">
+                    <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="account_phone">
                         <$If
                             test={$lang($string("account.settings.phone"))}
                             operator={$string("!==")}
@@ -106,7 +106,7 @@ export default (_props: PartialProps) => (
                 />
             </div>
         </fieldset>
-        <div className="form-actions">
+        <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
             <button className="button button--primary">
                 <$Lang keyName={$string("account.settings.update_details")} />
             </button>

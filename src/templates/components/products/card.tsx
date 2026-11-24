@@ -45,172 +45,348 @@ export default (_props: PartialProps) => {
     const showCartAction = $pointer<boolean>("show_cart_action");
     const showRating = $pointer<boolean>("show_rating");
     return (
-        <article
-            className={`card ${$If({test: $pointer("alternate"), $then: () => " card--alternate"})}`}
-            data-test={`card-${id}`}
-            data-event-type={$pointer("event")}
-            data-entity-id={id}
-            data-position={$pointer("position")}
-            data-name={name}
-            data-product-brand={brand.name}
-            dangerouslyInlineAttributes={{
-                attributes: `data-product-category="${$Each({list: $pointer<string[]>("category"), $then: (item, loop) => ` ${$If({test: loop["@last"], $then: () => ` ${item} `, $else: () => ` ${item}, `})} `})}" data-product-price="${$Or({values: [$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))], $then: () => ` ${$If({test: price.with_tax, $then: () => ` ${price.with_tax.value} `, $else: () => ` ${price.without_tax.value} `})} `, $else: () => ` ${$lang($string("common.login_for_pricing"))} `})}"`,
-            }}
-        >
-            <figure className="card-figure">
-                <$If
-                    test={$pointer("stock_level")}
-                    operator={$string("===")}
-                    rvalue={$number(0)}
-                    $then={() => (
+        <$If
+            test={$pointer("alternate")}
+            $then={() => (
+                <article
+                    className="card group/card card--alternate border-[3px] border-solid border-(--sv-setting-card--alternate-borderColor) [transition:all_0.15s_ease] hover:border-(--sv-setting-color-primary) [&_.card-body]:bg-(--sv-setting-card--alternate-backgroundColor) [&_.card-body]:p-half small:[&_.card-body]:p-single [&_.card-body]:[transition:all_0.15s_ease] hover:[&_.card-body]:bg-(--sv-setting-color-primary) hover:[&_.card-body_.card-text]:text-(--sv-setting-card--alternate-color--hover) hover:[&_.card-title>a]:text-(--sv-setting-card--alternate-color--hover)"
+                    data-test={`card-${id}`}
+                    data-event-type={$pointer("event")}
+                    data-entity-id={id}
+                    data-position={$pointer("position")}
+                    data-name={name}
+                    data-product-brand={brand.name}
+                    dangerouslyInlineAttributes={{
+                        attributes: `data-product-category="${$Each({list: $pointer<string[]>("category"), $then: (item, loop) => ` ${$If({test: loop["@last"], $then: () => ` ${item} `, $else: () => ` ${item}, `})} `})}" data-product-price="${$Or({values: [$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))], $then: () => ` ${$If({test: price.with_tax, $then: () => ` ${price.with_tax.value} `, $else: () => ` ${price.without_tax.value} `})} `, $else: () => ` ${$lang($string("common.login_for_pricing"))} `})}"`,
+                    }}
+                >
+                    <figure className="card-figure group/fig relative mt-0 overflow-hidden p-[3px]">
                         <$If
-                            test={$pointer("theme_settings.pdp_sold_out_label")}
+                            test={$pointer("stock_level")}
                             operator={$string("===")}
-                            rvalue={$string("")}
-                            $then={() => <ProductsProductBadge badge-type={$string("sold-out")} badge_view={settings.product_sold_out_badges} badge_label={$lang($string("page_builder.pdp_sold_out_label"))} />}
-                            $else={() => <ProductsProductBadge badge-type={$string("sold-out")} badge_view={settings.product_sold_out_badges} badge_label={settings.pdp_sold_out_label} />}
-                        />
-                    )}
-                    $else={() => (
-                        <$Or
-                            values={[price.sale_price_with_tax.value, price.sale_price_without_tax.value]}
+                            rvalue={$number(0)}
                             $then={() => (
                                 <$If
-                                    test={$pointer("theme_settings.pdp_sale_badge_label")}
+                                    test={$pointer("theme_settings.pdp_sold_out_label")}
                                     operator={$string("===")}
                                     rvalue={$string("")}
-                                    $then={() => <ProductsProductBadge badge-type={$string("sale")} badge_view={settings.product_sale_badges} badge_label={$lang($string("page_builder.pdp_sale_badge_label"))} />}
-                                    $else={() => <ProductsProductBadge badge-type={$string("sale")} badge_view={settings.product_sale_badges} badge_label={settings.pdp_sale_badge_label} />}
+                                    $then={() => <ProductsProductBadge badge-type={$string("sold-out")} badge_view={settings.product_sold_out_badges} badge_label={$lang($string("page_builder.pdp_sold_out_label"))} />}
+                                    $else={() => <ProductsProductBadge badge-type={$string("sold-out")} badge_view={settings.product_sold_out_badges} badge_label={settings.pdp_sold_out_label} />}
                                 />
                             )}
-                        />
-                    )}
-                />
-
-                <a
-                    href={url}
-                    className="card-figure__link"
-                    aria-label={$partial("components/products/product-info")}
-                    data-event-type="product-click"
-                >
-                    <div className="card-img-container">
-                        <ResponsiveImg image={$pointer("image")} class={$string("card-image")} fallback_size={settings.productgallery_size} lazyload={settings.lazyload_mode} default_image={settings.default_image_product} />
-                    </div>
-                </a>
-
-                <figcaption className="card-figcaption">
-                    <div className="card-figcaption-body">
-                        <$Unless
-                            test={$pointer("hide_product_quick_view")}
-                            $then={() => (
-                                <$If
-                                    test={settings.show_product_quick_view}
+                            $else={() => (
+                                <$Or
+                                    values={[price.sale_price_with_tax.value, price.sale_price_without_tax.value]}
                                     $then={() => (
-                                        <button
-                                            type="button"
-                                            className="button button--small card-figcaption-button quickview"
-                                            data-event-type="product-click"
-                                            data-product-id={id}
-                                        >
-                                            <$Lang keyName={$string("products.quick_view")} />
-                                        </button>
+                                        <$If
+                                            test={$pointer("theme_settings.pdp_sale_badge_label")}
+                                            operator={$string("===")}
+                                            rvalue={$string("")}
+                                            $then={() => <ProductsProductBadge badge-type={$string("sale")} badge_view={settings.product_sale_badges} badge_label={$lang($string("page_builder.pdp_sale_badge_label"))} />}
+                                            $else={() => <ProductsProductBadge badge-type={$string("sale")} badge_view={settings.product_sale_badges} badge_label={settings.pdp_sale_badge_label} />}
+                                        />
                                     )}
                                 />
                             )}
                         />
-                        <$If
-                            test={$pointer("show_compare")}
+
+                        <a
+                            href={url}
+                            className="card-figure__link relative [display:block]"
+                            aria-label={$partial("components/products/product-info")}
+                            data-event-type="product-click"
+                        >
+                            <div className="card-img-container max-w-[500px] after:block after:h-0 after:w-full after:pb-[131.8%] after:content-[''] [&_.card-image]:absolute [&_.card-image]:inset-0 [&_.card-image]:m-auto [&_.card-image]:max-h-full [&_.card-image]:w-full [&_.card-image]:border-0 [&_.card-image]:object-contain [&_.card-image]:[font-family:'object-fit:_contain;']">
+                                <ResponsiveImg image={$pointer("image")} class={$string("card-image")} fallback_size={settings.productgallery_size} lazyload={settings.lazyload_mode} default_image={settings.default_image_product} />
+                            </div>
+                        </a>
+
+                        <figcaption className="card-figcaption m-0 pointer-events-none [display:none] medium:[display:block] group-hover/fig:opacity-100 group-focus-within/card:opacity-100 group-[.focus-within]/card:opacity-100">
+                            <div className="card-figcaption-body inline-block [pointer-events:all] [transform:translate3d(0,-50%,0)]">
+                                <$Unless
+                                    test={$pointer("hide_product_quick_view")}
+                                    $then={() => (
+                                        <$If
+                                            test={settings.show_product_quick_view}
+                                            $then={() => (
+                                                <button
+                                                    type="button"
+                                                    className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block] quickview"
+                                                    data-event-type="product-click"
+                                                    data-product-id={id}
+                                                >
+                                                    <$Lang keyName={$string("products.quick_view")} />
+                                                </button>
+                                            )}
+                                        />
+                                    )}
+                                />
+                                <$If
+                                    test={$pointer("show_compare")}
+                                    $then={() => (
+                                        <label className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block]" htmlFor={`compare-${id}`}>
+                                            <$Lang keyName={$string("products.compare")} /> <input type="checkbox" name="products[]" value={id} id={`compare-${id}`} data-compare-id={id} />
+                                        </label>
+                                    )}
+                                />
+                                <$If
+                                    test={showCartAction}
+                                    $then={() => (
+                                        <>
+                                            <$If
+                                                test={$pointer("has_options")}
+                                                $then={() => (
+                                                    <a href={url} data-event-type="product-click" className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block]" data-product-id={id}>
+                                                        <$Lang keyName={$string("products.choose_options")} />
+                                                    </a>
+                                                )}
+                                            />
+                                            <$If
+                                                test={$pointer("pre_order")}
+                                                $then={() => (
+                                                    <a href={$pointer("pre_order_add_to_cart_url")} data-event-type="product-click" className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block]">
+                                                        <$Lang keyName={$string("products.pre_order")} />
+                                                    </a>
+                                                )}
+                                            />
+                                            <$If
+                                                test={addToCartUrl}
+                                                $then={() => (
+                                                    <>
+                                                        <a href={addToCartUrl} data-event-type="product-click" data-button-type="add-cart" className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block]">
+                                                            <$Lang keyName={$string("products.add_to_cart")} />
+                                                        </a>
+                                                        <span className="product-status-message aria-description--hidden">
+                                                            <$Lang keyName={$string("category.add_cart_announcement")} />
+                                                        </span>
+                                                    </>
+                                                )}
+                                            />
+                                            <$If
+                                                test={outOfStockMessage}
+                                                $then={() => (
+                                                    <a href={url} data-event-type="product-click" className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block]" data-product-id={id}>
+                                                        {outOfStockMessage}
+                                                    </a>
+                                                )}
+                                            />
+                                        </>
+                                    )}
+                                />
+                            </div>
+                        </figcaption>
+                    </figure>
+                    <div className="card-body text-center small:text-left">
+                        <$And
+                            a={$pointer("rating")}
+                            b={showRating}
                             $then={() => (
-                                <label className="button button--small card-figcaption-button" htmlFor={`compare-${id}`}>
-                                    <$Lang keyName={$string("products.compare")} /> <input type="checkbox" name="products[]" value={id} id={`compare-${id}`} data-compare-id={id} />
-                                </label>
+                                <p className="card-text [&_abbr]:border-0 [&_abbr]:text-inherit [&_abbr]:[font-size:inherit] mb-eighth" data-test-info-type="productRating">
+                                    <span className="rating--small inline-block [&_.icon]:-mt-[3px] [&_.icon]:size-[14px]">
+                                        <ProductsRatings rating_target={name} rating={$pointer("rating")} />
+                                    </span>
+                                </p>
                             )}
                         />
                         <$If
-                            test={showCartAction}
+                            test={brand.name}
                             $then={() => (
-                                <>
-                                    <$If
-                                        test={$pointer("has_options")}
-                                        $then={() => (
-                                            <a href={url} data-event-type="product-click" className="button button--small card-figcaption-button" data-product-id={id}>
-                                                <$Lang keyName={$string("products.choose_options")} />
-                                            </a>
-                                        )}
-                                    />
-                                    <$If
-                                        test={$pointer("pre_order")}
-                                        $then={() => (
-                                            <a href={$pointer("pre_order_add_to_cart_url")} data-event-type="product-click" className="button button--small card-figcaption-button">
-                                                <$Lang keyName={$string("products.pre_order")} />
-                                            </a>
-                                        )}
-                                    />
-                                    <$If
-                                        test={addToCartUrl}
-                                        $then={() => (
-                                            <>
-                                                <a href={addToCartUrl} data-event-type="product-click" data-button-type="add-cart" className="button button--small card-figcaption-button">
-                                                    <$Lang keyName={$string("products.add_to_cart")} />
-                                                </a>
-                                                <span className="product-status-message aria-description--hidden">
-                                                    <$Lang keyName={$string("category.add_cart_announcement")} />
-                                                </span>
-                                            </>
-                                        )}
-                                    />
-                                    <$If
-                                        test={outOfStockMessage}
-                                        $then={() => (
-                                            <a href={url} data-event-type="product-click" className="button button--small card-figcaption-button" data-product-id={id}>
-                                                {outOfStockMessage}
-                                            </a>
-                                        )}
-                                    />
-                                </>
+                                <p className="card-text [&_abbr]:border-0 [&_abbr]:text-inherit [&_abbr]:[font-size:inherit] mb-eighth" data-test-info-type="brandName">
+                                    {brand.name}
+                                </p>
                             )}
+                        />
+                        <h3 className="card-title [&>a]:text-(--sv-setting-card-title-color) [&>a]:no-underline [&>a]:[display:block] [&>a:hover]:text-(--sv-setting-card-title-color-hover) mb-sixth text-smaller mt-0">
+                            <a aria-label={$partial("components/products/product-info")} href={url} data-event-type="product-click">
+                                {name}
+                            </a>
+                        </h3>
+
+                        <div className="card-text [&_abbr]:border-0 [&_abbr]:text-inherit [&_abbr]:[font-size:inherit] mb-eighth" data-test-info-type="price">
+                            <$Or values={[$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))]} $then={() => (<><ProductsPrice price={$pointer("price")} /></>)} $else={() => (<><LoginForPricing /></>)} />
+                        </div>
+                        {region("product_item_below_price")}
+                        <ProductsBulkDiscountRates />
+                        <$If
+                            test={settings.show_featured_promotions}
+                            $then={() =>
+                                <ProductsPromotionCallout promotions={$pointer("featured_promotions")} mode={$string("compact")} />
+                            }
                         />
                     </div>
-                </figcaption>
-            </figure>
-            <div className="card-body text-center small:text-left">
-                <$And
-                    a={$pointer("rating")}
-                    b={showRating}
-                    $then={() => (
-                        <p className="card-text mb-eighth" data-test-info-type="productRating">
-                            <span className="rating--small inline-block [&_.icon]:-mt-[3px] [&_.icon]:size-[14px]">
-                                <ProductsRatings rating_target={name} rating={$pointer("rating")} />
-                            </span>
-                        </p>
-                    )}
-                />
-                <$If
-                    test={brand.name}
-                    $then={() => (
-                        <p className="card-text mb-eighth" data-test-info-type="brandName">
-                            {brand.name}
-                        </p>
-                    )}
-                />
-                <h3 className="card-title mb-sixth text-smaller mt-0">
-                    <a aria-label={$partial("components/products/product-info")} href={url} data-event-type="product-click">
-                        {name}
-                    </a>
-                </h3>
 
-                <div className="card-text mb-eighth" data-test-info-type="price">
-                    <$Or values={[$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))]} $then={() => (<><ProductsPrice price={$pointer("price")} /></>)} $else={() => (<><LoginForPricing /></>)} />
-                </div>
-                {region("product_item_below_price")}
-                <ProductsBulkDiscountRates />
-                <$If
-                    test={settings.show_featured_promotions}
-                    $then={() =>
-                        <ProductsPromotionCallout promotions={$pointer("featured_promotions")} mode={$string("compact")} />
-                    }
-                />
-            </div>
-        </article>
+                </article>
+            )}
+            $else={() => (
+                <article
+                    className="card group/card"
+                    data-test={`card-${id}`}
+                    data-event-type={$pointer("event")}
+                    data-entity-id={id}
+                    data-position={$pointer("position")}
+                    data-name={name}
+                    data-product-brand={brand.name}
+                    dangerouslyInlineAttributes={{
+                        attributes: `data-product-category="${$Each({list: $pointer<string[]>("category"), $then: (item, loop) => ` ${$If({test: loop["@last"], $then: () => ` ${item} `, $else: () => ` ${item}, `})} `})}" data-product-price="${$Or({values: [$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))], $then: () => ` ${$If({test: price.with_tax, $then: () => ` ${price.with_tax.value} `, $else: () => ` ${price.without_tax.value} `})} `, $else: () => ` ${$lang($string("common.login_for_pricing"))} `})}"`,
+                    }}
+                >
+                    <figure className="card-figure group/fig relative mt-0 overflow-hidden p-[3px]">
+                        <$If
+                            test={$pointer("stock_level")}
+                            operator={$string("===")}
+                            rvalue={$number(0)}
+                            $then={() => (
+                                <$If
+                                    test={$pointer("theme_settings.pdp_sold_out_label")}
+                                    operator={$string("===")}
+                                    rvalue={$string("")}
+                                    $then={() => <ProductsProductBadge badge-type={$string("sold-out")} badge_view={settings.product_sold_out_badges} badge_label={$lang($string("page_builder.pdp_sold_out_label"))} />}
+                                    $else={() => <ProductsProductBadge badge-type={$string("sold-out")} badge_view={settings.product_sold_out_badges} badge_label={settings.pdp_sold_out_label} />}
+                                />
+                            )}
+                            $else={() => (
+                                <$Or
+                                    values={[price.sale_price_with_tax.value, price.sale_price_without_tax.value]}
+                                    $then={() => (
+                                        <$If
+                                            test={$pointer("theme_settings.pdp_sale_badge_label")}
+                                            operator={$string("===")}
+                                            rvalue={$string("")}
+                                            $then={() => <ProductsProductBadge badge-type={$string("sale")} badge_view={settings.product_sale_badges} badge_label={$lang($string("page_builder.pdp_sale_badge_label"))} />}
+                                            $else={() => <ProductsProductBadge badge-type={$string("sale")} badge_view={settings.product_sale_badges} badge_label={settings.pdp_sale_badge_label} />}
+                                        />
+                                    )}
+                                />
+                            )}
+                        />
+
+                        <a
+                            href={url}
+                            className="card-figure__link relative [display:block]"
+                            aria-label={$partial("components/products/product-info")}
+                            data-event-type="product-click"
+                        >
+                            <div className="card-img-container max-w-[500px] after:block after:h-0 after:w-full after:pb-[131.8%] after:content-[''] [&_.card-image]:absolute [&_.card-image]:inset-0 [&_.card-image]:m-auto [&_.card-image]:max-h-full [&_.card-image]:w-full [&_.card-image]:border-0 [&_.card-image]:object-contain [&_.card-image]:[font-family:'object-fit:_contain;']">
+                                <ResponsiveImg image={$pointer("image")} class={$string("card-image")} fallback_size={settings.productgallery_size} lazyload={settings.lazyload_mode} default_image={settings.default_image_product} />
+                            </div>
+                        </a>
+
+                        <figcaption className="card-figcaption m-0 pointer-events-none [display:none] medium:[display:block] group-hover/fig:opacity-100 group-focus-within/card:opacity-100 group-[.focus-within]/card:opacity-100">
+                            <div className="card-figcaption-body inline-block [pointer-events:all] [transform:translate3d(0,-50%,0)]">
+                                <$Unless
+                                    test={$pointer("hide_product_quick_view")}
+                                    $then={() => (
+                                        <$If
+                                            test={settings.show_product_quick_view}
+                                            $then={() => (
+                                                <button
+                                                    type="button"
+                                                    className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block] quickview"
+                                                    data-event-type="product-click"
+                                                    data-product-id={id}
+                                                >
+                                                    <$Lang keyName={$string("products.quick_view")} />
+                                                </button>
+                                            )}
+                                        />
+                                    )}
+                                />
+                                <$If
+                                    test={$pointer("show_compare")}
+                                    $then={() => (
+                                        <label className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block]" htmlFor={`compare-${id}`}>
+                                            <$Lang keyName={$string("products.compare")} /> <input type="checkbox" name="products[]" value={id} id={`compare-${id}`} data-compare-id={id} />
+                                        </label>
+                                    )}
+                                />
+                                <$If
+                                    test={showCartAction}
+                                    $then={() => (
+                                        <>
+                                            <$If
+                                                test={$pointer("has_options")}
+                                                $then={() => (
+                                                    <a href={url} data-event-type="product-click" className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block]" data-product-id={id}>
+                                                        <$Lang keyName={$string("products.choose_options")} />
+                                                    </a>
+                                                )}
+                                            />
+                                            <$If
+                                                test={$pointer("pre_order")}
+                                                $then={() => (
+                                                    <a href={$pointer("pre_order_add_to_cart_url")} data-event-type="product-click" className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block]">
+                                                        <$Lang keyName={$string("products.pre_order")} />
+                                                    </a>
+                                                )}
+                                            />
+                                            <$If
+                                                test={addToCartUrl}
+                                                $then={() => (
+                                                    <>
+                                                        <a href={addToCartUrl} data-event-type="product-click" data-button-type="add-cart" className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block]">
+                                                            <$Lang keyName={$string("products.add_to_cart")} />
+                                                        </a>
+                                                        <span className="product-status-message aria-description--hidden">
+                                                            <$Lang keyName={$string("category.add_cart_announcement")} />
+                                                        </span>
+                                                    </>
+                                                )}
+                                            />
+                                            <$If
+                                                test={outOfStockMessage}
+                                                $then={() => (
+                                                    <a href={url} data-event-type="product-click" className="button button--small card-figcaption-button m-0 mt-quarter first:mt-0 border-none active:bg-(--sv-card-figcaption-button-backgroundHover) focus:bg-(--sv-card-figcaption-button-backgroundHover) focus:[outline:revert] [display:block]" data-product-id={id}>
+                                                        {outOfStockMessage}
+                                                    </a>
+                                                )}
+                                            />
+                                        </>
+                                    )}
+                                />
+                            </div>
+                        </figcaption>
+                    </figure>
+                    <div className="card-body text-center small:text-left">
+                        <$And
+                            a={$pointer("rating")}
+                            b={showRating}
+                            $then={() => (
+                                <p className="card-text [&_abbr]:border-0 [&_abbr]:text-inherit [&_abbr]:[font-size:inherit] mb-eighth" data-test-info-type="productRating">
+                                    <span className="rating--small inline-block [&_.icon]:-mt-[3px] [&_.icon]:size-[14px]">
+                                        <ProductsRatings rating_target={name} rating={$pointer("rating")} />
+                                    </span>
+                                </p>
+                            )}
+                        />
+                        <$If
+                            test={brand.name}
+                            $then={() => (
+                                <p className="card-text [&_abbr]:border-0 [&_abbr]:text-inherit [&_abbr]:[font-size:inherit] mb-eighth" data-test-info-type="brandName">
+                                    {brand.name}
+                                </p>
+                            )}
+                        />
+                        <h3 className="card-title [&>a]:text-(--sv-setting-card-title-color) [&>a]:no-underline [&>a]:[display:block] [&>a:hover]:text-(--sv-setting-card-title-color-hover) mb-sixth text-smaller mt-0">
+                            <a aria-label={$partial("components/products/product-info")} href={url} data-event-type="product-click">
+                                {name}
+                            </a>
+                        </h3>
+
+                        <div className="card-text [&_abbr]:border-0 [&_abbr]:text-inherit [&_abbr]:[font-size:inherit] mb-eighth" data-test-info-type="price">
+                            <$Or values={[$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))]} $then={() => (<><ProductsPrice price={$pointer("price")} /></>)} $else={() => (<><LoginForPricing /></>)} />
+                        </div>
+                        {region("product_item_below_price")}
+                        <ProductsBulkDiscountRates />
+                        <$If
+                            test={settings.show_featured_promotions}
+                            $then={() =>
+                                <ProductsPromotionCallout promotions={$pointer("featured_promotions")} mode={$string("compact")} />
+                            }
+                        />
+                    </div>
+
+                </article>
+            )}
+        />
     );
 };

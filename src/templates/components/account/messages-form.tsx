@@ -22,7 +22,7 @@ export default (_props: PartialProps) => (
                     <$Inject keyName={$string("enterSubject")} value={$lang($string("forms.validate.account.inbox.subject"))} />{" "}
                     <$Inject keyName={$string("enterMessage")} value={$lang($string("forms.validate.account.inbox.message"))} />
                     <div className="form-field">
-                        <label className="form-label" htmlFor="message_order_id">
+                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="message_order_id">
                             <$Lang keyName={$string("forms.inbox.order")} />{" "}
                             <small>
                                 <$Lang keyName={$string("common.required")} />
@@ -45,7 +45,7 @@ export default (_props: PartialProps) => (
                         </select>
                     </div>
                     <div className="form-field" id="message_subject_field_id">
-                        <label className="form-label" htmlFor="message_subject">
+                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="message_subject">
                             <$Lang keyName={$string("forms.inbox.subject")} />{" "}
                             <small>
                                 <$Lang keyName={$string("common.required")} />
@@ -61,7 +61,7 @@ export default (_props: PartialProps) => (
                         />
                     </div>
                     <div className="form-field" id="message_content_field_id">
-                        <label className="form-label" htmlFor="message_content">
+                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="message_content">
                             <$Lang keyName={$string("forms.inbox.message")} />{" "}
                             <small>
                                 <$Lang keyName={$string("common.required")} />
@@ -77,7 +77,7 @@ export default (_props: PartialProps) => (
                             rows={7}
                         />
                     </div>
-                    <div className="form-actions">
+                    <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
                         <input className="button button--primary" type="submit" value={$lang($string("forms.inbox.submit_value"))} />{" "}
                         <input className="button" type="reset" value={$lang($string("forms.inbox.clear_value"))} />
                     </div>

@@ -3,10 +3,10 @@ import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$If, $Lang, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
 
 export default (_props: PartialProps) => (
-    <nav className="navBar navBar--sub navBar--account [display:none] medium:[display:block]">
-        <ul className="navBar-section">
+    <nav className="navBar navBar--sub navBar--account mb-[calc(var(--sv-spacing-single)*3)] text-center [display:none] medium:[display:block]">
+        <ul className="navBar-section float-none [&_.navBar-item]:float-none [&_.navBar-item]:mx-half [&_.navBar-item]:my-0 medium:[&_.navBar-item]:[display:inline-block] medium:[&_.navBar-item.is-active]:border-b medium:[&_.navBar-item.is-active]:border-b-(--sv-setting-color-textBase) medium:[&_.navBar-item.navBar-item--separate]:m-0 medium:[&_.navBar-item.navBar-item--separate]:border-l medium:[&_.navBar-item.navBar-item--separate]:border-l-(--sv-setting-color-textSecondary) medium:[&_.navBar-item.navBar-item--separate]:pl-half [&_.navBar-item.is-active>.navBar-action]:text-grey-dark">
             <li className={`navBar-item ${$If({test: $pointer("account_page"), operator: $string("==="), rvalue: $string("orders"), $then: () => "is-active"})}`}>
-                <a className="navBar-action" href={$pointer("urls.account.orders.all")}>
+                <a className="navBar-action p-0 text-text-secondary text-(length:--sv-fontSize-base) no-underline hover:text-(--sv-setting-color-textSecondary--hover)" href={$pointer("urls.account.orders.all")}>
                     <$Lang keyName={$string("account.nav.orders")} />
                 </a>
             </li>
@@ -14,19 +14,19 @@ export default (_props: PartialProps) => (
                 test={$pointer("settings.returns_enabled")}
                 $then={() => (
                     <li className={`navBar-item ${$If({test: $pointer("account_page"), operator: $string("==="), rvalue: $string("returns"), $then: () => "is-active"})}`}>
-                        <a className="navBar-action" href={$pointer("urls.account.returns")}>
+                        <a className="navBar-action p-0 text-text-secondary text-(length:--sv-fontSize-base) no-underline hover:text-(--sv-setting-color-textSecondary--hover)" href={$pointer("urls.account.returns")}>
                             <$Lang keyName={$string("account.nav.returns")} />
                         </a>
                     </li>
                 )}
             />
             <li className={`navBar-item ${$If({test: $pointer("account_page"), operator: $string("==="), rvalue: $string("messages"), $then: () => "is-active"})}`}>
-                <a className="navBar-action" href={$pointer("urls.account.inbox")}>
+                <a className="navBar-action p-0 text-text-secondary text-(length:--sv-fontSize-base) no-underline hover:text-(--sv-setting-color-textSecondary--hover)" href={$pointer("urls.account.inbox")}>
                     <$Lang keyName={$string("account.nav.messages")} num_new_messages={$pointer("customer.num_new_messages")} />
                 </a>
             </li>
             <li className={`navBar-item ${$If({test: $pointer("account_page"), operator: $string("==="), rvalue: $string("addresses"), $then: () => "is-active"})}`}>
-                <a className="navBar-action" href={$pointer("urls.account.addresses")}>
+                <a className="navBar-action p-0 text-text-secondary text-(length:--sv-fontSize-base) no-underline hover:text-(--sv-setting-color-textSecondary--hover)" href={$pointer("urls.account.addresses")}>
                     <$Lang keyName={$string("account.nav.addresses")} />
                 </a>
             </li>
@@ -34,7 +34,7 @@ export default (_props: PartialProps) => (
                 test={$pointer("settings.show_payment_methods")}
                 $then={() => (
                     <li className={`navBar-item ${$If({test: $pointer("account_page"), operator: $string("==="), rvalue: $string("payment_methods"), $then: () => "is-active"})}`}>
-                        <a className="navBar-action" href={$pointer("urls.account.payment_methods.all")}>
+                        <a className="navBar-action p-0 text-text-secondary text-(length:--sv-fontSize-base) no-underline hover:text-(--sv-setting-color-textSecondary--hover)" href={$pointer("urls.account.payment_methods.all")}>
                             <$Lang keyName={$string("account.nav.payment_methods")} />
                         </a>
                     </li>
@@ -44,19 +44,19 @@ export default (_props: PartialProps) => (
                 test={$pointer("settings.show_wishlist")}
                 $then={() => (
                     <li className={`navBar-item ${$If({test: $pointer("account_page"), operator: $string("==="), rvalue: $string("wishlists"), $then: () => "is-active"})}`}>
-                        <a className="navBar-action" href={$pointer("urls.account.wishlists.all")}>
+                        <a className="navBar-action p-0 text-text-secondary text-(length:--sv-fontSize-base) no-underline hover:text-(--sv-setting-color-textSecondary--hover)" href={$pointer("urls.account.wishlists.all")}>
                             <$Lang keyName={$string("account.nav.wishlists")} />
                         </a>
                     </li>
                 )}
             />
             <li className={`navBar-item ${$If({test: $pointer("account_page"), operator: $string("==="), rvalue: $string("recent_items"), $then: () => "is-active"})}`}>
-                <a className="navBar-action" href={$pointer("urls.account.recent_items")}>
+                <a className="navBar-action p-0 text-text-secondary text-(length:--sv-fontSize-base) no-underline hover:text-(--sv-setting-color-textSecondary--hover)" href={$pointer("urls.account.recent_items")}>
                     <$Lang keyName={$string("account.nav.recently_viewed")} />
                 </a>
             </li>
             <li className={`navBar-item ${$If({test: $pointer("account_page"), operator: $string("==="), rvalue: $string("settings"), $then: () => "is-active"})}`}>
-                <a className="navBar-action" href={$pointer("urls.account.details")}>
+                <a className="navBar-action p-0 text-text-secondary text-(length:--sv-fontSize-base) no-underline hover:text-(--sv-setting-color-textSecondary--hover)" href={$pointer("urls.account.details")}>
                     <$Lang keyName={$string("account.nav.settings")} />
                 </a>
             </li>

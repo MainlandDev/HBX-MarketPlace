@@ -16,12 +16,12 @@ export default (_props: PartialProps) => (
             $then={() => (
                 <div className="sidebarBlock [[class~=sidebarBlock]+&]:mt-single-third [[class~=sidebarBlock]+&]:border-t [[class~=sidebarBlock]+&]:border-(--sv-container-border-global-color-base) [[class~=sidebarBlock]+&]:pt-single-third">
                     <h2 className="sidebarBlock-heading mt-0 text-[15px] [text-transform:inherit]">{$pointer("category.name")}</h2>
-                    <ul className="navList">
+                    <ul className="navList ml-0">
                         <$Each
                             list={$pointer<Subcategory[]>("category.subcategories")}
                             $then={(subcategory) => (
                                 <li className="navList-item">
-                                    <a className="navList-action" href={subcategory.url} title={subcategory.name}>
+                                    <a className="navList-action no-underline" href={subcategory.url} title={subcategory.name}>
                                         {subcategory.name}
                                     </a>
                                 </li>

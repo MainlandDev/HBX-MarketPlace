@@ -12,12 +12,12 @@ export default () => (
                     <$If
                         test={$pointer("forms.address.address_id")}
                         $then={() => (
-                            <h2 className="page-heading">
+                            <h2 className="page-heading mx-0 mt-0 mb-double text-center">
                                 <$Lang keyName={$string("forms.address.edit.heading")} />
                             </h2>
                         )}
                         $else={() => (
-                            <h2 className="page-heading">
+                            <h2 className="page-heading mx-0 mt-0 mb-double text-center">
                                 <$Lang keyName={$string("forms.address.add.heading")} />
                             </h2>
                         )}
@@ -40,14 +40,14 @@ export default () => (
                                         )}
                                     />
                                     <fieldset className="form-fieldset">
-                                        <div className="form-row form-row--half">
+                                        <div className="form-row form-row--half small:[&>.form-field:nth-child(odd)]:clear-left">
                                             <$Each
                                                 list={$pointer<unknown[]>("forms.address.shipping_fields")}
                                                 $then={() => $unescaped($dynamicComponent($string("components/common/forms")))}
                                             />
                                         </div>
                                     </fieldset>
-                                    <div className="form-actions">
+                                    <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
                                         <input type="submit" className="button button--primary" value={$lang($string("forms.address.submit_value"))} />
                                         <a href={$pointer("urls.account.addresses")} className="button">
                                             <$Lang keyName={$string("common.cancel")} />

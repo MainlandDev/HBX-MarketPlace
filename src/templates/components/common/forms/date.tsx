@@ -6,7 +6,7 @@ import {$ifAttribute} from "@/components/hbx/ifAttribute.ts";
 
 export default (_props: PartialProps) => (
     <div className="form-field" id={$pointer("id")} data-validation={$pointer("validation")} dangerouslyInlineAttributes={{attributes: `${$ifAttribute("data-type", "private_id")}`}}>
-        <label className="form-label" htmlFor={$pointer("id")}>
+        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor={$pointer("id")}>
             {$pointer("label")}
             <$If test={$pointer("required")} $then={() => <small><$Lang keyName={$string("common.required")} /></small>} />
         </label>

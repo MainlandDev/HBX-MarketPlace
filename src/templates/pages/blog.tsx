@@ -42,7 +42,7 @@ export default () => {
                         <main className="page -mx-gutter-half w-auto max-w-none flow-root">
                             <$Unless
                                 test={settings.hide_blog_page_heading}
-                                $then={() => <h1 className="page-heading">{$pointer("blog.name")}</h1>}
+                                $then={() => <h1 className="page-heading mx-0 mt-0 mb-double text-center">{$pointer("blog.name")}</h1>}
                             />
                             <$Each
                                 list={$pointer<unknown[]>("blog.posts")}

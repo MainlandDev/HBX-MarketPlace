@@ -18,7 +18,7 @@ export default (_props: PartialProps) => (
         <$Each
             list={$this<ChildFacet[]>()}
             $then={(item) => (
-                <li className="navList-item">
+                <li className="navList-item [&_.navList-action]:no-underline [&_.navList-action.is-active]:font-bold">
                     <a
                         href={item.url}
                         className={`navList-action navList-action--checkbox${$If({test: item.selected, $then: () => " is-selected"})}${$If({test: item.has_sub_categories, $then: () => " has-children"})}`}

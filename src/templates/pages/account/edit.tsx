@@ -13,7 +13,7 @@ export default () => (
                 page: () => (
                     <div className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3">
                         <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                        <h2 className="page-heading">
+                        <h2 className="page-heading mx-0 mt-0 mb-double text-center">
                             <$Lang keyName={$string("account.settings.heading")} />
                         </h2>
                         <AccountNavigation account_page={$string("settings")} />

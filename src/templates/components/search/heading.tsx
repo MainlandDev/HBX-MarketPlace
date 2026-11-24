@@ -3,7 +3,7 @@ import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$If, $Lang, $lang, $pointer, $sanitize, $string, $unescaped} from "@mainlanddev/hbx-bigcommerce";
 
 export default (_props: PartialProps) => (
-    <h1 className="page-heading">
+    <h1 className="page-heading mx-0 mt-0 mb-double text-center">
         <$If
             test={$pointer("forms.search.search_error")}
             $then={() => <$Lang keyName={$string("search.errorMessage")} />}

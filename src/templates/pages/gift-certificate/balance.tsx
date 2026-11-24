@@ -9,7 +9,7 @@ export default () => (
             page: () => (
                 <>
                     <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                    <h1 className="page-heading">
+                    <h1 className="page-heading mx-0 mt-0 mb-double text-center">
                         <$Lang keyName={$string("gift_certificate.heading")} />
                     </h1>
                     <GiftCertificateNavigation gift_page={$string("balance")} />
@@ -43,14 +43,14 @@ export default () => (
                         <form className="form form--oneField" id="gift-certificate-balance" method="get">
                             <input type="hidden" name="action" value="balance" />
                             <div className="form-field">
-                                <label className="form-label" htmlFor="giftcertificatecode">
+                                <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="giftcertificatecode">
                                     <$Lang keyName={$string("forms.gift_certificate.balance.code")} />
                                 </label>
-                                <div className="form-prefixPostfix wrap">
+                                <div className="form-prefixPostfix wrap flex-wrap [&_.form-input]:block [&_.form-input]:w-full large:[&_.form-input]:w-auto [&_.form-input::placeholder]:text-(--sv-formInput-placeholder-color) [&_.button]:w-full [&_.button]:[display:block] large:[&_.button]:w-auto [&_.form-inlineMessage]:mb-quarter large:[&_.form-inlineMessage]:mb-0">
                                     <input className="form-input" id="giftcertificatecode" name="giftcertificatecode" />{" "}
                                     <input
                                         type="submit"
-                                        className="button button--primary form-prefixPostfix-button--postfix"
+                                        className="button button--primary form-prefixPostfix-button--postfix order-1 mx-0 mt-half mb-0 large:order-0 large:m-0 large:ml-half"
                                         value={$lang($string("forms.gift_certificate.balance.submit_value"))}
                                     />
                                 </div>

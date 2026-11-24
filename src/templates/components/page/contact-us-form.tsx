@@ -16,12 +16,12 @@ export default (_props: PartialProps) => (
             )}
         />
         <input type="hidden" name="page_id" id="page_id" value={$pointer("forms.contact.page_id")} />
-        <div className="form-row form-row--half">
+        <div className="form-row form-row--half small:[&>.form-field:nth-child(odd)]:clear-left">
             <$If
                 test={$pointer("forms.contact.name")}
                 $then={() => (
                     <div className="form-field">
-                        <label className="form-label" htmlFor="contact_fullname">
+                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="contact_fullname">
                             <$Lang keyName={$string("forms.contact_us.full_name")} />
                         </label>
                         <input className="form-input" type="text" id="contact_fullname" name="contact_fullname" value={$pointer("customer.name")} />
@@ -33,7 +33,7 @@ export default (_props: PartialProps) => (
                 test={$pointer("forms.contact.phone")}
                 $then={() => (
                     <div className="form-field">
-                        <label className="form-label" htmlFor="contact_phone">
+                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="contact_phone">
                             <$Lang keyName={$string("forms.contact_us.phone")} />
                         </label>
                         <input className="form-input" type="text" id="contact_phone" name="contact_phone" value={$pointer("customer.phone")} />
@@ -42,7 +42,7 @@ export default (_props: PartialProps) => (
             />
 
             <div className="form-field">
-                <label className="form-label" htmlFor="contact_email">
+                <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="contact_email">
                     <$Lang keyName={$string("forms.contact_us.email")} />{" "}
                     <small>
                         <$Lang keyName={$string("common.required")} />
@@ -55,7 +55,7 @@ export default (_props: PartialProps) => (
                 test={$pointer("forms.contact.order")}
                 $then={() => (
                     <div className="form-field">
-                        <label className="form-label" htmlFor="contact_orderno">
+                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="contact_orderno">
                             <$Lang keyName={$string("forms.contact_us.order")} />
                         </label>
                         <input className="form-input" type="text" id="contact_orderno" name="contact_orderno" />
@@ -67,7 +67,7 @@ export default (_props: PartialProps) => (
                 test={$pointer("forms.contact.company")}
                 $then={() => (
                     <div className="form-field">
-                        <label className="form-label" htmlFor="contact_companyname">
+                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="contact_companyname">
                             <$Lang keyName={$string("forms.contact_us.company")} />
                         </label>
                         <input className="form-input" type="text" id="contact_companyname" name="contact_companyname" />
@@ -79,7 +79,7 @@ export default (_props: PartialProps) => (
                 test={$pointer("forms.contact.rma")}
                 $then={() => (
                     <div className="form-field">
-                        <label className="form-label" htmlFor="contact_rma">
+                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="contact_rma">
                             <$Lang keyName={$string("forms.contact_us.rma")} />
                         </label>
                         <input className="form-input" type="text" id="contact_rma" name="contact_rma" />
@@ -89,7 +89,7 @@ export default (_props: PartialProps) => (
         </div>
 
         <div className="form-field">
-            <label className="form-label" htmlFor="contact_question">
+            <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="contact_question">
                 <$Lang keyName={$string("forms.contact_us.question")} />{" "}
                 <small>
                     <$Lang keyName={$string("common.required")} />
@@ -101,7 +101,7 @@ export default (_props: PartialProps) => (
             test={$pointer("forms.contact.manualcaptcha")}
             $then={() => (
                 <div className="form-field">
-                    <label className="form-label" htmlFor={$pointer("forms.contact.manualcaptcha.name")}>
+                    <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor={$pointer("forms.contact.manualcaptcha.name")}>
                         <$Lang keyName={$string("forms.contact_us.manual_captcha_instruction")} />{" "}
                         <small>
                             <$Lang keyName={$string("common.required")} />
@@ -124,7 +124,7 @@ export default (_props: PartialProps) => (
             )}
         />
         {$unescaped($pointer("forms.contact.recaptcha.markup"))}
-        <div className="form-actions">
+        <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
             <input className="button button--primary" type="submit" value={$lang($string("forms.contact_us.submit"))} />
         </div>
     </form>

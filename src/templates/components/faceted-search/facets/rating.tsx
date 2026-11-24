@@ -22,11 +22,11 @@ export default (_props: PartialProps) => (
                     id={`facetedSearch-content--${$dashcase($pointer("facet"))}`}
                     className={`accordion-content facetedSearch-content--${$dashcase($pointer("facet"))}${$Unless({test: $pointer("start_collapsed"), $then: () => " is-open"})}`}
                 >
-                    <ul className="navList">
+                    <ul className="navList ml-0">
                         <$Each
                             list={$pointer<RatingOption[]>("items")}
                             $then={(item) => (
-                                <li className="navList-item">
+                                <li className="navList-item [&_.navList-action]:no-underline [&_.navList-action.is-active]:font-bold">
                                     <a
                                         href={item.url}
                                         className={`navList-action${$If({test: item.selected, $then: () => " is-selected"})}`}

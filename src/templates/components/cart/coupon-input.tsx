@@ -31,8 +31,8 @@ export default (_props: PartialProps) => (
             aria-hidden="true"
             style={{display: "none"}}
         >
-            <form className="form form--hiddenLabels coupon-form flow-root text-[0px] mb-base" method="post" action={$pointer("urls.cart")}>
-                <label className="form-label" htmlFor="couponcode">
+            <form className="form form--hiddenLabels [&_.form-label]:absolute [&_.form-label]:size-px [&_.form-label]:overflow-hidden [&_.form-label]:border-0 [&_.form-label]:p-0 [&_.form-label]:[clip:rect(1px,1px,1px,1px)] coupon-form flow-root text-[0px] mb-base" method="post" action={$pointer("urls.cart")}>
+                <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="couponcode">
                     <$Lang keyName={$string("cart.coupons.coupon_code")} />
                 </label>
                 <input

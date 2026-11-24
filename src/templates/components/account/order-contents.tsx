@@ -85,12 +85,12 @@ export default (_props: PartialProps) => (
                                         $then={() => (
                                             <>
                                                 <input
-                                                    className="form-checkbox"
+                                                    className="form-checkbox [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
                                                     type="checkbox"
                                                     id={`account-product-id-${item.order_product_id}`}
                                                     value={item.order_product_id}
                                                 />{" "}
-                                                <label htmlFor={`account-product-id-${item.order_product_id}`} className="form-label">
+                                                <label htmlFor={`account-product-id-${item.order_product_id}`} className="form-label [&_small]:float-right [&_small]:mt-quarter">
                                                     <span className="is-srOnly">Checkbox {item.order_product_id} label</span>
                                                 </label>
                                             </>
@@ -168,17 +168,17 @@ export default (_props: PartialProps) => (
                                     <$If
                                         test={item.options}
                                         $then={() => (
-                                            <dl className="definitionList">
+                                            <dl className="definitionList flow-root">
                                                 <$Each
                                                     list={item.options}
                                                     $then={(option) => (
                                                         <>
-                                                            <dt className="definitionList-key">{option.name}:</dt>
-                                                            <dd className="definitionList-value"><ProductOptions /></dd>
+                                                            <dt className="definitionList-key float-left m-0 mr-quarter font-normal text-text-secondary">{option.name}:</dt>
+                                                            <dd className="definitionList-value m-0"><ProductOptions /></dd>
                                                             <$If
                                                                 test={option.linked_bundled_item.quantity_ready_to_ship}
                                                                 $then={() => (
-                                                                    <dd className="definitionList-value account-product-backorder-prompts mb-0 text-smallest text-backorder [&+.definitionList]:mt-half [&+dt]:mt-half [&+dt+dd]:mt-half">
+                                                                    <dd className="definitionList-value m-0 account-product-backorder-prompts mb-0 text-smallest text-backorder [&+.definitionList]:mt-half [&+dt]:mt-half [&+dt+dd]:mt-half">
                                                                         <$Lang
                                                                             keyName={$string("products.quantity_on_hand")}
                                                                             quantity={option.linked_bundled_item.quantity_ready_to_ship}
@@ -189,7 +189,7 @@ export default (_props: PartialProps) => (
                                                             <$If
                                                                 test={option.linked_bundled_item.quantity_backordered}
                                                                 $then={() => (
-                                                                    <dd className="definitionList-value account-product-backorder-prompts mb-0 text-smallest text-backorder [&+.definitionList]:mt-half [&+dt]:mt-half [&+dt+dd]:mt-half">
+                                                                    <dd className="definitionList-value m-0 account-product-backorder-prompts mb-0 text-smallest text-backorder [&+.definitionList]:mt-half [&+dt]:mt-half [&+dt+dd]:mt-half">
                                                                         <$Lang
                                                                             keyName={$string("products.quantity_backordered")}
                                                                             quantity={option.linked_bundled_item.quantity_backordered}
@@ -200,7 +200,7 @@ export default (_props: PartialProps) => (
                                                             <$If
                                                                 test={option.linked_bundled_item.backorder_message}
                                                                 $then={() => (
-                                                                    <dd className="definitionList-value account-product-backorder-prompts mb-0 text-smallest text-backorder [&+.definitionList]:mt-half [&+dt]:mt-half [&+dt+dd]:mt-half">
+                                                                    <dd className="definitionList-value m-0 account-product-backorder-prompts mb-0 text-smallest text-backorder [&+.definitionList]:mt-half [&+dt]:mt-half [&+dt+dd]:mt-half">
                                                                         {option.linked_bundled_item.backorder_message}
                                                                     </dd>
                                                                 )}
@@ -214,21 +214,21 @@ export default (_props: PartialProps) => (
                                     <$If
                                         test={item.gift_wrapping_name}
                                         $then={() => (
-                                            <dl className="definitionList">
-                                                <dt className="definitionList-key">
+                                            <dl className="definitionList flow-root">
+                                                <dt className="definitionList-key float-left m-0 mr-quarter font-normal text-text-secondary">
                                                     <$Lang keyName={$string("account.orders.gift_wrapping")} />
                                                 </dt>
-                                                <dd className="definitionList-value">{item.gift_wrapping_name}</dd>
+                                                <dd className="definitionList-value m-0">{item.gift_wrapping_name}</dd>
                                             </dl>
                                         )}
                                     />
                                     <$If
                                         test={item.event_date}
                                         $then={() => (
-                                            <dl className="definitionList">
-                                                <dt className="definitionList-key">{item.event_date.name}:</dt>
+                                            <dl className="definitionList flow-root">
+                                                <dt className="definitionList-key float-left m-0 mr-quarter font-normal text-text-secondary">{item.event_date.name}:</dt>
 
-                                                <dd className="definitionList-value">{item.event_date.date}</dd>
+                                                <dd className="definitionList-value m-0">{item.event_date.date}</dd>
                                             </dl>
                                         )}
                                     />

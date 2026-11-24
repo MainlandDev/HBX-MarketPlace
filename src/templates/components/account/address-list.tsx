@@ -65,7 +65,7 @@ export default (_props: PartialProps) => (
                                     )}
                                 />
                                 <form action={address.delete_url} method="post" data-delete-address={$lang($string("forms.address.confirm_delete"))}>
-                                    <div className="form-actions -mb-half mt-single text-left small:absolute small:bottom-single small:w-auto">
+                                    <div className="form-actions -mb-half mt-single text-left small:absolute small:bottom-single small:w-auto mx-auto w-full max-w-(--sv-layout-widthMax) flow-root [display:block] [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
                                         <a className="button button--primary button--small mb-half" href={address.edit_url}>
                                             <$Lang keyName={$string("common.edit")} />
                                         </a>{" "}

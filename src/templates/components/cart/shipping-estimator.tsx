@@ -49,7 +49,7 @@ export default (_props: PartialProps) => (
             <form className="form estimator-form mb-0 [&_.button--primary]:w-[60%]" data-shipping-estimator={""}>
                 <dl>
                     <dt className="estimator-form-label clear-both float-left mb-0 font-normal [&_.form-label]:mb-0 [&_.form-label]:leading-[32px]">
-                        <label className="form-label" htmlFor="shipping-country">
+                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="shipping-country">
                             <$Lang keyName={$string("cart.shipping_estimator.select_a_country")} />
                         </label>
                     </dt>
@@ -75,7 +75,7 @@ export default (_props: PartialProps) => (
                     </dd>
 
                     <dt className="estimator-form-label clear-both float-left mb-0 font-normal [&_.form-label]:mb-0 [&_.form-label]:leading-[32px]">
-                        <label className="form-label" htmlFor="shipping-state">
+                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="shipping-state">
                             <$Lang keyName={$string("cart.shipping_estimator.select_a_state")} />
                         </label>
                     </dt>
@@ -116,7 +116,7 @@ export default (_props: PartialProps) => (
                     </dd>
 
                     <dt className="estimator-form-label clear-both float-left mb-0 font-normal [&_.form-label]:mb-0 [&_.form-label]:leading-[32px]">
-                        <label className="form-label" htmlFor="shipping-city">
+                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="shipping-city">
                             <$Lang keyName={$string("cart.shipping_estimator.suburb_city")} />
                         </label>
                     </dt>
@@ -132,7 +132,7 @@ export default (_props: PartialProps) => (
                     </dd>
 
                     <dt className="estimator-form-label clear-both float-left mb-0 font-normal [&_.form-label]:mb-0 [&_.form-label]:leading-[32px]">
-                        <label className="form-label" htmlFor="shipping-zip">
+                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="shipping-zip">
                             <$Lang keyName={$string("cart.shipping_estimator.zip_postal_code")} />
                         </label>
                     </dt>

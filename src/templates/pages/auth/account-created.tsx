@@ -6,7 +6,7 @@ export default () => (
             page: () => (
                 <main className="page -mx-gutter-half w-auto max-w-none flow-root">
                     <section className="page-content page-content--textCenter float-left w-full px-gutter-half text-center">
-                        <h1 className="page-heading">
+                        <h1 className="page-heading mx-0 mt-0 mb-double text-center">
                             <$Lang keyName={$string("create_account.created.heading")} />
                         </h1>
                         <p>

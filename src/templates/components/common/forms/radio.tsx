@@ -15,7 +15,7 @@ export default (_props: PartialProps) => {
     const name = $pointer("name");
     return (
         <div className="form-field" id={$pointer("id")} data-validation={$pointer("validation")}>
-            <label className="form-label">
+            <label className="form-label [&_small]:float-right [&_small]:mt-quarter">
                 {$pointer("label")}
                 <$If test={$pointer("required")} $then={() => <small><$Lang keyName={$string("common.required")} /></small>} />
             </label>
@@ -28,7 +28,7 @@ export default (_props: PartialProps) => {
                             <>
                                 <input
                                     type="radio"
-                                    className="form-radio"
+                                    className="form-radio [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
                                     id={`${name}_${loop["@index"]}`}
                                     data-label={item.label}
                                     data-input={""}
@@ -39,7 +39,7 @@ export default (_props: PartialProps) => {
                                         attributes: `name="${name}" value="${item.value}" ${$If({test: $pointer("checked"), $then: () => "checked"})} ${$ifAttribute("data-field-type", "private_id")}`,
                                     }}
                                 />
-                                <label className="form-label" htmlFor={`${name}_${loop["@index"]}`}>
+                                <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor={`${name}_${loop["@index"]}`}>
                                     {item.label}
                                 </label>
                             </>

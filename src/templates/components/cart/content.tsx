@@ -121,13 +121,13 @@ export default (_props: PartialProps) => (
                                 test={item.options}
                                 $then={() => (
                                     <>
-                                        <dl className="definitionList mb-quarter">
+                                        <dl className="definitionList flow-root mb-quarter">
                                             <$Each
                                                 list={item.options}
                                                 $then={(option) => (
                                                     <>
-                                                        <dt className="definitionList-key">{option.name}:</dt>
-                                                        <dd className="definitionList-value">
+                                                        <dt className="definitionList-key float-left m-0 mr-quarter font-normal text-text-secondary">{option.name}:</dt>
+                                                        <dd className="definitionList-value m-0">
                                                             <$If
                                                                 test={option.is_file}
                                                                 $then={() => (
@@ -198,7 +198,7 @@ export default (_props: PartialProps) => (
                             <label className="form-label cart-item-label float-left mb-quarter w-4/12 text-right text-text-base small:block small:w-full small:pl-single small:text-left medium:hidden" htmlFor={`qty-${item.id}`}>
                                 <$Lang keyName={$string("products.quantity")} />
                             </label>
-                            <div className="form-increment mr-eighth mb-[1px] ml-single inline-block align-middle medium:ml-0">
+                            <div className="form-increment [&_.button]:m-0 [&_.button]:px-quarter [&_.button]:py-[0.21429rem] mr-eighth mb-[1px] ml-single inline-block align-middle medium:ml-0">
                                 <$If
                                     test={item.can_modify}
                                     $then={() => (
@@ -215,7 +215,7 @@ export default (_props: PartialProps) => (
                                     )}
                                 />
                                 <input
-                                    className="form-input form-input--incrementTotal cart-item-qty-input"
+                                    className="form-input form-input--incrementTotal cart-item-qty-input inline-block h-auto w-[2.5rem] border-0 p-0 text-center align-middle text-smaller font-bold [[class~=form-field--success]_&]:float-none"
                                     id={`qty-${item.id}`}
                                     type="tel"
                                     data-quantity-min={item.min_purchase_quantity}

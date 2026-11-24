@@ -1,7 +1,12 @@
 // =============================================================================
 // FORMS (CSS)
 // =============================================================================
-
+//
+// The label small rules are utilities on the form-label elements.
+//
+// Stays: the select box, whose arrow is a data: SVG URI built from the merchant select-arrow colour (cannot take var()), together with
+// the properties that position it.
+// -----------------------------------------------------------------------------
 
 // Select boxes
 // -----------------------------------------------------------------------------
@@ -15,31 +20,5 @@
 
     &:hover {
         border-color: $select-hover-borderColor;
-    }
-}
-
-
-// Form labels
-// -----------------------------------------------------------------------------
-
-.form-label {
-    small {
-        float: $opposite-direction;
-        margin-top: $form-label-small-marginTop;
-    }
-}
-
-
-// Form labels (inline small text)
-// -----------------------------------------------------------------------------
-
-.form-label--inlineSmall {
-    small {
-        color: stencilColor("color-textSecondary");
-        float: none;
-        font-size: inherit;
-        font-weight: fontWeight("normal");
-        margin-left: spacing("quarter");
-        text-transform: none;
     }
 }

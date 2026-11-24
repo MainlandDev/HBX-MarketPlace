@@ -20,15 +20,31 @@ export default (_props: PartialProps) => {
                             <$Each
                                 list={$pointer<Breadcrumb[]>("breadcrumbs")}
                                 $then={(crumb, loop) => (
-                                    <li className={`breadcrumb ${$If({test: loop["@last"], $then: () => "is-active"})}`}>
-                                        <a
-                                            className="breadcrumb-label"
-                                            href={crumb.url}
-                                            dangerouslyInlineAttributes={{attributes: `${$raw('{{#if @last}}aria-current="page"{{/if}}')}`}}
-                                        >
-                                            <span>{crumb.name}</span>
-                                        </a>
-                                    </li>
+                                    <$If
+                                        test={loop["@last"]}
+                                        $then={() => (
+                                            <li className="breadcrumb float-none mr-[0.25rem] inline-block not-first:before:mx-[0.25rem] not-first:before:inline-block not-first:before:h-[0.8em] not-first:before:border-r-[0.1em] not-first:before:border-r-(--sv-primary-color) not-first:before:[transform:rotate(15deg)] not-first:before:content-[''] is-active">
+                                                <a
+                                                className="breadcrumb-label cursor-pointer font-bold"
+                                                href={crumb.url}
+                                                dangerouslyInlineAttributes={{attributes: `${$raw('{{#if @last}}aria-current="page"{{/if}}')}`}}
+                                            >
+                                                <span>{crumb.name}</span>
+                                            </a>
+                                            </li>
+                                        )}
+                                        $else={() => (
+                                            <li className="breadcrumb float-none mr-[0.25rem] inline-block not-first:before:mx-[0.25rem] not-first:before:inline-block not-first:before:h-[0.8em] not-first:before:border-r-[0.1em] not-first:before:border-r-(--sv-primary-color) not-first:before:[transform:rotate(15deg)] not-first:before:content-['']">
+                                                <a
+                                                className="breadcrumb-label"
+                                                href={crumb.url}
+                                                dangerouslyInlineAttributes={{attributes: `${$raw('{{#if @last}}aria-current="page"{{/if}}')}`}}
+                                            >
+                                                <span>{crumb.name}</span>
+                                            </a>
+                                            </li>
+                                        )}
+                                    />
                                 )}
                             />
                         )}

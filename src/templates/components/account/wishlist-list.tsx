@@ -16,19 +16,19 @@ interface Wishlist {
 
 export default (_props: PartialProps) => (
     <>
-        <table className="table table--line mx-auto max-w-(--sv-layout-widthMax)">
-            <thead className="table-thead">
+        <table className="table table--line mx-auto mt-[2rem] max-w-(--sv-layout-widthMax) border-x-0 border-t-0 border-b border-container-border">
+            <thead className="table-thead border-x-0 border-t-0 border-b border-container-border bg-(--sv-setting-body-bg)">
                 <tr>
-                    <th>
+                    <th className="px-0 small:text-center small:first:text-left small:last:text-right [th+&]:pl-single">
                         <$Lang keyName={$string("account.wishlists.name")} />
                     </th>
-                    <th>
+                    <th className="px-0 small:text-center small:first:text-left small:last:text-right [th+&]:pl-single">
                         <$Lang keyName={$string("account.wishlists.num_items")} />
                     </th>
-                    <th>
+                    <th className="px-0 small:text-center small:first:text-left small:last:text-right [th+&]:pl-single">
                         <$Lang keyName={$string("account.wishlists.shared")} />
                     </th>
-                    <th>
+                    <th className="px-0 small:text-center small:first:text-left small:last:text-right [th+&]:pl-single">
                         <$Lang keyName={$string("account.wishlists.action")} />
                     </th>
                 </tr>
@@ -38,18 +38,18 @@ export default (_props: PartialProps) => (
                     list={$pointer<Wishlist[]>("customer.wishlists")}
                     $then={(wishlist) => (
                         <tr>
-                            <td>
+                            <td className="px-0 [display:block] small:text-center small:first:text-left small:last:text-right [td+&]:pl-single">
                                 <a href={wishlist.view_url}>{wishlist.name}</a>
                             </td>
-                            <td>{wishlist.num_items}</td>
-                            <td>
+                            <td className="px-0 [display:block] small:text-center small:first:text-left small:last:text-right [td+&]:pl-single">{wishlist.num_items}</td>
+                            <td className="px-0 [display:block] small:text-center small:first:text-left small:last:text-right [td+&]:pl-single">
                                 <$If
                                     test={wishlist.is_public}
                                     $then={() => <$Lang keyName={$string("common.yes")} />}
                                     $else={() => <$Lang keyName={$string("common.no")} />}
                                 />
                             </td>
-                            <td className="table-actions">
+                            <td className="table-actions m-single px-0 text-center [display:block] small:last:text-right [td+&]:pl-single [&_.form]:mb-0 [&_.button]:mx-0 [&_.button]:w-full [&_.button]:[display:block] small:[&_.button]:mb-0 small:[&_.button]:w-auto small:[&_.button]:[display:inline-block] small:[&_.button+.button]:ml-quarter">
                                 <form method="post" action={wishlist.delete_url} className="form">
                                     <fieldset className="form-fieldset">
                                         <$If
@@ -76,12 +76,12 @@ export default (_props: PartialProps) => (
             <$Unless
                 test={$pointer("customer.wishlists")}
                 $then={() => (
-                    <p className="form-actions">
+                    <p className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
                         <AlertAlertInfo $positionalHash={$lang($string("account.wishlists.you_have_none"))} />
                     </p>
                 )}
             />
-            <div className="form-actions">
+            <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
                 <a href={$pointer("urls.account.wishlists.add")} className="button button--primary" role="button" data-wishlist={""}>
                     <$Lang keyName={$string("account.wishlists.new")} />
                 </a>{" "}

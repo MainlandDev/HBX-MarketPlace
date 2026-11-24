@@ -63,7 +63,7 @@ export default () => {
                                 test={settings.hide_category_page_heading}
                                 $then={() => (
                                     <>
-                                        <h1 className="page-heading">{$pointer("category.name")}</h1>
+                                        <h1 className="page-heading mx-0 mt-0 mb-double text-center">{$pointer("category.name")}</h1>
                                         {region("category_below_header")}
                                     </>
                                 )}

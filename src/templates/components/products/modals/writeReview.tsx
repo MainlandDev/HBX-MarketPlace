@@ -30,7 +30,7 @@ export default (_props: PartialProps) => (
             <form className="form writeReview-form medium:float-left medium:w-6/12 medium:px-gutter-half" action={$pointer("urls.product.post_review")} method="post">
                 <fieldset className="form-fieldset">
                     <div className="form-field">
-                        <label className="form-label" htmlFor="rating-rate">
+                        <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="rating-rate">
                             <$Lang keyName={$string("products.reviews.rating_label")} />{" "}
                             <small>
                                 <$Lang keyName={$string("common.required")} />

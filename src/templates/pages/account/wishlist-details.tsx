@@ -13,7 +13,7 @@ export default () => (
                         test={$pointer("wishlist.is_editable")}
                         $then={() => <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />}
                     />
-                    <h2 className="page-heading">
+                    <h2 className="page-heading mx-0 mt-0 mb-double text-center">
                         <$Lang keyName={$string("account.wishlists.view_heading")} name={$pointer("wishlist.name")} />
                     </h2>
                     <$If

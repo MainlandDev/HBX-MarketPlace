@@ -27,14 +27,14 @@ export default (_props: PartialProps) => (
                 >
                     <ul
                         id={`facetedSearch-navList--${$dashcase($pointer("facet"))}`}
-                        className="navList"
+                        className="navList ml-0"
                         data-facet={$pointer("facet")}
                         data-has-more-results={$pointer("has_more_results")}
                     >
                         <$Each
                             list={$pointer<Facet[]>("items")}
                             $then={(item) => (
-                                <li className="navList-item">
+                                <li className="navList-item [&_.navList-action]:no-underline [&_.navList-action.is-active]:font-bold">
                                     <a
                                         href={item.url}
                                         className={`navList-action navList-action--checkbox${$If({test: item.selected, $then: () => " is-selected"})}${$If({test: item.has_sub_categories, $then: () => " has-children"})}`}

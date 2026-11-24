@@ -22,7 +22,7 @@ const variants = () => (
             test={$pointer("image")}
             $then={() => (
                 <span
-                    className="form-option-variant form-option-variant--pattern"
+                    className="form-option-variant text-center text-(length:--sv-body-fontSize) [pointer-events:none] [display:inline-block] min-w-[initial] p-0 small:[pointer-events:inherit] form-option-variant--pattern bg-center bg-no-repeat"
                     title={$pointer("label")}
                     dangerouslyInlineAttributes={{attributes: `style="background-image: url('${$raw('{{getImage image "swatch_option_size"}}')}'); --swatch-image-large: url('${$raw('{{getImage image "gallery_size"}}')}');"`}}
                 />
@@ -33,17 +33,17 @@ const variants = () => (
             $then={() => (
                 <>
                     <span
-                        className="form-option-variant form-option-variant--color"
+                        className="form-option-variant text-center text-(length:--sv-body-fontSize) [pointer-events:none] [display:inline-block] min-w-[initial] p-0 small:[pointer-events:inherit] form-option-variant--color"
                         title={$pointer("label")}
                         dangerouslyInlineAttributes={{attributes: `style="background-color: #${$pointer("data.[0]")}"`}}
                     />{" "}
                     <span
-                        className="form-option-variant form-option-variant--color"
+                        className="form-option-variant text-center text-(length:--sv-body-fontSize) [pointer-events:none] [display:inline-block] min-w-[initial] p-0 small:[pointer-events:inherit] form-option-variant--color"
                         title={$pointer("label")}
                         dangerouslyInlineAttributes={{attributes: `style="background-color: #${$pointer("data.[1]")}"`}}
                     />{" "}
                     <span
-                        className="form-option-variant form-option-variant--color"
+                        className="form-option-variant text-center text-(length:--sv-body-fontSize) [pointer-events:none] [display:inline-block] min-w-[initial] p-0 small:[pointer-events:inherit] form-option-variant--color"
                         title={$pointer("label")}
                         dangerouslyInlineAttributes={{attributes: `style="background-color: #${$pointer("data.[2]")}"`}}
                     />
@@ -55,12 +55,12 @@ const variants = () => (
                     $then={() => (
                         <>
                             <span
-                                className="form-option-variant form-option-variant--color"
+                                className="form-option-variant text-center text-(length:--sv-body-fontSize) [pointer-events:none] [display:inline-block] min-w-[initial] p-0 small:[pointer-events:inherit] form-option-variant--color"
                                 title={$pointer("label")}
                                 dangerouslyInlineAttributes={{attributes: `style="background-color: #${$pointer("data.[0]")}"`}}
                             />{" "}
                             <span
-                                className="form-option-variant form-option-variant--color"
+                                className="form-option-variant text-center text-(length:--sv-body-fontSize) [pointer-events:none] [display:inline-block] min-w-[initial] p-0 small:[pointer-events:inherit] form-option-variant--color"
                                 title={$pointer("label")}
                                 dangerouslyInlineAttributes={{attributes: `style="background-color: #${$pointer("data.[1]")}"`}}
                             />
@@ -71,7 +71,7 @@ const variants = () => (
                             test={$pointer("data.[0]")}
                             $then={() => (
                                 <span
-                                    className="form-option-variant form-option-variant--color"
+                                    className="form-option-variant text-center text-(length:--sv-body-fontSize) [pointer-events:none] [display:inline-block] min-w-[initial] p-0 small:[pointer-events:inherit] form-option-variant--color"
                                     title={$pointer("label")}
                                     dangerouslyInlineAttributes={{attributes: `style="background-color: #${$pointer("data.[0]")}"`}}
                                 />
@@ -90,7 +90,7 @@ export default (_props: PartialProps) => {
     const required = $pointer("required");
     return (
         <div className="form-field" data-product-attribute="swatch" role="radiogroup" aria-labelledby={`swatchGroup_${id}`}>
-            <label className="form-label form-label--alternate form-label--inlineSmall" id={`swatchGroup_${id}`}>
+            <label className="form-label form-label--alternate form-label--inlineSmall mb-half text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-none [&_small]:mt-quarter [&_small]:ml-quarter [&_small]:text-text-secondary [&_small]:font-normal [&_small]:normal-case [&_small]:[font-size:inherit]" id={`swatchGroup_${id}`}>
                 {$pointer("display_name")}:{" "}
                 <span data-option-value={""} />{" "}
                 <RequirenessMsg />
@@ -103,15 +103,15 @@ export default (_props: PartialProps) => {
                 $then={() => (
                     <>
                         <input
-                            className="form-radio"
+                            className="form-radio [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
                             type="radio"
                             id={`attribute_swatch_${id}_none`}
                             dangerouslyInlineAttributes={{
                                 attributes: `name="attribute[${id}]" value="" checked="${$If({test: $pointer("defaultValue"), operator: $string("=="), rvalue: $string(""), $then: () => "checked"})}" aria-label="${$lang($string("products.none"))}"`,
                             }}
                         />{" "}
-                        <label className="form-option form-option-swatch" htmlFor={`attribute_swatch_${id}_none`}>
-                            <span className="form-option-variant form-option-variant--none h-[22px] overflow-hidden" title={$lang($string("products.none"))}>
+                        <label className="form-option mr-third mb-third cursor-pointer border border-(--sv-setting-input-border-color) p-px text-[0px] text-(--sv-setting-form-label-font-color) [display:inline-block] [transition:all_0.15s_ease] hover:border-(--sv-setting-input-border-color-active) [[class~=form-radio]:checked+&]:border-(--sv-setting-checkRadio-color) [[class~=form-radio]:checked+&]:[box-shadow:0_0_0_1px_var(--sv-setting-checkRadio-color)] [[data-product-attribute]_&]:relative [[data-product-attribute]_&]:overflow-hidden [&.unavailable]:bg-(--sv-productOptions-disable-background-color) [&.unavailable]:opacity-(--sv-productOptions-disable-opacity) [&.unavailable]:before:absolute [&.unavailable]:before:top-[11px] [&.unavailable]:before:-left-[5px] [&.unavailable]:before:h-[2px] [&.unavailable]:before:w-[141%] [&.unavailable]:before:bg-(--sv-productOptions-strikethrough-color) [&.unavailable]:before:[transform:rotate(-45deg)] [&.unavailable]:before:content-[''] form-option-swatch" htmlFor={`attribute_swatch_${id}_none`}>
+                            <span className="form-option-variant min-w-[2.71429rem] px-quarter py-px text-center text-(length:--sv-body-fontSize) [pointer-events:none] [display:inline-block] form-option-variant--none h-[22px] overflow-hidden" title={$lang($string("products.none"))}>
                                 <$Lang keyName={$string("products.none")} />
                             </span>
                         </label>{" "}
@@ -121,16 +121,16 @@ export default (_props: PartialProps) => {
             <$Each
                 list={$pointer<Value[]>("values")}
                 $then={(item) => (
-                    <div className="form-option-wrapper">
+                    <div className="form-option-wrapper relative [display:inline-block] [&_.form-radio]:bottom-[0.5rem] [&_.form-radio]:left-[0.5rem] [&_.form-checkbox]:bottom-[0.5rem] [&_.form-checkbox]:left-[0.5rem]">
                         <input
-                            className="form-radio"
+                            className="form-radio [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
                             type="radio"
                             id={`attribute_swatch_${id}_${item.id}`}
                             dangerouslyInlineAttributes={{
                                 attributes: `name="attribute[${id}]" value="${item.id}"${$If({test: item.selected, $then: () => " checked data-default"})}${$If({test: required, $then: () => " required"})} aria-label="${item.label}"`,
                             }}
                         />{" "}
-                        <label className="form-option form-option-swatch" htmlFor={`attribute_swatch_${id}_${item.id}`} data-product-attribute-value={item.id}>
+                        <label className="form-option mr-third mb-third cursor-pointer border border-(--sv-setting-input-border-color) p-px text-[0px] text-(--sv-setting-form-label-font-color) [display:inline-block] [transition:all_0.15s_ease] hover:border-(--sv-setting-input-border-color-active) [[class~=form-radio]:checked+&]:border-(--sv-setting-checkRadio-color) [[class~=form-radio]:checked+&]:[box-shadow:0_0_0_1px_var(--sv-setting-checkRadio-color)] [[data-product-attribute]_&]:relative [[data-product-attribute]_&]:overflow-hidden [&.unavailable]:bg-(--sv-productOptions-disable-background-color) [&.unavailable]:opacity-(--sv-productOptions-disable-opacity) [&.unavailable]:before:absolute [&.unavailable]:before:top-[11px] [&.unavailable]:before:-left-[5px] [&.unavailable]:before:h-[2px] [&.unavailable]:before:w-[141%] [&.unavailable]:before:bg-(--sv-productOptions-strikethrough-color) [&.unavailable]:before:[transform:rotate(-45deg)] [&.unavailable]:before:content-[''] form-option-swatch" htmlFor={`attribute_swatch_${id}_${item.id}`} data-product-attribute-value={item.id}>
                             {variants()}{" "}
                             <$If
                                 test={item.pattern}

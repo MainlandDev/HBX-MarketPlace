@@ -30,10 +30,10 @@ export default (_props: PartialProps) => {
                     <>
                         <$Inject keyName={$string("productQuantityErrorMessage")} value={$lang($string("products.quantity_error_message"))} />
                         <div className="form-field form-field--increments">
-                            <label className="form-label form-label--alternate" htmlFor="qty[]">
+                            <label className="form-label form-label--alternate mb-half text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-right [&_small]:mt-quarter" htmlFor="qty[]">
                                 <$Lang keyName={$string("products.quantity")} />
                             </label>
-                            <div className="form-increment" data-quantity-change={""}>
+                            <div className="form-increment [&_.button]:m-0 [&_.button]:px-quarter [&_.button]:py-[0.21429rem]" data-quantity-change={""}>
                                 <button className="button button--icon" data-action="dec">
                                     <span className="is-srOnly">
                                         <$Lang keyName={$string("products.quantity_decrease")} name={product.title} />
@@ -45,7 +45,7 @@ export default (_props: PartialProps) => {
                                     </i>
                                 </button>
                                 <input
-                                    className="form-input form-input--incrementTotal"
+                                    className="form-input form-input--incrementTotal inline-block h-auto w-[2.5rem] border-0 p-0 text-center align-middle text-smaller font-bold [[class~=form-field--success]_&]:float-none"
                                     id="qty[]"
                                     name="qty[]"
                                     type="tel"
@@ -94,8 +94,8 @@ export default (_props: PartialProps) => {
                 )}
             />
 
-            <div className="alertBox alertBox--error productAttributes-message" style={{display: "none"}}>
-                <div className="alertBox-column alertBox-icon">
+            <div className="alertBox alertBox--error productAttributes-message rounded-[4px] text-(--sv-setting-alert-color)" style={{display: "none"}}>
+                <div className="alertBox-column alertBox-icon [&_.icon]:size-[25px]">
                     <icon glyph="ic-error" className="icon" aria-hidden="true">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>

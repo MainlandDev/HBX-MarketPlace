@@ -13,7 +13,7 @@ export default () => (
                         $then={() => (
                             <>
                                 <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                                <h2 className="page-heading">
+                                <h2 className="page-heading mx-0 mt-0 mb-double text-center">
                                     <$If
                                         test={$pointer("forms.wishlist.id")}
                                         $then={() => <$Lang keyName={$string("account.wishlists.edit")} />}

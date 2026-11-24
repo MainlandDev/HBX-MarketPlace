@@ -9,7 +9,7 @@ export default () => (
             page: () => (
                 <div className="mx-auto mt-double mb-[calc(var(--sv-spacing-double)*2)] max-w-[900px]">
                     <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                    <h1 className="page-heading">
+                    <h1 className="page-heading mx-0 mt-0 mb-double text-center">
                         <$Lang keyName={$string("login.heading")} />
                     </h1>
                     <$If
@@ -25,18 +25,18 @@ export default () => (
                             <$Inject keyName={$string("useValidEmail")} value={$lang($string("forms.validate.common.email_address"))} />{" "}
                             <$Inject keyName={$string("enterPass")} value={$lang($string("forms.validate.common.password"))} />
                             <div className="form-field">
-                                <label className="form-label" htmlFor="login_email">
+                                <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="login_email">
                                     <$Lang keyName={$string("login.field_email")} />
                                 </label>
                                 <input className="form-input" name="login_email" id="login_email" type="email" />
                             </div>
                             <div className="form-field">
-                                <label className="form-label" htmlFor="login_pass">
+                                <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="login_pass">
                                     <$Lang keyName={$string("login.field_password")} />
                                 </label>
                                 <input className="form-input" id="login_pass" type="password" name="login_pass" autoComplete="off" />
                             </div>
-                            <div className="form-actions">
+                            <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
                                 <input type="submit" className="button button--primary" value={$lang($string("login.submit_value"))} />{" "}
                                 <a className="forgot-password" href={$pointer("urls.auth.forgot_password")}>
                                     <$Lang keyName={$string("login.forgot_password")} />

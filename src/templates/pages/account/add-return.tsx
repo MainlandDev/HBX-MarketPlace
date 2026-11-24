@@ -10,7 +10,7 @@ export default () => (
             page: () => (
                 <>
                     <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                    <h1 className="page-heading">
+                    <h1 className="page-heading mx-0 mt-0 mb-double text-center">
                         <$Lang keyName={$string("account.returns.new_return")} />
                     </h1>
                     <AccountNavigation account_page={$string("returns")} />
@@ -34,8 +34,8 @@ export default () => (
                                         >
                                             <fieldset className="form-fieldset">
                                                 <input type="hidden" name="order_id" value={$pointer("forms.return.order_id")} />
-                                                <table className="table table--line [display:block] mb-double small:[display:table] small:mb-[calc(var(--sv-spacing-double)*2)]">
-                                                    <thead className="table-thead [display:none] small:[display:table-header-group]">
+                                                <table className="table table--line mt-[2rem] border-x-0 border-t-0 border-b border-container-border [display:block] mb-double small:[display:table] small:mb-[calc(var(--sv-spacing-double)*2)]">
+                                                    <thead className="table-thead border-x-0 border-t-0 border-b border-container-border bg-(--sv-setting-body-bg) [display:none] small:[display:table-header-group]">
                                                         <tr className="py-single small:p-0 [display:block] small:[display:table-row]">
                                                             <th className="return-itemName w-[60%] p-0 text-smaller font-bold [display:block] small:[display:table-cell] small:py-half small:font-normal">
                                                                 <$Lang keyName={$string("account.orders.return.order_item")} />
@@ -58,7 +58,7 @@ export default () => (
                                                                         <$If
                                                                             test={product.options}
                                                                             $then={() => (
-                                                                                <dl className="definitionList mt-eighth">
+                                                                                <dl className="definitionList flow-root mt-eighth">
                                                                                     <$Each
                                                                                         list={product.options}
                                                                                         $then={(option) => (
@@ -80,7 +80,7 @@ export default () => (
                                                                             <$Lang keyName={$string("account.orders.return.quantity")} />:
                                                                         </label>
                                                                         <select
-                                                                            className="form-select form-select--small form-select--short"
+                                                                            className="form-select form-select--small form-select--short h-[2.28571rem] max-w-[6rem] w-[4.5rem] py-[0.57143rem] pr-[2rem] pl-[0.78571rem] text-[13px] leading-[1rem] [background-position:right_0.5rem_top_0.5rem] [background-size:1.28571rem]"
                                                                             name={`return_qty[${product.id}]`}
                                                                         >
                                                                             <$For
@@ -101,7 +101,7 @@ export default () => (
                                             <div className="account--addReturn-row -mx-base flow-root w-auto max-w-none">
                                                 <fieldset className="form-fieldset account--addReturn-column float-left w-full px-base small:w-1/2">
                                                     <div className="form-field">
-                                                        <label htmlFor="return_reason" className="form-label">
+                                                        <label htmlFor="return_reason" className="form-label [&_small]:float-right [&_small]:mt-quarter">
                                                             <$Lang keyName={$string("account.orders.return.reason")} />{" "}
                                                             <small>
                                                                 <$Lang keyName={$string("common.required")} />
@@ -117,7 +117,7 @@ export default () => (
                                                         </select>
                                                     </div>
                                                     <div className="form-field">
-                                                        <label htmlFor="return_action" className="form-label">
+                                                        <label htmlFor="return_action" className="form-label [&_small]:float-right [&_small]:mt-quarter">
                                                             <$Lang keyName={$string("account.orders.return.action")} />
                                                         </label>
                                                         <select name="return_action" id="return_action" className="form-select">
@@ -132,14 +132,14 @@ export default () => (
                                                 </fieldset>
                                                 <fieldset className="form-fieldset account--addReturn-column float-left w-full px-base small:w-1/2">
                                                     <div className="form-field">
-                                                        <label htmlFor="return_comments" className="form-label">
+                                                        <label htmlFor="return_comments" className="form-label [&_small]:float-right [&_small]:mt-quarter">
                                                             <$Lang keyName={$string("account.orders.return.comments")} />
                                                         </label>
                                                         <textarea className="form-input" rows={8} name="return_comments" id="return_comments" />
                                                     </div>
                                                 </fieldset>
                                             </div>
-                                            <div className="form-actions">
+                                            <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
                                                 <input
                                                     className="button button--primary"
                                                     type="submit"

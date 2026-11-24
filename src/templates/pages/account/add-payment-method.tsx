@@ -41,7 +41,7 @@ export default () => (
 
                     <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
 
-                    <h2 className="page-heading">
+                    <h2 className="page-heading mx-0 mt-0 mb-double text-center">
                         <$Lang keyName={$string("forms.payment_methods.add.heading")} />
                     </h2>
 
@@ -123,9 +123,9 @@ export default () => (
                                                     name="default_instrument"
                                                     id="default_instrument"
                                                     data-label={$lang($string("forms.payment_methods.default_instrument"))}
-                                                    className="form-checkbox"
+                                                    className="form-checkbox [&+.form-label]:before:top-[0.21429rem] [&+.form-label]:after:top-[0.28571rem] [&+.form-label:last-child]:-mb-[0.28571rem] [&+.form-label:last-child]:[display:block]"
                                                 />
-                                                <label className="form-label" htmlFor="default_instrument">
+                                                <label className="form-label [&_small]:float-right [&_small]:mt-quarter" htmlFor="default_instrument">
                                                     <$Lang keyName={$string("forms.payment_methods.default_instrument")} />
                                                 </label>
                                             </div>
@@ -137,7 +137,7 @@ export default () => (
                                     </h3>
 
                                     <fieldset className="form-fieldset">
-                                        <div className="form-row form-row--half">
+                                        <div className="form-row form-row--half small:[&>.form-field:nth-child(odd)]:clear-left">
                                             <FormsText private_id={$string("FirstName")} required={$boolean(true)} id={$string("first_name")} name={$string("first_name")} label={$lang($string("forms.payment_methods.first_name"))} />
                                             <FormsText private_id={$string("LastName")} required={$boolean(true)} id={$string("last_name")} name={$string("last_name")} label={$lang($string("forms.payment_methods.last_name"))} />
                                             <FormsText private_id={$string("CompanyName")} required={$boolean(false)} id={$string("company")} name={$string("company")} label={$lang($string("forms.payment_methods.company"))} />
@@ -150,7 +150,7 @@ export default () => (
                                             <FormsText private_id={$string("Zip")} required={$boolean(true)} id={$string("postal_code")} name={$string("postal_code")} label={$lang($string("forms.payment_methods.postal_code"))} />
                                         </div>
                                     </fieldset>
-                                    <div className="form-actions">
+                                    <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half">
                                         <input type="submit" className="button button--primary" value={$lang($string("forms.payment_methods.submit_value"))} />
                                         <a href={$pointer("urls.account.payment_methods.all")} className="button">
                                             <$Lang keyName={$string("common.cancel")} />

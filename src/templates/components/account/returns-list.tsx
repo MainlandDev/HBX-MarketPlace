@@ -126,13 +126,13 @@ export default (_props: PartialProps) => (
                                 <$If
                                     test={ret.product.options}
                                     $then={() => (
-                                        <dl className="definitionList">
+                                        <dl className="definitionList flow-root">
                                             <$Each
                                                 list={ret.product.options}
                                                 $then={(option) => (
                                                     <>
-                                                        <dt className="definitionList-key">{option.name}:</dt>
-                                                        <dd className="definitionList-value"><ProductOptions /></dd>
+                                                        <dt className="definitionList-key float-left m-0 mr-quarter font-normal text-text-secondary">{option.name}:</dt>
+                                                        <dd className="definitionList-value m-0"><ProductOptions /></dd>
                                                     </>
                                                 )}
                                             />

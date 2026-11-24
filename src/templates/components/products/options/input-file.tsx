@@ -5,12 +5,12 @@ import {$And, $If, $Lang, $lang, $pointer, $string, $unescaped, $unlessExpressio
 
 export default (_props: PartialProps) => (
     <div className="form-field" data-product-attribute="input-file">
-        <label className="form-label form-label--alternate form-label--inlineSmall" htmlFor={`attribute_file_${$pointer("id")}`}>
+        <label className="form-label form-label--alternate form-label--inlineSmall mb-half text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-none [&_small]:mt-quarter [&_small]:ml-quarter [&_small]:text-text-secondary [&_small]:font-normal [&_small]:normal-case [&_small]:[font-size:inherit]" htmlFor={`attribute_file_${$pointer("id")}`}>
             {$pointer("display_name")}:{" "}
             <RequirenessMsg />
         </label>
         <input
-            className="form-file"
+            className="form-file mb-third"
             type="file"
             id={`attribute_file_${$pointer("id")}`}
             dangerouslyInlineAttributes={{
@@ -29,7 +29,7 @@ export default (_props: PartialProps) => (
                 </>
             )}
         />
-        <p className="form-fileDescription">
+        <p className="form-fileDescription text-smallest text-grey-light">
             <$If
                 test={$pointer("file_size")}
                 $then={() => (

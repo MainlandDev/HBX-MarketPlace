@@ -10,7 +10,7 @@ export default () => (
             page: () => (
                 <>
                     <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                    <h1 className="page-heading">
+                    <h1 className="page-heading mx-0 mt-0 mb-double text-center">
                         <$Lang keyName={$string("account.returns.heading")} />
                     </h1>
                     <AccountNavigation account_page={$string("returns")} />

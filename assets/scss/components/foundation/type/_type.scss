@@ -3,6 +3,9 @@
 // =============================================================================
 
 // Stencil type component additions
+//
+// .page-heading and .definitionList* are utilities in the templates. What stays are element selectors (body, h1-h6, a, cite) that
+// have no class to carry utilities.
 // -----------------------------------------------------------------------------
 
 
@@ -35,11 +38,6 @@ cite {
     margin: $blockquote-cite-margin;
 }
 
-.page-heading {
-    margin: 0 0 spacing("double");
-    text-align: center;
-}
-
 h1 {
     font-size: $h1-font-size;
 }
@@ -64,17 +62,3 @@ h6 {
     font-size: $h6-font-size;
 }
 
-.definitionList {
-    @include clearfix;
-}
-
-.definitionList-key {
-    color: stencilColor("color-textSecondary");
-    float: left;
-    font-weight: fontWeight("normal");
-    margin: 0 spacing("quarter") 0 0;
-}
-
-.definitionList-value {
-    margin: 0;
-}

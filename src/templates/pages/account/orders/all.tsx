@@ -13,7 +13,7 @@ export default () => (
             page: () => (
                 <>
                     <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                    <h1 className="page-heading">
+                    <h1 className="page-heading mx-0 mt-0 mb-double text-center">
                         <$Lang keyName={$string("account.orders.heading")} />
                     </h1>
                     <AccountNavigation account_page={$string("orders")} />
@@ -26,7 +26,7 @@ export default () => (
                                 rvalue={$number(0)}
                                 $then={() => (
                                     <>
-                                        <div className="alertBox alertBox--storeCredit">
+                                        <div className="alertBox alertBox--storeCredit rounded-[4px] text-(--sv-setting-alert-color)">
                                             {$unescaped(
                                                 $lang($string("common.store_credit"), {store_credit: $pointer("customer.store_credit.formatted")}),
                                             )}

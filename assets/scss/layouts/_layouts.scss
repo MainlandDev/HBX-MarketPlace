@@ -10,6 +10,7 @@
 @import "footer/footer";
 
 // Container
+// Stays: merchant-injected markup (the account page notice banner, div.container) uses this class and has no template of ours.
 @import "container/container";
 
 

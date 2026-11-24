@@ -25,13 +25,13 @@ export default (_props: PartialProps) => (
                     <ul
                         id={`facetedSearch-navList--${$dashcase($pointer("facet"))}`}
                         data-facet={$pointer("facet")}
-                        className="navList"
+                        className="navList ml-0"
                         data-has-more-results={$pointer("has_more_results")}
                     >
                         <$Each
                             list={$pointer<FacetOption[]>("items")}
                             $then={(item) => (
-                                <li className="navList-item">
+                                <li className="navList-item [&_.navList-action]:no-underline [&_.navList-action.is-active]:font-bold">
                                     <a
                                         href={item.url}
                                         className={`navList-action navList-action--checkbox${$If({test: item.selected, $then: () => " is-selected"})}`}
@@ -43,7 +43,7 @@ export default (_props: PartialProps) => (
                                             test={$pointer("../show_product_counts")}
                                             $then={() => <span>({item.count})</span>}
                                         />{" "}
-                                        <span className="navList-action-close" aria-hidden="true">
+                                        <span className="navList-action-close float-right inline-block rounded-[100%] bg-(--sv-navList-action-close-background) p-(--sv-navList-action-close-padding) leading-[0] opacity-0 [visibility:hidden] [transition:var(--sv-navList-action-close-transition)] [&_.icon]:size-(--sv-navList-action-close-iconSize) [&_.icon]:fill-(--sv-setting-color-textLink) [[class~=navList-action][class~=is-selected]:hover_&]:opacity-100 [[class~=navList-action][class~=is-selected]:hover_&]:[visibility:visible]" aria-hidden="true">
                                             <svg className="icon">
                                                 <use href="#icon-close" />
                                             </svg>
