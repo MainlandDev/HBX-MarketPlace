@@ -1,5 +1,5 @@
 import {describe, expect, it} from "vitest";
-import {isCurrent, renderBridge, scanSettingCalls, scanVariables} from "./bridge.mjs";
+import {isCurrent, renderBridge, scanMarkupSettings, scanSettingCalls, scanVariables} from "./bridge.mjs";
 
 const scan = (...texts) => scanVariables(texts.map((text, i) => ({path: `f${i}.scss`, text})));
 
@@ -84,5 +84,24 @@ describe("renderBridge with settings", () => {
         const out = renderBridge(["a"], [{fn: "stencilColor", key: "label-color"}]);
         expect(out).toContain('@include sv("setting-label-color", stencilColor("label-color"));');
         expect(out).toMatch(/@include sv\("a", \$a\);[\s\S]*setting-label-color/);
+    });
+});
+
+describe("scanMarkupSettings", () => {
+    // A converted rule leaves the SCSS, so its setting would drop out of the bridge while the markup still reads it.
+    it("keeps a setting that markup reads as --sv-setting-<key>, choosing the stencil function from the config value", () => {
+        const found = scanMarkupSettings(
+            [{path: "a.tsx", text: '<p className="text-(--sv-setting-label-color) bg-(--sv-setting-label-backgroundColor) text-(--sv-setting-fontFamily-headings)">'}],
+            {"label-color": "#ffffff", "label-backgroundColor": "#ff0000", "fontFamily-headings": "Montserrat_700"},
+        );
+        expect(found).toEqual([
+            {fn: "stencilColor", key: "label-color"},
+            {fn: "stencilColor", key: "label-backgroundColor"},
+            {fn: "stencilString", key: "fontFamily-headings"},
+        ]);
+    });
+
+    it("ignores a key that is not in the config", () => {
+        expect(scanMarkupSettings([{path: "a.tsx", text: "text-(--sv-setting-nope)"}], {})).toEqual([]);
     });
 });

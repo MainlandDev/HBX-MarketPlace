@@ -1293,4 +1293,6 @@
     @include sv("setting-carousel-bgColor", stencilColor("carousel-bgColor"));
     @include sv("setting-carousel-description-color", stencilColor("carousel-description-color"));
     @include sv("setting-carousel-title-color", stencilColor("carousel-title-color"));
+    @include sv("setting-label-backgroundColor", stencilColor("label-backgroundColor"));
+    @include sv("setting-label-color", stencilColor("label-color"));
 }

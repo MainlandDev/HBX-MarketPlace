@@ -58,3 +58,17 @@ export function renderBridge(names, settings = []) {
 
 // The committed file is LF; a Windows checkout with core.autocrlf turns it into CRLF, which must not count as stale.
 export const isCurrent = (current, expected) => current.replace(/\r\n/g, "\n") === expected.replace(/\r\n/g, "\n");
+
+export function scanMarkupSettings(files, settings) {
+    const seen = new Set();
+    const found = [];
+    for (const {text} of files) {
+        for (const match of text.matchAll(/--sv-setting-([A-Za-z0-9_-]+)/g)) {
+            const key = match[1];
+            if (seen.has(key) || !(key in settings)) continue;
+            seen.add(key);
+            found.push({fn: /^#[0-9a-f]{3,8}$/i.test(String(settings[key])) ? "stencilColor" : "stencilString", key});
+        }
+    }
+    return found;
+}
