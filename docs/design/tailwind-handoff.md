@@ -1,6 +1,6 @@
 # Tailwind conversion: live handoff
 
-Maintained by the lead after every merged work package (WP). Workers: read `docs/design/tailwind-worker-brief.md` first, then this file at the start of your WP. Last updated: 2026-11-24 (all rounds complete).
+Maintained by the lead after every merged work package (WP). Workers: read `docs/design/tailwind-worker-brief.md` first, then this file at the start of your WP. Last updated: 2026-11-24 (round 4 started).
 
 ## Goal and standard
 
@@ -302,3 +302,15 @@ Edge: 60 states (15 pages x 4) against an old-CSS control run twice; remaining d
 - New `--sv-derived-*` variables: `blog-thumb-width`, `brand-thumb-width`, `brand-thumb-padding`, `swatch-width`, `swatch-height`, `loadingOverlay-bg`. `generate-bridge` now also scans `_tailwind.scss` for `--sv-setting-*` reads.
 - `sed -i` on `_tailwind.scss` strips its CRLF: use the Edit tool. After a mass file swap the theme CSS can answer 22 bytes until the SCSS is touched.
 - `config.json` `read_only_files` still lists `/assets/scss/components/{citadel,foundation,vendor}` (no longer existing): a config edit left for the user.
+
+## ROUND 4 (compat CSS to utilities; started)
+
+After R3-2 no SCSS partial emits CSS, but about 1,500+ lines of Citadel/Foundation rules were TRANSCRIBED into `assets/scss/_tailwind.scss` (`@layer components` compat blocks for buttons, forms, icons, dropdown, modal, alertBox, loading, panel, breadcrumbs, tabs, accordion, pagination, actionBar, card, table, nav, plus a second components block and `@layer base` element rules). The user's goal is to complete the conversion to Tailwind, so round 4 turns those blocks into utilities in the markup the theme owns, family by family, and deletes each rule once every consumer of that class carries the utilities. What may legitimately remain in `_tailwind.scss`: rules for elements the theme cannot edit (JS-created or jQuery-created markup, merchant-injected markup, third-party widgets such as slick), the `@layer base` element rules (that is exactly what Tailwind's base layer is for), the `u-hidden`/`u-hiddenVisually` toggles that `assets/js` adds, keyframes, and `@layer legacy`. `important` and `source(none)` stay (measured in R3-2).
+
+How: a shared TSX helper (a function component returning JSX with literal classNames, in `src/server/`, one `@source` line per file; see `src/server/navParts.tsx`) is allowed for repeated controls (`Button`, `FormField`, `Input`, `Select`, `Checkbox`/`Radio`, `Modal`, `Alert`, `Card`, `Pagination`) so about 170 bare `.button`/`.form-*` sites do not each carry 15+ utilities by hand; otherwise utilities go directly on the element. Keep legacy class names on elements as hooks. Verify each family by removing its compat rules and comparing in Edge against a baseline taken before (plus an old-CSS control run for live-data drift).
+
+| R4 WP | Scope | Status |
+| --- | --- | --- |
+| R4-1 | buttons and forms compat blocks (`.button*`, `.form`, `.form-fieldset`, `.form-label`, `.form-input`, `.form-select`, `.form-row`, `.form-field`, checkbox/radio pseudo-elements, prefixPostfix, actions, inlineMessage and states, `.icon`, `.dropdown-menu*`) | todo |
+| R4-2 | modal, alertBox, loading, panel, breadcrumbs, tabs, accordion, pagination, actionBar, card, table, navBar/navList compat blocks | todo |
+| R4-3 | the second components block and base leftovers: `.container`, `.icon`, `.form-select`, `.tab/.tab-title`, ribbon, textTruncate, toggle-content, blog/brand thumbs, slick wiring where the markup is ours, element rules kept in `@layer base` | todo |
