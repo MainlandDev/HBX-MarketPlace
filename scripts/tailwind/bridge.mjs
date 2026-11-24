@@ -75,3 +75,12 @@ export function scanMarkupSettings(files, settings) {
     }
     return found;
 }
+
+// Names a source file reads as var(--sv-NAME): only those $variables need a custom property. Dynamic names do not exist in this code base.
+export function scanReferences(files) {
+    const used = new Set();
+    for (const {text} of files) for (const match of text.matchAll(/--sv-([A-Za-z0-9_-]+)/g)) used.add(match[1]);
+    return used;
+}
+
+export const onlyReferenced = (names, used) => names.filter((name) => used.has(name));

@@ -1,5 +1,5 @@
 import {describe, expect, it} from "vitest";
-import {isCurrent, renderBridge, scanMarkupSettings, scanSettingCalls, scanVariables, settingName} from "./bridge.mjs";
+import {isCurrent, onlyReferenced, renderBridge, scanMarkupSettings, scanReferences, scanSettingCalls, scanVariables, settingName} from "./bridge.mjs";
 
 const scan = (...texts) => scanVariables(texts.map((text, i) => ({path: `f${i}.scss`, text})));
 
@@ -117,5 +117,13 @@ describe("settingName", () => {
         const out = renderBridge([], [{fn: "stencilFontFamily", key: "h"}, {fn: "stencilFontWeight", key: "h"}]);
         expect(out).toContain('sv("setting-family-h", stencilFontFamily("h"))');
         expect(out).toContain('sv("setting-weight-h", stencilFontWeight("h"))');
+    });
+});
+
+describe("scanReferences", () => {
+    it("keeps only the variables a source reads as var(--sv-NAME)", () => {
+        const used = scanReferences([{text: 'className="bg-(--sv-color-primary) [padding:var(--sv-gap)]"'}, {text: ".x { color: var(--sv-color-primary); }"}]);
+        expect([...used].sort()).toEqual(["color-primary", "gap"]);
+        expect(onlyReferenced(["color-primary", "gap", "unused"], used)).toEqual(["color-primary", "gap"]);
     });
 });
