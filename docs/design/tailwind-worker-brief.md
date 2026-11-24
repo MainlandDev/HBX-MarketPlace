@@ -1,0 +1,45 @@
+# Tailwind conversion: worker brief (standing orders)
+
+You are a worker converting one **work package** (WP) of the marketplace-hbx theme from named SCSS classes to Tailwind utilities in the TSX markup. Read this whole file, then `docs/design/tailwind-handoff.md` (the lead keeps it current: state, lessons, theme names, what other workers already changed), then `docs/design/tailwind-playbook.md`. Your WP is named in your prompt and described in the handoff.
+
+Repo: `D:/webstorm/_agent-home/projects/bigcommerce/themes/@onlineworkwear/marketplace-hbx` (Windows; use Bash with forward slashes or PowerShell). You work in this one working tree. You are the only worker running; the lead merges and commits.
+
+## Hard rules
+
+1. **Never run git commit/add/stash/checkout/reset/branch/push.** Leave your changes uncommitted; the lead commits. Do not edit `package.json`, `CHANGELOG.md`, `docs/design/tailwind-handoff.md`, `docs/design/tailwind-progress.md` or anything outside your WP's files (below) except the shared-file edits in rule 6.
+2. **Never enter passwords, never add to the live cart, never submit forms** (login, checkout, contact, review, address, wishlist, return, coupon, estimator). The dev server proxies the live store. You may open and read pages. The user is already signed in to Edge on `localhost:5173`; if you see a login form on an account page, stop and report.
+3. **Test only in Microsoft Edge**, through the claude-in-chrome tools (`mcp__claude-in-chrome__*`; load them with ToolSearch first: `select:mcp__claude-in-chrome__tabs_context_mcp,mcp__claude-in-chrome__tabs_create_mcp,mcp__claude-in-chrome__navigate,mcp__claude-in-chrome__javascript_tool,mcp__claude-in-chrome__computer,mcp__claude-in-chrome__tabs_close_mcp`). Never headless Chrome. First call `tabs_context_mcp`, create your own tab, and close it when finished. Confirm `navigator.userAgentData.brands` lists "Microsoft Edge".
+4. **Delete an SCSS rule only if proven safe:** `npm run tw-inventory -- --classes <partial substring>` shows no consumer outside the markup you converted, AND you verified the converted markup in Edge. If a page or state cannot be reached (needs data you do not have), keep the rule and record it as `unverified`. Never weaken a check to make it pass.
+5. **The standard (decided by the user):** keep about 10 utilities per element. Convert leaf styling (typography, colour, spacing, flex rows, borders, radius, simple responsive variants). Responsive table layouts, `clearfix`/`@include` mixins that carry pseudo-elements, `::before/::after`, sibling/descendant combinators three levels deep, JS-driven state, third-party widget styling and anything needing more than about 12 utilities stay in SCSS with a one-line comment saying why. Extract a TSX component only when the same structure repeats. No `@apply`. No new npm packages.
+6. **Shared file `assets/scss/_tailwind.scss`** (CRLF line endings; use the Edit tool, never a heredoc, and re-read just before editing): you may only (a) add `@source "../../src/templates/<your folder or file>";` lines after the existing `@source` lines for the folders you convert, and (b) add named entries inside the existing `@theme inline reference { ... }` block following the promotion rule (an arbitrary value used at 2 or more sites gets a named entry). Never change the import line, `important`, `source(none)`, existing entries or `@source not inline`. If a name you need already exists (see the handoff), reuse it.
+7. **Do not run `npm run vite-build`** (the lead does). Do run `npx vitest run` (must stay green, including the stray-utility and legacy-collision tests in `scripts/tailwind/theme.test.mjs`).
+8. Regexes in shell heredocs lose backslashes in this environment: use the Write/Edit tools for any file containing regexes or backslashes. `CHANGELOG.md`, `theme.scss` and `_tailwind.scss` are CRLF.
+
+## Tools
+
+| Command | Use |
+| --- | --- |
+| `npm run tw-inventory` / `-- --classes <partial substring>` | Which classes a partial defines and which files still use them (`UNUSED` = no consumer). `&-suffix` selectors are not resolved: read the file |
+| `npm run tw-helper -- "<root selector>"` | Prints the in-page parity helper (`__tw`, `__twFrame`, `__twFocus`); paste its output into `javascript_tool` on the page |
+| `npx vitest run` | Unit tests incl. theme/stray/collision tests |
+| `npm run vite-dev` | Dev server on port 5173; the lead normally has it running (`curl -s -o /dev/null -w "%{http_code}" http://localhost:5173/`). If it is down, start it in the background and wait ~25s. The theme CSS URL `http://localhost:5173/stencil/00000000-0000-0000-0000-000000000001/css/theme-00000000-0000-0000-0000-000000000001.css` must be ~490 KB (22 bytes = compile failure) |
+
+## Procedure per component (partial or group of classes)
+
+1. **Scope.** `tw-inventory -- --classes <partial>`; read the SCSS and the TSX that uses each class; list which rules are leaf (convertible) and which stay, with reasons.
+2. **Page.** Find the URL that renders it (the handoff lists known URLs). Open it in your Edge tab. If the component only appears in a state you cannot reach, mark it unverified and do not delete its rules.
+3. **Baseline (before touching anything).** Print the helper with a root selector that contains the component (`.page` works for whole pages), paste it into `javascript_tool`, then run `__twFrame(375,'375','save')`, `__twFrame(768,'768','save')`, `__twFrame(1280,'1280','save')`, `__twFrame(1280,'nojs','save',true)`. Edge cannot resize its viewport, so widths are measured in same-origin iframes. Snapshots are kept in `sessionStorage` of your tab: do not close the tab or navigate to another origin between before and after. Confirm the baseline is styled (a computed background or size is not the unstyled default). Take a screenshot (`save_to_disk: true`) and note its path.
+4. **Convert.** Edit the TSX (utilities replace class names; keep a class name only if JS/tests select it: see `tw-inventory` consumers such as `assets/js`); delete the converted SCSS rules; add `@source` for your folder. Template-literal classNames (`className={`a ${x}`}`) and conditionals must be edited by hand: scripts that only match `className="..."` miss them. Values: `spacing("half")` is `p-half`/`mt-half`; `fontSize("small")` is `text-small`; `breakpoint("medium")` is the `medium:` variant (min-width 801px); breakpoints are small 551, medium 801, large 1261. Colours: `stencilColor("x")` is `--sv-color-x` (use `text-(--sv-color-x)` or a named theme entry). `remCalc(Npx)` equals `[Npx]` (sub-pixel noise of about 0.01px is expected). `1rem` is 14px on this theme, so Tailwind's default `rounded-xl` etc. are NOT the px you expect: use arbitrary values for px-exact radii. A utility name equal to an existing legacy class fails the collision test: write it as an arbitrary property (`medium:[display:table]`).
+5. **Verify.** Reload your tab; paste the helper again (reload wipes it); run `__twFrame(...)` WITHOUT mode for each of the four labels; run `__twFocus('<selector>')` on interactive elements and compare with their expected styles; drive any JS interaction (open/close/toggle) and re-check; take an "after" screenshot at the same scroll position. Every computed-style difference must be fixed or explained (expected harmless: `rounded-full` radius `calc(infinity*1px)` vs 999px; `border-0` input reporting `border-top-style: solid`; `shadow-none` reporting transparent shadows; remCalc 0.01px; third-party iframes such as PayPal or reviews that load asynchronously). Compare screenshots by eye.
+6. **Gates.** `npx vitest run` green. `npm run tw-inventory` for your partials (record lines before and after).
+
+## Your final report (your last message; the lead pastes it into the handoff)
+
+Use exactly these headings:
+- **Done:** components converted (class names), SCSS partial lines before -> after.
+- **Stayed in SCSS:** each remaining rule group with the reason (cap, pseudo, JS state, third-party, unverified).
+- **Files changed:** list (TSX, SCSS, `_tailwind.scss` additions with the exact lines).
+- **Verification:** pages and URLs tested in Edge, the four states, counts of differences and each explained difference, focus/interaction checks, screenshot paths (before and after).
+- **Theme additions / lessons:** new named entries, anything the next worker must know.
+- **Unverified / blocked / follow-ups.**
+Be honest: say what you did not verify. Do not claim parity you did not measure.
