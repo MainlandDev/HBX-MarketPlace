@@ -5,12 +5,12 @@ import {$dynamicComponent, $Each, $Lang, $lang, $pointer, $string, $unescaped} f
 
 export default (_props: PartialProps) => (
     <>
-        <div className="modal-header">
-            <h2 className="modal-header-title" data-product-variant={""} data-name={$pointer("product_name")}>
+        <div className="modal-header pl-(--sv-reveal-modal-paddingHorizontal) pr-[calc(32px+var(--sv-reveal-close-side))]">
+            <h2 className="modal-header-title text-center text-large medium:text-larger" data-product-variant={""} data-name={$pointer("product_name")}>
                 <$Lang keyName={$string("cart.reconfigure_product")} name={$pointer("product_name")} />
             </h2>
         </div>
-        <div className="modal-body" data-product-option-change={""}>
+        <div className="modal-body overflow-auto p-(--sv-reveal-modal-padding) [-webkit-overflow-scrolling:touch]" data-product-option-change={""}>
             <div className="alertMessageBox" hidden={true}>
                 <AlertAlertInfo />
             </div>

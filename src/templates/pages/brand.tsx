@@ -58,11 +58,11 @@ export default () => {
                             />
                             <h1 className="page-heading">{$pointer("brand.name")}</h1>
                             {region("brand_below_header")}
-                            <div className="page">
-                                <aside className="page-sidebar" id="faceted-search-container">
+                            <div className="page -mx-gutter-half w-auto max-w-none flow-root">
+                                <aside className="page-sidebar relative float-left w-full px-gutter-half medium:w-1/4" id="faceted-search-container">
                                     <BrandSidebar />
                                 </aside>
-                                <main className="page-content" id="product-listing-container">
+                                <main className="page-content float-left w-full px-gutter-half medium:[.page-sidebar+&]:w-3/4" id="product-listing-container">
                                     <$If
                                         test={$pointer("brand.search_error")}
                                         $then={() => (

@@ -25,7 +25,7 @@ const region = (name: string) => $unescaped($region({name: $string(name)}));
 export default () => {
     const settings = $pointer<ThemeSettingsObject>("theme_settings");
     const sidebar = () => (
-        <aside className="page-sidebar" id="faceted-search-container">
+        <aside className="page-sidebar relative float-left w-full px-gutter-half medium:w-1/4" id="faceted-search-container">
             <CategorySidebar />
         </aside>
     );
@@ -69,7 +69,7 @@ export default () => {
                                 )}
                             />
                             {$unescaped($pointer("category.description"))}
-                            <div className="page">
+                            <div className="page -mx-gutter-half w-auto max-w-none flow-root">
                                 <$If
                                     test={$pointer("category.faceted_search_enabled")}
                                     $then={sidebar}
@@ -78,10 +78,10 @@ export default () => {
                                         {test: settings.shop_by_price_visibility, $then: sidebar},
                                     ]}
                                 />
-                                <main className="page-content" id="product-listing-container">
+                                <main className="page-content float-left w-full px-gutter-half medium:[.page-sidebar+&]:w-3/4" id="product-listing-container">
                                     <CategoryProductListing />
                                 </main>
-                                <div className="page-region">{region("category_below_content")}</div>
+                                <div className="page-region float-right w-full px-gutter-half medium:w-3/4">{region("category_below_content")}</div>
                             </div>
                         </>
                     ),

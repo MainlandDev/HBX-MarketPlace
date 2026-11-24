@@ -17,8 +17,8 @@ export default (_props: PartialProps) => {
                 <$If
                     test={product.description}
                     $then={() => (
-                        <li className="tab is-active">
-                            <a className="tab-title" href="#tab-description">
+                        <li className="tab is-active [border-top:var(--sv-tab-active-border)] float-none medium:border-t-(color:--sv-tab-title-border-color) medium:float-left is-active:border-l-(color:--sv-tab-title-border-color) is-active:border-r-(color:--sv-tab-title-border-color) small:is-active:mb-(--sv-tab-title-border-bottom-offset) medium:is-active:[border-width:1px] medium:is-active:[border-style:solid] medium:is-active:[border-color:var(--sv-tab-active-border-color)_var(--sv-tab-active-border-color)_var(--sv-tab-title-border-color)_var(--sv-tab-active-border-color)]">
+                            <a className="tab-title py-[calc(var(--sv-spacing-half)+var(--sv-spacing-quarter))] px-0 text-center [text-decoration:var(--sv-tab-title-text-decoration)] small:text-left medium:px-single medium:py-half large:px-[18px] large:py-[11px]" href="#tab-description">
                                 <$Lang keyName={$string("products.description")} />
                             </a>
                         </li>
@@ -27,8 +27,8 @@ export default (_props: PartialProps) => {
                 <$If
                     test={product.warranty}
                     $then={() => (
-                        <li className={`tab ${$Unless({test: product.description, $then: () => "is-active"})}`}>
-                            <a className="tab-title" href="#tab-warranty">
+                        <li className={`tab [border-top:var(--sv-tab-active-border)] float-none medium:border-t-(color:--sv-tab-title-border-color) medium:float-left is-active:border-l-(color:--sv-tab-title-border-color) is-active:border-r-(color:--sv-tab-title-border-color) small:is-active:mb-(--sv-tab-title-border-bottom-offset) medium:is-active:[border-width:1px] medium:is-active:[border-style:solid] medium:is-active:[border-color:var(--sv-tab-active-border-color)_var(--sv-tab-active-border-color)_var(--sv-tab-title-border-color)_var(--sv-tab-active-border-color)] ${$Unless({test: product.description, $then: () => "is-active"})}`}>
+                            <a className="tab-title py-[calc(var(--sv-spacing-half)+var(--sv-spacing-quarter))] px-0 text-center [text-decoration:var(--sv-tab-title-text-decoration)] small:text-left medium:px-single medium:py-half large:px-[18px] large:py-[11px]" href="#tab-warranty">
                                 <$Lang keyName={$string("products.warranty")} />
                             </a>
                         </li>
@@ -37,8 +37,8 @@ export default (_props: PartialProps) => {
                 <$All
                     values={[$pointer("product.custom_fields"), theme.show_custom_fields_tabs]}
                     $then={() => (
-                        <li className="tab">
-                            <a className="tab-title" href={`#tab-${customFieldsTabId}`}>
+                        <li className="tab [border-top:var(--sv-tab-active-border)] float-none medium:border-t-(color:--sv-tab-title-border-color) medium:float-left is-active:border-l-(color:--sv-tab-title-border-color) is-active:border-r-(color:--sv-tab-title-border-color) small:is-active:mb-(--sv-tab-title-border-bottom-offset) medium:is-active:[border-width:1px] medium:is-active:[border-style:solid] medium:is-active:[border-color:var(--sv-tab-active-border-color)_var(--sv-tab-active-border-color)_var(--sv-tab-title-border-color)_var(--sv-tab-active-border-color)]">
+                            <a className="tab-title py-[calc(var(--sv-spacing-half)+var(--sv-spacing-quarter))] px-0 text-center [text-decoration:var(--sv-tab-title-text-decoration)] small:text-left medium:px-single medium:py-half large:px-[18px] large:py-[11px]" href={`#tab-${customFieldsTabId}`}>
                                 {$sanitize(customFieldsTab)}
                             </a>
                         </li>
@@ -47,8 +47,8 @@ export default (_props: PartialProps) => {
                 <$All
                     values={[$pointer("settings.show_product_reviews"), theme.show_product_reviews, product.reviews.total]}
                     $then={() => (
-                        <li className="tab">
-                            <a className="tab-title productView-reviewTabLink" href="#tab-reviews">
+                        <li className="tab [border-top:var(--sv-tab-active-border)] float-none medium:border-t-(color:--sv-tab-title-border-color) medium:float-left is-active:border-l-(color:--sv-tab-title-border-color) is-active:border-r-(color:--sv-tab-title-border-color) small:is-active:mb-(--sv-tab-title-border-bottom-offset) medium:is-active:[border-width:1px] medium:is-active:[border-style:solid] medium:is-active:[border-color:var(--sv-tab-active-border-color)_var(--sv-tab-active-border-color)_var(--sv-tab-title-border-color)_var(--sv-tab-active-border-color)]">
+                            <a className="tab-title productView-reviewTabLink py-[calc(var(--sv-spacing-half)+var(--sv-spacing-quarter))] px-0 text-center [text-decoration:var(--sv-tab-title-text-decoration)] small:text-left medium:px-single medium:py-half large:px-[18px] large:py-[11px]" href="#tab-reviews">
                                 <$Lang keyName={$string("products.reviews.header")} total={product.reviews.total} />
                             </a>
                         </li>

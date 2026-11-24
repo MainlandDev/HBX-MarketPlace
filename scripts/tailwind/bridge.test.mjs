@@ -1,5 +1,5 @@
 import {describe, expect, it} from "vitest";
-import {isCurrent, renderBridge, scanMarkupSettings, scanSettingCalls, scanVariables} from "./bridge.mjs";
+import {isCurrent, renderBridge, scanMarkupSettings, scanSettingCalls, scanVariables, settingName} from "./bridge.mjs";
 
 const scan = (...texts) => scanVariables(texts.map((text, i) => ({path: `f${i}.scss`, text})));
 
@@ -103,5 +103,19 @@ describe("scanMarkupSettings", () => {
 
     it("ignores a key that is not in the config", () => {
         expect(scanMarkupSettings([{path: "a.tsx", text: "text-(--sv-setting-nope)"}], {})).toEqual([]);
+    });
+});
+
+describe("settingName", () => {
+    it("keeps the font family and weight of one setting key apart", () => {
+        expect(settingName("stencilColor", "label-color")).toBe("setting-label-color");
+        expect(settingName("stencilFontFamily", "headings-font")).toBe("setting-family-headings-font");
+        expect(settingName("stencilFontWeight", "headings-font")).toBe("setting-weight-headings-font");
+    });
+
+    it("renders both properties for a key that is read as family and as weight", () => {
+        const out = renderBridge([], [{fn: "stencilFontFamily", key: "h"}, {fn: "stencilFontWeight", key: "h"}]);
+        expect(out).toContain('sv("setting-family-h", stencilFontFamily("h"))');
+        expect(out).toContain('sv("setting-weight-h", stencilFontWeight("h"))');
     });
 });

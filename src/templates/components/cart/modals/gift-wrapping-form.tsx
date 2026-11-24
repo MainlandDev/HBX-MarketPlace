@@ -13,12 +13,12 @@ interface GiftWrapping {
 
 export default (_props: PartialProps) => (
     <>
-        <div className="modal-header">
-            <h2 className="modal-header-title">
+        <div className="modal-header pl-(--sv-reveal-modal-paddingHorizontal) pr-[calc(32px+var(--sv-reveal-close-side))]">
+            <h2 className="modal-header-title text-center text-large medium:text-larger">
                 <$Lang keyName={$string("cart.gift_wrapping.title")} />
             </h2>
         </div>
-        <div className="modal-body">
+        <div className="modal-body overflow-auto p-(--sv-reveal-modal-padding) [-webkit-overflow-scrolling:touch]">
             <$If
                 test={$pointer("quantity")}
                 operator={$string(">")}

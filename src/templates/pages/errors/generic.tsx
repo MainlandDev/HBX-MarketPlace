@@ -4,8 +4,8 @@ export default () => (
     <$Page
         blocks={{
             page: () => (
-                <main className="page">
-                    <section className="page-content page-content--centered">
+                <main className="page -mx-gutter-half w-auto max-w-none flow-root">
+                    <section className="page-content page-content--centered float-left w-full px-gutter-half medium:float-none medium:mx-auto medium:w-8/12">
                         <h1 className="page-heading">
                             <$Lang keyName={$string("server_error.page_heading")} />
                         </h1>

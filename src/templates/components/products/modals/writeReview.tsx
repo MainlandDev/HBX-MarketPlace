@@ -7,19 +7,19 @@ import FormsMultiline from "../../common/forms/multiline.tsx";
 import {$concat, $For, $If, $Inject, $Lang, $lang, $number, $pointer, $raw, $string, $unescaped} from "@mainlanddev/hbx-bigcommerce";
 
 export default (_props: PartialProps) => (
-    <div id="modal-review-form" className="modal" data-reveal={""}>
+    <div id="modal-review-form" className="modal left-1/2 top-1/2 m-0 max-h-[90%] min-h-[240px] max-w-[95%] overflow-hidden p-0 outline-none [transform:translate(-50%,-50%)] [&_.form-field]:relative" data-reveal={""}>
         <$Inject keyName={$string("reviewRating")} value={$lang($string("forms.validate.reviews.rating"))} />{" "}
         <$Inject keyName={$string("reviewSubject")} value={$lang($string("forms.validate.reviews.title"))} />{" "}
         <$Inject keyName={$string("reviewName")} value={$lang($string("forms.validate.reviews.name"))} />{" "}
         <$Inject keyName={$string("reviewComment")} value={$lang($string("forms.validate.reviews.comment"))} />{" "}
         <$Inject keyName={$string("reviewEmail")} value={$lang($string("forms.validate.common.email_address"))} />
-        <div className="modal-header">
-            <h2 className="modal-header-title">
+        <div className="modal-header pl-(--sv-reveal-modal-paddingHorizontal) pr-[calc(32px+var(--sv-reveal-close-side))]">
+            <h2 className="modal-header-title text-center text-large medium:text-larger">
                 <$Lang keyName={$string("products.reviews.write_a_review")} />
             </h2>
             <ModalModalCloseBtn />
         </div>
-        <div className="modal-body">
+        <div className="modal-body overflow-auto p-(--sv-reveal-modal-padding) [-webkit-overflow-scrolling:touch]">
             <div className="writeReview-productDetails medium:float-left medium:w-6/12 medium:px-gutter-half">
                 <div className="writeReview-productImage-container relative after:block after:h-0 after:w-full after:pb-[131.8%] after:content-[''] [&_img]:absolute [&_img]:inset-0 [&_img]:m-auto [&_img]:h-full [&_img]:object-contain [&_img]:[font-family:'object-fit:_contain;']">
                     <ResponsiveImg image={$pointer("product.main_image")} fallback_size={$pointer("theme_settings.product_size")} lazyload={$pointer("theme_settings.lazyload_mode")} default_image={$pointer("theme_settings.default_image_product")} />

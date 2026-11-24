@@ -36,7 +36,7 @@ export default () => {
                     <>
                         <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
 
-                        <main className="page">
+                        <main className="page -mx-gutter-half w-auto max-w-none flow-root">
                             <$Unless
                                 test={settings.hide_page_heading}
                                 $then={() => <h1 className="page-heading">{$pointer("page.title")}</h1>}
@@ -63,7 +63,7 @@ export default () => {
 
                             {region("page_builder_content")}
 
-                            <div className="page-content page-content--centered">
+                            <div className="page-content page-content--centered float-left w-full px-gutter-half medium:float-none medium:mx-auto medium:w-8/12">
                                 <$Replace
                                     needle={$string("%%Syndicate%%")}
                                     haystack={$pointer<string>("page.content")}

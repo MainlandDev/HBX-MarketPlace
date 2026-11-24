@@ -39,7 +39,7 @@ export default () => {
                 page: () => (
                     <>
                         <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                        <main className="page">
+                        <main className="page -mx-gutter-half w-auto max-w-none flow-root">
                             <$Unless
                                 test={settings.hide_blog_page_heading}
                                 $then={() => <h1 className="page-heading">{$pointer("blog.name")}</h1>}

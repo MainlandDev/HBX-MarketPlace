@@ -32,8 +32,8 @@ export default () => (
                     <>
                         <$Inject keyName={$string("invalidEntryMessage")} value={$lang($string("cart.invalid_entry_message"))} />{" "}
                         <$Inject keyName={$string("multiCouponUIEnabled")} value={$pointer("cart.multi_coupon_ui_enabled")} />
-                        <div className="page">
-                            <div className="page-content" data-cart={""}>
+                        <div className="page -mx-gutter-half w-auto max-w-none flow-root">
+                            <div className="page-content float-left w-full px-gutter-half" data-cart={""}>
                                 <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
                                 <CartPageTitle />
                                 <div data-cart-status={""}><CartStatusMessages /></div>

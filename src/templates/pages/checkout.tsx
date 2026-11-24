@@ -53,7 +53,7 @@ export default () => (
                                             />
                                         )}
                                         $else={() => (
-                                            <span className="header-logo-text">{$pointer("settings.store_logo.title")}</span>
+                                            <span className="header-logo-text [display:block] mx-auto overflow-hidden text-ellipsis whitespace-nowrap uppercase tracking-[2px] [font-family:var(--sv-fontFamily-hero)] text-[length:var(--sv-fontSize-logo-small)] font-normal small:text-[length:var(--sv-fontSize-logo-medium)] medium:[display:inline] medium:max-w-none medium:overflow-auto medium:whitespace-normal medium:px-[10px] medium:text-[length:var(--sv-fontSize-logo-large)]">{$pointer("settings.store_logo.title")}</span>
                                         )}
                                     />
                                 </a>

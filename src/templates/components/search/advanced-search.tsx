@@ -8,8 +8,8 @@ interface Brand {
 }
 
 export default (_props: PartialProps) => (
-    <div className="page">
-        <div className="page-content page-content--centered">
+    <div className="page -mx-gutter-half w-auto max-w-none flow-root">
+        <div className="page-content page-content--centered float-left w-full px-gutter-half medium:float-none medium:mx-auto medium:w-8/12">
             <form
                 className="advancedSearch-form toggle-content"
                 action={$pointer("forms.search.action")}

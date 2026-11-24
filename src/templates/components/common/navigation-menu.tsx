@@ -155,7 +155,7 @@ export default (_props: PartialProps) => {
                 <li className="navPages-item">
                     <a className="navPages-action navPages-action--compare" href={$pointer("urls.compare")} data-compare-nav={""} aria-label={$lang($string("common.compare"))}>
                         <$Lang keyName={$string("common.compare")} />{" "}
-                        <span className="countPill countPill--positive countPill--alt"></span>
+                        <span className="countPill countPill--positive countPill--alt ml-eighth inline-block size-[20px] rounded-[50%] bg-grey-lighter text-center text-tiny leading-[20px] font-bold text-grey-darker"></span>
                     </a>
                 </li>
                     )}

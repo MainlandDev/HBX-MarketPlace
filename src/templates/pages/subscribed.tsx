@@ -7,8 +7,8 @@ export default () => (
         blocks={{
             page: () => (
                 <>
-                    <section className="page">
-                        <div className="page-content page-content--centered">
+                    <section className="page -mx-gutter-half w-auto max-w-none flow-root">
+                        <div className="page-content page-content--centered float-left w-full px-gutter-half medium:float-none medium:mx-auto medium:w-8/12">
                             <h1 className="page-heading" tabIndex={0} role="status" aria-live="assertive">
                                 <$If
                                     test={$pointer("subscription.error")}

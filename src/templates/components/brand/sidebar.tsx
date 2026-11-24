@@ -17,7 +17,7 @@ export default (_props: PartialProps) => (
                 <$If
                     test={$pointer("shop_by_brand")}
                     $then={() => (
-                        <div className="sidebarBlock">
+                        <div className="sidebarBlock [[class~=sidebarBlock]+&]:mt-single-third [[class~=sidebarBlock]+&]:border-t [[class~=sidebarBlock]+&]:border-(--sv-container-border-global-color-base) [[class~=sidebarBlock]+&]:pt-single-third">
                             <h5 className="sidebarBlock-heading mt-0 text-[15px] [text-transform:inherit]">
                                 <$Lang keyName={$string("brand.label")} />
                             </h5>

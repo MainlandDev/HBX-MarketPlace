@@ -11,60 +11,60 @@ import {$If, $Lang, $lang, $number, $pointer, $string, $unescaped, $And, $unless
 export default (_props: PartialProps) => {
     const theme = $pointer<ThemeSettingsObject>("theme_settings");
     return (
-        <nav className="navUser">
+        <nav className="navUser absolute top-[26px] right-0 z-(--sv-zIndex-lowest) w-full flow-root [transform:translateY(-50%)] medium:relative medium:top-auto medium:right-auto medium:z-(--sv-zIndex-high) medium:px-single medium:[transform:none] [&_ul]:m-0 [&_ul]:list-none [&_ul]:p-0 [&_:where(.dropdown-menu)]:absolute [&_:where(.dropdown-menu)]:z-(--sv-zIndex-lowest) [&_.dropdown-menu.is-open]:[display:block] [&_.dropdown-menu_.button:focus]:z-(--sv-zIndex-lowest) [&_.dropdown-menu.is-loading_.loadingOverlay]:[background:none] [&_.dropdown-menu.is-loading_.loadingOverlay]:relative [&_.dropdown-menu.is-loading_.loadingOverlay]:px-0 [&_.dropdown-menu.is-loading_.loadingOverlay]:py-[calc(var(--sv-spacing-double)+var(--sv-spacing-single))] [&_:where(.dropdown-menu)]:border [&_:where(.dropdown-menu)]:border-(--sv-setting-navUser-dropdown-borderColor) [&_:where(.dropdown-menu)]:bg-(--sv-setting-navUser-dropdown-backgroundColor) [&_:where(.dropdown-menu)]:[box-shadow:var(--sv-container-drop-shadow-base)] [&_:where(.dropdown-menu.is-open)]:before:absolute [&_:where(.dropdown-menu.is-open)]:before:bottom-full [&_:where(.dropdown-menu.is-open)]:before:left-half [&_:where(.dropdown-menu.is-open)]:before:content-[''] [&_:where(.dropdown-menu.is-open)]:before:[display:block] [&_:where(.dropdown-menu.is-open)]:before:size-0 [&_:where(.dropdown-menu.is-open)]:before:[border-width:10px] [&_:where(.dropdown-menu.is-open)]:before:[border-style:inset_inset_solid_inset] [&_:where(.dropdown-menu.is-open)]:before:[border-color:transparent_transparent_var(--sv-setting-navUser-dropdown-borderColor)_transparent] [&_:where(.dropdown-menu.is-open)]:after:absolute [&_:where(.dropdown-menu.is-open)]:after:bottom-full [&_:where(.dropdown-menu.is-open)]:after:left-[calc(var(--sv-spacing-half)+2px)] [&_:where(.dropdown-menu.is-open)]:after:content-[''] [&_:where(.dropdown-menu.is-open)]:after:[display:block] [&_:where(.dropdown-menu.is-open)]:after:size-0 [&_:where(.dropdown-menu.is-open)]:after:[border-width:8px] [&_:where(.dropdown-menu.is-open)]:after:[border-style:inset_inset_solid_inset] [&_:where(.dropdown-menu.is-open)]:after:[border-color:transparent_transparent_var(--sv-setting-navUser-dropdown-backgroundColor)_transparent]">
             <$And a={$pointer("language_selector")} b={$pointer("language_selector.languages.length")} rest={[$string(">"), $number(1)]} $then={() => (<><LanguageSelector /></>)} />
 
             <$Or values={[$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))]} $then={() => (<><CurrencySelector /></>)} />
 
             <$If test={theme.show_channels} $then={() => <ChannelSelector />} />
 
-            <ul className="navUser-section medium:relative navUser-section--alt">
+            <ul className="navUser-section navUser-section--alt float-right flow-root ml-(--sv-navBar-section-margin) medium:relative">
                 <$If
                     test={$pointer("customer.store_credit.value")}
                     operator={$string(">")}
                     rvalue={$number(0)}
                     $then={() => (
-                <li className="navUser-item">
+                <li className="navUser-item [display:none] small:float-left medium:[display:block]">
                     <a
-                        className="navUser-action font-bold uppercase no-underline px-half py-base navUser-action--storeCredit"
+                        className="navUser-action font-bold uppercase no-underline px-half py-base [display:block] text-(--sv-setting-navUser-color) hover:text-(--sv-setting-navUser-color-hover) is-open:text-(--sv-setting-navUser-color-hover) navUser-action--storeCredit"
                         data-dropdown="storeCredit-dropdown"
                         data-options="align:bottom"
                         href={$pointer("urls.cart")}
                         aria-label={$lang($string("common.store_credit_overview"), {credit: $pointer("customer.store_credit.formatted")})}
                     >
-                        <span className="navUser-action-divider">
+                        <span className="navUser-action-divider inline-block border-r border-(--sv-container-border-global-color-base) pr-[20px] text-(--sv-setting-color-textSecondary) no-underline">
                             <$Lang keyName={$string("common.store_credit_overview")} credit={$pointer("customer.store_credit.formatted")} />
                         </span>
                     </a>
-                    <div className="dropdown-menu" id="storeCredit-dropdown" data-dropdown-content={""} aria-hidden="true">
+                    <div className="dropdown-menu max-w-[300px] p-single is-open:before:left-[140px] is-open:after:left-[142px]" id="storeCredit-dropdown" data-dropdown-content={""} aria-hidden="true">
                         {$unescaped($lang($string("common.store_credit"), {store_credit: $pointer("customer.store_credit.formatted")}))}
                     </div>
                 </li>
                     )}
                 />
 
-                <li className="navUser-item">
+                <li className="navUser-item [display:none] small:float-left medium:[display:block]">
                     <a
-                        className="navUser-action font-bold uppercase no-underline px-half py-base navUser-item--compare"
+                        className="navUser-action font-bold uppercase no-underline px-half py-base [display:none] [&.show]:[display:block] text-(--sv-setting-navUser-color) hover:text-(--sv-setting-navUser-color-hover) is-open:text-(--sv-setting-navUser-color-hover) navUser-item--compare"
                         href={$pointer("urls.compare")}
                         data-compare-nav={""}
                         aria-label={$lang($string("common.compare"))}
                     >
-                        <$Lang keyName={$string("common.compare")} /> <span className="countPill countPill--positive countPill--alt"></span>
+                        <$Lang keyName={$string("common.compare")} /> <span className="countPill countPill--positive countPill--alt ml-eighth inline-block size-[20px] rounded-[50%] bg-grey-lighter text-center text-tiny leading-[20px] font-bold text-grey-darker"></span>
                     </a>
                 </li>
                 <$If
                     test={theme.social_icon_placement_top}
                     $then={() => (
                         <>
-                            <li className="navUser-item navUser-item--social"><SocialLinks /></li>
-                            <li className="navUser-item navUser-item--divider">|</li>
+                            <li className="navUser-item [display:none] small:float-left medium:[display:block] navUser-item--social medium:mt-[5px] medium:pr-[5px]"><SocialLinks /></li>
+                            <li className="navUser-item [display:none] small:float-left medium:[display:block] navUser-item--divider medium:mt-[8px] medium:pl-[2px] medium:text-[25px]">|</li>
                         </>
                     )}
                 />
-                <li className="navUser-item">
+                <li className="navUser-item [display:none] small:float-left medium:[display:block]">
                     <button
-                        className="navUser-action font-bold uppercase no-underline px-half py-base navUser-action--quickSearch"
+                        className="navUser-action font-bold uppercase no-underline px-half py-base [display:block] text-(--sv-setting-navUser-color) hover:text-(--sv-setting-navUser-color-hover) is-open:text-(--sv-setting-navUser-color-hover) navUser-action--quickSearch is-open:relative is-open:before:absolute is-open:before:bottom-0 is-open:before:left-1/2 is-open:before:content-[''] is-open:before:[display:block] is-open:before:size-0 is-open:before:[border-width:10px] is-open:before:[border-style:inset_inset_solid_inset] is-open:before:[border-color:transparent_transparent_var(--color-grey-lightest)_transparent] is-open:before:[transform:translateX(-50%)]"
                         type="button"
                         id="quick-search-expand"
                         data-search="quickSearch"
@@ -77,40 +77,40 @@ export default (_props: PartialProps) => {
                 <$If
                     test={$pointer("settings.gift_certificates_enabled")}
                     $then={() => (
-                        <li className="navUser-item">
-                            <a className="navUser-action font-bold uppercase no-underline px-half py-base" href={$pointer("urls.gift_certificate.purchase")} aria-label={$lang($string("common.gift_cert"))}>
+                        <li className="navUser-item [display:none] small:float-left medium:[display:block]">
+                            <a className="navUser-action font-bold uppercase no-underline px-half py-base [display:block] text-(--sv-setting-navUser-color) hover:text-(--sv-setting-navUser-color-hover) is-open:text-(--sv-setting-navUser-color-hover)" href={$pointer("urls.gift_certificate.purchase")} aria-label={$lang($string("common.gift_cert"))}>
                                 <$Lang keyName={$string("common.gift_cert")} />
                             </a>
                         </li>
                     )}
                 />
-                <li className="navUser-item navUser-item--account">
+                <li className="navUser-item [display:none] small:float-left medium:[display:block] navUser-item--account">
                     <$If
                         test={$pointer("customer")}
                         $then={() => (
                             <>
-                                <a className="navUser-action font-bold uppercase no-underline px-half py-base" href={$pointer("urls.account.index")} aria-label={$lang($string("common.account"))}>
+                                <a className="navUser-action font-bold uppercase no-underline px-half py-base inline-block text-(--sv-setting-navUser-color) hover:text-(--sv-setting-navUser-color-hover) is-open:text-(--sv-setting-navUser-color-hover)" href={$pointer("urls.account.index")} aria-label={$lang($string("common.account"))}>
                                     <$Lang keyName={$string("common.account")} />
                                 </a>
-                                <a className="navUser-action font-bold uppercase no-underline px-half py-base" href={$pointer("urls.auth.logout")} aria-label={$lang($string("common.logout"))}>
+                                <a className="navUser-action font-bold uppercase no-underline px-half py-base inline-block text-(--sv-setting-navUser-color) hover:text-(--sv-setting-navUser-color-hover) is-open:text-(--sv-setting-navUser-color-hover)" href={$pointer("urls.auth.logout")} aria-label={$lang($string("common.logout"))}>
                                     <$Lang keyName={$string("common.logout")} />
                                 </a>
                             </>
                         )}
                         $else={() => (
                             <>
-                                <a className="navUser-action font-bold uppercase no-underline px-half py-base" href={$pointer("urls.auth.login")} aria-label={$lang($string("common.login"))}>
+                                <a className="navUser-action font-bold uppercase no-underline px-half py-base inline-block text-(--sv-setting-navUser-color) hover:text-(--sv-setting-navUser-color-hover) is-open:text-(--sv-setting-navUser-color-hover)" href={$pointer("urls.auth.login")} aria-label={$lang($string("common.login"))}>
                                     <$Lang keyName={$string("common.login")} />
                                 </a>
                                 <$If
                                     test={$pointer("settings.account_creation_enabled")}
                                     $then={() => (
                                         <>
-                                            <span className="navUser-or">
+                                            <span className="navUser-or relative z-1 inline-block cursor-default -mx-[12px] px-[2px] text-(--sv-setting-navUser-color)">
                                                 <$Lang keyName={$string("common.or")} />
                                             </span>
                                             <a
-                                                className="navUser-action font-bold uppercase no-underline px-half py-base"
+                                                className="navUser-action font-bold uppercase no-underline px-half py-base inline-block text-(--sv-setting-navUser-color) hover:text-(--sv-setting-navUser-color-hover) is-open:text-(--sv-setting-navUser-color-hover) [.navUser-or+&]:-mr-[0.5rem]"
                                                 href={$pointer("urls.auth.create_account")}
                                                 aria-label={$lang($string("common.sign_up"))}
                                             >
@@ -123,9 +123,9 @@ export default (_props: PartialProps) => {
                         )}
                     />
                 </li>
-                <li className="navUser-item navUser-item--cart">
+                <li className="navUser-item navUser-item--cart [display:block] small:float-left [&.navUser-item--cart__hidden-s]:max-[551px]:[display:none]">
                     <a
-                        className="navUser-action font-bold uppercase no-underline px-half py-base"
+                        className="navUser-action font-bold uppercase no-underline px-half py-base [display:block] text-(--sv-setting-navUser-color) hover:text-(--sv-setting-navUser-color-hover) is-open:text-(--sv-setting-navUser-color-hover)"
                         data-cart-preview={""}
                         data-dropdown="cart-preview-dropdown"
                         data-options="align:right"
@@ -135,13 +135,13 @@ export default (_props: PartialProps) => {
                         <span className="navUser-item-cartLabel [display:none] small:inline">
                             <$Lang keyName={$string("common.cart")} />
                         </span>
-                        <span className="countPill cart-quantity"></span>
+                        <span className="countPill cart-quantity ml-eighth [display:none] size-[20px] rounded-[50%] bg-(--sv-setting-navUser-indicator-backgroundColor) text-center text-tiny leading-[20px] font-bold text-(--sv-color-white) [&.countPill--positive]:inline-block"></span>
                     </a>
 
-                    <div className="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content={""} aria-hidden="true"></div>
+                    <div className="dropdown-menu [&:not([style*=max-width])]:max-w-[320px] is-open:top-auto is-open:right-[5px] is-open:left-auto medium:is-open:right-0 is-open:before:left-auto is-open:before:right-[calc(var(--sv-spacing-half)-5px)] medium:is-open:before:right-half is-open:after:left-auto is-open:after:right-[calc(var(--sv-spacing-half)-3px)] medium:is-open:after:right-[calc(var(--sv-spacing-half)+2px)]" id="cart-preview-dropdown" data-dropdown-content={""} aria-hidden="true"></div>
                 </li>
             </ul>
-            <div className="dropdown dropdown--quickSearch py-single small:p-double" id="quickSearch" aria-hidden="true" data-prevent-quick-search-close={""}>
+            <div className="dropdown dropdown--quickSearch absolute -left-[9999px] [display:none] bg-(--sv-dropdown--quickSearch-backgroundColor) py-single outline-none small:p-double is-open:left-0 is-open:right-0 is-open:z-(--sv-zIndex-high) is-open:w-full is-open:[display:block] [&_.form]:mx-auto [&_.form]:max-w-[30rem] [&_.form]:mb-0 [&_.form-field]:mb-0 [&_.form-input]:h-[unset] [&_.form-input]:text-small [&_.productGrid]:pt-single [&_.productGrid]:px-0 [&_.productGrid]:pb-0 small:[&_.productGrid]:pt-double" id="quickSearch" aria-hidden="true" data-prevent-quick-search-close={""}>
                 <QuickSearch name={$string("nav-quick-search")} />
             </div>
         </nav>

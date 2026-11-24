@@ -21,7 +21,7 @@ export default () => (
             page: () => (
                 <>
                     <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                    <main className="page">
+                    <main className="page -mx-gutter-half w-auto max-w-none flow-root">
                         <h1 className="page-heading">
                             <$Lang keyName={$string("brand.label")} />
                         </h1>

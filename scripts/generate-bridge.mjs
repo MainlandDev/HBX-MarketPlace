@@ -3,7 +3,7 @@
 import {readdirSync, readFileSync, writeFileSync} from "node:fs";
 import {join} from "node:path";
 import {fileURLToPath} from "node:url";
-import {isCurrent, renderBridge, scanMarkupSettings, scanSettingCalls, scanVariables} from "./tailwind/bridge.mjs";
+import {isCurrent, renderBridge, scanMarkupSettings, scanSettingCalls, scanVariables, settingName} from "./tailwind/bridge.mjs";
 
 // The theme's settings first (its value wins for a duplicate name, as in Sass), then Citadel's global settings: spacing(), fontSize(),
 // container() and screenSize() read variables declared there, and the theme settings do not redeclare most of them.
@@ -25,7 +25,7 @@ const {names, duplicates} = scanVariables(files);
 const themeScss = walk(fileURLToPath(new URL("../assets/scss/", import.meta.url))).sort().map((path) => ({path, text: readFileSync(path, "utf8")}));
 const config = JSON.parse(readFileSync(new URL("../config.json", import.meta.url), "utf8"));
 const markup = walk(fileURLToPath(new URL("../src/templates/", import.meta.url)), /\.tsx$/).sort().map((path) => ({path, text: readFileSync(path, "utf8")}));
-const settingCalls = [...scanSettingCalls(themeScss), ...scanMarkupSettings(markup, config.settings)].filter((call, index, all) => all.findIndex((other) => other.key === call.key) === index);
+const settingCalls = [...scanSettingCalls(themeScss), ...scanMarkupSettings(markup, config.settings)].filter((call, index, all) => all.findIndex((other) => settingName(other.fn, other.key) === settingName(call.fn, call.key)) === index);
 const scss = renderBridge(names, settingCalls);
 console.log(`settings ${settingCalls.length}, declared ${names.length}, duplicates ${duplicates.length}${duplicates.length ? ` (${duplicates.join(", ")})` : ""}`);
 

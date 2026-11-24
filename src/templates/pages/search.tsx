@@ -143,19 +143,28 @@ export default () => {
                                     $then={() => <SearchAdvancedSearch />}
                                 />
                             </section>
-                            <section className="page">
+                            <section className="page -mx-gutter-half w-auto max-w-none flow-root">
                                 <$If
                                     test={$pointer("product_results.faceted_search_enabled")}
                                     $then={() => (
-                                        <aside
-                                            className={`page-sidebar${$If({test: $pointer("forms.search.section"), operator: $string("!="), rvalue: $string("product"), $then: () => " u-hiddenVisually"})}`}
-                                            id="faceted-search-container"
-                                        >
+                                        <$If
+                                            test={$pointer("forms.search.section")}
+                                            operator={$string("!=")}
+                                            rvalue={$string("product")}
+                                            $then={() => (
+                                        <aside className="page-sidebar u-hiddenVisually relative float-left w-full px-gutter-half medium:w-1/4" id="faceted-search-container">
                                             <FacetedSearchIndex $positionalHash={$pointer("product_results")} />
                                         </aside>
+                                            )}
+                                            $else={() => (
+                                        <aside className="page-sidebar relative float-left w-full px-gutter-half medium:w-1/4" id="faceted-search-container">
+                                            <FacetedSearchIndex $positionalHash={$pointer("product_results")} />
+                                        </aside>
+                                            )}
+                                        />
                                     )}
                                 />
-                                <main className="page-content">
+                                <main className="page-content float-left w-full px-gutter-half medium:[.page-sidebar+&]:w-3/4">
                                     <$If
                                         test={$pointer("forms.search.has_suggestions")}
                                         $then={() => (

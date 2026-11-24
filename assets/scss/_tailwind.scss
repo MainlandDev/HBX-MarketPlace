@@ -30,6 +30,19 @@
 @source "../../src/templates/pages/compare.tsx";
 @source "../../src/templates/components/search";
 @source "../../src/templates/pages/brands.tsx";
+@source "../../src/templates/pages/checkout.tsx";
+@source "../../src/templates/pages/order-confirmation.tsx";
+@source "../../src/templates/pages/account/orders/invoice.tsx";
+@source "../../src/templates/pages/blog.tsx";
+@source "../../src/templates/pages/brand.tsx";
+@source "../../src/templates/pages/category.tsx";
+@source "../../src/templates/pages/contact-us.tsx";
+@source "../../src/templates/pages/errors";
+@source "../../src/templates/pages/page.tsx";
+@source "../../src/templates/pages/subscribed.tsx";
+@source "../../src/templates/pages/unavailable";
+@source "../../src/templates/pages/unsubscribe.tsx";
+@source "../../src/templates/pages/home.tsx";
 /*
  * Words in attributes and comments of a listed folder (`type="hidden"`, "containing block") are also picked up as candidates. With `important` an
  * emitted `.hidden` or `.block` would override third-party and merchant markup site-wide, so such strays are excluded here. The test in

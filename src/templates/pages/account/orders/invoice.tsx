@@ -129,7 +129,7 @@ export default () => {
                                                 $then={() => (
                                                     <>
                                                         <img
-                                                            className="header-logo-image-unknown-size"
+                                                            className="header-logo-image-unknown-size max-h-[calc(var(--sv-header-height)-var(--sv-header-logo-marginVertical)*2)] medium:max-h-none"
                                                             src={$raw("{{getImage settings.store_logo.image 'logo_size'}}")}
                                                             alt={logoTitle}
                                                             title={logoTitle}
@@ -138,9 +138,9 @@ export default () => {
                                                 )}
                                                 $else={() => (
                                                     <>
-                                                        <div className="header-logo-image-container">
+                                                        <div className="header-logo-image-container relative w-full medium:min-h-[100px] after:content-[''] after:[display:block]">
                                                             <img
-                                                                className="header-logo-image"
+                                                                className="header-logo-image mx-auto [display:block] max-h-[calc(var(--sv-header-height)-var(--sv-header-logo-marginVertical)*2)] medium:max-h-none"
                                                                 data-sizes="auto"
                                                                 src={$raw("{{getImage settings.store_logo.image 'logo_size'}}")}
                                                                 alt={logoTitle}
@@ -152,7 +152,7 @@ export default () => {
                                             />
                                         </>
                                     )}
-                                    $else={() => <span className="header-logo-text">{logoTitle}</span>}
+                                    $else={() => <span className="header-logo-text [display:block] mx-auto overflow-hidden text-ellipsis whitespace-nowrap uppercase tracking-[2px] [font-family:var(--sv-fontFamily-hero)] text-[length:var(--sv-fontSize-logo-small)] font-normal small:text-[length:var(--sv-fontSize-logo-medium)] medium:[display:inline] medium:max-w-none medium:overflow-auto medium:whitespace-normal medium:px-[10px] medium:text-[length:var(--sv-fontSize-logo-large)]">{logoTitle}</span>}
                                 />
                             </h1>
                             <div className="InvoiceTitle">

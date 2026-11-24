@@ -15,7 +15,7 @@ interface Facet {
 }
 
 export default (_props: PartialProps) => (
-    <div className="modal-body">
+    <div className="modal-body overflow-auto p-(--sv-reveal-modal-padding) [-webkit-overflow-scrolling:touch]">
         <h1 className="facet-quick-heading">
             <$If
                 test={$pointer("facet_title")}

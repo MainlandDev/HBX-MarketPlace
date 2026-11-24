@@ -4,8 +4,8 @@ export default () => (
     <$Page
         blocks={{
             page: () => (
-                <main className="page">
-                    <section className="page-content page-content--textCenter">
+                <main className="page -mx-gutter-half w-auto max-w-none flow-root">
+                    <section className="page-content page-content--textCenter float-left w-full px-gutter-half text-center">
                         <h1 className="page-heading">
                             <$Lang keyName={$string("create_account.created.heading")} />
                         </h1>

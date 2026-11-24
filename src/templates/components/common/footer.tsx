@@ -42,12 +42,12 @@ export default (_props: PartialProps) => {
             <$If
                 test={$pointer("banners.bottom")}
                 $then={() => (
-                    <div className="banners" data-banner-location="bottom">
+                    <div className="banners bg-(--sv-setting-color-primary) py-half text-center text-(--sv-setting-color-white) [&_a]:text-(--sv-color-white) [&_p:last-child]:mb-0" data-banner-location="bottom">
                         <$Each
                             list={$limit($pointer<Banner[]>("banners.bottom_metadata"), $number(1))}
                             $then={(banner) => (
                                 <div
-                                    className="banner"
+                                    className="banner mx-auto w-full max-w-(--sv-layout-widthMax) flow-root [.banner+&]:mt-single"
                                     dangerouslyInlineAttributes={{
                                         attributes: `data-event-type="promotion" data-entity-id="${banner.id}" data-name="${banner["banner-name"]}" data-position="${banner.location}" data-name="${banner["banner-name"]}"`,
                                     }}
@@ -69,20 +69,38 @@ export default (_props: PartialProps) => {
                         operator={$string("!==")}
                         rvalue={$string("bottom_none")}
                         $then={() => (
-                            <article
-                                className={`footer-info-col footer-info-col--social inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) footer-info-col--${$If({test: $pointer("theme_settings.social_icon_placement_bottom"), operator: $string("==="), rvalue: $string("bottom_left"), $then: () => "left", $else: () => "right"})}`}
-                                data-section-type="footer-webPages"
-                            >
-                                <h3 className="footer-info-heading text-(length:--sv-fontSize-base) [text-transform:inherit]">
-                                    <$Lang keyName={$string("social.connect")} />
-                                </h3>
-                                <SocialLinks />
-                            </article>
+                            <$If
+                                test={$pointer("theme_settings.social_icon_placement_bottom")}
+                                operator={$string("===")}
+                                rvalue={$string("bottom_left")}
+                                $then={() => (
+                                    <article
+                                        className="footer-info-col footer-info-col--social w-full px-gutter-half [&>:first-child]:mt-0 [&>:last-child]:mb-0 inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) text-center small:text-left footer-info-col--left small:p-0"
+                                        data-section-type="footer-webPages"
+                                    >
+                                        <h3 className="footer-info-heading text-(length:--sv-fontSize-base) [text-transform:inherit]">
+                                            <$Lang keyName={$string("social.connect")} />
+                                        </h3>
+                                        <SocialLinks />
+                                    </article>
+                                )}
+                                $else={() => (
+                                    <article
+                                        className="footer-info-col footer-info-col--social w-full px-gutter-half [&>:first-child]:mt-0 [&>:last-child]:mb-0 inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) text-center small:text-left footer-info-col--right small:left-1/2 small:[position:inherit] small:w-1/2 medium:left-0 medium:p-0 medium:text-right medium:w-full"
+                                        data-section-type="footer-webPages"
+                                    >
+                                        <h3 className="footer-info-heading text-(length:--sv-fontSize-base) [text-transform:inherit]">
+                                            <$Lang keyName={$string("social.connect")} />
+                                        </h3>
+                                        <SocialLinks />
+                                    </article>
+                                )}
+                            />
                         )}
                     />
 
-                    <section className="footer-info">
-                        <article className="footer-info-col footer-info-col--small inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) text-center small:text-left small:w-1/2 medium:w-1/6" data-section-type="footer-webPages">
+                    <section className="footer-info -mx-gutter-half w-auto max-w-none flow-root text-[0px]">
+                        <article className="footer-info-col footer-info-col--small w-full px-gutter-half [&>:first-child]:mt-0 [&>:last-child]:mb-0 inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) text-center small:text-left small:w-1/2 medium:w-1/6" data-section-type="footer-webPages">
                             <h3 className="footer-info-heading text-(length:--sv-fontSize-base) [text-transform:inherit]">
                                 <$Lang keyName={$string("footer.navigate")} />
                             </h3>
@@ -103,7 +121,7 @@ export default (_props: PartialProps) => {
                             </ul>
                         </article>
 
-                        <article className="footer-info-col footer-info-col--small inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) text-center small:text-left small:w-1/2 medium:w-1/6" data-section-type="footer-categories">
+                        <article className="footer-info-col footer-info-col--small w-full px-gutter-half [&>:first-child]:mt-0 [&>:last-child]:mb-0 inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) text-center small:text-left small:w-1/2 medium:w-1/6" data-section-type="footer-categories">
                             <h3 className="footer-info-heading text-(length:--sv-fontSize-base) [text-transform:inherit]">
                                 <$Lang keyName={$string("footer.categories")} />
                             </h3>
@@ -123,7 +141,7 @@ export default (_props: PartialProps) => {
                             a={theme.shop_by_brand_show_footer}
                             b={$pointer("shop_by_brand.length")}
                             $then={() => (
-                                <article className="footer-info-col footer-info-col--small inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) text-center small:text-left small:w-1/2 medium:w-1/6" data-section-type="footer-brands">
+                                <article className="footer-info-col footer-info-col--small w-full px-gutter-half [&>:first-child]:mt-0 [&>:last-child]:mb-0 inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) text-center small:text-left small:w-1/2 medium:w-1/6" data-section-type="footer-brands">
                                     <h3 className="footer-info-heading text-(length:--sv-fontSize-base) [text-transform:inherit]">
                                         <$Lang keyName={$string("footer.brands")} />
                                     </h3>
@@ -149,7 +167,7 @@ export default (_props: PartialProps) => {
                         <$If
                             test={$pointer("settings.address")}
                             $then={() => (
-                                <article className="footer-info-col footer-info-col--small inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) text-center small:text-left small:w-1/2 medium:w-1/6" data-section-type="storeInfo">
+                                <article className="footer-info-col footer-info-col--small w-full px-gutter-half [&>:first-child]:mt-0 [&>:last-child]:mb-0 inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) text-center small:text-left small:w-1/2 medium:w-1/6" data-section-type="storeInfo">
                                     <h3 className="footer-info-heading text-(length:--sv-fontSize-base) [text-transform:inherit]">
                                         <$Lang keyName={$string("footer.info")} />
                                     </h3>
@@ -168,7 +186,7 @@ export default (_props: PartialProps) => {
                             )}
                         />
 
-                        <article className="footer-info-col inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) text-center small:text-left small:w-1/2 medium:w-1/3" data-section-type="newsletterSubscription">
+                        <article className="footer-info-col w-full px-gutter-half [&>:first-child]:mt-0 [&>:last-child]:mb-0 inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) text-center small:text-left small:w-1/2 medium:w-1/3" data-section-type="newsletterSubscription">
                             <$If
                                 test={$pointer("settings.show_newsletter_box")}
                                 $then={() => <SubscriptionForm />}

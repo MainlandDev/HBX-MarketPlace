@@ -9,7 +9,7 @@ interface Facet {
 }
 
 export default (_props: PartialProps) => (
-    <div id="facetedSearch" className="facetedSearch sidebarBlock" role="region" aria-label={$lang($string("search.faceted.label"))}>
+    <div id="facetedSearch" className="facetedSearch sidebarBlock [[class~=sidebarBlock]+&]:mt-single-third [[class~=sidebarBlock]+&]:border-t [[class~=sidebarBlock]+&]:border-(--sv-container-border-global-color-base) [[class~=sidebarBlock]+&]:pt-single-third" role="region" aria-label={$lang($string("search.faceted.label"))}>
         <FacetedSearchSelectedFacets $positionalHash={$pointer("selected")} />
 
         <a href="#facetedSearch-navList" role="button" className="facetedSearch-toggle toggleLink" data-collapsible={""}>
@@ -63,7 +63,7 @@ export default (_props: PartialProps) => (
             predicate={{visible: $boolean(true)}}
             $then={() => (
                 <div id="facetedSearch-navList" className="facetedSearch-navList">
-                    <div className="accordion accordion--navList">
+                    <div className="accordion accordion--navList rounded-[4px] shadow-none medium:border-0 medium:[[class~=sidebarBlock]+&]:mt-(--sv-accordion-navList-spacing) [&_.navList]:mb-0 [&_.accordion-content]:border-0 [&_.accordion-content]:p-(--sv-accordion-navList-padding) medium:[&_.accordion-content]:p-0 [&_.accordion-content_.form:only-child]:mb-0">
                         <$Each
                             list={$pointer<Facet[]>("facets")}
                             $then={(facet) => (

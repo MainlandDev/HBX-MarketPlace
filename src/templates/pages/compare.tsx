@@ -47,8 +47,8 @@ export default () => (
                     <h1 className="page-heading">
                         <$Lang keyName={$string("compare.header")} products={$pointer<number>("comparisons.length")} />
                     </h1>
-                    <main className="page">
-                        <div className="page-content">
+                    <main className="page -mx-gutter-half w-auto max-w-none flow-root">
+                        <div className="page-content float-left w-full px-gutter-half">
                             <table className="compareTable w-full border-t border-container-border [table-layout:fixed]">
                                 <tr className="compareTable-row align-top">
                                     <th className="compareTable-heading font-(family-name:--sv-fontFamily-headings) relative w-0 px-base py-base-sixth text-right text-smaller font-normal medium:w-3/12"></th>

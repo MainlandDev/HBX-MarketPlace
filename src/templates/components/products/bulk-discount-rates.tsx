@@ -40,14 +40,14 @@ export default (_props: PartialProps) => {
                             <$Lang keyName={$string("products.bulk_pricing.view")} />
                         </a>
                     </dd>
-                    <div id={`modal-bulk-pricing${$If({test: id, $then: () => `-${id}`})}`} className="modal modal--small" data-reveal={""}>
-                        <div className="modal-header">
-                            <h2 className="modal-header-title">
+                    <div id={`modal-bulk-pricing${$If({test: id, $then: () => `-${id}`})}`} className="modal modal--small left-1/2 top-1/2 m-0 max-h-[90%] min-h-[240px] max-w-[95%] overflow-hidden p-0 outline-none [transform:translate(-50%,-50%)] [&_.form-field]:relative" data-reveal={""}>
+                        <div className="modal-header pl-(--sv-reveal-modal-paddingHorizontal) pr-[calc(32px+var(--sv-reveal-close-side))]">
+                            <h2 className="modal-header-title text-center text-large medium:text-larger">
                                 <$Lang keyName={$string("products.bulk_pricing.modal_title")} />
                             </h2>
                             <ModalModalCloseBtn />
                         </div>
-                        <div className="modal-body">
+                        <div className="modal-body overflow-auto p-(--sv-reveal-modal-padding) [-webkit-overflow-scrolling:touch]">
                             <p>
                                 <$Lang keyName={$string("products.bulk_pricing.instructions")} />
                             </p>

@@ -577,7 +577,7 @@ export default (_props: PartialProps) => {
                 </article>
             </div>
 
-            <div id="previewModal" className="modal modal--large" data-reveal={""}>
+            <div id="previewModal" className="modal modal--large left-1/2 top-1/2 m-0 max-h-[90%] min-h-[240px] max-w-[95%] overflow-hidden p-0 outline-none [transform:translate(-50%,-50%)] [&_.form-field]:relative large:w-(--sv-modal-width--large)" data-reveal={""}>
                 <ModalModalCloseBtn />
                 <div className="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-header-title"></div>
                 <div className="loadingOverlay"></div>

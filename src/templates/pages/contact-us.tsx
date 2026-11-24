@@ -17,7 +17,7 @@ export default () => {
                     <>
                         <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
 
-                        <main className="page">
+                        <main className="page -mx-gutter-half w-auto max-w-none flow-root">
                             <$Unless
                                 test={settings.hide_contact_us_page_heading}
                                 $then={() => <h1 className="page-heading">{$pointer("page.title")}</h1>}
@@ -41,7 +41,7 @@ export default () => {
                                     </nav>
                                 )}
                             />
-                            <div id="contact-us-page" className="page-content page-content--centered">
+                            <div id="contact-us-page" className="page-content page-content--centered float-left w-full px-gutter-half medium:float-none medium:mx-auto medium:w-8/12">
                                 <$If
                                     test={$pointer("forms.contact.success")}
                                     $then={() => (

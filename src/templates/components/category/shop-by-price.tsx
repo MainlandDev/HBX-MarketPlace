@@ -10,8 +10,8 @@ export default (_props: PartialProps) => {
         <$If
             test={settings.shop_by_price_visibility}
             $then={() => (
-                <div className="sidebarBlock">
-                    <h2 className="sidebarBlock-heading heading-price" data-shop-by-price={""}>
+                <div className="sidebarBlock [[class~=sidebarBlock]+&]:mt-single-third [[class~=sidebarBlock]+&]:border-t [[class~=sidebarBlock]+&]:border-(--sv-container-border-global-color-base) [[class~=sidebarBlock]+&]:pt-single-third">
+                    <h2 className="sidebarBlock-heading heading-price mt-0 text-[15px] [text-transform:inherit] medium:-mt-[12px]" data-shop-by-price={""}>
                         <$Lang keyName={$string("category.shop_by_price")} />
                     </h2>
 
