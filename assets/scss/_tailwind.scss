@@ -373,3 +373,519 @@
     --text-smallest: var(--sv-fontSize-smallest);
     --text-tiny: var(--sv-fontSize-tiny);
 }
+
+/*
+ * R3-1a: rules that used to come from Citadel's component partials (retired from theme.scss).
+ * They style classes carried by JS-created and merchant-injected markup as well as the templates,
+ * so they stay as plain CSS on --sv-* variables. They are deliberately NOT in @layer components:
+ * the unlayered element rules (button { background: none; border: 0 }, div, form { margin: 0 }) would
+ * beat any layered class rule. Move them into a layer when those element rules are retired (R3-2).
+ * No !important: the store's .button:not(#pseudoID) rules and the !important utilities keep winning.
+ */
+
+/* Buttons (was foundation/buttons) */
+.button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: var(--sv-button-radius);
+    border-style: var(--sv-button-border-style);
+    border-width: var(--sv-button-border-width);
+    cursor: pointer;
+    font-family: var(--sv-button-font-family);
+    font-weight: var(--sv-button-font-weight);
+    line-height: normal;
+    margin: 0 0 var(--sv-button-margin-bottom);
+    position: relative;
+    text-align: var(--sv-button-font-align);
+    text-decoration: none;
+    display: var(--sv-button-display);
+    background-color: var(--sv-buttonStyle-default-backgroundColor);
+    border-color: var(--sv-buttonStyle-default-borderColor);
+    color: var(--sv-buttonStyle-default-color);
+    font-size: var(--sv-buttonSize-default-fontSize);
+    padding: var(--sv-buttonSize-default-verticalPadding) var(--sv-buttonSize-default-horizontalPadding);
+    outline: none;
+    vertical-align: var(--sv-button-vAlign);
+}
+
+.button:hover,
+.button:focus,
+.button.is-active,
+.button.active {
+    background-color: var(--sv-buttonStyle-default-backgroundColorHover);
+    border-color: var(--sv-buttonStyle-default-borderColorHover);
+    color: var(--sv-buttonStyle-default-colorHover);
+}
+
+.button:active {
+    background-color: var(--sv-buttonStyle-default-backgroundColorActive);
+    border: var(--sv-button-border-width) var(--sv-button-border-style) var(--sv-buttonStyle-default-borderColorActive);
+    color: var(--sv-buttonStyle-default-colorActive);
+}
+
+.button:focus,
+.button.is-active,
+.button.active {
+    outline: none;
+}
+
+@media (min-width: 481px) {
+    .button + .button {
+        margin-left: var(--sv-button-adjacentButton-marginLeft);
+    }
+}
+
+.button--primary {
+    background-color: var(--sv-buttonStyle-primary-backgroundColor);
+    border-color: var(--sv-buttonStyle-primary-borderColor);
+    color: var(--sv-buttonStyle-primary-color);
+}
+
+.button--primary:hover,
+.button--primary:focus,
+.button--primary.is-active,
+.button--primary.active {
+    background-color: var(--sv-buttonStyle-primary-backgroundColorHover);
+    border-color: var(--sv-buttonStyle-primary-borderColorHover);
+    color: var(--sv-buttonStyle-primary-colorHover);
+}
+
+.button--primary:active {
+    background-color: var(--sv-buttonStyle-primary-backgroundColorActive);
+    border: var(--sv-button-border-width) var(--sv-button-border-style) var(--sv-buttonStyle-primary-borderColorActive);
+    color: var(--sv-buttonStyle-primary-colorActive);
+}
+
+.button[disabled] {
+    background-color: var(--sv-buttonStyle-disabled-backgroundColor);
+    border-color: var(--sv-buttonStyle-disabled-borderColor);
+    color: var(--sv-buttonStyle-disabled-color);
+    cursor: default;
+}
+
+.button--large {
+    font-size: var(--sv-buttonSize-large-fontSize);
+}
+
+.button--small {
+    font-size: var(--sv-buttonSize-small-fontSize);
+    padding: var(--sv-buttonSize-small-verticalPadding) var(--sv-buttonSize-small-horizontalPadding);
+}
+
+.button--slab {
+    display: block;
+    width: 100%;
+}
+
+.button + .button--slab {
+    margin-left: 0;
+}
+
+.button--icon {
+    font-size: var(--sv-buttonSize-square-fontSize);
+    padding: var(--sv-buttonSize-square-verticalPadding) var(--sv-buttonSize-square-horizontalPadding);
+}
+
+/* Forms (was foundation/forms + bigcommerce/forms) */
+.form {
+    margin: var(--sv-form-margin);
+}
+
+.form-fieldset {
+    border-width: var(--sv-fieldset-border-width);
+    margin: var(--sv-fieldset-margin);
+    padding: var(--sv-fieldset-padding);
+}
+
+.form-label {
+    color: var(--sv-form-label-font-color);
+    cursor: var(--sv-form-label-pointer);
+    display: block;
+    font-size: var(--sv-form-label-font-size);
+    line-height: var(--sv-form-label-line-height);
+    margin-bottom: var(--sv-form-label-bottom-margin);
+}
+
+.form-label small {
+    color: var(--sv-form-label-small-color);
+    font-size: var(--sv-form-label-small-fontSize);
+    text-transform: var(--sv-form-label-small-transform);
+    vertical-align: bottom;
+}
+
+.form-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: var(--sv-input-bg-color);
+    border-color: var(--sv-input-border-color);
+    border-style: var(--sv-input-border-style);
+    border-width: var(--sv-input-border-width);
+    border-radius: var(--sv-input-border-radius);
+    color: var(--sv-input-font-color);
+    display: block;
+    font-family: var(--sv-input-font-family);
+    font-size: var(--sv-input-font-size);
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    height: var(--sv-input-height);
+    margin: var(--sv-input-margin);
+    padding: var(--sv-input-padding);
+    transition: var(--sv-input-transition);
+    width: 100%;
+}
+
+.form-input:disabled {
+    background-color: var(--sv-input-disabled-bg);
+    color: var(--sv-input-disabled-color);
+    cursor: var(--sv-input-disabled-cursor);
+}
+
+.form-input[readonly] {
+    background-color: var(--sv-color-greyLightest);
+    border-color: var(--sv-color-greyLight);
+    color: var(--sv-color-greyMedium);
+    cursor: text;
+}
+
+.form-input:focus {
+    border-color: var(--sv-input-focus-border-color);
+    outline: none;
+}
+
+.form-input[rows] {
+    height: auto;
+}
+
+.form-input[type="search"] {
+    box-sizing: border-box;
+}
+
+.form-input::-webkit-input-placeholder {
+    color: var(--sv-input-placeholder-color);
+}
+
+.form-input::-moz-placeholder {
+    color: var(--sv-input-placeholder-color);
+}
+
+.form-input:-ms-input-placeholder {
+    color: var(--sv-input-placeholder-color);
+}
+
+.form-select {
+    background-color: var(--sv-select-bg-color);
+    border-radius: 0;
+    background-repeat: no-repeat;
+    border-style: var(--sv-input-border-style);
+    border-width: var(--sv-input-border-width);
+    border-color: var(--sv-input-border-color);
+    color: var(--sv-input-font-color);
+    font-family: var(--sv-input-font-family);
+    font-size: var(--sv-input-font-size);
+    line-height: normal;
+    cursor: pointer;
+    height: var(--sv-select-height);
+    margin: var(--sv-select-margin);
+    outline: var(--sv-select-outline);
+}
+
+.form-select:focus {
+    border-color: var(--sv-select-focus-borderColor);
+}
+
+.form-select:disabled {
+    background-color: var(--sv-input-disabled-bg);
+    cursor: var(--sv-input-disabled-cursor);
+}
+
+.form-select[multiple] {
+    height: auto;
+}
+
+.form-select[multiple] option {
+    padding: 5px;
+}
+
+.form-row {
+    margin: 0 -0.75rem;
+    max-width: none;
+    width: auto;
+}
+
+.form-row::before,
+.form-row::after {
+    content: " ";
+    display: table;
+}
+
+.form-row::after {
+    clear: both;
+}
+
+.form-row .form-field {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    width: 100%;
+    float: left;
+    max-width: none;
+}
+
+@media (min-width: 551px) {
+    .form-row--half .form-field {
+        width: 50%;
+    }
+
+    .form-row--third .form-field {
+        width: 33.33333%;
+    }
+
+    .form-row--quarter .form-field {
+        width: 25%;
+    }
+}
+
+.form-field {
+    display: block;
+    margin: var(--sv-formField-margin);
+    max-width: var(--sv-formField-maxWidth);
+}
+
+.form-field::before,
+.form-field::after {
+    content: " ";
+    display: table;
+}
+
+.form-field::after {
+    clear: both;
+}
+
+.form-checkbox,
+.form-radio {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.form-checkbox + .form-label,
+.form-radio + .form-label {
+    display: inline-block;
+    font-size: var(--sv-checkRadio-label-fontSize);
+    font-weight: var(--sv-checkRadio-label-fontWeight);
+    margin-bottom: var(--sv-checkRadio-label-marginBottom);
+    padding-left: var(--sv-checkRadio-label-spacing);
+    position: relative;
+    vertical-align: baseline;
+    width: 100%;
+}
+
+.form-checkbox + .form-label::before,
+.form-checkbox + .form-label::after,
+.form-radio + .form-label::before,
+.form-radio + .form-label::after {
+    content: "";
+    display: block;
+    position: absolute;
+    transition: all 50ms ease-out;
+}
+
+.form-checkbox + .form-label::before,
+.form-radio + .form-label::before {
+    background-color: var(--sv-checkRadio-bg);
+    border: var(--sv-checkRadio-borderStyle) var(--sv-checkRadio-borderColor);
+    border-width: var(--sv-checkRadio-borderWidth);
+    height: var(--sv-checkRadio-outerSize);
+    left: 0;
+    top: 0;
+    width: var(--sv-checkRadio-outerSize);
+}
+
+.form-checkbox + .form-label::after,
+.form-radio + .form-label::after {
+    height: var(--sv-checkRadio-pip-size);
+    left: 1px;
+    opacity: 0;
+    top: 1px;
+    transform: var(--sv-checkRadio-pip-zoomStart);
+    width: var(--sv-checkRadio-pip-size);
+}
+
+.form-checkbox:checked + .form-label::after,
+.form-radio:checked + .form-label::after {
+    opacity: 1;
+    transform: var(--sv-checkRadio-pip-zoomEnd);
+}
+
+.form-checkbox[disabled] + .form-label,
+.form-radio[disabled] + .form-label {
+    cursor: default;
+}
+
+.form-checkbox[disabled] + .form-label::before,
+.form-radio[disabled] + .form-label::before {
+    background-color: var(--sv-checkRadio-disabled-bg);
+}
+
+.form-checkbox + .form-label::before {
+    border-radius: var(--sv-input-border-radius);
+}
+
+/* The check mark is a data: SVG URI (merchant colour baked in): cannot take var(). */
+.form-checkbox + .form-label::after {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z' fill='rgba(51, 51, 51, 0.999)' /%3E%3C/svg%3E");
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: var(--sv-radio-pip-color);
+    font-size: 1rem;
+    line-height: 1;
+    text-align: center;
+}
+
+.form-radio + .form-label::before {
+    border-radius: var(--sv-radio-radius);
+}
+
+.form-radio + .form-label::after {
+    background: var(--sv-radio-pip-color);
+    border: var(--sv-radio-pipInset) solid var(--sv-radio-pipInset-color);
+    border-radius: 1rem;
+}
+
+.form-prefixPostfix {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.form-prefixPostfix .form-input {
+    flex: 1;
+}
+
+.form-prefixPostfix .button {
+    height: 3rem;
+}
+
+.form-prefixPostfix-button--postfix {
+    margin: 0 0 0 0.75rem;
+}
+
+.form-actions {
+    background: none;
+    border: 0;
+    text-align: center;
+}
+
+.form-actions > * {
+    display: inline-block;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+@media (min-width: 481px) {
+    .form-actions {
+        text-align: left;
+    }
+
+    .form-actions > * {
+        vertical-align: baseline;
+        width: auto;
+    }
+}
+
+.form-inlineMessage {
+    display: inline-block;
+    line-height: 24px;
+    margin: var(--sv-form-inlineMessage-margin);
+    width: 100%;
+}
+
+.form-field--success .form-input,
+.form-field--error .form-input {
+    float: left;
+}
+
+.form-field--success .form-input,
+.form-field--success .form-select,
+.form-field--success .form-checkbox + .form-label::before,
+.form-field--success .form-radio + .form-label::before {
+    border-color: var(--sv-color-success);
+}
+
+.form-field--success .form-inlineMessage {
+    color: var(--sv-color-success);
+}
+
+.form-field--error .form-input,
+.form-field--error .form-select,
+.form-field--error .form-checkbox + .form-label::before,
+.form-field--error .form-radio + .form-label::before {
+    border-color: var(--sv-color-error);
+}
+
+.form-field--error .form-inlineMessage {
+    color: var(--sv-color-error);
+}
+
+/* Icons (was bigcommerce/icons) */
+.icon {
+    height: var(--sv-icon-size);
+    width: var(--sv-icon-size);
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.icon svg {
+    display: inline-block;
+    fill: var(--sv-icon-color);
+    height: 100%;
+    vertical-align: top;
+    width: 100%;
+}
+
+/* Dropdown menu (was foundation/dropdown) */
+.dropdown-menu {
+    display: none;
+    left: -9999px;
+    list-style: var(--sv-f-dropdown-list-style);
+    margin-left: 0;
+    position: absolute;
+    background: var(--sv-f-dropdown-bg);
+    font-size: var(--sv-f-dropdown-font-size);
+    height: var(--sv-f-dropdown-height);
+    width: 100%;
+    z-index: 89;
+    max-width: var(--sv-f-dropdown-max-width);
+}
+
+.dropdown-menu.open {
+    display: block;
+}
+
+.dropdown-menu > *:first-child {
+    margin-top: 0;
+}
+
+.dropdown-menu > *:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-menu-item {
+    cursor: pointer;
+    font-size: var(--sv-f-dropdown-font-size);
+    line-height: var(--sv-f-dropdown-line-height);
+    margin: 0;
+    padding: var(--sv-f-dropdown-list-padding) calc(var(--sv-f-dropdown-list-padding) * 2);
+}
+
+.dropdown-menu-item a {
+    display: block;
+    padding: var(--sv-f-dropdown-list-padding);
+    margin: calc(var(--sv-f-dropdown-list-padding) * -1);
+}

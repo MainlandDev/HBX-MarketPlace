@@ -244,7 +244,24 @@ Why legacy remains: the theme's copies were converted, but Citadel's own rules i
 
 | R3 WP | Scope | Status |
 | --- | --- | --- |
-| R3-1a | Citadel forms, buttons, switch, form states, icon, buttonGroup, dropdown-menu | todo |
+| R3-1a | Citadel forms, buttons, switch, form states, icon, buttonGroup, dropdown-menu | merged: Citadel imports retired; compiled theme CSS 506,071 -> 465,460 bytes; rules re-expressed as an unlayered compat block in _tailwind.scss |
 | R3-1b | Citadel modal, alertBox, loadingNotification/Overlay, panel, breadcrumbs, tabs, nav (navBar/navList/pageNavigation/subPagesList), pagination, accordion, actionBar, card, table, inlineList | todo |
 | R3-2 | Citadel utilities (`.u-*`, `.is-srOnly`), Foundation element rules (type, global, normalize remainder, lists, tables), slick, focus-tooltip, remaining theme partials moved into `_tailwind.scss` layers, retire the aggregates from theme.scss | todo |
 | R3-L | lead: drop `important` and `source(none)` (or document why not), final measurement, final report | todo |
+
+## R3-1a report (Citadel forms, buttons, icons, dropdown)
+
+Removed from `theme.scss` (the aggregate `components/components` import is now an explicit list copied from Citadel's order): foundation/buttons, buttonGroup, dropdown, dropdown-buttons, split-buttons, foundation and bigcommerce forms, forms-ccFields, bigcommerce/icons. `bigcommerce/forms/tools` (mixins only) stays imported. Never-used rules were dropped (switch, form-legend, form-body, has-action/has-icon, form-input-indicator, form-field-errors, form-prefixPostfix-label, form-actions--fixed, form-field--warning, dropdown-menu--content): zero diffs on 11 pages x 4 states. Compiled theme CSS 506,071 -> 465,460 bytes.
+
+**Compat block:** about 516 lines of plain, unlayered, non-important CSS appended to `assets/scss/_tailwind.scss` on `--sv-*` variables (button + variants/states, form/fieldset/label/input/select/row/field, checkbox and radio label pseudo-elements, prefixPostfix, actions, inlineMessage base and colours, icon, dropdown-menu + item). Reason: ~70 button and 100+ form sites are bare classes, JS (nod.js, shipping-estimator), merchant markup and the store's injected CSS create or style them; it is unlayered because unlayered element rules (`button{background:none;border:0}`, `div,...,form{margin:0;padding:0}`, the store's `input:focus{outline...!important}`) beat any layered class rule. Move it into `@layer components` once the Foundation element rules are gone (R3-2). The checkbox check-mark data: URI keeps the merchant colour baked in.
+
+Edge: 11 pages x 4 states (login, contact (not submitted), product, cart, orders, address book, search, category, home, brands, compare), ~90 properties incl. box-shadow, outline, background-image, transitions, pseudo-elements and :focus; 0 diffs except home slick-arrow top/bottom (reproduces on the old CSS: content drift) and PayPal/skip-link noise. Interactions: header cart dropdown, wishlist dropdown, login blur validation (error state), hover on Sign in. Contact validation and success-state diffing were weak.
+
+**Unverified by equivalence:** success-state icon/padding on text inputs, select hover/.radius, disabled and readonly inputs, form-field--warning, date selects and form-row--third, form-actions on pages except login/contact, prefixPostfix variants, checkbox/radio checked marks (not toggled), .button--icon/--slab/[disabled], modal/alert/quick-view buttons, dropdown .open and dropdown-menu-item links, .button:active, hover on anything but Sign in.
+
+## Lessons added by R3-1a
+
+- Citadel declarations with `!important` inside (for example `.form-select{appearance:none !important}`) are invisible to naive rule scans that skip important rules: compare against the compiled CSS, not a scan.
+- When retiring a Citadel component family check its `*/tools` imports: dropping `forms/component` entirely failed compilation because theme partials use its mixins; importing `forms/tools` alone fixed it. Same trap for R3-1b. A 22-byte theme CSS response means compile failure.
+- The bridge already carries `--sv-buttonStyle-*`, `--sv-buttonSize-*`, `--sv-button-*`, `--sv-input-*`, `--sv-select-*`, `--sv-checkRadio-*`, `--sv-form-*`, `--sv-f-dropdown-*`, `--sv-icon-*`.
+- A concurrent-iframe snapshot harness runs 44 states in about 2 minutes (4 workers); cold-iframe focus can fail: ignore focus diffs when the flags differ.
