@@ -3,10 +3,11 @@ import ProductsCard from "./card.tsx";
 import CarouselContentAnnouncement from "../carousel-content-announcement.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$add, $Each, $If, $number, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
+import {SLICK_HOST} from "../../../server/carouselParts.ts";
 
 export default (_props: PartialProps) => (
     <section
-        className="productCarousel relative -mx-gutter-half w-px max-w-none min-w-full flow-root"
+        className={"productCarousel relative -mx-gutter-half w-px max-w-none min-w-full flow-root " + SLICK_HOST}
         data-list-name={$pointer("list")}
         dangerouslyInlineAttributes={{
             attributes: `data-slick='{ "infinite": false, "mobileFirst": true, "slidesToShow": 2, "slidesToScroll": 2, "slide": "[data-product-slide]", "responsive": [ { "breakpoint": 800, "settings": { "slidesToShow": ${$pointer("columns")}, "slidesToScroll": ${$pointer("columns")} } }, { "breakpoint": 550, "settings": { "slidesToShow": 3, "slidesToScroll": 3 } } ] }'`,

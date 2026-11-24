@@ -45,11 +45,17 @@ describe("emitted utilities", () => {
         const folders = [...source.matchAll(/^@source "([^"]+)";/gm)].map((m) => resolve(dirname(entry), m[1]));
         const used = new Set();
         const collect = (path) => {
-            for (const m of readFileSync(path, "utf8").matchAll(/className="([^"]+)"/g)) m[1].split(/\s+/).forEach((c) => used.add(c));
+            for (const m of readFileSync(path, "utf8").matchAll(/className={?"([^"]+)"/g)) m[1].split(/\s+/).forEach((c) => used.add(c));
         };
         // An @source entry is a folder or a single file.
         const walk = (path) => {
-            if (statSync(path).isFile()) return /\.(tsx|jsx)$/.test(path) && collect(path);
+            if (statSync(path).isFile()) {
+                // Bundles that assets/js or src/server share as `export const NAME = "..."` count as class lists too.
+                if (/\.(js|ts)$/.test(path)) {
+                    for (const m of readFileSync(path, "utf8").matchAll(/^export const \w+ = "((?:[^"\\]|\\.)*)"/gm)) m[1].split(/\s+/).forEach((c) => used.add(c));
+                }
+                return /\.(tsx|jsx)$/.test(path) && collect(path);
+            }
             for (const item of readdirSync(path)) walk(join(path, item));
         };
         folders.forEach(walk);

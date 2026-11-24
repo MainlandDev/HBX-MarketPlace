@@ -46,6 +46,7 @@ import {
 import {FormField, FormLabel} from "../../../server/formParts.tsx";
 import {Modal} from "../../../server/componentParts.tsx";
 import {LoadingOverlay} from "../../../server/runtimeParts.tsx";
+import {SLICK_HOST} from "../../../server/carouselParts.ts";
 
 /** The size a `getImageSrcset` descriptor accepts; the theme-settings type is a plain string (LIBRARY GAP, see PORT-NOTES.md). */
 type SrcsetSize = `${bigint}x${bigint}` | `${bigint}w`;
@@ -193,7 +194,7 @@ export default (_props: PartialProps) => {
                         </div>
                     </figure>
                     <ul
-                        className="productView-thumbnails -mx-quarter my-0 w-auto max-w-none flow-root [list-style-type:none] [.productView-image+&]:mt-half [&[data-slick]]:opacity-0 [&[data-slick].slick-initialized]:opacity-100 [&_.slick-list]:mx-[40px] [&_.slick-next]:right-0 [&_.slick-prev]:left-0 [&_img]:relative [&_img]:inset-0 [&_img]:m-0 [&_img]:w-[50px] [&_img]:object-contain [&_img]:[font-family:'object-fit:_contain;']"
+                        className={"productView-thumbnails -mx-quarter my-0 w-auto max-w-none flow-root [list-style-type:none] [.productView-image+&]:mt-half [&[data-slick]]:opacity-0 [&[data-slick].slick-initialized]:opacity-100 [&_.slick-list]:mx-[40px] [&_.slick-next]:right-0 [&_.slick-prev]:left-0 [&_img]:relative [&_img]:inset-0 [&_img]:m-0 [&_img]:w-[50px] [&_img]:object-contain [&_img]:[font-family:'object-fit:_contain;'] " + SLICK_HOST}
                         dangerouslyInlineAttributes={{
                             attributes: `${$Gt({
                                 a: $pointer<number>("product.images.length"),
