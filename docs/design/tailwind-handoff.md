@@ -245,7 +245,7 @@ Why legacy remains: the theme's copies were converted, but Citadel's own rules i
 | R3 WP | Scope | Status |
 | --- | --- | --- |
 | R3-1a | Citadel forms, buttons, switch, form states, icon, buttonGroup, dropdown-menu | merged: Citadel imports retired; compiled theme CSS 506,071 -> 465,460 bytes; rules re-expressed as an unlayered compat block in _tailwind.scss |
-| R3-1b | Citadel modal, alertBox, loadingNotification/Overlay, panel, breadcrumbs, tabs, nav (navBar/navList/pageNavigation/subPagesList), pagination, accordion, actionBar, card, table, inlineList | todo |
+| R3-1b | Citadel modal, alertBox, loadingNotification/Overlay, panel, breadcrumbs, tabs, nav (navBar/navList/pageNavigation/subPagesList), pagination, accordion, actionBar, card, table, inlineList | merged: all removed from theme.scss; theme CSS 465,460 -> 441,274 bytes (506,071 at R3 start) |
 | R3-2 | Citadel utilities (`.u-*`, `.is-srOnly`), Foundation element rules (type, global, normalize remainder, lists, tables), slick, focus-tooltip, remaining theme partials moved into `_tailwind.scss` layers, retire the aggregates from theme.scss | todo |
 | R3-L | lead: drop `important` and `source(none)` (or document why not), final measurement, final report | todo |
 
@@ -265,3 +265,19 @@ Edge: 11 pages x 4 states (login, contact (not submitted), product, cart, orders
 - When retiring a Citadel component family check its `*/tools` imports: dropping `forms/component` entirely failed compilation because theme partials use its mixins; importing `forms/tools` alone fixed it. Same trap for R3-1b. A 22-byte theme CSS response means compile failure.
 - The bridge already carries `--sv-buttonStyle-*`, `--sv-buttonSize-*`, `--sv-button-*`, `--sv-input-*`, `--sv-select-*`, `--sv-checkRadio-*`, `--sv-form-*`, `--sv-f-dropdown-*`, `--sv-icon-*`.
 - A concurrent-iframe snapshot harness runs 44 states in about 2 minutes (4 workers); cold-iframe focus can fail: ignore focus diffs when the flags differ.
+
+## R3-1b report (remaining Citadel components)
+
+All Citadel component families removed from `theme.scss` (20 imports: inlineList, tables, account, panels, breadcrumbs, tabs, nav, media, pagination, bc-pagination, alerts, accordion, tooltips, modal, loading, datepicker, actionBar, cards, credit-card-types, progress-bars) and their `*/tools` imports too (the theme compiles without them). Only Citadel's **global, type and orderedList** component imports remain (R3-2). Used rules were transcribed faithfully (no further pruning) into a new commented block of about 960 lines appended to `assets/scss/_tailwind.scss` after the R3-1a block: unlayered, non-important, on `--sv-*` variables; dropped as unused: loadingNotification, tabs--vertical, navBar/navList --alt and nested resets. Spinner keyframes are named `loadingOverlay-spin`. `modal top: 50% !important` is literal (important inside a custom property is invalid).
+
+Edge: 12 pages x 4 states (48 snapshots), 41 identical on the first post-removal run; the rest explained (PayPal, lazy-load sub-pixel heights, home carousel and product breadcrumb/nav-link drift reproduced on the OLD css control run). Interactions old vs new: product tab 2, write-review modal, header cart dropdown, two facet accordions, home inline-tabs, cart preview, quick-view modal (one margin flake did not reproduce).
+
+**Unverified by equivalence:** hover states on breadcrumb-label, tab-title, pagination links, card-figcaption, accordion links; the print rule `.modal{display:none}`; `.alertBox` variants other than error, alertBox-close/-heading; `.table` rows in wishlist-list.tsx; `.modal-footer`, `.modal-footer-link`, `.modal--large` (preview modal); `.actionBar` rules at 551px and up; `.inlineList` (selected-facets.tsx); accordion success/error/warning colours; the show-more-facets modal (the link did not open one on /fashion-biz/). Merchant markup that appears in other store states (`.alertBox--info/--success/--warning`, `.tabs--vertical`) will be unstyled for the dropped variants.
+
+## Lessons added by R3-1b
+
+- Snapshots in IndexedDB (concurrent iframes) remove the sessionStorage 5 MB limit; resolve a differing snapshot path to its element in a live iframe to read its classes (680 raw diffs became a readable list).
+- Remove all families at once, diff the compiled CSS before and after to get the exact removed rule list, re-express them, and check rule use per page by running `querySelectorAll` over the removed selectors in iframes.
+- Always run a control on the old CSS: home carousel, product breadcrumbs and nav-link colours drift with live data.
+- Bridge variables available: `--sv-alert-*`, `--sv-reveal-*`, `--sv-crumb-*`, `--sv-tab*`, `--sv-pagination-*`, `--sv-panel-*`, `--sv-table-*`, `--sv-accordion-*`, `--sv-card-*`, `--sv-loadingOverlay-*`, `--sv-navBar/navList-*`.
+- The compat blocks can move into `@layer components` once the Foundation element rules (button, div, form resets) are gone (R3-2).

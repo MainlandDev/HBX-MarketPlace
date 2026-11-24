@@ -68,28 +68,11 @@
 // normalize.css now ships from tailwind/normalize.css as Tailwind's base layer (see _tailwind.scss)
 @import "../../node_modules/@bigcommerce/citadel/dist/components/foundation/global/component";
 @import "../../node_modules/@bigcommerce/citadel/dist/components/foundation/type/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/foundation/inlineList/component";
 @import "../../node_modules/@bigcommerce/citadel/dist/components/foundation/orderedList/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/foundation/tables/component";
+// R3-1b: inlineList, tables, account, panels, breadcrumbs, tabs, nav, media, pagination, bc-pagination, alerts, accordion,
+// tooltips, modal, loading, datepicker, actionBar, cards, credit-card-types and progress-bars are retired (tools imports too:
+// nothing in the theme uses their mixins). Their used rules live in the R3-1b block of _tailwind.scss.
 @import "../../node_modules/@bigcommerce/citadel/dist/components/bigcommerce/forms/tools"; // forms component retired in R3-1a: mixins only
-@import "../../node_modules/@bigcommerce/citadel/dist/components/bigcommerce/account/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/foundation/panels/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/foundation/breadcrumbs/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/foundation/tabs/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/bigcommerce/nav/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/bigcommerce/media/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/foundation/pagination/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/bigcommerce/bc-pagination/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/foundation/alerts/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/foundation/accordion/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/foundation/tooltips/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/foundation/modal/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/bigcommerce/loading/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/bigcommerce/datepicker/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/bigcommerce/actionBar/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/bigcommerce/cards/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/bigcommerce/credit-card-types/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/foundation/progress-bars/component"; // 2
 @import "common/index"; // 3
 @import "components/components"; // 6
 
