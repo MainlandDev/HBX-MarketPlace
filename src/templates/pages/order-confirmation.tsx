@@ -36,7 +36,7 @@ export default () => (
                 <>
                     <header className="checkoutHeader optimizedCheckout-header">
                         <div className="checkoutHeader-content">
-                            <h1 className="is-srOnly">
+                            <h1 className="absolute h-px w-px overflow-hidden [border:0] p-0 [clip:rect(1px,1px,1px,1px)]">
                                 <$Lang keyName={$string("checkout.title")} />
                             </h1>
                             <h2 className="checkoutHeader-heading">

@@ -9,11 +9,11 @@ export default (_props: PartialProps) => (
             <fieldset className="form-fieldset">
                 <div className="form-field">
                     <$If test={$pointer<$hb<boolean>>("semantic_search_enabled")} $then={()=>{
-                        return <label className="is-srOnly" htmlFor={$pointer("name")}>
+                        return <label className="absolute h-px w-px overflow-hidden [border:0] p-0 [clip:rect(1px,1px,1px,1px)]" htmlFor={$pointer("name")}>
                             <$Lang keyName={$string("search.quick_search.input_label_semantic")} />
                         </label>
                     }} $else={()=>{
-                        return <label className="is-srOnly" htmlFor={$pointer("name")}>
+                        return <label className="absolute h-px w-px overflow-hidden [border:0] p-0 [clip:rect(1px,1px,1px,1px)]" htmlFor={$pointer("name")}>
                             <$Lang keyName={$string("search.quick_search.input_label")} />
                         </label>
                     }}/>

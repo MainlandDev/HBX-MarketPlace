@@ -91,7 +91,7 @@ export default (_props: PartialProps) => (
                                                     value={item.order_product_id}
                                                 />{" "}
                                                 <label htmlFor={`account-product-id-${item.order_product_id}`} className="form-label [&_small]:float-right [&_small]:mt-quarter">
-                                                    <span className="is-srOnly">Checkbox {item.order_product_id} label</span>
+                                                    <span className="absolute h-px w-px overflow-hidden [border:0] p-0 [clip:rect(1px,1px,1px,1px)]">Checkbox {item.order_product_id} label</span>
                                                 </label>
                                             </>
                                         )}
@@ -120,7 +120,7 @@ export default (_props: PartialProps) => (
                                                 test={item.download_url}
                                                 $then={() => (
                                                     <a href={item.download_url} className="account-product-download button button--primary absolute -top-half -right-half z-[1] size-[33px] rounded-[50%] p-0 [&_.icon]:mt-quarter [&_.icon]:size-single [&_svg]:fill-(--sv-color-white)">
-                                                        <span className="is-srOnly">
+                                                        <span className="absolute h-px w-px overflow-hidden [border:0] p-0 [clip:rect(1px,1px,1px,1px)]">
                                                             <$Lang keyName={$string("account.orders.details.download_items")} />
                                                         </span>
                                                         <span className="icon">

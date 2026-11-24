@@ -1079,13 +1079,6 @@
     @include sv("fontWeightMap", $fontWeightMap);
     @include sv("letterSpacingMap", $letterSpacingMap);
     @include sv("zIndexMap", $zIndexMap);
-    @include sv("setting-loadingOverlay-backgroundColor", stencilColor("loadingOverlay-backgroundColor"));
-    @include sv("setting-button--icon-svg-color", stencilColor("button--icon-svg-color"));
-    @include sv("setting-form-label-font-color", stencilColor("form-label-font-color"));
-    @include sv("setting-body-bg", stencilColor("body-bg"));
-    @include sv("setting-blog_size", stencilString("blog_size"));
-    @include sv("setting-thumb_size", stencilString("thumb_size"));
-    @include sv("setting-swatch_option_size", stencilString("swatch_option_size"));
     @include sv("setting-optimizedCheckout-colorFocus", stencilColor("optimizedCheckout-colorFocus"));
     @include sv("setting-optimizedCheckout-header-backgroundColor", stencilColor("optimizedCheckout-header-backgroundColor"));
     @include sv("setting-optimizedCheckout-header-borderColor", stencilColor("optimizedCheckout-header-borderColor"));
@@ -1188,6 +1181,7 @@
     @include sv("setting-button--disabled-color", stencilColor("button--disabled-color"));
     @include sv("setting-button--disabled-backgroundColor", stencilColor("button--disabled-backgroundColor"));
     @include sv("setting-button--disabled-borderColor", stencilColor("button--disabled-borderColor"));
+    @include sv("setting-form-label-font-color", stencilColor("form-label-font-color"));
     @include sv("setting-input-bg-color", stencilColor("input-bg-color"));
     @include sv("setting-input-border-color", stencilColor("input-border-color"));
     @include sv("setting-input-border-color-active", stencilColor("input-border-color-active"));
@@ -1201,10 +1195,15 @@
     @include sv("setting-color-textHeading", stencilColor("color-textHeading"));
     @include sv("setting-alert-backgroundColor", stencilColor("alert-backgroundColor"));
     @include sv("setting-color-textLink--hover", stencilColor("color-textLink--hover"));
+    @include sv("setting-body-bg", stencilColor("body-bg"));
     @include sv("setting-weight-body-font", stencilFontWeight("body-font"));
     @include sv("setting-weight-headings-font", stencilFontWeight("headings-font"));
     @include sv("setting-subheader-font-color", stencilColor("subheader-font-color"));
     @include sv("setting-blockquote-cite-font-color", stencilColor("blockquote-cite-font-color"));
+    @include sv("setting-blog_size", stencilString("blog_size"));
+    @include sv("setting-thumb_size", stencilString("thumb_size"));
+    @include sv("setting-swatch_option_size", stencilString("swatch_option_size"));
+    @include sv("setting-loadingOverlay-backgroundColor", stencilColor("loadingOverlay-backgroundColor"));
     @include sv("setting-color-black", stencilColor("color-black"));
     @include sv("setting-color-white", stencilColor("color-white"));
     @include sv("setting-color-whitesBase", stencilColor("color-whitesBase"));
@@ -1298,4 +1297,5 @@
     @include sv("setting-color_text_featured_promotions", stencilColor("color_text_featured_promotions"));
     @include sv("setting-icon-ratingFull", stencilColor("icon-ratingFull"));
     @include sv("setting-icon-ratingEmpty", stencilColor("icon-ratingEmpty"));
+    @include sv("setting-button--icon-svg-color", stencilColor("button--icon-svg-color"));
 }

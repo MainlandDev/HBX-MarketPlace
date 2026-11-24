@@ -65,13 +65,13 @@ describe("emitted utilities", () => {
 describe("legacy class collisions", () => {
     // `important` makes an emitted utility beat everything, so a utility named like an existing legacy class (`.table`, `.hidden`, `.container`)
     // would silently restyle every legacy element using that class. Write such a style as an arbitrary property instead: `[display:table]`.
-    it("emits no utility whose name is already a class in the theme, Citadel or Foundation SCSS", async () => {
+    it("emits no utility whose name is already a class in the theme (its rules now live in _tailwind.scss), Citadel or Foundation SCSS", async () => {
         const legacy = new Set();
         const walk = (dir) => {
             for (const item of readdirSync(dir, {withFileTypes: true})) {
                 const path = join(dir, item.name);
                 if (item.isDirectory()) walk(path);
-                else if (item.name.endsWith(".scss") && !/_tailwind|_css-vars/.test(item.name)) classSelectors(readFileSync(path, "utf8")).forEach((c) => legacy.add(c));
+                else if (item.name.endsWith(".scss") && !/_css-vars/.test(item.name)) classSelectors(readFileSync(path, "utf8")).forEach((c) => legacy.add(c));
             }
         };
         walk(fileURLToPath(new URL("../../assets/scss", import.meta.url)));

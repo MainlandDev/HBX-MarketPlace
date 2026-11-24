@@ -9,7 +9,7 @@ export default () => (
                         <h1 className="page-heading mx-0 mt-0 mb-double text-center">
                             <$Lang keyName={$string("server_error.page_heading")} />
                         </h1>
-                        <p className="u-textAlignCenter">
+                        <p className="text-center">
                             <$Lang keyName={$string("server_error.message")} />
                         </p>
                     </section>

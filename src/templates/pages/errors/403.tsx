@@ -14,7 +14,7 @@ export default () => (
                             <h1 className="page-heading mx-0 mt-0 mb-double text-center">
                                 <$Lang keyName={$string("forbidden.page_heading")} />
                             </h1>
-                            <p className="u-textAlignCenter">
+                            <p className="text-center">
                                 <$Lang keyName={$string("forbidden.if_you_were_signed_in")} />{" "}
                                 <a href={$pointer("urls.auth.login")}>
                                     <$Lang keyName={$string("forbidden.sign_in")} />

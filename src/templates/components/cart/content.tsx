@@ -203,7 +203,7 @@ export default (_props: PartialProps) => (
                                     test={item.can_modify}
                                     $then={() => (
                                         <button className="button button--icon" data-cart-update={""} data-cart-itemid={item.id} data-action="dec">
-                                            <span className="is-srOnly">
+                                            <span className="absolute h-px w-px overflow-hidden [border:0] p-0 [clip:rect(1px,1px,1px,1px)]">
                                                 <$Lang keyName={$string("products.quantity_decrease")} name={item.name} />
                                             </span>
                                             <i className="icon" aria-hidden="true">
@@ -234,7 +234,7 @@ export default (_props: PartialProps) => (
                                     test={item.can_modify}
                                     $then={() => (
                                         <button className="button button--icon" data-cart-update={""} data-cart-itemid={item.id} data-action="inc">
-                                            <span className="is-srOnly">
+                                            <span className="absolute h-px w-px overflow-hidden [border:0] p-0 [clip:rect(1px,1px,1px,1px)]">
                                                 <$Lang keyName={$string("products.quantity_increase")} name={item.name} />
                                             </span>
                                             <i className="icon" aria-hidden="true">

@@ -37,7 +37,7 @@
 @import "../../node_modules/@bigcommerce/citadel/dist/settings/foundation/foundation"; // 2
 @import "../../node_modules/@bigcommerce/citadel/dist/settings/bigcommerce/bigcommerce"; // 2
 
-@import "../../node_modules/@bigcommerce/citadel/dist/vendor/foundation/foundation"; // 6
+// (removed in R3-2) Citadel's Foundation vendor import: no SCSS mixin is used any more; the meta.foundation-mq-* tags Foundation JS reads live in _tailwind.scss.
 
 @import "settings/normalize/normalize"; // 4
 @import "settings/vendor/vendor"; // 4
@@ -47,13 +47,13 @@
 @import "settings/layouts/layouts"; // 4
 @import "settings/global/color/design-tokens"; // generated custom properties (docs/design/tokens.json)
 @import "settings/global/css-vars"; // generated: SCSS variables as --sv-* custom properties (npm run generate-bridge)
+@import "settings/global/derived-vars"; // hand-written: --sv-derived-* values that need Sass functions
 
 
 // Utilities
 // -----------------------------------------------------------------------------
 
-@import "utilities/utilities";
-@import "../../node_modules/@bigcommerce/citadel/dist/utilities/utilities";
+// R3-2: Citadel's and the theme's `.u-*` utilities are retired (the two JS hooks live in _tailwind.scss).
 
 
 // Components
@@ -66,15 +66,9 @@
 // -----------------------------------------------------------------------------
 
 // normalize.css now ships from tailwind/normalize.css as Tailwind's base layer (see _tailwind.scss)
-@import "../../node_modules/@bigcommerce/citadel/dist/components/foundation/global/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/foundation/type/component";
-@import "../../node_modules/@bigcommerce/citadel/dist/components/foundation/orderedList/component";
 // R3-1b: inlineList, tables, account, panels, breadcrumbs, tabs, nav, media, pagination, bc-pagination, alerts, accordion,
 // tooltips, modal, loading, datepicker, actionBar, cards, credit-card-types and progress-bars are retired (tools imports too:
 // nothing in the theme uses their mixins). Their used rules live in the R3-1b block of _tailwind.scss.
-@import "../../node_modules/@bigcommerce/citadel/dist/components/bigcommerce/forms/tools"; // forms component retired in R3-1a: mixins only
-@import "common/index"; // 3
-@import "components/components"; // 6
 
 
 // Layouts
@@ -84,4 +78,3 @@
 //
 // -----------------------------------------------------------------------------
 
-@import "layouts/layouts"; // 1

@@ -1,0 +1,17 @@
+// =============================================================================
+// DERIVED VARS
+// =============================================================================
+//
+// Hand-written companion of the generated _css-vars.scss. These values need Sass functions (image-size ratios and widths read from
+// config.json strings such as "190x190", a translucent merchant colour), so the bridge cannot pass them through unchanged.
+// Used by the layered rules in _tailwind.scss as var(--sv-derived-*).
+// -----------------------------------------------------------------------------
+
+:root {
+    --sv-derived-blog-thumb-width: #{get-width(stencilString("blog_size"))};
+    --sv-derived-brand-thumb-width: #{get-width(stencilString("thumb_size"))};
+    --sv-derived-brand-thumb-padding: #{get-padding(stencilString("thumb_size"))};
+    --sv-derived-swatch-width: #{get-width(stencilString("swatch_option_size"))};
+    --sv-derived-swatch-height: #{get-height(stencilString("swatch_option_size"))};
+    --sv-derived-loadingOverlay-bg: #{rgba(stencilColor("loadingOverlay-backgroundColor"), 0.9)};
+}

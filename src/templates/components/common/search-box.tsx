@@ -6,7 +6,7 @@ export default (_props: PartialProps) => (
     <form className="form" action={$pointer("urls.search")}>
         <fieldset className="form-fieldset">
             <div className="form-field">
-                <label className="form-label is-srOnly [&_small]:float-right [&_small]:mt-quarter" htmlFor="search_query_adv">
+                <label className="form-label absolute h-px w-px overflow-hidden [border:0] p-0 [clip:rect(1px,1px,1px,1px)] [&_small]:float-right [&_small]:mt-quarter" htmlFor="search_query_adv">
                     <$Lang keyName={$string("search.results.form_label")} />
                 </label>
                 <div className="form-prefixPostfix wrap flex-wrap [&_.form-input]:block [&_.form-input]:w-full large:[&_.form-input]:w-auto [&_.form-input::placeholder]:text-(--sv-formInput-placeholder-color) [&_.button]:w-full [&_.button]:[display:block] large:[&_.button]:w-auto [&_.form-inlineMessage]:mb-quarter large:[&_.form-inlineMessage]:mb-0">

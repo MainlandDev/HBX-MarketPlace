@@ -96,7 +96,7 @@ export default (_props: PartialProps) => (
                             <$Lang keyName={$string("forms.search.price_range")} />
                         </p>
                         <label>
-                            <span className="is-srOnly">
+                            <span className="absolute h-px w-px overflow-hidden [border:0] p-0 [clip:rect(1px,1px,1px,1px)]">
                                 <$Lang keyName={$string("forms.search.price_range")} />
                             </span>{" "}
                             <span>
@@ -112,7 +112,7 @@ export default (_props: PartialProps) => (
                             />
                         </label>
                         <label>
-                            <span className="is-srOnly">
+                            <span className="absolute h-px w-px overflow-hidden [border:0] p-0 [clip:rect(1px,1px,1px,1px)]">
                                 <$Lang keyName={$string("forms.search.price_range")} />
                             </span>{" "}
                             <span>

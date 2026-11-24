@@ -1,6 +1,6 @@
 # Tailwind conversion: live handoff
 
-Maintained by the lead after every merged work package (WP). Workers: read `docs/design/tailwind-worker-brief.md` first, then this file at the start of your WP. Last updated: 2026-11-24 (round 2 started).
+Maintained by the lead after every merged work package (WP). Workers: read `docs/design/tailwind-worker-brief.md` first, then this file at the start of your WP. Last updated: 2026-11-24 (all rounds complete).
 
 ## Goal and standard
 
@@ -246,8 +246,8 @@ Why legacy remains: the theme's copies were converted, but Citadel's own rules i
 | --- | --- | --- |
 | R3-1a | Citadel forms, buttons, switch, form states, icon, buttonGroup, dropdown-menu | merged: Citadel imports retired; compiled theme CSS 506,071 -> 465,460 bytes; rules re-expressed as an unlayered compat block in _tailwind.scss |
 | R3-1b | Citadel modal, alertBox, loadingNotification/Overlay, panel, breadcrumbs, tabs, nav (navBar/navList/pageNavigation/subPagesList), pagination, accordion, actionBar, card, table, inlineList | merged: all removed from theme.scss; theme CSS 465,460 -> 441,274 bytes (506,071 at R3 start) |
-| R3-2 | Citadel utilities (`.u-*`, `.is-srOnly`), Foundation element rules (type, global, normalize remainder, lists, tables), slick, focus-tooltip, remaining theme partials moved into `_tailwind.scss` layers, retire the aggregates from theme.scss | todo |
-| R3-L | lead: drop `important` and `source(none)` (or document why not), final measurement, final report | todo |
+| R3-2 | Citadel utilities (`.u-*`, `.is-srOnly`), Foundation element rules (type, global, normalize remainder, lists, tables), slick, focus-tooltip, remaining theme partials moved into `_tailwind.scss` layers, retire the aggregates from theme.scss | merged: no SCSS emits any class or element rule; theme CSS 441,274 -> 425,914 bytes |
+| R3-L | lead: drop `important` and `source(none)` (or document why not), final measurement, final report | done: both kept, with measured reasons (see below) |
 
 ## R3-1a report (Citadel forms, buttons, icons, dropdown)
 
@@ -281,3 +281,24 @@ Edge: 12 pages x 4 states (48 snapshots), 41 identical on the first post-removal
 - Always run a control on the old CSS: home carousel, product breadcrumbs and nav-link colours drift with live data.
 - Bridge variables available: `--sv-alert-*`, `--sv-reveal-*`, `--sv-crumb-*`, `--sv-tab*`, `--sv-pagination-*`, `--sv-panel-*`, `--sv-table-*`, `--sv-accordion-*`, `--sv-card-*`, `--sv-loadingOverlay-*`, `--sv-navBar/navList-*`.
 - The compat blocks can move into `@layer components` once the Foundation element rules (button, div, form resets) are gone (R3-2).
+
+## R3-2 report (final package)
+
+Citadel `global`, `type`, `orderedList`, both utilities imports, the Foundation vendor import, `components/components`, `layouts/layouts`, `common/index` and `forms/tools` are removed from `theme.scss`; the directories `assets/scss/{components,layouts,common,utilities}` and `tools/_theme_focus.scss` are deleted. `npm run tw-inventory` reports 0 lines in 0 partials. Compiled theme CSS: 506,071 bytes at R3 start, 441,274 before R3-2, 425,914 after.
+
+Where the rules went (all in `assets/scss/_tailwind.scss`, about 3,088 lines): `@layer base` holds the Foundation element rules on `--sv-*` variables and the `meta.foundation-*` tags Foundation JS reads; `@layer components` holds the R3-1a and R3-1b compat blocks (about 1,500 lines) plus a second block (pseudo-class element rules placed after the class rules, slick (arrows use an SVG mask with `--sv-slick-arrow-color`), carousel tooltips, `.form-select`, `.button`, `.tab`, `.tab-title`, form icons, `.navList-action--checkbox`, `.loadingOverlay`, `.icon`, `.ribbon`, `.textTruncate`, `.toggle-content`, `.container`, `.blog-thumbnail`, `.brand-image-container`, `.productMasonry`, swatch size, `.hide-content`, picklist items, `.js [data-product-option-change]`, `.aria-description--hidden`); plain `@keyframes animate-icon*`; `@layer legacy` (declared last) holds the global focus ring and three old Foundation `!important` declarations so they keep losing to important utilities. `u-hidden` and `u-hiddenVisually` stay as small `!important` rules in components because `assets/js` toggles them at runtime; `is-srOnly` (10 elements) and `u-textAlignCenter` became utilities.
+
+Remaining SCSS (nothing emits class or element CSS): `theme.scss` (settings, Citadel toolkit and tools imports for the bridge and Sass functions, the Tailwind import), `tools/*`, `settings/**` including the generated `_css-vars.scss` and the new hand-written `settings/global/_derived-vars.scss` (blog and brand thumb widths and ratio, swatch width and height, translucent loading-overlay colour: values that need Sass functions), `vendor/jstree`, and the four separate entry files (checkout, invoice, maintenance, optimized-checkout; out of scope).
+
+**`important` and `source(none)`: kept, measured.** Removing `important` and re-running all 52 page states plus interactions changed 870 computed values on 20 states (the store's unlayered CSS wins: product variant-card radius 12px -> 10px, swatch sizes and backgrounds, list margin-bottom 11px -> 0 on category and search). Automatic source detection would emit `.container`, `.table`, `.hidden`, `.block` strays colliding with layered rules and merchant markup.
+
+Edge: 60 states (15 pages x 4) against an old-CSS control run twice; remaining differences: slick arrow `::before` (mask technique), the search content-section aside (a deliberate fix: it carries `u-hiddenVisually` and is now really visually hidden; before, its `relative` utility beat the old unlayered `position: absolute !important`), and noise that also appears on the control (home carousel height, PayPal frames, lazy-load heights, 0.4px brand image heights). Interactions: menus, dropdowns, quick search, home inline tabs, slick focus and tooltips, product tabs, write-review modal, facet accordions, quick view, login and contact blur validation; hover on 8 targets identical.
+
+**Unverified by equivalence:** the `u-hidden`/`u-hiddenVisually` JS toggles were not driven (search section switch, quick-search aria message, product stock, estimator); `is-srOnly` on pages not rendered and on checkout/order-confirmation; `.tab`/`.tab-title` on the merchant inline-tabs widget beyond clicking the home tabs; hover on anything but the 8 targets; the print `.modal` rule; `.ribbon`, `.productMasonry`, `.blocker-container`, `.shareProduct`, `.textTruncate*`, `.pin_it_iframe_widget`, `.form-field--success/--error` icons, `.loadingOverlay`; slick arrows as pixels (only computed values checked: mask-image set, colour 119,119,119); store states that need data the account lacks. The store's unlayered rules now always beat our layered ones (for example the swatch `.form-field` `::before` content changed from a space to empty, no visible effect).
+
+## Lessons added by R3-2
+
+- Moving unlayered rules into layers changes who wins: layered rules lose to the store's injected unlayered CSS; a layered `!important` rule beats important utilities if it sits in an earlier layer, so old unlayered `!important` rules live in `@layer legacy` (last layer). In `base` specificity decides before source order (normalize's `abbr[title]` beat `abbr`); element rules with pseudo-classes go in `components` after the class rules.
+- New `--sv-derived-*` variables: `blog-thumb-width`, `brand-thumb-width`, `brand-thumb-padding`, `swatch-width`, `swatch-height`, `loadingOverlay-bg`. `generate-bridge` now also scans `_tailwind.scss` for `--sv-setting-*` reads.
+- `sed -i` on `_tailwind.scss` strips its CRLF: use the Edit tool. After a mass file swap the theme CSS can answer 22 bytes until the SCSS is touched.
+- `config.json` `read_only_files` still lists `/assets/scss/components/{citadel,foundation,vendor}` (no longer existing): a config edit left for the user.

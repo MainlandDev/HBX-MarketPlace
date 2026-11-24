@@ -35,7 +35,7 @@ export default (_props: PartialProps) => {
                             </label>
                             <div className="form-increment [&_.button]:m-0 [&_.button]:px-quarter [&_.button]:py-[0.21429rem]" data-quantity-change={""}>
                                 <button className="button button--icon" data-action="dec">
-                                    <span className="is-srOnly">
+                                    <span className="absolute h-px w-px overflow-hidden [border:0] p-0 [clip:rect(1px,1px,1px,1px)]">
                                         <$Lang keyName={$string("products.quantity_decrease")} name={product.title} />
                                     </span>
                                     <i className="icon" aria-hidden="true">
@@ -63,7 +63,7 @@ export default (_props: PartialProps) => {
                                     aria-live="polite"
                                 />
                                 <button className="button button--icon" data-action="inc">
-                                    <span className="is-srOnly">
+                                    <span className="absolute h-px w-px overflow-hidden [border:0] p-0 [clip:rect(1px,1px,1px,1px)]">
                                         <$Lang keyName={$string("products.quantity_increase")} name={product.title} />
                                     </span>
                                     <i className="icon" aria-hidden="true">
