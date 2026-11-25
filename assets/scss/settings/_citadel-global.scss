@@ -1,36 +1,19 @@
 // Citadel global setting defaults (screen sizes, colour, typography, layout, container, z-index, overlay), hoisted from @bigcommerce/citadel/dist/settings/global.
 // Flattened into one file; every "// ---- path" marker is the partial it came from.
 
-// =============================================================================
-// SETTINGS
-// =============================================================================
-
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// 1. Layout is dependant on Typography, so @import typography first.
-//
-// -----------------------------------------------------------------------------
+// Order matters: layout settings read the typography settings, so typography stays above layout.
 
 // Export
 // ---- settings/global/export/_export.scss
-// =============================================================================
-// EXPORT CSS
-// =============================================================================
 
 // Include classes when building
-// -----------------------------------------------------------------------------
 
 $exportCSS:                     true !default;
 
 // Screen Sizes
 // ---- settings/global/screensizes/_screensizes.scss
-// =============================================================================
-// SCREEN SIZES
-// =============================================================================
 
 // Screen sizes
-// -----------------------------------------------------------------------------
 
 $screen-xxxlarge:               1920px !default;
 $screen-xxlarge:                1681px !default;
@@ -42,7 +25,6 @@ $screen-xsmall:                 481px !default;
 $screen-xxsmall:                320px !default;
 
 // Screen sizes map
-// -----------------------------------------------------------------------------
 
 $screenSizeMap: (
     xxxlarge:                   $screen-xxxlarge,
@@ -55,9 +37,7 @@ $screenSizeMap: (
     xxsmall:                    $screen-xxsmall
 );
 
-//
 // Screen sizes function
-// -----------------------------------------------------------------------------
 
 @function screenSize($key) {
 
@@ -71,12 +51,8 @@ $screenSizeMap: (
 
 // Color
 // ---- settings/global/color/_color.scss
-// =============================================================================
-// COLORS
-// =============================================================================
 
 // Basics
-// -----------------------------------------------------------------------------
 
 $color-black:                       #000 !default;
 $color-white:                       #fff !default;
@@ -93,7 +69,6 @@ $color-greyLighter:                 #f2f4f6 !default;
 $color-greyLightest:                #f7f8f9 !default;
 
 // Branding
-// -----------------------------------------------------------------------------
 
 $color-primary:                     #00abc9 !default;
 $color-primaryDarker:               #008ba3 !default;
@@ -109,7 +84,6 @@ $color-highlightDarker:             #008ba3 !default;
 $color-highlightDark:               #009cb7 !default;
 
 // States
-// -----------------------------------------------------------------------------
 
 $color-error:                       #db636b !default;
 $color-errorLight:                  #f8e0e1 !default;
@@ -124,14 +98,12 @@ $color-warning:                     #ffb800 !default;
 $color-warningLight:                #fff9d9 !default;
 
 // Text
-// -----------------------------------------------------------------------------
 
 $color-textBase:                    #313b47 !default;
 $color-textBase-hover:              #556273 !default;
 $color-textBase-active:             #3c4043 !default;
 
 // Order status
-// -----------------------------------------------------------------------------
 
 $color-orderAwaitingFulfilment:     #6eccfc !default;
 $color-orderAwaitingPayment:        #f80 !default;
@@ -148,12 +120,10 @@ $color-orderRefunded:               #ffb800 !default;
 $color-orderVerificationRequired:   #e89fae !default;
 
 // Color Map
-// -----------------------------------------------------------------------------
 
 $colorMap: (
 
     // Basics
-    // -------------------------------------------------------------------------
 
     blacks: (
         base:                   $color-black
@@ -176,7 +146,6 @@ $colorMap: (
     ),
 
     // Branding
-    // -------------------------------------------------------------------------
 
     primary: (
         base:                   $color-primary,
@@ -198,7 +167,6 @@ $colorMap: (
     ),
 
     // States
-    // -------------------------------------------------------------------------
 
     error: (
         base:                   $color-error,
@@ -221,7 +189,6 @@ $colorMap: (
     ),
 
     // Text
-    // -------------------------------------------------------------------------
 
     link: (
         base:                   $color-textBase,
@@ -230,7 +197,6 @@ $colorMap: (
     ),
 
     // Order status'
-    // -------------------------------------------------------------------------
 
     orderStatus: (
         awaitingFulfilment:     $color-orderAwaitingFulfilment,
@@ -250,7 +216,6 @@ $colorMap: (
 );
 
 // Color Map Function
-// -----------------------------------------------------------------------------
 
 @function color($color, $tone: "base") {
 
@@ -265,25 +230,16 @@ $colorMap: (
 
 // Typography
 // ---- settings/global/typography/_typography.scss
-// =============================================================================
-// TYPOGRAPHY
-// =============================================================================
 
 // Global Type Vars
-// -----------------------------------------------------------------------------
-//
 // IMPORTANT: These variables are NOT to be consumed in components/apps.
 //            Instead use the maps and functions outlined below.
-//
 // 1. Set up the REM units for the rest of the framework (pixel value).
 // 2. Your base font size should always start at 1rem;
 // 3. Your <body> line-height. This value is used for spacing calculations,
 //    where spacing is = $fontSize-root * $lineHeight-base.
-//
-// -----------------------------------------------------------------------------
 
 // Font families
-// -----------------------------------------------------------------------------
 
 $fontFamily-sans:               ("Helvetica", Arial, sans-serif) !default;
 $fontFamily-serif:              (Georgia, "Times New Roman", serif) !default;
@@ -291,7 +247,6 @@ $fontFamily-mono:               (Menlo, Monaco, Consolas, monospace) !default;
 $fontFamily-headings:           ("Helvetica" Arial, sans-serif) !default;
 
 // Font sizes
-// -----------------------------------------------------------------------------
 
 $fontSize-root:                 16px !default; // 1
 $fontSize-base:                 1rem !default; // 2
@@ -305,7 +260,6 @@ $fontSize-smallest:             $fontSize-base * 0.875 !default;
 $fontSize-tiny:                 $fontSize-base * 0.75 !default;
 
 // Line heights
-// -----------------------------------------------------------------------------
 
 $lineHeight-base:               1.5 !default; // 3
 $lineHeight-hero:               2.5 !default;
@@ -318,7 +272,6 @@ $lineHeight-smallest:           1 !default;
 $lineHeight-tiny:               0.9 !default;
 
 // Font weights
-// -----------------------------------------------------------------------------
 
 $fontWeight-thin:               300 !default;
 $fontWeight-normal:             400 !default;
@@ -328,7 +281,6 @@ $fontWeight-bold:               700 !default;
 $fontWeight-black:              900 !default;
 
 // Letter spacing
-// -----------------------------------------------------------------------------
 
 $letterSpacing-base:            0 !default;
 $letterSpacing-largest:         remCalc(3px) !default;
@@ -339,7 +291,6 @@ $letterSpacing-smaller:         remCalc(-2px) !default;
 $letterSpacing-smallest:        remCalc(-3px) !default;
 
 // Font families
-// -----------------------------------------------------------------------------
 
 $fontFamilyMap: (
     sans:                       $fontFamily-sans,
@@ -349,7 +300,6 @@ $fontFamilyMap: (
 );
 
 // Font sizes
-// -----------------------------------------------------------------------------
 
 $fontSizeMap: (
     base:                       $fontSize-base,
@@ -364,7 +314,6 @@ $fontSizeMap: (
 );
 
 // Line heights
-// -----------------------------------------------------------------------------
 
 $lineHeightMap: (
     base:                       $lineHeight-base,
@@ -379,7 +328,6 @@ $lineHeightMap: (
 );
 
 // Font Weights
-// -----------------------------------------------------------------------------
 
 $fontWeightMap: (
     thin:                       $fontWeight-thin,
@@ -391,7 +339,6 @@ $fontWeightMap: (
 );
 
 // Letter spacing
-// -----------------------------------------------------------------------------
 
 $letterSpacingMap: (
     base:                       $letterSpacing-base,
@@ -404,7 +351,6 @@ $letterSpacingMap: (
 );
 
 // Typography Functions
-// -----------------------------------------------------------------------------
 
 @function fontFamily($key) {
 
@@ -458,16 +404,9 @@ $letterSpacingMap: (
 
 // Layout
 // ---- settings/global/layout/_layout.scss
-// =============================================================================
-// DIMENSIONS (Layout / Grid)
-// =============================================================================
 
 // Layout
-// -----------------------------------------------------------------------------
-//
 // Define the layout width's for your project.
-//
-// -----------------------------------------------------------------------------
 
 // Max Width
 $layout-widthMax:               remCalc(1200px) !default;
@@ -476,7 +415,6 @@ $layout-widthMax:               remCalc(1200px) !default;
 $layout-widthFixed:             90% !default;
 
 // Layout Map
-// -----------------------------------------------------------------------------
 
 $layoutMap: (
     max:                        $layout-widthMax,
@@ -484,7 +422,6 @@ $layoutMap: (
 );
 
 // Spacing Function
-// -----------------------------------------------------------------------------
 
 @function layout($key) {
 
@@ -497,12 +434,8 @@ $layoutMap: (
 }
 
 // Spacing Rhythm
-// -----------------------------------------------------------------------------
-//
 // Create consistent spacing patterns in your entire projects aesthetics.
 // Build your components margins, paddings, etc based off these spacing vars.
-//
-// -----------------------------------------------------------------------------
 
 // Base Spacing
 $spacingRhythm:                 $fontSize-base * $lineHeight-base !default;
@@ -518,7 +451,6 @@ $spacing-sixth:                 $spacingRhythm / 6 !default;
 $spacing-eighth:                $spacingRhythm / 8 !default;
 
 // Spacing Map
-// -----------------------------------------------------------------------------
 
 $spacingMap: (
     base:                       $spacing-base,
@@ -533,7 +465,6 @@ $spacingMap: (
 );
 
 // Spacing Function
-// -----------------------------------------------------------------------------
 
 @function spacing($key) {
 
@@ -547,17 +478,10 @@ $spacingMap: (
 
 // Containers
 // ---- settings/global/container/_container.scss
-// =============================================================================
-// CONTAINERS
-// =============================================================================
-//
 // Purpose:
 // The centralised place to control container settings like borders and fill.
-//
-// -----------------------------------------------------------------------------
 
 // Borders
-// -----------------------------------------------------------------------------
 
 $container-border-global-size:          1px !default;
 $container-border-global-style:         solid !default;
@@ -567,29 +491,24 @@ $container-border-global-base:          $container-border-global-size $container
 $container-border-global-dark:          $container-border-global-size $container-border-global-style $color-grey !default;
 
 // Drop shadows
-// -----------------------------------------------------------------------------
 
 $container-drop-shadow-base:             0 2px 0 rgba($color-greyLight, 0.6) !default;
 
 // Backgrounds
-// -----------------------------------------------------------------------------
 
 $container-fill-base:                   $color-white !default;
 $container-fill-dark:                   $color-greyLight !default;
 
 // Padding
-// -----------------------------------------------------------------------------
 
 $container-padding-base:                $spacing-single !default;
 $container-padding-large:               $spacing-double !default;
 
 // Margin
-// -----------------------------------------------------------------------------
 
 $container-margin-base:                 $spacing-single !default;
 
 // Containers map
-// -----------------------------------------------------------------------------
 
 $containersMap: (
     border: (
@@ -630,7 +549,6 @@ $containersMap: (
 );
 
 // Containers map function
-// -----------------------------------------------------------------------------
 
 @function container($property, $variant: "base") {
     @if map-has-key($containersMap, $property) {
@@ -643,20 +561,12 @@ $containersMap: (
 
 // Z-index
 // ---- settings/global/z-index/_z-index.scss
-// =============================================================================
-// Z-INDEX
-// =============================================================================
 
 // Global Type Vars
-// -----------------------------------------------------------------------------
-//
 // IMPORTANT: These variables are NOT to be consumed in components/apps.
 //            Instead use the maps and functions outlined below.
-//
-// -----------------------------------------------------------------------------
 
 // z-index map
-// -----------------------------------------------------------------------------
 
 $zIndex-lowest:                 5 !default;
 $zIndex-lower:                  10 !default;
@@ -666,7 +576,6 @@ $zIndex-higher:                 100 !default;
 $zIndex-highest:                500 !default;
 
 // z-index map
-// -----------------------------------------------------------------------------
 
 $zIndexMap: (
     lowest:                     $zIndex-lowest,
@@ -678,7 +587,6 @@ $zIndexMap: (
 );
 
 // z-index Functions
-// -----------------------------------------------------------------------------
 
 @function zIndex($key) {
 
@@ -692,22 +600,14 @@ $zIndexMap: (
 
 // Overlays
 // ---- settings/global/overlay/_overlay.scss
-// =============================================================================
-// OVERLAY
-// =============================================================================
-//
 // Purpose: Centralised place to control overlay backgrounds, such as:
 // modal backdrops, card overlays, etc.
-//
-// -----------------------------------------------------------------------------
 
 // Overlay fill
-// -----------------------------------------------------------------------------
 
 $overlay-fill:                  rgba(color("blacks"), 0.8) !default;
 
 // Overlay Map
-// -----------------------------------------------------------------------------
 
 $overlaysMap: (
 
@@ -717,7 +617,6 @@ $overlaysMap: (
 );
 
 // Overlay Map Function
-// -----------------------------------------------------------------------------
 
 @function overlay($property, $variant: "base") {
 

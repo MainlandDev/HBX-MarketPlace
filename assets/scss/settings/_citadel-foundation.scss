@@ -1,43 +1,9 @@
 // Foundation 5.4.7 component setting defaults as set by Citadel, hoisted from @bigcommerce/citadel/dist/settings/foundation.
 // Flattened into one file; every "// ---- path" marker is the partial it came from.
 
-// =============================================================================
-// FOUNDATION 5.4.7
-// =============================================================================
-
-//
-// Import Foundation Component Settings
-//
-// Purpose: Import any foundation component settings Bigcommerce have added
-// -----------------------------------------------------------------------------
-
 // ---- settings/foundation/global/_settings.scss
-// =============================================================================
-// GLOBAL (Settings)
-// =============================================================================
 
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// These scoped variables are created by Bigcommerce.
-// All variables that are not from Foundation should be placed here.
-//
-// 1. Choose whether to include the Bigcommerce class names
-//
-// -----------------------------------------------------------------------------
-
-$exportCSS--global:           $exportCSS !default; // 1
-
-// Settings
-// -----------------------------------------------------------------------------
-//
-// The SCSS below this comment block is copy/pasted from Foundation 5.4.3's
-// files: _functions.scss and _global.scss.
-//
-// Use the below variables at will, with complete control.
-// Anything commented out will fall back to the vendor's defaults.
-//
-// -----------------------------------------------------------------------------
+$exportCSS--global:           $exportCSS !default; // emit this component's class names
 
 // This is the default html and body font-size for the base rem value.
 $rem-base:                    $fontSize-root !default;
@@ -113,19 +79,12 @@ $cursor-text-value:           text !default;
 $figure-margin:               0 0 spacing("base") !default;
 
 // ---- settings/foundation/type/_settings.scss
-// =============================================================================
-// TYPE (Settings)
-// =============================================================================
 
 // Foundation Variables
-// -----------------------------------------------------------------------------
-//
 // These variables come directly from:
 // /vendor/foundation/foundation/components/*
 // Declaring the variables here, you can adjust them all to your design,
 // leaving the vendor framework untouched.
-//
-// -----------------------------------------------------------------------------
 
 // We use these to define default font stacks
 $font-family-sans-serif:               fontFamily("sans") !default;
@@ -259,17 +218,7 @@ $microformat-abbr-font-decoration:     none !default;
 // Controls the page margin when printing the website
 $print-margin: 0.34in !default;
 
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// These scoped variables are created by Bigcommerce.
-// All variables that are not from Foundation should be placed here.
-//
-// 1. Choose whether to include the Bigcommerce class names
-//
-// -----------------------------------------------------------------------------
-
-$exportCSS--type:                      $exportCSS !default; // 1
+$exportCSS--type:                      $exportCSS !default; // emit this component's class names
 
 $html-fontSize:                        $fontSize-root + 2 !default;
 $html-fontSize--smallUp:               $fontSize-root !default;
@@ -289,49 +238,18 @@ $blockquote-margin:                    0 0 $paragraph-margin-bottom !default;
 $blockquote-cite-content:              "\2014 \0020" !default;
 
 // ---- settings/foundation/inlineList/_settings.scss
-// =============================================================================
-// InlineList (Settings)
-// =============================================================================
 
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// These scoped variables are created by Bigcommerce.
-// All variables that are not from Foundation should be placed here.
-//
-// 1. Choose whether to include the Bigcommerce class names
-//
-// -----------------------------------------------------------------------------
-
-$exportCSS--inlineList:            $exportCSS !default; // 1
+$exportCSS--inlineList:            $exportCSS !default; // emit this component's class names
 
 // ---- settings/foundation/grid/_settings.scss
-// =============================================================================
-// GRID (Settings)
-// =============================================================================
 
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// These scoped variables are created by Bigcommerce.
-// All variables that are not from Foundation should be placed here.
-//
-// 1. Choose whether to include the Bigcommerce class names
-//
-// -----------------------------------------------------------------------------
-
-$exportCSS--grid:              $exportCSS !default; // 1
+$exportCSS--grid:              $exportCSS !default; // emit this component's class names
 
 // Foundation Variables
-// -----------------------------------------------------------------------------
-//
 // These variables come directly from:
 // /vendor/foundation/foundation/components/*
 // Declaring the variables here, you can adjust them all to your design,
 // leaving the vendor framework untouched.
-//
-// -----------------------------------------------------------------------------
-//
 $include-html-grid-classes:    $include-html-classes !default;
 $include-xl-html-grid-classes: false !default;
 
@@ -342,20 +260,12 @@ $column-gutter:                remCalc(30) !default;
 $last-child-float:             $opposite-direction !default;
 
 // ---- settings/foundation/panels/_settings.scss
-// =============================================================================
-// Panels (Settings)
-// =============================================================================
-//
 
 // Foundation Variables
-// -----------------------------------------------------------------------------
-//
 // These variables come directly from:
 // /vendor/foundation/foundation/components/*
 // Declaring the variables here, you can adjust them all to your design,
 // leaving the vendor framework untouched.
-//
-// -----------------------------------------------------------------------------
 
 $include-html-panel-classes:     $include-html-classes !default;
 
@@ -381,17 +291,7 @@ $panel-font-color-alt:           color("whites", "bright") !default;
 $panel-header-adjust:            false !default;
 $callout-panel-link-color:       null !default;
 
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// These scoped variables are created by Bigcommerce.
-// All variables that are not from Foundation should be placed here.
-//
-// 1. Choose whether to include the Bigcommerce class names
-//
-// -----------------------------------------------------------------------------
-
-$exportCSS--panels:              $exportCSS !default; // 1
+$exportCSS--panels:              $exportCSS !default; // emit this component's class names
 
 $panel-boxShadow:                none !default;
 
@@ -415,23 +315,11 @@ $callout-panel-headerBg:         color("greys", "darkest") !default;
 $callout-panel-headerColor:      color("whites", "bright") !default;
 
 // ---- settings/foundation/accordion/_settings.scss
-// =============================================================================
-// ACCORDION (Settings)
-// =============================================================================
 
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// These scoped variables are created by Bigcommerce.
-// All variables that are not from Foundation should be placed here.
-//
-// 1. Choose whether to include the Bigcommerce class names
 // 2. Foundation uses this variable in a mixin. If you assign short hand padding
 //    values to it, it throws a sass warning. Will only accept a single value.
-//
-// -----------------------------------------------------------------------------
 
-$exportCSS--accordion:                   $exportCSS !default; // 1
+$exportCSS--accordion:                   $exportCSS !default; // emit this component's class names
 
 $accordion-borderColor:                  container("borderColor", "dark") !default;
 $accordion-borderStyle:                  container("borderStyle") !default;
@@ -464,14 +352,10 @@ $accordion-content-borderWidth:          1px 0 0 !default;
 $accordion-content-border:               $accordion-border !default;
 
 // Foundation Variables
-// -----------------------------------------------------------------------------
-//
 // These variables come directly from:
 // /vendor/foundation/foundation/components/*
 // Declaring the variables here, you can adjust them all to your design,
 // leaving the vendor framework untouched.
-//
-// -----------------------------------------------------------------------------
 
 $include-html-accordion-classes:         $include-html-classes !default;
 
@@ -488,24 +372,10 @@ $accordion-content-padding:              container("padding") !default;
 $accordion-content-active-bg-color:      container("fill") !default;
 
 // ---- settings/foundation/alerts/_settings.scss
-// =============================================================================
-// ALERTS (Settings)
-// =============================================================================
 
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// These scoped variables are created by Bigcommerce.
-// All variables that are not from Foundation should be placed here.
-//
-// 1. Choose whether to include the Bigcommerce class names
-//
-// -----------------------------------------------------------------------------
-
-$exportCSS--alerts:                $exportCSS !default; // 1
+$exportCSS--alerts:                $exportCSS !default; // emit this component's class names
 
 // Color/State Modifiers
-// -----------------------------------------------------------------------------
 
 $alert-generic-bgColor:            color("greys", "light") !default;
 $alert-generic-iconColor:          color("greys") !default;
@@ -522,9 +392,7 @@ $alert-warning-iconColor:          color("warning") !default;
 $alert-error-bgColor:              color("error", "light") !default;
 $alert-error-iconColor:            color("error") !default;
 
-//
 // Alert content settings
-// -----------------------------------------------------------------------------
 
 // Icon control
 $alert-iconSize:                   20px !default;
@@ -542,14 +410,10 @@ $alert-close-cursor:               $cursor-pointer-value !default;
 $alert-close-iconSize:             20px !default;
 
 // Foundation Variables
-// -----------------------------------------------------------------------------
-//
 // These variables come directly from:
 // /vendor/foundation/foundation/components/*
 // Declaring the variables here, you can adjust them all to your design,
 // leaving the vendor framework untouched.
-//
-// -----------------------------------------------------------------------------
 
 $include-html-alert-classes:       $include-html-classes !default;
 
@@ -591,25 +455,10 @@ $alert-transition-speed:           300ms !default;
 $alert-transition-ease:            ease-out !default;
 
 // ---- settings/foundation/buttons/_settings.scss
-// =============================================================================
-// BUTTONS (Settings)
-// =============================================================================
 
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// These scoped variables are created by Bigcommerce.
-// All variables that are not from Foundation should be placed here.
-//
-// 1. Choose whether to include the Bigcommerce class names
-//
-// -----------------------------------------------------------------------------
+$exportCSS--buttons:                    $exportCSS !default; // emit this component's class names
 
-$exportCSS--buttons:                    $exportCSS !default; // 1
-
-//
 // Button Style variables
-// -----------------------------------------------------------------------------
 
 $buttonStyle-default-color:                  color("primary") !default;
 $buttonStyle-default-colorHover:             color("primary") !default;
@@ -662,7 +511,6 @@ $buttonStyle-disabled-borderColorHover:      color("greys", "light") !default;
 $buttonStyle-disabled-borderColorActive:     color("greys", "light") !default;
 
 // Color/State Modifiers
-// -----------------------------------------------------------------------------
 $buttonStyleMap: (
     default: (
         color:                          $buttonStyle-default-color,
@@ -726,7 +574,6 @@ $buttonStyleMap: (
 );
 
 // Size Modifiers
-// -----------------------------------------------------------------------------
 
 $buttonSize-default-fontSize:           fontSize("base") !default;
 $buttonSize-default-horizontalPadding:  spacing("single") !default;
@@ -786,14 +633,10 @@ $button-focus-boxShadow:                0 0 2px rgba(color("primary"), 0.6) !def
 $button-adjacentButton-marginLeft:      spacing("half") !default;
 
 // Foundation Variables
-// -----------------------------------------------------------------------------
-//
 // These variables come directly from:
 // /vendor/foundation/foundation/components/*
 // Declaring the variables here, you can adjust them all to your design,
 // leaving the vendor framework untouched.
-//
-// -----------------------------------------------------------------------------
 
 $include-html-button-classes:           $include-html-classes !default;
 
@@ -810,19 +653,12 @@ $button-border-style:                   solid !default;
 $button-radius:                         $global-radius !default;
 
 // ---- settings/foundation/forms/_settings.scss
-// =============================================================================
-// FORMS (Settings)
-// =============================================================================
 
 // Foundation Variables
-// -----------------------------------------------------------------------------
-//
 // These variables come directly from:
 // /vendor/foundation/foundation/components/*
 // Declaring the variables here, you can adjust them all to your design,
 // leaving the vendor framework untouched.
-//
-// -----------------------------------------------------------------------------
 
 $include-html-form-classes:          $include-html-classes !default;
 
@@ -838,7 +674,6 @@ $form-label-font-color:              $body-font-color !default;
 $form-label-small-transform:         none !default;
 $form-label-bottom-margin:           1rem !default;
 
-// $input-font-family:               inherit !default;
 $input-font-color:                   $body-font-color !default;
 $input-font-size:                    fontSize("base") !default;
 $input-bg-color:                     color("greys", "lightest") !default;
@@ -894,17 +729,7 @@ $glowing-effect-color:               null !default;
 $select-bg-color:                    color("whites", "bright") !default;
 $select-hover-bg-color:              color("whites", "bright") !default;
 
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// These scoped variables are created by Bigcommerce.
-// All variables that are not from Foundation should be placed here.
-//
-// 1. Choose whether to include the Bigcommerce class names
-//
-// -----------------------------------------------------------------------------
-
-$exportCSS--forms:                   $exportCSS !default; // 1
+$exportCSS--forms:                   $exportCSS !default; // emit this component's class names
 
 $form-verticalSpacing:               spacing("single") * 1.5 !default;
 
@@ -956,21 +781,8 @@ $select-focus-borderColor:           $input-focus-border-color !default;
 $select-focus-boxShadow:             $input-focus-boxShadow !default;
 
 // ---- settings/foundation/breadcrumbs/_settings.scss
-// =============================================================================
-// BREADCRUMBS (Settings)
-// =============================================================================
 
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// These scoped variables are created by Bigcommerce.
-// All variables that are not from Foundation should be placed here.
-//
-// 1. Choose whether to include the Bigcommerce class names
-//
-// -----------------------------------------------------------------------------
-
-$exportCSS--breadcrumbs:            $exportCSS !default; // 1
+$exportCSS--breadcrumbs:            $exportCSS !default; // emit this component's class names
 
 $crumb-hover-color:                 color("primary") !default;
 
@@ -986,14 +798,10 @@ $crumb-link-cursor-current:         $cursor-default-value !default;
 $crumb-link-cursor-unavailable:     $cursor-default-value !default;
 
 // Foundation Variables
-// -----------------------------------------------------------------------------
-//
 // These variables come directly from:
 // /vendor/foundation/foundation/components/*
 // Declaring the variables here, you can adjust them all to your design,
 // leaving the vendor framework untouched.
-//
-// -----------------------------------------------------------------------------
 
 $include-html-nav-classes:          $include-html-classes !default;
 
@@ -1025,34 +833,17 @@ $crumb-slash:                       "/" !default;
 $crumb-slash-position:              1px !default;
 
 // ---- settings/foundation/dropdown/_settings.scss
-// =============================================================================
-// DROPDOWN (Settings)
-// =============================================================================
 
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// These scoped variables are created by Bigcommerce.
-// All variables that are not from Foundation should be placed here.
-//
-// 1. Choose whether to include the Bigcommerce class names
-//
-// -----------------------------------------------------------------------------
-
-$exportCSS--dropdown:             $exportCSS !default; // 1
+$exportCSS--dropdown:             $exportCSS !default; // emit this component's class names
 
 $f-dropdown-boxShadow:            0 2px 3px 0 color("greys", "lighter") !default;
 $f-dropdown-marginTop:            -1px !default;
 
 // Foundation Variables
-// -----------------------------------------------------------------------------
-//
 // These variables come directly from:
 // /vendor/foundation/foundation/components/*
 // Declaring the variables here, you can adjust them all to your design,
 // leaving the vendor framework untouched.
-//
-// -----------------------------------------------------------------------------
 
 $include-html-dropdown-classes:   $include-html-classes !default;
 
@@ -1102,31 +893,14 @@ $f-dropdown-content-padding:      spacing("half") !default;
 $f-dropdown-radius:               $global-radius !default;
 
 // ---- settings/foundation/dropdown-buttons/_settings.scss
-// =============================================================================
-// DROPDOWN BUTTONS (Settings)
-// =============================================================================
 
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// These scoped variables are created by Bigcommerce.
-// All variables that are not from Foundation should be placed here.
-//
-// 1. Choose whether to include the Bigcommerce class names
-//
-// -----------------------------------------------------------------------------
-
-$exportCSS--dropdown-buttons:           $exportCSS !default; // 1
+$exportCSS--dropdown-buttons:           $exportCSS !default; // emit this component's class names
 
 // Foundation Variables
-// -----------------------------------------------------------------------------
-//
 // These variables come directly from:
 // /vendor/foundation/foundation/components/*
 // Declaring the variables here, you can adjust them all to your design,
 // leaving the vendor framework untouched.
-//
-// -----------------------------------------------------------------------------
 
 $include-html-dropdown-buttons-classes: $include-html-classes !default;
 
@@ -1164,36 +938,17 @@ $dropdown-button-pip-opposite-lrg:      $button-pip-lrg * 3 !default;
 $dropdown-button-pip-top-lrg:           -$button-pip-lrg / 3 !default;
 
 // ---- settings/foundation/split-buttons/_settings.scss
-// =============================================================================
-// DROPDOWN BUTTONS (Settings)
-// =============================================================================
 
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// These scoped variables are created by Bigcommerce.
-// All variables that are not from Foundation should be placed here.
-//
-// 1. Choose whether to include the Bigcommerce class names
-//
-// -----------------------------------------------------------------------------
-
-$exportCSS--split-buttons:           $exportCSS !default; // 1
+$exportCSS--split-buttons:           $exportCSS !default; // emit this component's class names
 
 // Foundation Variables
-// -----------------------------------------------------------------------------
-//
 // These variables come directly from:
 // /vendor/foundation/foundation/components/*
 // Declaring the variables here, you can adjust them all to your design,
 // leaving the vendor framework untouched.
-//
-// -----------------------------------------------------------------------------
 
-// =============================================================================
 // N.B. There are so many bugs in this Foundation component. Half of these variables
 // Aren't even referenced in the Foundation mixins.
-// =============================================================================
 
 $include-html-split-buttons-classes: $include-html-classes !default;
 
@@ -1233,21 +988,8 @@ $split-button-pip-top-lrg:           null !default;
 $split-button-pip-default-float-lrg: -$button-pip-lrg !default;
 
 // ---- settings/foundation/tables/_settings.scss
-// =============================================================================
-// TABLES (Settings)
-// =============================================================================
 
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// These scoped variables are created by Bigcommerce.
-// All variables that are not from Foundation should be placed here.
-//
-// 1. Choose whether to include the Bigcommerce class names
-//
-// -----------------------------------------------------------------------------
-
-$exportCSS--tables:           $exportCSS !default; // 1
+$exportCSS--tables:           $exportCSS !default; // emit this component's class names
 
 $table-width:                 100% !default;
 
@@ -1260,14 +1002,10 @@ $table-row-hover:             container("fill", "dark") !default;
 $table-numericData-textAlign: right !default;
 
 // Foundation Variables
-// -----------------------------------------------------------------------------
-//
 // These variables come directly from:
 // /vendor/foundation/foundation/components/*
 // Declaring the variables here, you can adjust them all to your design,
 // leaving the vendor framework untouched.
-//
-// -----------------------------------------------------------------------------
 
 $include-html-table-classes:  $include-html-classes !default;
 
@@ -1312,30 +1050,13 @@ $table-display:               table-cell !default;
 $table-margin-bottom:         spacing("double") !default;
 
 // ---- settings/foundation/tooltips/_settings.scss
-// =============================================================================
-// TOOLTIPS (Settings)
-// =============================================================================
 
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// These scoped variables are created by Bigcommerce.
-// All variables that are not from Foundation should be placed here.
-//
-// 1. Choose whether to include the Bigcommerce class names
-//
-// -----------------------------------------------------------------------------
-
-$exportCSS--tooltips:          $exportCSS !default; // 1
+$exportCSS--tooltips:          $exportCSS !default; // emit this component's class names
 
 // Foundation Variables
-// -----------------------------------------------------------------------------
-//
 // 2. As Tooltips don't have a Foundation mixin, we need to set the Foundation
 // include classes variable to our export variable, so it selectively exports css
 // for the pattern labs. This outputs Foundations scss, when we state to do so.
-//
-// -----------------------------------------------------------------------------
 
 $include-html-tooltip-classes: $exportCSS--tooltips !default; // 2
 
@@ -1362,19 +1083,6 @@ $tooltip-pip-size:             5px !default;
 $tooltip-max-width:            300px !default;
 
 // ---- settings/foundation/pagination/_settings.scss
-// =============================================================================
-// PAGINATION (Settings)
-// =============================================================================
-
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// These scoped variables are created by Bigcommerce.
-// All variables that are not from Foundation should be placed here.
-//
-// 1. Choose whether to include the Bigcommerce class names
-//
-// -----------------------------------------------------------------------------
 
 $exportCSS--pagination:                  $exportCSS !default;
 
@@ -1383,10 +1091,8 @@ $pagination-display:                     inline-block !default;
 $pagination-link-borderRadius--current:  0 !default;
 
 // Pagination Variables
-// -----------------------------------------------------------------------------
 
 // Foundation Variables
-// -----------------------------------------------------------------------------
 
 $include-pagination-classes:             $include-html-classes !default;
 
@@ -1419,21 +1125,8 @@ $pagination-link-current-cursor:         $cursor-default-value !default;
 $pagination-link-current-active-bg:      none !default;
 
 // ---- settings/foundation/tabs/_settings.scss
-// =============================================================================
-// TABS (Settings)
-// =============================================================================
 
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// These scoped variables are created by Bigcommerce.
-// All variables that are not from Foundation should be placed here.
-//
-// 1. Choose whether to include the Bigcommerce class names
-//
-// -----------------------------------------------------------------------------
-
-$exportCSS--tabs:                                $exportCSS !default; // 1
+$exportCSS--tabs:                                $exportCSS !default; // emit this component's class names
 
 $tab-bg-color:                                   transparent !default;
 
@@ -1454,9 +1147,7 @@ $tab-title-active-font-weight:                   fontWeight("bold") !default;
 $tab-navigation-display:                         block !default;
 $tab-navigation-container-padding:               0 !default;
 
-//
 // Vertical tab settings
-// -----------------------------------------------------------------------------
 
 $tabs--vertical-borderBottom:                    0 !default;
 $tabs--vertical-float:                           $default-float !default;
@@ -1471,7 +1162,6 @@ $tabs-contents--vertical-floatDirection-padding: spacing("single") !default;
 $tabs-contents--vertical-width:                  80% !default;
 
 // Foundation Variables
-// -----------------------------------------------------------------------------
 
 $include-html-tabs-classes:                      $include-html-classes !default;
 
@@ -1490,24 +1180,10 @@ $tabs-content-padding:                           spacing("single") 0 !default;
 $tabs-vertical-navigation-margin-bottom:         spacing("single") !default;
 
 // ---- settings/foundation/orderedList/_settings.scss
-// =============================================================================
-// ORDERED-LIST (Settings)
-// =============================================================================
-
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// These scoped variables are created by Bigcommerce.
-// All variables that are not from Foundation should be placed here.
-//
-// 1. Choose whether to include the Bigcommerce class names
-//
-// -----------------------------------------------------------------------------
 
 $exportCSS--ordered-list:     $exportCSS !default;
 
 // Ordered-List Variables
-// -----------------------------------------------------------------------------
 
 // ordered list
 $list-style-type:             "decimal" !default;
@@ -1525,24 +1201,10 @@ $ol-item-counter-font-size:   fontSize("base") !default;
 $ol-item-counter-margin:      0 spacing("half") 0 0 !default;
 
 // Foundation Variables
-// -----------------------------------------------------------------------------
 
 // ---- settings/foundation/modal/_settings.scss
-// =============================================================================
-// MODAL (Settings)
-// =============================================================================
 
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// These scoped variables are created by Bigcommerce.
-// All variables that are not from Foundation should be placed here.
-//
-// 1. Choose whether to include the Bigcommerce class names
-//
-// -----------------------------------------------------------------------------
-
-$exportCSS--modal:                 $exportCSS !default; // 1
+$exportCSS--modal:                 $exportCSS !default; // emit this component's class names
 
 // Color Variables
 $modal-backdrop-color:             color("greys", "darkest") !default;
@@ -1588,14 +1250,10 @@ $modal-footer-link-fontSize:       fontSize("smaller") !default;
 $modal-footer-link-margin:         spacing("single") !default;
 
 // Foundation Variables
-// -----------------------------------------------------------------------------
-//
 // These variables come directly from:
 // /vendor/foundation/foundation/components/*
 // Declaring the variables here, you can adjust them all to your design,
 // leaving the vendor framework untouched.
-//
-// -----------------------------------------------------------------------------
 
 $include-html-reveal-classes:      $include-html-classes !default;
 
@@ -1631,31 +1289,14 @@ $reveal-modal-class:               "modal" !default;
 $close-reveal-modal-class:         "modal-close" !default;
 
 // ---- settings/foundation/progress-bars/_settings.scss
-// =============================================================================
-// PROGRESS BARS (Settings)
-// =============================================================================
 
-// Bigcommerce Variables
-// -----------------------------------------------------------------------------
-//
-// These scoped variables are created by Bigcommerce.
-// All variables that are not from Foundation should be placed here.
-//
-// 1. Choose whether to include the Bigcommerce class names
-//
-// -----------------------------------------------------------------------------
-
-$exportCSS--progress-bars:              $exportCSS !default; // 1
+$exportCSS--progress-bars:              $exportCSS !default; // emit this component's class names
 
 // Foundation Variables
-// -----------------------------------------------------------------------------
-//
 // These variables come directly from:
 // /vendor/foundation/foundation/components/*
 // Declaring the variables here, you can adjust them all to your design,
 // leaving the vendor framework untouched.
-//
-// -----------------------------------------------------------------------------
 
 $include-html-media-classes: $include-html-classes !default;
 
