@@ -55,7 +55,7 @@ Expected harmless differences: `999px` radius becomes `calc(infinity * 1px)` wit
 
 ## 6. SCSS variables in Tailwind (the bridge)
 
-- `npm run generate-bridge` emits every top-level `$variable` in `assets/scss/settings/**` and Citadel's `settings/global/**` that has a value (not `null`, boolean, map, empty) as `--sv-<name>` on `:root`. `npm run check-bridge` fails when the file is stale: run it after adding or renaming a settings variable.
+- `npm run generate-bridge` emits every top-level `$variable` in `assets/scss/_settings-global.scss` and `_settings.scss` and Citadel's `settings/global/**` that has a value (not `null`, boolean, map, empty) as `--sv-<name>` on `:root`. `npm run check-bridge` fails when the file is stale: run it after adding or renaming a settings variable.
 - Raw access: `bg-(--sv-color-primary)`, `p-(--sv-gutter)`.
 - Readable names live in the `@theme inline reference` block in `assets/scss/_tailwind.scss`. **Promotion rule:** an arbitrary `x-(--sv-foo)` used at 2 or more sites gets a named entry there (kebab-case name, value `var(--sv-foo)`).
 - Variables declared in component partials (not settings) are not bridged. Convert such a value to a literal utility or a local custom property.

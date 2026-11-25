@@ -1,80 +1,31 @@
 /*
- * `important`: every utility is `!important`. The theme's own legacy SCSS is gone (R3-2: everything lives in the layers of this file), but the
- * live store injects UNLAYERED inline CSS on theme class names (variant-selector swatches, `.form-option-variant`, `.previewCartList`, `.productView-*`,
- * list margins ...). Unlayered rules beat every layered rule, so without `important` those store rules win. R3-2 measured it: dropping `important`
- * changed 870 computed values on 20 of 52 page states (product page radius 12px -> 10px and swatch sizes, list margin-bottom 11px -> 0 on category and
- * search). Keep it until the store stops injecting CSS.
+ * `important`: every utility is `!important`. The live store injects unlayered CSS on theme class names (swatches, `.form-option-variant`, `.productView-*`,
+ * list margins ...), and unlayered rules beat every layered rule, so without `important` those store rules win (measured: 870 computed values changed on
+ * 20 of 52 page states). Keep it until the store stops injecting CSS.
  */
 @import "tailwindcss" important source(none);
 
 /*
- * source(none) turns off automatic detection: with it Tailwind scanned every file, saw legacy class names that are also utility names
- * (container, table, hidden, block, flex, grid ...) and emitted them, and with `important` they overrode the legacy CSS site-wide
- * (pilot diff: the product column changed width). Only folders already converted are listed here. Add a folder when you convert it.
+ * source(none) turns off automatic detection: scanning every file picked up legacy class names that are also utility names (container, table, hidden,
+ * block ...) and, with `important`, they overrode the markup site-wide. Utilities come from the three roots below (templates, shared helpers, and the
+ * JS files that hold class bundles for runtime-created markup).
  */
-@source "../../src/templates/components/products/options";
-@source "../../src/templates/components/cart";
-@source "../../src/templates/pages/cart.tsx";
-@source "../../src/templates/components/account";
-@source "../../src/templates/pages/account";
-@source "../../src/templates/pages/auth";
-@source "../../src/templates/components/gift-certificate";
-@source "../../src/templates/pages/gift-certificate";
-@source "../../src/templates/components/products";
-@source "../../src/templates/components/common";
-@source "../../src/templates/layout";
-@source "../../src/templates/components/blog";
-@source "../../src/templates/components/page";
-@source "../../src/templates/pages/search.tsx";
-@source "../../src/templates/components/faceted-search";
-@source "../../src/templates/components/category";
-@source "../../src/templates/components/brand";
-@source "../../src/templates/pages/compare.tsx";
-@source "../../src/templates/components/search";
-@source "../../src/templates/pages/brands.tsx";
-@source "../../src/templates/pages/checkout.tsx";
-@source "../../src/templates/pages/order-confirmation.tsx";
-@source "../../src/templates/pages/account/orders/invoice.tsx";
-@source "../../src/templates/pages/blog.tsx";
-@source "../../src/templates/pages/brand.tsx";
-@source "../../src/templates/pages/category.tsx";
-@source "../../src/templates/pages/contact-us.tsx";
-@source "../../src/templates/pages/errors";
-@source "../../src/templates/pages/page.tsx";
-@source "../../src/templates/pages/subscribed.tsx";
-@source "../../src/templates/pages/unavailable";
-@source "../../src/templates/pages/unsubscribe.tsx";
-@source "../../src/templates/pages/home.tsx";
-@source "../../src/server/navParts.tsx";
-@source "../../src/server/formParts.tsx";
-@source "../../src/server/componentParts.tsx";
-@source "../../src/templates/components/carousel.tsx";
-@source "../../src/templates/components/carousel-content.tsx";
-@source "../../src/templates/components/carousel-content-announcement.tsx";
-@source "../../src/templates/components/carousel-play-pause-button.tsx";
-@source "../../src/templates/components/sitemap/links.tsx";
-@source "../../src/templates/pages/blog-post.tsx";
-@source "../../src/templates/pages/product.tsx";
-@source "../../src/templates/pages/sitemap.tsx";
+@source "../../src/templates";
+@source "../../src/server";
 @source "../../assets/js/theme/common/form-classes.js";
 @source "../../assets/js/theme/common/runtime-classes.js";
-@source "../../src/server/runtimeParts.tsx";
-@source "../../src/server/carouselParts.ts";
 /*
- * Words in attributes and comments of a listed folder (`type="hidden"`, "containing block") are also picked up as candidates. With `important` an
- * emitted `.hidden` or `.block` would override third-party and merchant markup site-wide, so such strays are excluded here. The test in
- * scripts/tailwind/theme.test.mjs fails when a utility is emitted that no className uses: add its name to this list.
+ * Words in attributes and comments of a source file (`type="hidden"`, "containing block") are also taken as candidates. With `important` an emitted
+ * `.hidden` or `.block` would override third-party and merchant markup, so such strays are excluded here. scripts/tailwind/theme.test.mjs fails when a
+ * utility is emitted that no className uses: add its name to this list.
  */
 @source not inline("block hidden table fixed container visible grid");
 
 /*
- * Normalisation on top of Preflight, in the base layer. Declared after the import, so on equal
- * specificity these win over Preflight. Unlayered legacy CSS still beats the whole layer.
- *
- * 1. Remainder of Citadel's normalize.css v3.0.3 (MIT, github.com/necolas/normalize.css): only what
- *    Preflight does not already set to the same value. Where both set a property to a DIFFERENT value
- *    (h1, b/strong, figure, fieldset, monospace fonts, video/canvas/audio) the old value is kept.
- * 2. Legacy compat: browser defaults Preflight removes that the legacy CSS relied on.
+ * Normalisation on top of Preflight, in the base layer (declared after the import, so it wins on equal specificity):
+ * 1. The remainder of Citadel's normalize.css v3.0.3 (MIT): only what Preflight does not already set to the same value. Where both differ (h1, b/strong,
+ *    figure, fieldset, monospace fonts, video/canvas/audio) the old value is kept.
+ * 2. Browser defaults Preflight removes that the markup still relies on.
  * Delete a rule once nothing depends on it.
  */
 @layer base {
@@ -229,15 +180,12 @@
     input, select, textarea {
         background-color: revert;
     }
-}
 
-/*
- * R3-2: Foundation's and Citadel's element rules (components global, type, orderedList and the Stencil additions to them), re-expressed on --sv-*
- * variables in the base layer, after Preflight and the normalize remainder above. Dropped because Preflight already sets the same value:
- * `*, *:before, *:after { box-sizing }`, the `div, dl, ... td { margin: 0; padding: 0 }` reset, `html, body { height }` (auto either way).
- * Rules with a pseudo-class are in the components layer below (they beat class rules by specificity in the old cascade).
- */
-@layer base {
+    /*
+     * Foundation's and Citadel's element rules, re-expressed on --sv-* variables, after Preflight and the normalize remainder above. Preflight already sets
+     * `*, *:before, *:after { box-sizing }`, the `div, dl, ... td { margin: 0; padding: 0 }` reset and `html, body { height }`, so those are dropped.
+     * Rules with a pseudo-class are in the components layer below (they beat class rules by specificity).
+     */
     html {
         font-size: var(--sv-html-fontSize);
     }
@@ -659,16 +607,13 @@
 
 @layer components {
     /*
-     * R4-1: what stays of the Citadel/Foundation buttons and forms. Everything else is utilities (src/server/formParts.tsx and the TSX under
-     * src/templates). Non-important rules on purpose:
-     * - border-radius of `.button` and `.form-input`: the live store injects non-important `:not(#pseudoID)` radius rules (100vmax) on buttons and on
-     *   the inputs of search and newsletter forms that must keep winning, and they are absent on error pages, where this radius shows. An
-     *   important utility would beat the store.
-     * - padding of `.form-fieldset`: the store sets its own (footer newsletter form) non-importantly; error pages do not carry that rule.
-     * - `.button`: merchant-authored page content (/contact-support/, the account banner) contains bare `<a class="button">` markup that cannot
-     *   take utilities. The theme's own buttons carry the same values as utilities.
-     * - `.form-inlineMessage`: nod.js creates it at runtime in forms that have no `.form-field` as well (cart coupon and gift certificate, faceted
-     *   price range); the error and success colours and icon are utilities on FormField.
+     * Rules kept as plain CSS because the markup they style is not ours or the store competes with them. Non-important on purpose, so the store's own
+     * non-important rules keep winning where they exist:
+     * - border-radius of `.button` and `.form-input`: the store injects `:not(#pseudoID)` radius rules (100vmax) on buttons and on the inputs of the search
+     *   and newsletter forms; error pages do not carry them, so this radius shows there.
+     * - padding of `.form-fieldset`: the store sets its own (footer newsletter form); error pages do not carry it.
+     * - `.button`: merchant page content (/contact-support/, the account banner) has bare `<a class="button">` that cannot take utilities.
+     * - `.form-inlineMessage`: see below.
      */
     .button {
         -webkit-appearance: none;
@@ -766,11 +711,7 @@
         padding: var(--sv-fieldset-padding);
     }
 
-    /*
-     * R4-2/R5: the modal, alert, panel, card and nav helpers are utilities (src/server/componentParts.tsx). Runtime-created markup (loading overlay, hidden helpers,
-     * hide-content) carries utility bundles from assets/js/theme/common/runtime-classes.js; the modal backdrop and the nod.js messages are styled by variants on <body>
-     * (layout/base.tsx). What stays here: the spinner keyframes, referenced by the loading overlay bundle, and the merchant inline-tabs widget (injected markup).
-     */
+    /* Spinner of the loading overlay (bundle in assets/js/theme/common/runtime-classes.js). */
     @keyframes loadingOverlay-spin {
         0% {
             transform: translateY(-50%) rotate(0deg);
@@ -781,7 +722,7 @@
         }
     }
 
-    /* Tabs (was foundation/tabs; the vertical variants are dropped) */
+    /* Tabs: the merchant inline-tabs widget on the home page is injected markup, and the store styles it as well (measured), so it stays plain CSS. */
     .tabs {
         border-bottom: var(--sv-tabs-bottom-border);
         margin: var(--sv-tabs-margin);
@@ -856,14 +797,7 @@
         float: none;
     }
 
-}
 
-/*
- * R3-2: the remaining theme partials and the pseudo-class element rules of Foundation's type/global, in the components layer. They come after the
- * R3-1a/R3-1b rules above, as the SCSS imports did, so equal-specificity ties resolve as before. Merchant settings arrive as --sv-* (the bridge);
- * the few values derived with Sass functions (image-size ratios, widths) are --sv-derived-* from settings/global/_derived-vars.scss.
- */
-@layer components {
     /* element rules that carry a pseudo-class: they beat single-class rules by specificity, so they cannot sit in the base layer */
     a:hover {
         cursor: var(--sv-cursor-pointer-value);
@@ -878,8 +812,6 @@
         outline: none;
     }
 
-    /* modal: the alert modal's icon keyframes are referenced by utilities in the TSX; cart.js adds .hide-content to .modal-content */
-    /* the merchant "inline-tabs" widget on the home page is injected markup (li.tab, a.tab-title) */
     .tab {
         border-top: var(--sv-tab-active-border);
         float: none;
@@ -935,9 +867,7 @@
     }
 
     /* nod.js creates .form-inlineMessage at runtime (inside forms that have no .form-field too: cart coupon and gift certificate, faceted price range), so it cannot carry utilities */
-}
 
-@layer components {
     /* the merchant injects a div.container on the account page (a bare class that cannot take utilities); the theme's own columns use the Container helper (componentParts.tsx) */
     .container {
         margin-left: auto;

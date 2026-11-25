@@ -1,0 +1,1140 @@
+// =============================================================================
+// COMPONENT SETTINGS
+// =============================================================================
+// Colour map, carousel, Foundation, Citadel and Stencil component variables. Loaded after Citadel's own defaults so these values win.
+// The bridge (npm run generate-bridge) re-emits the variables the markup reads as --sv-* custom properties; the rest feed those values.
+
+// Colour map
+// Named colour lookups (`colorMap`, link colours) built from the palette.
+$colorMap-link: (
+    link: (
+        base:                       $color-textBase,
+        hover:                      $color-textBase-hover,
+        active:                     $color-textBase-active,
+        text:                       $color-textLink,
+        text-hover:                 $color-textLink-hover,
+        text-active:                $color-textLink-active
+    )
+);
+
+$colorMap: map-merge($colorMap, $colorMap-link);
+
+// Carousel (slick)
+// Arrow and dot colours, play/pause button colours and arrow offsets of the hero and product carousels.
+$slick-arrow-color:                     stencilColor("carousel-arrow-color");
+$slick-arrow-color-hover:               stencilColor("carousel-arrow-color--hover");
+$slick-arrow-bgColor:                   rgba(stencilColor("carousel-arrow-bgColor"), 0.9);
+$slick-arrow-borderColor:               stencilColor("carousel-arrow-borderColor");
+$slick-play-pause-button-color:         stencilColor("carousel-play-pause-button-textColor");
+$slick-play-pause-button-color-hover:   stencilColor("carousel-play-pause-button-textColor--hover");
+$slick-play-pause-button-bgColor:       rgba(stencilColor("carousel-play-pause-button-bgColor"), 0.9);
+$slick-play-pause-button-borderColor:   stencilColor("carousel-play-pause-button-borderColor");
+$slick-dot-color:                       stencilColor("carousel-dot-color");
+$slick-dot-color-active:                stencilColor("carousel-dot-color-active");
+$slick-dot-bgColor:                     rgba(stencilColor("carousel-dot-bgColor"), 0.9);
+$slick-arrows-offset:                   -5px;
+
+$carousel-bgColor:              stencilColor("carousel-bgColor");
+$carousel-description-color:    stencilColor("carousel-description-color");
+$carousel-title-color:          stencilColor("carousel-title-color");
+
+// Foundation base
+// Text direction, root size, figure/figcaption margins and the default float used by other Foundation settings.
+$exportCSS--global:             true;
+
+$figure-marginTop:                  spacing("single") + spacing("third");
+$figure-marginBottom:               spacing("single") + spacing("third");
+$figure-figcaption-marginBottom:    -(spacing("third"));
+$figcaption-marginTop:              spacing("half");
+$figcaption-color:                  color("greys", "light");
+
+$rem-base:                      $fontSize-root;
+
+$namespace:                     false;
+
+$base-font-size:                fontSize("base");
+
+$base-line-height:              lineHeight("base");
+
+$primary-color:                 color("primary");
+$secondary-color:               null;
+$alert-color:                   color("error");
+$success-color:                 color("success");
+$warning-color:                 null;
+$info-color:                    null;
+
+$text-direction:                ltr;
+$default-float:                 left;
+$opposite-direction:            right;
+@if $text-direction == ltr {
+    $default-float:             left;
+    $opposite-direction:        right;
+}
+@else {
+    $default-float:             right;
+    $opposite-direction:        left;
+}
+
+$global-radius:                 4px;
+
+$shiny-edge-size:               null;
+$shiny-edge-color:              null;
+$shiny-edge-active-color:       null;
+
+$include-html-classes:          false;
+$include-print-styles:          false;
+$include-html-global-classes:   $include-html-classes;
+
+$cursor-auto-value:             auto;
+$cursor-crosshair-value:        crosshair;
+$cursor-default-value:          default;
+$cursor-pointer-value:          pointer;
+$cursor-help-value:             help;
+$cursor-text-value:             text;
+
+$figure-margin:                 0 0 spacing("single");
+
+// Headings and text
+// Heading sizes and margins, paragraph, small, hr, blockquote, code and link colours/weights.
+$exportCSS--type:               true;
+
+$html-fontSize:                 $fontSize-root;
+$html-fontSize--smallUp:        $fontSize-root;
+$html-fontSize--mediumUp:       $fontSize-root;
+$html-fontSize--largeUp:        $fontSize-root;
+
+$body-fontSize:                 fontSize("base");
+
+$code-font-size:                null;
+
+$anchor-transition:             color 0.15s ease;
+
+$blockquote-borderColor:        null;
+$blockquote-borderStyle:        null;
+$blockquote-borderWidth:        null;
+$blockquote-fontSize:           fontSize("large");
+$blockquote-fontWeight:         null;
+$blockquote-lineHeight:         lineHeight("large");
+$blockquote-margin:             null;
+
+$blockquote-cite-content:       null;
+$blockquote-cite-margin:        spacing("third") 0 0;
+$blockquote-cite-lineHeight:    lineHeight("base");
+
+$heading-marginTop:             spacing("single") + spacing("half");
+$heading-textTransform:         uppercase;
+
+$font-family-sans-serif:        fontFamily("sans");
+$font-family-serif:             fontFamily("serif");
+$font-family-monospace:         fontFamily("mono");
+
+$font-weight-normal:            fontWeight("normal");
+$font-weight-bold:              fontWeight("bold");
+
+$body-bg:                       stencilColor("body-bg");
+$body-font-color:               stencilColor("color-textBase");
+$body-font-family:              stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+$body-font-weight:              stencilFontWeight("body-font");
+$body-font-style:               null;
+
+$font-smoothing:                antialiased;
+
+$header-font-family:            stencilFontFamily("headings-font"), Arial, Helvetica, sans-serif;
+$header-font-weight:            stencilFontWeight("headings-font");
+$header-font-style:             null;
+$header-font-color:             stencilColor("color-textHeading");
+$header-line-height:            null;
+$header-top-margin:             spacing("double");
+$header-bottom-margin:          spacing("half");
+$header-text-rendering:         null;
+$header-letter-spacing:         letterSpacing("small");
+
+$h1-font-size:                  fontSize("largest");
+$h2-font-size:                  fontSize("larger");
+$h3-font-size:                  fontSize("large");
+$h4-font-size:                  fontSize("small");
+$h5-font-size:                  fontSize("smaller");
+$h6-font-size:                  fontSize("smallest");
+
+$subheader-line-height:         lineHeight("small");
+$subheader-font-color:          stencilColor("subheader-font-color");
+$subheader-font-weight:         fontWeight("normal");
+$subheader-bottom-margin:       spacing("half");
+
+$small-font-size:               60%;
+$small-font-color:              stencilColor("color-textSecondary");
+
+$paragraph-font-family:         null;
+$paragraph-font-weight:         null;
+$paragraph-font-size:           null;
+$paragraph-line-height:         null;
+$paragraph-margin-bottom:       spacing("single");
+$paragraph-aside-font-size:     null;
+$paragraph-aside-line-height:   null;
+$paragraph-aside-font-style:    null;
+$paragraph-text-rendering:      null;
+
+$code-color:                    null;
+$code-font-family:              null;
+$code-font-weight:              null;
+$code-background-color:         null;
+$code-border-size:              null;
+$code-border-style:             null;
+$code-border-color:             null;
+$code-padding:                  null;
+
+$anchor-text-decoration:        underline;
+$anchor-text-decoration-hover:  null;
+$anchor-font-color:             color("link", "text");
+$anchor-font-color-hover:       color("link", "text-hover");
+
+$hr-border-width:               container("borderSize");
+$hr-border-style:               solid;
+$hr-border-color:               container("borderColor");
+$hr-margin:                     spacing("single") + spacing("third");
+
+$list-font-family:              null;
+$list-font-size:                null;
+$list-line-height:              null;
+$list-margin-bottom:            spacing("single");
+$list-style-position:           outside;
+$list-side-margin:              1.15rem;
+$list-ordered-side-margin:      1.15rem;
+$list-side-margin-no-bullet:    0;
+$list-nested-margin:            1.2rem;
+$definition-list-header-weight: fontWeight("bold");
+$definition-list-header-margin-bottom: spacing("quarter");
+$definition-list-margin-bottom: spacing("single");
+
+$blockquote-font-color:         null;
+$blockquote-padding:            null;
+$blockquote-border:             null;
+$blockquote-cite-font-size:     fontSize("base");
+$blockquote-cite-font-color:    stencilColor("blockquote-cite-font-color");
+$blockquote-cite-link-color:    null;
+
+$acronym-underline:             1px dotted color("greys", "lighter");
+
+$microformat-padding:           null;
+$microformat-margin:            null;
+
+$microformat-border-width:      null;
+$microformat-border-style:      null;
+$microformat-border-color:      null;
+
+$microformat-fullname-font-weight:  null;
+$microformat-fullname-font-size:    null;
+
+$microformat-summary-font-weight:   null;
+
+$microformat-abbr-padding:          null;
+
+$microformat-abbr-font-weight:      null;
+$microformat-abbr-font-decoration:  null;
+
+// Inline lists
+// Spacing between items of horizontal lists.
+$exportCSS--inlineList:            true;
+
+// Grid
+// Row width, column count and gutter.
+$exportCSS--grid:               true;
+
+$include-html-grid-classes:     $include-html-classes;
+$include-xl-html-grid-classes:  false;
+
+$row-width:                     layout("max");
+$total-columns:                 12;
+$column-gutter:                 spacing("single");
+
+$last-child-float:              $opposite-direction;
+
+// Panels
+// Panel padding, borders, background and heading styles.
+$include-html-panel-classes:     $include-html-classes;
+
+$panel-bg:                       container("fill", "dark");
+$panel-border-style:             null;
+$panel-border-size:              null;
+
+$panel-border-color:             null;
+
+$panel-margin-bottom:            container("margin");
+$panel-paddingHorizontal:        container("padding", "large");
+$panel-paddingVertical:          container("padding");
+$panel-padding:                  spacing("base") $panel-paddingHorizontal $panel-paddingVertical;
+
+$panel-font-color:               null;
+$panel-font-color-alt:           null;
+
+$panel-header-adjust:            false;
+$callout-panel-link-color:       null;
+
+$exportCSS--panels:              true;
+
+$panel-boxShadow:                null;
+
+$panel-header-bg:                $panel-bg;
+$panel-header-borderColor:       null;
+$panel-header-borderStyle:       null;
+$panel-header-borderWidth:       null;
+$panel-header-margin:            0;
+$panel-header-paddingHorizontal: $panel-paddingHorizontal;
+$panel-header-paddingVertical:   $panel-paddingVertical;
+$panel-header-padding:           $panel-header-paddingVertical $panel-header-paddingHorizontal 0;
+
+$panel-title-lineHeight:         lineHeight("base");
+$panel-title-margin:             0;
+
+$callout-panel-bg:               null;
+$callout-panel-titleColor:       null;
+$callout-panel-headerBg:         null;
+$callout-panel-headerColor:      null;
+
+// Accordion
+// Title/content padding, borders, icon and colours of the accordion.
+$exportCSS--accordion:                          true;
+
+$accordion-borderColor:                         container("borderColor", "base");
+$accordion-borderStyle:                         container("borderStyle");
+$accordion-borderWidth:                         1px;
+$accordion-border:                              $accordion-borderColor $accordion-borderStyle;
+$accordion-margin:                              0 0 spacing("single");
+
+$accordion-navigation-borderColor:              $accordion-borderColor;
+$accordion-navigation-borderStyle:              $accordion-borderStyle;
+$accordion-navigation-borderWidth:              1px 0;
+$accordion-navigation-border:                   $accordion-border;
+$accordion-navigation-paddingHorizontal:        (container("padding") + spacing("quarter"));
+$accordion-navigation-paddingVertical:          container("padding");
+
+$accordion-title-fontWeight:                    $font-weight-bold;
+$accordion-title-lineHeight:                    lineHeight("small");
+$accordion-title-padding:                       $accordion-navigation-paddingVertical $accordion-navigation-paddingHorizontal;
+
+$accordion-content-borderColor:                 $accordion-borderColor;
+$accordion-content-borderStyle:                 $accordion-borderStyle;
+$accordion-content-borderWidth:                 0 0 1px;
+$accordion-content-border:                      $accordion-border;
+
+$accordion-navigation-padding:                  $accordion-navigation-paddingHorizontal;
+$accordion-navigation-bg-color:                 container("fill");
+$accordion-navigation-hover-bg-color:           container("fill", "dark");
+$accordion-navigation-active-bg-color:          container("fill");
+$accordion-navigation-font-color:               stencilColor("color-textBase");
+$accordion-navigation-font-size:                fontSize("base");
+$accordion-navigation-font-family:              fontFamily("sans");
+
+$accordion-content-padding:                     container("padding", "large");
+$accordion-content-active-bg-color:             null;
+
+$accordion-navList-borderWidth:                 1px;
+$accordion-navList-spacing:                     spacing("single") + spacing("third");
+$accordion-navList-padding:                     spacing("base");
+
+// Alerts
+// Alert box spacing, borders, icon and the colour of each type (error, info, success, warning).
+$exportCSS--alerts:                true;
+
+$alert-generic-bgColor:            color("greys", "lightest");
+$alert-generic-iconColor:          color("greys", "light");
+
+$alert-info-bgColor:               color("info");
+$alert-info-iconColor:             color("info", "light");
+
+$alert-success-bgColor:            color("success", "light");
+$alert-success-iconColor:          color("success");
+
+$alert-warning-bgColor:            color("warning", "light");
+$alert-warning-iconColor:          color("warning");
+
+$alert-error-bgColor:              color("error", "light");
+$alert-error-iconColor:            color("error");
+
+$alert-iconSize:                   20px;
+$alert-button-margin:              0 0 0 spacing("half");
+$alert-column-textAlign:           center;
+$alert-message-textAlign:          left;
+$alert-message-margin:             0;
+$alert-heading-margin:             0;
+$alert-close-cursor:               $cursor-pointer-value;
+$alert-close-iconSize:             20px;
+
+$include-html-alert-classes:       $include-html-classes;
+
+$alert-padding-top:                spacing("half");
+$alert-padding-default-float:      spacing("half") + spacing("quarter");
+$alert-padding-opposite-direction: $alert-padding-default-float;
+$alert-padding-bottom:             $alert-padding-top;
+
+$alert-font-weight:                $font-weight-normal;
+$alert-font-size:                  fontSize("base");
+$alert-font-color:                 stencilColor("alert-color");
+$alert-font-color-alt:             stencilColor("alert-color-alt");
+
+$alert-function-factor:            0%;
+
+$alert-border-style:               none;
+$alert-border-width:               null;
+$alert-border-color:               null;
+$alert-bottom-margin:              spacing("half");
+
+$alert-close-color:                color("greys");
+$alert-close-top:                  null;
+$alert-close-position:             null;
+$alert-close-font-size:            null;
+$alert-close-opacity:              null;
+$alert-close-opacity-hover:        null;
+$alert-close-padding:              null;
+$alert-close-background:           null;
+
+$alert-radius:                     4px;
+
+$alert-transition-speed:           300ms;
+$alert-transition-ease:            ease-out;
+
+// Buttons
+// Button sizes, padding, radius, font, colours per style (default, primary, disabled) and hover/active states.
+$exportCSS--buttons:                    true;
+
+$buttonStyle-default-color:                  stencilColor("button--default-color");
+$buttonStyle-default-colorHover:             stencilColor("button--default-colorHover");
+$buttonStyle-default-colorActive:            stencilColor("button--default-colorActive");
+$buttonStyle-default-backgroundColor:        transparent;
+$buttonStyle-default-backgroundColorHover:   transparent;
+$buttonStyle-default-backgroundColorActive:  transparent;
+$buttonStyle-default-borderColor:            stencilColor("button--default-borderColor");
+$buttonStyle-default-borderColorHover:       stencilColor("button--default-borderColorHover");
+$buttonStyle-default-borderColorActive:      stencilColor("button--default-borderColorActive");
+
+$buttonStyle-primary-color:                  stencilColor("button--primary-color");
+$buttonStyle-primary-colorHover:             stencilColor("button--primary-colorHover");
+$buttonStyle-primary-colorActive:            stencilColor("button--primary-colorActive");
+$buttonStyle-primary-backgroundColor:        stencilColor("button--primary-backgroundColor");
+$buttonStyle-primary-backgroundColorHover:   stencilColor("button--primary-backgroundColorHover");
+$buttonStyle-primary-backgroundColorActive:  stencilColor("button--primary-backgroundColorActive");
+$buttonStyle-primary-borderColor:            stencilColor("button--primary-backgroundColor");
+$buttonStyle-primary-borderColorHover:       stencilColor("button--primary-backgroundColorHover");
+$buttonStyle-primary-borderColorActive:      stencilColor("button--primary-backgroundColorActive");
+
+$buttonStyle-disabled-color:                 stencilColor("button--disabled-color");
+$buttonStyle-disabled-colorHover:            null;
+$buttonStyle-disabled-colorActive:           null;
+$buttonStyle-disabled-backgroundColor:       stencilColor("button--disabled-backgroundColor");
+$buttonStyle-disabled-backgroundColorHover:  null;
+$buttonStyle-disabled-backgroundColorActive: null;
+$buttonStyle-disabled-borderColor:           stencilColor("button--disabled-borderColor");
+$buttonStyle-disabled-borderColorHover:      null;
+$buttonStyle-disabled-borderColorActive:     null;
+
+$buttonStyle-tertiary-color:                 null;
+$buttonStyle-tertiary-colorHover:            null;
+$buttonStyle-tertiary-colorActive:           null;
+$buttonStyle-tertiary-backgroundColor:       null;
+$buttonStyle-tertiary-backgroundColorHover:  null;
+$buttonStyle-tertiary-backgroundColorActive: null;
+$buttonStyle-tertiary-borderColor:           null;
+$buttonStyle-tertiary-borderColorHover:      null;
+$buttonStyle-tertiary-borderColorActive:     null;
+
+$buttonStyle-action-color:                   null;
+$buttonStyle-action-colorHover:              null;
+$buttonStyle-action-colorActive:             null;
+$buttonStyle-action-backgroundColor:         null;
+$buttonStyle-action-backgroundColorHover:    null;
+$buttonStyle-action-backgroundColorActive:   null;
+$buttonStyle-action-borderColor:             null;
+$buttonStyle-action-borderColorHover:        null;
+$buttonStyle-action-borderColorActive:       null;
+
+$buttonSize-default-fontSize:           fontSize("base");
+$buttonSize-default-horizontalPadding:  spacing("single") + spacing("half");
+$buttonSize-default-verticalPadding:    spacing("third") + spacing("quarter");
+
+$buttonSize-large-fontSize:             fontSize("smaller");
+$buttonSize-large-horizontalPadding:    null;
+$buttonSize-large-verticalPadding:      null;
+
+$buttonSize-small-fontSize:             fontSize("smallest");
+$buttonSize-small-horizontalPadding:    spacing("single");
+$buttonSize-small-verticalPadding:      spacing("quarter") + spacing("eighth");
+
+$buttonSize-tiny-fontSize:              null;
+$buttonSize-tiny-horizontalPadding:     null;
+$buttonSize-tiny-verticalPadding:       null;
+
+$buttonSize-square-fontSize:            fontSize("base");
+$buttonSize-square-horizontalPadding:   spacing("half");
+$buttonSize-square-verticalPadding:     spacing("half");
+
+$button-vAlign:                         middle;
+$button-focus-boxShadow:                null;
+
+$button-adjacentButton-marginLeft:      spacing("half");
+
+$include-html-button-classes:           $include-html-classes;
+
+$button-display:                        inline-block;
+$button-margin-bottom:                  spacing("base");
+
+$button-font-family:                    fontFamily("headingSans");
+$button-font-weight:                    fontWeight("normal");
+$button-font-align:                     center;
+
+$button-border-width:                   1px;
+$button-border-style:                   solid;
+
+$button-radius:                         $global-radius;
+
+$buttonStyleMap: (
+    default: (
+        color:                          $buttonStyle-default-color,
+        colorHover:                     $buttonStyle-default-colorHover,
+        colorActive:                    $buttonStyle-default-colorActive,
+        backgroundColor:                $buttonStyle-default-backgroundColor,
+        backgroundColorHover:           $buttonStyle-default-backgroundColorHover,
+        backgroundColorActive:          $buttonStyle-default-backgroundColorActive,
+        borderColor:                    $buttonStyle-default-borderColor,
+        borderColorHover:               $buttonStyle-default-borderColorHover,
+        borderColorActive:              $buttonStyle-default-borderColorActive
+    ),
+
+    primary: (
+        color:                          $buttonStyle-primary-color,
+        colorHover:                     $buttonStyle-primary-colorHover,
+        colorActive:                    $buttonStyle-primary-colorActive,
+        backgroundColor:                $buttonStyle-primary-backgroundColor,
+        backgroundColorHover:           $buttonStyle-primary-backgroundColorHover,
+        backgroundColorActive:          $buttonStyle-primary-backgroundColorActive,
+        borderColor:                    $buttonStyle-primary-borderColor,
+        borderColorHover:               $buttonStyle-primary-borderColorHover,
+        borderColorActive:              $buttonStyle-primary-borderColorActive
+    ),
+
+    disabled: (
+        color:                          $buttonStyle-disabled-color,
+        colorHover:                     $buttonStyle-disabled-colorHover,
+        colorActive:                    $buttonStyle-disabled-colorActive,
+        backgroundColor:                $buttonStyle-disabled-backgroundColor,
+        backgroundColorHover:           $buttonStyle-disabled-backgroundColorHover,
+        backgroundColorActive:          $buttonStyle-disabled-backgroundColorActive,
+        borderColor:                    $buttonStyle-disabled-borderColor,
+        borderColorHover:               $buttonStyle-disabled-borderColorHover,
+        borderColorActive:              $buttonStyle-disabled-borderColorActive
+    ),
+
+    tertiary: (
+        color:                          $buttonStyle-tertiary-color,
+        colorHover:                     $buttonStyle-tertiary-colorHover,
+        colorActive:                    $buttonStyle-tertiary-colorActive,
+        backgroundColor:                $buttonStyle-tertiary-backgroundColor,
+        backgroundColorHover:           $buttonStyle-tertiary-backgroundColorHover,
+        backgroundColorActive:          $buttonStyle-tertiary-backgroundColorActive,
+        borderColor:                    $buttonStyle-tertiary-borderColor,
+        borderColorHover:               $buttonStyle-tertiary-borderColorHover,
+        borderColorActive:              $buttonStyle-tertiary-borderColorActive
+    ),
+
+    action: (
+        color:                          $buttonStyle-action-color,
+        colorHover:                     $buttonStyle-action-colorHover,
+        colorActive:                    $buttonStyle-action-colorActive,
+        backgroundColor:                $buttonStyle-action-backgroundColor,
+        backgroundColorHover:           $buttonStyle-action-backgroundColorHover,
+        backgroundColorActive:          $buttonStyle-action-backgroundColorActive,
+        borderColor:                    $buttonStyle-action-borderColor,
+        borderColorHover:               $buttonStyle-action-borderColorHover,
+        borderColorActive:              $buttonStyle-action-borderColorActive
+    )
+);
+
+$buttonSizeMap: (
+    default: (
+        fontSize:                       $buttonSize-default-fontSize,
+        horizontalPadding:              $buttonSize-default-horizontalPadding,
+        verticalPadding:                $buttonSize-default-verticalPadding
+    ),
+
+    large: (
+        fontSize:                       $buttonSize-large-fontSize,
+        horizontalPadding:              $buttonSize-large-horizontalPadding,
+        verticalPadding:                $buttonSize-large-verticalPadding
+    ),
+
+    small: (
+        fontSize:                       $buttonSize-small-fontSize,
+        horizontalPadding:              $buttonSize-small-horizontalPadding,
+        verticalPadding:                $buttonSize-small-verticalPadding
+    ),
+
+    tiny: (
+        fontSize:                       $buttonSize-tiny-fontSize,
+        horizontalPadding:              $buttonSize-tiny-horizontalPadding,
+        verticalPadding:                $buttonSize-tiny-verticalPadding
+    ),
+
+    square: (
+        fontSize:                       $buttonSize-square-fontSize,
+        horizontalPadding:              $buttonSize-square-horizontalPadding,
+        verticalPadding:                $buttonSize-square-verticalPadding
+    )
+);
+
+// Forms
+// Input, select, label and fieldset styles: sizes, borders, colours, focus, disabled, error and success states.
+$include-html-form-classes:         $include-html-classes;
+
+$form-spacing:                      spacing("single");
+
+$form-label-pointer:                pointer;
+$form-label-font-size:              fontSize("base");
+$form-label-font-weight:            null;
+$form-label-line-height:            lineHeight("base");
+$form-label-font-color:             stencilColor("form-label-font-color");
+$form-label-small-transform:        uppercase;
+$form-label-bottom-margin:          spacing("third");
+
+$input-font-family:                 inherit;
+$input-font-color:                  stencilColor("input-font-color");
+$input-font-size:                   fontSize("base");
+$input-bg-color:                    stencilColor("input-bg-color");
+$input-focus-bg-color:              null;
+$input-border-color:                stencilColor("input-border-color");
+$input-focus-border-color:          stencilColor("input-border-color-active");
+$input-border-style:                solid;
+$input-border-width:                1px;
+$input-border-radius:               $global-radius;
+$input-disabled-bg:                 stencilColor("input-disabled-bg");
+$input-disabled-cursor:             not-allowed;
+$input-box-shadow:                  null;
+$input-include-glowing-effect:      null;
+
+$fieldset-border-style:             null;
+$fieldset-border-width:             0;
+$fieldset-border-color:             null;
+$fieldset-padding:                  0;
+$fieldset-margin:                   0;
+
+$legend-bg:                         transparent;
+$legend-font-weight:                null;
+$legend-padding:                    0;
+
+$select-bg-color:                   stencilColor("select-bg-color");
+$select-hover-bg-color:             null;
+
+$exportCSS--forms:                  true;
+
+$form-verticalSpacing:              spacing("single") + spacing("third");
+
+$form-margin:                       0 0 spacing("single");
+
+$legend-fontFamily:                 fontFamily("headingSans");
+$legend-fontSize:                   fontSize("larger");
+$legend-lineHeight:                 lineHeight("larger");
+$legend-marginBottom:               spacing("half");
+
+$formField-maxWidth:                none;
+$formField-margin:                  0 0 $form-verticalSpacing;
+
+$form-label-small-color:            stencilColor("color-textSecondary");
+$form-label-small-fontSize:         remCalc(10px);
+$form-label-small-fontWeight:       null;
+
+$input-placeholder-color:           color("greys", "light");
+$input-disabled-color:              color("greys", "light");
+$input-boxShadow:                   null;
+$input-focus-boxShadow:             null;
+$input-fontSmoothing:               true;
+$input-height:                      $form-spacing * 2;
+$input-margin:                      0;
+$input-horizontalPadding:           ($form-spacing / 1.5);
+$input-verticalPadding:             ($form-spacing / 2);
+$input-padding:                     $input-verticalPadding $input-horizontalPadding;
+$input-transition:                  border-color 100ms ease-out;
+$input-disabled-borderColor:        null;
+
+$select-boxShadow:                  null;
+$select-height:                     $input-height;
+$select-margin:                     0;
+$select-maxWidth:                   null;
+$select-outline:                    0;
+$select-paddingRight:               null;
+$select-focus-borderColor:          $input-focus-border-color;
+$select-focus-boxShadow:            null;
+
+$select-padding:                    $input-verticalPadding (spacing("double")) $input-verticalPadding $input-horizontalPadding;
+$select-borderRadius:               $global-radius;
+$select-arrow-color:                rgba(stencilColor("select-arrow-color"), 0.999);
+$select-backgroundImage:            url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z' fill='#{$select-arrow-color}' /%3E%3C/svg%3E");
+$select-backgroundPosition:         right (spacing("quarter") + spacing("eighth")) top spacing("third") + spacing("eighth");
+
+// Breadcrumbs
+// Breadcrumb font, colours, separator and spacing.
+$exportCSS--breadcrumbs:            true;
+
+$crumb-lineHeight:                  lineHeight("base");
+$crumb-lineHeight--xSmallUp:        null;
+
+$crumb-slash-margin:                0 spacing("third");
+$crumb-slash-margin--xSmallUp:      0 spacing("third");
+
+$crumb-hover-color:                 stencilColor("color-textSecondary--hover");
+
+$include-html-nav-classes:          $include-html-classes;
+
+$crumb-bg:                          null;
+
+$crumb-padding:                     null;
+$crumb-side-padding:                null;
+
+$crumb-function-factor:             null;
+$crumb-border-size:                 null;
+$crumb-border-style:                null;
+$crumb-border-color:                null;
+$crumb-radius:                      null;
+
+$crumb-font-size:                   fontSize("smallest");
+$crumb-font-color:                  stencilColor("color-textSecondary");
+$crumb-font-color-current:          stencilColor("color-textSecondary");
+$crumb-font-color-unavailable:      color("greys", "light");
+$crumb-font-transform:              null;
+$crumb-link-decor:                  null;
+
+$crumb-slash-color:                 stencilColor("color-textSecondary");
+$crumb-slash:                       "/";
+
+// Dropdowns
+// Dropdown menu width, background, border, list style and font.
+$exportCSS--dropdown:             true;
+
+$f-dropdown-boxShadow:            null;
+$f-dropdown-marginTop:            null;
+
+$include-html-dropdown-classes:   $include-html-classes;
+
+$f-dropdown-max-width:            200px;
+$f-dropdown-height:               auto;
+$f-dropdown-max-height:           null;
+
+$f-dropdown-margin-top:           null;
+
+$f-dropdown-margin-left:          $f-dropdown-margin-top;
+
+$f-dropdown-margin-right:         $f-dropdown-margin-top;
+
+$f-dropdown-margin-bottom:        $f-dropdown-margin-top;
+
+$f-dropdown-bg:                   color("greys", "lightest");
+
+$f-dropdown-border-style:         null;
+$f-dropdown-border-width:         null;
+$f-dropdown-border-color:         null;
+
+$f-dropdown-triangle-size:        null;
+$f-dropdown-triangle-color:       null;
+$f-dropdown-triangle-side-offset: null;
+
+$f-dropdown-list-style:           none;
+$f-dropdown-font-color:           null;
+$f-dropdown-font-size:            $base-font-size;
+$f-dropdown-line-height:          $base-line-height;
+$f-dropdown-list-hover-bg:        null;
+$f-dropdown-list-padding:         spacing("quarter");
+$dropdown-mobile-default-float:   0;
+
+$f-dropdown-content-padding:      spacing("half");
+
+$f-dropdown-radius:               $global-radius;
+
+// Modals
+// Modal width, padding, background, border, shadow, close button and backdrop.
+$exportCSS--modal:                 true;
+
+$modal-backdrop-color:             color("greys", "darkest");
+
+$modal-border:                     container("border");
+
+$modal-width--small:               500px;
+$modal-width--large:               1280px;
+
+$modal-footer-align:               right;
+$modal-max-height:                 80%;
+$modal-transformY:                 -50%;
+
+$modal-horizontalSpacing:          spacing("single");
+$modal-verticalSpacing:            spacing("single");
+
+$modal-header-horizontalSpacing:   0;
+$modal-header-verticalSpacing:     spacing("base");
+
+$modal-header-title-margin:        0;
+
+$modal-close-size:                 20px;
+$modal-close-transformY:           none;
+
+$modal-body-horizontalSpacing:     0;
+$modal-body-verticalSpacing:       spacing("double");
+
+$modal-footer-horizontalSpacing:   $modal-horizontalSpacing;
+$modal-footer-verticalSpacing:     spacing("half");
+
+$modal-footer-button-marginBottom: 0;
+
+$modal-footer-link-fontSize:       fontSize("smaller");
+$modal-footer-link-margin:         spacing("single");
+
+$include-html-reveal-classes:      $include-html-classes;
+
+$reveal-overlay-bg:                overlay("fill");
+$reveal-overlay-bg-old:            $modal-backdrop-color;
+
+$reveal-modal-bg:                  $body-bg;
+$reveal-position-top:              50% !important;
+$reveal-default-width:             900px;
+$reveal-max-width:                 80%;
+$reveal-modal-paddingHorizontal:   spacing("single") * 1.5;
+$reveal-modal-paddingVertical:     spacing("single") * 1.5;
+$reveal-modal-padding:             $reveal-modal-paddingVertical $reveal-modal-paddingHorizontal;
+$reveal-box-shadow:                none;
+
+$reveal-close-font-size:           fontSize("larger");
+$reveal-close-top:                 $modal-verticalSpacing * 0.7;
+$reveal-close-side:                $modal-horizontalSpacing * 0.5;
+$reveal-close-color:               color("greys", "dark");
+$reveal-close-weight:              normal;
+
+$reveal-radius:                    0;
+$reveal-round:                     0;
+
+$reveal-border-style:              solid;
+$reveal-border-width:              0;
+$reveal-border-color:              container("borderColor");
+
+$reveal-modal-class:               "modal";
+$close-reveal-modal-class:         "modal-close";
+
+$alert-font-body:                                      stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+$alert-font-bodySize:                                  remCalc(stencilNumber("fontSize-root", "px") + 2px);
+$alert-font-bodyColor:                                 stencilColor("color-textBase");
+
+$alert-modal-bgColor:                                  stencilColor("alert-backgroundColor") !important;
+$alert-modal-borderRadius:                             4px;
+
+$alert-button-bgColor:                                 stencilColor("button--primary-backgroundColor");
+$alert-button-bgColorHover:                            stencilColor("button--primary-backgroundColorHover");
+$alert-button-bgColorActive:                           stencilColor("button--primary-backgroundColorActive");
+
+$alert-button-borderColor:                             $alert-button-bgColor;
+$alert-button-borderColorHover:                        $alert-button-bgColorHover;
+$alert-button-borderColorActive:                       $alert-button-bgColorActive;
+
+$alert-button-color:                                   stencilColor("button--primary-color");
+$alert-button-colorHover:                              stencilColor("button--primary-colorHover");
+$alert-button-colorActive:                             stencilColor("button--primary-colorActive");
+
+// Tables
+// Table borders, row stripes, header and cell padding, fonts and colours.
+$exportCSS--tables:                 true;
+
+$table-width: 100%;
+
+$table-head-border:                 container("border");
+$table-foot-border:                 $table-head-border;
+$table-row-border:                  container("border");
+$table-row-hover:                   null;
+
+$table-numericData-textAlign:       right;
+
+$include-html-table-classes:        $include-html-classes;
+
+$table-bg:                          null;
+$table-even-row-bg:                 null;
+
+$table-border-style:                container("borderStyle");
+$table-border-size:                 container("borderSize");
+$table-border-color:                container("borderColor");
+
+$table-head-bg:                     container("fill", "dark");
+$table-head-font-size:              fontSize("base");
+$table-head-font-color:             null;
+$table-head-font-weight:            fontWeight("bold");
+$table-head-padding:                spacing("half") spacing("single");
+
+$table-foot-bg:                     null;
+$table-foot-font-size:              null;
+$table-foot-font-color:             null;
+$table-foot-font-weight:            null;
+$table-foot-padding:                null;
+
+$table-caption-bg:                  null;
+$table-caption-font-color:          null;
+$table-caption-font-size:           null;
+$table-caption-font-weight:         null;
+
+$table-row-padding:                 spacing("half") spacing("single");
+$table-row-font-size:               null;
+$table-row-font-color:              null;
+$table-line-height:                 null;
+
+$table-layout:                      auto;
+$table-display:                     table-cell;
+$table-margin-bottom:               spacing("single") + spacing("third");
+
+// Pagination
+// Pagination link size, colours, current page and arrows.
+$exportCSS--pagination:                  true;
+
+$pagination-display:                     null;
+
+$pagination-link-borderRadius--current:  null;
+
+$pagination-height:                      null;
+$pagination-margin:                      0;
+
+$pagination-li-float:                    null;
+$pagination-li-height:                   null;
+$pagination-li-font-color:               stencilColor("color-textSecondary");
+$pagination-li-font-size:                fontSize("base");
+$pagination-li-margin:                   spacing("quarter");
+
+$pagination-link-pad:                    spacing("fifth") spacing("third");
+$pagination-link-font-color:             stencilColor("color-textSecondary");
+$pagination-link-active-bg:              null;
+
+$pagination-link-unavailable-cursor:     $cursor-default-value;
+$pagination-link-unavailable-font-color: null;
+$pagination-link-unavailable-bg-active:  null;
+
+$pagination-link-current-background:     null;
+$pagination-link-current-font-color:     stencilColor("color-textLink");
+$pagination-link-current-font-weight:    null;
+$pagination-link-current-cursor:         $cursor-default-value;
+$pagination-link-current-active-bg:      null;
+
+$pagination-link-current-borderColor:   container("borderColor");
+
+$pagination-item-previousNext-color:        stencilColor("color-textLink");
+$pagination-item-previousNext-color-hover:  stencilColor("color-textLink--hover");
+
+$pagination-link-color-hover:           stencilColor("color-textSecondary--hover");
+
+$pagination-list--small-color:          stencilColor("color-textSecondary");
+
+// Tabs
+// Tab title padding, borders, colours, active state and content padding.
+$exportCSS--tabs:                                true;
+
+$tab-bg-color:                                   transparent;
+
+$tabs-border-color:                              container("borderColor");
+$tabs-bottom-border:                             1px solid $tabs-border-color;
+$tabs-margin:                                    0;
+
+$tab-display:                                    block;
+$tab-margin:                                     0;
+
+$tab-title-border-color:                         $body-bg;
+$tab-title-border:                               1px solid $tab-title-border-color;
+$tab-title-border-bottom-style:                  null;
+$tab-title-border-bottom-height:                 null;
+$tab-title-border-bottom-offset:                 -1px;
+
+$tab-title-active-border-color:                  null;
+$tab-title-active-font-weight:                   fontWeight("bold");
+
+$tab-navigation-display:                         block;
+$tab-navigation-container-padding:               0;
+
+$tabs--vertical-borderBottom:                    0;
+$tabs--vertical-float:                           $default-float;
+$tabs--vertical-maxWidth:                        20%;
+$tabs--vertical-width:                           20%;
+$tabs--vertical-tab-float:                       none;
+
+$tabs-contents--vertical-floatDirection:         $default-float;
+$tabs-contents--vertical-maxWidth:               80%;
+$tabs-contents--vertical-padding:                0 spacing("single");
+$tabs-contents--vertical-floatDirection-padding: spacing("single");
+$tabs-contents--vertical-width:                  80%;
+
+$include-html-tabs-classes:                      $include-html-classes;
+
+$tabs-navigation-padding:                        spacing("half");
+$tabs-navigation-bg-color:                       null;
+$tabs-navigation-active-bg-color:                null;
+$tabs-navigation-hover-bg-color:                 null;
+$tabs-navigation-font-color:                     stencilColor("color-textSecondary");
+$tabs-navigation-active-font-color:              $body-font-color;
+$tabs-navigation-font-size:                      fontSize("smaller");
+$tabs-navigation-font-family:                    null;
+
+$tabs-content-margin-bottom:                     spacing("single");
+$tabs-content-padding:                           spacing("single") 0;
+
+$tabs-vertical-navigation-margin-bottom:         spacing("single");
+
+$tab-active-border-color:                        $tabs-border-color;
+$tab-active-border:                              1px solid $tab-active-border-color;
+$tab-title-text-decoration:                      none;
+
+// Icons
+// Icon size and alignment.
+$icon-color:                    stencilColor("icon-color");
+$icon-size:                     16px;
+
+// Checkbox and radio
+// Box and pip sizes, borders and colours of custom checkboxes and radios, plus input addons.
+$checkRadio-borderStyle:                    solid;
+$checkRadio-borderWidth:                    1px;
+$checkRadio-borderColor:                    stencilColor("checkRadio-borderColor");
+$checkRadio-baseDimension:                  16px;
+$checkRadio-pip-scale:                      $checkRadio-borderWidth * 2;
+$checkRadio-outerSize:                      remCalc($checkRadio-baseDimension);
+$checkRadio-pip-size:                       remCalc($checkRadio-baseDimension - $checkRadio-pip-scale);
+$checkRadio-pip-zoomStart:                  scale(0);
+$checkRadio-pip-zoomEnd:                    scale(1);
+$checkRadio-label-fontSize:                 fontSize("base");
+$checkRadio-label-fontWeight:               fontWeight("normal");
+$checkRadio-label-spacing:                  spacing("single") + spacing("quarter");
+$checkRadio-label-marginBottom:             spacing("quarter");
+$checkRadio-bg:                             stencilColor("checkRadio-backgroundColor");
+$checkRadio-disabled-bg:                    $input-disabled-bg;
+
+$check-pip-color:                           rgba(stencilColor("checkRadio-color"), 0.999);
+
+$radio-radius:                              50%;
+$radio-pip-color:                           $check-pip-color;
+$radio-pipInset:                            3px;
+$radio-pipInset-color:                      $checkRadio-bg;
+
+$form-inlineMessage-margin:                 spacing("quarter") 0 (-(spacing("third")));
+
+$form-success-icon:                         url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z' fill='#{rgba(color("success"), 0.999)}' /%3E%3C/svg%3E");
+$form-success-icon-right:                   spacing("third") + spacing("eighth");
+$form-success-icon-check-right:             spacing("single") + spacing("half");
+$form-success-input-paddingRight:           spacing("double");
+
+$form-error-icon:                           url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z' fill='#{rgba(color("error"), 0.999)}' /%3E%3C/svg%3E");
+$form-error-icon-height:                    remCalc(14px);
+$form-error-icon-left:                      remCalc(-2px);
+$form-error-icon-marginRight:               remCalc(1px);
+$form-error-icon-top:                       remCalc(3px);
+$form-error-icon-width:                     remCalc(14px);
+
+$form-inlineMessage-backgroundSize:         100%;
+
+$formInput-placeholder-color:                  stencilColor("input-font-color");
+
+// Navigation lists
+// Nav bar and nav list link colours, font size and the close icon.
+$navBar-section-margin:                 spacing("single");
+
+$navList-action-color:                  stencilColor("color-textLink");
+$navList-action-fontSize:               $tabs-navigation-font-size;
+
+$navList-action-close-background:       container("fill", "dark");
+$navList-action-close-padding:          spacing("sixth");
+$navList-action-close-transition:       opacity 0.3s ease;
+$navList-action-close-iconSize:         13px;
+
+// Cards
+// Card margin, figcaption, quick-view button colours, text colour and body padding.
+$card-marginBottom:                         spacing("double");
+
+$card-figcaption-textAlign:                 center;
+$card-figcaption-button-background:         rgba(stencilColor("card-figcaption-button-background"), 0.9);
+$card-figcaption-button-backgroundHover:    stencilColor("card-figcaption-button-background");
+$card-figcaption-button-color:              stencilColor("card-figcaption-button-color");
+
+$card-text-color:                           stencilColor("color-textSecondary");
+
+$card-body-padding:                         spacing("half") 0 0;
+$card-body-textColor:                       stencilColor("color-textSecondary");
+
+// Icons
+// Icon size and alignment.
+$icon-color:                    stencilColor("icon-color");
+$icon-size:                     16px;
+
+// Loading overlay
+// Overlay background, fade transition and the spinner size, border and animation.
+$loadingOverlay-transitionProperty:           all;
+$loadingOverlay-transitionSpeed:              250ms;
+$loadingOverlay-transitionEase:               ease-out;
+
+$loadingOverlay-spinner-size:                 40px;
+$loadingOverlay-spinner-borderWidth:          2px;
+$loadingOverlay-spinner-borderColor:          stencilColor("spinner-borderColor-light") stencilColor("spinner-borderColor-light") stencilColor("spinner-borderColor-dark") stencilColor("spinner-borderColor-dark");
+$loadingOverlay-spinner-duration:             500ms;
+$loadingOverlay-spinner-easing:               cubic-bezier(0.69, 0.31, 0.56, 0.83);
+
+// Action bar
+// Spacing and alignment of the bar of sort/filter controls above listings.
+$actionBar-form-field-border:                   $input-border-width $input-border-style $input-border-color;
+
+$actionBar-form-label-color:                    stencilColor("color-textSecondary");
+
+// Product page
+// Brand link colours and the product option list borders, disabled and strike-through styling.
+$productView-brand-link-color:                  $color-textSecondary;
+$productView-brand-link-color--hover:           $color-textSecondary-hover;
+
+$productOptions-list-border:                    1px solid stencilColor("input-border-color");
+$productOptions-list-item-borderTop:            $productOptions-list-border;
+$productOptions-disable-opacity:                0.3;
+$productOptions-disable-background-color:       #ddd;
+$productOptions-strikethrough-color:            #000;
+
+// Tags
+// Size, colours and padding of product tags.
+$tag-fontSize:                      fontSize("base");
+$tag-color:                         stencilColor("color-textSecondary");
+$tag-color-hover:                   stencilColor("color-textSecondary--hover");
+$tag-paddingVertical:               spacing("quarter");
+$tag-paddingHorizontal:             spacing("third");
+$tag-padding:                       $tag-paddingVertical $tag-paddingHorizontal;
+
+// Facet labels
+// Colours and font of faceted search labels.
+$facetLabel-backgroundColor:                container("fill", "dark");
+$facetLabel-borderRadius:                   4px;
+$facetLabel-removeIcon-color:               $small-font-color;
+
+// Faceted search
+// Filter panel borders and spacing.
+$facetedSearch-toggle-borderWidth:          $accordion-navList-borderWidth;
+$facetedSearch-toggle-borderRadius:         $global-radius;
+$facetedSearch-toggle-padding:              spacing("base");
+$facetedSearch-toggle-verticalSpacing:      spacing("single") + spacing("third");
+
+// Main navigation
+// Borders, sub-menu size, highlight colours and the more-icon of the page navigation.
+$navPage-borderColor:                               stencilColor("navPages-subMenu-separatorColor");
+$navPage-childList-borderColor:                     $navPage-borderColor;
+$navPage-subMenu-horizontal-height:                 auto;
+$navPage-subMenu-horizontal-width:                  rem-calc(215px);
+$navPage-subMenu-item--is-highlighted-background:   stencilColor("navPages-subMenu-backgroundColor");
+$navPage-subMenu-item--is-highlighted-color:        stencilColor("navPages-color-hover");
+$navPages-action-moreIcon-borderColor:              #d6cdc0;
+$navPages-backgroundColor:                          stencilColor("navPages-subMenu-backgroundColor");
+$navPages-list--user-borderColor:                   $navPage-borderColor;
+
+// User navigation
+// Colours of the account / cart bar links.
+$dropdown--quickSearch-backgroundColor: stencilColor("dropdown--quickSearch-backgroundColor");
+
+// Header
+// Background, height, logo margin and store name colour.
+$header-bg:                                 stencilColor("header-backgroundColor");
+$header-height:                             55px;
+$header-logo-marginVertical:                spacing("half");
+
+$storeName-color:                           stencilColor("storeName-color");
+
+// Footer
+// Footer background.
+$footer-background:                             stencilColor("footer-backgroundColor");
+
+// Page container
+// Outer page container padding.
+$container-padding:                     spacing("single");

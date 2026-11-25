@@ -1,4 +1,4 @@
-// Generates assets/scss/settings/global/_css-vars.scss: every $variable in assets/scss/settings as a --sv-* custom property.
+// Generates assets/scss/settings/global/_css-vars.scss: every $variable in assets/scss/_settings*.scss as a --sv-* custom property.
 // --write  write the file; --check  fail if the file is stale.
 import {readdirSync, readFileSync, writeFileSync} from "node:fs";
 import {join} from "node:path";
@@ -8,7 +8,7 @@ import {isCurrent, onlyReferenced, renderBridge, scanMarkupSettings, scanReferen
 // The theme's settings first (its value wins for a duplicate name, as in Sass), then Citadel's global settings: spacing(), fontSize(),
 // container() and screenSize() read variables declared there, and the theme settings do not redeclare most of them.
 const roots = [
-    fileURLToPath(new URL("../assets/scss/settings/", import.meta.url)),
+    fileURLToPath(new URL("../assets/scss/", import.meta.url)),
     fileURLToPath(new URL("../node_modules/@bigcommerce/citadel/dist/settings/global/", import.meta.url)),
 ];
 const target = new URL("../assets/scss/settings/global/_css-vars.scss", import.meta.url);
@@ -20,7 +20,9 @@ const walk = (dir, extension = /\.scss$/) =>
         return extension.test(entry.name) && entry.name !== "_css-vars.scss" ? [path] : [];
     });
 
-const files = roots.flatMap((root) => walk(root).sort()).map((path) => ({path, text: readFileSync(path, "utf8")}));
+// Of assets/scss only the two settings files declare theme variables (the rest are entry points and generated files).
+const isSettings = (path) => !/[\\/]assets[\\/]scss[\\/]/.test(path) || /[\\/]_settings(-global)?\.scss$/.test(path);
+const files = roots.flatMap((root) => walk(root).sort()).filter(isSettings).map((path) => ({path, text: readFileSync(path, "utf8")}));
 const {names, duplicates} = scanVariables(files);
 const themeScss = walk(fileURLToPath(new URL("../assets/scss/", import.meta.url))).sort().map((path) => ({path, text: readFileSync(path, "utf8")}));
 const config = JSON.parse(readFileSync(new URL("../config.json", import.meta.url), "utf8"));

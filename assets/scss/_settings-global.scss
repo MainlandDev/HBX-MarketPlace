@@ -1,0 +1,197 @@
+// =============================================================================
+// GLOBAL SETTINGS
+// =============================================================================
+// Palette, type, spacing, breakpoints and z-index. Loaded first: Citadel's global defaults read these.
+
+// Foundation class output
+// Switches that decide whether Foundation's own HTML/print/global class rules are emitted (all off: the theme styles with utilities).
+$include-html-classes: false !default;
+$include-print-styles: false !default;
+$include-html-global-classes: $include-html-classes !default;
+
+// Export
+// Master switch for exporting Citadel/Foundation CSS blocks (off).
+$exportCSS:                     false;
+
+// Breakpoints
+// Widths where the layout changes (small / medium / large); the media variants in _tailwind.scss use the same values.
+$screen-large:                  1261px;
+$screen-medium:                 801px;
+$screen-small:                  551px;
+
+// Stacking
+// Named z-index layers (lowest to highest) used for dropdowns, nav, modals and overlays.
+$zIndex-lowest:                 5;
+$zIndex-lower:                  10;
+$zIndex-low:                    20;
+$zIndex-high:                   50;
+$zIndex-higher:                 100;
+$zIndex-highest:                500;
+
+// Colours
+// Palette: neutrals, brand and semantic colours (error, info, success, warning), text colours, hover/active shades. Most come from the merchant's theme editor settings.
+$color-black:                       stencilColor("color-black");
+$color-white:                       stencilColor("color-white");
+$color-whitesBase:                  stencilColor("color-whitesBase");
+
+$color-grey:                        stencilColor("color-grey");
+$color-greyDarkest:                 stencilColor("color-greyDarkest");
+$color-greyDarker:                  stencilColor("color-greyDarker");
+$color-greyDark:                    stencilColor("color-greyDark");
+$color-greyMedium:                  stencilColor("color-greyMedium");
+$color-greyLight:                   stencilColor("color-greyLight");
+$color-greyLighter:                 stencilColor("color-greyLighter");
+$color-greyLightest:                stencilColor("color-greyLightest");
+
+$color-primary:                     stencilColor("color-primary");
+$color-primaryDarker:               stencilColor("color-primaryDarker");
+$color-primaryDark:                 stencilColor("color-primaryDark");
+$color-primaryLight:                stencilColor("color-primaryLight");
+
+$color-secondary:                   stencilColor("color-secondary");
+$color-secondaryDarker:             stencilColor("color-secondaryDarker");
+$color-secondaryDark:               stencilColor("color-secondaryDark");
+
+$color-highlight:                   stencilColor("color-highlight");
+$color-highlightDarker:             stencilColor("color-highlightDarker");
+$color-highlightDark:               stencilColor("color-highlightDark");
+
+$color-error:                       stencilColor("color-error");
+$color-errorLight:                  stencilColor("color-errorLight");
+
+$color-info:                        stencilColor("color-info");
+$color-infoLight:                   stencilColor("color-infoLight");
+
+$color-success:                     stencilColor("color-success");
+$color-successLight:                stencilColor("color-successLight");
+
+$color-warning:                     stencilColor("color-warning");
+$color-warningLight:                stencilColor("color-warningLight");
+
+$color-textBase:                    stencilColor("color-textBase");
+$color-textBase-hover:              stencilColor("color-textBase--hover");
+$color-textBase-active:             stencilColor("color-textBase--active");
+
+$color-textSecondary:               stencilColor("color-textSecondary");
+$color-textSecondary-hover:         stencilColor("color-textSecondary--hover");
+
+$color-textLink:                    stencilColor("color-textLink");
+$color-textLink-hover:              stencilColor("color-textLink--hover");
+$color-textLink-active:             stencilColor("color-textLink--active");
+
+$focusTooltip-textColor:            stencilColor("focusTooltip-textColor");
+$focusTooltip-backgroundColor:      stencilColor("focusTooltip-backgroundColor");
+
+// Typography
+// Font families, the size / line-height / weight / letter-spacing scales, and the root font size that rem values hang off.
+$fontFamily-sans:               stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+$fontFamily-serif:              null;
+$fontFamily-mono:               null;
+$fontFamily-headings:           stencilFontFamily("headings-font"), Arial, Helvetica, sans-serif;
+
+$fontFamily-hero:               stencilFontFamily("headings-font"), Arial, Helvetica, sans-serif;
+
+$fontSize-root:                 stencilNumber("fontSize-root");
+$fontSize-base:                 1rem;
+$fontSize-hero:                 50px;
+$fontSize-largest:              stencilNumber("fontSize-h1");
+$fontSize-larger:               stencilNumber("fontSize-h2");
+$fontSize-large:                stencilNumber("fontSize-h3");
+$fontSize-small:                stencilNumber("fontSize-h4");
+$fontSize-smaller:              stencilNumber("fontSize-h5");
+$fontSize-smallest:             stencilNumber("fontSize-h6");
+$fontSize-tiny:                 12px;
+$fontSize-logo-large:           stencilNumber("logo_fontSize");
+$fontSize-logo-medium:          2.5vw;
+$fontSize-logo-small:           $fontSize-logo-medium - 0.25vw;
+
+$lineHeight-base:               1.5;
+$lineHeight-hero:               50px;
+$lineHeight-largest:            37px;
+$lineHeight-larger:             32px;
+$lineHeight-large:              29px;
+$lineHeight-small:              24px;
+$lineHeight-smaller:            19px;
+$lineHeight-smallest:           15px;
+$lineHeight-tiny:               18px;
+
+$fontWeight-thin:               300;
+$fontWeight-normal:             400;
+$fontWeight-medium:             500;
+$fontWeight-semibold:           600;
+$fontWeight-bold:               700;
+$fontWeight-black:              900;
+
+$letterSpacing-base:            0;
+$letterSpacing-largest:         0.25px;
+$letterSpacing-larger:          0.25px;
+$letterSpacing-large:           0.25px;
+$letterSpacing-small:           0.25px;
+$letterSpacing-smaller:         0.25px;
+$letterSpacing-smallest:        0.25px;
+
+// Layout and spacing
+// Page widths (max and fixed) and the spacing scale (half / single / double ...) that every margin and padding token resolves to; `width()` reads the width map.
+$layout-widthMax:               remCalc(1200px);
+
+$layout-widthFixed:             100%;
+
+$spacingRhythm:                 $fontSize-root * $lineHeight-base;
+
+$spacing-base:                  1rem;
+$spacing-single:                remCalc($spacingRhythm);
+$spacing-double:                remCalc($spacingRhythm * 2);
+$spacing-half:                  remCalc(round($spacingRhythm / 2));
+$spacing-third:                 remCalc(round($spacingRhythm / 3));
+$spacing-quarter:               remCalc(round($spacingRhythm / 4));
+$spacing-fifth:                 remCalc(round($spacingRhythm / 5));
+$spacing-sixth:                 remCalc(round($spacingRhythm / 6));
+$spacing-eighth:                remCalc(round($spacingRhythm / 8));
+
+$widthMap: (
+    "12/12":                    100%,
+    "11/12":                    91.66667%,
+    "10/12":                    83.33334%,
+    "9/12":                     75%,
+    "8/12":                     66.66667%,
+    "7/12":                     58.33334%,
+    "6/12":                     50%,
+    "5/12":                     41.66667%,
+    "4/12":                     33.33334%,
+    "3/12":                     25%,
+    "2/12":                     16.66667%,
+    "1/12":                     8.33334%
+);
+
+@function width($key) {
+    @if map-has-key($widthMap, $key) {
+        @return map-get($widthMap, $key);
+    }
+
+    @warn "Unknown width `#{$key}` in width function.";
+    @return null;
+}
+
+// Containers
+// Border, drop shadow, fill, padding and margin of boxed containers (panels, cards, modals).
+$container-border-global-size:          1px;
+
+$container-border-global-style:         solid;
+
+$container-border-global-color-base:    stencilColor("container-border-global-color-base");
+
+$container-border-global-base:          $container-border-global-size $container-border-global-style $container-border-global-color-base;
+
+$container-drop-shadow-base:            0 1px 2px rgba($color-black, 0.13);
+
+$container-fill-base:                   stencilColor("container-fill-base");
+$container-fill-dark:                   stencilColor("container-fill-dark");
+
+$container-padding-base:                $spacing-single;
+$container-padding-large:               $spacing-single + $spacing-third;
+
+$container-margin-base:                 $spacing-single;
+
+// Overlay
+// Fill colour of the backdrop behind modals.
+$overlay-fill:                  rgba(stencilColor("overlay-backgroundColor"), 0.95);
