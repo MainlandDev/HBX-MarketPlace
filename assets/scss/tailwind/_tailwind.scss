@@ -616,99 +616,69 @@
      * - `.form-inlineMessage`: see below.
      */
     .button {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        border-radius: var(--sv-button-radius);
+        @apply relative cursor-pointer appearance-none no-underline transition-all duration-150 ease-[ease] leading-[1rem] m-0 mb-(--sv-button-margin-bottom)
+            rounded-(--sv-button-radius) border-(length:--sv-button-border-width) border-(color:--sv-buttonStyle-default-borderColor)
+            bg-(--sv-buttonStyle-default-backgroundColor) text-(color:--sv-buttonStyle-default-color) text-(length:--sv-buttonSize-default-fontSize)
+            font-(family-name:--sv-button-font-family) font-(weight:--sv-button-font-weight) align-(--sv-button-vAlign)
+            py-(--sv-buttonSize-default-verticalPadding) px-(--sv-buttonSize-default-horizontalPadding);
+        /* no utility takes a variable for these */
         border-style: var(--sv-button-border-style);
-        border-width: var(--sv-button-border-width);
-        cursor: pointer;
-        font-family: var(--sv-button-font-family);
-        font-weight: var(--sv-button-font-weight);
-        line-height: 1rem;
-        margin: 0 0 var(--sv-button-margin-bottom);
-        position: relative;
-        text-align: var(--sv-button-font-align);
-        text-decoration: none;
         display: var(--sv-button-display);
-        background-color: var(--sv-buttonStyle-default-backgroundColor);
-        border-color: var(--sv-buttonStyle-default-borderColor);
-        color: var(--sv-buttonStyle-default-color);
-        font-size: var(--sv-buttonSize-default-fontSize);
-        padding: var(--sv-buttonSize-default-verticalPadding) var(--sv-buttonSize-default-horizontalPadding);
-        vertical-align: var(--sv-button-vAlign);
-        transition: all 0.15s ease;
+        text-align: var(--sv-button-font-align);
     }
 
     .button:hover,
     .button:focus,
     .button.is-active,
     .button.active {
-        background-color: var(--sv-buttonStyle-default-backgroundColorHover);
-        border-color: var(--sv-buttonStyle-default-borderColorHover);
-        color: var(--sv-buttonStyle-default-colorHover);
+        @apply bg-(--sv-buttonStyle-default-backgroundColorHover) border-(color:--sv-buttonStyle-default-borderColorHover) text-(color:--sv-buttonStyle-default-colorHover);
     }
 
     .button:active {
-        background-color: var(--sv-buttonStyle-default-backgroundColorActive);
-        border-color: var(--sv-buttonStyle-default-borderColorActive);
-        color: var(--sv-buttonStyle-default-colorActive);
+        @apply bg-(--sv-buttonStyle-default-backgroundColorActive) border-(color:--sv-buttonStyle-default-borderColorActive) text-(color:--sv-buttonStyle-default-colorActive);
     }
 
     .button--primary {
-        background-color: var(--sv-buttonStyle-primary-backgroundColor);
-        border-color: var(--sv-buttonStyle-primary-borderColor);
-        color: var(--sv-buttonStyle-primary-color);
+        @apply bg-(--sv-buttonStyle-primary-backgroundColor) border-(color:--sv-buttonStyle-primary-borderColor) text-(color:--sv-buttonStyle-primary-color);
     }
 
     .button--primary:hover,
     .button--primary:focus,
     .button--primary.is-active,
     .button--primary.active {
-        background-color: var(--sv-buttonStyle-primary-backgroundColorHover);
-        border-color: var(--sv-buttonStyle-primary-borderColorHover);
-        color: var(--sv-buttonStyle-primary-colorHover);
+        @apply bg-(--sv-buttonStyle-primary-backgroundColorHover) border-(color:--sv-buttonStyle-primary-borderColorHover) text-(color:--sv-buttonStyle-primary-colorHover);
     }
 
     .button--primary:active {
-        background-color: var(--sv-buttonStyle-primary-backgroundColorActive);
-        border-color: var(--sv-buttonStyle-primary-borderColorActive);
-        color: var(--sv-buttonStyle-primary-colorActive);
+        @apply bg-(--sv-buttonStyle-primary-backgroundColorActive) border-(color:--sv-buttonStyle-primary-borderColorActive) text-(color:--sv-buttonStyle-primary-colorActive);
     }
 
     .button[disabled] {
-        background-color: var(--sv-buttonStyle-disabled-backgroundColor);
-        border-color: var(--sv-buttonStyle-disabled-borderColor);
-        color: var(--sv-buttonStyle-disabled-color);
-        cursor: not-allowed;
+        @apply cursor-not-allowed bg-(--sv-buttonStyle-disabled-backgroundColor) border-(color:--sv-buttonStyle-disabled-borderColor) text-(color:--sv-buttonStyle-disabled-color);
     }
 
     .button--large {
-        font-size: var(--sv-buttonSize-large-fontSize);
+        @apply text-(length:--sv-buttonSize-large-fontSize);
     }
 
     .button--small {
-        font-size: var(--sv-buttonSize-small-fontSize);
-        padding: var(--sv-buttonSize-small-verticalPadding) var(--sv-buttonSize-small-horizontalPadding);
+        @apply text-(length:--sv-buttonSize-small-fontSize) py-(--sv-buttonSize-small-verticalPadding) px-(--sv-buttonSize-small-horizontalPadding);
     }
 
     .button--icon {
-        font-size: var(--sv-buttonSize-square-fontSize);
-        padding: var(--sv-buttonSize-square-verticalPadding) var(--sv-buttonSize-square-horizontalPadding);
+        @apply text-(length:--sv-buttonSize-square-fontSize) py-(--sv-buttonSize-square-verticalPadding) px-(--sv-buttonSize-square-horizontalPadding);
     }
 
-    @media (min-width: 801px) {
-        .button + .button {
-            margin-left: var(--sv-spacing-half);
-        }
+    .button + .button {
+        @apply medium:ml-half;
     }
 
     .form-input {
-        border-radius: var(--sv-input-border-radius);
+        @apply rounded-(--sv-input-border-radius);
     }
 
     .form-fieldset {
-        padding: var(--sv-fieldset-padding);
+        @apply p-(--sv-fieldset-padding);
     }
 
     /* Spinner of the loading overlay (bundle in assets/js/theme/common/runtime-classes.js). */
@@ -724,77 +694,62 @@
 
     /* Tabs: the merchant inline-tabs widget on the home page is injected markup, and the store styles it as well (measured), so it stays plain CSS. */
     .tabs {
+        @apply m-(--sv-tabs-margin);
+        /* no utility takes a variable for this */
         border-bottom: var(--sv-tabs-bottom-border);
-        margin: var(--sv-tabs-margin);
     }
 
     .tabs::before,
     .tabs::after {
-        content: " ";
-        display: table;
+        @apply content-['_'] [display:table];
     }
 
     .tabs::after {
-        clear: both;
+        @apply clear-both;
     }
 
     .tab {
+        @apply relative list-none m-(--sv-tab-margin) p-(--sv-tab-navigation-container-padding);
         border-bottom: var(--sv-tab-title-border-color);
         display: var(--sv-tab-display);
-        list-style: none;
-        margin: var(--sv-tab-margin);
-        padding: var(--sv-tab-navigation-container-padding);
-        position: relative;
-    }
-
-    @media (min-width: 551px) {
-        .tab {
-            float: left;
-        }
     }
 
     .tab-title {
-        color: var(--sv-tabs-navigation-font-color);
+        @apply text-(color:--sv-tabs-navigation-font-color) text-(length:--sv-tabs-navigation-font-size) py-(--sv-tabs-navigation-padding) px-[calc(var(--sv-tabs-navigation-padding)*2)];
         display: var(--sv-tab-navigation-display);
-        font-size: var(--sv-tabs-navigation-font-size);
-        padding: var(--sv-tabs-navigation-padding) calc(var(--sv-tabs-navigation-padding) * 2);
     }
 
     .tab-title:hover {
-        color: var(--sv-tabs-navigation-active-font-color);
+        @apply text-(color:--sv-tabs-navigation-active-font-color);
     }
 
     .tab.is-active .tab-title {
-        color: var(--sv-tabs-navigation-active-font-color);
-        font-weight: var(--sv-tab-title-active-font-weight);
+        @apply text-(color:--sv-tabs-navigation-active-font-color) font-(weight:--sv-tab-title-active-font-weight);
     }
 
     .tabs-contents {
-        margin-bottom: var(--sv-tabs-content-margin-bottom);
+        @apply mb-(--sv-tabs-content-margin-bottom);
     }
 
     .tabs-contents::before,
     .tabs-contents::after {
-        content: " ";
-        display: table;
+        @apply content-['_'] [display:table];
     }
 
     .tabs-contents::after {
-        clear: both;
+        @apply clear-both;
     }
 
     .tab-content {
-        display: none;
-        padding: var(--sv-tabs-content-padding);
+        @apply [display:none] p-(--sv-tabs-content-padding);
     }
 
     .tab-content.is-active {
-        display: block;
+        @apply [display:block];
     }
 
     .no-js .tab-content {
-        display: block;
-        float: none;
+        @apply [display:block] float-none;
     }
 
 
@@ -813,26 +768,18 @@
     }
 
     .tab {
+        @apply float-none medium:float-left;
         border-top: var(--sv-tab-active-border);
-        float: none;
     }
 
     @media (min-width: 801px) {
         .tab {
             border-top-color: var(--sv-tab-title-border-color);
-            float: left;
         }
     }
 
     .tab.is-active {
-        border-left-color: var(--sv-tab-title-border-color);
-        border-right-color: var(--sv-tab-title-border-color);
-    }
-
-    @media (min-width: 551px) {
-        .tab.is-active {
-            margin-bottom: var(--sv-tab-title-border-bottom-offset);
-        }
+        @apply border-l-(color:--sv-tab-title-border-color) border-r-(color:--sv-tab-title-border-color) small:mb-(--sv-tab-title-border-bottom-offset);
     }
 
     @media (min-width: 801px) {
@@ -843,56 +790,25 @@
     }
 
     .tab-title {
-        padding: calc(var(--sv-spacing-half) + var(--sv-spacing-quarter)) 0;
-        text-align: center;
+        @apply py-half-quarter px-0 text-center small:text-left medium:py-half medium:px-single large:py-[0.78571rem] large:px-[1.28571rem];
         text-decoration: var(--sv-tab-title-text-decoration);
-    }
-
-    @media (min-width: 551px) {
-        .tab-title {
-            text-align: left;
-        }
-    }
-
-    @media (min-width: 801px) {
-        .tab-title {
-            padding: var(--sv-spacing-half) var(--sv-spacing-single);
-        }
-    }
-
-    @media (min-width: 1261px) {
-        .tab-title {
-            padding: 0.78571rem 1.28571rem;
-        }
     }
 
     /* nod.js creates .form-inlineMessage at runtime (inside forms that have no .form-field too: cart coupon and gift certificate, faceted price range), so it cannot carry utilities */
 
     /* the merchant injects a div.container on the account page (a bare class that cannot take utilities); the theme's own columns use the Container helper (componentParts.tsx) */
     .container {
-        margin-left: auto;
-        margin-right: auto;
-        max-width: calc(var(--sv-layout-widthMax) + var(--sv-container-padding) * 4);
-        padding: 0 var(--sv-container-padding);
-        position: relative;
-        width: var(--sv-layout-widthFixed);
-    }
-
-    @media (min-width: 1261px) {
-        .container {
-            padding: 0 calc(var(--sv-container-padding) * 4);
-        }
+        @apply relative mx-auto w-(--sv-layout-widthFixed) max-w-[calc(var(--sv-layout-widthMax)+var(--sv-container-padding)*4)] py-0 px-(--sv-container-padding) large:px-[calc(var(--sv-container-padding)*4)];
     }
 
     /* brand image box: its position and ::after ratio spacer are utilities in pages/brand.tsx; the width cap stays here because the store injects a non-important
        `.brand-image-container:not(#pseudoID) { max-width: 200px }` that an important utility would beat */
     .brand-image-container {
-        max-width: var(--sv-derived-brand-thumb-width);
+        @apply max-w-(--sv-derived-brand-thumb-width);
     }
 
     .form-option-variant--color, .form-option-variant--pattern {
-        height: var(--sv-derived-swatch-height);
-        width: var(--sv-derived-swatch-width);
+        @apply h-(--sv-derived-swatch-height) w-(--sv-derived-swatch-width);
     }
 }
 
