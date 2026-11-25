@@ -1,5 +1,5 @@
 // Lives outside src/templates: the HBX plugin builds every export of a file under there as a template of its own.
-// Utility-styled pieces of Citadel's modal, alert box, panel and card components (formerly compat rules in assets/scss/_tailwind.scss).
+// Utility-styled pieces of Citadel's modal, alert box, panel and card components (formerly compat rules in assets/scss/tailwind/_tailwind.scss).
 // Same convention as formParts.tsx: every base utility is written as `[:where(&)]:...` (zero specificity), so any utility on the element
 // or an ancestor beats it, exactly as the old non-important compat CSS lost to important utilities. Class names (`modal`, `alertBox` ...) stay
 // on the elements as hooks: JS and the live store's injected CSS select them.

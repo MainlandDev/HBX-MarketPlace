@@ -1,4 +1,4 @@
-// Generates assets/scss/settings/global/_css-vars.scss: every $variable in assets/scss/_settings*.scss and _citadel-*.scss as a --sv-* custom property.
+// Generates assets/scss/settings/global/_css-vars.scss: every $variable in assets/scss/settings/_settings*.scss and _citadel-*.scss as a --sv-* custom property.
 // --write  write the file; --check  fail if the file is stale.
 import {readdirSync, readFileSync, writeFileSync} from "node:fs";
 import {join} from "node:path";

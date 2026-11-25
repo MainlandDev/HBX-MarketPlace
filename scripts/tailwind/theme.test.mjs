@@ -7,7 +7,7 @@ import {describe, expect, it} from "vitest";
 import {loadTokens} from "../design-tokens/load.mjs";
 import {classSelectors} from "./inventory.mjs";
 
-const entry = fileURLToPath(new URL("../../assets/scss/_tailwind.scss", import.meta.url));
+const entry = fileURLToPath(new URL("../../assets/scss/tailwind/_tailwind.scss", import.meta.url));
 const kebab = (name) => name.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`);
 
 const compile = async (candidates) => {

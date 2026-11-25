@@ -10,10 +10,10 @@
  * block ...) and, with `important`, they overrode the markup site-wide. Utilities come from the three roots below (templates, shared helpers, and the
  * JS files that hold class bundles for runtime-created markup).
  */
-@source "../../src/templates";
-@source "../../src/server";
-@source "../../assets/js/theme/common/form-classes.js";
-@source "../../assets/js/theme/common/runtime-classes.js";
+@source "../../../src/templates";
+@source "../../../src/server";
+@source "../../../assets/js/theme/common/form-classes.js";
+@source "../../../assets/js/theme/common/runtime-classes.js";
 /*
  * Words in attributes and comments of a source file (`type="hidden"`, "containing block") are also taken as candidates. With `important` an emitted
  * `.hidden` or `.block` would override third-party and merchant markup, so such strays are excluded here. scripts/tailwind/theme.test.mjs fails when a
