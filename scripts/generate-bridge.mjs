@@ -1,16 +1,13 @@
-// Generates assets/scss/settings/global/_css-vars.scss: every $variable in assets/scss/_settings*.scss as a --sv-* custom property.
+// Generates assets/scss/settings/global/_css-vars.scss: every $variable in assets/scss/_settings*.scss and _citadel-*.scss as a --sv-* custom property.
 // --write  write the file; --check  fail if the file is stale.
 import {readdirSync, readFileSync, writeFileSync} from "node:fs";
 import {join} from "node:path";
 import {fileURLToPath} from "node:url";
 import {isCurrent, onlyReferenced, renderBridge, scanMarkupSettings, scanReferences, scanSettingCalls, scanVariables, settingName} from "./tailwind/bridge.mjs";
 
-// The theme's settings first (its value wins for a duplicate name, as in Sass), then Citadel's global settings: spacing(), fontSize(),
-// container() and screenSize() read variables declared there, and the theme settings do not redeclare most of them.
-const roots = [
-    fileURLToPath(new URL("../assets/scss/", import.meta.url)),
-    fileURLToPath(new URL("../node_modules/@bigcommerce/citadel/dist/settings/global/", import.meta.url)),
-];
+// Every $variable declared in the theme or in the hoisted Citadel defaults is a candidate: spacing(), fontSize(), container() and screenSize() read
+// variables declared in the Citadel files, and the theme settings do not redeclare most of them. All of them live in assets/scss.
+const roots = [fileURLToPath(new URL("../assets/scss/", import.meta.url))];
 const target = new URL("../assets/scss/settings/global/_css-vars.scss", import.meta.url);
 
 const walk = (dir, extension = /\.scss$/) =>
@@ -20,9 +17,9 @@ const walk = (dir, extension = /\.scss$/) =>
         return extension.test(entry.name) && entry.name !== "_css-vars.scss" ? [path] : [];
     });
 
-// Of assets/scss only the two settings files declare theme variables (the rest are entry points and generated files).
-const isSettings = (path) => !/[\\/]assets[\\/]scss[\\/]/.test(path) || /[\\/]_settings(-global)?\.scss$/.test(path);
-const files = roots.flatMap((root) => walk(root).sort()).filter(isSettings).map((path) => ({path, text: readFileSync(path, "utf8")}));
+// Theme settings sort first (declaration order only decides the order of the emitted properties). Of assets/scss only the settings files declare variables (the rest are entry points, helpers and generated files).
+const isSettings = (path) => /[\\/]_(settings|citadel)(-[a-z]+)?\.scss$/.test(path);
+const files = roots.flatMap((root) => walk(root).sort()).filter(isSettings).sort((a, b) => Number(/_citadel/.test(a)) - Number(/_citadel/.test(b))).map((path) => ({path, text: readFileSync(path, "utf8")}));
 const {names, duplicates} = scanVariables(files);
 const themeScss = walk(fileURLToPath(new URL("../assets/scss/", import.meta.url))).sort().map((path) => ({path, text: readFileSync(path, "utf8")}));
 const config = JSON.parse(readFileSync(new URL("../config.json", import.meta.url), "utf8"));

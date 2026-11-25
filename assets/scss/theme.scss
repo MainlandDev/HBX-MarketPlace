@@ -2,13 +2,13 @@
 @import "_tailwind";
 
 // Sass helpers: Citadel's toolkit and the theme's own functions.
-@import "../../node_modules/@bigcommerce/citadel/dist/tools/toolkit";
+@import "citadel-toolkit";
 @import "tools";
 
 // Variables, in load order: the theme's global values, Citadel's defaults that read them, then the component values that override Citadel/Foundation.
 @import "settings-global";
-@import "../../node_modules/@bigcommerce/citadel/dist/settings/global/global";
-@import "../../node_modules/@bigcommerce/citadel/dist/settings/foundation/foundation";
+@import "citadel-global";
+@import "citadel-foundation";
 @import "settings";
 
 // Custom properties for the markup: design tokens (docs/design/tokens.json), the generated --sv-* bridge (npm run generate-bridge) and the hand-written

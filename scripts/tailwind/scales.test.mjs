@@ -6,7 +6,7 @@ import {describe, expect, it} from "vitest";
 
 const entry = fileURLToPath(new URL("../../assets/scss/_tailwind.scss", import.meta.url));
 const themeScreens = fileURLToPath(new URL("../../assets/scss/_settings-global.scss", import.meta.url));
-const citadelScreens = fileURLToPath(new URL("../../node_modules/@bigcommerce/citadel/dist/settings/global/screensizes/_screensizes.scss", import.meta.url));
+const citadelScreens = fileURLToPath(new URL("../../assets/scss/_citadel-global.scss", import.meta.url));
 
 const compile = async (candidates) =>
     (await postcss([tailwind()]).process(`${readFileSync(entry, "utf8")}\n@source inline("${candidates.join(" ")}");`, {from: entry})).css;
