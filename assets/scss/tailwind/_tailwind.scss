@@ -277,6 +277,7 @@
 
     h1, h2, h3, h4, h5, h6 {
         color: var(--sv-header-font-color);
+        line-height: 1.25;
         font-family: var(--sv-header-font-family);
         font-weight: var(--sv-header-font-weight);
         letter-spacing: var(--sv-header-letter-spacing);
