@@ -1,6 +1,6 @@
 import type {ThemeSettingsObject} from "@mainlanddev/hbx-bigcommerce";
 import PageRssFeed from "../components/page/rss_feed.tsx";
-import Breadcrumbs from "../components/common/breadcrumbs.tsx";
+import Breadcrumbs from "../components/common/navigation/breadcrumbs.tsx";
 import {
     $Each,
     $If,

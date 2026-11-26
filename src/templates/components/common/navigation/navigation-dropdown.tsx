@@ -2,7 +2,7 @@
 import NavigationDropdown from "./navigation-dropdown.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$Each, $If, $Lang, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
-import {moreIcon, navLink} from "../../../server/navParts.tsx";
+import {moreIcon, navLink} from "../../../../server/navParts.tsx";
 
 interface NavChild {
     id: string;

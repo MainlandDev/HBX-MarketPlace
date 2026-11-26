@@ -1,5 +1,5 @@
 import BlogPost from "../components/blog/post.tsx";
-import Breadcrumbs from "../components/common/breadcrumbs.tsx";
+import Breadcrumbs from "../components/common/navigation/breadcrumbs.tsx";
 import {$boolean, $Page, $pointer} from "@mainlanddev/hbx-bigcommerce";
 
 export default () => (

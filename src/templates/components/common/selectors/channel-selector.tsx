@@ -1,7 +1,7 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$Each, $If, $Lang, $lang, $number, $pointer, $string, $unescaped} from "@mainlanddev/hbx-bigcommerce";
-import {Icon} from "../../../server/formParts.tsx";
+import {Icon} from "../../../../server/formParts.tsx";
 
 interface Channel {
     code: string;

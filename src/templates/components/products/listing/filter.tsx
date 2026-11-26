@@ -1,7 +1,7 @@
 "use server";
 import CategorySortBox from "../../category/sort-box.tsx";
 import ProductsPerPage from "../../category/products-per-page.tsx";
-import Paginator from "../../common/paginator.tsx";
+import Paginator from "../../common/navigation/paginator.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$If, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
 

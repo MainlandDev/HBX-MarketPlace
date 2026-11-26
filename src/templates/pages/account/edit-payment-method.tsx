@@ -1,6 +1,6 @@
 import AccountNavigation from "../../components/account/navigation.tsx";
 import type {StoredInstrument} from "@mainlanddev/hbx-bigcommerce";
-import Breadcrumbs from "../../components/common/breadcrumbs.tsx";
+import Breadcrumbs from "../../components/common/navigation/breadcrumbs.tsx";
 import AlertAlertError from "../../components/common/alert/alert-error.tsx";
 import {$dynamicComponent, $Each, $If, $Inject, $lang, $Lang, $Page, $pointer, $string, $unescaped, $With} from "@mainlanddev/hbx-bigcommerce";
 import {Button, FormCheck, FormField, FormLabel} from "../../../server/formParts.tsx";

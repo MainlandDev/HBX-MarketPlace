@@ -4,7 +4,7 @@ import CartContent from "../components/cart/content.tsx";
 import CartCoupons from "../components/cart/coupons.tsx";
 import CartTotals from "../components/cart/totals.tsx";
 import CartAdditionalCheckoutButtons from "../components/cart/additional-checkout-buttons.tsx";
-import Breadcrumbs from "../components/common/breadcrumbs.tsx";
+import Breadcrumbs from "../components/common/navigation/breadcrumbs.tsx";
 import {
     $frontmatter,
     $If,

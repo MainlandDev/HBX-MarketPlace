@@ -1,7 +1,7 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$Each, $If, $Lang, $lang, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
-import {moreIcon, navLink} from "../../../server/navParts.tsx";
+import {moreIcon, navLink} from "../../../../server/navParts.tsx";
 
 interface NavChild {
     id: string;

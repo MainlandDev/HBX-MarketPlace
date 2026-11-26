@@ -1,7 +1,7 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import ResponsiveImg from "../common/responsive-img.tsx";
-import ProductOptions from "../common/product-options.tsx";
+import ProductOptions from "../common/commerce/product-options.tsx";
 import {$Each, $If, $Lang, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
 
 interface ReturnOption {

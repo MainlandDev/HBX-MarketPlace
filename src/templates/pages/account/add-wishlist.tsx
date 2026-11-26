@@ -1,6 +1,6 @@
 import AccountNavigation from "../../components/account/navigation.tsx";
 import AccountAddWishlist from "../../components/account/add-wishlist.tsx";
-import Breadcrumbs from "../../components/common/breadcrumbs.tsx";
+import Breadcrumbs from "../../components/common/navigation/breadcrumbs.tsx";
 import {$If, $Lang, $Page, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
 
 export default () => (

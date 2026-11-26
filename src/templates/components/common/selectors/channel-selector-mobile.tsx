@@ -1,7 +1,7 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$Each, $If, $Lang, $lang, $number, $pointer, $raw, $string, $unescaped} from "@mainlanddev/hbx-bigcommerce";
-import {moreIcon, navLink} from "../../../server/navParts.tsx";
+import {moreIcon, navLink} from "../../../../server/navParts.tsx";
 
 interface Channel {
     code: string;

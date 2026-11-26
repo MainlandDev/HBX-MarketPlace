@@ -1,9 +1,9 @@
 "use server";
 import ProductsCard from "../products/listing/card.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
-import LoginForPricing from "../common/login-for-pricing.tsx";
+import LoginForPricing from "../common/commerce/login-for-pricing.tsx";
 import ResponsiveImg from "../common/responsive-img.tsx";
-import ProductOptions from "../common/product-options.tsx";
+import ProductOptions from "../common/commerce/product-options.tsx";
 import {$boolean, $Each, $If, $Lang, $pointer, $string, $unescaped, $With, $unlessExpression, $Or, $raw} from "@mainlanddev/hbx-bigcommerce";
 import {Button} from "../../../server/formParts.tsx";
 import {ModalBody, ModalHeader, ModalTitle} from "../../../server/componentParts.tsx";

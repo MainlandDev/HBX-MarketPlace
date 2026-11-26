@@ -1,6 +1,6 @@
 import AccountNavigation from "../../../components/account/navigation.tsx";
 import AccountOrderContents from "../../../components/account/order-contents.tsx";
-import Breadcrumbs from "../../../components/common/breadcrumbs.tsx";
+import Breadcrumbs from "../../../components/common/navigation/breadcrumbs.tsx";
 import AlertAlertInfo from "../../../components/common/alert/alert-info.tsx";
 import {$Each, $If, $Inject, $Lang, $lang, $nl2br, $Page, $pointer, $raw, $sanitize, $string, $unescaped} from "@mainlanddev/hbx-bigcommerce";
 import {Button} from "../../../../server/formParts.tsx";

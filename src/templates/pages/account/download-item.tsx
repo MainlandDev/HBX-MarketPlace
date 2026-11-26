@@ -1,6 +1,6 @@
 import AccountNavigation from "../../components/account/navigation.tsx";
 import type {DownloadImage, DownloadItem} from "@mainlanddev/hbx-bigcommerce";
-import Breadcrumbs from "../../components/common/breadcrumbs.tsx";
+import Breadcrumbs from "../../components/common/navigation/breadcrumbs.tsx";
 import {$Page, $pointer, $string, $getImage, $If, $Each, $Lang, $this} from "@mainlanddev/hbx-bigcommerce";
 
 export default () => (

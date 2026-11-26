@@ -1,7 +1,7 @@
 import AccountNavigation from "../../../components/account/navigation.tsx";
 import AccountOrdersList from "../../../components/account/orders-list.tsx";
-import Breadcrumbs from "../../../components/common/breadcrumbs.tsx";
-import SmallPaginator from "../../../components/common/small-paginator.tsx";
+import Breadcrumbs from "../../../components/common/navigation/breadcrumbs.tsx";
+import SmallPaginator from "../../../components/common/navigation/small-paginator.tsx";
 import {$frontmatter, $Page, $pointer, $string, $Lang} from "@mainlanddev/hbx-bigcommerce";
 
 export const frontmatter = $frontmatter.other({customer: {orders: {limit: 3}}});

@@ -1,7 +1,7 @@
 import type {ThemeSettingsObject} from "@mainlanddev/hbx-bigcommerce";
 import BrandSidebar from "../components/brand/sidebar.tsx";
 import BrandProductListing from "../components/brand/product-listing.tsx";
-import Breadcrumbs from "../components/common/breadcrumbs.tsx";
+import Breadcrumbs from "../components/common/navigation/breadcrumbs.tsx";
 import ResponsiveImg from "../components/common/responsive-img.tsx";
 import {
     $frontmatter,

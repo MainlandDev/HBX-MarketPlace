@@ -1,6 +1,6 @@
-import Breadcrumbs from "../components/common/breadcrumbs.tsx";
+import Breadcrumbs from "../components/common/navigation/breadcrumbs.tsx";
 import ResponsiveImg from "../components/common/responsive-img.tsx";
-import Paginator from "../components/common/paginator.tsx";
+import Paginator from "../components/common/navigation/paginator.tsx";
 import {$Each, $frontmatter, $If, $Lang, $Page, $pointer, $region, $string, $unescaped} from "@mainlanddev/hbx-bigcommerce";
 import {Card, CardBody, CardFigure} from "../../server/componentParts.tsx";
 

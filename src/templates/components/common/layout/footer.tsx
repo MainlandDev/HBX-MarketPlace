@@ -1,9 +1,9 @@
 "use server";
 import type {ThemeSettingsObject} from "@mainlanddev/hbx-bigcommerce";
-import SocialLinks from "./social-links.tsx";
-import SubscriptionForm from "./subscription-form.tsx";
-import PaymentIcons from "./payment-icons.tsx";
-import {Container} from "../../../server/componentParts.tsx";
+import SocialLinks from "../social-links.tsx";
+import SubscriptionForm from "../commerce/subscription-form.tsx";
+import PaymentIcons from "../commerce/payment-icons.tsx";
+import {Container} from "../../../../server/componentParts.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {
     $And,

@@ -1,7 +1,7 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$Lang, $lang, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
-import {Button, FormField, FormInput, FormLabel} from "../../../server/formParts.tsx";
+import {Button, FormField, FormInput, FormLabel} from "../../../../server/formParts.tsx";
 
 export default (_props: PartialProps) => (
     <form className="form [:where(&)]:[margin:var(--sv-form-margin)]" action={$pointer("urls.search")}>

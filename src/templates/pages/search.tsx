@@ -6,7 +6,7 @@ import SearchAdvancedSearch from "../components/search/advanced-search.tsx";
 import FacetedSearchIndex from "../components/faceted-search/index.tsx";
 import SearchContentListing from "../components/search/content-listing.tsx";
 import SearchProductListing from "../components/search/product-listing.tsx";
-import Breadcrumbs from "../components/common/breadcrumbs.tsx";
+import Breadcrumbs from "../components/common/navigation/breadcrumbs.tsx";
 import {Panel, PanelBody} from "../../server/componentParts.tsx";
 import {
     $Each,

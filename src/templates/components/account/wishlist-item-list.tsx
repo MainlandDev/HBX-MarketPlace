@@ -1,7 +1,7 @@
 "use server";
 import ProductsCard from "../products/listing/card.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
-import Paginator from "../common/paginator.tsx";
+import Paginator from "../common/navigation/paginator.tsx";
 import {$Each, $If, $lang, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
 import {Button} from "../../../server/formParts.tsx";
 

@@ -6,7 +6,7 @@ import ProductsPrice from "../pricing/price.tsx";
 import ProductsPromotionCallout from "../pricing/promotion-callout.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import ResponsiveImg from "../../common/responsive-img.tsx";
-import LoginForPricing from "../../common/login-for-pricing.tsx";
+import LoginForPricing from "../../common/commerce/login-for-pricing.tsx";
 import {
     $partial,
     $Each,

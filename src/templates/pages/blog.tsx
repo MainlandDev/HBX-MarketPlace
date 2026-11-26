@@ -1,7 +1,7 @@
 import type {ThemeSettingsObject} from "@mainlanddev/hbx-bigcommerce";
 import BlogPost from "../components/blog/post.tsx";
-import Breadcrumbs from "../components/common/breadcrumbs.tsx";
-import Paginator from "../components/common/paginator.tsx";
+import Breadcrumbs from "../components/common/navigation/breadcrumbs.tsx";
+import Paginator from "../components/common/navigation/paginator.tsx";
 import {
     $Each,
     $frontmatter,

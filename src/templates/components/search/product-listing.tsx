@@ -3,7 +3,7 @@ import ProductsFilter from "../products/listing/filter.tsx";
 import ProductsGrid from "../products/listing/grid.tsx";
 import ProductsList from "../products/listing/list.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
-import Paginator from "../common/paginator.tsx";
+import Paginator from "../common/navigation/paginator.tsx";
 import {$Inject, $If, $lang, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
 
 export default (_props: PartialProps) => (

@@ -1,5 +1,5 @@
 import AccountNavigation from "../../components/account/navigation.tsx";
-import Breadcrumbs from "../../components/common/breadcrumbs.tsx";
+import Breadcrumbs from "../../components/common/navigation/breadcrumbs.tsx";
 import AlertAlertError from "../../components/common/alert/alert-error.tsx";
 import FormsText from "../../components/common/forms/text.tsx";
 import FormsSelect from "../../components/common/forms/select.tsx";

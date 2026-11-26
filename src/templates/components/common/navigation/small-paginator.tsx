@@ -1,8 +1,8 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$If, $Each, $Lang, $lang, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
-import {Icon} from "../../../server/formParts.tsx";
-import {PaginationItem, PaginationList} from "../../../server/componentParts.tsx";
+import {Icon} from "../../../../server/formParts.tsx";
+import {PaginationItem, PaginationList} from "../../../../server/componentParts.tsx";
 
 interface PageLink {
     link: string;

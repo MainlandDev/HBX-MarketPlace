@@ -1,7 +1,7 @@
 import type {ThemeSettingsObject} from "@mainlanddev/hbx-bigcommerce";
 import CategorySidebar from "../components/category/sidebar.tsx";
 import CategoryProductListing from "../components/category/product-listing.tsx";
-import Breadcrumbs from "../components/common/breadcrumbs.tsx";
+import Breadcrumbs from "../components/common/navigation/breadcrumbs.tsx";
 import ResponsiveImg from "../components/common/responsive-img.tsx";
 import {FormField, FormInput, FormLabel} from "../../server/formParts.tsx";
 import {

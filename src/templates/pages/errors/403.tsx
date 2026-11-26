@@ -1,5 +1,5 @@
-import Breadcrumbs from "../../components/common/breadcrumbs.tsx";
-import SearchBox from "../../components/common/search-box.tsx";
+import Breadcrumbs from "../../components/common/navigation/breadcrumbs.tsx";
+import SearchBox from "../../components/common/navigation/search-box.tsx";
 import {$Lang, $Page, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
 
 export default () => (

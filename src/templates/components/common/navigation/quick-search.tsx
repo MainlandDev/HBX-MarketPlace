@@ -2,8 +2,8 @@
 import {$if, type PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$If, $Lang, $lang, $pointer, $raw, $string, $unescaped} from "@mainlanddev/hbx-bigcommerce";
 import type { $hb } from "@mainlanddev/hbx-bigcommerce/grammar";
-import {FormField, FormInput} from "../../../server/formParts.tsx";
-import {Container} from "../../../server/componentParts.tsx";
+import {FormField, FormInput} from "../../../../server/formParts.tsx";
+import {Container} from "../../../../server/componentParts.tsx";
 
 export default (_props: PartialProps) => (
     <Container>

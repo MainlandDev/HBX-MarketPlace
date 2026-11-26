@@ -2,7 +2,7 @@
 import NavigationDropdown from "./navigation-dropdown.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$If, $pointer} from "@mainlanddev/hbx-bigcommerce";
-import {moreIcon, navLink} from "../../../server/navParts.tsx";
+import {moreIcon, navLink} from "../../../../server/navParts.tsx";
 
 export default (_props: PartialProps) => (
     <$If

@@ -1,7 +1,7 @@
 import AccountNavigation from "../../../components/account/navigation.tsx";
 import AccountOrdersList from "../../../components/account/orders-list.tsx";
-import Breadcrumbs from "../../../components/common/breadcrumbs.tsx";
-import SmallPaginator from "../../../components/common/small-paginator.tsx";
+import Breadcrumbs from "../../../components/common/navigation/breadcrumbs.tsx";
+import SmallPaginator from "../../../components/common/navigation/small-paginator.tsx";
 import AlertAlertInfo from "../../../components/common/alert/alert-info.tsx";
 import {$frontmatter, $If, $Lang, $lang, $number, $Page, $pointer, $string, $unescaped} from "@mainlanddev/hbx-bigcommerce";
 import {AlertBox} from "../../../../server/componentParts.tsx";

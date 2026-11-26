@@ -1,10 +1,10 @@
 import type {ThemeSettingsObject} from "@mainlanddev/hbx-bigcommerce";
 import {IslandsNoScriptStyle} from "@mainlanddev/hbx-bigcommerce/islands";
 import {NOSCRIPT_CSS} from "@vitejs/plugin-islands/runtime/server";
-import PolyfillScript from "../components/common/polyfill-script.tsx";
-import Header from "../components/common/header.tsx";
-import Body from "../components/common/body.tsx";
-import Footer from "../components/common/footer.tsx";
+import PolyfillScript from "../components/common/layout/polyfill-script.tsx";
+import Header from "../components/common/layout/header.tsx";
+import Body from "../components/common/layout/body.tsx";
+import Footer from "../components/common/layout/footer.tsx";
 import {
     $cdn,
     $jsContext,

@@ -5,7 +5,7 @@ import CartCouponInput from "./coupon-input.tsx";
 import CartGiftCertificate from "./gift-certificate.tsx";
 import CartGiftCertificateInput from "./gift-certificate-input.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
-import LoginForPricing from "../common/login-for-pricing.tsx";
+import LoginForPricing from "../common/commerce/login-for-pricing.tsx";
 import {
     $All,
     $AssignVar,

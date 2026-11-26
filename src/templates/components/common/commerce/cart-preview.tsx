@@ -1,5 +1,5 @@
 "use server";
-import ResponsiveImg from "./responsive-img.tsx";
+import ResponsiveImg from "../responsive-img.tsx";
 import LoginForPricing from "./login-for-pricing.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {
@@ -18,7 +18,7 @@ import {
     $ifExpression,
     $Or,
 } from "@mainlanddev/hbx-bigcommerce";
-import {Button} from "../../../server/formParts.tsx";
+import {Button} from "../../../../server/formParts.tsx";
 
 interface CartItem {
     type: string;

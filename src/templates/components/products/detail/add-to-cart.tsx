@@ -1,7 +1,7 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import AlertAlertError from "../../common/alert/alert-error.tsx";
-import WalletButtons from "../../common/wallet-buttons.tsx";
+import WalletButtons from "../../common/commerce/wallet-buttons.tsx";
 import {$If, $Inject, $Lang, $lang, $pointer, $raw, $string, $Unless, $unlessExpression, $Or} from "@mainlanddev/hbx-bigcommerce";
 import {Button, FormField, FormInput, FormLabel, Icon} from "../../../../server/formParts.tsx";
 import {AlertBox, AlertColumn} from "../../../../server/componentParts.tsx";

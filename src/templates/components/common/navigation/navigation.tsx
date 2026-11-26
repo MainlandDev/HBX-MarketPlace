@@ -1,9 +1,9 @@
 "use server";
 import type {ThemeSettingsObject} from "@mainlanddev/hbx-bigcommerce";
-import LanguageSelector from "./language-selector.tsx";
-import CurrencySelector from "./currency-selector.tsx";
-import ChannelSelector from "./channel-selector.tsx";
-import SocialLinks from "./social-links.tsx";
+import LanguageSelector from "../selectors/language-selector.tsx";
+import CurrencySelector from "../selectors/currency-selector.tsx";
+import ChannelSelector from "../selectors/channel-selector.tsx";
+import SocialLinks from "../social-links.tsx";
 import QuickSearch from "./quick-search.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$If, $Lang, $lang, $number, $pointer, $string, $unescaped, $And, $unlessExpression, $Or} from "@mainlanddev/hbx-bigcommerce";

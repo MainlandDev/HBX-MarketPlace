@@ -1,6 +1,6 @@
 import AccountNavigation from "../../components/account/navigation.tsx";
 import type {ReturnProduct} from "@mainlanddev/hbx-bigcommerce";
-import Breadcrumbs from "../../components/common/breadcrumbs.tsx";
+import Breadcrumbs from "../../components/common/navigation/breadcrumbs.tsx";
 import {$Each, $For, $If, $Lang, $lang, $number, $Page, $pointer, $sanitize, $string, $this, $unescaped} from "@mainlanddev/hbx-bigcommerce";
 import {Button, FormField, FormInput, FormLabel, FormSelect} from "../../../server/formParts.tsx";
 

@@ -1,8 +1,8 @@
 "use server";
-import Navigation from "./navigation.tsx";
-import {customerRegions} from "../../../server/regionParts.tsx";
+import Navigation from "../navigation/navigation.tsx";
+import {customerRegions} from "../../../../server/regionParts.tsx";
 import StoreLogo from "./store-logo.tsx";
-import NavigationMenu from "./navigation-menu.tsx";
+import NavigationMenu from "../navigation/navigation-menu.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$Each, $If, $Lang, $limit, $number, $pointer, $region, $string, $unescaped} from "@mainlanddev/hbx-bigcommerce";
 

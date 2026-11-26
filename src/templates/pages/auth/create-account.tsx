@@ -1,4 +1,4 @@
-import Breadcrumbs from "../../components/common/breadcrumbs.tsx";
+import Breadcrumbs from "../../components/common/navigation/breadcrumbs.tsx";
 import AlertAlertError from "../../components/common/alert/alert-error.tsx";
 import {$Each, $If, $Inject, $Lang, $lang, $Page, $pointer, $string, $unescaped, $dynamicComponent} from "@mainlanddev/hbx-bigcommerce";
 import {Button} from "../../../server/formParts.tsx";

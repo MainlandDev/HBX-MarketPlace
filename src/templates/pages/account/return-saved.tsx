@@ -1,5 +1,5 @@
 import AccountNavigation from "../../components/account/navigation.tsx";
-import Breadcrumbs from "../../components/common/breadcrumbs.tsx";
+import Breadcrumbs from "../../components/common/navigation/breadcrumbs.tsx";
 import {$If, $Lang, $Nl2br, $Page, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
 
 // LIBRARY GAP: `return` is not in the library context types, so `return.instructions` (return-saved.html) is read with a

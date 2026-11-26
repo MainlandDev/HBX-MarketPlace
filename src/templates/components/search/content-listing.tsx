@@ -1,7 +1,7 @@
 "use server";
 import SearchContentSortBox from "./content-sort-box.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
-import Paginator from "../common/paginator.tsx";
+import Paginator from "../common/navigation/paginator.tsx";
 import {$Each, $If, $pointer, $unescaped, $boolean} from "@mainlanddev/hbx-bigcommerce";
 
 interface ContentResult {

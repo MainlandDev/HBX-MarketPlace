@@ -1,7 +1,7 @@
 "use server";
 import ProductsRatings from "../shared/ratings.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
-import Paginator from "../../common/paginator.tsx";
+import Paginator from "../../common/navigation/paginator.tsx";
 import {$boolean, $Each, $If, $Lang, $lang, $pointer, $sanitize, $string, $unescaped} from "@mainlanddev/hbx-bigcommerce";
 
 interface Review {

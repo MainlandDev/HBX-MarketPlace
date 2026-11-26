@@ -1,5 +1,5 @@
 import GiftCertificateNavigation from "../../components/gift-certificate/navigation.tsx";
-import Breadcrumbs from "../../components/common/breadcrumbs.tsx";
+import Breadcrumbs from "../../components/common/navigation/breadcrumbs.tsx";
 import AlertAlertError from "../../components/common/alert/alert-error.tsx";
 import {$Each, $If, $Inject, $Lang, $lang, $Page, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
 import {Button, FormCheck, FormField, FormInput, FormLabel, FormSelect} from "../../../server/formParts.tsx";

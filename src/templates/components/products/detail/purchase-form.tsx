@@ -4,7 +4,7 @@ import ProductsAddToCart from "./add-to-cart.tsx";
 import ProductsOptionsColourSize from "../options/colour-size.tsx";
 import {clearFlags, setFlag, WhenColourSwatch, WhenSize} from "../../../../server/variantSelector.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
-import WishlistDropdown from "../../common/wishlist-dropdown.tsx";
+import WishlistDropdown from "../../common/commerce/wishlist-dropdown.tsx";
 import Share from "../../common/share.tsx";
 import {$All, $boolean, $dynamicComponent, $Each, $If, $Inject, $pointer, $string, $unescaped, $$scratch} from "@mainlanddev/hbx-bigcommerce";
 import type {Product, Settings} from "../../../../server/productViewTypes.ts";

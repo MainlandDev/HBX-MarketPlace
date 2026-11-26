@@ -2,8 +2,8 @@
 import CartItemGiftwrap from "./item-giftwrap.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import ResponsiveImg from "../common/responsive-img.tsx";
-import ProductOptions from "../common/product-options.tsx";
-import LoginForPricing from "../common/login-for-pricing.tsx";
+import ProductOptions from "../common/commerce/product-options.tsx";
+import LoginForPricing from "../common/commerce/login-for-pricing.tsx";
 import {
     $All,
     $AssignVar,

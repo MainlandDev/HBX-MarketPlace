@@ -1,9 +1,9 @@
 import ProductsPriceRange from "../components/products/pricing/price-range.tsx";
 import ProductsPrice from "../components/products/pricing/price.tsx";
 import ProductsRatings from "../components/products/shared/ratings.tsx";
-import Breadcrumbs from "../components/common/breadcrumbs.tsx";
+import Breadcrumbs from "../components/common/navigation/breadcrumbs.tsx";
 import ResponsiveImg from "../components/common/responsive-img.tsx";
-import LoginForPricing from "../components/common/login-for-pricing.tsx";
+import LoginForPricing from "../components/common/commerce/login-for-pricing.tsx";
 import {
     $Page,
     $Each,

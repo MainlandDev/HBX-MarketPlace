@@ -1,6 +1,6 @@
 import type {ThemeSettingsObject} from "@mainlanddev/hbx-bigcommerce";
 import PageContactUsForm from "../components/page/contact-us-form.tsx";
-import Breadcrumbs from "../components/common/breadcrumbs.tsx";
+import Breadcrumbs from "../components/common/navigation/breadcrumbs.tsx";
 import {$Each, $If, $lang, $Page, $pointer, $string, $unescaped, $Unless} from "@mainlanddev/hbx-bigcommerce";
 
 interface SubPage {

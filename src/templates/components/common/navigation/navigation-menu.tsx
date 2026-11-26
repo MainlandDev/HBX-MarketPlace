@@ -3,10 +3,10 @@ import type {ThemeSettingsObject} from "@mainlanddev/hbx-bigcommerce";
 import QuickSearch from "./quick-search.tsx";
 import NavigationList from "./navigation-list.tsx";
 import NavigationListAlternate from "./navigation-list-alternate.tsx";
-import LanguageSelectorMobile from "./language-selector-mobile.tsx";
-import ChannelSelectorMobile from "./channel-selector-mobile.tsx";
-import SocialLinks from "./social-links.tsx";
-import {moreIcon, navLink} from "../../../server/navParts.tsx";
+import LanguageSelectorMobile from "../selectors/language-selector-mobile.tsx";
+import ChannelSelectorMobile from "../selectors/channel-selector-mobile.tsx";
+import SocialLinks from "../social-links.tsx";
+import {moreIcon, navLink} from "../../../../server/navParts.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$Each, $If, $Lang, $lang, $number, $pointer, $raw, $string, $Unless, $And, $unescaped} from "@mainlanddev/hbx-bigcommerce";
 

@@ -6,7 +6,7 @@ import ProductsPromotionCallout from "../pricing/promotion-callout.tsx";
 import ProductsRatings from "../shared/ratings.tsx";
 import ProductsModalsWriteReview from "../modals/writeReview.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
-import LoginForPricing from "../../common/login-for-pricing.tsx";
+import LoginForPricing from "../../common/commerce/login-for-pricing.tsx";
 import {$If, $Lang, $number, $pointer, $raw, $region, $string, $unescaped, $Unless, $unlessExpression, $Or} from "@mainlanddev/hbx-bigcommerce";
 import type {Product, Settings} from "../../../../server/productViewTypes.ts";
 import {customerRegions} from "../../../../server/regionParts.tsx";

@@ -1,7 +1,7 @@
 "use server";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$Each, $If, $Lang, $lang, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";
-import {Button, Icon} from "../../../server/formParts.tsx";
+import {Button, Icon} from "../../../../server/formParts.tsx";
 
 interface Wishlist {
     name: string;
