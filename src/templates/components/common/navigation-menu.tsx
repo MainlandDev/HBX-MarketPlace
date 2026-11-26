@@ -101,6 +101,9 @@ export default (_props: PartialProps) => {
                     </li>
                 )}
             />
+            <li className="navPages-item navPages-item--social [display:none] medium:ml-auto medium:float-right medium:m-0 medium:p-0 medium:[display:block]">
+                <SocialLinks />
+            </li>
         </>
     );
     return (
