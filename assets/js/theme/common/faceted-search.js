@@ -343,7 +343,21 @@ class FacetedSearch {
         event.stopPropagation();
 
         // Update URL
-        urlUtils.goToUrl(url);
+        urlUtils.goToUrl(this.withCurrentLimit(url));
+    }
+
+    // Facet links are built by the store and do not carry the Products Per Page choice: keep the `limit` of the current page.
+    withCurrentLimit(url) {
+        const winUrl = Url.parse(window.location.href, true);
+
+        if (!winUrl.query.limit) {
+            return url;
+        }
+
+        const facetUrl = Url.parse(url, true);
+        facetUrl.query.limit = winUrl.query.limit;
+
+        return Url.format({ pathname: facetUrl.pathname, search: urlUtils.buildQueryString(facetUrl.query) });
     }
 
     onToggleClick(event) {
@@ -366,7 +380,7 @@ class FacetedSearch {
         $link.toggleClass('is-selected');
 
         // Update URL
-        urlUtils.goToUrl(url);
+        urlUtils.goToUrl(this.withCurrentLimit(url));
 
         if (this.options.modalOpen) {
             this.options.modal.close();
