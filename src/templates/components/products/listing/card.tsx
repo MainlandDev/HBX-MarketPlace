@@ -221,7 +221,7 @@ export default (_props: PartialProps) => {
             )}
             $else={() => (
                 <Card
-                    className="group/card"
+                    className="group/card rounded-[10px] border-[0.8px] border-solid border-ink-border bg-white p-[12px] text-ink [box-shadow:0_3px_5px_0_var(--color-ink-border)] [&_.card-title>a]:text-ink [&_.card-text]:text-ink-muted [&_.price]:text-ink [&_.price--rrp]:text-ink-muted"
                     data-test={`card-${id}`}
                     data-event-type={$pointer("event")}
                     data-entity-id={id}

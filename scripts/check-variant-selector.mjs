@@ -29,7 +29,7 @@ assert.match(selector, /<vite-island [^>]*data-export="VariantEnhancer"[^>]*data
 assert.match(selector, /data-hydrate="client"/);
 // The swatch template carries the chosen-colour copy (CSS shows it) and the larger image for tiles.
 const swatch = read("options/swatch.html");
-assert.match(swatch, /class="form-option-active-copy" aria-hidden="true"/);
+assert.match(swatch, /class="form-option-active-copy[^"]*" aria-hidden="true"/);
 assert.ok(swatch.includes(`--swatch-image-large: url('{{getImage image "gallery_size"}}')`));
 assert.equal((swatch.match(/form-option-variant--pattern/g) ?? []).length, 2, "the label and the copy each render the image swatch");
 console.log("variant selector checks passed");

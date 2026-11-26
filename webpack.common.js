@@ -12,7 +12,6 @@ module.exports = {
     entry: {
         main: './assets/js/app.js',
         head_async: ['lazysizes'],
-        font: './assets/js/theme/common/font.js',
         polyfills: './assets/js/polyfills.js',
         polyfill_form_data: ['formdata-polyfill'],
     },

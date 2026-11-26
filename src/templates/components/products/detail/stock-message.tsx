@@ -9,7 +9,7 @@ export default (_props: PartialProps) => {
     return (
         <>
             <FormField className={`form-field--stock${$Unless({test: product.stock_level, $then: () => " sr-only"})}`}>
-                <FormLabel className="form-label--alternate m-0 cursor-default text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-right [&_small]:mt-quarter">
+                <FormLabel className="form-label--alternate m-0 cursor-default text-smallest font-(family-name:--sv-fontFamily-headings) [&_small]:float-right [&_small]:mt-quarter">
                     <span className="productView-stock-message font-bold">
                         <span data-product-stock={""}>{product.stock_level}</span>{" "}
                         <$Lang keyName={$string("products.in_stock")} />
@@ -24,7 +24,7 @@ export default (_props: PartialProps) => {
                         $else={() => <span className="productView-backorder-availability-prompt before:content-['|_']" data-backorder-prompt={""} style={{display: "none"}}></span>}
                     />
                 </FormLabel>
-                <FormLabel tag="p" className="form-label--alternate m-0 cursor-default text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-right [&_small]:mt-quarter" data-product-backordered={""} style={{display: "none"}}>
+                <FormLabel tag="p" className="form-label--alternate m-0 cursor-default text-smallest font-(family-name:--sv-fontFamily-headings) [&_small]:float-right [&_small]:mt-quarter" data-product-backordered={""} style={{display: "none"}}>
                     <span className="[&:not(:empty)]:font-bold" data-qty-backordered-message={""}></span>
                     <span className="[[data-qty-backordered-message]:not(:empty)+&:not(:empty)]:before:content-['|_']" data-backorder-message={""}></span>
                 </FormLabel>

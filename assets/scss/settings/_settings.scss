@@ -92,10 +92,10 @@ $font-weight-bold:              fontWeight("bold");
 
 $body-bg:                       stencilColor("body-bg");
 $body-font-color:               stencilColor("color-textBase");
-$body-font-family:              stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+$body-font-family:              "Poppins", Arial, Helvetica, sans-serif;
 $body-font-weight:              stencilFontWeight("body-font");
 
-$header-font-family:            stencilFontFamily("headings-font"), Arial, Helvetica, sans-serif;
+$header-font-family:            "Poppins", Arial, Helvetica, sans-serif;
 $header-font-weight:            stencilFontWeight("headings-font");
 $header-font-color:             stencilColor("color-textHeading");
 $header-bottom-margin:          spacing("half");
@@ -233,7 +233,7 @@ $button-display:                        inline-block;
 $button-margin-bottom:                  spacing("base");
 
 $button-font-family:                    fontFamily("headingSans");
-$button-font-weight:                    fontWeight("normal");
+$button-font-weight:                    fontWeight("bold");
 $button-font-align:                     center;
 
 $button-border-width:                   1px;
@@ -258,7 +258,7 @@ $input-border-color:                stencilColor("input-border-color");
 $input-focus-border-color:          stencilColor("input-border-color-active");
 $input-border-style:                solid;
 $input-border-width:                1px;
-$input-border-radius:               $global-radius;
+$input-border-radius:               4px;
 $input-disabled-bg:                 stencilColor("input-disabled-bg");
 $input-disabled-cursor:             not-allowed;
 $fieldset-border-width:             0;
@@ -279,10 +279,10 @@ $form-label-small-fontSize:         remCalc(10px);
 
 $input-placeholder-color:           color("greys", "light");
 $input-disabled-color:              color("greys", "light");
-$input-height:                      $form-spacing * 2;
+$input-height:                      50px;
 $input-margin:                      0;
-$input-horizontalPadding:           ($form-spacing / 1.5);
-$input-verticalPadding:             ($form-spacing / 2);
+$input-horizontalPadding:           30px;
+$input-verticalPadding:             12.5px;
 $input-padding:                     $input-verticalPadding $input-horizontalPadding;
 $input-transition:                  border-color 100ms ease-out;
 $select-height:                     $input-height;
@@ -342,7 +342,7 @@ $reveal-border-style:              solid;
 $reveal-border-width:              0;
 $reveal-border-color:              container("borderColor");
 
-$alert-font-body:                                      stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+$alert-font-body:                                      "Poppins", Arial, Helvetica, sans-serif;
 $alert-font-bodySize:                                  remCalc(stencilNumber("fontSize-root", "px") + 2px);
 $alert-font-bodyColor:                                 stencilColor("color-textBase");
 

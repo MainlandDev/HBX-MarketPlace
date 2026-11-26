@@ -38,6 +38,13 @@ export default (_props: PartialProps) => {
     // The list is rendered twice (depth-max design or not) only because its `navPages-list-depth-max` hook class is a render-time condition.
     const listItems = (
         <>
+            <li className="navPages-item navPages-item--categories medium:relative medium:float-left medium:m-0 medium:p-0">
+                <details className="group/categories m-0 rounded-none bg-transparent p-0 [box-shadow:none]">
+                    <summary className="navPages-categoriesToggle before:[display:none] m-0 h-[40px] flex flex-row cursor-pointer list-none flex-nowrap items-center justify-between gap-half rounded-card bg-border px-double py-[6px] text-small leading-6 font-bold text-text uppercase medium:min-w-[206px] [&::-webkit-details-marker]:[display:none]">
+                        <$Lang keyName={$string("category.label")} />
+                        <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+                    </summary>
+                    <ul className="navPages-list navPages-list--categories m-0 bg-surface p-single text-text [--sv-setting-navPages-color:var(--color-text)] medium:[&>li]:float-none medium:[&>li]:w-full medium:absolute medium:top-full medium:left-0 medium:z-(--sv-zIndex-high) medium:w-[260px] medium:rounded-card medium:[box-shadow:var(--sv-container-drop-shadow-base)]">
             <$Each
                 list={$pointer<Category[]>("categories")}
                 $then={() => (
@@ -57,6 +64,9 @@ export default (_props: PartialProps) => {
                     </li>
                 )}
             />
+                    </ul>
+                </details>
+            </li>
             <$Unless
                 test={theme.hide_content_navigation}
                 $then={() => (
@@ -76,6 +86,24 @@ export default (_props: PartialProps) => {
                     />
                 )}
             />
+            <li className="navPages-item [display:none] medium:float-left medium:m-0 medium:p-0 medium:[display:block]">
+                <a className="navPages-action [display:block] py-half-quarter px-half-quarter text-(--sv-setting-navPages-color)" href="/contact-support/" aria-label="Contact support">
+                    <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
+                </a>
+            </li>
+            <$If
+                test={$pointer("settings.phone_number")}
+                $then={() => (
+                    <li className="navPages-item [display:none] medium:float-left medium:m-0 medium:p-0 medium:[display:block]">
+                        <a className="navPages-action [display:block] py-half-quarter px-half-quarter text-(--sv-setting-navPages-color)" href={`tel:${$pointer("settings.phone_number")}`} aria-label="Call us">
+                            <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" /></svg>
+                        </a>
+                    </li>
+                )}
+            />
+            <li className="navPages-item navPages-item--social [display:none] medium:ml-auto medium:float-right medium:m-0 medium:p-0 medium:[display:block]">
+                <SocialLinks />
+            </li>
         </>
     );
     return (

@@ -10,7 +10,7 @@ export default () => (
             page: () => (
                 <>
                     <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                    <h1 className="page-heading mx-0 mt-0 mb-double text-center">
+                    <h1 className="page-heading mx-0 mt-0 mb-[12px] text-center text-[25px] font-normal text-black">
                         <$Lang keyName={$string("gift_certificate.heading")} />
                     </h1>
                     <GiftCertificateNavigation gift_page={$string("balance")} />
@@ -33,7 +33,7 @@ export default () => (
                                     $then={() => <AlertAlertError $positionalHash={$pointer("gift_certificate.error")} />}
                                     $else={() => (
                                         <>
-                                            <h1>{$pointer("gift_certificate.balance.formatted")}</h1>
+                                            <h2>{$pointer("gift_certificate.balance.formatted")}</h2>
                                             <h3>{$pointer("gift_certificate.code")}</h3>
                                         </>
                                     )}

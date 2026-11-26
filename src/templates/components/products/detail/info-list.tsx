@@ -3,7 +3,7 @@ import type {ThemeSettingsObject} from "@mainlanddev/hbx-bigcommerce";
 import ProductsBulkDiscountRates from "../pricing/bulk-discount-rates.tsx";
 import ProductsCustomFields from "./custom-fields.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
-import {$All, $boolean, $If, $Lang, $pointer, $raw, $string, $Unless} from "@mainlanddev/hbx-bigcommerce";
+import {$All, $If, $Lang, $pointer, $raw, $string, $Unless} from "@mainlanddev/hbx-bigcommerce";
 import type {Product, Settings} from "../../../../server/productViewTypes.ts";
 import ProductsDetailInfoDimensions from "./info-dimensions.tsx";
 import ProductsDetailInfoShipping from "./info-shipping.tsx";
@@ -14,7 +14,7 @@ export default (_props: PartialProps) => {
     const settings = $pointer<Settings>("settings");
     return (
         <>
-            <dl className="productView-info mt-half flow-root small:mt-0 small:[&>:first-child]:mt-single [&>:last-child]:mb-0">
+            <dl className="productView-info mt-half flow-root [&_.cf-hidden]:[display:none] small:mt-0 small:[&>:first-child]:mt-single [&>:last-child]:mb-0">
                 <dt
                     className="productView-info-name sku-label clear-both float-left mr-quarter mb-eighth small:float-none small:font-(family-name:--sv-fontFamily-headings) small:text-smallest small:font-normal"
                     dangerouslyInlineAttributes={{attributes: `${$Unless({test: product.sku, $then: () => $raw(' style="display: none;"')})}`}}
@@ -119,12 +119,7 @@ export default (_props: PartialProps) => {
                     )}
                 />
 
-                <$If
-                    test={$pointer("theme_settings.show_custom_fields_tabs")}
-                    operator={$string("!==")}
-                    rvalue={$boolean(true)}
-                    $then={() => <ProductsCustomFields />}
-                />
+                <ProductsCustomFields />
             </dl>
         </>
     );

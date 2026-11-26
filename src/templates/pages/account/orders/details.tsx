@@ -103,12 +103,12 @@ export default () => {
                     <>
                         <$Inject keyName={$string("selectItem")} value={$lang($string("forms.validate.account.reorder.select_item"))} />
                         <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                        <h2 className="page-heading mx-0 mt-0 mb-double text-center title">
+                        <h1 className="page-heading mx-0 mt-0 mb-double text-center title">
                             <$Lang keyName={$string("account.orders.details.heading")} number={order.id} />
-                        </h2>
+                        </h1>
                         <AccountNavigation account_page={$string("orders")} />
 
-                        <div className="account mb-single">
+                        <div className="account mb-single rounded-card border-[0.8px] border-solid border-ink-border bg-white p-[12px] text-ink shadow-[0_3px_5px_var(--color-ink-border)]">
                             <div className="account-body -mx-gutter-half flow-root w-auto max-w-none">
                                 <$Each
                                     list={order.status_messages}

@@ -116,7 +116,7 @@ export default () => (
                                         </>
                                     )}
                                     $else={() => (
-                                        <h3 tabIndex={0}>
+                                        <h3 tabIndex={0} className="my-double text-center font-bold">
                                             <$Lang keyName={$string("cart.checkout.empty_cart")} />
                                         </h3>
                                     )}

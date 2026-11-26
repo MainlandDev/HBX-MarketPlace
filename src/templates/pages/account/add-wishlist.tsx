@@ -13,7 +13,7 @@ export default () => (
                         $then={() => (
                             <>
                                 <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                                <h2 className="page-heading mx-0 mt-0 mb-double text-center">
+                                <h1 className="page-heading mx-0 mt-0 mb-double text-center">
                                     <$If
                                         test={$pointer("forms.wishlist.id")}
                                         $then={() => <$Lang keyName={$string("account.wishlists.edit")} />}
@@ -25,9 +25,9 @@ export default () => (
                                             />
                                         )}
                                     />
-                                </h2>
+                                </h1>
                                 <AccountNavigation account_page={$string("wishlists")} />
-                                <AccountAddWishlist />
+                                <div className="rounded-card border-[0.8px] border-solid border-ink-border bg-white p-[12px] text-ink shadow-[0_3px_5px_var(--color-ink-border)]"><AccountAddWishlist /></div>
                             </>
                         )}
                     />

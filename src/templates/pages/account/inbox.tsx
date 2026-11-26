@@ -17,7 +17,7 @@ export default () => (
                     </h1>
                     <AccountNavigation account_page={$string("messages")} />
 
-                    <main className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3">
+                    <main className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3 rounded-card border-[0.8px] border-solid border-ink-border bg-white p-[12px] text-ink shadow-[0_3px_5px_var(--color-ink-border)]">
                         <div className="account-body -mx-gutter-half flow-root w-auto max-w-none">
                             <section className="account-content float-left w-full px-gutter-half">
                                 <$If

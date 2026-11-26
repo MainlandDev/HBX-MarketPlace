@@ -7,7 +7,6 @@ import Body from "../components/common/body.tsx";
 import Footer from "../components/common/footer.tsx";
 import {
     $cdn,
-    $getFontsCollection,
     $jsContext,
     $langJson,
     $lang,
@@ -68,10 +67,6 @@ export default () => {
                         }}
                     />
                     <script type="module" nonce={$nonce()} async src={$cdn($string("assets/dist/theme-bundle.head_async.js"), {resourceHint: $string("preload"), as: $string("script")})} />
-
-                    {$getFontsCollection({"font-display": $string("block")})}
-
-                    <script type="module" nonce={$nonce()} async src={$cdn($string("assets/dist/theme-bundle.font.js"), {resourceHint: $string("preload"), as: $string("script")})} />
 
                     {$unescaped($stylesheet($string("/assets/css/theme.css")))}
                     {" "}

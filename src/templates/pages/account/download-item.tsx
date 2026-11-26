@@ -14,7 +14,7 @@ export default () => (
                     </h1>
                     <AccountNavigation account_page={$string("orders")} />
 
-                    <div className="account account--fixedLarge mb-single medium:mx-auto medium:mb-0 medium:w-3/4">
+                    <div className="account account--fixedLarge mb-single medium:mx-auto medium:mb-0 medium:w-3/4 rounded-card border-[0.8px] border-solid border-ink-border bg-white p-[12px] text-ink shadow-[0_3px_5px_var(--color-ink-border)]">
                         <div className="account-body -mx-gutter-half flow-root w-auto max-w-none">
                             <figure className="account-sidebar float-left w-full px-gutter-half medium:w-1/3 medium:[.account-content--fixedSmall+&]:float-right">
                                 <$Each

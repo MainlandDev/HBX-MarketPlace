@@ -11,12 +11,12 @@ export default () => (
             page: () => (
                 <>
                     <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                    <h2 className="page-heading mx-0 mt-0 mb-double text-center">
+                    <h1 className="page-heading mx-0 mt-0 mb-double text-center">
                         <$Lang keyName={$string("account.addresses.heading")} />
-                    </h2>
+                    </h1>
                     <AccountNavigation account_page={$string("addresses")} />
 
-                    <div className="account account--fixedLarge mb-single medium:mx-auto medium:mb-0 medium:w-3/4">
+                    <div className="account account--fixedLarge mb-single medium:mx-auto medium:mb-0 medium:w-3/4 rounded-card border-[0.8px] border-solid border-ink-border bg-white p-[12px] text-ink shadow-[0_3px_5px_var(--color-ink-border)]">
                         <div className="account-body -mx-gutter-half flow-root w-auto max-w-none">
                             <$If
                                 test={$pointer("customer.error")}

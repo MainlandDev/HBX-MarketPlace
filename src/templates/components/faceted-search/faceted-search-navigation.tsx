@@ -14,7 +14,7 @@ export default (_props: PartialProps) => (
                     data-collapsible={`#facetedSearch-content--${$dashcase($pointer("facet"))}`}
                     aria-label={$lang($string("search.faceted.toggleSection"), {title: $pointer("title")})}
                 >
-                    <span className="accordion-title [:where(&)]:[line-height:var(--sv-accordion-title-lineHeight)] m-0 p-(--sv-accordion-navList-padding) text-[15px] font-normal text-(--sv-setting-color-textHeading) [font-family:'Montserrat',Arial,Helvetica,sans-serif] [text-decoration:none] [text-transform:inherit] medium:p-0">{$pointer("title")}</span>{" "}
+                    <span className="accordion-title [:where(&)]:[line-height:var(--sv-accordion-title-lineHeight)] m-0 p-(--sv-accordion-navList-padding) text-[13px] font-bold text-ink [font-family:inherit] [text-decoration:none] [text-transform:uppercase] medium:p-0">{$pointer("title")}</span>{" "}
 
                     <span>
                         <Icon tag="svg" className="accordion-indicator fill-(--sv-color-greyLight) toggleLink-text toggleLink-text--off text-smallest font-normal [display:inline-block] [[class~=toggleLink][class~=is-open]_&]:[display:none]">
@@ -33,7 +33,7 @@ export default (_props: PartialProps) => (
                     data-collapsible={`#facetedSearch-content--${$dashcase($pointer("facet"))}`}
                     aria-label={$lang($string("search.faceted.toggleSection"), {title: $pointer("title")})}
                 >
-                    <span className="accordion-title [:where(&)]:[line-height:var(--sv-accordion-title-lineHeight)] m-0 p-(--sv-accordion-navList-padding) text-[15px] font-normal text-(--sv-setting-color-textHeading) [font-family:'Montserrat',Arial,Helvetica,sans-serif] [text-decoration:none] [text-transform:inherit] medium:p-0">{$pointer("title")}</span>{" "}
+                    <span className="accordion-title [:where(&)]:[line-height:var(--sv-accordion-title-lineHeight)] m-0 p-(--sv-accordion-navList-padding) text-[13px] font-bold text-ink [font-family:inherit] [text-decoration:none] [text-transform:uppercase] medium:p-0">{$pointer("title")}</span>{" "}
 
                     <span>
                         <Icon tag="svg" className="accordion-indicator fill-(--sv-color-greyLight) toggleLink-text toggleLink-text--off text-smallest font-normal [display:inline-block] [[class~=toggleLink][class~=is-open]_&]:[display:none]">

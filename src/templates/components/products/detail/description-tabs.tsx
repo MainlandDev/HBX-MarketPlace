@@ -14,12 +14,12 @@ export default (_props: PartialProps) => {
     const customFieldsTabId = $dashcase($lowercase($sanitize($pointer<string>("theme_settings.pdp-custom-fields-tab-label"))));
     return (
         <>
-            <Tabs data-tab={""}>
+            <Tabs data-tab={""} className="mb-base [border-bottom:0.8px_solid_#e5e5e5]">
                 <$If
                     test={product.description}
                     $then={() => (
-                        <li className="tab is-active [border-top:var(--sv-tab-active-border)] float-none medium:border-t-(color:--sv-tab-title-border-color) medium:float-left is-active:border-l-(color:--sv-tab-title-border-color) is-active:border-r-(color:--sv-tab-title-border-color) small:is-active:mb-(--sv-tab-title-border-bottom-offset) medium:is-active:[border-width:1px] medium:is-active:[border-style:solid] medium:is-active:[border-color:var(--sv-tab-active-border-color)_var(--sv-tab-active-border-color)_var(--sv-tab-title-border-color)_var(--sv-tab-active-border-color)]">
-                            <a className="tab-title py-[calc(var(--sv-spacing-half)+var(--sv-spacing-quarter))] px-0 text-center [text-decoration:var(--sv-tab-title-text-decoration)] small:text-left medium:px-single medium:py-half large:px-[18px] large:py-[11px]" href="#tab-description">
+                        <li className="tab is-active float-none medium:float-left">
+                            <a className="tab-title [display:block] px-[24px] py-[12px] text-center text-[15px] font-bold uppercase text-ink [text-decoration:none] [li.is-active_&]:text-brand [li.is-active_&]:[box-shadow:inset_0_-2px_0_currentColor]" href="#tab-description">
                                 <$Lang keyName={$string("products.description")} />
                             </a>
                         </li>
@@ -28,8 +28,8 @@ export default (_props: PartialProps) => {
                 <$If
                     test={product.warranty}
                     $then={() => (
-                        <li className={`tab [border-top:var(--sv-tab-active-border)] float-none medium:border-t-(color:--sv-tab-title-border-color) medium:float-left is-active:border-l-(color:--sv-tab-title-border-color) is-active:border-r-(color:--sv-tab-title-border-color) small:is-active:mb-(--sv-tab-title-border-bottom-offset) medium:is-active:[border-width:1px] medium:is-active:[border-style:solid] medium:is-active:[border-color:var(--sv-tab-active-border-color)_var(--sv-tab-active-border-color)_var(--sv-tab-title-border-color)_var(--sv-tab-active-border-color)] ${$Unless({test: product.description, $then: () => "is-active"})}`}>
-                            <a className="tab-title py-[calc(var(--sv-spacing-half)+var(--sv-spacing-quarter))] px-0 text-center [text-decoration:var(--sv-tab-title-text-decoration)] small:text-left medium:px-single medium:py-half large:px-[18px] large:py-[11px]" href="#tab-warranty">
+                        <li className={`tab float-none medium:float-left ${$Unless({test: product.description, $then: () => "is-active"})}`}>
+                            <a className="tab-title [display:block] px-[24px] py-[12px] text-center text-[15px] font-bold uppercase text-ink [text-decoration:none] [li.is-active_&]:text-brand [li.is-active_&]:[box-shadow:inset_0_-2px_0_currentColor]" href="#tab-warranty">
                                 <$Lang keyName={$string("products.warranty")} />
                             </a>
                         </li>
@@ -38,8 +38,8 @@ export default (_props: PartialProps) => {
                 <$All
                     values={[$pointer("product.custom_fields"), theme.show_custom_fields_tabs]}
                     $then={() => (
-                        <li className="tab [border-top:var(--sv-tab-active-border)] float-none medium:border-t-(color:--sv-tab-title-border-color) medium:float-left is-active:border-l-(color:--sv-tab-title-border-color) is-active:border-r-(color:--sv-tab-title-border-color) small:is-active:mb-(--sv-tab-title-border-bottom-offset) medium:is-active:[border-width:1px] medium:is-active:[border-style:solid] medium:is-active:[border-color:var(--sv-tab-active-border-color)_var(--sv-tab-active-border-color)_var(--sv-tab-title-border-color)_var(--sv-tab-active-border-color)]">
-                            <a className="tab-title py-[calc(var(--sv-spacing-half)+var(--sv-spacing-quarter))] px-0 text-center [text-decoration:var(--sv-tab-title-text-decoration)] small:text-left medium:px-single medium:py-half large:px-[18px] large:py-[11px]" href={`#tab-${customFieldsTabId}`}>
+                        <li className="tab float-none medium:float-left">
+                            <a className="tab-title [display:block] px-[24px] py-[12px] text-center text-[15px] font-bold uppercase text-ink [text-decoration:none] [li.is-active_&]:text-brand [li.is-active_&]:[box-shadow:inset_0_-2px_0_currentColor]" href={`#tab-${customFieldsTabId}`}>
                                 {$sanitize(customFieldsTab)}
                             </a>
                         </li>
@@ -48,8 +48,8 @@ export default (_props: PartialProps) => {
                 <$All
                     values={[$pointer("settings.show_product_reviews"), theme.show_product_reviews, product.reviews.total]}
                     $then={() => (
-                        <li className="tab [border-top:var(--sv-tab-active-border)] float-none medium:border-t-(color:--sv-tab-title-border-color) medium:float-left is-active:border-l-(color:--sv-tab-title-border-color) is-active:border-r-(color:--sv-tab-title-border-color) small:is-active:mb-(--sv-tab-title-border-bottom-offset) medium:is-active:[border-width:1px] medium:is-active:[border-style:solid] medium:is-active:[border-color:var(--sv-tab-active-border-color)_var(--sv-tab-active-border-color)_var(--sv-tab-title-border-color)_var(--sv-tab-active-border-color)]">
-                            <a className="tab-title productView-reviewTabLink py-[calc(var(--sv-spacing-half)+var(--sv-spacing-quarter))] px-0 text-center [text-decoration:var(--sv-tab-title-text-decoration)] small:text-left medium:px-single medium:py-half large:px-[18px] large:py-[11px]" href="#tab-reviews">
+                        <li className="tab float-none medium:float-left">
+                            <a className="tab-title productView-reviewTabLink [display:block] px-[24px] py-[12px] text-center text-[15px] font-bold uppercase text-ink [text-decoration:none] [li.is-active_&]:text-brand [li.is-active_&]:[box-shadow:inset_0_-2px_0_currentColor]" href="#tab-reviews">
                                 <$Lang keyName={$string("products.reviews.header")} total={product.reviews.total} />
                             </a>
                         </li>
@@ -60,7 +60,7 @@ export default (_props: PartialProps) => {
                 <$If
                     test={product.description}
                     $then={() => (
-                        <div className="tab-content is-active" id="tab-description">
+                        <div className="tab-content is-active font-normal [&_h2]:font-normal [&_h3]:font-normal [&_h3]:text-[22px] [&_h3]:text-[#444]" id="tab-description">
                             {$unescaped(product.description)}
                         </div>
                     )}
@@ -68,7 +68,7 @@ export default (_props: PartialProps) => {
                 <$If
                     test={product.warranty}
                     $then={() => (
-                        <div className={`tab-content ${$Unless({test: product.description, $then: () => "is-active"})}`} id="tab-warranty">
+                        <div className={`tab-content font-normal ${$Unless({test: product.description, $then: () => "is-active"})}`} id="tab-warranty">
                             {$unescaped(product.warranty)}
                         </div>
                     )}
@@ -76,7 +76,7 @@ export default (_props: PartialProps) => {
                 <$All
                     values={[$pointer("product.custom_fields"), theme.show_custom_fields_tabs]}
                     $then={() => (
-                        <div className="tab-content" id={`tab-${customFieldsTabId}`}>
+                        <div className="tab-content font-normal" id={`tab-${customFieldsTabId}`}>
                             <dl className="productView-info"><ProductsCustomFields /></dl>
                         </div>
                     )}
@@ -84,7 +84,7 @@ export default (_props: PartialProps) => {
                 <$All
                     values={[$pointer("settings.show_product_reviews"), theme.show_product_reviews]}
                     $then={() => (
-                        <div className="tab-content" id="tab-reviews">
+                        <div className="tab-content font-normal" id="tab-reviews">
                             <ProductsReviews reviews={$pointer("product.reviews")} product={$pointer("product")} urls={$pointer("urls")} />
                         </div>
                     )}

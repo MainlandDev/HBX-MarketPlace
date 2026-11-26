@@ -10,7 +10,7 @@ interface ShopByBrand {
 }
 
 export default (_props: PartialProps) => (
-    <nav>
+    <nav aria-label="Filters" className="rounded-card bg-white p-single text-ink">
         <$If
             test={$pointer("brand.faceted_search_enabled")}
             $then={() => <FacetedSearchIndex $positionalHash={$pointer("brand")} />}

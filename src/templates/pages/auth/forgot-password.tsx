@@ -12,9 +12,10 @@ export default () => (
                 page: () => (
                     <div className="account account--fixedSmall mb-single medium:mx-auto medium:mb-0 medium:w-1/2">
                         <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                        <h2 className="page-heading mx-0 mt-0 mb-double text-center">
+                        <h1 className="page-heading mx-0 mt-0 mb-[1rem] text-center">
                             <$Lang keyName={$string("reset_password.heading")} />
-                        </h2>
+                        </h1>
+                        <div className="rounded-card border-[0.8px] border-solid border-ink-border bg-white p-[12px] text-ink shadow-[0_3px_5px_var(--color-ink-border)]">
                         <p>
                             <$Lang keyName={$string("reset_password.intro")} />
                         </p>
@@ -32,11 +33,12 @@ export default () => (
                                 {$unescaped($pointer("forms.forgot_password.recaptcha.markup"))}
                                 <Button
                                     type="submit"
-                                    tag="input" variant="primary" className="form-prefixPostfix-button--postfix order-1 mx-0 mt-half mb-0 large:order-0 large:m-0 large:ml-half"
+                                    tag="input" variant="primary" className="font-bold uppercase form-prefixPostfix-button--postfix order-1 mx-0 mt-half mb-0 large:order-0 large:m-0 large:ml-half"
                                     value={$lang($string("reset_password.heading"))}
                                 />
                             </div>
                         </form>
+                        </div>
                     </div>
                 ),
             }}

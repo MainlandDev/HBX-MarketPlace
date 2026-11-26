@@ -10,7 +10,7 @@ export default (_props: PartialProps) => {
     return (
         <FormField data-product-attribute="date">
             <FormLabel
-                className="form-label--alternate form-label--inlineSmall mb-half text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-none [&_small]:mt-quarter [&_small]:ml-quarter [&_small]:text-text-secondary [&_small]:font-normal [&_small]:normal-case [&_small]:[font-size:inherit]"
+                className="form-label--alternate form-label--inlineSmall mb-half text-smallest font-(family-name:--sv-fontFamily-headings) [&_small]:float-none [&_small]:mt-quarter [&_small]:ml-quarter [&_small]:text-text-secondary [&_small]:font-normal [&_small]:normal-case [&_small]:[font-size:inherit]"
                 dangerouslyInlineAttributes={{attributes: `${$If({test: $pointer("style"), $then: () => `${$raw('style="')}${$pointer("style")}${$raw('" ')}`})}`}}
             >
                 {$pointer("display_name")}:{" "}

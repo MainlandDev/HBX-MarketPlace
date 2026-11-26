@@ -1,6 +1,10 @@
 // Entry point of the theme stylesheet. Styling lives in utilities (src/templates, src/server) and in _tailwind.scss; the rest is Sass variables.
 @import "tailwind/_tailwind";
 
+// The Tailwind output ends with a stray `;`, and a browser parses `; <next rule> {}` as one invalid rule and drops the next rule.
+// This empty rule is the one that gets dropped (it was the Poppins 400 @font-face, then would have been the light token block).
+.sv-css-sacrificial-rule { --sv-noop: 0; }
+
 // Sass helpers (rem conversion, image-size parsing).
 @import "tools/tools";
 
@@ -10,6 +14,8 @@
 
 // Custom properties for the markup: design tokens (docs/design/tokens.json), the generated --sv-* bridge (npm run generate-bridge) and the hand-written
 // --sv-derived-* values that need Sass functions.
+@import "settings/global/fonts";
 @import "settings/global/color/design-tokens";
 @import "settings/global/css-vars";
 @import "settings/global/derived-vars";
+@import "vendor/oww/oww-custom";

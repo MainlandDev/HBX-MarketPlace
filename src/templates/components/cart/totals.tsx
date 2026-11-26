@@ -87,7 +87,7 @@ export default (_props: PartialProps) => {
     const cart = $pointer<Cart>("cart");
     const multi = cart.multi_coupon_ui_enabled;
     return (
-        <ul className="cart-totals mb-single ml-0 w-full text-right [list-style-type:none] small:clear-both small:float-right small:w-9/12 medium:mb-base medium:w-7/12 large:w-5/12" dangerouslyInlineAttributes={{attributes: `${$If({test: multi, $then: () => 'data-enhanced=""'})}`}}>
+        <ul className="cart-totals mb-single ml-0 w-full rounded-card border-[0.8px] border-ink-border bg-white p-single text-ink shadow-[0_3px_5px_var(--color-ink-border)] text-right [list-style-type:none] small:clear-both small:float-right small:w-9/12 medium:mb-base medium:w-7/12 large:w-5/12" dangerouslyInlineAttributes={{attributes: `${$If({test: multi, $then: () => 'data-enhanced=""'})}`}}>
             <li className="cart-total flow-root border-b-0 medium:[ul:not([data-enhanced])>.cart-total+&]:border-t medium:[ul:not([data-enhanced])>.cart-total+&]:border-container-border">
                 <div className="cart-total-label float-left w-4/12 py-third pr-0 pl-single text-text-secondary small:w-6/12 medium:py-base medium:pl-0 medium:text-left medium:[display:block] [[data-enhanced]_&]:w-6/12 [[data-enhanced]_&]:py-third [[data-enhanced]_&]:pl-0 [[data-enhanced]_&]:text-left [[data-enhanced]_&]:text-text-base">
                     <strong>

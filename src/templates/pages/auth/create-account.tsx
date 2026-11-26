@@ -13,11 +13,11 @@ export default () => (
                 page: () => (
                     <>
                         <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                        <h1 className="page-heading mx-0 mt-0 mb-double text-center">
+                        <h1 className="page-heading mx-0 mt-0 mb-[1rem] text-center">
                             <$Lang keyName={$string("create_account.heading")} />
                         </h1>
-                        <div className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3">
-                            <div className="account-body -mx-gutter-half flow-root w-auto max-w-none">
+                        <div className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3 rounded-card border-[0.8px] border-solid border-ink-border bg-white p-[12px] text-ink shadow-[0_3px_5px_var(--color-ink-border)]">
+                            <div className="account-body flow-root w-auto max-w-none">
                                 <$If
                                     test={$pointer("forms.create_account.error")}
                                     $then={() => <AlertAlertError $positionalHash={$pointer("forms.create_account.error")} />}
@@ -44,10 +44,10 @@ export default () => (
                                                 <$Inject keyName={$string("state_error")} value={$lang($string("errors.state_error"))} />
                                             </div>
                                             {$unescaped($pointer("forms.create_account.recaptcha.markup"))}
-                                            <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half [:where(&)]:[background:none] [:where(&)]:[border:0] [:where(&)]:text-center xsmall:[:where(&)]:text-left [:where(&>*)]:[display:inline-block] [:where(&>*)]:mb-[1rem] [:where(&>*)]:w-full xsmall:[:where(&>*)]:align-baseline xsmall:[:where(&>*)]:w-auto">
+                                            <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-left [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half [:where(&)]:[background:none] [:where(&)]:[border:0] [:where(&)]:text-center xsmall:[:where(&)]:text-left [:where(&>*)]:[display:inline-block] [:where(&>*)]:mb-[1rem] [:where(&>*)]:w-full xsmall:[:where(&>*)]:align-baseline xsmall:[:where(&>*)]:w-auto">
                                                 <Button
                                                     type="submit"
-                                                    tag="input" variant="primary"
+                                                    tag="input" variant="primary" className="font-bold uppercase"
                                                     value={$lang($string("forms.create_account.submit_value"))}
                                                 />
                                             </div>
