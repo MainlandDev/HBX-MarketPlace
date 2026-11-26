@@ -23,7 +23,7 @@ export default () => (
                 <>
                     <div className="[&_.breadcrumbs]:text-left"><Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} /></div>
                     <main className="page -mx-gutter-half w-auto max-w-none flow-root">
-                        <h1 className="page-heading mx-0 mt-0 mb-single text-left text-[1.8rem] font-medium">
+                        <h1 className="page-heading mx-0 mt-0 mb-single text-left text-[25px] font-normal">
                             <$Lang keyName={$string("brand.label")} />
                         </h1>
                         {region("brands_below_header")}
