@@ -27,8 +27,19 @@ export default class Category extends CatalogPage {
         $('a.navList-action').on('click', () => this.setLiveRegionAttributes($('span.price-filter-message'), 'status', 'assertive'));
     }
 
+    // The select renders the theme default; show the `limit` that is actually in the URL.
+    syncProductsPerPage() {
+        const urlLimit = new URLSearchParams(window.location.search).get('limit');
+        const $limit = $('#limit');
+
+        if (urlLimit && $limit.find(`option[value="${urlLimit}"]`).length) {
+            $limit.val(urlLimit);
+        }
+    }
+
     onReady() {
         this.arrangeFocusOnSortBy();
+        this.syncProductsPerPage();
 
         $('[data-button-type="add-cart"]').on('click', (e) => this.setLiveRegionAttributes($(e.currentTarget).next(), 'status', 'polite'));
 
@@ -75,7 +86,9 @@ export default class Category extends CatalogPage {
         } = this.validationDictionary;
         const $productListingContainer = $('#product-listing-container');
         const $facetedSearchContainer = $('#faceted-search-container');
-        const productsPerPage = this.context.categoryProductsPerPage;
+        // A `limit` in the URL (the Products Per Page select) wins over the theme default.
+        const urlLimit = parseInt(new URLSearchParams(window.location.search).get('limit'), 10);
+        const productsPerPage = urlLimit > 0 ? urlLimit : this.context.categoryProductsPerPage;
         const requestOptions = {
             config: {
                 category: {

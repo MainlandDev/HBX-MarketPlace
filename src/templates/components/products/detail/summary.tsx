@@ -42,9 +42,7 @@ export default (_props: PartialProps) => {
             <div className="productView-price mb-third text-smaller medium:mb-base medium:text-larger [&_.price-section--saving]:text-smaller [&_abbr]:border-0 [&_abbr]:text-inherit [&_abbr]:[font-size:1rem] [&_.price--withTax_.price]:text-[2.5rem] [&_.price--withTax_.price]:text-ink [&_.price--rrp]:text-[1.4rem] [&_.price--rrp]:text-ink-muted [&_.price-section--saving]:font-bold [&_.price-section--saving]:text-ink">
                 <$Or values={[$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))]} $then={() => (<><ProductsPrice price={$pointer("product.price")} /></>)} $else={() => (<><LoginForPricing /></>)} />
             </div>
-            {customerRegions("product_below_price--global")}
             {region("product_below_price--global")}
-            {customerRegions("product_below_price")}
             {region("product_below_price")}
             <$If
                 test={theme.show_featured_promotions}
@@ -97,7 +95,6 @@ export default (_props: PartialProps) => {
             </div>
             {customerRegions("product_below_rating--global")}
             {region("product_below_rating--global")}
-            {customerRegions("product_below_rating")}
             {region("product_below_rating")}
             {product.detail_messages}
         </>

@@ -3,11 +3,14 @@ import CategorySidebar from "../components/category/sidebar.tsx";
 import CategoryProductListing from "../components/category/product-listing.tsx";
 import Breadcrumbs from "../components/common/breadcrumbs.tsx";
 import ResponsiveImg from "../components/common/responsive-img.tsx";
+import {FormField, FormInput, FormLabel} from "../../server/formParts.tsx";
 import {
     $frontmatter,
     $Each,
     $If,
     $Inject,
+    $Lang,
+    $lang,
     $Page,
     $pointer,
     $region,
@@ -100,6 +103,25 @@ export default () => {
                                             </nav>
                                         )}
                                     />
+                                    <form className="categoryPage-searchInCategory-form mb-single" method="get" role="search" action={$pointer("urls.search")}>
+                                        <fieldset className="form-fieldset m-0 border-0 p-0">
+                                            <input type="hidden" name="category[]" value={$pointer("category.id")} />
+                                            <input type="hidden" name="searchsubs" value="ON" />
+                                            <FormField>
+                                                <FormLabel className="sr-only" htmlFor="category-filter-q">
+                                                    <$Lang keyName={$string("search.actionbar.input_label")} />
+                                                </FormLabel>
+                                                <FormInput
+                                                    id="category-filter-q"
+                                                    name="search_query_adv"
+                                                    type="text"
+                                                    placeholder={$lang($string("search.actionbar.input_placeholder"))}
+                                                    data-search-in-category=""
+                                                    className="w-full"
+                                                />
+                                            </FormField>
+                                        </fieldset>
+                                    </form>
                                     <div id="product-listing-container">
                                         <CategoryProductListing />
                                     </div>

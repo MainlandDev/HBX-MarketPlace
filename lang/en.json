@@ -888,6 +888,11 @@
         "state_error": "There was a problem retrieving states/provinces"
     },
     "search": {
+        "actionbar": {
+            "input_label": "Filter products",
+            "input_placeholder": "Filter products by name, SKU, attributes...",
+            "clear_all": "Clear All"
+        },
         "errorMessage": "There was a problem retrieving your results. Please try again in a few seconds.",
         "quick_search": {
             "input_label": "Search",
