@@ -101,8 +101,8 @@ $header-font-color:             stencilColor("color-textHeading");
 $header-bottom-margin:          spacing("half");
 $header-letter-spacing:         letterSpacing("small");
 
-$h1-font-size:                  fontSize("largest");
-$h2-font-size:                  fontSize("larger");
+$h1-font-size:                  25px;
+$h2-font-size:                  28px;
 $h3-font-size:                  fontSize("large");
 $h4-font-size:                  fontSize("small");
 $h5-font-size:                  fontSize("smaller");
@@ -215,7 +215,7 @@ $buttonStyle-disabled-borderColor:           stencilColor("button--disabled-bord
 
 $buttonSize-default-fontSize:           fontSize("base");
 $buttonSize-default-horizontalPadding:  spacing("single") + spacing("half");
-$buttonSize-default-verticalPadding:    17px;
+$buttonSize-default-verticalPadding:    16px;
 
 $buttonSize-large-fontSize:             fontSize("smaller");
 

@@ -114,6 +114,7 @@ export default () => {
                                                 <FormInput
                                                     id="category-filter-q"
                                                     name="search_query_adv"
+                                                    required={true}
                                                     type="text"
                                                     placeholder={$lang($string("search.actionbar.input_placeholder"))}
                                                     data-search-in-category=""
