@@ -103,7 +103,7 @@ export default () => {
                                             </nav>
                                         )}
                                     />
-                                    <form className="categoryPage-searchInCategory-form mb-single" method="get" role="search" action={$pointer("urls.search")}>
+                                    <form className="categoryPage-searchInCategory-form mb-single [&_input]:rounded-[4px]" method="get" role="search" action={$pointer("urls.search")}>
                                         <fieldset className="form-fieldset m-0 border-0 p-0">
                                             <input type="hidden" name="category[]" value={$pointer("category.id")} />
                                             <input type="hidden" name="searchsubs" value="ON" />

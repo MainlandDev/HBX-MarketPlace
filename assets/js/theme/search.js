@@ -134,7 +134,20 @@ export default class Search extends CatalogPage {
         $($tabsCollection.get(nextTabIdx)).trigger('focus').trigger('click');
     }
 
+    // The select renders without a selected option on search: show the URL's `limit` or the theme default.
+    syncProductsPerPage() {
+        const urlLimit = new URLSearchParams(window.location.search).get('limit') || String(this.context.searchProductsPerPage);
+
+        $('#limit option').each((_, option) => {
+            if (option.value === urlLimit) {
+                $('#limit').val(urlLimit);
+            }
+        });
+    }
+
     onReady() {
+        this.syncProductsPerPage();
+
         compareProducts(this.context);
         this.arrangeFocusOnSortBy();
 
@@ -273,7 +286,12 @@ export default class Search extends CatalogPage {
         const $searchHeading = $('#search-results-heading');
         const $searchCount = $('#search-results-product-count');
         const $contentCount = $('#search-results-content-count');
-        const productsPerPage = this.context.searchProductsPerPage;
+        // A `limit` in the URL (the Products Per Page select) wins over the theme default; read on every request.
+        const getProductsPerPage = () => {
+            const urlLimit = parseInt(new URLSearchParams(window.location.search).get('limit'), 10);
+
+            return urlLimit > 0 ? urlLimit : this.context.searchProductsPerPage;
+        };
         const requestOptions = {
             template: {
                 productListing: 'search/product-listing',
@@ -285,7 +303,9 @@ export default class Search extends CatalogPage {
             },
             config: {
                 product_results: {
-                    limit: productsPerPage,
+                    get limit() {
+                        return getProductsPerPage();
+                    },
                 },
             },
             showMore: 'search/show-more',
@@ -301,6 +321,7 @@ export default class Search extends CatalogPage {
                 this.showContent(false);
             } else {
                 $productListingContainer.html(content.productListing);
+                this.syncProductsPerPage();
                 $facetedSearchContainer.html(content.sidebar);
                 $searchCount.html(content.productCount);
                 this.showProducts(false);
