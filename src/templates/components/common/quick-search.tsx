@@ -35,7 +35,7 @@ export default (_props: PartialProps) => (
                         }}
                     />
                 </FormField>
-                <button type="submit" className="[display:none] shrink-0 cursor-pointer rounded-r-full border-0 bg-brand-dark px-double text-white medium:[display:block]">
+                <button type="submit" className="[display:none] shrink-0 cursor-pointer rounded-l-none rounded-r-full border-0 bg-brand-dark px-double text-white medium:[display:block]">
                     <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
                     <span className="sr-only"><$Lang keyName={$string("common.search")} /></span>
                 </button>
