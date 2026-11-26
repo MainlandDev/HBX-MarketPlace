@@ -84,7 +84,8 @@ export default (_props: PartialProps) => {
                         </li>
                     )}
                 />
-                <li className="navUser-item [display:none] small:float-left medium:[display:block] navUser-item--account">
+                <li className="navUser-item [display:none] small:float-left medium:[display:block] navUser-item--account medium:relative medium:pl-[48px] [&_.navUser-action]:medium:block [&_.navUser-action]:medium:py-0 [&_.navUser-action]:medium:font-medium [&_.navUser-action]:medium:normal-case [&_.navUser-or]:[display:none]">
+                    <svg className="text-white [display:none] medium:absolute medium:left-0 medium:top-1/2 medium:[display:block] medium:-translate-y-1/2" aria-hidden="true" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" /></svg>
                     <$If
                         test={$pointer("customer")}
                         $then={() => (
@@ -132,10 +133,11 @@ export default (_props: PartialProps) => {
                         href={$pointer("urls.cart")}
                         aria-label={$lang($string("cart.nav_aria_label"))}
                     >
+                        <svg className="[display:none] medium:mr-half medium:inline-block medium:align-middle" aria-hidden="true" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h3l2.5 12h11L21 7H6" /><circle cx="9" cy="20" r="1.5" /><circle cx="17" cy="20" r="1.5" /></svg>
                         <span className="navUser-item-cartLabel [display:none] small:inline">
                             <$Lang keyName={$string("common.cart")} />
                         </span>
-                        <span className="countPill cart-quantity ml-eighth [display:none] size-[20px] rounded-[50%] bg-(--sv-setting-navUser-indicator-backgroundColor) text-center text-tiny leading-[20px] font-bold text-(--sv-color-white) [&.countPill--positive]:inline-block"></span>
+                        <span className="countPill cart-quantity medium:bg-accent-amber medium:text-on-amber ml-eighth [display:none] size-[20px] rounded-[50%] bg-(--sv-setting-navUser-indicator-backgroundColor) text-center text-tiny leading-[20px] font-bold text-(--sv-color-white) [&.countPill--positive]:inline-block"></span>
                     </a>
 
                     <div className="dropdown-menu [&:not([style*=max-width])]:max-w-[320px] is-open:top-auto is-open:right-[5px] is-open:left-auto medium:is-open:right-0 is-open:before:left-auto is-open:before:right-[calc(var(--sv-spacing-half)-5px)] medium:is-open:before:right-half is-open:after:left-auto is-open:after:right-[calc(var(--sv-spacing-half)-3px)] medium:is-open:after:right-[calc(var(--sv-spacing-half)+2px)] [:where(&)]:[list-style:var(--sv-f-dropdown-list-style)] [:where(&)]:ml-0 [:where(&)]:absolute [:where(&)]:[background:var(--sv-f-dropdown-bg)] [:where(&)]:text-(length:--sv-f-dropdown-font-size) [:where(&)]:h-(--sv-f-dropdown-height) [:where(&)]:w-full [:where(&)]:z-[89] [:where(&)]:max-w-(--sv-f-dropdown-max-width) [:where(&:not([style*=display]))]:[display:none] [:where(&:not([style*=left]))]:-left-[9999px] [&.open]:[display:block] [:where(&>*:first-child)]:mt-0 [:where(&>*:last-child)]:mb-0" id="cart-preview-dropdown" data-dropdown-content={""} aria-hidden="true"></div>
