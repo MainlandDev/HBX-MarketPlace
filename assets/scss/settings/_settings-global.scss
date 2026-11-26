@@ -940,8 +940,6 @@ $blockquote-cite-font-color:           color("greys") !default;
 // Acronym styles
 $acronym-underline:                    1px dotted container("borderColor", "dark") !default;
 
-// emit this component's class names
-
 $html-fontSize:                        $fontSize-root + 2 !default;
 
 $html-fontSize--smallUp:               $fontSize-root !default;
@@ -982,15 +980,11 @@ $panel-title-lineHeight:         lineHeight("base") !default;
 
 $panel-title-margin:             0 !default;
 
-// emit this component's class names
-
 $accordion-borderColor:                  container("borderColor", "dark") !default;
 
 $accordion-margin:                       0 0 container("margin") !default;
 
 $accordion-title-lineHeight:             lineHeight("base") !default;
-
-// emit this component's class names
 
 // Color/State Modifiers
 
@@ -1040,8 +1034,6 @@ $alert-bottom-margin:              spacing("half") !default;
 $alert-transition-speed:           300ms !default;
 
 $alert-transition-ease:            ease-out !default;
-
-// emit this component's class names
 
 // Button Style variables
 
@@ -1172,8 +1164,6 @@ $fieldset-margin:                    0 !default;
 // Select variables
 $select-bg-color:                    color("whites", "bright") !default;
 
-// emit this component's class names
-
 $form-verticalSpacing:               spacing("single") * 1.5 !default;
 
 $form-margin:                        0 !default;
@@ -1206,8 +1196,6 @@ $select-outline:                     0 !default;
 
 $select-focus-borderColor:           $input-focus-border-color !default;
 
-// emit this component's class names
-
 $crumb-hover-color:                 color("primary") !default;
 
 $crumb-lineHeight:                  1.6 !default;
@@ -1238,8 +1226,6 @@ $f-dropdown-font-size:            $base-font-size !default;
 $f-dropdown-line-height:          $base-line-height !default;
 
 $f-dropdown-list-padding:         spacing("quarter") !default;
-
-// emit this component's class names
 
 $table-width:                 100% !default;
 
@@ -1302,8 +1288,6 @@ $tabs-navigation-font-size:                      fontSize("base") !default;
 $tabs-content-margin-bottom:                     spacing("single") !default;
 
 $tabs-content-padding:                           spacing("single") 0 !default;
-
-// emit this component's class names
 
 // Color Variables
 $modal-backdrop-color:             color("greys", "darkest") !default;
