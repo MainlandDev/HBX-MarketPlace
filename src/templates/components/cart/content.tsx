@@ -65,7 +65,7 @@ const assignBranch = (key: string, test: Parameters<typeof $All>[0]["values"]) =
 );
 
 export default (_props: PartialProps) => (
-    <table className="cart mb-single w-full [display:block] medium:[display:table]" data-cart-quantity={$pointer("cart.quantity")}>
+    <table className="cart mb-single w-full overflow-hidden rounded-card border-[0.8px] border-[#ddd] bg-white p-half text-ink shadow-[0_3px_5px_#ddd] [display:block] medium:[display:table]" data-cart-quantity={$pointer("cart.quantity")}>
         <thead className="cart-header [display:none] medium:text-left medium:[display:table-header-group]">
             <tr>
                 <th className="cart-header-item pb-base medium:p-single last:text-right" colSpan={2}>
