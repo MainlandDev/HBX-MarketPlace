@@ -11,7 +11,6 @@ import {
     $If,
     $Lang,
     $limit,
-    $Nl2br,
     $number,
     $pointer,
     $region,
@@ -60,7 +59,7 @@ export default (_props: PartialProps) => {
                     </div>
                 )}
             />
-            <footer className="footer relative bg-bg pb-double [&_.footer-info-col]:text-[16px] [&_.footer-info-list_a]:text-text [&_.footer-info-list_a]:text-[16px] [transform:translateZ(0)]" role="contentinfo">
+            <footer className="footer relative bg-bg pb-double [&_.footer-info-col]:text-[16px] [&_.footer-info-list_a]:text-text [&_.footer-info-list_a]:text-[16px] [&_.footer-info-list]:list-disc [&_.footer-info-list]:pl-[14px] [&_.footer-info-list]:marker:text-ink-muted [transform:translateZ(0)]" role="contentinfo">
                 <h2 className="footer-title-sr-only absolute top-auto -left-[10000px] size-px overflow-hidden">
                     <$Lang keyName={$string("footer.title")} />
                 </h2>
@@ -138,7 +137,7 @@ export default (_props: PartialProps) => {
                             </h3>
                             <ul className="footer-info-list list-none ml-0 [&_a]:inline-block [&_a]:py-sixth [&_a]:text-text-secondary [&_a]:no-underline [&_a:hover]:text-(--sv-color-textSecondary-hover)">
                                 <$Each
-                                    list={$limit($pointer<Link[]>("categories"), $number(7))}
+                                    list={$limit($pointer<Link[]>("categories"), $number(5))}
                                     $then={(category) => (
                                         <li>
                                             <a href={category.url}>{category.name}</a>
@@ -152,11 +151,11 @@ export default (_props: PartialProps) => {
                             a={theme.shop_by_brand_show_footer}
                             b={$pointer("shop_by_brand.length")}
                             $then={() => (
-                                <article className="footer-info-col footer-info-col--small w-full px-gutter-half [&>:first-child]:mt-0 [&>:last-child]:mb-0 inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) text-center small:text-left small:w-1/2 medium:w-1/6" data-section-type="footer-brands">
+                                <article className="footer-info-col footer-info-col--small w-full px-gutter-half [&>:first-child]:mt-0 [&>:last-child]:mb-0 inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) text-center small:text-left small:w-1/2 medium:w-1/3" data-section-type="footer-brands">
                                     <h3 className="footer-info-heading text-(length:--sv-fontSize-base) font-bold text-text [text-transform:inherit]">
                                         <$Lang keyName={$string("footer.brands")} />
                                     </h3>
-                                    <ul className="footer-info-list list-none ml-0 [&_a]:inline-block [&_a]:py-sixth [&_a]:text-text-secondary [&_a]:no-underline [&_a:hover]:text-(--sv-color-textSecondary-hover)">
+                                    <ul className="footer-info-list list-none ml-0 medium:columns-2 [&_a]:inline-block [&_a]:py-sixth [&_a]:text-text-secondary [&_a]:no-underline [&_a:hover]:text-(--sv-color-textSecondary-hover)">
                                         <$Each
                                             list={$limit($pointer<Link[]>("shop_by_brand"), $number(9))}
                                             $then={(brand) => (
@@ -171,28 +170,6 @@ export default (_props: PartialProps) => {
                                             </a>
                                         </li>
                                     </ul>
-                                </article>
-                            )}
-                        />
-
-                        <$If
-                            test={$pointer("settings.address")}
-                            $then={() => (
-                                <article className="footer-info-col footer-info-col--small w-full px-gutter-half [&>:first-child]:mt-0 [&>:last-child]:mb-0 inline-block float-none align-top break-words text-text-secondary text-(length:--sv-fontSize-base) text-center small:text-left small:w-1/2 medium:w-1/6" data-section-type="storeInfo">
-                                    <h3 className="footer-info-heading text-(length:--sv-fontSize-base) font-bold text-text [text-transform:inherit]">
-                                        <$Lang keyName={$string("footer.info")} />
-                                    </h3>
-                                    <address>
-                                        <$Nl2br text={$pointer("settings.address")} />
-                                    </address>
-                                    <$If
-                                        test={$pointer("settings.phone_number")}
-                                        $then={() => (
-                                            <strong>
-                                                <$Lang keyName={$string("footer.call_us")} phone_number={$pointer("settings.phone_number")} />
-                                            </strong>
-                                        )}
-                                    />
                                 </article>
                             )}
                         />

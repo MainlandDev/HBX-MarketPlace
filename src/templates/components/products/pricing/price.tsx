@@ -45,10 +45,10 @@ If you are making a change here or in price-range.html, you probably want to mak
                     attributes: `${$Unless({test: price.rrp_with_tax, $then: () => $raw('style="display: none;"')})}`,
                 }}
             >
-                <span>
+                <span className="mr-[4px] text-[14px] text-ink-muted">
                     <ProductsPriceLabel label_value={settings["pdp-retail-price-label"]} fallback={$lang($string("page_builder.pdp-retail-price-label"))} />
                 </span>
-                <span data-product-rrp-with-tax={""} className="price price--rrp line-through">
+                <span data-product-rrp-with-tax={""} className="price price--rrp text-[20px] text-ink-muted line-through">
                     {price.rrp_with_tax.formatted}
                 </span>
             </div>
