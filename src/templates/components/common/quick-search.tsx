@@ -9,6 +9,7 @@ export default (_props: PartialProps) => (
     <Container>
         <form className="form [:where(&)]:[margin:var(--sv-form-margin)]" action={$pointer("urls.search")} method="get" data-url={$pointer("urls.search")} data-quick-search-form={""}>
             <fieldset className="form-fieldset medium:flex medium:items-stretch medium:[&>.form-field]:flex-1 [:where(&)]:[border-width:var(--sv-fieldset-border-width)] [:where(&)]:[margin:var(--sv-fieldset-margin)]">
+                <input type="hidden" name="section" value="product" />
                 <FormField>
                     <$If test={$pointer<$hb<boolean>>("semantic_search_enabled")} $then={()=>{
                         return <label className="absolute h-px w-px overflow-hidden [border:0] p-0 [clip:rect(1px,1px,1px,1px)]" htmlFor={$pointer("name")}>
