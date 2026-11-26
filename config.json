@@ -412,10 +412,8 @@
     "paymentbuttons-provider-sorting": []
   },
   "read_only_files": [
-    "/assets/scss/components/citadel",
     "/assets/scss/components/foundation",
     "/assets/scss/components/vendor",
-    "/assets/scss/settings/citadel",
     "/assets/scss/settings/foundation",
     "/assets/scss/settings/normalize",
     "/assets/scss/settings/vendor",
