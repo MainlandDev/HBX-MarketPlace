@@ -161,7 +161,7 @@ export const NavList = ({className, children, ...rest}: Props) => (
     </ul>
 );
 
-const CONTAINER = "[:where(&)]:relative [:where(&)]:mx-auto [:where(&)]:w-(--sv-layout-widthFixed) [:where(&)]:max-w-[calc(var(--sv-layout-widthMax)+var(--sv-container-padding)*4)] [:where(&)]:px-(--sv-container-padding) large:[:where(&)]:px-[calc(var(--sv-container-padding)*4)]";
+const CONTAINER = "[:where(&)]:relative [:where(&)]:mx-auto [:where(&)]:w-(--sv-layout-widthFixed) [:where(&)]:max-w-[calc(var(--sv-layout-widthMax)+var(--sv-container-padding)*4)] [:where(&)]:px-(--sv-container-padding) large:[:where(&)]:px-[57px]";
 
 /** `container`: the centred page column. The merchant's own `div.container` (account banner) cannot take utilities, so the class keeps a rule in _tailwind.scss. */
 export const Container = ({className, children, ...rest}: Props) => (
