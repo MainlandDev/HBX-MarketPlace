@@ -342,7 +342,7 @@ $reveal-border-style:              solid;
 $reveal-border-width:              0;
 $reveal-border-color:              container("borderColor");
 
-$alert-font-body:                                      stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+$alert-font-body:                                      "Poppins", Arial, Helvetica, sans-serif;
 $alert-font-bodySize:                                  remCalc(stencilNumber("fontSize-root", "px") + 2px);
 $alert-font-bodyColor:                                 stencilColor("color-textBase");
 

@@ -32,7 +32,7 @@ export default (_props: PartialProps) => {
                     <>
                         <$Inject keyName={$string("productQuantityErrorMessage")} value={$lang($string("products.quantity_error_message"))} />
                         <FormField className="form-field--increments">
-                            <FormLabel className="form-label--alternate mb-half text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-right [&_small]:mt-quarter" htmlFor="qty[]">
+                            <FormLabel className="form-label--alternate mb-half text-smallest font-(family-name:--sv-fontFamily-headings) [&_small]:float-right [&_small]:mt-quarter" htmlFor="qty[]">
                                 <$Lang keyName={$string("products.quantity")} />
                             </FormLabel>
                             <div className="form-increment [&_.button]:m-0 [&_.button]:px-quarter [&_.button]:py-[0.21429rem]" data-quantity-change={""}>

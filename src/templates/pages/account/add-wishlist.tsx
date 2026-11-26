@@ -27,7 +27,7 @@ export default () => (
                                     />
                                 </h1>
                                 <AccountNavigation account_page={$string("wishlists")} />
-                                <div className="rounded-card border-[0.8px] border-solid border-[#ddd] bg-white p-[12px] text-[#000] shadow-[0_3px_5px_#ddd]"><AccountAddWishlist /></div>
+                                <div className="rounded-card border-[0.8px] border-solid border-ink-border bg-white p-[12px] text-ink shadow-[0_3px_5px_var(--color-ink-border)]"><AccountAddWishlist /></div>
                             </>
                         )}
                     />

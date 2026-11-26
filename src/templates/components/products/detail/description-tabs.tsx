@@ -19,7 +19,7 @@ export default (_props: PartialProps) => {
                     test={product.description}
                     $then={() => (
                         <li className="tab is-active float-none medium:float-left">
-                            <a className="tab-title block px-[24px] py-[12px] text-center text-[15px] font-bold uppercase text-ink [text-decoration:none] [li.is-active_&]:text-brand [li.is-active_&]:[box-shadow:inset_0_-2px_0_currentColor]" href="#tab-description">
+                            <a className="tab-title [display:block] px-[24px] py-[12px] text-center text-[15px] font-bold uppercase text-ink [text-decoration:none] [li.is-active_&]:text-brand [li.is-active_&]:[box-shadow:inset_0_-2px_0_currentColor]" href="#tab-description">
                                 <$Lang keyName={$string("products.description")} />
                             </a>
                         </li>
@@ -29,7 +29,7 @@ export default (_props: PartialProps) => {
                     test={product.warranty}
                     $then={() => (
                         <li className={`tab float-none medium:float-left ${$Unless({test: product.description, $then: () => "is-active"})}`}>
-                            <a className="tab-title block px-[24px] py-[12px] text-center text-[15px] font-bold uppercase text-ink [text-decoration:none] [li.is-active_&]:text-brand [li.is-active_&]:[box-shadow:inset_0_-2px_0_currentColor]" href="#tab-warranty">
+                            <a className="tab-title [display:block] px-[24px] py-[12px] text-center text-[15px] font-bold uppercase text-ink [text-decoration:none] [li.is-active_&]:text-brand [li.is-active_&]:[box-shadow:inset_0_-2px_0_currentColor]" href="#tab-warranty">
                                 <$Lang keyName={$string("products.warranty")} />
                             </a>
                         </li>
@@ -39,7 +39,7 @@ export default (_props: PartialProps) => {
                     values={[$pointer("product.custom_fields"), theme.show_custom_fields_tabs]}
                     $then={() => (
                         <li className="tab float-none medium:float-left">
-                            <a className="tab-title block px-[24px] py-[12px] text-center text-[15px] font-bold uppercase text-ink [text-decoration:none] [li.is-active_&]:text-brand [li.is-active_&]:[box-shadow:inset_0_-2px_0_currentColor]" href={`#tab-${customFieldsTabId}`}>
+                            <a className="tab-title [display:block] px-[24px] py-[12px] text-center text-[15px] font-bold uppercase text-ink [text-decoration:none] [li.is-active_&]:text-brand [li.is-active_&]:[box-shadow:inset_0_-2px_0_currentColor]" href={`#tab-${customFieldsTabId}`}>
                                 {$sanitize(customFieldsTab)}
                             </a>
                         </li>
@@ -49,7 +49,7 @@ export default (_props: PartialProps) => {
                     values={[$pointer("settings.show_product_reviews"), theme.show_product_reviews, product.reviews.total]}
                     $then={() => (
                         <li className="tab float-none medium:float-left">
-                            <a className="tab-title productView-reviewTabLink block px-[24px] py-[12px] text-center text-[15px] font-bold uppercase text-ink [text-decoration:none] [li.is-active_&]:text-brand [li.is-active_&]:[box-shadow:inset_0_-2px_0_currentColor]" href="#tab-reviews">
+                            <a className="tab-title productView-reviewTabLink [display:block] px-[24px] py-[12px] text-center text-[15px] font-bold uppercase text-ink [text-decoration:none] [li.is-active_&]:text-brand [li.is-active_&]:[box-shadow:inset_0_-2px_0_currentColor]" href="#tab-reviews">
                                 <$Lang keyName={$string("products.reviews.header")} total={product.reviews.total} />
                             </a>
                         </li>

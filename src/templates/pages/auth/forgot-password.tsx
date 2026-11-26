@@ -15,7 +15,7 @@ export default () => (
                         <h1 className="page-heading mx-0 mt-0 mb-[1rem] text-center">
                             <$Lang keyName={$string("reset_password.heading")} />
                         </h1>
-                        <div className="rounded-card border-[0.8px] border-solid border-[#ddd] bg-white p-[12px] text-[#000] shadow-[0_3px_5px_#ddd]">
+                        <div className="rounded-card border-[0.8px] border-solid border-ink-border bg-white p-[12px] text-ink shadow-[0_3px_5px_var(--color-ink-border)]">
                         <p>
                             <$Lang keyName={$string("reset_password.intro")} />
                         </p>

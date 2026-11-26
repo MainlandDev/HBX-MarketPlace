@@ -67,7 +67,7 @@ export default () => {
                                         {test: settings.shop_by_price_visibility, $then: sidebar},
                                     ]}
                                 />
-                                <main className="page-content float-left w-full px-gutter-half medium:[.page-sidebar+&]:w-4/5" id="product-listing-container">
+                                <main className="page-content float-left w-full px-gutter-half medium:[.page-sidebar+&]:w-4/5">
                                     <div className="[&_.breadcrumbs]:text-left [&_.breadcrumbs]:mb-half">
                                         <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
                                     </div>
@@ -90,7 +90,7 @@ export default () => {
                                                         list={$pointer<{url: string; name: string}[]>("category.subcategories")}
                                                         $then={(subcategory) => (
                                                             <li className="m-0 shrink-0">
-                                                                <a className="[display:block] rounded-card bg-white px-double py-single text-center text-[13px] font-bold text-ink no-underline shadow-[0_3px_5px_#ddd] hover:text-brand" href={subcategory.url}>
+                                                                <a className="[display:block] rounded-card bg-white px-double py-single text-center text-[13px] font-bold text-ink no-underline shadow-[0_3px_5px_var(--color-ink-border)] hover:text-brand" href={subcategory.url}>
                                                                     {subcategory.name}
                                                                 </a>
                                                             </li>
@@ -100,7 +100,9 @@ export default () => {
                                             </nav>
                                         )}
                                     />
-                                    <CategoryProductListing />
+                                    <div id="product-listing-container">
+                                        <CategoryProductListing />
+                                    </div>
                                 </main>
                                 <div className="page-region float-right w-full px-gutter-half medium:w-4/5">{region("category_below_content")}</div>
                             </div>

@@ -39,7 +39,6 @@ export default defineConfig({
                 jsEntry: {
                     "theme-bundle.main": "./app.js",
                     "theme-bundle.head_async": "lazysizes",
-                    "theme-bundle.font": "./theme/common/font.js",
                     "theme-bundle.polyfills": "./polyfills.js",
                     "theme-bundle.islands": "./islands.js",
                     "theme-bundle.polyfill_form_data": "formdata-polyfill",

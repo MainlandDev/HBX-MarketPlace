@@ -23,7 +23,7 @@ export default () => (
                         $then={() => <AlertAlertSuccess $positionalHash={$pointer("forms.login.success")} />}
                     />
                     <div className="login-row mx-auto w-full max-w-(--sv-layout-widthMax) medium:flex medium:items-start medium:gap-[45px]">
-                        <form className="login-form form w-full medium:w-[450px] medium:shrink-0 mb-[1rem] rounded-card border-[0.8px] border-solid border-[#ddd] bg-white p-[12px] text-[#000] shadow-[0_3px_5px_#ddd] [:where(&)]:[margin:var(--sv-form-margin)]" action={$pointer("urls.auth.check_login")} method="post">
+                        <form className="login-form form w-full medium:w-[450px] medium:shrink-0 mb-[1rem] rounded-card border-[0.8px] border-solid border-ink-border bg-white p-[12px] text-ink shadow-[0_3px_5px_var(--color-ink-border)] [:where(&)]:[margin:var(--sv-form-margin)]" action={$pointer("urls.auth.check_login")} method="post">
                             <$Inject keyName={$string("useValidEmail")} value={$lang($string("forms.validate.common.email_address"))} />{" "}
                             <$Inject keyName={$string("enterPass")} value={$lang($string("forms.validate.common.password"))} />
                             <FormField>
@@ -48,10 +48,10 @@ export default () => (
                         <$If
                             test={$pointer("settings.account_creation_enabled")}
                             $then={() => (
-                                <div className="new-customer w-full medium:flex-1 rounded-card border-[0.8px] border-solid border-[#ddd] bg-white p-[12px] text-[#000] shadow-[0_3px_5px_#ddd]">
+                                <div className="new-customer w-full medium:flex-1 rounded-card border-[0.8px] border-solid border-ink-border bg-white p-[12px] text-ink shadow-[0_3px_5px_var(--color-ink-border)]">
                                     <Panel>
                                         <PanelHeader className="bg-transparent p-0 mb-[1rem]">
-                                            <PanelTitle className="text-[1.3rem] font-bold text-[#000]">
+                                            <PanelTitle className="text-[1.3rem] font-bold text-ink">
                                                 <$Lang keyName={$string("login.new_customer.heading")} />
                                             </PanelTitle>
                                         </PanelHeader>

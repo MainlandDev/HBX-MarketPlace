@@ -16,7 +16,7 @@ export default () => (
                         <h1 className="page-heading mx-0 mt-0 mb-[1rem] text-center">
                             <$Lang keyName={$string("create_account.heading")} />
                         </h1>
-                        <div className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3 rounded-card border-[0.8px] border-solid border-[#ddd] bg-white p-[12px] text-[#000] shadow-[0_3px_5px_#ddd]">
+                        <div className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3 rounded-card border-[0.8px] border-solid border-ink-border bg-white p-[12px] text-ink shadow-[0_3px_5px_var(--color-ink-border)]">
                             <div className="account-body flow-root w-auto max-w-none">
                                 <$If
                                     test={$pointer("forms.create_account.error")}

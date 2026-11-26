@@ -6,7 +6,7 @@ import {FormCheck, FormField, FormLabel} from "../../../../server/formParts.tsx"
 
 export default (_props: PartialProps) => (
     <FormField data-product-attribute="input-checkbox">
-        <FormLabel className="form-label--alternate form-label--inlineSmall mb-half text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-none [&_small]:mt-quarter [&_small]:ml-quarter [&_small]:text-text-secondary [&_small]:font-normal [&_small]:normal-case [&_small]:[font-size:inherit]">
+        <FormLabel className="form-label--alternate form-label--inlineSmall mb-half text-smallest font-(family-name:--sv-fontFamily-headings) [&_small]:float-none [&_small]:mt-quarter [&_small]:ml-quarter [&_small]:text-text-secondary [&_small]:font-normal [&_small]:normal-case [&_small]:[font-size:inherit]">
             {$pointer("display_name")}:{" "}
             <RequirenessMsg />
         </FormLabel>

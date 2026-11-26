@@ -25,7 +25,7 @@ export default () => (
                             test={$pointer("forms.edit_account.success")}
                             $then={() => <AlertAlertSuccess $positionalHash={$pointer("forms.edit_account.success")} />}
                         />
-                        <div className="rounded-card border-[0.8px] border-solid border-[#ddd] bg-white p-[12px] text-[#000] shadow-[0_3px_5px_#ddd]"><AccountEditAccount /></div>
+                        <div className="rounded-card border-[0.8px] border-solid border-ink-border bg-white p-[12px] text-ink shadow-[0_3px_5px_var(--color-ink-border)]"><AccountEditAccount /></div>
                     </div>
                 ),
             }}

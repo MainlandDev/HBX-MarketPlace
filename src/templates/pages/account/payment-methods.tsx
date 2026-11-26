@@ -14,7 +14,7 @@ export default () => (
                     </h1>
                     <AccountNavigation account_page={$string("payment_methods")} />
 
-                    <div className="account account--fixedLarge mb-single medium:mx-auto medium:mb-0 medium:w-3/4 rounded-card border-[0.8px] border-solid border-[#ddd] bg-white p-[12px] text-[#000] shadow-[0_3px_5px_#ddd]">
+                    <div className="account account--fixedLarge mb-single medium:mx-auto medium:mb-0 medium:w-3/4 rounded-card border-[0.8px] border-solid border-ink-border bg-white p-[12px] text-ink shadow-[0_3px_5px_var(--color-ink-border)]">
                         <div className="account-body -mx-gutter-half flow-root w-auto max-w-none"><AccountPaymentMethodsList /></div>
                     </div>
                 </>

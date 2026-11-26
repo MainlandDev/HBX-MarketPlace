@@ -14,7 +14,7 @@ export default () => (
                         <$Lang keyName={$string("account.returns.heading")} />
                     </h1>
                     <AccountNavigation account_page={$string("returns")} />
-                    <div className="account-row rounded-card border-[0.8px] border-solid border-[#ddd] bg-white p-[12px] text-[#000] shadow-[0_3px_5px_#ddd]">
+                    <div className="account-row rounded-card border-[0.8px] border-solid border-ink-border bg-white p-[12px] text-ink shadow-[0_3px_5px_var(--color-ink-border)]">
                         <p>
                             <$Lang keyName={$string("account.returns.successful")} />
                         </p>

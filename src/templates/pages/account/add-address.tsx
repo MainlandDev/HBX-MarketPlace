@@ -25,7 +25,7 @@ export default () => (
                     />
                     <AccountNavigation account_page={$string("addresses")} />
 
-                    <div className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3 rounded-card border-[0.8px] border-solid border-[#ddd] bg-white p-[12px] text-[#000] shadow-[0_3px_5px_#ddd]">
+                    <div className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3 rounded-card border-[0.8px] border-solid border-ink-border bg-white p-[12px] text-ink shadow-[0_3px_5px_var(--color-ink-border)]">
                         <$If
                             test={$pointer("forms.address.error")}
                             $then={() => <AlertAlertError $positionalHash={$pointer("forms.address.error")} />}

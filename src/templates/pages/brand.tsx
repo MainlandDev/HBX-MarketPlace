@@ -51,7 +51,7 @@ export default () => {
                                 <aside className="page-sidebar relative float-left w-full px-gutter-half medium:w-1/5" id="faceted-search-container">
                                     <BrandSidebar />
                                 </aside>
-                                <main className="page-content float-left w-full px-gutter-half medium:[.page-sidebar+&]:w-4/5" id="product-listing-container">
+                                <main className="page-content float-left w-full px-gutter-half medium:[.page-sidebar+&]:w-4/5">
                                     <div className="[&_.breadcrumbs]:text-left [&_.breadcrumbs]:mb-half">
                                         <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
                                     </div>
@@ -65,6 +65,7 @@ export default () => {
                                     />
                                     <h1 className="page-heading mx-0 mt-0 mb-single text-left text-[1.8rem] font-medium">{$pointer("brand.name")}</h1>
                                     {region("brand_below_header")}
+                                    <div id="product-listing-container">
                                     <$If
                                         test={$pointer("brand.search_error")}
                                         $then={() => (
@@ -87,6 +88,7 @@ export default () => {
                                             </>
                                         )}
                                     />
+                                    </div>
                                 </main>
                             </div>
                         </>

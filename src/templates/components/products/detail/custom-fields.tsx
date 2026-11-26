@@ -28,10 +28,21 @@ export default (_props: PartialProps) => (
                         rvalue={$string("__note")}
                         $then={() => <dd className="productView-info-value float-none mb-base ml-0 text-[1rem] text-ink [&_img]:mb-half [&_img]:max-w-[160px]">{$unescaped(field.value)}</dd>}
                         $else={() => (
-                            <>
-                                <dt className={`${NAME_CLASS} ${HIDDEN_CLASS}`}>{field.name}:</dt>
-                                <dd className={`${VALUE_CLASS} ${HIDDEN_CLASS}`}>{$unescaped(field.value)}</dd>
-                            </>
+                            <$If
+                                test={$pointer("../theme_settings.show_custom_fields_tabs")}
+                                $then={() => (
+                                    <>
+                                        <dt className={`${NAME_CLASS} ${HIDDEN_CLASS}`}>{field.name}:</dt>
+                                        <dd className={`${VALUE_CLASS} ${HIDDEN_CLASS}`}>{$unescaped(field.value)}</dd>
+                                    </>
+                                )}
+                                $else={() => (
+                                    <>
+                                        <dt className={NAME_CLASS}>{field.name}:</dt>
+                                        <dd className={VALUE_CLASS}>{$unescaped(field.value)}</dd>
+                                    </>
+                                )}
+                            />
                         )}
                     />
                 )}

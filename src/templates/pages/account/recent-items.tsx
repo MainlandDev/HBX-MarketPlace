@@ -20,7 +20,7 @@ export default () => (
                         $then={() => <AlertAlertInfo $positionalHash={$lang($string("account.recent_items.no_items"))} />}
                     />
 
-                    <div className="rounded-card border-[0.8px] border-solid border-[#ddd] bg-white p-[12px] text-[#000] shadow-[0_3px_5px_#ddd]">
+                    <div className="rounded-card border-[0.8px] border-solid border-ink-border bg-white p-[12px] text-ink shadow-[0_3px_5px_var(--color-ink-border)]">
                         <ProductsGrid products={$pointer("customer.recently_viewed_products.items")} show_compare={$pointer("customer.recently_viewed_products.show_compare")} />
                     </div>
                 </div>

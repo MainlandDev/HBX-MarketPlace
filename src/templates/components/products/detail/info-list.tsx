@@ -3,7 +3,7 @@ import type {ThemeSettingsObject} from "@mainlanddev/hbx-bigcommerce";
 import ProductsBulkDiscountRates from "../pricing/bulk-discount-rates.tsx";
 import ProductsCustomFields from "./custom-fields.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
-import {$All, $boolean, $If, $Lang, $pointer, $raw, $string, $Unless} from "@mainlanddev/hbx-bigcommerce";
+import {$All, $If, $Lang, $pointer, $raw, $string, $Unless} from "@mainlanddev/hbx-bigcommerce";
 import type {Product, Settings} from "../../../../server/productViewTypes.ts";
 import ProductsDetailInfoDimensions from "./info-dimensions.tsx";
 import ProductsDetailInfoShipping from "./info-shipping.tsx";
@@ -119,12 +119,7 @@ export default (_props: PartialProps) => {
                     )}
                 />
 
-                <$If
-                    test={$pointer("theme_settings.show_custom_fields_tabs")}
-                    operator={$string("!==")}
-                    rvalue={$boolean(true)}
-                    $then={() => <ProductsCustomFields />}
-                />
+                <ProductsCustomFields />
             </dl>
         </>
     );

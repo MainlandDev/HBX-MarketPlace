@@ -51,7 +51,7 @@ export default () => (
                     <$If
                         test={$pointer("wishlist.items")}
                         $then={() => (
-                            <div className="rounded-card border-[0.8px] border-solid border-[#ddd] bg-white p-[12px] text-[#000] shadow-[0_3px_5px_#ddd]">
+                            <div className="rounded-card border-[0.8px] border-solid border-ink-border bg-white p-[12px] text-ink shadow-[0_3px_5px_var(--color-ink-border)]">
                                 <AccountWishlistItemList show_remove={$pointer("wishlist.is_editable")} />
                             </div>
                         )}

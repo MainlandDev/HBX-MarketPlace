@@ -23,6 +23,16 @@ export default function () {
     const stencilDropDown = new StencilDropDown(stencilDropDownExtendables);
     stencilDropDown.bind($('[data-search="quickSearch"]'), $('#quickSearch'), TOP_STYLING);
 
+    // From 801px up the search form is always visible (header.tsx), so closing the dropdown must not hide it from assistive technology.
+    const alwaysVisibleQuery = window.matchMedia('(min-width: 801px)');
+    const closeDropDown = stencilDropDown.hide.bind(stencilDropDown);
+    stencilDropDown.hide = ($container, ...rest) => {
+        closeDropDown($container, ...rest);
+        if (alwaysVisibleQuery.matches) {
+            $container.attr('aria-hidden', 'false');
+        }
+    };
+
     stencilDropDownExtendables.onBodyClick = (e, $container) => {
         // If the target element has this data tag or one of it's parents, do not close the search results
         // We have to specify `.modal-background` because of limitations around Foundation Reveal not allowing

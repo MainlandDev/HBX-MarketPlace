@@ -14,7 +14,7 @@ export default (_props: PartialProps) => {
                     test={relatedProducts}
                     $then={() => (
                         <li className="tab is-active float-none mr-base medium:float-left" role="presentation">
-                            <a className="tab-title block px-0 py-[6px] text-left text-[25px] font-normal text-ink [text-decoration:none] [li.is-active_&]:[box-shadow:inset_0_-2px_0_currentColor]" href="#tab-related" role="tab" tabIndex={0} aria-selected="true" dangerouslyInlineAttributes={{attributes: `controls="tab-related"`}}>
+                            <a className="tab-title [display:block] px-0 py-[6px] text-left text-[25px] font-normal text-ink [text-decoration:none] [li.is-active_&]:[box-shadow:inset_0_-2px_0_currentColor]" href="#tab-related" role="tab" tabIndex={0} aria-selected="true" dangerouslyInlineAttributes={{attributes: `controls="tab-related"`}}>
                                 <$Lang keyName={$string("products.related_products")} />
                             </a>
                         </li>
@@ -25,7 +25,7 @@ export default (_props: PartialProps) => {
                     $then={() => (
                         <li className={`tab float-none mr-base medium:float-left${$Unless({test: relatedProducts, $then: () => " is-active"})}`} role="presentation">
                             <a
-                                className="tab-title block px-0 py-[6px] text-left text-[25px] font-normal text-ink [text-decoration:none] [li.is-active_&]:[box-shadow:inset_0_-2px_0_currentColor]"
+                                className="tab-title [display:block] px-0 py-[6px] text-left text-[25px] font-normal text-ink [text-decoration:none] [li.is-active_&]:[box-shadow:inset_0_-2px_0_currentColor]"
                                 href="#tab-similar"
                                 role="tab"
                                 tabIndex={0}

@@ -22,7 +22,7 @@ export default (_props: PartialProps) => {
             <ProductsDetailRuntimeConfig />
 
             <div
-                className="productView flex w-auto max-w-none flex-col justify-start mx-0 pt-base pb-base bg-white font-(family-name:--font-stack) text-ink rounded-[12px] shadow-[0_3px_5px_#ddd] medium:flow-root [[class~=modal]_&]:py-0"
+                className="productView flex w-auto max-w-none flex-col justify-start mx-0 pt-base pb-base bg-white font-(family-name:--font-stack) text-ink rounded-[12px] shadow-[0_3px_5px_var(--color-ink-border)] medium:flow-root [[class~=modal]_&]:py-0"
                 data-event-type="product"
                 data-entity-id={product.id}
                 data-name={product.title}

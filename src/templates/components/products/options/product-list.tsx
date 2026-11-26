@@ -18,7 +18,7 @@ export default (_props: PartialProps) => {
     const required = $pointer("required");
     return (
         <FormField className="[&_.unavailable]:opacity-[calc(var(--sv-productOptions-disable-opacity)*2)] [&_.unavailable]:line-through" data-product-attribute="product-list" role="radiogroup" aria-labelledby="product-list-label">
-            <FormLabel className="form-label--alternate form-label--inlineSmall mb-half text-smallest [font-family:'Montserrat',Arial,Helvetica,sans-serif] [&_small]:float-none [&_small]:mt-quarter [&_small]:ml-quarter [&_small]:text-text-secondary [&_small]:font-normal [&_small]:normal-case [&_small]:[font-size:inherit]" id="product-list-label">
+            <FormLabel className="form-label--alternate form-label--inlineSmall mb-half text-smallest font-(family-name:--sv-fontFamily-headings) [&_small]:float-none [&_small]:mt-quarter [&_small]:ml-quarter [&_small]:text-text-secondary [&_small]:font-normal [&_small]:normal-case [&_small]:[font-size:inherit]" id="product-list-label">
                 {$pointer("display_name")}:{" "}
                 <span data-option-value={""} />{" "}
                 <RequirenessMsg />

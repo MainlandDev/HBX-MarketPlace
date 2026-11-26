@@ -18,7 +18,7 @@ export default () => (
                     <h1 className="page-heading mx-0 mt-0 mb-[12px] text-center text-[25px] font-normal text-black">
                         <$Lang keyName={$string("sitemap.page_title")} />
                     </h1>
-                    <ul className="m-0 list-none rounded-[10px] border-[0.8px] border-[#ddd] bg-white p-[18px] text-[16px] text-ink [&_a]:text-brand [&_a]:underline [&_ul]:list-[circle] [&_ul]:pl-[19px] [&_ul_ul]:list-[square] [&_li]:my-[2px]">
+                    <ul className="m-0 list-none rounded-[10px] border-[0.8px] border-ink-border bg-white p-[18px] text-[16px] text-ink [&_a]:text-brand [&_a]:underline [&_ul]:list-[circle] [&_ul]:pl-[19px] [&_ul_ul]:list-[square] [&_li]:my-[2px]">
                         <$Each
                             list={$pointer<SitemapSection[]>("sitemap")}
                             $then={(section) => (
