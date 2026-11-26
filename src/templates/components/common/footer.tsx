@@ -68,7 +68,7 @@ export default (_props: PartialProps) => {
                 <$If
                     test={$pointer("settings.show_newsletter_box")}
                     $then={() => (
-                        <div className="footer-newsletter mb-double bg-border py-[22px]">
+                        <div className="footer-newsletter mb-double bg-border py-[14px]">
                             <Container>
                                 <SubscriptionForm />
                             </Container>
@@ -208,6 +208,9 @@ export default (_props: PartialProps) => {
                 </Container>
                 {region("footer_below_columns--global")}
                 {region("footer_bottom--global")}
+                <a href="#" aria-label="Back to top" className="[position:fixed] right-[24px] bottom-[24px] z-(--sv-zIndex-high) [display:flex] size-[48px] items-center justify-center rounded-full bg-white text-ink [box-shadow:0_3px_5px_var(--color-ink-border)]">
+                    <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m6 15 6-6 6 6" /></svg>
+                </a>
                 {region("ssl_site_seal--global")}
             </footer>
         </>

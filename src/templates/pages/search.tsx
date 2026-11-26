@@ -77,8 +77,30 @@ export default () => {
                     page: () => (
                         <>
                             {$unescaped($stylesheet($string("/assets/scss/vendor/jstree/style.css")))}
+                            <section className="page -mx-gutter-half w-auto max-w-none flow-root">
+                                <$If
+                                    test={$pointer("product_results.faceted_search_enabled")}
+                                    $then={() => (
+                                        <$If
+                                            test={$pointer("forms.search.section")}
+                                            operator={$string("!=")}
+                                            rvalue={$string("product")}
+                                            $then={() => (
+                                        <aside className="page-sidebar sr-only relative float-left w-full px-gutter-half medium:w-1/5" id="faceted-search-container">
+                                            <div className="rounded-card bg-white p-single text-ink"><FacetedSearchIndex $positionalHash={$pointer("product_results")} /></div>
+                                        </aside>
+                                            )}
+                                            $else={() => (
+                                        <aside className="page-sidebar relative float-left w-full px-gutter-half medium:w-1/5" id="faceted-search-container">
+                                            <div className="rounded-card bg-white p-single text-ink"><FacetedSearchIndex $positionalHash={$pointer("product_results")} /></div>
+                                        </aside>
+                                            )}
+                                        />
+                                    )}
+                                />
+                                <main className="page-content float-left w-full px-gutter-half medium:[.page-sidebar+&]:w-4/5">
                             <div className="[&_.breadcrumbs]:text-left"><Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} /></div>
-                            <section className="nav text-left [&_.navBar-section]:text-left [&_.navBar-item]:float-left">
+                            <div className="nav text-left [&_.navBar-section]:text-left [&_.navBar-item]:float-left">
                                 <$If
                                     test={$pointer("forms.search.query")}
                                     $then={() => (
@@ -89,7 +111,7 @@ export default () => {
                                     <span id="search-tabs-widget-description" className="aria-description--hidden absolute top-0 left-0 -ml-[10000px] size-px overflow-hidden">
                                         <$Lang keyName={$string("search.tabs_accesibility_hint")} />
                                     </span>
-                                    <ul role="tablist" className="navBar-section [:where(&)]:list-none [:where(&)]:m-0 [:where(&)]:p-0 [:where(&)]:[display:flow-root] [:where(&>li)]:m-0 [:where(&>li)]:p-0 [:where(&_.navBar-item)]:[display:block] [:where(&_.navBar-action)]:[display:block] [:where([class~=navBar-section]+&)]:ml-(--sv-navBar-section-margin) account-navigation float-none [&_.navBar-item]:float-none [&_.navBar-item]:mx-half [&_.navBar-item]:my-0 medium:[&_.navBar-item]:[display:inline-block] medium:[&_.navBar-item.is-active]:border-b medium:[&_.navBar-item.is-active]:border-b-(--sv-setting-color-textBase) medium:[&_.navBar-item.navBar-item--separate]:m-0 medium:[&_.navBar-item.navBar-item--separate]:border-l medium:[&_.navBar-item.navBar-item--separate]:border-l-(--sv-setting-color-textSecondary) medium:[&_.navBar-item.navBar-item--separate]:pl-half [&_.navBar-item.is-active>.navBar-action]:text-grey-dark" data-search-page-tabs={""}>
+                                    <ul role="tablist" className="navBar-section [&_[aria-selected=true]]:font-bold [&_[aria-selected=true]]:text-ink-brand [&_[aria-selected=true]]:underline [:where(&)]:list-none [:where(&)]:m-0 [:where(&)]:p-0 [:where(&)]:[display:flow-root] [:where(&>li)]:m-0 [:where(&>li)]:p-0 [:where(&_.navBar-item)]:[display:block] [:where(&_.navBar-action)]:[display:block] [:where([class~=navBar-section]+&)]:ml-(--sv-navBar-section-margin) account-navigation float-none [&_.navBar-item]:float-none [&_.navBar-item]:mx-half [&_.navBar-item]:my-0 medium:[&_.navBar-item]:[display:inline-block] medium:[&_.navBar-item.is-active]:border-b medium:[&_.navBar-item.is-active]:border-b-(--sv-setting-color-textBase) medium:[&_.navBar-item.navBar-item--separate]:m-0 medium:[&_.navBar-item.navBar-item--separate]:border-l medium:[&_.navBar-item.navBar-item--separate]:border-l-(--sv-setting-color-textSecondary) medium:[&_.navBar-item.navBar-item--separate]:pl-half [&_.navBar-item.is-active>.navBar-action]:text-grey-dark" data-search-page-tabs={""}>
                                         <li role="presentation" className="navBar-item">
                                             <a
                                                 aria-describedby="search-tabs-widget-description"
@@ -143,29 +165,7 @@ export default () => {
                                     test={$pointer("product_results.faceted_search_enabled")}
                                     $then={() => <SearchAdvancedSearch />}
                                 />
-                            </section>
-                            <section className="page -mx-gutter-half w-auto max-w-none flow-root">
-                                <$If
-                                    test={$pointer("product_results.faceted_search_enabled")}
-                                    $then={() => (
-                                        <$If
-                                            test={$pointer("forms.search.section")}
-                                            operator={$string("!=")}
-                                            rvalue={$string("product")}
-                                            $then={() => (
-                                        <aside className="page-sidebar sr-only relative float-left w-full px-gutter-half medium:w-1/5" id="faceted-search-container">
-                                            <FacetedSearchIndex $positionalHash={$pointer("product_results")} />
-                                        </aside>
-                                            )}
-                                            $else={() => (
-                                        <aside className="page-sidebar relative float-left w-full px-gutter-half medium:w-1/5" id="faceted-search-container">
-                                            <FacetedSearchIndex $positionalHash={$pointer("product_results")} />
-                                        </aside>
-                                            )}
-                                        />
-                                    )}
-                                />
-                                <main className="page-content float-left w-full px-gutter-half medium:[.page-sidebar+&]:w-4/5">
+                            </div>
                                     <$If
                                         test={$pointer("forms.search.has_suggestions")}
                                         $then={() => (

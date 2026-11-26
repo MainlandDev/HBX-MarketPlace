@@ -1,6 +1,7 @@
 "use server";
 import type {ThemeSettingsObject} from "@mainlanddev/hbx-bigcommerce";
 import ProductsPrice from "../pricing/price.tsx";
+import ProductsFeaturePills from "./feature-pills.tsx";
 import ProductsPromotionCallout from "../pricing/promotion-callout.tsx";
 import ProductsRatings from "../shared/ratings.tsx";
 import ProductsModalsWriteReview from "../modals/writeReview.tsx";
@@ -21,6 +22,7 @@ export default (_props: PartialProps) => {
     return (
         <>
             <h1 className="productView-title mt-0 mr-0 mb-half ml-0 text-[1.75rem] leading-tight font-bold text-ink medium:text-[2.5rem]">{product.title}</h1>
+            <ProductsFeaturePills />
             <$If
                 test={product.brand}
                 $then={() => (

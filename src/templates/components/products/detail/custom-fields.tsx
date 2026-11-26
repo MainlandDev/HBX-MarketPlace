@@ -20,7 +20,7 @@ export default (_props: PartialProps) => (
                 test={field.name}
                 operator={$string("===")}
                 rvalue={$string("Features")}
-                $then={() => <dd className="productView-info-value m-0 mr-half mb-half inline-block rounded-[6px] border border-ink-border bg-white px-half py-quarter text-[0.9rem] font-bold text-ink uppercase">{$unescaped(field.value)}</dd>}
+                $then={() => <></>}
                 $else={() => (
                     <$If
                         test={field.name}
