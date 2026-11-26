@@ -63,6 +63,8 @@ export default (_props: PartialProps) => {
                 <h2 className="footer-title-sr-only absolute top-auto -left-[10000px] size-px overflow-hidden">
                     <$Lang keyName={$string("footer.title")} />
                 </h2>
+                {region("footer_before")}
+                {region("footer_before--global")}
                 <$If
                     test={$pointer("settings.show_newsletter_box")}
                     $then={() => (
@@ -73,6 +75,8 @@ export default (_props: PartialProps) => {
                         </div>
                     )}
                 />
+                {region("newsletter_below")}
+                {region("newsletter_below--global")}
                 <Container>
                     <$If
                         test={$pointer("theme_settings.social_icon_placement_bottom")}
@@ -202,6 +206,8 @@ export default (_props: PartialProps) => {
                         )}
                     />
                 </Container>
+                {region("footer_below_columns--global")}
+                {region("footer_bottom--global")}
                 {region("ssl_site_seal--global")}
             </footer>
         </>

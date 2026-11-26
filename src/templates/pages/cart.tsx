@@ -38,7 +38,9 @@ export default () => (
                             <div className="page-content float-left w-full px-gutter-half" data-cart={""}>
                                 <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
                                 <CartPageTitle />
+                                {region("cart_below_title")}
                                 <div data-cart-status={""}><CartStatusMessages /></div>
+                                {region("cart_before_content")}
                                 <$If
                                     test={$pointer("cart.items.length")}
                                     $then={() => (
@@ -47,6 +49,7 @@ export default () => (
                                             <div data-cart-content={""} className="pr-[4px]">
                                                 <CartContent />
                                             </div>
+                                            {region("cart_below_content")}
                                             <$If
                                                 test={$pointer("cart.multi_coupon_ui_enabled")}
                                                 $then={() => (
@@ -58,7 +61,7 @@ export default () => (
                                             <div data-cart-totals={""} className="pr-[4px]">
                                                 <CartTotals />
                                             </div>
-                                            {region("cart_below_totals")}
+                                            {region("cart_below_total")}
                                             <$Or values={[$pointer("customer"), $unlessExpression($pointer("settings.hide_price_from_guests"))]} $then={() => (<><$If
                                                 test={$pointer("cart.show_primary_checkout_button")}
                                                 $then={() => (
@@ -116,11 +119,16 @@ export default () => (
                                         </>
                                     )}
                                     $else={() => (
-                                        <h3 tabIndex={0} className="my-double text-center font-bold">
-                                            <$Lang keyName={$string("cart.checkout.empty_cart")} />
-                                        </h3>
+                                        <>
+                                            <h3 tabIndex={0} className="my-double text-center font-bold">
+                                                <$Lang keyName={$string("cart.checkout.empty_cart")} />
+                                            </h3>
+                                            {region("cart_below_content")}
+                                            {region("cart_below_total")}
+                                        </>
                                     )}
                                 />
+                                {region("cart_bottom")}
                             </div>
                         </div>
                     </>
