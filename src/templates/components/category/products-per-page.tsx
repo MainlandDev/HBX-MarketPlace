@@ -5,7 +5,7 @@ import {FormField, FormLabel, FormSelect} from "../../../server/formParts.tsx";
 
 /** Same boxed look as the sort box. The `limit` query parameter is read by the store, so the select works as a plain GET control. */
 const option = (count: number) => (
-    <option dangerouslyInlineAttributes={{attributes: `value="${count}" ${$If({test: $pointer("products_per_page"), operator: $string("=="), rvalue: $string(String(count)), $then: () => "selected"})}`}}>{count}</option>
+    <option dangerouslyInlineAttributes={{attributes: `value="${count}" ${$If({test: $pointer("theme_settings.categorypage_products_per_page"), operator: $string("=="), rvalue: $string(String(count)), $then: () => "selected"})}`}}>{count}</option>
 );
 
 export default (_props: PartialProps) => (
