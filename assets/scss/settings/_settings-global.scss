@@ -1,4 +1,18 @@
+// =============================================================================
+// GLOBAL SETTINGS
+// =============================================================================
+// Palette, type, spacing, breakpoints and z-index. Loaded first; the defaults block at the end of this file and _settings.scss read these.
 
+// Screens
+// Breakpoint widths. Keep in step with --breakpoint-* in tailwind/_tailwind.scss (scripts/tailwind/scales.test.mjs fails on drift).
+$screen-xxxlarge:               1920px;
+$screen-xxlarge:                1681px;
+$screen-xlarge:                 1441px;
+$screen-large:                  1261px;
+$screen-medium:                 801px;
+$screen-small:                  551px;
+$screen-xsmall:                 481px;
+$screen-xxsmall:                320px;
 
 // Stacking
 // Named z-index layers (lowest to highest) used for dropdowns, nav, modals and overlays.
@@ -112,7 +126,7 @@ $letterSpacing-smaller:         0.25px;
 $letterSpacing-smallest:        0.25px;
 
 // Layout and spacing
-// Page widths (max and fixed) and the spacing scale (half / single / double ...) that every margin and padding token resolves to; `width()` reads the width map.
+// Page widths (max and fixed) and the spacing scale (half / single / double ...) that every margin and padding token resolves to.
 $layout-widthMax:               remCalc(1200px);
 
 $layout-widthFixed:             100%;
@@ -128,15 +142,6 @@ $spacing-quarter:               remCalc(round($spacingRhythm / 4));
 $spacing-fifth:                 remCalc(round($spacingRhythm / 5));
 $spacing-sixth:                 remCalc(round($spacingRhythm / 6));
 $spacing-eighth:                remCalc(round($spacingRhythm / 8));
-
-@function width($key) {
-    @if map-has-key($widthMap, $key) {
-        @return map-get($widthMap, $key);
-    }
-
-    @warn "Unknown width `#{$key}` in width function.";
-    @return null;
-}
 
 // Containers
 // Border, drop shadow, fill, padding and margin of boxed containers (panels, cards, modals).

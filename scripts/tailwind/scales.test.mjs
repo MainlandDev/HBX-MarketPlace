@@ -27,6 +27,7 @@ describe("breakpoints", () => {
 
     it("matches the $screen-* values the SCSS declares", async () => {
         const expected = screens(themeScreens);
+        expect(Object.keys(expected).length, "no $screen-* found in _settings-global.scss").toBeGreaterThan(0);
         const css = await compile(Object.keys(expected).map((name) => `${name}:flex`));
         for (const [name, width] of Object.entries(expected)) {
             expect(css, `breakpoint ${name}`).toMatch(new RegExp(`(width >= ${width}px|min-width: ${width}px)[\\s\\S]*?\\.${name}\\\\:flex`));

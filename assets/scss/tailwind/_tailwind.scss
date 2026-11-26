@@ -542,10 +542,10 @@
 }
 
 /*
- * Theme scales, so a conversion can use the same names as spacing("half"), fontSize("small") and breakpoint("medium").
+ * Theme scales, so a conversion can use the same names as spacing("half") and fontSize("small").
  * Breakpoints must be literals (a media query cannot read a custom property): scripts/tailwind/scales.test.mjs fails when they
  * drift from $screen-* in the SCSS settings. Tailwind's own sm/md/lg/xl/2xl are removed so there is one set of names.
- * Spacing and font sizes read the bridge (--sv-*), so they follow config.json and Citadel's settings.
+ * Spacing and font sizes read the bridge (--sv-*), so they follow config.json.
  */
 @theme inline reference {
     --breakpoint-*: initial;
