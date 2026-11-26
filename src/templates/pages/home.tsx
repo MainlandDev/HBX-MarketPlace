@@ -16,6 +16,8 @@ import {
     $unescaped,
 } from "@mainlanddev/hbx-bigcommerce";
 
+import {customerRegions, numberedRegions} from "../../server/regionParts.tsx";
+
 const {setting} = $frontmatter;
 
 export const frontmatter = $frontmatter.home({
@@ -45,6 +47,7 @@ export default () => {
             blocks={{
                 hero: () => (
                     <>
+                        {customerRegions("home_below_menu")}
                         {region("home_below_menu")}
                         <$And
                             a={carousel}
@@ -54,6 +57,7 @@ export default () => {
                             }
                         />
                         {region("home_below_carousel")}
+                        {numberedRegions("home_below_section", 9)}
                     </>
                 ),
                 page: () => (

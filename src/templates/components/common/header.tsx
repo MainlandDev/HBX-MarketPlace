@@ -1,5 +1,6 @@
 "use server";
 import Navigation from "./navigation.tsx";
+import {customerRegions} from "../../../server/regionParts.tsx";
 import StoreLogo from "./store-logo.tsx";
 import NavigationMenu from "./navigation-menu.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
@@ -69,8 +70,10 @@ export default (_props: PartialProps) => {
                 </div>
                 {region("header_navigation_bottom--global")}
             </header>
+            {customerRegions("header_bottom--global")}
             {region("header_bottom--global")}
             {" "}
+            {customerRegions("header_bottom")}
             {region("header_bottom")}
         </>
     );
