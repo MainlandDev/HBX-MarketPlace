@@ -39,8 +39,8 @@ export default (_props: PartialProps) => {
     const listItems = (
         <>
             <li className="navPages-item navPages-item--categories medium:relative medium:float-left medium:m-0 medium:p-0">
-                <details className="group/categories rounded-none bg-transparent p-0 [box-shadow:none]">
-                    <summary className="navPages-categoriesToggle before:[display:none] flex flex-row cursor-pointer list-none flex-nowrap items-center justify-between gap-half rounded-card bg-border px-double py-half text-small font-bold text-text uppercase medium:min-w-[206px] [&::-webkit-details-marker]:[display:none]">
+                <details className="group/categories m-0 rounded-none bg-transparent p-0 [box-shadow:none]">
+                    <summary className="navPages-categoriesToggle before:[display:none] m-0 h-[40px] flex flex-row cursor-pointer list-none flex-nowrap items-center justify-between gap-half rounded-card bg-border px-double py-[6px] text-small leading-6 font-bold text-text uppercase medium:min-w-[206px] [&::-webkit-details-marker]:[display:none]">
                         <$Lang keyName={$string("category.label")} />
                         <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
                     </summary>

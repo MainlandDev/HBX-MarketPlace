@@ -2,6 +2,9 @@
 :root {
     --color-brand: #EE0700;
     --color-brand-dark: #B30000;
+    --color-ink: #000000;
+    --color-ink-muted: #454545;
+    --color-ink-border: #DDDDDD;
     --color-white: #FFFFFF;
     --color-on-brand: #000000;
     --color-brand-text: #BE0600;
@@ -50,6 +53,9 @@
     :root:not([data-theme="light"]) {
         --color-brand: #EE0700;
         --color-brand-dark: #B30000;
+        --color-ink: #000000;
+        --color-ink-muted: #454545;
+        --color-ink-border: #DDDDDD;
         --color-white: #FFFFFF;
         --color-on-brand: #000000;
         --color-brand-text: #FF7A73;
@@ -73,6 +79,9 @@
 :root[data-theme="dark"] {
     --color-brand: #EE0700;
     --color-brand-dark: #B30000;
+    --color-ink: #000000;
+    --color-ink-muted: #454545;
+    --color-ink-border: #DDDDDD;
     --color-white: #FFFFFF;
     --color-on-brand: #000000;
     --color-brand-text: #FF7A73;

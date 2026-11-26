@@ -9,6 +9,10 @@
 :root {
     color-scheme: light dark;
     --color-brand: #EE0700;
+    --color-brand-dark: #B30000;
+    --color-ink: #000000;
+    --color-ink-muted: #454545;
+    --color-ink-border: #DDDDDD;
     --color-white: #FFFFFF;
     --color-on-brand: #000000;
     --color-brand-text: #BE0600;
@@ -56,6 +60,10 @@
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
         --color-brand: #EE0700;
+        --color-brand-dark: #B30000;
+        --color-ink: #000000;
+        --color-ink-muted: #454545;
+        --color-ink-border: #DDDDDD;
         --color-white: #FFFFFF;
         --color-on-brand: #000000;
         --color-brand-text: #FF7A73;
@@ -79,6 +87,10 @@
 :root[data-theme="dark"] {
     color-scheme: dark;
     --color-brand: #EE0700;
+    --color-brand-dark: #B30000;
+    --color-ink: #000000;
+    --color-ink-muted: #454545;
+    --color-ink-border: #DDDDDD;
     --color-white: #FFFFFF;
     --color-on-brand: #000000;
     --color-brand-text: #FF7A73;
@@ -114,6 +126,10 @@
     :root, :root:not([data-theme="light"]), :root[data-theme="dark"], :root[data-theme="light"] {
         color-scheme: light;
         --color-brand: #EE0700;
+        --color-brand-dark: #B30000;
+        --color-ink: #000000;
+        --color-ink-muted: #454545;
+        --color-ink-border: #DDDDDD;
         --color-white: #FFFFFF;
         --color-on-brand: #000000;
         --color-brand-text: #BE0600;
@@ -261,6 +277,26 @@ table.plain th, table.plain td { text-align: left; padding: var(--space-2) var(-
 <div><span class="chip" style="background:#EE0700" role="img" aria-label="brand light #EE0700"></span><code>#EE0700</code><small>light</small></div>
 <div><span class="chip" style="background:#EE0700" role="img" aria-label="brand dark #EE0700"></span><code>#EE0700</code><small>dark</small></div>
 </div><p class="swatch-note">Header red from the live site. Kept exactly.</p></li>
+<li class="swatch"><h3>brandDark</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#B30000" role="img" aria-label="brandDark light #B30000"></span><code>#B30000</code><small>light</small></div>
+<div><span class="chip" style="background:#B30000" role="img" aria-label="brandDark dark #B30000"></span><code>#B30000</code><small>dark</small></div>
+</div><p class="swatch-note">Cart pill and search button on the red header (live site rgb(179,0,0)). White text only.</p></li>
+<li class="swatch"><h3>ink</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#000000" role="img" aria-label="ink light #000000"></span><code>#000000</code><small>light</small></div>
+<div><span class="chip" style="background:#000000" role="img" aria-label="ink dark #000000"></span><code>#000000</code><small>dark</small></div>
+</div><p class="swatch-note">Fixed text on light-only surfaces (product cards) until the whole page follows the dark tokens.</p></li>
+<li class="swatch"><h3>inkMuted</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#454545" role="img" aria-label="inkMuted light #454545"></span><code>#454545</code><small>light</small></div>
+<div><span class="chip" style="background:#454545" role="img" aria-label="inkMuted dark #454545"></span><code>#454545</code><small>dark</small></div>
+</div><p class="swatch-note">Fixed secondary text on light-only surfaces.</p></li>
+<li class="swatch"><h3>inkBorder</h3>
+<div class="swatch-pair">
+<div><span class="chip" style="background:#DDDDDD" role="img" aria-label="inkBorder light #DDDDDD"></span><code>#DDDDDD</code><small>light</small></div>
+<div><span class="chip" style="background:#DDDDDD" role="img" aria-label="inkBorder dark #DDDDDD"></span><code>#DDDDDD</code><small>dark</small></div>
+</div><p class="swatch-note">Fixed border and shadow on light-only surfaces.</p></li>
 <li class="swatch"><h3>white</h3>
 <div class="swatch-pair">
 <div><span class="chip" style="background:#FFFFFF" role="img" aria-label="white light #FFFFFF"></span><code>#FFFFFF</code><small>light</small></div>
@@ -372,6 +408,9 @@ table.plain th, table.plain td { text-align: left; padding: var(--space-2) var(-
 <tr><td>Secondary text on card</td><td>light</td><td>9.59:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
 <tr><td>Text on brand red</td><td>light</td><td>4.67:1</td><td>pass</td><td>no</td><td></td></tr>
 <tr><td>White text on brand red</td><td>light</td><td>4.50:1</td><td>pass</td><td>no</td><td>fragile pass: use large or bold text only</td></tr>
+<tr><td>White text on dark brand red</td><td>light</td><td>7.20:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Text on light-only card</td><td>light</td><td>21.00:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Secondary text on light-only card</td><td>light</td><td>9.59:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
 <tr><td>Red text on card</td><td>light</td><td>6.53:1</td><td>pass</td><td>no</td><td></td></tr>
 <tr><td>Red text on page</td><td>light</td><td>5.83:1</td><td>pass</td><td>no</td><td></td></tr>
 <tr><td>Link on page</td><td>light</td><td>10.60:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
@@ -388,6 +427,9 @@ table.plain th, table.plain td { text-align: left; padding: var(--space-2) var(-
 <tr><td>Secondary text on card</td><td>dark</td><td>9.56:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
 <tr><td>Text on brand red</td><td>dark</td><td>4.67:1</td><td>pass</td><td>no</td><td></td></tr>
 <tr><td>White text on brand red</td><td>dark</td><td>4.50:1</td><td>pass</td><td>no</td><td>fragile pass: use large or bold text only</td></tr>
+<tr><td>White text on dark brand red</td><td>dark</td><td>7.20:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Text on light-only card</td><td>dark</td><td>21.00:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
+<tr><td>Secondary text on light-only card</td><td>dark</td><td>9.59:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
 <tr><td>Red text on card</td><td>dark</td><td>6.58:1</td><td>pass</td><td>no</td><td></td></tr>
 <tr><td>Red text on page</td><td>dark</td><td>7.39:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>
 <tr><td>Link on page</td><td>dark</td><td>9.14:1</td><td>pass</td><td>pass</td><td>AAA</td></tr>

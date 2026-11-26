@@ -1,0 +1,883 @@
+// Merchant custom CSS for store-injected widgets (ckSwiper carousels, card carousels, marquee, badges, promo).
+// Ported from the pulled theme's assets/scss/_theme-custom.scss ("OWW CUSTOMISATION"). The store's region HTML depends on these class hooks.
+// Bible rule: store-owned markup is styled by class hook here; theme-owned markup uses Tailwind in the TSX.
+
+// Legacy custom-property names the merchant widgets read, mapped to the new theme's --sv-* bridge (assets/scss/settings/global/_css-vars.scss).
+// Radius and shadow were SCSS variables in the old theme and are not bridged: values below are the rendered ones.
+:root {
+    --globalRadius: 12px;
+    --globalRadiusSmall: 6px;
+    --globalMaxWidth: var(--sv-layout-widthMax);
+    --globalPadding: var(--sv-spacing-half);
+    --globalContainerPadding: var(--sv-container-padding);
+    --globalGap: var(--sv-spacing-half);
+    --global-shadow: 0 1px 3px rgb(0 0 0 / 0.15);
+
+    --spacing-single: var(--sv-spacing-single);
+    --spacing-double: var(--sv-spacing-double);
+    --spacing-half: var(--sv-spacing-half);
+    --spacing-third: var(--sv-spacing-third);
+    --spacing-quarter: var(--sv-spacing-quarter);
+    --spacing-fifth: var(--sv-spacing-fifth);
+    --spacing-sixth: var(--sv-spacing-sixth);
+    --spacing-eighth: var(--sv-spacing-eighth);
+
+    --color-black: var(--sv-color-black);
+    --color-whitesBase: var(--sv-color-whitesBase);
+    --color-grey: var(--sv-color-grey);
+    --color-greyDarkest: var(--sv-color-greyDarkest);
+    --color-greyDarker: var(--sv-color-greyDarker);
+    --color-greyDark: var(--sv-color-greyDark);
+    --color-greyMedium: var(--sv-color-greyMedium);
+    --color-greyLight: var(--sv-color-greyLight);
+    --color-greyLighter: var(--sv-color-greyLighter);
+    --color-greyLightest: var(--sv-color-greyLightest);
+    --color-primary: var(--sv-color-primary);
+    --color-primaryDarker: var(--sv-color-primaryDarker);
+    --color-primaryDark: var(--sv-color-primaryDark);
+    --color-primaryLight: var(--sv-color-primaryLight);
+    --color-secondary: var(--sv-color-secondary);
+    --color-secondaryDarker: var(--sv-color-secondaryDarker);
+    --color-secondaryDark: var(--sv-color-secondaryDark);
+    --color-highlight: var(--sv-color-highlight);
+    --color-highlightDarker: var(--sv-color-highlightDarker);
+    --color-highlightDark: var(--sv-color-highlightDark);
+    --color-error: var(--sv-color-error);
+    --color-errorLight: var(--sv-color-errorLight);
+    --color-info: var(--sv-color-info);
+    --color-infoLight: var(--sv-color-infoLight);
+    --color-success: var(--sv-color-success);
+    --color-successLight: var(--sv-color-successLight);
+    --color-warning: var(--sv-color-warning);
+    --color-warningLight: var(--sv-color-warningLight);
+    --color-textBase: var(--sv-color-textBase);
+    --color-textBase-hover: var(--sv-color-textBase-hover);
+    --color-textBase-active: var(--sv-color-textBase-active);
+    --color-textSecondary: var(--sv-color-textSecondary);
+    --color-textSecondary-hover: var(--sv-color-textSecondary-hover);
+    --color-textSecondary-active: var(--sv-color-textSecondary-active);
+    --color-textLink: var(--sv-color-textLink);
+    --color-textLink-hover: var(--sv-color-textLink-hover);
+}
+
+// =============================================================================
+// OWW CUSTOMISATION  - JDS - Sale Price - Color Primary (CSS)
+    .price--sale:not(#pseudoID) {
+        color: var(--sv-color-primary);
+    }
+
+
+// =============================================================================
+// OWW CUSTOMISATION  - JDS - Custom (CSS)
+    .c_global-container,
+    .c_global-wrapper {
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .c_global-container {
+        padding: var(--globalContainerPadding) 0;
+    }
+    .c_global-wrapper {
+        padding: var(--globalContainerPadding) 0;
+        max-width: var(--globalMaxWidth);
+        margin: 0 auto;
+    }
+
+    // pap v4.8.5 - oww v1.2.18
+    // PDP Disclaimer
+    .__pdp--disclaimer {
+          --__stroke-color: #FEE685; //200
+        --__background-color: #FEF3C6; //100 
+        --__color-title: #973C00; //800
+        --__color-paragraph: #461901; //950
+        --__text-decoration-color: #E17100; //600
+        --__icon-color: #BB4D00; //700
+
+        background: #FEF3C6; //100
+        box-shadow: inset 0 0 0 1px var(--__stroke-color); //200
+        padding: 0.9rem;
+        border-radius: 10px;
+    }
+
+    details.__pdp--disclaimer {
+        --details-pseudo-size: 24px;
+    }
+    details.__pdp--disclaimer:target, details[open].__pdp--disclaimer {
+        box-shadow: inset 0 0 0 1px var(--__color-title);
+    }
+    details.__pdp--disclaimer > summary::before,
+    details[open].__pdp--disclaimer > summary::before, details.__pdp--disclaimer:target > summary::before {
+        background: transparent;
+        color: var(--__color-title);
+        box-shadow: inset 0 0 0 1px var(--__color-title);
+    }
+    details[open].__pdp--disclaimer > summary::before, details.__pdp--disclaimer:target > summary::before {
+        content: "\2716";
+    }
+    details.__pdp--disclaimer summary + div {
+        border-top: 1px solid var(--__stroke-color);
+    }
+    .__pdp--disclaimer--title {
+        font-size: 1.2em;
+        font-weight: 600;
+        color: var(--__color-title);
+    }
+    .__pdp--disclaimer--paragraph {
+        color: var(--__color-paragraph);
+    }
+    .__pdp--disclaimer a:not(.button) {
+        font-weight: 600;
+        color: #002fe1;
+    }
+    .__pdp--disclaimer a:not(.button):hover {
+        font-weight: 600;
+        color: #0023a3;
+    }
+
+    // papa v4.8.5 - oww v1.2.14
+    // Card & PDP custom field badges for products features (ie. safety standards etc)
+    .__featured-badges--card,
+    .__featured-badges--pdp {
+        --__stroke-color: #dddddd;
+        --__background-color: #f9f9f9;
+        --__color: #232323;
+        --__color--hover: #121212;
+        --__text-decoration-color: #c7c7c7;
+        --__icon-color: #454545;
+        --__spacing: 4px;
+        --__spacing-lg: 12px;
+        
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        gap: var(--__spacing);
+    }
+    .__featured-badges--card {
+        padding: 0 var(--__spacing-lg) 0 var(--__spacing);
+        overflow-x: auto;
+        scrollbar-gutter: stable;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        mask-image: linear-gradient( 90deg, transparent, black var(--__spacing) calc(100% - var(--__spacing-lg)), transparent );
+    }
+    .__featured-badges--pdp {
+        flex-wrap: wrap;
+    }
+    .__featured-badges--badge {
+        padding: 0.2em 0.4em;
+        border-radius: var(--__spacing);
+        background-color: var(--__background-color);
+        box-shadow: inset 0 0 0 1px var(--__stroke-color);
+        white-space: nowrap;
+        margin: 2px 0 var(--__spacing) 0;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--__color);
+    }
+
+    .__featured-badges--link {
+        color: var(--__color);
+        text-underline-offset: .15lh;
+        text-decoration: none;
+        text-decoration-color: var(--__text-decoration-color);
+
+    }
+    .__featured-badges--icon {
+        color: var( --__icon-color);
+        padding: 0 0.2em;
+        text-decoration: none;
+    }
+    .__featured-badges--link .__featured-badges--value {
+        text-decoration: underline;
+        text-decoration-color: var(--__text-decoration-color);
+    }
+    .__featured-badges--link:hover {
+        color: var(--__color--hover);
+    }
+
+    .__featured-badges--badge.__featured-badges--red {
+        --__stroke-color: #FFC9C9; //200
+        --__background-color: #FFE2E2; //100 
+        --__color: #9F0712; //800
+        --__color--hover: #460809; //950
+        --__text-decoration-color: #E7000B; //600
+        --__icon-color: #C10007; //700
+    }
+    .__featured-badges--badge.__featured-badges--orange {
+        --__stroke-color: #FFD6A7; //200
+        --__background-color: #FFEDD4; //100 
+        --__color: #9F2D00; //800
+        --__color--hover: #441306; //950
+        --__text-decoration-color: #F54900; //600
+        --__icon-color: #CA3500; //700
+    }
+    .__featured-badges--badge.__featured-badges--amber {
+        --__stroke-color: #FEE685; //200
+        --__background-color: #FEF3C6; //100 
+        --__color: #973C00; //800
+        --__color--hover: #461901; //950
+        --__text-decoration-color: #E17100; //600
+        --__icon-color: #BB4D00; //700
+    }
+    .__featured-badges--badge.__featured-badges--yellow {
+        --__stroke-color: #FFF085; //200
+        --__background-color: #FEF9C2; //100 
+        --__color: #894B00; //800
+        --__color--hover: #432004; //950
+        --__text-decoration-color: #D08700; //600
+        --__icon-color: #A65F00; //700
+    }
+    .__featured-badges--badge.__featured-badges--sky {
+        --__stroke-color: #B8E6FE; //200
+        --__background-color: #DFF2FE; //100 
+        --__color: #00598A; //800
+        --__color--hover: #052F4A; //950
+        --__text-decoration-color: #0084D1; //600
+        --__icon-color: #0069A8; //700
+    }
+    .__featured-badges--badge.__featured-badges--cyan {
+        --__stroke-color: #A2F4FD; //200
+        --__background-color: #CEFAFE; //100 
+        --__color: #005F78; //800
+        --__color--hover: #053345; //950
+        --__text-decoration-color: #0092B8; //600
+        --__icon-color: #007595; //700
+    }
+     .__featured-badges--badge.__featured-badges--slate {
+        --__stroke-color: #E2E8F0; //200
+        --__background-color: #F1F5F9; //100 
+        --__color: #1D293D; //800
+        --__color--hover: #020618; //950
+        --__text-decoration-color: #45556C; //600
+        --__icon-color: #314158; //700
+    }
+
+
+// PROMO BADGING
+.__badge-promo--top {
+    --__badge-promo--top--background: #f48c06;
+    --__badge-promo--top--color: #000000;
+}
+.__badge-promo--top,
+.__badge-promo--top > div {
+    padding-bottom: 1px;
+    // Solves collapsing margin of inner content
+}
+.__badge-promo--top div p {
+    background-color: var(--__badge-promo--top--background);
+    color: var(--__badge-promo--top--color);
+    border-radius: 3px;
+    padding: 0.2em 0.8em;
+    margin-bottom: 4px;
+}
+.productView-details .__badge-promo--top > div {
+    display: flex;
+    // Solves collapsing margin of inner content
+}
+.__badge-promo--top p {
+    text-align: center;
+    font-weight: 600;
+    margin: 0;
+    font-size: 13px;
+}
+.__badge-promo--message {
+    --__badge-promo--message--primary: #13af13;
+    --__badge-promo--message--color: #ffffff;
+}
+.__badge-promo--message p {
+    margin-bottom: 4px;
+    line-height: 1.7;
+}
+
+.__badge-promo--message .__bundle-price {
+    color: var(--__badge-promo--message--primary);
+    font-weight: 600; 
+}
+.__badge-promo--message .__save {
+    background: var(--__badge-promo--message--primary);
+    color: var(--__badge-promo--message--color);
+    padding: 0.1em 0.2em;
+    border-radius: 3px;
+    margin-left: 0.1em;
+    padding: 0.2em 0.8em;
+    font-size: 1rem;
+}
+.__badge-promo--message .__save span {
+    font-weight: 800;
+}
+.__badge-promo--expiry p {
+    margin-bottom: 0;
+    color: #717171;
+}
+
+// __note CUSTOM FIELD
+.__note img {
+    display: block;
+    margin-bottom: 8px;
+    max-width: 120px;
+    height: auto;
+}
+
+// CARD
+// Card price block level element
+.price-section:not(#pseudoID) {
+    display: block;
+}
+.card-body .price-section + .price-section:not(#pseudoID) {
+    margin-left: 0;
+}
+
+.price-section.price-section--save:not(#pseudoID) {
+    display: block !important;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.price-section.price-section--save:not(#pseudoID) p {
+    margin: 4px 0;
+}
+
+// PDP Price container override
+.productView-price:not(#pseudoID) {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.__price--saved {
+    padding: 0.2em 0.8em;
+    background-color: #ffe000;
+    color: #000000;
+    border-radius: 3px;
+    box-sizing: border-box;
+  width: fit-content;
+  font-size: 1rem;
+  line-height: 1.1;
+}
+.__price--saved .price {
+    color: #000000;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+
+// CUSTOM COMPONENTS
+// =============================================================================
+// OWW CUSTOMISATION  - JDS - Brand or 9/16 Card Carousel (CSS)
+
+    /* Brand Carousel Tile */
+    .c_carousel-brand__tile:not(#pseudoID) {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: var(--globalPadding);
+        aspect-ratio: 9/16;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    /* Brand Carousel Logo */
+    .c_carousel-brand__logo:not(#pseudoID) {
+        height: auto;
+        border-radius: var(--globalRadius) !important;
+        margin-top: auto;
+        width: 100%;
+    }
+
+
+// =============================================================================
+// OWW CUSTOMISATION  - JDS - Infinite Marquee Slider (CSS)
+
+    /*
+    * Prefixed by https://autoprefixer.github.io
+    * PostCSS: v8.4.14,
+    * Autoprefixer: v10.4.7
+    * Browsers: last 4 version
+    */
+    
+    /* PARENT CONTAINER */
+    .marquee-container {
+        --_marquee-background: transparent;
+        width: 100%;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+        padding-inline: var(--globalPadding);
+        background-color: var(--_marquee-background);
+        max-width: var(--globalMaxWidth);
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+    
+
+    /* marquee */
+    .marquee[data-animated="true"] {
+        overflow: hidden;
+        -webkit-mask-image: linear-gradient(90deg, transparent, black 10% 90%, transparent);
+                mask-image: linear-gradient(90deg, transparent, black 10% 90%, transparent);
+    }
+
+    .marquee[data-animated="true"] .marquee__inner {
+        width: -webkit-max-content;
+        width: -moz-max-content;
+        width: max-content;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+        -webkit-box-pack: start;
+            -ms-flex-pack: start;
+                justify-content: flex-start;
+        -webkit-animation: 
+        scroll var(--_animation-duration, 40s)
+        var(--_animation-direction, forwards) 
+        linear 
+        infinite;
+                animation: 
+        scroll var(--_animation-duration, 40s)
+        var(--_animation-direction, forwards) 
+        linear 
+        infinite;
+    }
+
+    .marquee[data-animated="true"]:hover .marquee__inner {
+        -webkit-animation-play-state: paused;
+                animation-play-state: paused;
+    }
+
+    .marquee[data-direction="right"] {
+        --_animation-direction: reverse;
+    }
+
+    .marquee[data-direction="left"] {
+        --_animation-direction: forwards;
+    }
+
+    .marquee[data-speed="fast"] {
+        --_animation-duration: 20s;
+    }
+
+    .marquee[data-speed="slow"] {
+        --_animation-duration: 60s;
+    }
+
+    @-webkit-keyframes scroll {
+        to {
+            -webkit-transform: translate(calc(-50% - (var(--globalGap) / 2)));
+                    transform: translate(calc(-50% - (var(--globalGap) / 2)));
+        }
+    }
+
+    @keyframes scroll {
+        to {
+            -webkit-transform: translate(calc(-50% - (var(--globalGap) / 2)));
+                    transform: translate(calc(-50% - (var(--globalGap) / 2)));
+        }
+    }
+
+    /* INNER CONTAINER */
+    .marquee__inner,
+    .marquee__inner-center {
+        padding-block: var(--globalPadding);
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        gap: var(--globalGap);
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+    }
+    
+
+    /* LINKS */
+    .marquee__inner > * {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        border-radius: var(--globalRadius);    
+    }
+
+    /* IMAGES */
+    .marquee__inner img {
+        width: auto !important;
+        max-width: 150px;
+        max-height: 60px;
+        border-radius: var(--globalRadius);
+    }
+    .marquee__inner img:not(.image-svg) {
+        height: auto;
+    }
+
+
+// =============================================================================
+// OWW CUSTOMISATION  - JDS - ckswiper custom carousels (CSS)
+
+    :root {
+        --cks-bgColor: var(--color-white);
+        --cks-textColor: var(--color-primary);
+        --cks-btnColor: var(--color-white);
+        --cks-btnHover: var(--color-white);
+        --cks-globalProductTileMinWidth: 150px;
+    }
+    /* SWIPERCSS - START */
+    .ckSwiper {
+        --cksMaxWidth: var(--globalMaxWidth);
+        --cksPadding: var(--globalPadding);
+        --cksGap: var(--globalPadding);
+        --cksTilesMobile: 1.2;
+        --cksProductTilesMobile: 2.4;
+        --cksColor: var(--cks-textColor);
+        --cksButtonSize: 30px;
+        --cksPaginationSize: 9px;
+        --cksPaginationBottom: clamp(5px, 1vw, 9px);
+        --cksButtonPrev: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='5.5 5 10 10'%3E%3Cpath d='M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z'/%3E%3C/svg%3E");
+        --cksButtonNext: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='4.5 5 10 10' fill='currentColor'%3E%3Cpath d='M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z' /%3E%3C/svg%3E ");
+        container-type: inline-size;
+        position: relative;
+        display: block;
+        margin: 0;
+        padding: 0;
+        margin-inline: auto;
+        max-width: var(--cksMaxWidth);
+    }
+
+    /* HIDE SCROLLBARS - START */
+    .ckSwiper .cks-slides::-webkit-scrollbar {
+        display: none;
+    }
+    .ckSwiper .cks-slides {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    /* HIDE SCROLLBARS - END */
+
+    .ckSwiper .cks-slides {
+        position: relative;
+        box-sizing: border-box;
+        width: 100%;
+        margin: 0 auto;
+        padding: var(--cksPadding);
+        scroll-padding-left: var(--cksPadding);
+        scroll-margin-top: var(--cksPadding);
+        overflow: hidden;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: max-content;
+        gap: var(--cksGap);
+        scroll-snap-type: x mandatory;
+        /* HIDE 1px SHOWING AT EDGES OF ELEMENT - START 
+        -webkit-mask-image: linear-gradient(to left, transparent 1px, black 1px, black calc(100% - 1px), transparent calc(100% - 1px));
+        mask-image: linear-gradient(to left, transparent 1px, black 1px, black calc(100% - 1px), transparent calc(100% - 1px));
+        mask-mode: alpha;
+        /* HIDE 1px SHOWING AT EDGES OF ELEMENT - END */
+    }
+
+    .ckSwiper .cks-slides > * {
+        --cksTileMinWidth: calc((100cqi - var(--cksPadding) - var(--cksGap)) / var(--cksTilesMobile));
+        position: relative;
+        margin: 0;
+        overflow: hidden;
+        object-fit: contain;
+        scroll-snap-align: start;
+        scroll-snap-stop: normal;
+        width: var(--cksTileWidth, unset);
+        max-width: var(--cksTileMinWidth, unset);
+    }
+    .ckSwiper .cks-slides > *:empty {
+        display: none;
+    }
+    .ckSwiper:not(.cks-1tile.cks-fullwidth) .cks-slides > * {
+        border-radius: var(--globalRadius);
+    }
+
+    /* SET TILE WIDTHS - START */
+    .ckSwiper.cks-6tile .cks-slides > * {
+        --cksTileWidth: calc((var(--cksMaxWidth) - (var(--cksPadding) * 2) - (var(--cksGap) * 5)) / 6);
+    }
+    .ckSwiper.cks-5tile .cks-slides > * {
+        --cksTileWidth: calc((var(--cksMaxWidth) - (var(--cksPadding) * 2) - (var(--cksGap) * 4)) / 5);
+    }
+    .ckSwiper.cks-4tile .cks-slides > * {
+        --cksTileWidth: calc((var(--cksMaxWidth) - (var(--cksPadding) * 2) - (var(--cksGap) * 3)) / 4);
+    }
+    .ckSwiper.cks-3tile .cks-slides > * {
+        --cksTileWidth: calc((var(--cksMaxWidth) - (var(--cksPadding) * 2) - (var(--cksGap) * 2)) / 3);
+    }
+    .ckSwiper.cks-2tile .cks-slides > * {
+        --cksTileWidth: calc((var(--cksMaxWidth) - (var(--cksPadding) * 2) - (var(--cksGap) * 1)) / 2);
+    }
+    .ckSwiper.cks-1tile .cks-slides > * {
+        --cksTileWidth: calc(100cqi - (var(--cksPadding) * 2));
+        --cksTileMinWidth: unset;
+    }
+    .ckSwiper.cks-producttiles .cks-slides > * {
+        --cksTileMinWidth: calc((100cqi - var(--cksPadding) - var(--cksGap)) / var(--cksProductTilesMobile));
+        min-width: var(--cks-globalProductTileMinWidth);
+    }
+    /* SET TILE WIDTHS - END */
+
+    /* FREE SCROLLING ON TOUCH DEVICES - START */
+    @media (any-hover: none) {
+        .ckSwiper .cks-slides {
+            scroll-snap-type: unset;
+        }
+        .ckSwiper .cks-slides > * {
+            scroll-snap-align: unset;
+            scroll-snap-stop: unset;
+        }
+    }
+    /* FREE SCROLLING ON TOUCH DEVICES - END */
+
+    /* BUTTONS - START */
+    .ckSwiper .cks-prev,
+    .ckSwiper .cks-next {
+        all: unset;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        transition-property: opacity;
+        transition-duration: 150ms;
+        display: block;
+        z-index: 1;
+        opacity: 0;
+        pointer-events: none;
+        cursor: pointer;
+        box-sizing: border-box;
+        width: var(--cksButtonSize);
+        height: var(--cksButtonSize);
+        padding: calc(var(--cksButtonSize) / 3);
+        box-shadow: inset 0 0 0 1.6px var(--cksColor);
+        border-radius: 100%;
+        background-color: var(--cks-bgColor);
+        color: var(--cksColor);
+    }
+    .ckSwiper .cks-prev:hover,
+    .ckSwiper .cks-next:hover {
+        background-color: var(--cks-btnHover);
+        color: currentColor;
+    }
+    .ckSwiper .cks-prev {
+        left: 0%;
+    }
+    .ckSwiper .cks-next {
+        right: 0%;
+    }
+    .ckSwiper .cks-prev::before,
+    .ckSwiper .cks-next::before {
+        content: "";
+        display: block;
+        width: calc(var(--cksButtonSize) - (var(--cksButtonSize) / 1.5));
+        height: calc(var(--cksButtonSize) - (var(--cksButtonSize) / 1.5));
+        background-color: currentColor;
+    }
+    .ckSwiper .cks-prev::before {
+        -webkit-mask-image: var(--cksButtonPrev);
+        mask-image: var(--cksButtonPrev);
+    }
+    .ckSwiper .cks-next::before {
+        -webkit-mask-image: var(--cksButtonNext);
+        mask-image: var(--cksButtonNext);
+    }
+    .ckSwiper:not(.cks-wrap) .cks-prev.cks-visible,
+    .ckSwiper:not(.cks-wrap) .cks-next.cks-visible,
+    .ckSwiper.cks-loop:not(.cks-wrap) .cks-prev,
+    .ckSwiper.cks-loop:not(.cks-wrap) .cks-next {
+        opacity: 1 !important;
+        pointer-events: auto;
+    }
+    /* HIDE BUTTONS & SHOW SCROLL HINT ON TOUCH ONLY DEVICES */
+    @media (any-hover: none) {
+        .ckSwiper:not(.cks-mobilebuttons, .cks-wrap) .cks-prev,
+        .ckSwiper:not(.cks-mobilebuttons, .cks-wrap) .cks-next {
+            display: none;
+        }
+
+        .ckSwiper.cks-scrollhint:not(.cks-mobilebuttons, .cks-wrap)::before {
+            content: "";
+            display: block;
+            width: calc(var(--cksPadding) * 6);
+            height: var(--cksPadding);
+            -webkit-mask-image: var(--cksButtonPrev);
+            mask-image: var(--cksButtonPrev);
+            background: linear-gradient(to right, transparent 33.3%, currentColor 50%, transparent 66.6%);
+            background-size: 300%;
+            position: absolute;
+            top: calc(var(--cksPadding) * -0);
+            right: 0;
+            opacity: 1;
+            animation: scroll-hint 3.5s linear infinite;
+        }
+        @keyframes scroll-hint {
+            0% {
+                background-position: 0% 0%;
+            }
+            20%,
+            100% {
+                background-position: 100% 0%;
+            }
+        }
+    }
+    /* BUTTONS - END */
+
+    /* WRAP TILES - START */
+    .ckSwiper.cks-wrap .cks-slides {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    /* WRAP TILES - END */
+
+    /* TOP BUTTONS - START */
+    .ckSwiper.cks-topbuttons:not(.cks-wrap) .cks-prev,
+    .ckSwiper.cks-topbuttons:not(.cks-wrap) .cks-next {
+        opacity: 0.15;
+        right: var(--cksPadding);
+        top: calc(var(--cksPadding) - 9px);
+        transform: translateY(-100%);
+    }
+    .ckSwiper.cks-topbuttons:not(.cks-wrap) .cks-prev {
+        left: unset;
+        right: calc(var(--cksPadding) + var(--cksButtonSize) + 5px);
+    }
+    /* TOP BUTTONS - END */
+
+    /* FULLWIDTH - START */
+    .ckSwiper.cks-fullwidth {
+        max-width: unset;
+    }
+    .ckSwiper.cks-1tile.cks-fullwidth {
+        --cksPadding: 0px;
+        --cksGap: 0px;
+        max-width: unset;
+    }
+    .ckSwiper.cks-fullwidth:not(.cks-1tile) .cks-slides {
+        padding-inline: calc((100cqi - min(100cqi, var(--cksMaxWidth))) / 2 + var(--cksPadding));
+        scroll-padding-left: calc((100cqi - min(100cqi, var(--cksMaxWidth))) / 2 + var(--cksPadding));
+    }
+    .ckSwiper.cks-fullwidth.cks-topbuttons:not(.cks-1tile) .cks-prev,
+    .ckSwiper.cks-fullwidth.cks-topbuttons:not(.cks-1tile) .cks-next {
+        margin-right: calc((100cqi - min(100cqi, var(--cksMaxWidth))) / 2);
+    }
+    @media (any-hover: none) {
+        .ckSwiper.cks-fullwidth.cks-scrollhint:not(.cks-1tile, .cks-mobilebuttons, .cks-wrap)::before {
+            right: calc((100cqi - min(100cqi, var(--cksMaxWidth))) / 2);
+        }
+    }
+    .ckSwiper.cks-1tile .cks-slides {
+        scroll-snap-type: x mandatory;
+    }
+    .ckSwiper.cks-1tile .cks-slides > * {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+    /* PAGINATION - START */
+    .ckSwiper.cks-1tile.cks-pagination {
+        transform: translateZ(0);
+    }
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(2))::before,
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(2)) > *::after {
+        pointer-events: none;
+        content: "";
+        display: block;
+        position: fixed;
+        z-index: 1;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: calc(var(--cksPaginationBottom) + var(--cksPadding));
+        height: var(--cksPaginationSize);
+        width: calc(var(--cksPaginationSize) * 2);
+        background-image: radial-gradient(ellipse at center, transparent calc(50% - 1px), white 50%, transparent calc(50% + 1px));
+        background-size: var(--cksPaginationSize);
+        background-repeat: repeat-x;
+    }
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(2))::before {
+        background-image: radial-gradient(ellipse at center, transparent calc(50% - 1px), white 50%, transparent calc(50% + 1px)), linear-gradient(to left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+        box-shadow: 0 0 0 calc(var(--cksPaginationSize) * 0.3) rgba(0, 0, 0, 0.2);
+        border-radius: var(--cksPaginationSize);
+    }
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(2)) > *::after {
+        position: absolute;
+        bottom: var(--cksPaginationBottom);
+        width: calc(var(--cksPaginationSize) * 2);
+        background-image: radial-gradient(ellipse at center, white 0%, white 50%, transparent calc(50% + 1px));
+        background-repeat: no-repeat;
+    }
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(2)) > *:is(:nth-child(2))::after {
+        background-position: var(--cksPaginationSize);
+    }
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(2)) > *:is(:nth-child(3))::after {
+        background-position: calc(var(--cksPaginationSize) * 2);
+    }
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(2)) > *:is(:nth-child(4))::after {
+        background-position: calc(var(--cksPaginationSize) * 3);
+    }
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(2)) > *:is(:nth-child(5))::after {
+        background-position: calc(var(--cksPaginationSize) * 4);
+    }
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(2)) > *:is(:nth-child(6))::after {
+        background-position: calc(var(--cksPaginationSize) * 5);
+    }
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(2)) > *:is(:nth-child(7))::after {
+        background-position: calc(var(--cksPaginationSize) * 6);
+    }
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(2)) > *:is(:nth-child(8))::after {
+        background-position: calc(var(--cksPaginationSize) * 7);
+    }
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(2)) > *:is(:nth-child(9))::after {
+        background-position: calc(var(--cksPaginationSize) * 8);
+    }
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(2)) > *:is(:nth-child(10))::after {
+        background-position: calc(var(--cksPaginationSize) * 9);
+    }
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(3))::before,
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(3)) > *::after {
+        width: calc(var(--cksPaginationSize) * 3);
+    }
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(4))::before,
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(4)) > *::after {
+        width: calc(var(--cksPaginationSize) * 4);
+    }
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(5))::before,
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(5)) > *::after {
+        width: calc(var(--cksPaginationSize) * 5);
+    }
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(6))::before,
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(6)) > *::after {
+        width: calc(var(--cksPaginationSize) * 6);
+    }
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(7))::before,
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(7)) > *::after {
+        width: calc(var(--cksPaginationSize) * 7);
+    }
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(8))::before,
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(8)) > *::after {
+        width: calc(var(--cksPaginationSize) * 8);
+    }
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(9))::before,
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(9)) > *::after {
+        width: calc(var(--cksPaginationSize) * 9);
+    }
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(10))::before,
+    .ckSwiper.cks-1tile.cks-pagination .cks-slides:has(> *:nth-child(10)) > *::after {
+        width: calc(var(--cksPaginationSize) * 10);
+    }
+    /* PAGINATION - END */
+    /* FULLWIDTH - END */
+    /* SWIPERCSS - END */
