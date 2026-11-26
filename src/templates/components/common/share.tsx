@@ -153,7 +153,7 @@ export default (_props: PartialProps) => {
                 $then={() => (
                     <iframe
                         dangerouslyInlineAttributes={{
-                            attributes: `class="facebook${$If({test: $pointer("settings.facebook_like_button.verb"), operator: $string("==="), rvalue: $string("recommend"), $then: () => "Recommend", $else: () => "Like"})}Btn" style="border:none; overflow:hidden; margin: 0; padding: 0; position:absolute" src="https://www.facebook.com/plugins/like.php?href=${$pointer("settings.facebook_like_button.href")}&amp;layout=button_count${$If({test: $pointer("settings.facebook_like_button.verb"), operator: $string("==="), rvalue: $string("recommend"), $then: () => $raw("&amp;action=recommend")})}&amp;colorscheme=light&amp;height=20" scrolling="no" frameborder="0" allowTransparency="true"`,
+                            attributes: `class="facebook${$If({test: $pointer("settings.facebook_like_button.verb"), operator: $string("==="), rvalue: $string("recommend"), $then: () => "Recommend", $else: () => "Like"})}Btn border-none overflow-hidden m-0 p-0 absolute" src="https://www.facebook.com/plugins/like.php?href=${$pointer("settings.facebook_like_button.href")}&amp;layout=button_count${$If({test: $pointer("settings.facebook_like_button.verb"), operator: $string("==="), rvalue: $string("recommend"), $then: () => $raw("&amp;action=recommend")})}&amp;colorscheme=light&amp;height=20" scrolling="no" frameborder="0" allowTransparency="true"`,
                         }}
                     ></iframe>
                 )}
