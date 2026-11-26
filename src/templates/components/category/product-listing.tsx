@@ -1,7 +1,7 @@
 "use server";
-import ProductsFilter from "../products/filter.tsx";
-import ProductsGrid from "../products/grid.tsx";
-import ProductsList from "../products/list.tsx";
+import ProductsFilter from "../products/listing/filter.tsx";
+import ProductsGrid from "../products/listing/grid.tsx";
+import ProductsList from "../products/listing/list.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import Paginator from "../common/paginator.tsx";
 import {$If, $Inject, $Lang, $lang, $pointer, $string} from "@mainlanddev/hbx-bigcommerce";

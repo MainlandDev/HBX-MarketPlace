@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import {readFileSync} from "node:fs";
 
 const read = (path) => readFileSync(new URL(`../dist/templates/components/products/${path}`, import.meta.url), "utf8");
-const view = read("product-view.html");
+const view = read("detail/purchase-form.html"); // the option flag pass lives in the purchase form, not the product-view composer
 const selector = read("options/colour-size.html");
 
 // Detection pass: flags set while looping the options, branch on both, and both keys freed on both paths (50-key scratchpad cap).

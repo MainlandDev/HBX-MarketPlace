@@ -1,8 +1,8 @@
-import ProductsProductView from "../components/products/product-view.tsx";
-import ProductsVideos from "../components/products/videos.tsx";
-import ProductsReviews from "../components/products/reviews.tsx";
-import ProductsTabs from "../components/products/tabs.tsx";
-import ProductsSchema from "../components/products/schema.tsx";
+import ProductsProductView from "../components/products/detail/product-view.tsx";
+import ProductsVideos from "../components/products/detail/videos.tsx";
+import ProductsReviews from "../components/products/detail/reviews.tsx";
+import ProductsTabs from "../components/products/detail/tabs.tsx";
+import ProductsSchema from "../components/products/detail/schema.tsx";
 import Breadcrumbs from "../components/common/breadcrumbs.tsx";
 import AlertAlertInfo from "../components/common/alert/alert-info.tsx";
 import {

@@ -1,5 +1,5 @@
 "use server";
-import ProductsCard from "../products/card.tsx";
+import ProductsCard from "../products/listing/card.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import ModalModalCloseBtn from "../common/modal/modal-close-btn.tsx";
 import {$add, $boolean, $Each, $If, $lang, $number, $pointer, $sanitize, $string, $unescaped} from "@mainlanddev/hbx-bigcommerce";

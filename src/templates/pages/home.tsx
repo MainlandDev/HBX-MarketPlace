@@ -1,8 +1,8 @@
 import type {PageContext, ThemeSettingsObject} from "@mainlanddev/hbx-bigcommerce";
 import Carousel from "../components/carousel.tsx";
-import ProductsFeatured from "../components/products/featured.tsx";
-import ProductsTop from "../components/products/top.tsx";
-import ProductsNew from "../components/products/new.tsx";
+import ProductsFeatured from "../components/products/listing/featured.tsx";
+import ProductsTop from "../components/products/listing/top.tsx";
+import ProductsNew from "../components/products/listing/new.tsx";
 import AlertAlertInfo from "../components/common/alert/alert-info.tsx";
 import {
     $And,

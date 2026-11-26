@@ -1,6 +1,6 @@
 "use server";
-import ProductsProductView from "./product-view.tsx";
-import ProductsReviews from "./reviews.tsx";
+import ProductsProductView from "./detail/product-view.tsx";
+import ProductsReviews from "./detail/reviews.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$pointer, $string, $boolean, $ifExpression, $All} from "@mainlanddev/hbx-bigcommerce";
 import {ModalBody} from "../../../server/componentParts.tsx";

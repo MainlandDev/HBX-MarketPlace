@@ -1,5 +1,5 @@
 "use server";
-import ProductsCard from "../products/card.tsx";
+import ProductsCard from "../products/listing/card.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import LoginForPricing from "../common/login-for-pricing.tsx";
 import ResponsiveImg from "../common/responsive-img.tsx";

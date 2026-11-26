@@ -61,6 +61,8 @@ export default defineConfig({
             core: {exclude: [/\/plugin-islands\//]},
             templates: {
                 dir: "./src/templates",
+                // The hand-written Cornerstone originals under templates/ stay as a sync reference, so their shadowing is expected.
+                warnOnShadow: false,
                 // The build renders the templates on a private server without this config's plugins: it needs the islands wrapper too.
                 plugins: (() => islands(islandsOptions)) as never, // `as never`: the linked packages resolve different copies of vite's types
                 // prettyPrint: {dropEmptyAttributeValues: true}

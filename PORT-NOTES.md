@@ -510,3 +510,14 @@ Files: `src/templates/components/products/options/colour-size.tsx` (static selec
 - **Image swatches** carry `--swatch-image-large` (`gallery_size`); the default 22x22 `swatch_option_size` image is set inline, so the tile rule needs `!important`.
 - **SCSS** uses container queries and `:has()`. The dev server compiles with `@bigcommerce/stencil-styles` (the `node-sass` engine), the same path as `stencil bundle`; a bundle upload is the only check against the platform's own compile.
 - **Hardcoded English:** "Choose Colour", "Colours", "Search Colour", "No colours match your search." and "(out of stock)" still need language keys.
+
+## Product components layout (`components/products/`)
+The emitted partial name is the src path, so a file's folder is part of its public name. Groups:
+
+- `detail/` product page: `product-view.tsx` is a thin composer over `runtime-config`, `gallery`, `summary`, `info-list` (+ `info-dimensions`, `info-shipping`), `purchase-form` (+ `stock-message`), `preview-modal`, plus `add-to-cart`, `description*`, `custom-fields`, `reviews`, `videos`, `tabs`, `schema`.
+- `listing/` cards and lists: `card`, `list-item`, `grid`, `list`, `filter`, `featured`, `top`, `new`, `related`, `carousel`, `product-info`, `product-aria-label`, `product-badge`.
+- `pricing/`: `price`, `price-range`, `price-label`, `bulk-discount-rates`, `promotion-callout`. `shared/`: `ratings`.
+- **Do not move** `options/*` (`$dynamicComponent("components/products/options")` builds `options/<option.partial>` at render time; a miss prints nothing) or `quick-view.tsx` (`assets/js/theme/global/quick-view.js` requests `products/quick-view`).
+- `$partial("components/products/listing/product-info")` in `card.tsx` / `list-item.tsx` is a string because it sits inside an attribute; a moved `product-info.tsx` needs those strings updated by hand.
+- Context types shared by the `detail/` components live in `src/server/productViewTypes.ts` (types only, so no template is emitted).
+- The hand-written originals for the moved names were deleted; where each Cornerstone partial lives now is in `docs/design/cornerstone-sync.md`. Other hand-written originals stay as a sync reference (`warnOnShadow: false` in `vite.config.ts`).

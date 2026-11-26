@@ -1,5 +1,5 @@
 import AccountNavigation from "../../components/account/navigation.tsx";
-import ProductsGrid from "../../components/products/grid.tsx";
+import ProductsGrid from "../../components/products/listing/grid.tsx";
 import Breadcrumbs from "../../components/common/breadcrumbs.tsx";
 import AlertAlertInfo from "../../components/common/alert/alert-info.tsx";
 import {$lang, $Lang, $Page, $pointer, $string, $Unless} from "@mainlanddev/hbx-bigcommerce";

@@ -1,6 +1,6 @@
 "use server";
 import FacetedSearchFacetedSearchNavigation from "../faceted-search-navigation.tsx";
-import ProductsRatings from "../../products/ratings.tsx";
+import ProductsRatings from "../../products/shared/ratings.tsx";
 import type {PartialProps} from "@mainlanddev/hbx-bigcommerce";
 import {$dashcase, $Each, $If, $Lang, $pointer, $string, $Unless} from "@mainlanddev/hbx-bigcommerce";
 import {NavList} from "../../../../server/componentParts.tsx";
