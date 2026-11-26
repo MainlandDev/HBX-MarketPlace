@@ -615,6 +615,7 @@
      * - `.button`: merchant page content (/contact-support/, the account banner) has bare `<a class="button">` that cannot take utilities.
      * - `.form-inlineMessage`: see below.
      */
+    /* stays: merchant page content (/contact-support/, account banner) has bare `<a class="button">` that cannot take utilities; the radius cannot be an important utility because the store's `:not(#pseudoID)` radius must keep winning */
     .button {
         @apply relative cursor-pointer appearance-none no-underline transition-all duration-150 ease-[ease] leading-[1rem] m-0 mb-(--sv-button-margin-bottom)
             rounded-(--sv-button-radius) border-(length:--sv-button-border-width) border-(color:--sv-buttonStyle-default-borderColor)
@@ -673,26 +674,17 @@
         @apply medium:ml-half;
     }
 
+    /* stays: the store injects a non-important `:not(#pseudoID)` radius on the search and newsletter inputs that an important utility would beat; error pages carry none, so this shows there */
     .form-input {
         @apply rounded-(--sv-input-border-radius);
     }
 
+    /* stays: the store sets its own padding on the footer newsletter fieldset (non-important, must keep winning); error pages do not carry it */
     .form-fieldset {
         @apply p-(--sv-fieldset-padding);
     }
 
-    /* Spinner of the loading overlay (bundle in assets/js/theme/common/runtime-classes.js). */
-    @keyframes loadingOverlay-spin {
-        0% {
-            transform: translateY(-50%) rotate(0deg);
-        }
-
-        100% {
-            transform: translateY(-50%) rotate(360deg);
-        }
-    }
-
-    /* Tabs: the merchant inline-tabs widget on the home page is injected markup, and the store styles it as well (measured), so it stays plain CSS. */
+    /* Tabs. Stays: the merchant inline-tabs widget on the home page is injected markup, and the store styles it as well; as body-variant utilities it measured 188px wide, not 147px (round 5, reverted) */
     .tabs {
         @apply m-(--sv-tabs-margin);
         /* no utility takes a variable for this */
@@ -753,7 +745,7 @@
     }
 
 
-    /* element rules that carry a pseudo-class: they beat single-class rules by specificity, so they cannot sit in the base layer */
+    /* Element rules that carry a pseudo-class. Stay in components: they beat single-class rules by specificity, so they cannot sit in the base layer (components beat base whatever the specificity, which would let `.tab-title` colour win over `a:hover`) */
     a:hover {
         cursor: var(--sv-cursor-pointer-value);
     }
@@ -767,6 +759,7 @@
         outline: none;
     }
 
+    /* stays: second half of the merchant tabs widget rules above (.tab, .tab.is-active, .tab-title), kept after the element rules so the cascade order is unchanged */
     .tab {
         @apply float-none medium:float-left;
         border-top: var(--sv-tab-active-border);
@@ -794,25 +787,30 @@
         text-decoration: var(--sv-tab-title-text-decoration);
     }
 
-    /* nod.js creates .form-inlineMessage at runtime (inside forms that have no .form-field too: cart coupon and gift certificate, faceted price range), so it cannot carry utilities */
+    /* .form-inlineMessage (created by nod.js): converted, no rule here; it is a descendant-variant bundle on <body> in layout/base.tsx because nod.js can add only one class */
 
-    /* the merchant injects a div.container on the account page (a bare class that cannot take utilities); the theme's own columns use the Container helper (componentParts.tsx) */
+    /* stays: the merchant injects a div.container on the account page (a bare class that cannot take utilities); as utilities it measured 1284px wide, not 663px (round 5, reverted); the theme's own columns use the Container helper (componentParts.tsx) */
     .container {
         @apply relative mx-auto w-(--sv-layout-widthFixed) max-w-[calc(var(--sv-layout-widthMax)+var(--sv-container-padding)*4)] py-0 px-(--sv-container-padding) large:px-[calc(var(--sv-container-padding)*4)];
     }
 
-    /* brand image box: its position and ::after ratio spacer are utilities in pages/brand.tsx; the width cap stays here because the store injects a non-important
+    /* stays: brand image box. Its position and ::after ratio spacer are utilities in pages/brand.tsx; the width cap stays here because the store injects a non-important
        `.brand-image-container:not(#pseudoID) { max-width: 200px }` that an important utility would beat */
     .brand-image-container {
         @apply max-w-(--sv-derived-brand-thumb-width);
     }
 
+    /* stays: swatch size; the store injects non-important `:not(#pseudoID)` sizes on these classes that an important utility would beat (round 4, swatch sizes changed with important off) */
     .form-option-variant--color, .form-option-variant--pattern {
         @apply h-(--sv-derived-swatch-height) w-(--sv-derived-swatch-width);
     }
 }
 
-/* the theme's global keyboard focus ring: !important, so it must stay below every layered !important rule (utilities such as focus:outline-none) */
+/*
+ * stays: the theme's global keyboard focus ring. It is `!important`, and among layered `!important` declarations the EARLIER layer wins, so it must sit in the
+ * last layer to lose to every important utility (`focus:outline-none`, 8 uses in src). In `base` it would beat them all; as a utility it would need a class on every
+ * input, button and link, including merchant and third-party markup.
+ */
 @layer legacy {
     input:focus, button:focus, textarea:focus, select:focus, details:focus, [href]:focus, [tabindex]:not([tabindex="-1"]):focus, [contenteditable="true"]:focus {
         outline: 2px solid #0f7fff !important;
@@ -825,40 +823,58 @@
     }
 }
 
-/* the alert modal's icon animations (referenced by animate-icon utilities in components/common/alert) */
-@keyframes animate-icon {
-    0% {
-        opacity: 0;
-        transform: rotateX(100deg);
+/*
+ * Keyframes, declared in a static theme block so they keep their names and are always emitted (the markup
+ * references them through arbitrary `[animation:...]` values and runtime-classes.js strings, not an `animate-*` utility, so no theme variable ties them to use). No `--animate-*` variable is
+ * declared, so nothing else is added to the theme layer. Verified: the six emitted keyframe blocks are identical to the plain `@keyframes` output.
+ */
+@theme static {
+    /* spinner of the loading overlay (bundle in assets/js/theme/common/runtime-classes.js) */
+    @keyframes loadingOverlay-spin {
+        0% {
+            transform: translateY(-50%) rotate(0deg);
+        }
+
+        100% {
+            transform: translateY(-50%) rotate(360deg);
+        }
     }
 
-    100% {
-        opacity: 1;
-        transform: rotateX(0deg);
-    }
-}
+    /* the alert modal icon animations (referenced by [animation:animate-icon...] in components/common/alert/alert-modal.tsx) */
+    @keyframes animate-icon {
+        0% {
+            opacity: 0;
+            transform: rotateX(100deg);
+        }
 
-@keyframes animate-icon-content {
-    0% {
-        margin-top: 1.625em;
-        opacity: 0;
-        transform: scale(0.4);
-    }
-
-    50% {
-        margin-top: 1.625em;
-        opacity: 0;
-        transform: scale(0.4);
+        100% {
+            opacity: 1;
+            transform: rotateX(0deg);
+        }
     }
 
-    80% {
-        margin-top: -0.375em;
-        transform: scale(1.15);
-    }
+    @keyframes animate-icon-content {
+        0% {
+            margin-top: 1.625em;
+            opacity: 0;
+            transform: scale(0.4);
+        }
 
-    100% {
-        margin-top: 0;
-        opacity: 1;
-        transform: scale(1);
+        50% {
+            margin-top: 1.625em;
+            opacity: 0;
+            transform: scale(0.4);
+        }
+
+        80% {
+            margin-top: -0.375em;
+            transform: scale(1.15);
+        }
+
+        100% {
+            margin-top: 0;
+            opacity: 1;
+            transform: scale(1);
+        }
     }
 }
