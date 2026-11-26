@@ -86,6 +86,21 @@ export default (_props: PartialProps) => {
                     />
                 )}
             />
+            <li className="navPages-item [display:none] medium:float-left medium:m-0 medium:p-0 medium:[display:block]">
+                <a className="navPages-action [display:block] py-half-quarter px-half-quarter text-(--sv-setting-navPages-color)" href="/contact-support/" aria-label="Contact support">
+                    <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
+                </a>
+            </li>
+            <$If
+                test={$pointer("settings.phone_number")}
+                $then={() => (
+                    <li className="navPages-item [display:none] medium:float-left medium:m-0 medium:p-0 medium:[display:block]">
+                        <a className="navPages-action [display:block] py-half-quarter px-half-quarter text-(--sv-setting-navPages-color)" href={`tel:${$pointer("settings.phone_number")}`} aria-label="Call us">
+                            <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z" /></svg>
+                        </a>
+                    </li>
+                )}
+            />
         </>
     );
     return (
