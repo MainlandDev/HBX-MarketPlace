@@ -4,7 +4,7 @@ Maintained by the lead after every merged work package (WP). Workers: read `docs
 
 ## Goal and standard
 
-Convert the theme's remaining SCSS (`assets/scss/components`, `assets/scss/layouts`) to Tailwind utilities in the TSX under `src/templates`. Standard chosen by the user: about 10 utilities per element; leaf styling converts, heavy responsive layout/pseudo-elements/JS state/third-party styling stays in SCSS with a recorded reason; order by leaf yield; parity verified in the user's Edge; Citadel/Foundation imports are retired last, only when unused. Measured ceiling: about 20-30% of SCSS lines can convert under the cap (leaf rules are 16% of lines).
+Convert the theme's SCSS to Tailwind utilities (the `components`/`layouts` partials are gone; what remains in `assets/scss` is `settings/**`, `tools/*`, `vendor/jstree`, the entry files `checkout`/`invoice`/`maintenance`/`optimized-checkout`, and compat leftovers in `assets/scss/tailwind/_tailwind.scss`) in the TSX under `src/templates`. Standard chosen by the user: about 10 utilities per element; leaf styling converts, heavy responsive layout/pseudo-elements/JS state/third-party styling stays in SCSS with a recorded reason; order by leaf yield; parity verified in the user's Edge; Citadel/Foundation imports are retired last, only when unused. Measured ceiling: about 20-30% of SCSS lines can convert under the cap (leaf rules are 16% of lines).
 
 ## Environment facts
 
@@ -41,7 +41,16 @@ Convert the theme's remaining SCSS (`assets/scss/components`, `assets/scss/layou
 | 5 | rest of `components/stencil/cart/_cart.scss`, `previewCart` | `components/cart`, `pages/cart.tsx`, `components/common/cart-preview.tsx` | merged, small (see report) |
 | 6 | theme copies of Citadel/Foundation: `components/{citadel,foundation,vendor,common}` and `common/*` | any (global); verify on several page types | merged, small (see report) |
 | 7 | shared pool: `.page-heading` (43 consumers), `.form-label/.form-field/.form-input` | any | scoped, nothing converted (blocked by rule 4: consumers on unreachable or unsubmittable pages) |
-| L | Tasks 32-34 (retire Citadel/Foundation imports, drop `important`/`source(none)`) | lead | todo |
+| L | Tasks 32-34 (retire Citadel/Foundation imports, drop `important`/`source(none)`) | lead | done 2026-11-26: Citadel/Foundation Sass retired, `@bigcommerce/citadel` removed; `important` and `source(none)` stay (store-injected CSS, see R3-2) |
+
+## Open gaps (2026-11-26)
+
+See `.claude/scratch/HANDOFF.md` for detail:
+
+- Compat leftovers in `assets/scss/tailwind/_tailwind.scss` still need stays/why verdicts.
+- States that are unverified by equivalence.
+- The legacy hook class list (classes kept only as JS/selector hooks).
+- Scope of the `checkout`, `invoice` and `maintenance` entry files.
 
 ## Merge log
 
@@ -400,7 +409,7 @@ New goal from the user: convert all JS-created rules and drop redundant classes 
 
 **SCSS pruned:** `scripts/generate-bridge.mjs` now emits `--sv-*` only for variables a source file reads (`scanReferences`/`onlyReferenced`: 428 of 947 declared; compiled CSS has no undefined `var(--sv-*)`). 126+ unreferenced variable declarations removed from settings partials, 9 settings partials deleted (`layouts/products`, `stencil/{heroCarousel,productCarousel,maintenanceNotice,ribbon,socialLinks,videoGallery}`, `vendor/apple`, `citadel/buttonGroup`, `settings/normalize`), and 3 dead `theme.scss` imports (Citadel `normalize`, Citadel `bigcommerce`, theme `settings/normalize`) removed; proven by compiling with the dev server and comparing the CSS (identical apart from 4 unused `--sv-setting-*` vars, one reordered var and the source map). SCSS files went 70 -> 60; `_tailwind.scss` 1,022 lines. A declaration regex must respect quotes (a `data:...;base64` URL contains `;`).
 
-**What remains and why:** `.button` family leftovers, `.form-input` radius, `.form-fieldset` padding, `.brand-image-container` max-width and `.form-option-variant--color/--pattern` sizes (the store injects non-important `:not(#pseudoID)` rules that an important utility would beat); merchant inline-tabs widget and the merchant `div.container` (injected markup, would tie with helper utilities as zero-specificity body variants); `@layer base` element rules; the `@layer legacy` focus ring; keyframes (`loadingOverlay-spin`, `animate-icon*`, not expressible as utilities). The remaining settings partials are Sass variable data (merchant settings and Citadel/Foundation defaults) that feed the bridge, not CSS output; the Citadel `global`, `foundation` and `tools` imports are required for the Sass functions and defaults (removing them breaks the compile).
+**What remains and why:** `.button` family leftovers, `.form-input` radius, `.form-fieldset` padding, `.brand-image-container` max-width and `.form-option-variant--color/--pattern` sizes (the store injects non-important `:not(#pseudoID)` rules that an important utility would beat); merchant inline-tabs widget and the merchant `div.container` (injected markup, would tie with helper utilities as zero-specificity body variants); `@layer base` element rules; the `@layer legacy` focus ring; keyframes (`loadingOverlay-spin`, `animate-icon*`, not expressible as utilities). The remaining settings partials are Sass variable data (merchant settings and Citadel/Foundation defaults) that feed the bridge, not CSS output; the Citadel imports were retired on 2026-11-26 (see 'Citadel retired' below).
 
 **Unverified:** the hero carousel and sitemap (not rendered on this store), `u-hidden`/`sr-only` toggles in the shipping estimator and product stock (not driven), `.hide-content` on the cart preview modal, `.carousel-tooltip` on dots (a dots tooltip was only checked on the home carousel focus state), real BigCommerce server bundle compile.
 
@@ -416,13 +425,13 @@ So the classes left in `_tailwind.scss` are not redundant: each styles markup th
 
 Settings are two files in load order: `assets/scss/settings/_settings-global.scss` (palette, type, spacing, breakpoints, z-index: loaded before Citadel's global defaults) and `assets/scss/settings/_settings.scss` (colour map, carousel, Foundation, Citadel and Stencil component values: loaded after Citadel's defaults, whose `!default` values and references need that order; a single file failed to compile). Each section has a note on what the group controls; banner comments and numbered footnotes are gone. `assets/scss/_tools.scss` replaces `tools/` (unused `contains` and `str-replace` dropped). `assets/scss/settings/global/` holds only the generated and hand-written custom-property files (`_css-vars`, `_derived-vars`, `_design-tokens`). `_tailwind.scss` has one base, one components and one legacy layer, and three `@source` roots (src/templates, src/server, two JS bundles). SCSS files: 60 -> 12. Verified by compiling the theme, maintenance, invoice, optimized-checkout and checkout bundles before and after: identical apart from the source map.
 
-### Citadel hoisted into assets/scss
+### Citadel retired (2026-11-26)
 
-The three Citadel imports are now one flattened file each, so the stylesheet no longer reads `node_modules`: `_citadel-toolkit.scss` (mixins/functions), `_citadel-global.scss` (global setting defaults) and `_citadel-foundation.scss` (Foundation 5.4.7 setting defaults). A `// ---- path` marker shows which Citadel partial each block came from. Load order in `theme.scss` is unchanged. `scripts/generate-bridge.mjs` now scans `_settings*` and `_citadel-*` in assets/scss (theme files first); the breakpoint and stray-utility tests read the hoisted files. The compiled theme, maintenance, invoice and optimized-checkout CSS is byte-identical to before. `@bigcommerce/citadel` is still in package.json but nothing imports it.
+The three flattened Citadel files (`_citadel-toolkit`, `_citadel-global`, `_citadel-foundation`) are deleted and `@bigcommerce/citadel` is out of `package.json`. Only the Sass variables and functions the bridge and remaining SCSS read survive: the pruned global and Foundation defaults sit at the end of `settings/_settings-global.scss`, and `stripUnit`/`convertToRem`/`remCalc` at the top of `tools/_tools.scss`. Dead theme settings in `_settings.scss`/`_settings-global.scss` (unread `$vars`) were pruned too. `scripts/generate-bridge.mjs` no longer scans `_citadel*`; `scales.test.mjs` reads the theme's own `$screen-*`. Verified: theme CSS identical (sorted) before and after against the dev server, maintenance/invoice/optimized-checkout byte-identical, vitest 129/129, `check-bridge` up to date. The unused `@width` function in the settings was left.
 
 ### SCSS folders
 
-Only the five Stencil entry points sit at the top of `assets/scss` (`theme`, `checkout`, `invoice`, `maintenance`, `optimized-checkout`). `tailwind/_tailwind.scss`, `tools/` (`_tools`, `_citadel-toolkit`) and `settings/` (`_settings-global`, `_settings`, `_citadel-global`, `_citadel-foundation`, plus the generated `global/`) hold the rest. `theme.scss` must import the Tailwind file as `@import "tailwind/_tailwind";` with the underscore: without it the Stencil importer reads the raw file from disk and skips the Tailwind transform (compile error `tailwind/tailwindcss.scss doesn't exist`). Compiled theme CSS is unchanged apart from the order of some custom properties.
+Only the five Stencil entry points sit at the top of `assets/scss` (`theme`, `checkout`, `invoice`, `maintenance`, `optimized-checkout`). `tailwind/_tailwind.scss`, `tools/` (`_tools`) and `settings/` (`_settings-global`, `_settings`, plus the generated `global/`) hold the rest. `theme.scss` must import the Tailwind file as `@import "tailwind/_tailwind";` with the underscore: without it the Stencil importer reads the raw file from disk and skips the Tailwind transform (compile error `tailwind/tailwindcss.scss doesn't exist`). Compiled theme CSS is unchanged apart from the order of some custom properties.
 
 ### Remaining classes use @apply
 
