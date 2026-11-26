@@ -10,7 +10,7 @@ interface SelectedFacet {
 
 export default (_props: PartialProps) => (
     <div className="facetedSearch-refineFilters sidebarBlock [display:none] medium:[display:block] [[class~=sidebarBlock]+&]:mt-single-third [[class~=sidebarBlock]+&]:border-t [[class~=sidebarBlock]+&]:border-(--sv-container-border-global-color-base) [[class~=sidebarBlock]+&]:pt-single-third" role="region" aria-label={$lang($string("search.faceted.selected.facet-label"))}>
-        <h2 className="sidebarBlock-heading mt-0 text-[15px] [text-transform:inherit]">
+        <h2 className="sidebarBlock-heading -mx-single -mt-single mb-single rounded-t-card bg-ink-border px-single py-half text-[13px] font-bold uppercase text-ink">
             <$Lang keyName={$string("search.faceted.selected.title")} />
         </h2>
 
