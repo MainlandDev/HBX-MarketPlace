@@ -79,12 +79,12 @@ $focusTooltip-backgroundColor:      stencilColor("focusTooltip-backgroundColor")
 
 // Typography
 // Font families, the size / line-height / weight / letter-spacing scales, and the root font size that rem values hang off.
-$fontFamily-sans:               stencilFontFamily("body-font"), Arial, Helvetica, sans-serif;
+$fontFamily-sans:               "Poppins", Arial, Helvetica, sans-serif;
 $fontFamily-serif:              null;
 $fontFamily-mono:               null;
-$fontFamily-headings:           stencilFontFamily("headings-font"), Arial, Helvetica, sans-serif;
+$fontFamily-headings:           "Poppins", Arial, Helvetica, sans-serif;
 
-$fontFamily-hero:               stencilFontFamily("headings-font"), Arial, Helvetica, sans-serif;
+$fontFamily-hero:               "Poppins", Arial, Helvetica, sans-serif;
 
 $fontSize-root:                 stencilNumber("fontSize-root");
 $fontSize-base:                 1rem;
