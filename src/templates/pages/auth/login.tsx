@@ -11,7 +11,7 @@ export default () => (
             page: () => (
                 <div className="mx-auto mt-double mb-[calc(var(--sv-spacing-double)*2)] max-w-[900px]">
                     <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                    <h1 className="page-heading mx-0 mt-0 mb-double text-center">
+                    <h1 className="page-heading mx-0 mt-0 mb-[1rem] text-center">
                         <$Lang keyName={$string("login.heading")} />
                     </h1>
                     <$If
@@ -22,8 +22,8 @@ export default () => (
                         test={$pointer("forms.login.success")}
                         $then={() => <AlertAlertSuccess $positionalHash={$pointer("forms.login.success")} />}
                     />
-                    <div className="login-row mx-auto flow-root w-full max-w-(--sv-layout-widthMax) medium:mt-[calc(var(--sv-spacing-double)*2)]">
-                        <form className="login-form form float-left w-full px-gutter-half medium:mt-double medium:w-1/2 [:where(&)]:[margin:var(--sv-form-margin)]" action={$pointer("urls.auth.check_login")} method="post">
+                    <div className="login-row mx-auto w-full max-w-(--sv-layout-widthMax) medium:flex medium:items-start medium:gap-[45px]">
+                        <form className="login-form form w-full medium:w-[450px] medium:shrink-0 mb-[1rem] rounded-card border-[0.8px] border-solid border-[#ddd] bg-white p-[12px] text-[#000] shadow-[0_3px_5px_#ddd] [:where(&)]:[margin:var(--sv-form-margin)]" action={$pointer("urls.auth.check_login")} method="post">
                             <$Inject keyName={$string("useValidEmail")} value={$lang($string("forms.validate.common.email_address"))} />{" "}
                             <$Inject keyName={$string("enterPass")} value={$lang($string("forms.validate.common.password"))} />
                             <FormField>
@@ -38,9 +38,9 @@ export default () => (
                                 </FormLabel>
                                 <FormInput id="login_pass" type="password" name="login_pass" autoComplete="off" />
                             </FormField>
-                            <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-center [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half [:where(&)]:[background:none] [:where(&)]:[border:0] [:where(&)]:text-center xsmall:[:where(&)]:text-left [:where(&>*)]:[display:inline-block] [:where(&>*)]:mb-[1rem] [:where(&>*)]:w-full xsmall:[:where(&>*)]:align-baseline xsmall:[:where(&>*)]:w-auto">
-                                <Button type="submit" tag="input" variant="primary" value={$lang($string("login.submit_value"))} />{" "}
-                                <a className="forgot-password" href={$pointer("urls.auth.forgot_password")}>
+                            <div className="form-actions mx-auto w-full max-w-(--sv-layout-widthMax) flow-root text-left [display:block] small:mt-single [&_:is(.button,input,a)]:w-full [&_:is(.button,input,a)]:align-top small:[&_:is(.button,input,a)]:mb-0 small:[&_:is(.button,input,a)]:w-auto [&_:is(.button,input,a)+:is(.button,input,a)]:mt-half small:[&_:is(.button,input,a)+:is(.button,input,a)]:m-0 small:[&_:is(.button,input,a)+:is(.button,input,a)]:ml-half [:where(&)]:[background:none] [:where(&)]:[border:0] [:where(&)]:text-center xsmall:[:where(&)]:text-left [:where(&>*)]:[display:inline-block] [:where(&>*)]:mb-[1rem] [:where(&>*)]:w-full xsmall:[:where(&>*)]:align-baseline xsmall:[:where(&>*)]:w-auto">
+                                <Button type="submit" tag="input" variant="primary" className="font-bold uppercase" value={$lang($string("login.submit_value"))} />{" "}
+                                <a className="forgot-password text-brand underline" href={$pointer("urls.auth.forgot_password")}>
                                     <$Lang keyName={$string("login.forgot_password")} />
                                 </a>
                             </div>
@@ -48,14 +48,14 @@ export default () => (
                         <$If
                             test={$pointer("settings.account_creation_enabled")}
                             $then={() => (
-                                <div className="new-customer float-left w-full px-gutter-half medium:w-1/2">
+                                <div className="new-customer w-full medium:flex-1 rounded-card border-[0.8px] border-solid border-[#ddd] bg-white p-[12px] text-[#000] shadow-[0_3px_5px_#ddd]">
                                     <Panel>
-                                        <PanelHeader>
-                                            <PanelTitle className="text-small">
+                                        <PanelHeader className="bg-transparent p-0 mb-[1rem]">
+                                            <PanelTitle className="text-[1.3rem] font-bold text-[#000]">
                                                 <$Lang keyName={$string("login.new_customer.heading")} />
                                             </PanelTitle>
                                         </PanelHeader>
-                                        <PanelBody>
+                                        <PanelBody className="bg-transparent p-0">
                                             <p className="mb-0">
                                                 <$Lang keyName={$string("login.new_customer.intro")} />
                                             </p>
@@ -77,7 +77,7 @@ export default () => (
                                                 </li>
                                             </ul>
                                             <a href={$pointer("urls.auth.create_account")}>
-                                                <Button variant="primary">
+                                                <Button variant="primary" className="font-bold uppercase">
                                                     <$Lang keyName={$string("login.new_customer.create_account")} />
                                                 </Button>
                                             </a>
