@@ -1,0 +1,224 @@
+/*
+ * Quarantine: the rules that could not become utilities, or could not be verified as utilities, yet. Isolated here so the rest of _tailwind.scss
+ * is only converted-or-structural. Moved verbatim, in the same order, at the same point of the cascade: the compiled theme CSS is unchanged.
+ * Reasons per rule are in the comments below and in docs/design/compat-verdicts.md; the route/state test status is in docs/design/difficult-for-now.md.
+ * Do not reorder: `.tab` and `.tab-title` appear twice on purpose (the element rules sit between them).
+ */
+
+@layer components {
+    /*
+     * Rules kept as plain CSS because the markup they style is not ours or the store competes with them. Non-important on purpose, so the store's own
+     * non-important rules keep winning where they exist:
+     * - border-radius of `.button` and `.form-input`: the store injects `:not(#pseudoID)` radius rules (100vmax) on buttons and on the inputs of the search
+     *   and newsletter forms; error pages do not carry them, so this radius shows there.
+     * - padding of `.form-fieldset`: the store sets its own (footer newsletter form); error pages do not carry it.
+     * - `.button`: merchant page content (/contact-support/, the account banner) has bare `<a class="button">` that cannot take utilities.
+     * - `.form-inlineMessage`: see below.
+     */
+    /* stays: merchant page content (/contact-support/, account banner) has bare `<a class="button">` that cannot take utilities; the radius cannot be an important utility because the store's `:not(#pseudoID)` radius must keep winning */
+    .button {
+        @apply relative cursor-pointer appearance-none no-underline transition-all duration-150 ease-[ease] leading-[1rem] m-0 mb-(--sv-button-margin-bottom)
+            rounded-(--sv-button-radius) border-(length:--sv-button-border-width) border-(color:--sv-buttonStyle-default-borderColor)
+            bg-(--sv-buttonStyle-default-backgroundColor) text-(color:--sv-buttonStyle-default-color) text-(length:--sv-buttonSize-default-fontSize)
+            font-(family-name:--sv-button-font-family) font-(weight:--sv-button-font-weight) align-(--sv-button-vAlign)
+            py-(--sv-buttonSize-default-verticalPadding) px-(--sv-buttonSize-default-horizontalPadding);
+        /* no utility takes a variable for these */
+        border-style: var(--sv-button-border-style);
+        display: var(--sv-button-display);
+        text-align: var(--sv-button-font-align);
+    }
+
+    .button:hover,
+    .button:focus,
+    .button.is-active,
+    .button.active {
+        @apply bg-(--sv-buttonStyle-default-backgroundColorHover) border-(color:--sv-buttonStyle-default-borderColorHover) text-(color:--sv-buttonStyle-default-colorHover);
+    }
+
+    .button:active {
+        @apply bg-(--sv-buttonStyle-default-backgroundColorActive) border-(color:--sv-buttonStyle-default-borderColorActive) text-(color:--sv-buttonStyle-default-colorActive);
+    }
+
+    .button--primary {
+        @apply bg-(--sv-buttonStyle-primary-backgroundColor) border-(color:--sv-buttonStyle-primary-borderColor) text-(color:--sv-buttonStyle-primary-color);
+    }
+
+    .button--primary:hover,
+    .button--primary:focus,
+    .button--primary.is-active,
+    .button--primary.active {
+        @apply bg-(--sv-buttonStyle-primary-backgroundColorHover) border-(color:--sv-buttonStyle-primary-borderColorHover) text-(color:--sv-buttonStyle-primary-colorHover);
+    }
+
+    .button--primary:active {
+        @apply bg-(--sv-buttonStyle-primary-backgroundColorActive) border-(color:--sv-buttonStyle-primary-borderColorActive) text-(color:--sv-buttonStyle-primary-colorActive);
+    }
+
+    .button[disabled] {
+        @apply cursor-not-allowed bg-(--sv-buttonStyle-disabled-backgroundColor) border-(color:--sv-buttonStyle-disabled-borderColor) text-(color:--sv-buttonStyle-disabled-color);
+    }
+
+    .button--large {
+        @apply text-(length:--sv-buttonSize-large-fontSize);
+    }
+
+    .button--small {
+        @apply text-(length:--sv-buttonSize-small-fontSize) py-(--sv-buttonSize-small-verticalPadding) px-(--sv-buttonSize-small-horizontalPadding);
+    }
+
+    .button--icon {
+        @apply text-(length:--sv-buttonSize-square-fontSize) py-(--sv-buttonSize-square-verticalPadding) px-(--sv-buttonSize-square-horizontalPadding);
+    }
+
+    .button + .button {
+        @apply medium:ml-half;
+    }
+
+    /* stays: the store injects a non-important `:not(#pseudoID)` radius on the search and newsletter inputs that an important utility would beat; error pages carry none, so this shows there */
+    .form-input {
+        @apply rounded-(--sv-input-border-radius);
+    }
+
+    /* stays: the store sets its own padding on the footer newsletter fieldset (non-important, must keep winning); error pages do not carry it */
+    .form-fieldset {
+        @apply p-(--sv-fieldset-padding);
+    }
+
+    /* Tabs. Stays: the merchant inline-tabs widget on the home page is injected markup, and the store styles it as well; as body-variant utilities it measured 188px wide, not 147px (round 5, reverted) */
+    .tabs {
+        @apply m-(--sv-tabs-margin);
+        /* no utility takes a variable for this */
+        border-bottom: var(--sv-tabs-bottom-border);
+    }
+
+    .tabs::before,
+    .tabs::after {
+        @apply content-['_'] [display:table];
+    }
+
+    .tabs::after {
+        @apply clear-both;
+    }
+
+    .tab {
+        @apply relative list-none m-(--sv-tab-margin) p-(--sv-tab-navigation-container-padding);
+        border-bottom: var(--sv-tab-title-border-color);
+        display: var(--sv-tab-display);
+    }
+
+    .tab-title {
+        @apply text-(color:--sv-tabs-navigation-font-color) text-(length:--sv-tabs-navigation-font-size) py-(--sv-tabs-navigation-padding) px-[calc(var(--sv-tabs-navigation-padding)*2)];
+        display: var(--sv-tab-navigation-display);
+    }
+
+    .tab-title:hover {
+        @apply text-(color:--sv-tabs-navigation-active-font-color);
+    }
+
+    .tab.is-active .tab-title {
+        @apply text-(color:--sv-tabs-navigation-active-font-color) font-(weight:--sv-tab-title-active-font-weight);
+    }
+
+    .tabs-contents {
+        @apply mb-(--sv-tabs-content-margin-bottom);
+    }
+
+    .tabs-contents::before,
+    .tabs-contents::after {
+        @apply content-['_'] [display:table];
+    }
+
+    .tabs-contents::after {
+        @apply clear-both;
+    }
+
+    .tab-content {
+        @apply [display:none] p-(--sv-tabs-content-padding);
+    }
+
+    .tab-content.is-active {
+        @apply [display:block];
+    }
+
+    .no-js .tab-content {
+        @apply [display:block] float-none;
+    }
+
+
+    /* Element rules that carry a pseudo-class. Stay in components: they beat single-class rules by specificity, so they cannot sit in the base layer (components beat base whatever the specificity, which would let `.tab-title` colour win over `a:hover`) */
+    a:hover {
+        cursor: var(--sv-cursor-pointer-value);
+    }
+
+    a:hover, a:focus {
+        color: var(--sv-anchor-font-color-hover);
+    }
+
+    button:active, button:focus {
+        box-shadow: none;
+        outline: none;
+    }
+
+    /* stays: second half of the merchant tabs widget rules above (.tab, .tab.is-active, .tab-title), kept after the element rules so the cascade order is unchanged */
+    .tab {
+        @apply float-none medium:float-left;
+        border-top: var(--sv-tab-active-border);
+    }
+
+    @media (min-width: 801px) {
+        .tab {
+            border-top-color: var(--sv-tab-title-border-color);
+        }
+    }
+
+    .tab.is-active {
+        @apply border-l-(color:--sv-tab-title-border-color) border-r-(color:--sv-tab-title-border-color) small:mb-(--sv-tab-title-border-bottom-offset);
+    }
+
+    @media (min-width: 801px) {
+        .tab.is-active {
+            border: var(--sv-tab-active-border);
+            border-bottom: var(--sv-tab-title-border);
+        }
+    }
+
+    .tab-title {
+        @apply py-half-quarter px-0 text-center small:text-left medium:py-half medium:px-single large:py-[0.78571rem] large:px-[1.28571rem];
+        text-decoration: var(--sv-tab-title-text-decoration);
+    }
+
+    /* .form-inlineMessage (created by nod.js): converted, no rule here; it is a descendant-variant bundle on <body> in layout/base.tsx because nod.js can add only one class */
+
+    /* stays: the merchant injects a div.container on the account page (a bare class that cannot take utilities); as utilities it measured 1284px wide, not 663px (round 5, reverted); the theme's own columns use the Container helper (componentParts.tsx) */
+    .container {
+        @apply relative mx-auto w-(--sv-layout-widthFixed) max-w-[calc(var(--sv-layout-widthMax)+var(--sv-container-padding)*4)] py-0 px-(--sv-container-padding) large:px-[calc(var(--sv-container-padding)*4)];
+    }
+
+    /* stays: brand image box. Its position and ::after ratio spacer are utilities in pages/brand.tsx; the width cap stays here because the store injects a non-important
+       `.brand-image-container:not(#pseudoID) { max-width: 200px }` that an important utility would beat */
+    .brand-image-container {
+        @apply max-w-(--sv-derived-brand-thumb-width);
+    }
+
+    /* stays: swatch size; the store injects non-important `:not(#pseudoID)` sizes on these classes that an important utility would beat (round 4, swatch sizes changed with important off) */
+    .form-option-variant--color, .form-option-variant--pattern {
+        @apply h-(--sv-derived-swatch-height) w-(--sv-derived-swatch-width);
+    }
+}
+
+/*
+ * stays: the theme's global keyboard focus ring. It is `!important`, and among layered `!important` declarations the EARLIER layer wins, so it must sit in the
+ * last layer to lose to every important utility (`focus:outline-none`, 8 uses in src). In `base` it would beat them all; as a utility it would need a class on every
+ * input, button and link, including merchant and third-party markup.
+ */
+@layer legacy {
+    input:focus, button:focus, textarea:focus, select:focus, details:focus, [href]:focus, [tabindex]:not([tabindex="-1"]):focus, [contenteditable="true"]:focus {
+        outline: 2px solid #0f7fff !important;
+        outline-offset: 1px !important;
+    }
+
+    input:focus + label {
+        outline: 2px solid #0f7fff !important;
+        outline-offset: 1px !important;
+    }
+}
