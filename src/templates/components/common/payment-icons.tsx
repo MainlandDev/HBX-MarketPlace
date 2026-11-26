@@ -25,6 +25,7 @@ export default (_props: PartialProps) => (
                         <ul className="footer-payment-icons mt-single ml-0 flex list-none flex-wrap justify-center small:justify-normal medium:mt-double" aria-label={$lang($string("account.payment_methods.payment_icons_label"))}>
                             {methods.map(([flag, label, icon]) => (
                                 <$If
+                                    key={flag}
                                     test={$pointer(flag)}
                                     $then={() => (
                                         <li>

@@ -77,13 +77,13 @@ export default defineConfig({
         dedupe: ['react', 'react-dom'],
         // Mirrors webpack.common.js `resolve.alias`
         alias: {
-            '@': path.resolve(__dirname, 'src'),
+            '@': path.resolve(import.meta.dirname, 'src'),
 
-            jquery: path.resolve(__dirname, 'node_modules/jquery/dist/jquery.min.js'),
-            jstree: path.resolve(__dirname, 'node_modules/jstree/dist/jstree.min.js'),
-            lazysizes: path.resolve(__dirname, 'node_modules/lazysizes/lazysizes.min.js'),
-            'slick-carousel': path.resolve(__dirname, 'node_modules/slick-carousel/slick/slick.min.js'),
-            'svg-injector': path.resolve(__dirname, 'node_modules/svg-injector/dist/svg-injector.min.js'),
+            jquery: path.resolve(import.meta.dirname, 'node_modules/jquery/dist/jquery.min.js'),
+            jstree: path.resolve(import.meta.dirname, 'node_modules/jstree/dist/jstree.min.js'),
+            lazysizes: path.resolve(import.meta.dirname, 'node_modules/lazysizes/lazysizes.min.js'),
+            'slick-carousel': path.resolve(import.meta.dirname, 'node_modules/slick-carousel/slick/slick.min.js'),
+            'svg-injector': path.resolve(import.meta.dirname, 'node_modules/svg-injector/dist/svg-injector.min.js'),
         },
     },
     build: {
