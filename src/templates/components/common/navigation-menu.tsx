@@ -38,6 +38,13 @@ export default (_props: PartialProps) => {
     // The list is rendered twice (depth-max design or not) only because its `navPages-list-depth-max` hook class is a render-time condition.
     const listItems = (
         <>
+            <li className="navPages-item navPages-item--categories medium:relative medium:float-left medium:m-0 medium:p-0">
+                <details className="group/categories rounded-none bg-transparent p-0 [box-shadow:none]">
+                    <summary className="navPages-categoriesToggle before:[display:none] flex flex-row cursor-pointer list-none flex-nowrap items-center justify-between gap-half rounded-card bg-border px-double py-half text-small font-bold text-text uppercase medium:min-w-[206px] [&::-webkit-details-marker]:[display:none]">
+                        <$Lang keyName={$string("category.label")} />
+                        <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+                    </summary>
+                    <ul className="navPages-list navPages-list--categories m-0 bg-surface p-single text-text [--sv-setting-navPages-color:var(--color-text)] medium:[&>li]:float-none medium:[&>li]:w-full medium:absolute medium:top-full medium:left-0 medium:z-(--sv-zIndex-high) medium:w-[260px] medium:rounded-card medium:[box-shadow:var(--sv-container-drop-shadow-base)]">
             <$Each
                 list={$pointer<Category[]>("categories")}
                 $then={() => (
@@ -57,6 +64,9 @@ export default (_props: PartialProps) => {
                     </li>
                 )}
             />
+                    </ul>
+                </details>
+            </li>
             <$Unless
                 test={theme.hide_content_navigation}
                 $then={() => (
