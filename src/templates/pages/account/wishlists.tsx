@@ -12,11 +12,11 @@ export default () => (
                     $then={() => (
                         <div className="account account--fixedLarge mb-single medium:mx-auto medium:mb-0 medium:w-3/4">
                             <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                            <h2 className="page-heading mx-0 mt-0 mb-double text-center">
+                            <h1 className="page-heading mx-0 mt-0 mb-double text-center">
                                 <$Lang keyName={$string("account.wishlists.heading")} />
-                            </h2>
+                            </h1>
                             <AccountNavigation account_page={$string("wishlists")} />
-                            <AccountWishlistList />
+                            <div className="rounded-card border-[0.8px] border-solid border-[#ddd] bg-white p-[12px] text-[#000] shadow-[0_3px_5px_#ddd]"><AccountWishlistList /></div>
                         </div>
                     )}
                 />

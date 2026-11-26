@@ -13,19 +13,19 @@ export default () => (
                     <$If
                         test={$pointer("forms.address.address_id")}
                         $then={() => (
-                            <h2 className="page-heading mx-0 mt-0 mb-double text-center">
+                            <h1 className="page-heading mx-0 mt-0 mb-double text-center">
                                 <$Lang keyName={$string("forms.address.edit.heading")} />
-                            </h2>
+                            </h1>
                         )}
                         $else={() => (
-                            <h2 className="page-heading mx-0 mt-0 mb-double text-center">
+                            <h1 className="page-heading mx-0 mt-0 mb-double text-center">
                                 <$Lang keyName={$string("forms.address.add.heading")} />
-                            </h2>
+                            </h1>
                         )}
                     />
                     <AccountNavigation account_page={$string("addresses")} />
 
-                    <div className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3">
+                    <div className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3 rounded-card border-[0.8px] border-solid border-[#ddd] bg-white p-[12px] text-[#000] shadow-[0_3px_5px_#ddd]">
                         <$If
                             test={$pointer("forms.address.error")}
                             $then={() => <AlertAlertError $positionalHash={$pointer("forms.address.error")} />}

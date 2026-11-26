@@ -10,11 +10,11 @@ export default () => (
             page: () => (
                 <div className="account mb-single">
                     <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                    <h2 className="page-heading mx-0 mt-0 mb-double text-center">
+                    <h1 className="page-heading mx-0 mt-0 mb-double text-center">
                         <$Lang keyName={$string("account.returns.heading")} />
-                    </h2>
+                    </h1>
                     <AccountNavigation account_page={$string("returns")} />
-                    <div className="account-row">
+                    <div className="account-row rounded-card border-[0.8px] border-solid border-[#ddd] bg-white p-[12px] text-[#000] shadow-[0_3px_5px_#ddd]">
                         <p>
                             <$Lang keyName={$string("account.returns.successful")} />
                         </p>

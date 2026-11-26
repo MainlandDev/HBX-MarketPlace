@@ -16,7 +16,7 @@ export default () => (
                     </h1>
                     <AccountNavigation account_page={$string("returns")} />
 
-                    <main className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3 account--addReturn">
+                    <main className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3 account--addReturn rounded-card border-[0.8px] border-solid border-[#ddd] bg-white p-[12px] text-[#000] shadow-[0_3px_5px_#ddd]">
                         <div className="account-body -mx-gutter-half flow-root w-auto max-w-none">
                             <section className="account-content float-left w-full px-gutter-half">
                                 <h3 className="account-heading m-0 border-b border-container-border pb-base">

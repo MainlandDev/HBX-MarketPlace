@@ -15,9 +15,9 @@ export default () => (
                         test={$pointer("wishlist.is_editable")}
                         $then={() => <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />}
                     />
-                    <h2 className="page-heading mx-0 mt-0 mb-double text-center">
+                    <h1 className="page-heading mx-0 mt-0 mb-double text-center">
                         <$Lang keyName={$string("account.wishlists.view_heading")} name={$pointer("wishlist.name")} />
-                    </h2>
+                    </h1>
                     <$If
                         test={$pointer("wishlist.is_editable")}
                         $then={() => <AccountNavigation account_page={$string("wishlists")} />}
@@ -50,7 +50,11 @@ export default () => (
 
                     <$If
                         test={$pointer("wishlist.items")}
-                        $then={() => <AccountWishlistItemList show_remove={$pointer("wishlist.is_editable")} />}
+                        $then={() => (
+                            <div className="rounded-card border-[0.8px] border-solid border-[#ddd] bg-white p-[12px] text-[#000] shadow-[0_3px_5px_#ddd]">
+                                <AccountWishlistItemList show_remove={$pointer("wishlist.is_editable")} />
+                            </div>
+                        )}
                         $else={() => <AlertAlertInfo $positionalHash={$lang($string("account.wishlists.empty_wishlist"))} />}
                     />
                 </div>

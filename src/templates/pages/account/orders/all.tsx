@@ -19,8 +19,8 @@ export default () => (
                     </h1>
                     <AccountNavigation account_page={$string("orders")} />
 
-                    <main className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3 [&_.pagination]:mt-double [&_.pagination]:text-center [&_.pagination]:text-grey-light">
-                        <div className="account-head mb-double text-center [&_.alertBox]:px-double [&_.alertBox]:text-left">
+                    <main className="account account--fixed mb-single medium:mx-auto medium:mb-0 medium:w-2/3 rounded-card border-[0.8px] border-solid border-[#ddd] bg-white p-[12px] text-[#000] shadow-[0_3px_5px_#ddd] [&_.pagination]:mt-double [&_.pagination]:text-center [&_.pagination]:text-grey-light">
+                        <div className="account-head mb-double text-center empty:hidden [&_.alertBox]:px-double [&_.alertBox]:text-left">
                             <$If
                                 test={$pointer("customer.store_credit.value")}
                                 operator={$string(">")}

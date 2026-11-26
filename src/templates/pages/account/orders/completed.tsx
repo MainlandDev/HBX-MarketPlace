@@ -17,7 +17,7 @@ export default () => (
                     </h2>
                     <AccountNavigation account_page={$string("orders")} />
                     <div className="account-row orders-row">
-                        <section className="orders">
+                        <section className="orders rounded-card border-[0.8px] border-solid border-[#ddd] bg-white p-[12px] text-[#000] shadow-[0_3px_5px_#ddd]">
                             <AccountOrdersList orders={$pointer("customer.orders")} />
                             <SmallPaginator $positionalHash={$pointer("pagination.orders")} />
                         </section>
