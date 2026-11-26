@@ -24,7 +24,7 @@ export default (_props: PartialProps) => {
             <$If
                 test={product.brand}
                 $then={() => (
-                    <h2 className="productView-brand order-first m-0 mb-quarter text-[1rem] font-bold uppercase [&_a]:text-ink-muted [&_a]:no-underline [&_a]:hover:text-ink">
+                    <h2 className="productView-brand order-first m-0 mb-quarter text-[16px] font-bold uppercase [&_a]:text-ink-muted [&_a]:no-underline [&_a]:hover:text-ink">
                         <a href={product.brand.url}>
                             <span>{product.brand.name}</span>
                         </a>
