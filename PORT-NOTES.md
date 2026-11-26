@@ -2,6 +2,8 @@
 
 Originals live in `templates/**/*.html`; TSX ports live in `src/templates/**/*.tsx` and compile to `dist/templates/**/*.html` via `npx vite build`. Check a port with `node scripts/hbx-parity.mjs --ported`.
 
+> `scripts/hbx-parity.mjs` and its test were removed (`124a329f`), so the `hbx-parity` commands and counts below are historical and cannot be reproduced; check a port with `npx vite build` and a render in the dev server.
+
 ## Idioms
 
 Taken from the pilots `src/templates/pages/home.tsx` and `src/templates/pages/account/orders/completed.tsx`.
