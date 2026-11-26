@@ -91,13 +91,13 @@ export default function () {
         event.preventDefault();
 
         const $target = $(event.currentTarget);
-        const searchQuery = $target.find('input').val();
+        const searchQuery = $target.find('[data-search-quick]').val();
         const searchUrl = $target.data('url');
 
         if (searchQuery.length === 0) {
             return;
         }
 
-        window.location.href = `${searchUrl}?search_query=${encodeURIComponent(searchQuery)}`;
+        window.location.href = `${searchUrl}?search_query=${encodeURIComponent(searchQuery)}&section=product`;
     });
 }

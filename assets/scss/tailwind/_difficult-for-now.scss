@@ -17,7 +17,7 @@
      */
     /* stays: merchant page content (/contact-support/, account banner) has bare `<a class="button">` that cannot take utilities; the radius cannot be an important utility because the store's `:not(#pseudoID)` radius must keep winning */
     .button {
-        @apply relative cursor-pointer appearance-none no-underline transition-all duration-150 ease-[ease] leading-[1rem] m-0 mb-(--sv-button-margin-bottom)
+        @apply relative cursor-pointer appearance-none no-underline transition-all duration-150 ease-[ease] leading-[16px] m-0 mb-(--sv-button-margin-bottom)
             rounded-(--sv-button-radius) border-(length:--sv-button-border-width) border-(color:--sv-buttonStyle-default-borderColor)
             bg-(--sv-buttonStyle-default-backgroundColor) text-(color:--sv-buttonStyle-default-color) text-(length:--sv-buttonSize-default-fontSize)
             font-(family-name:--sv-button-font-family) font-(weight:--sv-button-font-weight) align-(--sv-button-vAlign)

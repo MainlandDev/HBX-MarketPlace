@@ -30,11 +30,21 @@ export default class Category extends CatalogPage {
     // The select renders the theme default; show the `limit` that is actually in the URL.
     syncProductsPerPage() {
         const urlLimit = new URLSearchParams(window.location.search).get('limit');
-        const $limit = $('#limit');
 
-        if (urlLimit && $limit.find(`option[value="${urlLimit}"]`).length) {
-            $limit.val(urlLimit);
+        if (urlLimit) {
+            $('#limit option').each((_, option) => {
+                if (option.value === urlLimit) {
+                    $('#limit').val(urlLimit);
+                }
+            });
         }
+    }
+
+    // A `limit` in the URL (the Products Per Page select) wins over the theme default; read on every request, not once.
+    getProductsPerPage() {
+        const urlLimit = parseInt(new URLSearchParams(window.location.search).get('limit'), 10);
+
+        return urlLimit > 0 ? urlLimit : this.context.categoryProductsPerPage;
     }
 
     onReady() {
@@ -86,14 +96,14 @@ export default class Category extends CatalogPage {
         } = this.validationDictionary;
         const $productListingContainer = $('#product-listing-container');
         const $facetedSearchContainer = $('#faceted-search-container');
-        // A `limit` in the URL (the Products Per Page select) wins over the theme default.
-        const urlLimit = parseInt(new URLSearchParams(window.location.search).get('limit'), 10);
-        const productsPerPage = urlLimit > 0 ? urlLimit : this.context.categoryProductsPerPage;
+        const getProductsPerPage = () => this.getProductsPerPage();
         const requestOptions = {
             config: {
                 category: {
                     products: {
-                        limit: productsPerPage,
+                        get limit() {
+                            return getProductsPerPage();
+                        },
                     },
                 },
             },
@@ -106,6 +116,7 @@ export default class Category extends CatalogPage {
 
         this.facetedSearch = new FacetedSearch(requestOptions, (content) => {
             $productListingContainer.html(content.productListing);
+            this.syncProductsPerPage();
             $facetedSearchContainer.html(content.sidebar);
 
             $('body').triggerHandler('compareReset');
