@@ -11,7 +11,7 @@ export default () => (
             blocks={{
                 page: () => (
                     <div className="account account--fixedSmall mb-single medium:mx-auto medium:mb-0 medium:w-1/2">
-                        <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
+                        <div className="[&_.breadcrumbs]:text-center"><Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} /></div>
                         <h1 className="page-heading mx-0 mt-0 mb-[1rem] text-center text-[25px] font-normal text-ink">
                             <$Lang keyName={$string("reset_password.heading")} />
                         </h1>

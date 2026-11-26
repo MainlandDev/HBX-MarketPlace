@@ -12,7 +12,7 @@ export default () => (
             blocks={{
                 page: () => (
                     <>
-                        <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
+                        <div className="[&_.breadcrumbs]:text-center"><Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} /></div>
                         <h1 className="page-heading mx-0 mt-0 mb-[1rem] text-center text-[25px] font-normal text-ink">
                             <$Lang keyName={$string("create_account.heading")} />
                         </h1>

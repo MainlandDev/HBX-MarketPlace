@@ -9,7 +9,7 @@ export default () => (
     <$Page
         blocks={{
             page: () => (
-                <div className="mx-auto mt-double mb-[calc(var(--sv-spacing-double)*2)] max-w-[900px]">
+                <div className="mx-auto mt-double mb-[calc(var(--sv-spacing-double)*2)] max-w-[900px] text-[16px] [&_.breadcrumbs]:text-center">
                     <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
                     <h1 className="page-heading mx-0 mt-0 mb-[1rem] text-center text-[25px] font-normal text-ink">
                         <$Lang keyName={$string("login.heading")} />
