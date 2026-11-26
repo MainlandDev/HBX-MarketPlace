@@ -13,7 +13,7 @@ export default (_props: PartialProps) => {
     return (
         <>
             <nav aria-label="Breadcrumb">
-                <ol className="breadcrumbs [:where(&)]:list-none [:where(&)]:ml-0 [display:none] small:[display:block] overflow-visible text-left text-[0px] uppercase">
+                <ol className="breadcrumbs [:where(&)]:list-none [:where(&)]:ml-0 [display:none] small:[display:block] overflow-visible text-left text-[0px] uppercase medium:mt-[12px]">
                     <$Unless
                         test={theme.hide_breadcrumbs}
                         $then={() => (
