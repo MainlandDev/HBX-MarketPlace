@@ -10,6 +10,7 @@
 
 // Custom properties for the markup: design tokens (docs/design/tokens.json), the generated --sv-* bridge (npm run generate-bridge) and the hand-written
 // --sv-derived-* values that need Sass functions.
+@import "settings/global/fonts";
 @import "settings/global/color/design-tokens";
 @import "settings/global/css-vars";
 @import "settings/global/derived-vars";
