@@ -22,7 +22,7 @@ export default (_props: PartialProps) => {
             <ProductsDetailRuntimeConfig />
 
             <div
-                className="productView flex w-auto max-w-none flex-col justify-start -mx-base pt-base medium:flow-root [[class~=modal]_&]:py-0"
+                className="productView flex w-auto max-w-none flex-col justify-start mx-0 pt-base pb-base bg-white font-(family-name:--font-stack) text-ink rounded-[12px] shadow-[0_3px_5px_#ddd] medium:flow-root [[class~=modal]_&]:py-0"
                 data-event-type="product"
                 data-entity-id={product.id}
                 data-name={product.title}
@@ -43,7 +43,7 @@ export default (_props: PartialProps) => {
                 <ProductsDetailGallery />
 
                 <section className="productView-details product-data float-left w-full px-base pb-single-third order-[-1] medium:clear-right medium:float-right medium:w-6/12 [[class~=productView--quickView]_&]:relative">
-                    <div className="productView-product medium:border-b medium:border-container-border medium:pb-[calc(var(--sv-spacing-single)+var(--sv-spacing-third))] [&>:last-child]:mb-0">
+                    <div className="productView-product flex flex-col medium:border-b medium:border-container-border medium:pb-[calc(var(--sv-spacing-single)+var(--sv-spacing-third))] [&>:last-child]:mb-0">
                         <ProductsDetailSummary />
                         <ProductsDetailInfoList />
                     </div>
