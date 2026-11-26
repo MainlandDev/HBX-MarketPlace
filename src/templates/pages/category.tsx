@@ -90,7 +90,7 @@ export default () => {
                                                         list={$pointer<{url: string; name: string}[]>("category.subcategories")}
                                                         $then={(subcategory) => (
                                                             <li className="m-0 shrink-0">
-                                                                <a className="block rounded-card bg-white px-double py-single text-center text-[13px] font-bold text-ink no-underline shadow-[0_3px_5px_#ddd] hover:text-brand" href={subcategory.url}>
+                                                                <a className="[display:block] rounded-card bg-white px-double py-single text-center text-[13px] font-bold text-ink no-underline shadow-[0_3px_5px_#ddd] hover:text-brand" href={subcategory.url}>
                                                                     {subcategory.name}
                                                                 </a>
                                                             </li>
