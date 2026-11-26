@@ -822,8 +822,8 @@
             "metric": "cm",
             "imperial": "in"
         },
-        "you_save_opening_text": "(You save",
-        "you_save_closing_bracket": ")",
+        "you_save_opening_text": "— You save ",
+        "you_save_closing_bracket": " ",
         "gift_wrapping": "Gift wrapping:",
         "gift_wrapping_available": "Options available",
         "quantity_min": "The minimum purchasable quantity is {quantity}",
@@ -1027,7 +1027,7 @@
         "pdp_sold_out_label": "Sold Out",
         "pdp-sale-price-label": "Now:",
         "pdp-non-sale-price-label": "Was:",
-        "pdp-retail-price-label": "MSRP:",
+        "pdp-retail-price-label": "RRP:",
         "pdp-custom-fields-tab-label": "Additional Information"
     },
     "consent_manager": {
