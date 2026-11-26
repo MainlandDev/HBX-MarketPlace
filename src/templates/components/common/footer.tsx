@@ -60,14 +60,14 @@ export default (_props: PartialProps) => {
                     </div>
                 )}
             />
-            <footer className="footer relative bg-bg pb-double [transform:translateZ(0)]" role="contentinfo">
+            <footer className="footer relative bg-bg pb-double [&_.footer-info-col]:text-[16px] [&_.footer-info-list_a]:text-text [&_.footer-info-list_a]:text-[16px] [transform:translateZ(0)]" role="contentinfo">
                 <h2 className="footer-title-sr-only absolute top-auto -left-[10000px] size-px overflow-hidden">
                     <$Lang keyName={$string("footer.title")} />
                 </h2>
                 <$If
                     test={$pointer("settings.show_newsletter_box")}
                     $then={() => (
-                        <div className="footer-newsletter mb-double bg-border py-double">
+                        <div className="footer-newsletter mb-double bg-border py-[22px]">
                             <Container>
                                 <SubscriptionForm />
                             </Container>
