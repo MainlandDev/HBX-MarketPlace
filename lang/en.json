@@ -199,6 +199,7 @@
         "sorter": {
             "relevance": "Relevance",
             "sort_by": "Sort By:",
+            "products_per_page": "Products Per Page",
             "featured": "Featured Items",
             "top_sellers": "Best Selling",
             "newest": "Newest Items",
