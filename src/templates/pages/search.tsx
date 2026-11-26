@@ -78,7 +78,7 @@ export default () => {
                         <>
                             {$unescaped($stylesheet($string("/assets/scss/vendor/jstree/style.css")))}
                             <div className="[&_.breadcrumbs]:text-left"><Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} /></div>
-                            <section className="nav">
+                            <section className="nav text-left [&_.navBar-section]:text-left [&_.navBar-item]:float-left">
                                 <$If
                                     test={$pointer("forms.search.query")}
                                     $then={() => (
@@ -170,7 +170,7 @@ export default () => {
                                         test={$pointer("forms.search.has_suggestions")}
                                         $then={() => (
                                             <Panel className="panel--large">
-                                                <PanelBody className="mb-single-third p-single-third">
+                                                <PanelBody className="mb-single-third bg-transparent p-0 [&_a]:text-ink-brand">
                                                     <$If
                                                         test={$pointer("forms.search.suggested_query")}
                                                         $then={() => (
@@ -204,7 +204,7 @@ export default () => {
                                                     <$If
                                                         test={$pointer("category_results.length")}
                                                         $then={() => (
-                                                            <div className="search-suggestion mb-single-third last:mb-0 [&>:last-child]:mb-0">
+                                                            <div className="search-suggestion [display:none] mb-single-third last:mb-0 [&>:last-child]:mb-0">
                                                                 <h5 className="suggestion-title mt-0 [text-transform:inherit]">
                                                                     <$Lang keyName={$string("forms.search.categories")} />
                                                                 </h5>
