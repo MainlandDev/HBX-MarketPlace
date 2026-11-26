@@ -6,7 +6,6 @@ import {describe, expect, it} from "vitest";
 
 const entry = fileURLToPath(new URL("../../assets/scss/tailwind/_tailwind.scss", import.meta.url));
 const themeScreens = fileURLToPath(new URL("../../assets/scss/settings/_settings-global.scss", import.meta.url));
-const citadelScreens = fileURLToPath(new URL("../../assets/scss/settings/_citadel-global.scss", import.meta.url));
 
 const compile = async (candidates) =>
     (await postcss([tailwind()]).process(`${readFileSync(entry, "utf8")}\n@source inline("${candidates.join(" ")}");`, {from: entry})).css;
@@ -26,8 +25,8 @@ describe("breakpoints", () => {
         expect(css).not.toMatch(/\.(md|sm|lg)\\:flex/);
     });
 
-    it("matches the $screen-* values the SCSS uses (theme value wins over Citadel's default, as in Sass)", async () => {
-        const expected = {...screens(citadelScreens), ...screens(themeScreens)};
+    it("matches the $screen-* values the SCSS declares", async () => {
+        const expected = screens(themeScreens);
         const css = await compile(Object.keys(expected).map((name) => `${name}:flex`));
         for (const [name, width] of Object.entries(expected)) {
             expect(css, `breakpoint ${name}`).toMatch(new RegExp(`(width >= ${width}px|min-width: ${width}px)[\\s\\S]*?\\.${name}\\\\:flex`));

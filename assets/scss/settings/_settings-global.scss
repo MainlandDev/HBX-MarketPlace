@@ -1,23 +1,4 @@
-// =============================================================================
-// GLOBAL SETTINGS
-// =============================================================================
-// Palette, type, spacing, breakpoints and z-index. Loaded first: Citadel's global defaults read these.
 
-// Foundation class output
-// Switches that decide whether Foundation's own HTML/print/global class rules are emitted (all off: the theme styles with utilities).
-$include-html-classes: false !default;
-$include-print-styles: false !default;
-$include-html-global-classes: $include-html-classes !default;
-
-// Export
-// Master switch for exporting Citadel/Foundation CSS blocks (off).
-$exportCSS:                     false;
-
-// Breakpoints
-// Widths where the layout changes (small / medium / large); the media variants in _tailwind.scss use the same values.
-$screen-large:                  1261px;
-$screen-medium:                 801px;
-$screen-small:                  551px;
 
 // Stacking
 // Named z-index layers (lowest to highest) used for dropdowns, nav, modals and overlays.
@@ -148,21 +129,6 @@ $spacing-fifth:                 remCalc(round($spacingRhythm / 5));
 $spacing-sixth:                 remCalc(round($spacingRhythm / 6));
 $spacing-eighth:                remCalc(round($spacingRhythm / 8));
 
-$widthMap: (
-    "12/12":                    100%,
-    "11/12":                    91.66667%,
-    "10/12":                    83.33334%,
-    "9/12":                     75%,
-    "8/12":                     66.66667%,
-    "7/12":                     58.33334%,
-    "6/12":                     50%,
-    "5/12":                     41.66667%,
-    "4/12":                     33.33334%,
-    "3/12":                     25%,
-    "2/12":                     16.66667%,
-    "1/12":                     8.33334%
-);
-
 @function width($key) {
     @if map-has-key($widthMap, $key) {
         @return map-get($widthMap, $key);
@@ -195,3 +161,1182 @@ $container-margin-base:                 $spacing-single;
 // Overlay
 // Fill colour of the backdrop behind modals.
 $overlay-fill:                  rgba(stencilColor("overlay-backgroundColor"), 0.95);
+
+// =============================================================================
+// DEFAULTS THAT SHAPE THE VALUES ABOVE
+// =============================================================================
+// What used to come from @bigcommerce/citadel (global and Foundation setting defaults), pruned to the variables, maps and functions the theme still reads.
+// Declared with !default and loaded after the values above, so the theme's own values win; _settings.scss overrides the rest after this block.
+
+// Color
+// ---- settings/global/color/_color.scss
+
+// Basics
+
+$color-black:                       #000 !default;
+
+$color-white:                       #fff !default;
+
+$color-whitesBase:                  #fcfcfd !default;
+
+$color-grey:                        #798289 !default;
+
+$color-greyDarkest:                 #232831 !default;
+
+$color-greyDarker:                  #282c30 !default;
+
+$color-greyDark:                    #556273 !default;
+
+$color-greyMedium:                  #acb3be !default;
+
+$color-greyLight:                   #e1e6eb !default;
+
+$color-greyLighter:                 #f2f4f6 !default;
+
+$color-greyLightest:                #f7f8f9 !default;
+
+// Branding
+
+$color-primary:                     #00abc9 !default;
+
+$color-primaryDarker:               #008ba3 !default;
+
+$color-primaryDark:                 #009cb7 !default;
+
+$color-primaryLight:                #c7e8ee !default;
+
+$color-secondary:                   #fff !default;
+
+$color-secondaryDarker:             #e1e6eb !default;
+
+$color-secondaryDark:               #f8f9fb !default;
+
+$color-highlight:                   #00abc9 !default;
+
+$color-highlightDarker:             #008ba3 !default;
+
+$color-highlightDark:               #009cb7 !default;
+
+// States
+
+$color-error:                       #db636b !default;
+
+$color-errorLight:                  #f8e0e1 !default;
+
+$color-info:                        #00abc9 !default;
+
+$color-infoLight:                   #d8f0f4 !default;
+
+$color-success:                     #95db89 !default;
+
+$color-successLight:                #dfefdc !default;
+
+$color-warning:                     #ffb800 !default;
+
+$color-warningLight:                #fff9d9 !default;
+
+// Text
+
+$color-textBase:                    #313b47 !default;
+
+$color-textBase-hover:              #556273 !default;
+
+$color-textBase-active:             #3c4043 !default;
+
+// Order status
+
+$color-orderAwaitingFulfilment:     #6eccfc !default;
+
+$color-orderAwaitingPayment:        #f80 !default;
+
+$color-orderAwaitingPickup:         #b186cb !default;
+
+$color-orderAwaitingShipment:       #ca2f3a !default;
+
+$color-orderCancelled:              #3c4043 !default;
+
+$color-orderCompleted:              #95db89 !default;
+
+$color-orderDeclined:               #955831 !default;
+
+$color-orderDisputed:               #9960ff !default;
+
+$color-orderPartiallyShipped:       #3e62a1 !default;
+
+$color-orderPending:                #acb4be !default;
+
+$color-orderShipped:                #95db89 !default;
+
+$color-orderRefunded:               #ffb800 !default;
+
+$color-orderVerificationRequired:   #e89fae !default;
+
+// Color Map
+
+$colorMap: (
+
+    // Basics
+
+    blacks: (
+        base:                   $color-black
+    ),
+
+    whites: (
+        base:                   $color-whitesBase,
+        bright:                 $color-white
+    ),
+
+    greys: (
+        base:                   $color-grey,
+        darkest:                $color-greyDarkest,
+        darker:                 $color-greyDarker,
+        dark:                   $color-greyDark,
+        medium:                 $color-greyMedium,
+        light:                  $color-greyLight,
+        lighter:                $color-greyLighter,
+        lightest:               $color-greyLightest
+    ),
+
+    // Branding
+
+    primary: (
+        base:                   $color-primary,
+        darker:                 $color-primaryDarker,
+        dark:                   $color-primaryDark,
+        light:                  $color-primaryLight
+    ),
+
+    secondary: (
+        base:                   $color-secondary,
+        darker:                 $color-secondaryDarker,
+        dark:                   $color-secondaryDark
+    ),
+
+    highlight: (
+        base:                   $color-highlight,
+        darker:                 $color-highlightDarker,
+        dark:                   $color-highlightDark
+    ),
+
+    // States
+
+    error: (
+        base:                   $color-error,
+        light:                  $color-errorLight
+    ),
+
+    info: (
+        base:                   $color-info,
+        light:                  $color-infoLight
+    ),
+
+    success: (
+        base:                   $color-success,
+        light:                  $color-successLight
+    ),
+
+    warning: (
+        base:                   $color-warning,
+        light:                  $color-warningLight
+    ),
+
+    // Text
+
+    link: (
+        base:                   $color-textBase,
+        hover:                  $color-textBase-hover,
+        active:                 $color-textBase-active
+    ),
+
+    // Order status'
+
+    orderStatus: (
+        awaitingFulfilment:     $color-orderAwaitingFulfilment,
+        awaitingPayment:        $color-orderAwaitingPayment,
+        awaitingPickup:         $color-orderAwaitingPickup,
+        awaitingShipment:       $color-orderAwaitingShipment,
+        cancelled:              $color-orderCancelled,
+        completed:              $color-orderCompleted,
+        declined:               $color-orderDeclined,
+        disputed:               $color-orderDisputed,
+        partiallyShipped:       $color-orderPartiallyShipped,
+        pending:                $color-orderPending,
+        shipped:                $color-orderShipped,
+        refunded:               $color-orderRefunded,
+        verificationRequired:   $color-orderVerificationRequired
+    )
+);
+
+// Color Map Function
+
+@function color($color, $tone: "base") {
+
+    @if map-has-key($colorMap, $color) {
+        @return map-get(map-get($colorMap, $color), $tone);
+    }
+
+    @warn "Unknown `#{$color}` in $colorMap.";
+    @return null
+
+}
+
+// Typography
+// ---- settings/global/typography/_typography.scss
+
+// Global Type Vars
+// IMPORTANT: These variables are NOT to be consumed in components/apps.
+//            Instead use the maps and functions outlined below.
+// 1. Set up the REM units for the rest of the framework (pixel value).
+// 2. Your base font size should always start at 1rem;
+// 3. Your <body> line-height. This value is used for spacing calculations,
+//    where spacing is = $fontSize-root * $lineHeight-base.
+
+// Font families
+
+$fontFamily-sans:               ("Helvetica", Arial, sans-serif) !default;
+
+$fontFamily-serif:              (Georgia, "Times New Roman", serif) !default;
+
+$fontFamily-mono:               (Menlo, Monaco, Consolas, monospace) !default;
+
+$fontFamily-headings:           ("Helvetica" Arial, sans-serif) !default;
+
+// Font sizes
+
+$fontSize-root:                 16px !default;
+
+// 1
+$fontSize-base:                 1rem !default;
+
+// 2
+$fontSize-hero:                 $fontSize-base * 3 !default;
+
+$fontSize-largest:              $fontSize-base * 2.5 !default;
+
+$fontSize-larger:               $fontSize-base * 2 !default;
+
+$fontSize-large:                $fontSize-base * 1.5 !default;
+
+$fontSize-small:                $fontSize-base * 1.25 !default;
+
+$fontSize-smaller:              $fontSize-base * 1.125 !default;
+
+$fontSize-smallest:             $fontSize-base * 0.875 !default;
+
+$fontSize-tiny:                 $fontSize-base * 0.75 !default;
+
+// Line heights
+
+$lineHeight-base:               1.5 !default;
+
+// 3
+$lineHeight-hero:               2.5 !default;
+
+$lineHeight-largest:            2.25 !default;
+
+$lineHeight-larger:             2 !default;
+
+$lineHeight-large:              1.75 !default;
+
+$lineHeight-small:              1.25 !default;
+
+$lineHeight-smaller:            1.1 !default;
+
+$lineHeight-smallest:           1 !default;
+
+$lineHeight-tiny:               0.9 !default;
+
+// Font weights
+
+$fontWeight-thin:               300 !default;
+
+$fontWeight-normal:             400 !default;
+
+$fontWeight-medium:             500 !default;
+
+$fontWeight-semibold:           600 !default;
+
+$fontWeight-bold:               700 !default;
+
+$fontWeight-black:              900 !default;
+
+// Letter spacing
+
+$letterSpacing-base:            0 !default;
+
+$letterSpacing-largest:         remCalc(3px) !default;
+
+$letterSpacing-larger:          remCalc(2px) !default;
+
+$letterSpacing-large:           remCalc(1px) !default;
+
+$letterSpacing-small:           remCalc(-1px) !default;
+
+$letterSpacing-smaller:         remCalc(-2px) !default;
+
+$letterSpacing-smallest:        remCalc(-3px) !default;
+
+// Font families
+
+$fontFamilyMap: (
+    sans:                       $fontFamily-sans,
+    serif:                      $fontFamily-serif,
+    mono:                       $fontFamily-mono,
+    headingSans:                $fontFamily-headings
+);
+
+// Font sizes
+
+$fontSizeMap: (
+    base:                       $fontSize-base,
+    hero:                       $fontSize-hero,
+    largest:                    $fontSize-largest,
+    larger:                     $fontSize-larger,
+    large:                      $fontSize-large,
+    small:                      $fontSize-small,
+    smaller:                    $fontSize-smaller,
+    smallest:                   $fontSize-smallest,
+    tiny:                       $fontSize-tiny
+);
+
+// Line heights
+
+$lineHeightMap: (
+    base:                       $lineHeight-base,
+    hero:                       $lineHeight-hero,
+    largest:                    $lineHeight-largest,
+    larger:                     $lineHeight-larger,
+    large:                      $lineHeight-large,
+    small:                      $lineHeight-small,
+    smaller:                    $lineHeight-smaller,
+    smallest:                   $lineHeight-smallest,
+    tiny:                       $lineHeight-tiny
+);
+
+// Font Weights
+
+$fontWeightMap: (
+    thin:                       $fontWeight-thin,
+    normal:                     $fontWeight-normal,
+    medium:                     $fontWeight-medium,
+    semibold:                   $fontWeight-semibold,
+    bold:                       $fontWeight-bold,
+    black:                      $fontWeight-black
+);
+
+// Letter spacing
+
+$letterSpacingMap: (
+    base:                       $letterSpacing-base,
+    largest:                    $letterSpacing-largest,
+    larger:                     $letterSpacing-larger,
+    large:                      $letterSpacing-large,
+    small:                      $letterSpacing-small,
+    smaller:                    $letterSpacing-smaller,
+    smallest:                   $letterSpacing-smallest
+);
+
+// Typography Functions
+
+@function fontFamily($key) {
+
+    @if map-has-key($fontFamilyMap, $key) {
+        @return map-get($fontFamilyMap, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $fontFamilyMap.";
+    @return null;
+}
+
+@function fontSize($key) {
+
+    @if map-has-key($fontSizeMap, $key) {
+        @return map-get($fontSizeMap, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $fontSizeMap.";
+    @return null;
+}
+
+@function fontWeight($key) {
+
+    @if map-has-key($fontWeightMap, $key) {
+        @return map-get($fontWeightMap, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $fontWeightMap.";
+    @return null;
+}
+
+@function letterSpacing($key) {
+
+    @if map-has-key($letterSpacingMap, $key) {
+        @return map-get($letterSpacingMap, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $letterSpacingMap.";
+    @return null;
+}
+
+@function lineHeight($key) {
+
+    @if map-has-key($lineHeightMap, $key) {
+        @return map-get($lineHeightMap, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $lineHeightMap.";
+    @return null;
+}
+
+// Layout
+// ---- settings/global/layout/_layout.scss
+
+// Layout
+// Define the layout width's for your project.
+
+// Max Width
+$layout-widthMax:               remCalc(1200px) !default;
+
+// Fixed Width
+$layout-widthFixed:             90% !default;
+
+// Spacing Rhythm
+// Create consistent spacing patterns in your entire projects aesthetics.
+// Build your components margins, paddings, etc based off these spacing vars.
+
+// Base Spacing
+$spacingRhythm:                 $fontSize-base * $lineHeight-base !default;
+
+$spacing-base:                  1rem !default;
+
+$spacing-single:                $spacingRhythm !default;
+
+$spacing-double:                $spacingRhythm * 2 !default;
+
+$spacing-half:                  $spacingRhythm / 2 !default;
+
+$spacing-third:                 $spacingRhythm / 3 !default;
+
+$spacing-quarter:               $spacingRhythm / 4 !default;
+
+$spacing-fifth:                 $spacingRhythm / 5 !default;
+
+$spacing-sixth:                 $spacingRhythm / 6 !default;
+
+$spacing-eighth:                $spacingRhythm / 8 !default;
+
+// Spacing Map
+
+$spacingMap: (
+    base:                       $spacing-base,
+    single:                     $spacing-single,
+    double:                     $spacing-double,
+    half:                       $spacing-half,
+    third:                      $spacing-third,
+    quarter:                    $spacing-quarter,
+    fifth:                      $spacing-fifth,
+    sixth:                      $spacing-sixth,
+    eighth:                     $spacing-eighth
+);
+
+// Spacing Function
+
+@function spacing($key) {
+
+    @if map-has-key($spacingMap, $key) {
+        @return map-get($spacingMap, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $spacingMap.";
+    @return null;
+}
+
+// Containers
+// ---- settings/global/container/_container.scss
+// Purpose:
+// The centralised place to control container settings like borders and fill.
+
+// Borders
+
+$container-border-global-size:          1px !default;
+
+$container-border-global-style:         solid !default;
+
+$container-border-global-color-base:    $color-greyLight !default;
+
+$container-border-global-color-dark:    $color-grey !default;
+
+$container-border-global-base:          $container-border-global-size $container-border-global-style $color-greyLight !default;
+
+$container-border-global-dark:          $container-border-global-size $container-border-global-style $color-grey !default;
+
+// Drop shadows
+
+$container-drop-shadow-base:             0 2px 0 rgba($color-greyLight, 0.6) !default;
+
+// Backgrounds
+
+$container-fill-base:                   $color-white !default;
+
+$container-fill-dark:                   $color-greyLight !default;
+
+// Padding
+
+$container-padding-base:                $spacing-single !default;
+
+$container-padding-large:               $spacing-double !default;
+
+// Margin
+
+$container-margin-base:                 $spacing-single !default;
+
+// Containers map
+
+$containersMap: (
+    border: (
+        base: $container-border-global-base,
+        dark: $container-border-global-dark
+    ),
+
+    borderColor: (
+        base: $container-border-global-color-base,
+        dark: $container-border-global-color-dark
+    ),
+
+    borderSize: (
+        base: $container-border-global-size
+    ),
+
+    borderStyle: (
+        base: $container-border-global-style
+    ),
+
+    dropShadow: (
+        base: $container-drop-shadow-base
+    ),
+
+    fill: (
+        base: $container-fill-base,
+        dark: $container-fill-dark
+    ),
+
+    margin: (
+        base: $container-margin-base
+    ),
+
+    padding: (
+        base: $container-padding-base,
+        large: $container-padding-large
+    )
+);
+
+// Containers map function
+
+@function container($property, $variant: "base") {
+    @if map-has-key($containersMap, $property) {
+        @return map-get(map-get($containersMap, $property), $variant);
+    }
+
+    @warn "Unknown `#{$property}` in $containersMap.";
+    @return null
+}
+
+// Z-index
+// ---- settings/global/z-index/_z-index.scss
+
+// Global Type Vars
+// IMPORTANT: These variables are NOT to be consumed in components/apps.
+//            Instead use the maps and functions outlined below.
+
+// z-index map
+
+$zIndex-lowest:                 5 !default;
+
+$zIndex-lower:                  10 !default;
+
+$zIndex-low:                    20 !default;
+
+$zIndex-high:                   50 !default;
+
+$zIndex-higher:                 100 !default;
+
+$zIndex-highest:                500 !default;
+
+// Overlays
+// ---- settings/global/overlay/_overlay.scss
+// Purpose: Centralised place to control overlay backgrounds, such as:
+// modal backdrops, card overlays, etc.
+
+// Overlay fill
+
+$overlay-fill:                  rgba(color("blacks"), 0.8) !default;
+
+// Overlay Map
+
+$overlaysMap: (
+
+    fill: (
+        base: $overlay-fill
+    )
+);
+
+// Overlay Map Function
+
+@function overlay($property, $variant: "base") {
+
+    @if map-has-key($overlaysMap, $property) {
+        @return map-get(map-get($overlaysMap, $property), $variant);
+    }
+
+    @warn "Unknown property `#{$property}` in $overlaysMap.";
+    @return null
+
+}
+
+// The default font-size is set to 100% of the browser style sheet (usually 16px)
+// for compatibility with browser-based text zoom or user-set defaults.
+
+// Since the typical default browser font-size is 16px, that makes the calculation for grid size.
+// If you want your base font-size to be different and not have it affect the grid breakpoints,
+// set $rem-base to $base-font-size and make sure $base-font-size is a px value.
+$base-font-size:              $fontSize-base !default;
+
+// $base-line-height is 24px while $base-font-size is 16px
+$base-line-height:            lineHeight(base) !default;
+
+// We use these as default colors throughout
+$primary-color:               color("primary") !default;
+
+// We use these to control text direction settings
+$text-direction:              ltr !default;
+
+$default-float:               left !default;
+
+$opposite-direction:          right !default;
+
+@if $text-direction == ltr {
+    $default-float:           left !default;
+    $opposite-direction:      right !default;
+}
+
+@else {
+    $default-float:           right !default;
+    $opposite-direction:      left !default;
+}
+
+// We use these to make sure border radius matches unless we want it different.
+$global-radius:               2px !default;
+
+// We use this as cursors values for enabling the option of having custom cursors in the whole site's stylesheet
+$cursor-auto-value:           auto !default;
+
+$cursor-default-value:        default !default;
+
+$cursor-pointer-value:        pointer !default;
+
+$cursor-help-value:           help !default;
+
+// ---- settings/foundation/type/_settings.scss
+
+// Foundation Variables
+// These variables come directly from:
+// /vendor/foundation/foundation/components/*
+// Declaring the variables here, you can adjust them all to your design,
+// leaving the vendor framework untouched.
+
+// We use these to define default font stacks
+$font-family-sans-serif:               fontFamily("sans") !default;
+
+// We use these to define default font weights
+$font-weight-normal:                   fontWeight("normal") !default;
+
+$font-weight-bold:                     fontWeight("semibold") !default;
+
+// We use these to control various global styles
+$body-bg:                              color("greys", "lighter") !default;
+
+$body-font-color:                      color("greys", "darker") !default;
+
+$body-font-family:                     $font-family-sans-serif !default;
+
+$body-font-weight:                     $font-weight-normal !default;
+
+// We use these to control header font styles
+$header-font-family:                   fontFamily("sans") !default;
+
+$header-font-weight:                   $font-weight-bold !default;
+
+$header-font-color:                    $body-font-color !default;
+
+$header-bottom-margin:                 spacing("single") !default;
+
+$header-letter-spacing:                0 !default;
+
+// We use these to control header font sizes
+$h1-font-size:                         fontSize("largest") !default;
+
+$h2-font-size:                         fontSize("larger") !default;
+
+$h3-font-size:                         fontSize("large") !default;
+
+$h4-font-size:                         fontSize("small") !default;
+
+$h5-font-size:                         fontSize("smaller") !default;
+
+$h6-font-size:                         fontSize("smallest") !default;
+
+// A general <small> styling
+$small-font-size:                      80% !default;
+
+$small-font-color:                     color("greys") !default;
+
+$paragraph-font-size:                  fontSize("base") !default;
+
+$paragraph-line-height:                lineHeight("base") !default;
+
+$paragraph-margin-bottom:              spacing("base") !default;
+
+// We use these to style anchors
+$anchor-text-decoration:               none !default;
+
+$anchor-font-color:                    color("primary") !default;
+
+$anchor-font-color-hover:              scale-color($anchor-font-color, $lightness: -14%) !default;
+
+// We use these to style the <hr> element
+$hr-border-width:                      1px !default;
+
+$hr-border-style:                      solid !default;
+
+$hr-border-color:                      container("borderColor", "dark") !default;
+
+$hr-margin:                            spacing("base") !default;
+
+$list-margin-bottom:                   $paragraph-margin-bottom !default;
+
+$list-style-position:                  outside !default;
+
+$list-side-margin:                     1.1rem !default;
+
+$list-ordered-side-margin:             1.4rem !default;
+
+$list-nested-margin:                   remCalc(20) !default;
+
+$definition-list-header-weight:        $font-weight-bold !default;
+
+$definition-list-header-margin-bottom: 0.3rem !default;
+
+$definition-list-margin-bottom:        spacing("single") !default;
+
+$blockquote-cite-font-size:            fontSize("base") !default;
+
+$blockquote-cite-font-color:           color("greys") !default;
+
+// Acronym styles
+$acronym-underline:                    1px dotted container("borderColor", "dark") !default;
+
+// emit this component's class names
+
+$html-fontSize:                        $fontSize-root + 2 !default;
+
+$html-fontSize--smallUp:               $fontSize-root !default;
+
+$html-fontSize--mediumUp:              $fontSize-root !default;
+
+$html-fontSize--largeUp:               $fontSize-root !default;
+
+$blockquote-fontSize:                  $paragraph-font-size !default;
+
+$blockquote-lineHeight:                $paragraph-line-height !default;
+
+// We use these to control the background and border styles
+$panel-bg:                       container("fill") !default;
+
+// We use these to set default inner padding and bottom margin
+$panel-margin-bottom:            container("margin") !default;
+
+$panel-paddingHorizontal:        container("padding") + spacing("half") !default;
+
+$panel-paddingVertical:          container("padding") !default;
+
+$panel-padding:                  $panel-paddingVertical $panel-paddingHorizontal !default;
+
+// Panel header settings
+$panel-header-bg:                $panel-bg !default;
+
+$panel-header-margin:            0 !default;
+
+$panel-header-paddingHorizontal: $panel-paddingHorizontal !default;
+
+$panel-header-paddingVertical:   $panel-paddingVertical !default;
+
+$panel-header-padding:           $panel-header-paddingVertical $panel-header-paddingHorizontal !default;
+
+// Panel title settings
+$panel-title-lineHeight:         lineHeight("base") !default;
+
+$panel-title-margin:             0 !default;
+
+// emit this component's class names
+
+$accordion-borderColor:                  container("borderColor", "dark") !default;
+
+$accordion-margin:                       0 0 container("margin") !default;
+
+$accordion-title-lineHeight:             lineHeight("base") !default;
+
+// emit this component's class names
+
+// Color/State Modifiers
+
+$alert-generic-bgColor:            color("greys", "light") !default;
+
+$alert-info-bgColor:               color("info", "light") !default;
+
+$alert-info-iconColor:             color("info") !default;
+
+$alert-success-bgColor:            color("success", "light") !default;
+
+$alert-success-iconColor:          color("success") !default;
+
+$alert-warning-bgColor:            color("warning", "light") !default;
+
+$alert-error-bgColor:              color("error", "light") !default;
+
+$alert-error-iconColor:            color("error") !default;
+
+// Alert Column
+$alert-column-textAlign:           center !default;
+
+// Alert Message
+$alert-message-textAlign:          left !default;
+
+$alert-message-margin:             0 !default;
+
+// We use this to control alert padding.
+$alert-padding-top:                spacing("base") !default;
+
+$alert-padding-default-float:      spacing("single") !default;
+
+$alert-padding-opposite-direction: $alert-padding-default-float !default;
+
+$alert-padding-bottom:             $alert-padding-top !default;
+
+// We use these to control text style.
+$alert-font-weight:                $font-weight-normal !default;
+
+$alert-font-size:                  fontSize("base") !default;
+
+// We use these to control border styles.
+$alert-border-style:               none !default;
+
+$alert-bottom-margin:              spacing("half") !default;
+
+$alert-transition-speed:           300ms !default;
+
+$alert-transition-ease:            ease-out !default;
+
+// emit this component's class names
+
+// Button Style variables
+
+$buttonStyle-default-color:                  color("primary") !default;
+
+$buttonStyle-default-colorHover:             color("primary") !default;
+
+$buttonStyle-default-colorActive:            color("primary") !default;
+
+$buttonStyle-default-backgroundColor:        color("secondary") !default;
+
+$buttonStyle-default-backgroundColorHover:   color("secondary", "dark") !default;
+
+$buttonStyle-default-backgroundColorActive:  color("secondary", "dark") !default;
+
+$buttonStyle-default-borderColor:            color("greys", "light") !default;
+
+$buttonStyle-default-borderColorHover:       color("greys", "light") !default;
+
+$buttonStyle-default-borderColorActive:      color("greys", "medium") !default;
+
+$buttonStyle-primary-color:                  color("whites", "bright") !default;
+
+$buttonStyle-primary-colorHover:             color("whites", "bright") !default;
+
+$buttonStyle-primary-colorActive:            color("whites", "bright") !default;
+
+$buttonStyle-primary-backgroundColor:        color("primary") !default;
+
+$buttonStyle-primary-backgroundColorHover:   color("primary", "dark") !default;
+
+$buttonStyle-primary-backgroundColorActive:  color("primary", "darker") !default;
+
+$buttonStyle-primary-borderColor:            color("primary") !default;
+
+$buttonStyle-primary-borderColorHover:       color("primary", "dark") !default;
+
+$buttonStyle-primary-borderColorActive:      color("primary", "darker") !default;
+
+$buttonStyle-disabled-color:                 color("greys", "medium") !default;
+
+$buttonStyle-disabled-backgroundColor:       color("greys", "lightest") !default;
+
+$buttonStyle-disabled-borderColor:           color("greys", "light") !default;
+
+// Size Modifiers
+
+$buttonSize-default-fontSize:           fontSize("base") !default;
+
+$buttonSize-default-horizontalPadding:  spacing("single") !default;
+
+$buttonSize-default-verticalPadding:    spacing("third") + spacing("quarter") !default;
+
+$buttonSize-large-fontSize:             fontSize("large") !default;
+
+$buttonSize-small-fontSize:             fontSize("smaller") !default;
+
+$buttonSize-small-horizontalPadding:    spacing("base") !default;
+
+$buttonSize-small-verticalPadding:      spacing("quarter") + spacing("eighth") !default;
+
+$buttonSize-square-fontSize:            fontSize("base") !default;
+
+$buttonSize-square-horizontalPadding:   spacing("half") !default;
+
+$buttonSize-square-verticalPadding:     spacing("half") !default;
+
+$button-vAlign:                         middle !default;
+
+$button-display:                        inline-block !default;
+
+$button-margin-bottom:                  spacing("base") !default;
+
+$button-font-family:                    $body-font-family !default;
+
+$button-font-weight:                    $font-weight-normal !default;
+
+$button-font-align:                     center !default;
+
+$button-border-width:                   1px !default;
+
+$button-border-style:                   solid !default;
+
+$button-radius:                         $global-radius !default;
+
+// We use this to set the base for lots of form spacing and positioning styles
+$form-spacing:                       spacing("single") !default;
+
+// We use these to style the labels in different ways
+$form-label-pointer:                 pointer !default;
+
+$form-label-font-size:               fontSize("base") !default;
+
+$form-label-line-height:             lineHeight("base") !default;
+
+$form-label-font-color:              $body-font-color !default;
+
+$form-label-small-transform:         none !default;
+
+$form-label-bottom-margin:           1rem !default;
+
+$input-font-color:                   $body-font-color !default;
+
+$input-font-size:                    fontSize("base") !default;
+
+$input-bg-color:                     color("greys", "lightest") !default;
+
+$input-border-color:                 container("borderColor", "dark") !default;
+
+$input-focus-border-color:           color("primary") !default;
+
+$input-border-style:                 solid !default;
+
+$input-border-width:                 1px !default;
+
+$input-border-radius:                0 !default;
+
+$input-disabled-bg:                  color("whites") !default;
+
+$input-disabled-cursor:              not-allowed !default;
+
+$fieldset-border-width:              0 !default;
+
+$fieldset-padding:                   0 !default;
+
+$fieldset-margin:                    0 !default;
+
+// Select variables
+$select-bg-color:                    color("whites", "bright") !default;
+
+// emit this component's class names
+
+$form-verticalSpacing:               spacing("single") * 1.5 !default;
+
+$form-margin:                        0 !default;
+
+$form-label-small-color:             color("greys", "medium") !default;
+
+$form-label-small-fontSize:          fontSize("base") !default;
+
+$input-height:                       $form-spacing * 2 !default;
+
+$input-horizontalPadding:            ($form-spacing / 1.5) !default;
+
+$input-margin:                       0 !default;
+
+$input-placeholder-color:            color("greys") !default;
+
+$input-transition:                   all 100ms ease-out !default;
+
+$input-verticalPadding:              ($form-spacing / 2) !default;
+
+$input-padding:                      $input-verticalPadding $input-horizontalPadding !default;
+
+$input-disabled-color:               color("greys", "light") !default;
+
+$select-height:                      $input-height !default;
+
+$select-margin:                      0 !default;
+
+$select-outline:                     0 !default;
+
+$select-focus-borderColor:           $input-focus-border-color !default;
+
+// emit this component's class names
+
+$crumb-hover-color:                 color("primary") !default;
+
+$crumb-lineHeight:                  1.6 !default;
+
+// We use these to set various text styles for breadcrumbs.
+$crumb-font-size:                   fontSize("smallest") !default;
+
+$crumb-font-color:                  color("greys", "darker") !default;
+
+$crumb-font-color-current:          color("greys") !default;
+
+// We use these to control the slash between breadcrumbs
+$crumb-slash-color:                 color("greys") !default;
+
+// We use these to controls height and width styles.
+$f-dropdown-max-width:            200px !default;
+
+$f-dropdown-height:               auto !default;
+
+// We use this to control the background color
+$f-dropdown-bg:                   container("fill") !default;
+
+// We use these to control styles for the list elements.
+$f-dropdown-list-style:           none !default;
+
+$f-dropdown-font-size:            $base-font-size !default;
+
+$f-dropdown-line-height:          $base-line-height !default;
+
+$f-dropdown-list-padding:         spacing("quarter") !default;
+
+// emit this component's class names
+
+$table-width:                 100% !default;
+
+$table-row-border:            container("border") !default;
+
+$table-numericData-textAlign: right !default;
+
+$table-head-font-size:        fontSize("base") !default;
+
+$table-head-font-weight:      $font-weight-bold !default;
+
+// These are for controlling the layout, display and margin of tables
+$table-layout:                auto !default;
+
+$table-display:               table-cell !default;
+
+$table-margin-bottom:         spacing("double") !default;
+
+$pagination-li-font-color:               color("primary") !default;
+
+$pagination-li-font-size:                fontSize("base") !default;
+
+$pagination-li-margin:                   spacing("half") !default;
+
+// We use these for the pagination anchor links
+$pagination-link-pad:                    spacing("third") spacing("eighth") !default;
+
+$pagination-link-font-color:             color("primary") !default;
+
+$pagination-link-current-font-color:     color("greys", "dark") !default;
+
+$pagination-link-current-cursor:         $cursor-default-value !default;
+
+$tabs-bottom-border:                             container("border", "dark") !default;
+
+$tabs-margin:                                    0 !default;
+
+$tab-display:                                    block !default;
+
+$tab-margin:                                     0 !default;
+
+$tab-title-border-color:                         transparent !default;
+
+$tab-title-border-bottom-offset:                 -1px !default;
+
+$tab-title-active-font-weight:                   fontWeight("bold") !default;
+
+$tab-navigation-display:                         block !default;
+
+$tab-navigation-container-padding:               0 !default;
+
+$tabs-navigation-padding:                        spacing("half") !default;
+
+$tabs-navigation-font-color:                     color("greys") !default;
+
+$tabs-navigation-active-font-color:              color("greys", "darker") !default;
+
+$tabs-navigation-font-size:                      fontSize("base") !default;
+
+$tabs-content-margin-bottom:                     spacing("single") !default;
+
+$tabs-content-padding:                           spacing("single") 0 !default;
+
+// emit this component's class names
+
+// Color Variables
+$modal-backdrop-color:             color("greys", "darkest") !default;
+
+$modal-width--large:               900px !default;
+
+// Spacing
+$modal-horizontalSpacing:          spacing("single") * 1.5 !default;
+
+$modal-verticalSpacing:            spacing("single") !default;
+
+// Modal header variables
+$modal-header-horizontalSpacing:   $modal-horizontalSpacing !default;
+
+// We use these to control the style of the reveal overlay.
+$reveal-overlay-bg:                rgba($modal-backdrop-color, 0.6) !default;
+
+// We use these to control the style of the modal itself.
+$reveal-modal-bg:                  color("whites", "bright") !default;
+
+$reveal-default-width:             $modal-width--large !default;
+
+$reveal-modal-padding:             0 !default;
+
+$reveal-box-shadow:                0 0 5px rgba(color("greys", "darkest"), 0.4) !default;
+
+$reveal-close-top:                 50% !default;
+
+$reveal-close-side:                $modal-header-horizontalSpacing / 2 !default;
+
+$reveal-close-weight:              normal !default;
+
+// We use this to set the default radius used throughout the core.
+$reveal-radius:                    $global-radius !default;
+
+// We use these to control the modal border
+$reveal-border-style:              solid !default;
+
+$reveal-border-width:              1px !default;
+
+$reveal-border-color:              container("borderColor", "dark") !default;

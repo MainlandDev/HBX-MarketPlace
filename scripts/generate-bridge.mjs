@@ -1,12 +1,11 @@
-// Generates assets/scss/settings/global/_css-vars.scss: every $variable in assets/scss/settings/_settings*.scss and _citadel-*.scss as a --sv-* custom property.
+// Generates assets/scss/settings/global/_css-vars.scss: every $variable in assets/scss/settings/_settings*.scss as a --sv-* custom property.
 // --write  write the file; --check  fail if the file is stale.
 import {readdirSync, readFileSync, writeFileSync} from "node:fs";
 import {join} from "node:path";
 import {fileURLToPath} from "node:url";
 import {isCurrent, onlyReferenced, renderBridge, scanMarkupSettings, scanReferences, scanSettingCalls, scanVariables, settingName} from "./tailwind/bridge.mjs";
 
-// Every $variable declared in the theme or in the hoisted Citadel defaults is a candidate: spacing(), fontSize(), container() and screenSize() read
-// variables declared in the Citadel files, and the theme settings do not redeclare most of them. All of them live in assets/scss.
+// Every $variable declared in the settings files is a candidate: spacing(), fontSize() and container() read variables declared in the defaults block at the end of _settings-global.scss.
 const roots = [fileURLToPath(new URL("../assets/scss/", import.meta.url))];
 const target = new URL("../assets/scss/settings/global/_css-vars.scss", import.meta.url);
 

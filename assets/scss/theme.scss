@@ -1,14 +1,11 @@
 // Entry point of the theme stylesheet. Styling lives in utilities (src/templates, src/server) and in _tailwind.scss; the rest is Sass variables.
 @import "tailwind/_tailwind";
 
-// Sass helpers: Citadel's toolkit and the theme's own functions.
-@import "tools/citadel-toolkit";
+// Sass helpers (rem conversion, image-size parsing).
 @import "tools/tools";
 
-// Variables, in load order: the theme's global values, Citadel's defaults that read them, then the component values that override Citadel/Foundation.
+// Variables, in load order: the global values and the defaults that read them, then the component values that override them.
 @import "settings/settings-global";
-@import "settings/citadel-global";
-@import "settings/citadel-foundation";
 @import "settings/settings";
 
 // Custom properties for the markup: design tokens (docs/design/tokens.json), the generated --sv-* bridge (npm run generate-bridge) and the hand-written

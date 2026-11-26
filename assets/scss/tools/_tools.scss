@@ -1,4 +1,33 @@
-// Sass helpers for the --sv-derived-* values (settings/global/_derived-vars.scss): image sizes arrive from config.json as strings such as "190x190".
+// Sass helpers: rem conversion (read by the Foundation defaults) and the --sv-derived-* helpers (settings/global/_derived-vars.scss).
+// Image sizes arrive from config.json as strings such as "190x190".
+
+// Rem Calculations
+
+@function stripUnit($num) {
+    @return $num / ($num * 0 + 1);
+}
+
+// scss-lint:disable ZeroUnit
+@function convertToRem($value, $base-value: $fontSize-base) {
+    $value: stripUnit($value) / stripUnit($base-value) * 1rem;
+    @if ($value == 0rem) { $value: 0; } // Turn 0rem into 0
+    @return $value;
+}
+
+@function remCalc($values, $base-value: $fontSize-root) {
+
+    $max: length($values);
+
+    @if $max == 1 { @return convertToRem(nth($values, 1), $base-value); }
+
+    $remValues: ();
+
+    @for $i from 1 through $max {
+        $remValues: append($remValues, convertToRem(nth($values, $i), $base-value));
+    }
+
+    @return $remValues;
+}
 
 // "190x190" -> ("190" "190"): split a string in two at the first separator.
 @function str-split($string, $separator) {
