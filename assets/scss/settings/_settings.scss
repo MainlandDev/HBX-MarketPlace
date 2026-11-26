@@ -215,7 +215,7 @@ $buttonStyle-disabled-borderColor:           stencilColor("button--disabled-bord
 
 $buttonSize-default-fontSize:           fontSize("base");
 $buttonSize-default-horizontalPadding:  spacing("single") + spacing("half");
-$buttonSize-default-verticalPadding:    spacing("third") + spacing("quarter");
+$buttonSize-default-verticalPadding:    17px;
 
 $buttonSize-large-fontSize:             fontSize("smaller");
 

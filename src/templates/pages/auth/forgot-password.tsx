@@ -12,7 +12,7 @@ export default () => (
                 page: () => (
                     <div className="account account--fixedSmall mb-single medium:mx-auto medium:mb-0 medium:w-1/2">
                         <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                        <h1 className="page-heading mx-0 mt-0 mb-[1rem] text-center">
+                        <h1 className="page-heading mx-0 mt-0 mb-[1rem] text-center text-[25px] font-normal text-ink">
                             <$Lang keyName={$string("reset_password.heading")} />
                         </h1>
                         <div className="rounded-card border-[0.8px] border-solid border-ink-border bg-white p-[12px] text-ink shadow-[0_3px_5px_var(--color-ink-border)]">

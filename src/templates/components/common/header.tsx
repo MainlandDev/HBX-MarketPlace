@@ -55,9 +55,9 @@ export default (_props: PartialProps) => {
                     operator={$string("===")}
                     rvalue={$string("default")}
                     $then={() => (
-                        <h1 className={`header-logo header-logo--${$pointer("theme_settings.logo-position")}`}>
+                        <div className={`header-logo header-logo--${$pointer("theme_settings.logo-position")}`}>
                             <StoreLogo />
-                        </h1>
+                        </div>
                     )}
                     $else={() => (
                         <div className={`header-logo header-logo--${$pointer("theme_settings.logo-position")}`}>
