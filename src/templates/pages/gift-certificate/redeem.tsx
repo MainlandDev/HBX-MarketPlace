@@ -8,7 +8,7 @@ export default () => (
             page: () => (
                 <>
                     <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                    <h1 className="page-heading mx-0 mt-0 mb-double text-center">
+                    <h1 className="page-heading mx-0 mt-0 mb-[12px] text-center text-[25px] font-normal text-black">
                         <$Lang keyName={$string("gift_certificate.heading")} />
                     </h1>
                     <GiftCertificateNavigation gift_page={$string("redeem")} />

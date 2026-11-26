@@ -7,7 +7,7 @@ export default () => (
             page: () => (
                 <section className="page -mx-gutter-half w-auto max-w-none flow-root">
                     <div className="page-content page-content--centered float-left w-full px-gutter-half medium:float-none medium:mx-auto medium:w-8/12">
-                        <h1 className="page-heading mx-0 mt-0 mb-double text-center">
+                        <h1 className="page-heading mx-0 mt-0 mb-[12px] text-center text-[25px] font-normal text-black">
                             <$Lang keyName={$string("newsletter.unsubscribed_heading")} />
                         </h1>
                         <AlertAlertSuccess $positionalHash={$lang($string("newsletter.unsubscribed_message"), {store_name: $pointer<string>("settings.store_name")})} />

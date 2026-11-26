@@ -9,7 +9,7 @@ export default () => (
                 <>
                     <section className="page -mx-gutter-half w-auto max-w-none flow-root">
                         <div className="page-content page-content--centered float-left w-full px-gutter-half medium:float-none medium:mx-auto medium:w-8/12">
-                            <h1 className="page-heading mx-0 mt-0 mb-double text-center" tabIndex={0} role="status" aria-live="assertive">
+                            <h1 className="page-heading mx-0 mt-0 mb-[12px] text-center text-[25px] font-normal text-black" tabIndex={0} role="status" aria-live="assertive">
                                 <$If
                                     test={$pointer("subscription.error")}
                                     $then={() => <$Lang keyName={$string("newsletter.subscribed_heading_error")} />}
