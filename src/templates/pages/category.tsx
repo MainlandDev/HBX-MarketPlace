@@ -5,6 +5,7 @@ import Breadcrumbs from "../components/common/breadcrumbs.tsx";
 import ResponsiveImg from "../components/common/responsive-img.tsx";
 import {
     $frontmatter,
+    $Each,
     $If,
     $Inject,
     $Page,
@@ -25,7 +26,7 @@ const region = (name: string) => $unescaped($region({name: $string(name)}));
 export default () => {
     const settings = $pointer<ThemeSettingsObject>("theme_settings");
     const sidebar = () => (
-        <aside className="page-sidebar relative float-left w-full px-gutter-half medium:w-1/4" id="faceted-search-container">
+        <aside className="page-sidebar relative float-left w-full px-gutter-half medium:w-1/5" id="faceted-search-container">
             <CategorySidebar />
         </aside>
     );
@@ -52,36 +53,56 @@ export default () => {
                     ),
                     page: () => (
                         <>
-                            <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
                             <$If
                                 test={$pointer("category.image")}
                                 $then={() =>
                                     <ResponsiveImg image={$pointer("category.image")} fallback_size={settings.zoom_size} lazyload={settings.lazyload_mode} class={$string("category-header-image w-full")} />
                                 }
                             />
-                            <$Unless
-                                test={settings.hide_category_page_heading}
-                                $then={() => (
-                                    <>
-                                        <h1 className="page-heading mx-0 mt-0 mb-double text-center">{$pointer("category.name")}</h1>
-                                        {region("category_below_header")}
-                                    </>
-                                )}
-                            />
-                            {$unescaped($pointer("category.description"))}
                             <div className="page -mx-gutter-half w-auto max-w-none flow-root">
                                 <$If
                                     test={$pointer("category.faceted_search_enabled")}
                                     $then={sidebar}
                                     $elseThen={[
-                                        {test: $pointer("category.subcategories"), $then: sidebar},
                                         {test: settings.shop_by_price_visibility, $then: sidebar},
                                     ]}
                                 />
-                                <main className="page-content float-left w-full px-gutter-half medium:[.page-sidebar+&]:w-3/4" id="product-listing-container">
+                                <main className="page-content float-left w-full px-gutter-half medium:[.page-sidebar+&]:w-4/5" id="product-listing-container">
+                                    <div className="[&_.breadcrumbs]:text-left [&_.breadcrumbs]:mb-half">
+                                        <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
+                                    </div>
+                                    <$Unless
+                                        test={settings.hide_category_page_heading}
+                                        $then={() => (
+                                            <>
+                                                <h1 className="page-heading mx-0 mt-0 mb-single text-left text-[1.8rem] font-medium">{$pointer("category.name")}</h1>
+                                                {region("category_below_header")}
+                                            </>
+                                        )}
+                                    />
+                                    {$unescaped($pointer("category.description"))}
+                                    <$If
+                                        test={$pointer("category.subcategories")}
+                                        $then={() => (
+                                            <nav aria-label="Subcategories" className="mb-single">
+                                                <ul className="m-0 flex list-none gap-half overflow-x-auto px-0 pb-half pt-half">
+                                                    <$Each
+                                                        list={$pointer<{url: string; name: string}[]>("category.subcategories")}
+                                                        $then={(subcategory) => (
+                                                            <li className="m-0 shrink-0">
+                                                                <a className="block rounded-card bg-white px-double py-single text-center text-[13px] font-bold text-ink no-underline shadow-[0_3px_5px_#ddd] hover:text-brand" href={subcategory.url}>
+                                                                    {subcategory.name}
+                                                                </a>
+                                                            </li>
+                                                        )}
+                                                    />
+                                                </ul>
+                                            </nav>
+                                        )}
+                                    />
                                     <CategoryProductListing />
                                 </main>
-                                <div className="page-region float-right w-full px-gutter-half medium:w-3/4">{region("category_below_content")}</div>
+                                <div className="page-region float-right w-full px-gutter-half medium:w-4/5">{region("category_below_content")}</div>
                             </div>
                         </>
                     ),

@@ -77,7 +77,7 @@ export default () => {
                     page: () => (
                         <>
                             {$unescaped($stylesheet($string("/assets/scss/vendor/jstree/style.css")))}
-                            <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
+                            <div className="[&_.breadcrumbs]:text-left"><Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} /></div>
                             <section className="nav">
                                 <$If
                                     test={$pointer("forms.search.query")}
@@ -153,19 +153,19 @@ export default () => {
                                             operator={$string("!=")}
                                             rvalue={$string("product")}
                                             $then={() => (
-                                        <aside className="page-sidebar sr-only relative float-left w-full px-gutter-half medium:w-1/4" id="faceted-search-container">
+                                        <aside className="page-sidebar sr-only relative float-left w-full px-gutter-half medium:w-1/5" id="faceted-search-container">
                                             <FacetedSearchIndex $positionalHash={$pointer("product_results")} />
                                         </aside>
                                             )}
                                             $else={() => (
-                                        <aside className="page-sidebar relative float-left w-full px-gutter-half medium:w-1/4" id="faceted-search-container">
+                                        <aside className="page-sidebar relative float-left w-full px-gutter-half medium:w-1/5" id="faceted-search-container">
                                             <FacetedSearchIndex $positionalHash={$pointer("product_results")} />
                                         </aside>
                                             )}
                                         />
                                     )}
                                 />
-                                <main className="page-content float-left w-full px-gutter-half medium:[.page-sidebar+&]:w-3/4">
+                                <main className="page-content float-left w-full px-gutter-half medium:[.page-sidebar+&]:w-4/5">
                                     <$If
                                         test={$pointer("forms.search.has_suggestions")}
                                         $then={() => (

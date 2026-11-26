@@ -47,22 +47,24 @@ export default () => {
                     ),
                     page: () => (
                         <>
-                            <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
-                            <$If
-                                test={$pointer("brand.image")}
-                                $then={() => (
-                                    <div className="brand-image-container relative after:block after:h-0 after:w-full after:pb-(--sv-derived-brand-thumb-padding) after:content-[''] [&_img]:absolute [&_img]:inset-0 [&_img]:m-auto">
-                                        <ResponsiveImg image={$pointer("brand.image")} fallback_size={settings.thumb_size} lazyload={$string("disabled")} />
-                                    </div>
-                                )}
-                            />
-                            <h1 className="page-heading mx-0 mt-0 mb-double text-center">{$pointer("brand.name")}</h1>
-                            {region("brand_below_header")}
                             <div className="page -mx-gutter-half w-auto max-w-none flow-root">
-                                <aside className="page-sidebar relative float-left w-full px-gutter-half medium:w-1/4" id="faceted-search-container">
+                                <aside className="page-sidebar relative float-left w-full px-gutter-half medium:w-1/5" id="faceted-search-container">
                                     <BrandSidebar />
                                 </aside>
-                                <main className="page-content float-left w-full px-gutter-half medium:[.page-sidebar+&]:w-3/4" id="product-listing-container">
+                                <main className="page-content float-left w-full px-gutter-half medium:[.page-sidebar+&]:w-4/5" id="product-listing-container">
+                                    <div className="[&_.breadcrumbs]:text-left [&_.breadcrumbs]:mb-half">
+                                        <Breadcrumbs breadcrumbs={$pointer("breadcrumbs")} />
+                                    </div>
+                                    <$If
+                                        test={$pointer("brand.image")}
+                                        $then={() => (
+                                            <div className="brand-image-container mb-single max-w-[200px] [&_img]:block [&_img]:h-auto [&_img]:w-full">
+                                                <ResponsiveImg image={$pointer("brand.image")} fallback_size={settings.thumb_size} lazyload={$string("disabled")} />
+                                            </div>
+                                        )}
+                                    />
+                                    <h1 className="page-heading mx-0 mt-0 mb-single text-left text-[1.8rem] font-medium">{$pointer("brand.name")}</h1>
+                                    {region("brand_below_header")}
                                     <$If
                                         test={$pointer("brand.search_error")}
                                         $then={() => (
