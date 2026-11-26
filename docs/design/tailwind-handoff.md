@@ -45,12 +45,13 @@ Convert the theme's SCSS to Tailwind utilities (the `components`/`layouts` parti
 
 ## Open gaps (2026-11-26)
 
-See `.claude/scratch/HANDOFF.md` for detail:
-
-- Compat leftovers in `assets/scss/tailwind/_tailwind.scss` still need stays/why verdicts.
-- States that are unverified by equivalence.
-- The legacy hook class list (classes kept only as JS/selector hooks).
-- Scope of the `checkout`, `invoice` and `maintenance` entry files.
+- **Compat leftovers in `assets/scss/tailwind/_tailwind.scss` need a stays/why verdict each:** `.button` family, `.form-input` radius, `.form-fieldset` padding, `.form-inlineMessage` (nod.js), `.brand-image-container`, `.form-option-variant--color/--pattern`, merchant inline-tabs and `div.container`, keyframes, slick mask arrows, the `@layer legacy` focus ring. Try the focus ring and keyframes via `@theme`.
+- **Unverified by equivalence:** the lists under the R2/R3 reports below (alert variants, modals, pagination prev/next, `wishlist-list`/`add-return` tables, most `form-actions`, never-rendered account pages). They need data the live store lacks.
+- **Legacy hook classes** (`form-label`, `form-field`, `card-image`, `navUser-*`, `productView-info-*`, kept for store CSS and JS selectors): list which are required and which are dead.
+- **Entry files** `checkout`, `optimized-checkout`, `invoice`, `maintenance` (about 780 lines): decide whether they are in scope. `vendor/jstree` stays.
+- **Inline `style=`:** only the Facebook iframe in `share.tsx` was converted. The rest stay: JS `.show()`/`.hide()` toggles (cart coupons and gift wrapping, faceted-search blocker, add-to-cart wrapper, product-view labels, price sections), `FormField`'s `[style*=none]` rule, and data-driven styles (`options/date`, swatches).
+- **Blocked or partial when the old per-partial table was removed:** account pages (need a signed-in Edge; WP1 left shared classes with unreachable consumers in SCSS), and cart slice A (item brand/name/label/value, remove button, content padding converted; only remCalc sub-pixel rounding and PayPal frame differences).
+- **`share.tsx` Facebook iframe** is unchecked in a browser (renders only when the like button is enabled).
 
 ## Merge log
 

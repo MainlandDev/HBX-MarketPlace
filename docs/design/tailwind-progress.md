@@ -4,7 +4,7 @@ Plan: `docs/superpowers/plans/2026-11-24-tailwind-programme.md` (task numbers be
 
 Start: 126 non-empty partials, 6550 lines (components + layouts + common), measured 2026-11-24.
 
-The per-partial table that was kept during the conversion (126 rows, all started as `todo`) has been removed because it was stale: every row it listed is now deleted. Per-partial history is in git. Live numbers: `npm run tw-inventory` (0 lines in 0 partials, checked 2026-11-26). `assets/scss` now holds only `tailwind/`, `settings/`, `tools/`, `vendor/`, and the entry files (`theme.scss`, `checkout.scss`, `invoice.scss`, `maintenance.scss`, `optimized-checkout.scss`).
+The per-partial table that was kept during the conversion (126 rows, all started as `todo`) has been removed because it was stale: every row it listed is now deleted. Per-partial history is in git; the blocked and partial entries it held are recorded under 'Open gaps' in `tailwind-handoff.md`. Live numbers: `npm run tw-inventory` (0 lines in 0 partials, checked 2026-11-26). `assets/scss` now holds only `tailwind/`, `settings/`, `tools/`, `vendor/`, and the entry files (`theme.scss`, `checkout.scss`, `invoice.scss`, `maintenance.scss`, `optimized-checkout.scss`).
 
 ## Expected yield under the ~10-utilities cap (measured 2026-11-24)
 
